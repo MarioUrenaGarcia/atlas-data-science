@@ -29,6 +29,11 @@ export default tseslint.config(
     rules: { 'react-refresh/only-export-components': 'off' },
   },
   {
+    // Tests index into fixtures whose shape is known; assertions keep them readable.
+    files: ['tests/**/*.ts'],
+    rules: { '@typescript-eslint/no-non-null-assertion': 'off' },
+  },
+  {
     files: ['scripts/**/*.ts'],
     rules: { 'no-console': 'off' },
   },

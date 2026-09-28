@@ -17,6 +17,16 @@ const ProgressPage = lazy(() => import('../pages/ProgressPage/ProgressPage.tsx')
 const AboutPage = lazy(() => import('../pages/AboutPage/AboutPage.tsx'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage.tsx'));
 
+// The catalog exists only in development; production builds drop this branch.
+const devRoutes: RouteObject[] = import.meta.env.DEV
+  ? [
+      {
+        path: 'catalogo',
+        Component: lazy(() => import('../visualizations/catalog/CatalogPage.tsx')),
+      },
+    ]
+  : [];
+
 export const routes: RouteObject[] = [
   {
     path: '/',
@@ -35,6 +45,7 @@ export const routes: RouteObject[] = [
       { path: 'notacion', Component: NotationPage },
       { path: 'progreso', Component: ProgressPage },
       { path: 'acerca', Component: AboutPage },
+      ...devRoutes,
       { path: '*', Component: NotFoundPage },
     ],
   },

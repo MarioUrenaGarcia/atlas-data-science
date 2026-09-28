@@ -1,0 +1,40 @@
+.layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.list ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-sm);
+}
+
+.list button {
+  width: 100%;
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  text-align: left;
+}
+
+.list button:hover {
+  background: var(--color-surface-2);
+}
+
+.active {
+  background: var(--color-accent-soft) !important;
+  color: var(--color-accent);
+}
+
+.stage {
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

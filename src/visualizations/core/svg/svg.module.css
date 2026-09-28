@@ -1,0 +1,72 @@
+.axis {
+  font-family: var(--font-sans);
+}
+
+.domain,
+.tick {
+  stroke: var(--data-axis);
+  stroke-width: 1;
+}
+
+.grid {
+  stroke: var(--data-grid);
+  stroke-width: 1;
+}
+
+.tickLabel {
+  fill: var(--data-axis);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.axisLabel {
+  fill: var(--color-text-muted);
+  font-size: 12px;
+  font-weight: 550;
+}
+
+.handle {
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.handle:focus-visible .handleRing {
+  stroke: var(--color-focus);
+  stroke-width: 3;
+  opacity: 1;
+}
+
+.handleRing {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 1.5;
+  opacity: 0;
+}
+
+.handle:hover .handleRing {
+  opacity: 0.6;
+}
+
+.label {
+  fill: var(--color-text);
+  font-size: 12px;
+  font-family: var(--font-sans);
+}
+
+.labelMuted {
+  fill: var(--color-text-muted);
+  font-size: 11px;
+  font-family: var(--font-sans);
+}
+
+.math {
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}
