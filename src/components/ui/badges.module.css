@@ -1,0 +1,68 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.1rem 0.55rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 550;
+  line-height: 1.6;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.dot,
+.dotFilled {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+}
+
+.dotFilled {
+  background: currentColor;
+}
+
+.basico {
+  color: var(--color-success);
+}
+
+.intermedio {
+  color: var(--color-accent);
+}
+
+.avanzado {
+  color: var(--data-4);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.7;
+}
+
+.status {
+  composes: badge;
+}
+
+.statusVisto {
+  color: var(--color-accent);
+  border-color: currentColor;
+}
+
+.statusDominado {
+  color: var(--color-success);
+  border-color: currentColor;
+  background: var(--color-success-soft);
+}

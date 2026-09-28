@@ -40,6 +40,7 @@ export function writeOutput(output: CompiledContent, target = GENERATED_ROOT): v
   writeJson(join(target, 'routes.json'), output.routes);
   writeJson(join(target, 'notation.json'), output.notation);
   writeJson(join(target, 'search-index.json'), output.search);
+  writeJson(join(target, 'map-layout.json'), output.mapLayout);
   for (const moduleContent of output.moduleContents) {
     writeJson(join(target, 'modules', `module-${moduleContent.modulo}.json`), moduleContent);
   }

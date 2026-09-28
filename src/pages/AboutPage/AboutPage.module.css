@@ -1,0 +1,41 @@
+.page {
+  max-width: var(--measure);
+}
+
+.page section {
+  margin-bottom: var(--space-6);
+}
+
+.page h2 {
+  font-size: var(--text-xl);
+}
+
+.page ul {
+  padding-left: 1.2em;
+}
+
+.page li + li {
+  margin-top: var(--space-2);
+}
+
+.shortcuts {
+  margin: 0;
+}
+
+.shortcuts > div {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-1) 0;
+}
+
+.shortcuts dt {
+  min-width: 140px;
+}
+
+.shortcuts dd {
+  margin: 0;
+}
+
+.bibliography {
+  font-size: var(--text-sm);
+}

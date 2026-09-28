@@ -103,3 +103,9 @@ export interface SearchData {
   index: unknown;
   synonyms: string[][];
 }
+
+export interface MapLayoutData {
+  /** Precomputed position of every concept, in layout units. */
+  positions: Record<string, [number, number]>;
+  modules: { numero: number; x: number; y: number; radius: number; count: number }[];
+}

@@ -7,6 +7,9 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
+  // A moderate worker count keeps timing-sensitive interactions stable on small machines.
+  workers: process.env.CI ? 2 : 3,
+  expect: { timeout: 10_000 },
   reporter: process.env.CI ? 'github' : 'list',
   use: {
     baseURL: `http://localhost:${PORT}`,

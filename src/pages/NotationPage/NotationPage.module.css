@@ -1,0 +1,46 @@
+.group {
+  margin-bottom: var(--space-6);
+}
+
+.groupTitle {
+  font-size: var(--text-xl);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table thead th {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-faint);
+}
+
+.table tbody th {
+  font-weight: 550;
+  width: 34%;
+}
+
+.note {
+  color: var(--color-text-muted);
+}
+
+.conventions {
+  max-width: var(--measure);
+  padding-left: 1.2em;
+}

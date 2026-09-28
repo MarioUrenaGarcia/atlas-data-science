@@ -1,10 +1,11 @@
-import { strings } from './strings.ts';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { routes } from './routes.tsx';
+
+// Vite's BASE_URL ends with a slash; the router expects the basename without it.
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
+const router = createBrowserRouter(routes, { basename });
 
 export function App() {
-  return (
-    <main>
-      <h1>{strings.appName}</h1>
-      <p>{strings.appTagline}</p>
-    </main>
-  );
+  return <RouterProvider router={router} />;
 }

@@ -1,0 +1,119 @@
+/*
+ * Semantic colors for both themes. The light theme is the default; the dark
+ * theme applies when data-theme="dark" is set on the root element, which the
+ * preferences store does for an explicit choice or when following the system.
+ */
+:root {
+  color-scheme: light;
+  --color-bg: #fbfbfa;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f3f1;
+  --color-surface-3: #e9e9e6;
+  --color-border: #deded9;
+  --color-border-strong: #b9b9b2;
+  --color-text: #1c1d1f;
+  --color-text-muted: #575a60;
+  --color-text-faint: #6e7178;
+  --color-accent: #1f5fa8;
+  --color-accent-hover: #174b86;
+  --color-accent-soft: #e5eef9;
+  --color-on-accent: #ffffff;
+  --color-focus: #1f5fa8;
+  --color-success: #1d7a46;
+  --color-success-soft: #e3f3e9;
+  --color-warning: #8a5a00;
+  --color-warning-soft: #fbf0d9;
+  --color-danger: #b3261e;
+  --color-danger-soft: #fbe6e4;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 12px 40px rgb(0 0 0 / 0.16);
+  --overlay: rgb(20 22 26 / 0.45);
+
+  /* Colorblind-safe data palette (Okabe and Ito) tuned for a light background. */
+  --data-1: #0072b2;
+  --data-2: #d55e00;
+  --data-3: #009e73;
+  --data-4: #cc79a7;
+  --data-5: #e69f00;
+  --data-6: #56b4e9;
+  --data-7: #8c7a00;
+  --data-8: #3d3d3d;
+  --data-positive: #0072b2;
+  --data-negative: #d55e00;
+  --data-neutral: #7a7a7a;
+  --data-grid: #e4e4e0;
+  --data-axis: #6e7178;
+  --data-fill-opacity: 0.22;
+
+  /* Module accents: evenly spaced hues at equal perceived lightness. */
+  --module-l: 0.5;
+  --module-c: 0.13;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #121416;
+  --color-surface: #1a1d20;
+  --color-surface-2: #22262a;
+  --color-surface-3: #2c3136;
+  --color-border: #343a40;
+  --color-border-strong: #4f575f;
+  --color-text: #e8e9ea;
+  --color-text-muted: #adb3b9;
+  --color-text-faint: #959ca3;
+  --color-accent: #7fb2ee;
+  --color-accent-hover: #a3c8f4;
+  --color-accent-soft: #1d2d40;
+  --color-on-accent: #0b1520;
+  --color-focus: #7fb2ee;
+  --color-success: #6fcf97;
+  --color-success-soft: #173324;
+  --color-warning: #f0c060;
+  --color-warning-soft: #3a2f14;
+  --color-danger: #f28b82;
+  --color-danger-soft: #3d1c1a;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 12px 40px rgb(0 0 0 / 0.6);
+  --overlay: rgb(0 0 0 / 0.6);
+
+  --data-1: #56b4e9;
+  --data-2: #f0884a;
+  --data-3: #3fc39c;
+  --data-4: #e39cc4;
+  --data-5: #f2b84b;
+  --data-6: #9fd4f3;
+  --data-7: #e2d35a;
+  --data-8: #c9c9c9;
+  --data-positive: #56b4e9;
+  --data-negative: #f0884a;
+  --data-neutral: #9a9a9a;
+  --data-grid: #2e3338;
+  --data-axis: #a0a6ac;
+  --data-fill-opacity: 0.3;
+
+  --module-l: 0.78;
+  --module-c: 0.11;
+}
+
+:root {
+  --module-0: oklch(var(--module-l) var(--module-c) 255);
+  --module-1: oklch(var(--module-l) var(--module-c) 25);
+  --module-2: oklch(var(--module-l) var(--module-c) 145);
+  --module-3: oklch(var(--module-l) var(--module-c) 305);
+  --module-4: oklch(var(--module-l) var(--module-c) 75);
+  --module-5: oklch(var(--module-l) var(--module-c) 200);
+  --module-6: oklch(var(--module-l) var(--module-c) 350);
+  --module-7: oklch(var(--module-l) var(--module-c) 110);
+  --module-8: oklch(var(--module-l) var(--module-c) 275);
+  --module-9: oklch(var(--module-l) var(--module-c) 45);
+  --module-10: oklch(var(--module-l) var(--module-c) 170);
+  --module-11: oklch(var(--module-l) var(--module-c) 325);
+  --module-12: oklch(var(--module-l) var(--module-c) 90);
+  --module-13: oklch(var(--module-l) var(--module-c) 230);
+  --module-14: oklch(var(--module-l) var(--module-c) 5);
+  --module-15: oklch(var(--module-l) var(--module-c) 130);
+  --module-16: oklch(var(--module-l) var(--module-c) 290);
+  --module-17: oklch(var(--module-l) var(--module-c) 60);
+}

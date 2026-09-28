@@ -1,0 +1,15 @@
+.body {
+  min-width: 0;
+}
+
+.section {
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+  margin-bottom: var(--space-6);
+}
+
+.heading {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}

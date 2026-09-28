@@ -207,6 +207,38 @@ function rehypeSplitSections(sections: ConceptSection[], toHtml: (root: HastRoot
   };
 }
 
+/**
+ * Wide formulas and tables scroll horizontally on small screens; making the
+ * scroll containers focusable lets keyboard users reach the hidden part.
+ */
+function rehypeScrollableRegions() {
+  return (tree: HastRoot) => {
+    visit(tree, 'element', (node: Element, index, parent) => {
+      const classes = node.properties.className;
+      if (Array.isArray(classes) && classes.includes('katex-display')) {
+        node.properties.tabIndex = 0;
+        return;
+      }
+      if (node.tagName === 'table' && parent && index !== undefined && parent.type === 'element') {
+        const wrapper: Element = {
+          type: 'element',
+          tagName: 'div',
+          properties: {
+            className: ['table-scroll'],
+            tabIndex: 0,
+            role: 'region',
+            ariaLabel: 'Tabla',
+          },
+          children: [node],
+        };
+        parent.children.splice(index, 1, wrapper);
+        return index + 1;
+      }
+      return undefined;
+    });
+  };
+}
+
 function katexMessages(file: VFile): MarkdownIssue[] {
   return file.messages
     .filter((message) => message.source === 'rehype-katex' || /katex/i.test(message.reason))
@@ -251,6 +283,7 @@ export function processConceptBody(
     .use(() => (tree: MdastRoot) => collectSectionData(tree, result))
     .use(remarkRehype)
     .use(rehypeKatex, katexOptions(macros))
+    .use(rehypeScrollableRegions)
     .use(rehypeSplitSections, result.sections, toHtml)
     .use(rehypeStringify);
 

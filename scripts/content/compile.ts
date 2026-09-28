@@ -17,6 +17,7 @@ import type {
   ConceptContent,
   ConceptNode,
   GraphData,
+  MapLayoutData,
   ModuleContentFile,
   ModulesData,
   NotationData,
@@ -35,6 +36,7 @@ import {
 import { INDEX_OPTIONS, type SearchDocument } from '../../src/lib/search/config.ts';
 import { fileStem, type RawConceptFile, type RawContent } from './load.ts';
 import { processConceptBody, renderFormula, type ProcessedBody } from './markdown.ts';
+import { computeMapLayout } from './mapLayout.ts';
 import { expandRoutes } from './routes.ts';
 import type { VisualizationCatalog } from './visualizations.ts';
 
@@ -64,6 +66,7 @@ export interface CompiledContent {
   notation: NotationData;
   search: SearchData;
   moduleContents: ModuleContentFile[];
+  mapLayout: MapLayoutData;
 }
 
 export interface CompileResult {
@@ -640,6 +643,17 @@ export function compileContent(raw: RawContent, options: CompileOptions): Compil
     stats,
     output: issues.some((issue) => issue.level === 'error')
       ? null
-      : { graph: { nodes }, modules, routes, notation, search, moduleContents },
+      : {
+          graph: { nodes },
+          modules,
+          routes,
+          notation,
+          search,
+          moduleContents,
+          mapLayout: computeMapLayout(
+            nodes,
+            modules.modules.map((module) => module.numero),
+          ),
+        },
   };
 }

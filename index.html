@@ -9,6 +9,22 @@
       content="Atlas visual e interactivo de los conceptos de la ciencia de datos: probabilidad, estadística, aprendizaje automático y más."
     />
     <title>Atlas de Data Science</title>
+    <script>
+      // Applies the saved theme before the first paint to avoid a flash of the wrong colors.
+      (function () {
+        var theme = 'sistema';
+        try {
+          var saved = JSON.parse(localStorage.getItem('atlas-preferencias') || 'null');
+          if (saved && saved.state && saved.state.theme) theme = saved.state.theme;
+        } catch (error) {
+          theme = 'sistema';
+        }
+        var dark =
+          theme === 'oscuro' ||
+          (theme === 'sistema' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
