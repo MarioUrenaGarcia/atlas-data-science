@@ -1,0 +1,114 @@
+# Macros de LaTeX disponibles en todas las fichas y tabla de la página de Notación.
+macros:
+  \E: \mathbb{E}
+  \Var: \operatorname{Var}
+  \Cov: \operatorname{Cov}
+  \Corr: \operatorname{Corr}
+  \R: \mathbb{R}
+  \N: \mathbb{N}
+  \Z: \mathbb{Z}
+  \Q: \mathbb{Q}
+  \ind: \mathbf{1}
+  \normal: \mathcal{N}
+  \argmin: \operatorname*{arg\,min}
+  \argmax: \operatorname*{arg\,max}
+  \tr: \operatorname{tr}
+  \rank: \operatorname{rango}
+  \sgn: \operatorname{sgn}
+  \iid: \overset{\text{iid}}{\sim}
+  \dto: \xrightarrow{d}
+  \pto: \xrightarrow{p}
+  \asto: \xrightarrow{\text{c.s.}}
+
+grupos:
+  - titulo: Variables aleatorias y datos
+    entradas:
+      - objeto: Variables aleatorias
+        notacion: X,\ Y,\ Z
+        nota: Letras mayúsculas.
+      - objeto: Valores observados
+        notacion: x,\ y,\ z
+        nota: Letras minúsculas.
+      - objeto: Muestra aleatoria
+        notacion: X_1, \dots, X_n
+      - objeto: Media muestral
+        notacion: \bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i
+      - objeto: Varianza muestral
+        notacion: S^2 = \frac{1}{n-1}\sum_{i=1}^{n} (X_i - \bar{X})^2
+      - objeto: Estadísticos de orden
+        notacion: X_{(1)} \le X_{(2)} \le \dots \le X_{(n)}
+
+  - titulo: Probabilidad y momentos
+    entradas:
+      - objeto: Probabilidad de un evento
+        notacion: P(A)
+      - objeto: Probabilidad condicional
+        notacion: P(A \mid B)
+      - objeto: Esperanza
+        notacion: \E[X]
+      - objeto: Varianza
+        notacion: \Var(X)
+      - objeto: Covarianza
+        notacion: \Cov(X, Y)
+      - objeto: Correlación
+        notacion: \Corr(X, Y)
+      - objeto: Función indicadora
+        notacion: \ind\{A\}
+      - objeto: Función de distribución acumulada
+        notacion: F_X(x) = P(X \le x)
+      - objeto: Densidad o función de masa
+        notacion: f_X(x),\ p_X(x)
+
+  - titulo: Distribuciones y parámetros
+    entradas:
+      - objeto: Parámetros
+        notacion: \theta,\ \mu,\ \sigma
+        nota: Letras griegas.
+      - objeto: Estimadores
+        notacion: \hat{\theta},\ \hat{\mu}
+        nota: Se distinguen con gorro.
+      - objeto: Distribución de una variable
+        notacion: X \sim \normal(\mu, \sigma^2)
+        nota: La normal se parametriza con la varianza, no con la desviación estándar.
+      - objeto: Muestra independiente e idénticamente distribuida
+        notacion: X_1, \dots, X_n \iid F
+      - objeto: Convergencia en probabilidad, en distribución y casi segura
+        notacion: X_n \pto X,\quad X_n \dto X,\quad X_n \asto X
+
+  - titulo: Álgebra lineal
+    entradas:
+      - objeto: Vectores
+        notacion: \mathbf{x},\ \mathbf{y}
+        nota: Negritas minúsculas, siempre vectores columna.
+      - objeto: Matrices
+        notacion: \mathbf{X},\ \mathbf{A}
+        nota: Negritas mayúsculas.
+      - objeto: Transpuesta
+        notacion: \mathbf{X}^\top
+      - objeto: Inversa
+        notacion: \mathbf{A}^{-1}
+      - objeto: Matriz identidad
+        notacion: \mathbf{I}_n
+      - objeto: Traza y determinante
+        notacion: \tr(\mathbf{A}),\ \det(\mathbf{A})
+      - objeto: Norma euclidiana
+        notacion: \lVert \mathbf{x} \rVert_2
+
+  - titulo: Conjuntos y funciones
+    entradas:
+      - objeto: Conjuntos numéricos
+        notacion: \N,\ \Z,\ \Q,\ \R
+      - objeto: Logaritmo natural
+        notacion: \log x
+        nota: Siempre en base e salvo que se indique otra base.
+      - objeto: Argumento que minimiza o maximiza
+        notacion: \argmin_{\theta} L(\theta),\ \argmax_{\theta} L(\theta)
+      - objeto: Gradiente y hessiana
+        notacion: \nabla f(\mathbf{x}),\ \nabla^2 f(\mathbf{x})
+
+convenciones:
+  - Los números usan punto decimal.
+  - En texto, las cantidades de más de cinco cifras separan los miles con coma; en fórmulas no se separan.
+  - La normal se escribe con su varianza como segundo parámetro.
+  - La exponencial se parametriza con la tasa, de modo que su media es el inverso de la tasa.
+  - Los vectores son columnas; un vector renglón se escribe como transpuesta.

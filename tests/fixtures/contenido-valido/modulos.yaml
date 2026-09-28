@@ -1,0 +1,11 @@
+modulos:
+  - numero: 0
+    clave: fundamentos
+    titulo: Fundamentos de prueba
+    descripcion: Módulo mínimo para probar el pipeline de contenido.
+    portada: concepto-alfa
+    submodulos:
+      - clave: '0.1'
+        titulo: Lógica de prueba
+        nivel: [basico, intermedio]
+        descripcion: Submódulo mínimo con tres conceptos encadenados.

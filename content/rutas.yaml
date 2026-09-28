@@ -1,0 +1,171 @@
+rutas:
+  - id: fundamentos-para-todos
+    titulo: Fundamentos para todos
+    perfil: Cualquier persona que empieza en ciencia de datos
+    descripcion: >
+      Las bases de matemáticas, probabilidad y estadística descriptiva que el resto del Atlas da por
+      sabidas. Es el punto de partida recomendado para cualquier otra ruta.
+    incluye:
+      - submodulo: "0.1"
+      - submodulo: "0.2"
+      - submodulo: "0.3"
+        hasta: valores-y-vectores-propios
+      - submodulo: "0.4"
+      - submodulo: "1.1"
+      - submodulo: "1.2"
+      - submodulo: "1.3"
+        niveles: [basico]
+      - submodulo: "2.1"
+        niveles: [basico]
+      - submodulo: "2.2"
+        niveles: [basico]
+      - modulo: 4
+
+  - id: analista-de-datos
+    titulo: Analista de datos
+    perfil: Análisis de negocio, reportes y experimentación
+    descripcion: >
+      Muestreo, inferencia básica, regresión simple, preparación de datos y evaluación de modelos:
+      lo necesario para responder preguntas con datos y comunicar resultados con su incertidumbre.
+    incluye:
+      - ruta: fundamentos-para-todos
+      - submodulo: "5.1"
+      - submodulo: "5.3"
+      - submodulo: "6.1"
+      - submodulo: "6.3"
+      - submodulo: "6.4"
+        niveles: [basico]
+      - submodulo: "8.1"
+      - modulo: 12
+      - submodulo: "13.2"
+        niveles: [basico]
+
+  - id: estadistico
+    titulo: Estadístico
+    perfil: Formación estadística completa
+    descripcion: >
+      Probabilidad, distribuciones, teoremas límite, diseño, inferencia, regresión y métodos
+      multivariados con el rigor de un programa de estadística.
+    incluye:
+      - ruta: fundamentos-para-todos
+      - submodulo: "0.5"
+      - modulo: 1
+      - modulo: 2
+      - modulo: 3
+      - modulo: 5
+      - modulo: 6
+      - submodulo: "7.1"
+      - modulo: 8
+      - modulo: 9
+
+  - id: cientifico-de-datos
+    titulo: Científico de datos
+    perfil: Modelado predictivo y aprendizaje automático
+    descripcion: >
+      Amplía la ruta de analista con optimización, teoría de la información, regresión avanzada, el
+      módulo completo de aprendizaje automático y una introducción a la inferencia causal.
+    incluye:
+      - ruta: analista-de-datos
+      - submodulo: "0.5"
+      - submodulo: "0.6"
+      - submodulo: "0.8"
+      - concepto: ley-debil-de-los-grandes-numeros
+      - concepto: teorema-central-del-limite
+      - submodulo: "7.1"
+      - submodulo: "8.2"
+      - submodulo: "8.3"
+      - submodulo: "8.4"
+      - concepto: analisis-de-componentes-principales
+      - modulo: 13
+      - modulo: 16
+        niveles: [basico, intermedio]
+
+  - id: aprendizaje-profundo
+    titulo: Aprendizaje profundo
+    perfil: Redes neuronales y modelos modernos
+    descripcion: >
+      La base de científico de datos hasta los métodos de ensamble, la diferenciación automática y el
+      módulo completo de aprendizaje profundo, desde la neurona artificial hasta los transformers y
+      los modelos de difusión.
+    incluye:
+      - ruta: cientifico-de-datos
+        hasta_submodulo: "13.7"
+      - concepto: diferenciacion-automatica
+      - modulo: 14
+
+  - id: procesos-estocasticos
+    titulo: Procesos estocásticos
+    perfil: Modelado probabilístico de sistemas dinámicos
+    descripcion: >
+      Probabilidad completa, distribuciones y teoremas límite como preparación para caminatas
+      aleatorias, cadenas de Markov, procesos de Poisson, colas, martingalas y cálculo estocástico.
+    incluye:
+      - ruta: fundamentos-para-todos
+      - submodulo: "0.5"
+      - modulo: 1
+      - modulo: 2
+      - modulo: 3
+      - modulo: 10
+
+  - id: series-temporales-y-finanzas
+    titulo: Series temporales y finanzas cuantitativas
+    perfil: Pronóstico, econometría y riesgo financiero
+    descripcion: >
+      Los procesos estocásticos que sustentan el análisis de series, pruebas de hipótesis y regresión,
+      el módulo completo de series temporales y la teoría de valores extremos para riesgos de cola.
+    incluye:
+      - submodulo: "10.1"
+      - submodulo: "10.2"
+      - submodulo: "10.3"
+      - submodulo: "10.4"
+      - submodulo: "10.7"
+      - submodulo: "6.4"
+      - submodulo: "8.1"
+      - submodulo: "8.2"
+      - modulo: 11
+      - submodulo: "17.1"
+
+  - id: inferencia-causal-y-experimentacion
+    titulo: Inferencia causal y experimentación
+    perfil: Evaluación de impacto y toma de decisiones
+    descripcion: >
+      Diseño de experimentos, comparaciones múltiples, regresión y modelos lineales generalizados como
+      base para estimar efectos causales con experimentos y con datos observacionales.
+    incluye:
+      - ruta: analista-de-datos
+      - modulo: 5
+      - submodulo: "6.5"
+      - submodulo: "8.2"
+      - submodulo: "8.4"
+      - modulo: 16
+
+  - id: aprendizaje-por-refuerzo
+    titulo: Aprendizaje por refuerzo
+    perfil: Agentes que toman decisiones secuenciales
+    descripcion: >
+      Optimización, cadenas de Markov, fundamentos de aprendizaje y redes neuronales como preparación
+      para el módulo completo de aprendizaje por refuerzo.
+    incluye:
+      - ruta: fundamentos-para-todos
+      - submodulo: "0.6"
+      - submodulo: "10.3"
+      - submodulo: "13.1"
+      - submodulo: "14.1"
+      - submodulo: "14.2"
+      - modulo: 15
+
+  - id: estadistica-bayesiana
+    titulo: Estadística bayesiana
+    perfil: Modelado probabilístico con actualización de creencias
+    descripcion: >
+      Distribuciones conjuntas y multivariadas, familias conjugadas y máxima verosimilitud como
+      antesala del módulo bayesiano completo, más cadenas de Markov y modelos gráficos.
+    incluye:
+      - ruta: fundamentos-para-todos
+      - submodulo: "1.4"
+      - submodulo: "2.3"
+      - submodulo: "2.4"
+      - concepto: maxima-verosimilitud
+      - modulo: 7
+      - submodulo: "10.3"
+      - submodulo: "13.8"

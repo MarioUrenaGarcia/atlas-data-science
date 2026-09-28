@@ -1,0 +1,9 @@
+macros:
+  \E: \mathbb{E}
+grupos:
+  - titulo: Básico
+    entradas:
+      - objeto: Esperanza
+        notacion: \E[X]
+convenciones:
+  - Punto decimal.

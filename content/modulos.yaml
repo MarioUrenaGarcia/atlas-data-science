@@ -1,0 +1,888 @@
+modulos:
+  - numero: 0
+    clave: fundamentos-matematicos
+    titulo: Fundamentos matemáticos
+    descripcion: "Las herramientas matemáticas sobre las que se construye la ciencia de datos: lógica,
+      conjuntos, conteo, álgebra lineal, cálculo, optimización, análisis numérico, teoría de la
+      información y teoría de la medida. Cada concepto se presenta con la intuición geométrica que
+      después reaparece en los modelos estadísticos y de aprendizaje."
+    portada: multiplicacion-de-matrices-como-transformacion-lineal
+    submodulos:
+      - clave: "0.1"
+        titulo: Lógica y teoría de conjuntos
+        nivel:
+          - basico
+        descripcion: "Proposiciones, conjuntos, funciones y sucesiones: el vocabulario básico para enunciar
+          definiciones y teoremas con precisión. También incluye cardinalidad, series e inducción,
+          que reaparecen en probabilidad y análisis."
+      - clave: "0.2"
+        titulo: Combinatoria
+        nivel:
+          - basico
+        descripcion: Técnicas para contar configuraciones sin enumerarlas una por una. El conteo es la base
+          de la probabilidad en espacios equiprobables y de muchas distribuciones discretas.
+      - clave: "0.3"
+        titulo: Álgebra lineal
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Vectores, matrices y las transformaciones lineales que representan. Descomposiciones
+          como la espectral y la SVD sostienen la regresión, el PCA y buena parte del aprendizaje
+          automático.
+      - clave: "0.4"
+        titulo: Cálculo diferencial e integral de una variable
+        nivel:
+          - basico
+        descripcion: Límites, derivadas e integrales de funciones de una variable. La derivada mide razones
+          de cambio y la integral acumula, dos ideas que definen densidades, esperanzas y algoritmos
+          de optimización.
+      - clave: "0.5"
+        titulo: Cálculo multivariable y matricial
+        nivel:
+          - intermedio
+        descripcion: Derivadas e integrales para funciones de varias variables. El gradiente, el jacobiano y
+          el hessiano aparecen en la optimización de modelos y en el cambio de variables de
+          densidades.
+      - clave: "0.6"
+        titulo: Optimización
+        nivel:
+          - intermedio
+        descripcion: Encontrar el mejor valor de una función sujeto a restricciones. Se estudian condiciones
+          de optimalidad, métodos de gradiente y de Newton, programación lineal y heurísticas de
+          búsqueda global.
+      - clave: "0.7"
+        titulo: Análisis numérico
+        nivel:
+          - intermedio
+        descripcion: Cómo calcular con números de precisión finita sin perder exactitud. Errores de
+          redondeo, estabilidad, métodos para raíces, interpolación, integración y diferenciación
+          numérica.
+      - clave: "0.8"
+        titulo: Teoría de la información
+        nivel:
+          - intermedio
+        descripcion: Medidas de incertidumbre y de diferencia entre distribuciones. La entropía, la entropía
+          cruzada y la divergencia KL son las funciones de pérdida detrás de muchos modelos
+          probabilísticos.
+      - clave: "0.9"
+        titulo: Teoría de la medida para probabilidad
+        nivel:
+          - avanzado
+        descripcion: El marco riguroso que da sentido a la probabilidad en espacios continuos.
+          Sigma-álgebras, medidas, integral de Lebesgue y los teoremas de convergencia que
+          justifican intercambiar límites e integrales.
+  - numero: 1
+    clave: probabilidad
+    titulo: Probabilidad
+    descripcion: El lenguaje formal de la incertidumbre. Parte de los axiomas y llega a variables
+      aleatorias, esperanza, varianza, distribuciones conjuntas y las desigualdades que acotan
+      probabilidades cuando la distribución exacta se desconoce.
+    portada: aguja-de-buffon
+    submodulos:
+      - clave: "1.1"
+        titulo: Fundamentos de probabilidad
+        nivel:
+          - basico
+        descripcion: Qué es un experimento aleatorio y cómo se asigna probabilidad a sus eventos. Se
+          comparan las interpretaciones de la probabilidad y se introduce la simulación como
+          herramienta para estimarla.
+      - clave: "1.2"
+        titulo: Probabilidad condicional e independencia
+        nivel:
+          - basico
+        descripcion: Cómo cambia la probabilidad al recibir información. Incluye la regla del producto, la
+          ley de probabilidad total, el teorema de Bayes y una colección de paradojas clásicas que
+          ponen a prueba la intuición.
+      - clave: "1.3"
+        titulo: Variables aleatorias
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Variables que asignan números a los resultados de un experimento. Se describen con
+          funciones de masa, densidad y distribución, y se resumen con esperanza, varianza y
+          momentos.
+      - clave: "1.4"
+        titulo: Variables aleatorias conjuntas
+        nivel:
+          - intermedio
+        descripcion: Varias variables aleatorias estudiadas a la vez. Distribuciones marginales y
+          condicionales, covarianza, esperanza condicional y la estructura de dependencia que
+          describen las cópulas.
+      - clave: "1.5"
+        titulo: Desigualdades de probabilidad
+        nivel:
+          - intermedio
+        descripcion: Cotas para probabilidades y esperanzas que valen con poca información sobre la
+          distribución. Son la base de las garantías de convergencia y de las cotas de
+          generalización en aprendizaje.
+  - numero: 2
+    clave: distribuciones-de-probabilidad
+    titulo: Distribuciones de probabilidad
+    descripcion: Catálogo de las distribuciones discretas, continuas y multivariadas más usadas, con el
+      proceso que genera cada una y las relaciones que las conectan. Incluye los métodos para
+      generar números aleatorios que siguen cualquiera de ellas.
+    portada: distribucion-normal
+    submodulos:
+      - clave: "2.1"
+        titulo: Distribuciones discretas
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Distribuciones para conteos y resultados categóricos. Cada una surge de un proceso
+          concreto, como lanzar monedas, extraer de una urna o contar llegadas en un intervalo.
+      - clave: "2.2"
+        titulo: Distribuciones continuas
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Distribuciones para magnitudes que varían de forma continua. Se estudian la normal y
+          sus derivadas, las familias gamma y beta y las distribuciones de colas pesadas y de
+          valores extremos.
+      - clave: "2.3"
+        titulo: Distribuciones multivariadas
+        nivel:
+          - intermedio
+        descripcion: Distribuciones para vectores y matrices aleatorios. La normal multivariada y sus
+          elipses de contorno ocupan el centro, junto con Dirichlet, Wishart y las distribuciones
+          para matrices de correlación.
+        enlaces:
+          - distribucion-multinomial
+      - clave: "2.4"
+        titulo: Familias y relaciones entre distribuciones
+        nivel:
+          - intermedio
+        descripcion: "Estructuras que agrupan y conectan distribuciones: familia exponencial, familias de
+          localización y escala, conjugación, mezclas y aproximaciones de una distribución por
+          otra."
+        enlaces:
+          - estimacion-de-densidad-por-kernel
+      - clave: "2.5"
+        titulo: Generación de variables aleatorias
+        nivel:
+          - intermedio
+        descripcion: Cómo produce una computadora números que se comportan como aleatorios y cómo
+          transformarlos para obtener cualquier distribución objetivo. Incluye generadores, pruebas
+          de aleatoriedad y métodos de transformación y rechazo.
+  - numero: 3
+    clave: teoremas-limite-y-convergencia
+    titulo: Teoremas límite y convergencia
+    descripcion: Qué ocurre cuando se acumulan muchas observaciones aleatorias. Los modos de
+      convergencia, la ley de los grandes números y el teorema central del límite explican por qué
+      los promedios se estabilizan y por qué la distribución normal aparece con tanta frecuencia.
+    portada: teorema-central-del-limite
+    submodulos:
+      - clave: "3.1"
+        titulo: Modos de convergencia y teoremas límite
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Las formas en que una sucesión de variables aleatorias puede converger y los teoremas
+          que describen el comportamiento de sumas y promedios. También se ven los casos en que
+          estos resultados fallan.
+        enlaces:
+          - distribucion-generalizada-de-valores-extremos
+  - numero: 4
+    clave: estadistica-descriptiva
+    titulo: Estadística descriptiva y análisis exploratorio
+    descripcion: Resumir y mirar datos antes de modelarlos. Medidas de centro, dispersión, forma y
+      asociación, los principales tipos de gráfico y el análisis exploratorio como práctica
+      sistemática para descubrir la estructura de un conjunto de datos.
+    portada: cuarteto-de-anscombe
+    submodulos:
+      - clave: "4.1"
+        titulo: Tipos de datos y escalas de medición
+        nivel:
+          - basico
+        descripcion: Las categorías con que se clasifican los datos y sus escalas de medición. El tipo de
+          dato determina qué resúmenes, gráficos y modelos son apropiados.
+      - clave: "4.2"
+        titulo: Medidas de tendencia central
+        nivel:
+          - basico
+        descripcion: Formas de resumir un conjunto de datos con un valor típico. Se comparan las medias, la
+          mediana y la moda, y su sensibilidad a valores extremos.
+      - clave: "4.3"
+        titulo: Medidas de dispersión y posición
+        nivel:
+          - basico
+        descripcion: Medidas de cuánto se alejan los datos de su centro y de la posición relativa de cada
+          observación. Incluye varianza muestral, cuantiles y el resumen de cinco números.
+      - clave: "4.4"
+        titulo: Forma de la distribución
+        nivel:
+          - basico
+        descripcion: Descripción de la asimetría, el apuntamiento, la multimodalidad y el peso de las colas
+          de una distribución observada.
+      - clave: "4.5"
+        titulo: Medidas de asociación
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Coeficientes que miden la relación entre dos variables numéricas o categóricas. Se
+          discuten sus supuestos y los casos en que la correlación engaña.
+      - clave: "4.6"
+        titulo: Visualización de datos
+        nivel:
+          - basico
+        descripcion: Tipos de gráfico, cuándo usar cada uno y los principios de percepción visual que hacen
+          que un gráfico comunique con honestidad. Incluye ejemplos clásicos de datos que solo se
+          entienden al graficarlos.
+      - clave: "4.7"
+        titulo: Análisis exploratorio de datos
+        nivel:
+          - basico
+          - intermedio
+        descripcion: "El análisis exploratorio como proceso ordenado para conocer un conjunto de datos:
+          distribuciones, relaciones, valores atípicos, faltantes y transformaciones útiles antes de
+          modelar."
+  - numero: 5
+    clave: muestreo-y-diseno-de-experimentos
+    titulo: Muestreo y diseño de experimentos
+    descripcion: Cómo obtener datos que permitan conclusiones válidas. Cubre los diseños de muestreo
+      probabilístico y sus sesgos, el diseño clásico de experimentos y la experimentación en línea
+      con pruebas A/B.
+    portada: muestreo-estratificado
+    submodulos:
+      - clave: "5.1"
+        titulo: Teoría de muestreo
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Diseños para seleccionar una muestra de una población y los estimadores asociados a
+          cada diseño. Se estudian también los sesgos que aparecen cuando la selección no es
+          probabilística.
+      - clave: "5.2"
+        titulo: Diseño de experimentos
+        nivel:
+          - intermedio
+        descripcion: "Principios para planear experimentos que aíslen el efecto de un tratamiento:
+          aleatorización, replicación y bloqueo, con los diseños clásicos que los combinan."
+      - clave: "5.3"
+        titulo: Pruebas A/B y experimentación en línea
+        nivel:
+          - intermedio
+        descripcion: La práctica de comparar variantes de un producto con usuarios reales. Tamaño de efecto
+          detectable, duración, espionaje de resultados, pruebas secuenciales y las fallas típicas
+          de estos experimentos.
+        enlaces:
+          - bandidos-multibrazo
+  - numero: 6
+    clave: inferencia-estadistica
+    titulo: Inferencia estadística
+    descripcion: Pasar de una muestra a afirmaciones sobre la población con incertidumbre cuantificada.
+      Estimación puntual y por intervalos, pruebas de hipótesis, comparaciones múltiples, métodos no
+      paramétricos, remuestreo, estadística robusta y teoría de la decisión.
+    portada: intervalo-de-confianza
+    submodulos:
+      - clave: "6.1"
+        titulo: Distribuciones muestrales
+        nivel:
+          - basico
+          - intermedio
+        descripcion: La distribución de un estadístico a lo largo de muestras repetidas. Es el objeto que
+          conecta los datos observados con la incertidumbre de las estimaciones.
+      - clave: "6.2"
+        titulo: Estimación puntual
+        nivel:
+          - intermedio
+        descripcion: Métodos para estimar parámetros con un solo valor y criterios para compararlos. La
+          máxima verosimilitud, la información de Fisher y la suficiencia ocupan el centro del
+          submódulo.
+      - clave: "6.3"
+        titulo: Estimación por intervalos
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Rangos de valores plausibles para un parámetro con una cobertura garantizada en
+          muestreo repetido. Se construyen intervalos para medias, proporciones y varianzas, y se
+          aclara su interpretación.
+      - clave: "6.4"
+        titulo: Pruebas de hipótesis
+        nivel:
+          - basico
+          - intermedio
+        descripcion: El marco para decidir entre dos hipótesis con datos, controlando la probabilidad de
+          error. Incluye las pruebas más usadas, el valor p y los problemas de su uso indebido.
+      - clave: "6.5"
+        titulo: Comparaciones múltiples
+        nivel:
+          - intermedio
+        descripcion: Qué ocurre con los errores cuando se realizan muchas pruebas a la vez y los
+          procedimientos que controlan la tasa de error por familia o la tasa de falsos
+          descubrimientos.
+      - clave: "6.6"
+        titulo: Estadística no paramétrica
+        nivel:
+          - intermedio
+        descripcion: "Métodos que no suponen una familia paramétrica para los datos: pruebas basadas en
+          rangos, pruebas de permutación y estimación de densidades y regresiones con kernels."
+      - clave: "6.7"
+        titulo: Métodos de remuestreo
+        nivel:
+          - intermedio
+        descripcion: Aproximar la distribución de un estadístico remuestreando los datos observados.
+          Bootstrap y jackknife permiten obtener errores estándar e intervalos sin fórmulas
+          cerradas.
+      - clave: "6.8"
+        titulo: Estadística robusta
+        nivel:
+          - intermedio
+        descripcion: Estimadores que siguen siendo confiables cuando una parte de los datos está
+          contaminada. Se miden con el punto de quiebre y la función de influencia.
+      - clave: "6.9"
+        titulo: Teoría de la decisión estadística
+        nivel:
+          - avanzado
+        descripcion: La estimación vista como una decisión bajo incertidumbre. Funciones de pérdida y de
+          riesgo permiten comparar estimadores con criterios minimax y bayesianos.
+  - numero: 7
+    clave: estadistica-bayesiana
+    titulo: Estadística bayesiana
+    descripcion: La inferencia entendida como actualización de creencias con datos. Distribuciones a
+      priori y posteriores, modelos conjugados y jerárquicos, los algoritmos de muestreo e
+      inferencia variacional que hacen posible el cálculo, y los modelos bayesianos no paramétricos.
+    portada: actualizacion-secuencial
+    submodulos:
+      - clave: "7.1"
+        titulo: Fundamentos de inferencia bayesiana
+        nivel:
+          - intermedio
+        descripcion: "La inferencia bayesiana completa: prior, verosimilitud, posterior y predictiva. Se
+          estudian los modelos conjugados, la elección de priors, la comparación de modelos y los
+          modelos jerárquicos."
+      - clave: "7.2"
+        titulo: Computación bayesiana
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Algoritmos para aproximar distribuciones posteriores que no tienen forma cerrada.
+          Muestreo por importancia, cadenas de Markov Monte Carlo, inferencia variacional y
+          criterios para evaluar el ajuste.
+        enlaces:
+          - metodo-de-aceptacion-y-rechazo
+          - filtro-de-particulas
+      - clave: "7.3"
+        titulo: Bayesiana no paramétrica
+        nivel:
+          - avanzado
+        descripcion: Modelos bayesianos cuyo número de parámetros crece con los datos. El proceso de
+          Dirichlet y sus representaciones permiten, por ejemplo, mezclas con un número de
+          componentes no fijado de antemano.
+        enlaces:
+          - regresion-con-procesos-gaussianos
+  - numero: 8
+    clave: modelos-de-regresion
+    titulo: Modelos de regresión
+    descripcion: Modelos que relacionan una respuesta con variables explicativas. Desde la recta de
+      mínimos cuadrados hasta la regularización, los modelos lineales generalizados, los modelos
+      mixtos, el análisis de varianza y el análisis de supervivencia, con sus supuestos y
+      diagnósticos.
+    portada: minimos-cuadrados-ordinarios
+    submodulos:
+      - clave: "8.1"
+        titulo: Regresión lineal simple
+        nivel:
+          - basico
+        descripcion: La relación lineal entre una respuesta y una sola variable explicativa. Mínimos
+          cuadrados, descomposición de la variabilidad, inferencia sobre coeficientes y supuestos
+          del modelo.
+      - clave: "8.2"
+        titulo: Regresión lineal múltiple
+        nivel:
+          - intermedio
+        descripcion: La regresión con varias variables explicativas en forma matricial. Incluye su geometría
+          como proyección, variables categóricas e interacciones, diagnósticos, problemas de los
+          supuestos y selección de variables.
+      - clave: "8.3"
+        titulo: Regularización
+        nivel:
+          - intermedio
+        descripcion: Penalizar el tamaño de los coeficientes para reducir la varianza del ajuste. Ridge,
+          lasso y elastic net, su geometría y la elección del parámetro de penalización.
+      - clave: "8.4"
+        titulo: Modelos lineales generalizados
+        nivel:
+          - intermedio
+        descripcion: Extensión de la regresión a respuestas binarias, de conteo o positivas mediante una
+          función de enlace. Regresión logística, de Poisson y sus variantes, con la devianza como
+          medida de ajuste.
+      - clave: "8.5"
+        titulo: Modelos mixtos y jerárquicos
+        nivel:
+          - avanzado
+        descripcion: Modelos para datos agrupados en los que parte de los coeficientes varía entre grupos.
+          Los efectos aleatorios comparten información entre grupos y producen contracción hacia la
+          media global.
+      - clave: "8.6"
+        titulo: Extensiones de la regresión
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Variantes de la regresión para relaciones no lineales, cuantiles, respuestas censuradas
+          o acotadas y predictores correlacionados.
+      - clave: "8.7"
+        titulo: Análisis de varianza
+        nivel:
+          - intermedio
+        descripcion: Comparación de medias entre grupos descomponiendo la variabilidad total. ANOVA de una y
+          dos vías, interacciones, covariables y medidas repetidas.
+      - clave: "8.8"
+        titulo: Análisis de supervivencia
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Modelos para el tiempo hasta que ocurre un evento cuando parte de las observaciones
+          está censurada. Estimadores no paramétricos de supervivencia y el modelo de riesgos
+          proporcionales de Cox.
+  - numero: 9
+    clave: analisis-multivariado
+    titulo: Análisis multivariado
+    descripcion: Técnicas para datos con muchas variables medidas a la vez. Reducción de dimensión,
+      análisis factorial, correlación canónica, escalamiento multidimensional y análisis
+      discriminante, todos apoyados en el álgebra de la matriz de covarianza.
+    portada: analisis-de-componentes-principales
+    submodulos:
+      - clave: "9.1"
+        titulo: Métodos multivariados
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Métodos para describir, reducir y clasificar datos con muchas variables. Componentes
+          principales, análisis factorial, correspondencias, correlación canónica, escalamiento
+          multidimensional y análisis discriminante.
+  - numero: 10
+    clave: procesos-estocasticos
+    titulo: Procesos estocásticos
+    descripcion: Modelos de sistemas que evolucionan al azar en el tiempo. Caminatas aleatorias, cadenas
+      de Markov, procesos de Poisson, colas, martingalas, movimiento browniano y cálculo
+      estocástico, junto con las técnicas para simularlos.
+    portada: movimiento-browniano-como-limite-de-caminatas-aleatorias
+    submodulos:
+      - clave: "10.1"
+        titulo: Fundamentos de procesos estocásticos
+        nivel:
+          - intermedio
+        descripcion: "Definiciones básicas de un proceso estocástico: estados, índice temporal, trayectorias
+          y las propiedades de estacionariedad e incrementos que clasifican a los procesos."
+      - clave: "10.2"
+        titulo: Caminatas aleatorias
+        nivel:
+          - basico
+          - intermedio
+        descripcion: "El proceso estocástico más sencillo: una partícula que avanza o retrocede al azar.
+          Recurrencia, principio de reflexión y tiempos de llegada muestran fenómenos que reaparecen
+          en procesos más complejos."
+      - clave: "10.3"
+        titulo: Cadenas de Markov de tiempo discreto
+        nivel:
+          - intermedio
+        descripcion: Procesos cuyo futuro depende solo del estado presente. Matriz de transición,
+          clasificación de estados, absorción, distribución estacionaria y convergencia, con
+          aplicaciones como PageRank.
+      - clave: "10.4"
+        titulo: Procesos de tiempo continuo
+        nivel:
+          - intermedio
+        descripcion: Procesos que cambian de estado en instantes aleatorios de tiempo continuo. El proceso
+          de Poisson, las cadenas de Markov de tiempo continuo, los procesos de renovación y los de
+          ramificación.
+      - clave: "10.5"
+        titulo: Teoría de colas
+        nivel:
+          - intermedio
+        descripcion: Modelos de sistemas donde clientes llegan, esperan y son atendidos. Se calculan
+          longitudes de cola, tiempos de espera y condiciones de estabilidad.
+      - clave: "10.6"
+        titulo: Martingalas
+        nivel:
+          - avanzado
+        descripcion: "Procesos que modelan juegos justos: su valor esperado futuro es el valor presente. Los
+          teoremas de paro y convergencia de martingalas son herramientas centrales de la
+          probabilidad moderna."
+      - clave: "10.7"
+        titulo: Movimiento browniano y cálculo estocástico
+        nivel:
+          - avanzado
+        descripcion: El movimiento browniano como límite de caminatas aleatorias y el cálculo que permite
+          integrar y diferenciar respecto a él. Ecuaciones diferenciales estocásticas y su
+          simulación numérica.
+      - clave: "10.8"
+        titulo: Modelos ocultos de Markov
+        nivel:
+          - avanzado
+        descripcion: Modelos donde una cadena de Markov no se observa directamente y solo se ven emisiones
+          que dependen de su estado. Algoritmos para filtrar, decodificar y estimar sus parámetros.
+      - clave: "10.9"
+        titulo: Simulación estocástica
+        nivel:
+          - intermedio
+        descripcion: Técnicas para simular sistemas estocásticos y para reducir la varianza de las
+          estimaciones obtenidas por simulación.
+      - clave: "10.10"
+        titulo: Procesos puntuales y campos aleatorios
+        nivel:
+          - avanzado
+        descripcion: Modelos para puntos dispersos en el espacio o el tiempo y para valores aleatorios
+          definidos sobre una región, como el modelo de Ising.
+  - numero: 11
+    clave: series-temporales
+    titulo: Series temporales
+    descripcion: Datos ordenados en el tiempo y la dependencia entre observaciones sucesivas.
+      Descomposición, suavizamiento, modelos ARIMA, modelos multivariados y de volatilidad, espacio
+      de estados, análisis espectral y la práctica de pronosticar y evaluar pronósticos.
+    portada: componentes-de-una-serie
+    submodulos:
+      - clave: "11.1"
+        titulo: Fundamentos de series temporales
+        nivel:
+          - basico
+          - intermedio
+        descripcion: "Conceptos básicos de las series temporales: componentes, descomposición,
+          estacionariedad, diferenciación y funciones de autocorrelación, junto con las pruebas
+          formales asociadas."
+      - clave: "11.2"
+        titulo: Suavizamiento
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Métodos que promedian observaciones cercanas para revelar la señal de una serie.
+          Promedios móviles, suavizamiento exponencial y filtros para extraer tendencias.
+      - clave: "11.3"
+        titulo: Modelos lineales de series temporales
+        nivel:
+          - intermedio
+        descripcion: Modelos que expresan una serie como combinación de su pasado y de choques aleatorios.
+          La familia ARIMA, su identificación, estimación, diagnóstico y extensiones con variables
+          exógenas.
+      - clave: "11.4"
+        titulo: Series temporales multivariadas
+        nivel:
+          - avanzado
+        descripcion: Modelos para varias series que se influyen mutuamente. Vectores autorregresivos,
+          causalidad de Granger, respuestas a impulsos y cointegración.
+      - clave: "11.5"
+        titulo: Modelos de volatilidad
+        nivel:
+          - avanzado
+        descripcion: Modelos para series financieras cuya variabilidad cambia en el tiempo. La familia GARCH
+          y las medidas de riesgo que dependen de la volatilidad.
+      - clave: "11.6"
+        titulo: Modelos de espacio de estados
+        nivel:
+          - avanzado
+        descripcion: Modelos que separan un estado oculto que evoluciona de las mediciones ruidosas que lo
+          observan. El filtro de Kalman y sus variantes estiman ese estado paso a paso.
+      - clave: "11.7"
+        titulo: Análisis espectral
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Descripción de una serie por las frecuencias que la componen. Transformada de Fourier,
+          densidad espectral, filtros y wavelets.
+      - clave: "11.8"
+        titulo: Pronóstico y evaluación
+        nivel:
+          - intermedio
+        descripcion: La práctica de pronosticar y de evaluar pronósticos con honestidad. Métodos de
+          referencia, intervalos, métricas, validación temporal y modelos modernos de pronóstico.
+        enlaces:
+          - redes-neuronales-recurrentes
+  - numero: 12
+    clave: proceso-y-preparacion-de-datos
+    titulo: "Ciencia de datos: proceso y preparación de datos"
+    descripcion: El trabajo que ocurre antes de ajustar un modelo. Planteamiento del problema, calidad y
+      limpieza de datos, tratamiento de faltantes, ingeniería de características y los problemas del
+      conjunto de datos que invalidan una evaluación si no se atienden.
+    portada: mecanismos-de-datos-faltantes
+    submodulos:
+      - clave: "12.1"
+        titulo: Ciclo de vida de un proyecto de datos
+        nivel:
+          - basico
+        descripcion: Las etapas de un proyecto de datos, desde traducir una pregunta de negocio hasta
+          comunicar resultados de forma reproducible y ética.
+      - clave: "12.2"
+        titulo: Calidad y limpieza de datos
+        nivel:
+          - basico
+          - intermedio
+        descripcion: "Diagnóstico y corrección de problemas en los datos: duplicados, inconsistencias,
+          valores faltantes y errores de captura, con los métodos de imputación y sus supuestos."
+      - clave: "12.3"
+        titulo: Transformación e ingeniería de características
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Transformar variables y crear otras nuevas para que los modelos aprovechen mejor la
+          información. Escalamiento, codificación de categorías, características de texto y
+          selección de variables.
+      - clave: "12.4"
+        titulo: Problemas del conjunto de datos
+        nivel:
+          - intermedio
+        descripcion: "Problemas del conjunto de datos que sesgan un modelo o su evaluación: desbalance de
+          clases, fuga de información, particiones incorrectas y cambios de distribución entre
+          entrenamiento y producción."
+  - numero: 13
+    clave: aprendizaje-automatico
+    titulo: Aprendizaje automático
+    descripcion: Algoritmos que aprenden patrones a partir de ejemplos. Fundamentos teóricos, evaluación
+      y validación, modelos supervisados clásicos, ensambles, agrupamiento, reducción de dimensión,
+      detección de anomalías, interpretabilidad, equidad y cuantificación de incertidumbre.
+    portada: k-means
+    submodulos:
+      - clave: "13.1"
+        titulo: Fundamentos del aprendizaje automático
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Qué significa aprender de datos y qué garantiza que un modelo generalice. Tipos de
+          aprendizaje, pérdida, riesgo, sobreajuste, sesgo y varianza, y la teoría del aprendizaje
+          estadístico.
+      - clave: "13.2"
+        titulo: Evaluación y validación de modelos
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Métricas para medir el desempeño de clasificadores, regresores y ordenadores, y los
+          esquemas de validación y búsqueda de hiperparámetros que evitan resultados optimistas.
+      - clave: "13.3"
+        titulo: Modelos lineales de clasificación
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Clasificadores que separan clases con fronteras lineales. El perceptrón, la regresión
+          logística y la extensión a varias clases.
+      - clave: "13.4"
+        titulo: Métodos basados en instancias y probabilísticos
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Clasificadores que deciden por similitud con ejemplos guardados o mediante modelos
+          probabilísticos simples. Vecinos más cercanos, estructuras de búsqueda y Naive Bayes.
+        enlaces:
+          - analisis-discriminante-lineal
+      - clave: "13.5"
+        titulo: Máquinas de vectores de soporte y métodos de kernel
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Clasificadores de margen máximo y la idea de trabajar en espacios de características
+          implícitos mediante kernels.
+      - clave: "13.6"
+        titulo: Árboles de decisión
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Modelos que dividen el espacio de variables con preguntas sucesivas. Criterios de
+          impureza, algoritmos de construcción, poda e inestabilidad.
+      - clave: "13.7"
+        titulo: Métodos de ensamble
+        nivel:
+          - intermedio
+        descripcion: Combinar muchos modelos para obtener uno mejor. Bagging, bosques aleatorios, boosting y
+          apilamiento, con sus implementaciones más usadas.
+      - clave: "13.8"
+        titulo: Procesos gaussianos y modelos gráficos probabilísticos
+        nivel:
+          - avanzado
+        descripcion: Modelos probabilísticos sobre funciones y sobre estructuras de dependencia. Procesos
+          gaussianos para regresión y clasificación, redes bayesianas y campos aleatorios.
+      - clave: "13.9"
+        titulo: Aprendizaje no supervisado y agrupamiento
+        nivel:
+          - basico
+          - intermedio
+        descripcion: Encontrar grupos y patrones sin etiquetas. Algoritmos de agrupamiento por centroides,
+          jerárquicos, por densidad y probabilísticos, su evaluación y las reglas de asociación.
+      - clave: "13.10"
+        titulo: Reducción de dimensionalidad y aprendizaje de variedades
+        nivel:
+          - intermedio
+        descripcion: Representar datos de alta dimensión con pocas coordenadas preservando su estructura.
+          Métodos lineales, métodos de variedades y proyecciones aleatorias.
+        enlaces:
+          - analisis-de-componentes-principales
+          - autoencoders
+      - clave: "13.11"
+        titulo: Detección de anomalías
+        nivel:
+          - intermedio
+        descripcion: Identificar observaciones que no siguen el patrón del resto con métodos estadísticos,
+          de aislamiento, de densidad local y de frontera.
+      - clave: "13.12"
+        titulo: Otros paradigmas de aprendizaje
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: "Formas de aprendizaje distintas al supervisado estándar: pocas etiquetas, varias
+          tareas, transferencia, datos que llegan en flujo y datos distribuidos."
+      - clave: "13.13"
+        titulo: Interpretabilidad
+        nivel:
+          - intermedio
+        descripcion: Técnicas para entender qué aprendió un modelo y por qué hace una predicción concreta,
+          tanto de forma global como local.
+      - clave: "13.14"
+        titulo: Equidad, privacidad y robustez
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Criterios para medir sesgos de un modelo entre grupos, mecanismos para proteger la
+          privacidad de los datos y la vulnerabilidad de los modelos ante entradas manipuladas.
+      - clave: "13.15"
+        titulo: Cuantificación de incertidumbre
+        nivel:
+          - intermedio
+        descripcion: Distinguir las fuentes de incertidumbre de una predicción y construir intervalos de
+          predicción con cobertura garantizada.
+  - numero: 14
+    clave: aprendizaje-profundo
+    titulo: Aprendizaje profundo
+    descripcion: Redes neuronales con muchas capas y las técnicas que permiten entrenarlas.
+      Optimización, regularización, redes convolucionales, modelos secuenciales, atención y
+      transformers, modelos generativos, aprendizaje de representaciones y redes sobre grafos.
+    portada: retropropagacion
+    submodulos:
+      - clave: "14.1"
+        titulo: Redes neuronales
+        nivel:
+          - intermedio
+        descripcion: La neurona artificial, las redes multicapa y cómo se calculan sus gradientes. Funciones
+          de activación, pérdidas, inicialización y problemas del gradiente.
+      - clave: "14.2"
+        titulo: Entrenamiento y optimización de redes
+        nivel:
+          - intermedio
+        descripcion: Optimizadores, normalización y regularización que hacen posible entrenar redes
+          profundas, junto con técnicas para comprimir modelos entrenados.
+      - clave: "14.3"
+        titulo: Redes neuronales convolucionales
+        nivel:
+          - intermedio
+        descripcion: Redes que aprovechan la estructura espacial de las imágenes mediante filtros
+          compartidos. Operaciones básicas, arquitecturas históricas y tareas de detección y
+          segmentación.
+      - clave: "14.4"
+        titulo: Modelos secuenciales
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Redes para datos secuenciales que mantienen un estado a lo largo del tiempo. RNN, LSTM,
+          GRU, modelos secuencia a secuencia y decodificación.
+      - clave: "14.5"
+        titulo: Atención y transformers
+        nivel:
+          - avanzado
+        descripcion: El mecanismo de atención y la arquitectura transformer que lo organiza. Incluye
+          tokenización, modelos de lenguaje, preentrenamiento y técnicas de adaptación y generación.
+      - clave: "14.6"
+        titulo: Modelos generativos profundos
+        nivel:
+          - avanzado
+        descripcion: Modelos que aprenden a producir datos nuevos parecidos a los de entrenamiento.
+          Autoencoders variacionales, GAN, flujos normalizantes y modelos de difusión.
+      - clave: "14.7"
+        titulo: Aprendizaje de representaciones
+        nivel:
+          - avanzado
+        descripcion: Aprender representaciones útiles sin etiquetas, organizando un espacio de embeddings
+          donde ejemplos similares quedan cerca.
+      - clave: "14.8"
+        titulo: Aprendizaje en grafos
+        nivel:
+          - avanzado
+        descripcion: Redes neuronales que operan sobre grafos intercambiando mensajes entre nodos vecinos.
+  - numero: 15
+    clave: aprendizaje-por-refuerzo
+    titulo: Aprendizaje por refuerzo
+    descripcion: Agentes que aprenden a decidir interactuando con un entorno y recibiendo recompensas.
+      Procesos de decisión de Markov, programación dinámica, bandidos, métodos de diferencias
+      temporales, gradiente de política y sus variantes profundas.
+    portada: q-learning
+    submodulos:
+      - clave: "15.1"
+        titulo: Aprendizaje por refuerzo
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: Agentes que aprenden por prueba y error a maximizar una recompensa acumulada. Procesos
+          de decisión de Markov, bandidos, métodos tabulares y profundos basados en valor y en
+          política.
+  - numero: 16
+    clave: inferencia-causal
+    titulo: Inferencia causal
+    descripcion: Cómo distinguir causa de asociación. Resultados potenciales, grafos causales, supuestos
+      de identificación y los métodos para estimar efectos causales con experimentos y con datos
+      observacionales.
+    portada: colisionadores-y-sesgo-por-colisionador
+    submodulos:
+      - clave: "16.1"
+        titulo: Inferencia causal
+        nivel:
+          - intermedio
+          - avanzado
+        descripcion: El marco de resultados potenciales y el de grafos causales para definir e identificar
+          efectos causales, con los métodos de estimación para experimentos y datos observacionales.
+  - numero: 17
+    clave: temas-especializados
+    titulo: Temas especializados
+    descripcion: "Áreas aplicadas con métodos propios: valores extremos, estadística espacial, sistemas
+      de recomendación, lenguaje, redes, metaanálisis, psicometría, control estadístico de procesos
+      y modelos en producción."
+    portada: grafos-y-metricas-basicas-de-redes
+    submodulos:
+      - clave: "17.1"
+        titulo: Teoría de valores extremos
+        nivel:
+          - avanzado
+        descripcion: Modelos para los valores más grandes o más pequeños de una variable, usados para
+          estimar la probabilidad de eventos raros.
+      - clave: "17.2"
+        titulo: Estadística espacial
+        nivel:
+          - avanzado
+        descripcion: Métodos para datos cuya ubicación importa, donde observaciones cercanas tienden a
+          parecerse.
+      - clave: "17.3"
+        titulo: Sistemas de recomendación
+        nivel:
+          - intermedio
+        descripcion: Algoritmos que predicen qué elementos le interesarán a un usuario a partir de sus
+          interacciones y de las de otros usuarios.
+      - clave: "17.4"
+        titulo: Procesamiento estadístico del lenguaje
+        nivel:
+          - intermedio
+        descripcion: Modelos probabilísticos del lenguaje basados en conteos de palabras y su uso para
+          modelar temas y comparar textos.
+      - clave: "17.5"
+        titulo: Análisis de redes
+        nivel:
+          - intermedio
+        descripcion: "Medidas y modelos para redes de relaciones: centralidad, comunidades, modelos
+          generativos de redes y procesos de difusión."
+      - clave: "17.6"
+        titulo: Metaanálisis
+        nivel:
+          - intermedio
+        descripcion: Combinación cuantitativa de los resultados de varios estudios sobre la misma pregunta,
+          con atención a la heterogeneidad y al sesgo de publicación.
+      - clave: "17.7"
+        titulo: Modelos de variables latentes y psicometría
+        nivel:
+          - avanzado
+        descripcion: Modelos que explican respuestas observadas mediante rasgos no observables, con
+          aplicación a la medición en psicología y educación.
+      - clave: "17.8"
+        titulo: Control estadístico de procesos
+        nivel:
+          - intermedio
+        descripcion: Herramientas para vigilar un proceso productivo y detectar a tiempo cuándo deja de
+          comportarse como de costumbre.
+      - clave: "17.9"
+        titulo: Modelos en producción
+        nivel:
+          - intermedio
+        descripcion: "Lo que ocurre con un modelo después de desplegarlo: monitoreo, degradación,
+          reentrenamiento y evaluación en línea."

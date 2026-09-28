@@ -1,0 +1,13 @@
+rutas:
+  - id: ruta-base
+    titulo: Ruta base
+    perfil: Pruebas
+    descripcion: Incluye solo el último concepto; el resto llega por prerrequisitos.
+    incluye:
+      - concepto: concepto-gamma
+  - id: ruta-anidada
+    titulo: Ruta anidada
+    perfil: Pruebas
+    descripcion: Reutiliza la ruta base.
+    incluye:
+      - ruta: ruta-base
