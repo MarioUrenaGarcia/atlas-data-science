@@ -26,6 +26,7 @@ const FRAMES_PER_SECOND = 20;
 const INVERSE_LATEX: Partial<Record<keyof typeof REAL_FUNCTIONS, string>> = {
   identidad: 'f^{-1}(x) = x',
   lineal: 'f^{-1}(x) = \\tfrac{x - 1}{2}',
+  fahrenheit: 'f^{-1}(t) = \\tfrac{5}{9}(t - 32)',
   cuadrado: 'f^{-1}(x) = \\sqrt{x}',
   cubo: 'f^{-1}(x) = \\sqrt[3]{x}',
   exponencial: 'f^{-1}(x) = \\log x',

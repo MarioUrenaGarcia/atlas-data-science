@@ -111,7 +111,7 @@ export function ExponentialView({ title, letters, n }: ExponentialViewProps) {
       readouts={[
         ...letters.map((letter, index) => ({
           label: `Letra ${letter.letra}`,
-          value: `${RULES[letter.regla].label}${index < applied ? '' : ' (pendiente de multiplicar)'}`,
+          value: `${RULES[letter.regla].label}${index < applied ? '' : ' (aún sin multiplicar)'}`,
         })),
         {
           label: `Palabras de longitud ${checkLength}`,

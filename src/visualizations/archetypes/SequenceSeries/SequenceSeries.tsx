@@ -1,4 +1,5 @@
 import type { VisualizationProps } from '../../types.ts';
+import { DataSumView } from './DataSumView.tsx';
 import { GeometricView } from './GeometricView.tsx';
 import { NotationView } from './NotationView.tsx';
 import type { SequenceSeriesConfig } from './schema.ts';
@@ -51,5 +52,7 @@ export default function SequenceSeries({ params, title }: VisualizationProps) {
           n={config.n ?? 6}
         />
       );
+    case 'datos':
+      return <DataSumView title={title} values={config.valores} name={config.nombre ?? 'Datos'} />;
   }
 }

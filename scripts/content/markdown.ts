@@ -354,6 +354,13 @@ export function processConceptBody(
 
   const file = processor.processSync(markdown);
   result.issues.push(...katexMessages(file));
+  // An unbalanced bracket in a caption turns the whole figure into plain text silently.
+  const declared = markdown.split('\n').filter((line) => line.startsWith(':::figura')).length;
+  if (declared !== result.figures.length) {
+    result.issues.push({
+      message: `hay ${declared - result.figures.length} figura(s) mal formada(s); revise que los corchetes de la leyenda estén balanceados`,
+    });
+  }
   return result;
 }
 

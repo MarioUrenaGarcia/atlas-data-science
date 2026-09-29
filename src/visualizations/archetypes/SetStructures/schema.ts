@@ -34,6 +34,54 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       semilla: z.number().int().nonnegative().optional(),
     })
     .strict(),
+  z
+    .object({
+      modo: z.literal('recta'),
+      valores: z.array(z.number()).min(1).max(30),
+      conjuntos: z
+        .array(
+          z
+            .object({
+              etiqueta: z.string().min(1),
+              desde: z.number().optional(),
+              hasta: z.number().optional(),
+            })
+            .strict(),
+        )
+        .min(1)
+        .max(3),
+      unidad: z.string().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('reparto'),
+      universo: z.string().min(1),
+      bloques: z
+        .array(
+          z
+            .object({
+              nombre: z.string().min(1),
+              n: z.number().int().positive(),
+              partes: z
+                .array(
+                  z.object({ nombre: z.string().min(1), n: z.number().int().positive() }).strict(),
+                )
+                .optional(),
+            })
+            .strict()
+            .refine(
+              (block) =>
+                !block.partes || block.partes.reduce((sum, part) => sum + part.n, 0) === block.n,
+              {
+                message: 'las partes deben sumar el tamaño del bloque',
+              },
+            ),
+        )
+        .min(1)
+        .max(8),
+    })
+    .strict(),
 ]);
 
 export type SetStructuresConfig = z.infer<typeof parametersSchema>;

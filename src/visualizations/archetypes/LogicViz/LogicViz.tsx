@@ -9,7 +9,9 @@ export default function LogicViz({ params, title }: VisualizationProps) {
   const config = params as unknown as LogicVizConfig;
   switch (config.modo) {
     case 'conectivos':
-      return <ConnectivesView title={title} statements={config.enunciados} />;
+      return (
+        <ConnectivesView title={title} statements={config.enunciados} initial={config.inicial} />
+      );
     case 'tabla':
       return (
         <TruthTableView
@@ -27,6 +29,7 @@ export default function LogicViz({ params, title }: VisualizationProps) {
           start={config.inicio ?? 1}
           size={config.tamano ?? 20}
           k={config.k ?? 10}
+          fixedDomain={config.dominio}
         />
       );
   }

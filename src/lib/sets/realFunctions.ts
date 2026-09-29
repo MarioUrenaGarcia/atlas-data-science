@@ -13,6 +13,7 @@ export const REAL_FUNCTION_IDS = [
   'arcotangente',
   'valor-absoluto',
   'parte-entera',
+  'fahrenheit',
 ] as const;
 
 export type RealFunctionId = (typeof REAL_FUNCTION_IDS)[number];
@@ -95,6 +96,12 @@ export const REAL_FUNCTIONS: Record<RealFunctionId, RealFunction> = {
     f: (x) => Math.floor(x),
     natural: [-Infinity, Infinity],
     discontinuous: true,
+  },
+  fahrenheit: {
+    latex: 'f(c) = \\tfrac{9}{5}c + 32',
+    label: 'f(c) = 9c/5 + 32',
+    f: (c) => 1.8 * c + 32,
+    natural: [-Infinity, Infinity],
   },
 };
 

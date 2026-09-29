@@ -5,6 +5,9 @@ export const RELATION_RULES = [
   'menor',
   'divide',
   'cercania',
+  'misma-hora',
+  'menos-de-40-minutos',
+  'subconjunto',
 ] as const;
 
 export type RelationRule = (typeof RELATION_RULES)[number];
@@ -38,5 +41,21 @@ export const RULES: Record<
     label: (k) => `a y b están a distancia de a lo más ${k}`,
     latex: (k) => `|a - b| \\le ${k}`,
     test: (a, b, k) => Math.abs(a - b) <= k,
+  },
+  'misma-hora': {
+    label: () => 'a y b ocurren dentro de la misma hora del reloj',
+    latex: () => '\\lfloor a / 60 \\rfloor = \\lfloor b / 60 \\rfloor',
+    test: (a, b) => Math.floor(a / 60) === Math.floor(b / 60),
+  },
+  'menos-de-40-minutos': {
+    label: () => 'a y b difieren en menos de 40 minutos',
+    latex: () => '|a - b| < 40',
+    test: (a, b) => Math.abs(a - b) < 40,
+  },
+  subconjunto: {
+    // Element e stands for the subset whose bits are those of e - 1, so 1 is the empty set.
+    label: () => 'el subconjunto a está contenido en el subconjunto b',
+    latex: () => 'a \\subseteq b',
+    test: (a, b) => ((a - 1) & ~(b - 1)) === 0,
   },
 };

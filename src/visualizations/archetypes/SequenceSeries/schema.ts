@@ -42,6 +42,13 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       n: z.number().int().min(1).max(12).optional(),
     })
     .strict(),
+  z
+    .object({
+      modo: z.literal('datos'),
+      valores: z.array(z.number()).min(2).max(9),
+      nombre: z.string().min(1).optional(),
+    })
+    .strict(),
 ]);
 
 export type SequenceSeriesConfig = z.infer<typeof parametersSchema>;

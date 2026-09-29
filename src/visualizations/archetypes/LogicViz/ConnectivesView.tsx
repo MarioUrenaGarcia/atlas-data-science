@@ -52,14 +52,21 @@ const ROWS_PER_SECOND = 0.7;
 interface ConnectivesViewProps {
   title: string;
   statements: { p: string; q: string };
+  initial?: { p: boolean; q: boolean };
 }
 
 /** Two everyday statements whose truth values feed every connective at once. */
-export function ConnectivesView({ title, statements }: ConnectivesViewProps) {
-  const [row, setRow] = useState(0);
+export function ConnectivesView({ title, statements, initial }: ConnectivesViewProps) {
+  const firstRow = initial
+    ? Math.max(
+        0,
+        ROWS.findIndex(([a, b]) => a === initial.p && b === initial.q),
+      )
+    : 0;
+  const [row, setRow] = useState(firstRow);
   const playback = usePlayback({
     step: () => setRow((current) => (current + 1) % ROWS.length),
-    reset: () => setRow(0),
+    reset: () => setRow(firstRow),
     rate: ROWS_PER_SECOND,
   });
   const [p, q] = ROWS[row] ?? [true, true];

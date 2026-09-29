@@ -34,10 +34,10 @@ export default function CantorDiagonal({ params, conceptId, title }: Visualizati
         min: 3,
         max: 10,
         step: 1,
-        default: config.filas ?? 6,
+        default: config.lista?.length ?? config.filas ?? 6,
       },
     ],
-    [config.filas],
+    [config.filas, config.lista?.length],
   );
   const parameters = useParameters(definitions);
   const size = Number((parameters.values as Record<string, number>).filas);
@@ -48,8 +48,13 @@ export default function CantorDiagonal({ params, conceptId, title }: Visualizati
     () => {
       const random = new Random(seed.seed);
       return {
-        rows: Array.from({ length: size }, () =>
-          Array.from({ length: size + 3 }, () => (random.bernoulli(0.5) ? 1 : 0)),
+        // Rows given in the configuration come first; missing digits and rows are drawn at random.
+        rows: Array.from({ length: size }, (_, row) =>
+          Array.from({ length: size + 3 }, (__, column) => {
+            const given = config.lista?.[row]?.[column];
+            const drawn = random.bernoulli(0.5) ? 1 : 0;
+            return given ?? drawn;
+          }),
         ),
         built: 0,
       };

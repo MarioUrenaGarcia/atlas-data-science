@@ -19,6 +19,7 @@ interface QuantifierViewProps {
   start: number;
   size: number;
   k: number;
+  fixedDomain?: readonly number[];
 }
 
 /**
@@ -33,6 +34,7 @@ export function QuantifierView({
   start,
   size,
   k,
+  fixedDomain,
 }: QuantifierViewProps) {
   const definitions = useMemo(
     () => [
@@ -47,24 +49,28 @@ export function QuantifierView({
             },
           ]
         : []),
-      {
-        type: 'number' as const,
-        key: 'inicio',
-        label: 'Primer elemento del dominio',
-        min: -20,
-        max: 20,
-        step: 1,
-        default: start,
-      },
-      {
-        type: 'number' as const,
-        key: 'tamano',
-        label: 'Tamaño del dominio',
-        min: 2,
-        max: 40,
-        step: 1,
-        default: size,
-      },
+      ...(fixedDomain
+        ? []
+        : [
+            {
+              type: 'number' as const,
+              key: 'inicio',
+              label: 'Primer elemento del dominio',
+              min: -20,
+              max: 20,
+              step: 1,
+              default: start,
+            },
+            {
+              type: 'number' as const,
+              key: 'tamano',
+              label: 'Tamaño del dominio',
+              min: 2,
+              max: 40,
+              step: 1,
+              default: size,
+            },
+          ]),
       // Only the threshold predicate depends on k.
       ...(predicates.includes('menor-que')
         ? [
@@ -81,17 +87,17 @@ export function QuantifierView({
           ]
         : []),
     ],
-    [predicates, predicate, start, size, k],
+    [predicates, predicate, start, size, k, fixedDomain],
   );
   const parameters = useParameters(definitions);
   const values = parameters.values as Record<string, number | string>;
   const selected = (predicates.length > 1 ? String(values.predicado) : predicate) as PredicateId;
   const first = Number(values.inicio);
-  const count = Number(values.tamano);
+  const count = fixedDomain ? fixedDomain.length : Number(values.tamano);
   const constant = Number(values.k ?? k);
   const domain = useMemo(
-    () => Array.from({ length: count }, (_, index) => first + index),
-    [first, count],
+    () => fixedDomain ?? Array.from({ length: count }, (_, index) => first + index),
+    [fixedDomain, first, count],
   );
   const truth = domain.map((x) => PREDICATES[selected].test(x, constant));
   const [run, setRun] = useState(0);
@@ -119,7 +125,7 @@ export function QuantifierView({
   const verdict = (value: boolean | null) =>
     value === null ? 'sin decidir' : value ? 'verdadera' : 'falsa';
   const description =
-    `Dominio de ${first} a ${first + count - 1}; predicado ${label}. Se han revisado ${checked} elementos. ` +
+    `Dominio ${fixedDomain ? `{${fixedDomain.join(', ')}}` : `de ${first} a ${first + count - 1}`}; predicado ${label}. Se han revisado ${checked} elementos. ` +
     `La afirmación para todo x es ${verdict(forAll)}${counterexample >= 0 ? `, con contraejemplo x = ${domain[counterexample]}` : ''}. ` +
     `La afirmación existe x es ${verdict(exists)}${witness >= 0 ? `, con testigo x = ${domain[witness]}` : ''}.`;
 

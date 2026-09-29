@@ -16,6 +16,7 @@ import { useResettableState } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import type { VisualizationProps } from '../../types.ts';
 import { DigraphDiagram } from './DigraphDiagram.tsx';
+import { HasseDiagram } from './HasseDiagram.tsx';
 import { MatrixDiagram } from './MatrixDiagram.tsx';
 import { PlaneDiagram } from './PlaneDiagram.tsx';
 import styles from './RelationViz.module.css';
@@ -24,12 +25,13 @@ import type { RelationVizConfig } from './schema.ts';
 
 const CELLS_PER_SECOND = 10;
 
-type View = 'matriz' | 'grafo' | 'plano';
+type View = 'matriz' | 'grafo' | 'plano' | 'hasse';
 
 const VIEWS = [
   { value: 'matriz', label: 'Matriz' },
   { value: 'grafo', label: 'Grafo de flechas' },
   { value: 'plano', label: 'Puntos en A × A' },
+  { value: 'hasse', label: 'Diagrama de Hasse' },
 ] as const;
 
 /**
@@ -45,6 +47,7 @@ export default function RelationViz({ params, title }: VisualizationProps) {
     [config.relaciones, config.relacion],
   );
   const elements = config.elementos;
+  const labels = config.etiquetas ?? elements.map(String);
   const [view, setView] = useState<View>(config.vista ?? 'matriz');
   const definitions = useMemo(
     () => [
@@ -59,23 +62,28 @@ export default function RelationViz({ params, title }: VisualizationProps) {
             },
           ]
         : []),
-      {
-        type: 'number' as const,
-        key: 'k',
-        label: 'Constante k',
-        symbol: 'k',
-        min: 1,
-        max: 6,
-        step: 1,
-        default: config.k ?? 3,
-      },
+      // Only congruence and closeness depend on the constant k.
+      ...(rules.some((id) => id === 'congruencia' || id === 'cercania')
+        ? [
+            {
+              type: 'number' as const,
+              key: 'k',
+              label: 'Constante k',
+              symbol: 'k',
+              min: 1,
+              max: 6,
+              step: 1,
+              default: config.k ?? 3,
+            },
+          ]
+        : []),
     ],
     [rules, config.relacion, config.k],
   );
   const parameters = useParameters(definitions);
   const values = parameters.values as Record<string, number | string>;
   const rule = (rules.length > 1 ? String(values.relacion) : config.relacion) as RelationRule;
-  const k = Number(values.k);
+  const k = Number(values.k ?? config.k ?? 3);
   const matrix = useMemo(
     () => relationMatrix(elements, (a, b) => RULES[rule].test(a, b, k)),
     [elements, rule, k],
@@ -106,12 +114,12 @@ export default function RelationViz({ params, title }: VisualizationProps) {
   const describe = (name: string, check: PropertyCheck) => {
     if (check.holds) return 'sí';
     const [i = 0, j = 0, m = 0] = check.witness ?? [];
-    if (name === 'reflexiva') return `no: ${elements[i]} no se relaciona consigo mismo`;
+    if (name === 'reflexiva') return `no: ${labels[i]} no se relaciona consigo mismo`;
     if (name === 'simetrica')
-      return `no: ${elements[i]} R ${elements[j]} pero no ${elements[j]} R ${elements[i]}`;
+      return `no: ${labels[i]} R ${labels[j]} pero no ${labels[j]} R ${labels[i]}`;
     if (name === 'antisimetrica')
-      return `no: ${elements[i]} R ${elements[j]} y ${elements[j]} R ${elements[i]}`;
-    return `no: ${elements[i]} R ${elements[j]} y ${elements[j]} R ${elements[m]}, pero no ${elements[i]} R ${elements[m]}`;
+      return `no: ${labels[i]} R ${labels[j]} y ${labels[j]} R ${labels[i]}`;
+    return `no: ${labels[i]} R ${labels[j]} y ${labels[j]} R ${labels[m]}, pero no ${labels[i]} R ${labels[m]}`;
   };
   const witnessCells = new Set<string>();
   if (complete) {
@@ -134,7 +142,7 @@ export default function RelationViz({ params, title }: VisualizationProps) {
           label: 'Clases de equivalencia',
           value: isEquivalence
             ? classes
-                .map((members) => `{${members.map((index) => elements[index]).join(', ')}}`)
+                .map((members) => `{${members.map((index) => labels[index]).join(', ')}}`)
                 .join(' ')
             : 'no es de equivalencia',
           color: isEquivalence ? DATA_COLORS.tertiary : undefined,
@@ -150,6 +158,7 @@ export default function RelationViz({ params, title }: VisualizationProps) {
 
   const diagram = {
     elements,
+    labels,
     matrix,
     filled,
     witnessCells,
@@ -177,6 +186,12 @@ export default function RelationViz({ params, title }: VisualizationProps) {
       {view === 'matriz' && <MatrixDiagram {...diagram} />}
       {view === 'grafo' && <DigraphDiagram {...diagram} />}
       {view === 'plano' && <PlaneDiagram {...diagram} />}
+      {view === 'hasse' && (
+        <HasseDiagram
+          {...diagram}
+          isOrder={checks.reflexiva.holds && checks.antisimetrica.holds && checks.transitiva.holds}
+        />
+      )}
     </VizFrame>
   );
 }

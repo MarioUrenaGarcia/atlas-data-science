@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { DATA_COLORS } from '../../core/colors.ts';
+import { DATA_COLORS, seriesColor } from '../../core/colors.ts';
 import { Latex } from '../../core/Latex.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import svgStyles from '../../core/svg/svg.module.css';
@@ -11,11 +11,12 @@ import type { VisualizationProps } from '../../types.ts';
 import styles from './InductionViz.module.css';
 import type { InductionVizConfig } from './schema.ts';
 
-type View = 'fichas' | 'escalera';
+type View = 'fichas' | 'escalera' | 'impares';
 
 const VIEWS = [
   { value: 'fichas', label: 'Base y paso' },
   { value: 'escalera', label: 'Suma 1 + 2 + ... + n' },
+  { value: 'impares', label: 'Suma de impares' },
 ] as const;
 
 const STEPS_PER_SECOND = 1.6;
@@ -88,14 +89,16 @@ export default function InductionViz({ params, title }: VisualizationProps) {
           (breakAt > 0 && breakAt < n
             ? ` El paso falla en k = ${breakAt}: la pieza ${breakAt} cae pero no tumba a la ${breakAt + 1}.`
             : ' Base y paso se cumplen, así que caen todas.')
-      : `Escalera con columnas de altura 1 a ${staircase}: ${sum} bloques. Con una copia girada forma un rectángulo de ${staircase} por ${staircase + 1}, así que la suma es ${staircase}(${staircase} + 1)/2 = ${sum}.`;
+      : view === 'impares'
+        ? `Se agregan capas en forma de L de 1, 3, 5, ... cuadros: tras ${staircase} capas hay ${staircase * staircase} cuadros, un cuadrado de ${staircase} por ${staircase}.`
+        : `Escalera con columnas de altura 1 a ${staircase}: ${sum} bloques. Con una copia girada forma un rectángulo de ${staircase} por ${staircase + 1}, así que la suma es ${staircase}(${staircase} + 1)/2 = ${sum}.`;
 
   return (
     <VizFrame
       title={title}
       playback={playback}
       views={{ options: VIEWS, value: view, onChange: (next) => setView(next as View) }}
-      parameters={{ ...parameters, values, disabled: view === 'escalera' ? ['base', 'falla'] : [] }}
+      parameters={{ ...parameters, values, disabled: view === 'fichas' ? [] : ['base', 'falla'] }}
       readouts={
         view === 'fichas'
           ? [
@@ -107,11 +110,23 @@ export default function InductionViz({ params, title }: VisualizationProps) {
                   breakAt > 0 && breakAt < n ? `falla en k = ${breakAt}` : 'se cumple para todo k',
               },
             ]
-          : [
-              { label: 'n', value: String(staircase) },
-              { label: '1 + 2 + ... + n', value: String(sum), color: DATA_COLORS.primary },
-              { label: 'n(n + 1)/2', value: String(sum), color: DATA_COLORS.secondary },
-            ]
+          : view === 'impares'
+            ? [
+                { label: 'Capas n', value: String(staircase) },
+                {
+                  label: '1 + 3 + ... + (2n - 1)',
+                  value:
+                    Array.from({ length: staircase }, (_, index) => 2 * index + 1).join(' + ') ||
+                    '0',
+                  color: DATA_COLORS.primary,
+                },
+                { label: 'n²', value: String(staircase * staircase), color: DATA_COLORS.secondary },
+              ]
+            : [
+                { label: 'n', value: String(staircase) },
+                { label: '1 + 2 + ... + n', value: String(sum), color: DATA_COLORS.primary },
+                { label: 'n(n + 1)/2', value: String(sum), color: DATA_COLORS.secondary },
+              ]
       }
       description={description}
     >
@@ -120,7 +135,9 @@ export default function InductionViz({ params, title }: VisualizationProps) {
           tex={
             view === 'fichas'
               ? '\\big[P(1) \\land \\forall k\\,(P(k) \\Rightarrow P(k+1))\\big] \\Rightarrow \\forall n\\ P(n)'
-              : '\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}'
+              : view === 'impares'
+                ? '\\sum_{i=1}^{n} (2i - 1) = n^2'
+                : '\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}'
           }
         />
       </p>
@@ -179,6 +196,34 @@ export default function InductionViz({ params, title }: VisualizationProps) {
                     </g>
                   );
                 })}
+              </g>
+            );
+          }
+          if (view === 'impares') {
+            const side = Math.min(box.inner.width, box.inner.height) / n;
+            const left = box.inner.left + (box.inner.width - side * n) / 2;
+            const floor = box.inner.top + box.inner.height;
+            return (
+              <g aria-hidden="true">
+                {Array.from({ length: n }, (_, column) =>
+                  Array.from({ length: n }, (__, row) => {
+                    // Cell (column, row) belongs to layer max(column, row), the L added at step max + 1.
+                    const layer = Math.max(column, row);
+                    const visible = layer < staircase;
+                    return (
+                      <rect
+                        key={`${column}-${row}`}
+                        x={left + column * side + 1}
+                        y={floor - (row + 1) * side + 1}
+                        width={side - 2}
+                        height={side - 2}
+                        rx={2}
+                        fill={visible ? seriesColor(layer % 2) : 'var(--color-surface-2)'}
+                        fillOpacity={visible ? (layer === staircase - 1 ? 0.9 : 0.55) : 1}
+                      />
+                    );
+                  }),
+                )}
               </g>
             );
           }

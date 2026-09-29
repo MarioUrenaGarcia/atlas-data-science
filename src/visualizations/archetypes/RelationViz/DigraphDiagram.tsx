@@ -16,6 +16,7 @@ const BEND = 0.18;
  */
 export function DigraphDiagram({
   elements,
+  labels,
   matrix,
   filled,
   witnessCells,
@@ -118,7 +119,7 @@ export function DigraphDiagram({
                 const p = point(index);
                 const classIndex = classOf.get(index);
                 return (
-                  <g key={element}>
+                  <g key={labels[index] ?? element}>
                     <circle
                       cx={p.x}
                       cy={p.y}
@@ -140,7 +141,7 @@ export function DigraphDiagram({
                       className={svgStyles.label}
                       style={{ fontWeight: 700 }}
                     >
-                      {element}
+                      {labels[index] ?? element}
                     </text>
                   </g>
                 );

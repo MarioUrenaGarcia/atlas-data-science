@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const parametersSchema = z
   .object({
-    vista: z.enum(['fichas', 'escalera']).optional(),
+    vista: z.enum(['fichas', 'escalera', 'impares']).optional(),
     n: z.number().int().min(2).max(14).optional(),
   })
   .strict();

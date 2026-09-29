@@ -10,6 +10,7 @@ import type { RelationDiagramProps } from './diagramProps.ts';
  */
 export function PlaneDiagram({
   elements,
+  labels,
   matrix,
   filled,
   witnessCells,
@@ -43,7 +44,7 @@ export function PlaneDiagram({
               stroke="var(--color-border)"
             />
             {elements.map((element, index) => (
-              <g key={element}>
+              <g key={labels[index] ?? element}>
                 <line
                   x1={px(index)}
                   x2={px(index)}
@@ -59,7 +60,7 @@ export function PlaneDiagram({
                   stroke="var(--data-grid)"
                 />
                 <text x={px(index)} y={bottom + 16} textAnchor="middle" className={svgStyles.label}>
-                  {element}
+                  {labels[index] ?? element}
                 </text>
                 <text
                   x={left - 10}
@@ -68,7 +69,7 @@ export function PlaneDiagram({
                   textAnchor="end"
                   className={svgStyles.label}
                 >
-                  {element}
+                  {labels[index] ?? element}
                 </text>
               </g>
             ))}

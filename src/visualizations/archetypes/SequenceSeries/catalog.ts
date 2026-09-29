@@ -69,6 +69,7 @@ export const SERIES_IDS = [
   'geometrica-mitad',
   'factorial',
   'grandi',
+  'telescopica',
 ] as const;
 export type SeriesId = (typeof SERIES_IDS)[number];
 
@@ -112,6 +113,12 @@ export const SERIES: Record<SeriesId, SeriesDefinition> = {
     latex: '\\sum_{n=1}^{\\infty} (-1)^{n+1}',
     term: (n) => (-1) ** (n + 1),
     sum: null,
+  },
+  telescopica: {
+    label: 'Telescópica: suma de 1/(n(n + 1))',
+    latex: '\\sum_{n=1}^{\\infty} \\frac{1}{n(n+1)}',
+    term: (n) => 1 / (n * (n + 1)),
+    sum: 1,
   },
 };
 

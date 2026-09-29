@@ -32,7 +32,7 @@
 
 .stage {
   position: relative;
-  min-height: 300px;
+  min-height: 180px;
   touch-action: pan-y;
 }
 

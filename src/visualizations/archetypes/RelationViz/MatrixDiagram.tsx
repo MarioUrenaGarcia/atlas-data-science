@@ -6,6 +6,7 @@ import type { RelationDiagramProps } from './diagramProps.ts';
 /** Relation as a table: cell (a, b) is filled when a R b. */
 export function MatrixDiagram({
   elements,
+  labels,
   matrix,
   filled,
   witnessCells,
@@ -30,14 +31,14 @@ export function MatrixDiagram({
               a \ b
             </text>
             {elements.map((element, index) => (
-              <g key={element} aria-hidden="true">
+              <g key={labels[index] ?? element} aria-hidden="true">
                 <text
                   x={left + size * (index + 0.5)}
                   y={box.inner.top - 10}
                   textAnchor="middle"
                   className={svgStyles.label}
                 >
-                  {element}
+                  {labels[index] ?? element}
                 </text>
                 <text
                   x={left - 10}
@@ -46,7 +47,7 @@ export function MatrixDiagram({
                   dy="0.35em"
                   className={svgStyles.label}
                 >
-                  {element}
+                  {labels[index] ?? element}
                 </text>
               </g>
             ))}

@@ -1,4 +1,6 @@
 import type { VisualizationProps } from '../../types.ts';
+import { BlockBarView } from './BlockBarView.tsx';
+import { NumberLineView } from './NumberLineView.tsx';
 import { PartitionView } from './PartitionView.tsx';
 import { PowerSetView } from './PowerSetView.tsx';
 import { ProductView } from './ProductView.tsx';
@@ -35,5 +37,16 @@ export default function SetStructures({ params, conceptId, title }: Visualizatio
           seed={config.semilla}
         />
       );
+    case 'recta':
+      return (
+        <NumberLineView
+          title={title}
+          values={config.valores}
+          sets={config.conjuntos}
+          unit={config.unidad}
+        />
+      );
+    case 'reparto':
+      return <BlockBarView title={title} universe={config.universo} blocks={config.bloques} />;
   }
 }
