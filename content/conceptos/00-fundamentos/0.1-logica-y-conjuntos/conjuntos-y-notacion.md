@@ -75,6 +75,19 @@ Un hospital registra la temperatura de 8 pacientes en grados: $U = \{36.5, 38.2,
 3. $|F| = 4$, $38.0 \in F$ y $37.6 \notin F$.
 4. Si $G = \{t \in U : t \ge 39\} = \{39.1, 40.2\}$, entonces $G \subseteq F$, porque toda temperatura de al menos 39 es también de al menos 38.
 
+:::figura[Las temperaturas del ejemplo sobre la recta. Cada valor se revisa y se copia a los renglones de los conjuntos cuya condición cumple; al terminar, todos los puntos de $G$ aparecen también en $F$, lo que muestra $G \subseteq F$.]{componente="SetStructures"}
+```yaml
+modo: recta
+valores: [36.5, 38.2, 37.0, 39.1, 36.8, 38.0, 37.6, 40.2]
+conjuntos:
+  - etiqueta: F
+    desde: 38
+  - etiqueta: G
+    desde: 39
+unidad: grados
+```
+:::
+
 ## Propiedades
 
 - El orden y las repeticiones no importan: $\{1, 2, 2\} = \{2, 1\}$.
@@ -85,6 +98,20 @@ Un hospital registra la temperatura de 8 pacientes en grados: $U = \{36.5, 38.2,
 
 :::demostracion
 Para $\varnothing \subseteq A$ hay que ver que $\forall x\,(x \in \varnothing \rightarrow x \in A)$. Como $x \in \varnothing$ es falsa para todo $x$, cada condicional tiene antecedente falso y es verdadero.
+:::
+
+:::figura[Contención vista en un diagrama. $A = \{2, 4\}$ está dentro de $B = \{1, 2, 3, 4\}$: la diferencia $A \setminus B$ queda vacía, que es exactamente lo que significa $A \subseteq B$.]{componente="VennSets"}
+```yaml
+modo: operaciones
+universo: [1, 2, 3, 4, 5, 6]
+conjuntos:
+  - etiqueta: A
+    elementos: [2, 4]
+  - etiqueta: B
+    elementos: [1, 2, 3, 4]
+operacion: diferencia
+operaciones: [diferencia, interseccion, union]
+```
 :::
 
 ## Errores comunes

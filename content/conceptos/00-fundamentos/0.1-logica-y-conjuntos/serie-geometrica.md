@@ -69,6 +69,14 @@ Un tratamiento administra 100 mg de un fármaco cada 12 horas, y en ese lapso el
 3. A largo plazo la cantidad se estabiliza en $\frac{100}{1 - 0.4} = 166.7$ mg.
 4. Tras 5 dosis ya se alcanza $100 \cdot \frac{1 - 0.01024}{0.6} = 164.96$ mg, a menos de 2 mg del nivel estable.
 
+:::figura[El fármaco del ejemplo: cada segmento es lo que queda de una dosis de 100 mg, y la suma se acerca al nivel estable de $100/0.6 \approx 166.7$ mg.]{componente="SequenceSeries"}
+```yaml
+modo: geometrica
+razon: 0.4
+primero: 100
+```
+:::
+
 ## Propiedades
 
 - $1 + r + r^2 + \dots = \frac{1}{1 - r}$ para $|r| < 1$; empezando en $k = 1$, $\sum_{k=1}^{\infty} r^k = \frac{r}{1 - r}$.
@@ -87,6 +95,14 @@ Para $r \neq 1$, $S_n - r S_n = a - a r^n$, de donde $S_n = a\frac{1 - r^n}{1 - 
 - **Confundir el índice inicial.** $\sum_{k=1}^{\infty} r^k$ no empieza en 1 sino en $r$.
 - **Usar como $a$ un término que no es el primero.** En $\frac{a}{1 - r}$, $a$ es el primer término que se suma.
 - **Pensar que con $r$ negativo la serie diverge.** Con $r = -0.5$ converge a $\frac{a}{1.5}$.
+
+:::figura[Con razón negativa los segmentos cambian de sentido y las sumas parciales oscilan alrededor del límite: con $r = -0.5$ y $a = 1$ convergen a $1/1.5 \approx 0.667$.]{componente="SequenceSeries"}
+```yaml
+modo: geometrica
+razon: -0.5
+primero: 1
+```
+:::
 
 ## Conexiones
 

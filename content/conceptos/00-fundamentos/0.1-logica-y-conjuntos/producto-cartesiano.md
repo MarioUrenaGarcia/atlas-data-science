@@ -69,6 +69,28 @@ Un estudio clínico asigna a cada participante un medicamento $M = \{\text{place
 3. Si además se registra el sexo $S = \{F, M\}$, las celdas del diseño son $M \times H \times S$, con $3 \cdot 2 \cdot 2 = 12$ ternas.
 4. Si cada celda debe tener 10 participantes, el estudio necesita $12 \cdot 10 = 120$ personas.
 
+:::figura[Los tratamientos del estudio como producto cartesiano $M \times H$: cada casilla es un par (medicamento, horario) y hay $3 \cdot 2 = 6$.]{componente="SetStructures"}
+```yaml
+modo: producto
+a: [placebo, dosis baja, dosis alta]
+b: [mañana, noche]
+nombres: [M, H]
+```
+:::
+
+:::figura[Al agregar el sexo, las celdas del diseño son las ternas de $M \times H \times S$. El árbol muestra cómo cada nivel multiplica el número de ramas: $3 \cdot 2 \cdot 2 = 12$ hojas.]{componente="CombinatoricsBoard"}
+```yaml
+modo: arbol
+etapas:
+  - nombre: medicamento
+    opciones: [placebo, baja, alta]
+  - nombre: horario
+    opciones: [mañana, noche]
+  - nombre: sexo
+    opciones: [F, M]
+```
+:::
+
 ## Propiedades
 
 - **No conmutativo:** $A \times B \neq B \times A$ salvo que $A = B$ o alguno sea vacío, aunque siempre $|A \times B| = |B \times A|$.
@@ -87,6 +109,15 @@ Para la cardinalidad, cada $a \in A$ produce una fila de $|B|$ pares distintos, 
 - **Sumar en lugar de multiplicar.** Tres tallas y tres colores dan 9 variantes, no 6.
 - **Creer que $A \times A$ solo contiene pares de elementos distintos.** Incluye los pares $(a, a)$ de la diagonal.
 - **Confundir $\mathbb{R}^2$ con $\mathbb{R}$ duplicado.** $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$ es el conjunto de puntos del plano.
+
+:::figura[$A \times A$ como puntos del plano para $A = \{1, \dots, 5\}$. La relación "menor o igual" es un subconjunto de esos 25 pares que incluye a los de la diagonal $(a, a)$; al cambiar de relación se ve que el par $(1, 2)$ y el par $(2, 1)$ son puntos distintos.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5]
+relacion: menor-o-igual
+relaciones: [menor-o-igual, menor, misma-paridad]
+vista: plano
+```
+:::
 
 ## Conexiones
 

@@ -78,6 +78,15 @@ Se demuestra que $a_n = \frac{n}{n + 1}$ converge a 1, la proporción de respues
 3. Basta tomar $N$ como cualquier natural mayor que $\frac{1}{\varepsilon} - 1$.
 4. Con $\varepsilon = 0.01$: $N = 100$ funciona, porque para $n \ge 100$, $\frac{1}{n + 1} \le \frac{1}{101} < 0.01$.
 
+:::figura[La sucesión del ejemplo, $n/(n + 1)$, con tolerancia 0.01. Todos los términos a partir de $N(\varepsilon)$ quedan dentro de la banda; al reducir la tolerancia, el índice aumenta pero siempre existe.]{componente="SequenceSeries"}
+```yaml
+modo: sucesion
+sucesion: cociente
+epsilon: 0.01
+terminos: 150
+```
+:::
+
 ## Propiedades
 
 - **Unicidad:** una sucesión tiene a lo más un límite.
@@ -97,6 +106,16 @@ Para la unicidad, si $a_n \to L$ y $a_n \to L'$ con $L \neq L'$, tomamos $\varep
 - **Confundir acotada con convergente.** Una sucesión puede oscilar indefinidamente dentro de un intervalo.
 - **Cambiar el orden de los cuantificadores.** $N$ depende de $\varepsilon$; no se exige un $N$ que sirva para todos los $\varepsilon$.
 - **Concluir la convergencia por los primeros términos.** Una sucesión puede parecer estable durante mil términos y después crecer.
+
+:::figura[Acotada no es lo mismo que convergente. $(-1)^n$ nunca sale de $[-1, 1]$ y no converge; $\operatorname{sen}(n)/n$ oscila sin patrón aparente y sí converge a 0.]{componente="SequenceSeries"}
+```yaml
+modo: sucesion
+sucesion: oscilante
+sucesiones: [oscilante, seno-entre-n]
+epsilon: 0.1
+terminos: 60
+```
+:::
 
 ## Conexiones
 

@@ -79,6 +79,15 @@ Sea $D = \{12, 15, 18, 21\}$, las edades de los integrantes de un equipo juvenil
 3. $\exists x \in D:\ x > 20$ es verdadera, con testigo $21$.
 4. La negación de $\forall x \in D:\ Q(x)$ es $\exists x \in D:\ \lnot Q(x)$, "existe una edad impar", verdadera por el mismo contraejemplo.
 
+:::figura[El dominio del ejemplo, las edades 12, 15, 18 y 21. Con "x es múltiplo de 3" la afirmación universal se confirma al revisar todos los elementos; con "x es par" el primer contraejemplo, 15, la refuta de inmediato.]{componente="LogicViz"}
+```yaml
+modo: cuantificadores
+predicado: divisible-entre-3
+predicados: [divisible-entre-3, par, impar, positivo]
+dominio: [12, 15, 18, 21]
+```
+:::
+
 ## Propiedades
 
 - **Negación:** $\lnot \forall x\, P(x) \equiv \exists x\, \lnot P(x)$ y $\lnot \exists x\, P(x) \equiv \forall x\, \lnot P(x)$.
@@ -96,6 +105,17 @@ Si $\lnot \forall x\, P(x)$ es verdadera, no todo elemento cumple $P$, así que 
 - **Negar mal.** La negación de "todos los días llueve" es "algún día no llueve", no "ningún día llueve".
 - **Intercambiar cuantificadores.** "Todo estudiante tiene un tutor" ($\forall x\, \exists y$) no significa "hay un tutor de todos los estudiantes" ($\exists y\, \forall x$).
 - **Olvidar el dominio.** "$\exists x:\ x^2 = 2$" es falsa en los racionales y verdadera en los reales.
+
+:::figura[El orden de los cuantificadores. Cada estudiante tiene un tutor, así que "para todo estudiante existe un tutor" es verdadera; ningún tutor atiende a todos los estudiantes, así que "existe un tutor para todo estudiante" es falsa.]{componente="FunctionMapping"}
+```yaml
+modo: funcion
+ejemplos:
+  - nombre: Estudiantes y tutores
+    dominio: [Ana, Beto, Caro, Dani, Eli]
+    codominio: [Tutor 1, Tutor 2, Tutor 3]
+    flechas: [[0, 0], [1, 0], [2, 1], [3, 2], [4, 2]]
+```
+:::
 
 ## Conexiones
 

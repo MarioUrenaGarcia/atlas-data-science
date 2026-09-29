@@ -75,6 +75,14 @@ Un equipo de futbol anota $x_1 = 2$, $x_2 = 0$, $x_3 = 3$, $x_4 = 1$ y $x_5 = 4$
 3. **Suma de desviaciones cuadradas:** $\sum_{i=1}^{5} (x_i - \bar{x})^2 = 0 + 4 + 1 + 1 + 4 = 10$.
 4. **Comprobación con la identidad** $\sum (x_i - \bar{x})^2 = \sum x_i^2 - n\bar{x}^2$: $\sum x_i^2 = 4 + 0 + 9 + 1 + 16 = 30$ y $30 - 5 \cdot 4 = 10$.
 
+:::figura[Los goles del ejemplo. Primero se suman los $x_i$ uno por uno, luego aparece la media y al final cada desviación $x_i - \bar{x}$ como un segmento; la suma de sus cuadrados es 10.]{componente="SequenceSeries"}
+```yaml
+modo: datos
+valores: [2, 0, 3, 1, 4]
+nombre: Goles
+```
+:::
+
 ## Propiedades
 
 - **Linealidad:** $\sum_{i} (c\,a_i + b_i) = c \sum_{i} a_i + \sum_{i} b_i$.
@@ -85,6 +93,15 @@ Un equipo de futbol anota $x_1 = 2$, $x_2 = 0$, $x_3 = 3$, $x_4 = 1$ y $x_5 = 4$
 - **Sumas dobles:** $\sum_{i} \sum_{j} a_i b_j = \left(\sum_{i} a_i\right)\left(\sum_{j} b_j\right)$, y en sumas finitas el orden de suma puede intercambiarse.
 - **Logaritmo de un producto:** $\log \prod_{i} a_i = \sum_{i} \log a_i$ para $a_i > 0$.
 - Fórmulas cerradas: $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$, $\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$, $\sum_{i=1}^{n} (2i - 1) = n^2$.
+
+:::figura[Una productoria telescópica: casi todos los factores se cancelan y el producto de $n$ términos vale $n + 1$. El factorial, en cambio, no tiene cancelaciones y crece mucho más rápido.]{componente="SequenceSeries"}
+```yaml
+modo: sumatoria
+expresion: telescopico
+expresiones: [telescopico, factorial, cuadrados]
+n: 8
+```
+:::
 
 ## Errores comunes
 

@@ -60,7 +60,75 @@ Una **relación** $R$ en un conjunto $A$ es un subconjunto $R \subseteq A \times
 - **Transitiva:** $a \mathrel{R} b \land b \mathrel{R} c \Rightarrow a \mathrel{R} c$.
 :::
 
+Cada propiedad tiene una firma visual en el grafo de flechas, donde cada par $a \mathrel{R} b$ es una flecha de $a$ a $b$ y cada par $a \mathrel{R} a$ es un lazo.
+
+:::figura[**Reflexiva.** "Misma paridad" pone un lazo en cada elemento, porque todo número tiene la misma paridad que sí mismo. "Menor que" no tiene ningún lazo: ningún número es menor que sí mismo, y el panel señala el primer elemento sin lazo.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6]
+relacion: misma-paridad
+relaciones: [misma-paridad, menor]
+vista: grafo
+```
+:::
+
+:::figura[**Simétrica.** Con "a distancia de a lo más 1" toda flecha tiene su flecha de regreso. Con "menor o igual" las flechas van en un solo sentido: $1 \le 2$ pero no $2 \le 1$, y ese par se marca como contraejemplo.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6]
+relacion: cercania
+relaciones: [cercania, menor-o-igual]
+k: 1
+vista: grafo
+```
+:::
+
+:::figura[**Antisimétrica.** En "a divide a b" nunca hay flechas de ida y vuelta entre elementos distintos: si $a \mid b$ y $b \mid a$ con números positivos, entonces $a = b$. En "misma paridad" casi todas las flechas tienen regreso, así que no es antisimétrica.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6]
+relacion: divide
+relaciones: [divide, misma-paridad]
+vista: grafo
+```
+:::
+
+:::figura[**Transitiva.** En "menor que", siempre que hay un camino de dos flechas $a \to b \to c$ también hay la flecha directa $a \to c$. En "a distancia de a lo más 1" existen $1 \to 2$ y $2 \to 3$ pero falta $1 \to 3$: el atajo que exige la transitividad no está.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6]
+relacion: menor
+relaciones: [menor, cercania]
+k: 1
+vista: grafo
+```
+:::
+
 Una **relación de equivalencia**, denotada $\sim$, es reflexiva, simétrica y transitiva. La **clase de equivalencia** de $a$ es $[a] = \{b \in A : a \sim b\}$, y el **conjunto cociente** es $A/{\sim} = \{[a] : a \in A\}$. Una relación reflexiva, antisimétrica y transitiva es un **orden parcial**.
+
+:::figura[**Relación de equivalencia.** La congruencia módulo 3 en $\{1, \dots, 9\}$ tiene lazos en todos los elementos, flechas de ida y vuelta y todos los atajos; el grafo se separa en tres grupos aislados, uno por clase, cada uno de un color. Con "misma paridad" aparecen dos clases.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+relacion: congruencia
+relaciones: [congruencia, misma-paridad]
+k: 3
+vista: grafo
+```
+:::
+
+:::figura[**Orden parcial y diagrama de Hasse.** En un orden se dibuja cada elemento arriba de los que son menores que él y solo se unen los pares sin intermedios. "Menor o igual" produce una sola cadena vertical; "a divide a b" en $\{1, \dots, 10\}$ produce un orden con elementos incomparables, como 2 y 3, que quedan lado a lado.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+relacion: divide
+relaciones: [divide, menor-o-igual, misma-paridad]
+vista: hasse
+```
+:::
+
+:::figura[**La contención entre subconjuntos** de $\{a, b, c\}$ es otro orden parcial. Su diagrama de Hasse es un cubo: el vacío abajo, el conjunto completo arriba, y cada arista agrega un elemento.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6, 7, 8]
+etiquetas: ['∅', '{a}', '{b}', '{a,b}', '{c}', '{a,c}', '{b,c}', '{a,b,c}']
+relacion: subconjunto
+vista: hasse
+```
+:::
 
 ## Cómo usar la visualización
 
@@ -78,6 +146,16 @@ Una empresa de transporte clasifica 8 viajes por la hora de salida: $6{:}10$, $6
 4. Las clases son $\{6{:}10, 6{:}45\}$, $\{9{:}20, 9{:}55\}$, $\{13{:}05, 13{:}40\}$ y $\{18{:}15, 18{:}50\}$: cuatro bloques disjuntos que cubren los 8 viajes.
 5. En cambio, "salir con menos de 40 minutos de diferencia" no es transitiva: con viajes a las $9{:}00$, $9{:}30$ y $10{:}00$, el primero se relaciona con el segundo y el segundo con el tercero, pero el primero y el tercero difieren 60 minutos.
 
+:::figura[Los 8 viajes del ejemplo como grafo de flechas. "Salir en la misma hora" produce cuatro grupos aislados de flechas de ida y vuelta, las clases de equivalencia. Con "difieren en menos de 40 minutos" aparecen flechas que encadenan viajes sin cerrar el triángulo, y la transitividad falla.]{componente="RelationViz"}
+```yaml
+elementos: [370, 405, 560, 595, 785, 820, 1095, 1130]
+etiquetas: ['6:10', '6:45', '9:20', '9:55', '13:05', '13:40', '18:15', '18:50']
+relacion: misma-hora
+relaciones: [misma-hora, menos-de-40-minutos]
+vista: grafo
+```
+:::
+
 ## Propiedades
 
 :::teorema[Clases y particiones]
@@ -91,6 +169,16 @@ Cada $a \in [a]$ por reflexividad, así que las clases son no vacías y cubren $
 - $a \sim b$ si y solo si $[a] = [b]$.
 - La congruencia módulo $k$ en $\mathbb{Z}$ tiene exactamente $k$ clases, los residuos $0, 1, \dots, k - 1$.
 - Una relación es simétrica y antisimétrica a la vez solo si sus pares son de la forma $(a, a)$.
+
+:::figura[La misma relación en sus tres representaciones. En el plano, una relación simétrica es una figura que se refleja en sí misma respecto a la diagonal, y una relación reflexiva contiene todos los puntos de la diagonal; "menor o igual" no es simétrica y su figura queda de un solo lado.]{componente="RelationViz"}
+```yaml
+elementos: [1, 2, 3, 4, 5, 6]
+relacion: misma-paridad
+relaciones: [misma-paridad, menor-o-igual, divide, cercania]
+k: 1
+vista: plano
+```
+:::
 
 ## Errores comunes
 

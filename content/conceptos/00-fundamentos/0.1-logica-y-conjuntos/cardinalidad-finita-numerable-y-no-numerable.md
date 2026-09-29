@@ -75,6 +75,17 @@ $$
 3. **Suprayectiva.** Un entero $m > 0$ es $f(2m)$, y un entero $m \le 0$ es $f(1 - 2m)$. Por ejemplo, $-5 = f(11)$.
 4. Por tanto $|\mathbb{Z}| = |\mathbb{N}|$.
 
+:::figura[Los primeros valores de la biyección del ejemplo entre $\{1, \dots, 7\}$ y $\{-3, \dots, 3\}$: cada entero de la derecha recibe exactamente una flecha, y al continuar la lista ningún entero queda sin su natural.]{componente="FunctionMapping"}
+```yaml
+modo: clasificacion
+ejemplos:
+  - nombre: "f: N en Z"
+    dominio: ['1', '2', '3', '4', '5', '6', '7']
+    codominio: ['-3', '-2', '-1', '0', '1', '2', '3']
+    flechas: [[0, 3], [1, 4], [2, 2], [3, 5], [4, 1], [5, 6], [6, 0]]
+```
+:::
+
 ## Propiedades
 
 - Todo subconjunto de un conjunto numerable es numerable.
@@ -91,6 +102,17 @@ $$
 - **Concluir que no hay biyección porque un intento falló.** Listar los racionales por numerador fijo nunca termina la primera fila, pero el zigzag sí funciona. Para mostrar que no existe biyección hay que refutar todas.
 - **Pensar que "denso" implica "no numerable".** $\mathbb{Q}$ es denso en $\mathbb{R}$ y es numerable.
 - **Tratar "infinito" como un número único.** Hay una jerarquía de cardinalidades infinitas.
+
+:::figura[Una parte propia con tantos elementos como el todo. La función $n \mapsto 2n$ empareja los naturales con los pares sin que falte ni sobre ninguno, aunque los pares sean solo una parte de los naturales.]{componente="FunctionMapping"}
+```yaml
+modo: clasificacion
+ejemplos:
+  - nombre: "n a 2n"
+    dominio: ['1', '2', '3', '4', '5', '6']
+    codominio: ['2', '4', '6', '8', '10', '12']
+    flechas: [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+```
+:::
 
 ## Conexiones
 

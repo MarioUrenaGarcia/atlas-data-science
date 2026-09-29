@@ -77,6 +77,18 @@ Sea $p$: "la temperatura supera 30 grados" y $q$: "se activa el ventilador". Un 
 5. $\lnot p \lor q$ es F, igual que el condicional, como predice la equivalencia $p \rightarrow q \equiv \lnot p \lor q$.
 6. $p \leftrightarrow q$ es F, porque los valores difieren.
 
+:::figura[Las proposiciones del ejemplo con $p$ verdadera y $q$ falsa. Los botones cambian los valores de verdad y todos los conectivos se recalculan a la vez.]{componente="LogicViz"}
+```yaml
+modo: conectivos
+enunciados:
+  p: La temperatura supera 30 grados
+  q: Se activa el ventilador
+inicial:
+  p: true
+  q: false
+```
+:::
+
 ## Propiedades
 
 - **Doble negación:** $\lnot \lnot p \equiv p$.
@@ -90,6 +102,32 @@ Sea $p$: "la temperatura supera 30 grados" y $q$: "se activa el ventilador". Un 
 Para la contrapositiva, usamos la equivalencia del condicional dos veces: $\lnot q \rightarrow \lnot p \equiv \lnot\lnot q \lor \lnot p \equiv q \lor \lnot p \equiv \lnot p \lor q \equiv p \rightarrow q$.
 :::
 
+:::figura[Los conectivos vistos como conjuntos de días. En un mes de 30 días, $p$ es el conjunto de días con más de 30 grados y $q$ el de días con el ventilador encendido. Cada consulta sombrea los días en que la proposición compuesta es verdadera; el condicional solo es falso en los 3 días calurosos sin ventilador.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [p, q]
+universo: Días del mes
+conteos:
+  pq: 12
+  p: 3
+  q: 5
+  ninguno: 10
+consultas:
+  - nombre: "p ∧ q"
+    regiones: [pq]
+  - nombre: "p ∨ q"
+    regiones: [p, q, pq]
+  - nombre: "¬p"
+    regiones: [q, ninguno]
+  - nombre: "p implica q"
+    regiones: [q, pq, ninguno]
+  - nombre: "p si y solo si q"
+    regiones: [pq, ninguno]
+  - nombre: "p ⊕ q"
+    regiones: [p, q]
+```
+:::
+
 ## Errores comunes
 
 - **Confundir el condicional con su recíproco.** De $p \rightarrow q$ no se deduce $q \rightarrow p$: que la cancha esté mojada no implica que haya llovido (pudo regarse).
@@ -97,6 +135,14 @@ Para la contrapositiva, usamos la equivalencia del condicional dos veces: $\lnot
 - **Leer "o" siempre como exclusivo.** En matemáticas, "o" es inclusivo salvo que se diga lo contrario; $p \lor q$ es verdadera cuando ambas lo son.
 - **Tratar preguntas u órdenes como proposiciones.** Solo los enunciados que pueden ser verdaderos o falsos lo son.
 - **Creer que el condicional expresa causalidad.** $p \rightarrow q$ solo afirma que no ocurre "$p$ verdadera y $q$ falsa"; no dice que $p$ cause $q$.
+
+:::figura[Tablas que desmienten dos errores frecuentes. El condicional y su recíproco no coinciden en dos filas, y la disyunción inclusiva y la exclusiva difieren justo cuando ambas proposiciones son verdaderas.]{componente="LogicViz"}
+```yaml
+modo: tabla
+formula: reciproca
+formulas: [reciproca, xor-vs-o, implicacion]
+```
+:::
 
 ## Conexiones
 

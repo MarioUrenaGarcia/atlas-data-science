@@ -77,6 +77,34 @@ En una encuesta a 100 personas sobre plataformas de video, 60 usan la plataforma
 
 Así, 95 personas usan al menos una plataforma y 60 usan exactamente una.
 
+:::figura[La encuesta del ejemplo con las regiones ya llenas. Las consultas suman las regiones de cada pregunta: 95 personas usan al menos una plataforma, 60 exactamente una y 5 ninguna.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [A, B, C]
+universo: Encuestados
+conteos:
+  A: 30
+  B: 20
+  C: 10
+  AB: 15
+  AC: 10
+  BC: 5
+  ABC: 5
+  ninguno: 5
+consultas:
+  - nombre: Al menos una
+    regiones: [A, B, C, AB, AC, BC, ABC]
+  - nombre: Exactamente una
+    regiones: [A, B, C]
+  - nombre: "A y B, con o sin C"
+    regiones: [AB, ABC]
+  - nombre: Solo A y B
+    regiones: [AB]
+  - nombre: Ninguna
+    regiones: [ninguno]
+```
+:::
+
 ## Propiedades
 
 - Las $2^k$ regiones son disjuntas y su unión es $U$: forman una partición del universo (algunas pueden estar vacías).

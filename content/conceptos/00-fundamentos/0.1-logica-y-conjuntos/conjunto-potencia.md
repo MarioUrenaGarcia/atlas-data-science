@@ -66,6 +66,13 @@ Un analista tiene tres variables candidatas para un modelo: edad ($e$), ingreso 
 3. Hay $2^3 = 8$ modelos, contando el que no usa ninguna variable.
 4. Con 20 variables candidatas habría $2^{20} = 1048576$ modelos, lo que explica por qué la búsqueda exhaustiva de subconjuntos se vuelve impracticable.
 
+:::figura[Los 8 modelos del ejemplo como subconjuntos de $\{e, i, s\}$, ordenados por tamaño: el modelo vacío abajo, los de una variable, los de dos y el completo arriba. Cada línea une modelos que difieren en una sola variable.]{componente="SetStructures"}
+```yaml
+modo: potencia
+elementos: [e, i, s]
+```
+:::
+
 ## Propiedades
 
 - $|\mathcal{P}(S)| = 2^{|S|}$ para $S$ finito.
@@ -76,6 +83,14 @@ Un analista tiene tres variables candidatas para un modelo: edad ($e$), ingreso 
 
 :::demostracion
 Por inducción sobre $n$. Si $n = 0$, $\mathcal{P}(\varnothing) = \{\varnothing\}$ tiene $1 = 2^0$ elemento. Si $S$ tiene $n + 1$ elementos, fijamos uno, $s$. Cada subconjunto de $S$ lo contiene o no; los que no lo contienen son los $2^n$ subconjuntos de $S \setminus \{s\}$, y los que lo contienen se obtienen agregando $s$ a cada uno de ellos. En total hay $2 \cdot 2^n = 2^{n+1}$.
+:::
+
+:::figura[Los subconjuntos de $\{1, \dots, n\}$ agrupados por tamaño: la columna de tamaño $k$ tiene $\binom{n}{k}$ subconjuntos y las columnas suman $2^n$.]{componente="PascalTriangle"}
+```yaml
+modo: identidades
+identidad: suma-de-fila
+n: 4
+```
 :::
 
 ## Errores comunes

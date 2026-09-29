@@ -79,6 +79,17 @@ Supongamos una lista cuyas primeras filas son:
 3. $d$ difiere de $s_1$ en la posición 1, de $s_2$ en la 2, y así sucesivamente.
 4. Si alguien agrega $d$ como nueva fila 1 y recorre la lista, la diagonal cambia y produce otra sucesión ausente.
 
+:::figura[La lista del ejemplo. La construcción recorre la diagonal, invierte cada dígito y produce $d = 1, 0, 1, 0, 1, \dots$; al cambiar cualquier dígito de la lista con un clic, la nueva diagonal produce otra sucesión ausente.]{componente="CantorDiagonal"}
+```yaml
+lista:
+  - [0, 1, 1, 0, 1]
+  - [1, 1, 0, 0, 1]
+  - [0, 0, 0, 1, 1]
+  - [1, 0, 1, 1, 0]
+  - [0, 1, 0, 0, 0]
+```
+:::
+
 ## Propiedades
 
 - **Teorema de Cantor general:** ninguna función $f: A \to \mathcal{P}(A)$ es suprayectiva. El conjunto $D = \{a \in A : a \notin f(a)\}$ cumple el papel de la sucesión diagonal.

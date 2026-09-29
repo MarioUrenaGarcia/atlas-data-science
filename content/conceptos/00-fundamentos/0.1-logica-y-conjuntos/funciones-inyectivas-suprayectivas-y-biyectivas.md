@@ -71,6 +71,35 @@ Sea $f: A \to B$.
 
 Para demostrar inyectividad se supone $f(a_1) = f(a_2)$ y se deduce $a_1 = a_2$. Para refutarla basta un par $a_1 \neq a_2$ con la misma imagen. Para refutar la suprayectividad basta un $b$ sin preimagen.
 
+En la gráfica de una función real, las tres propiedades se leen con rectas horizontales: $f$ es inyectiva si ninguna recta horizontal corta la gráfica más de una vez, y es suprayectiva si toda recta horizontal a una altura del codominio la corta al menos una vez.
+
+:::figura[Prueba de la recta horizontal. A la derecha, la barra naranja es el codominio y la verde es la imagen; la recta punteada recorre el codominio y marca cada solución de $f(x) = c$. El selector cambia entre una función biyectiva, una solo suprayectiva, una solo inyectiva y una que no es ninguna de las dos.]{componente="FunctionGraph"}
+```yaml
+modo: clasificacion
+funciones:
+  - funcion: cuadrado
+    dominio: [0, 2]
+    codominio: [0, 4]
+    nombre: "Biyectiva: x² de [0, 2] en [0, 4]"
+  - funcion: cuadrado
+    dominio: [-2, 2]
+    codominio: [0, 4]
+    nombre: "Solo suprayectiva: x² de [-2, 2] en [0, 4]"
+  - funcion: exponencial
+    dominio: [-2, 2]
+    codominio: [-1, 8]
+    nombre: "Solo inyectiva: eˣ de [-2, 2] en [-1, 8]"
+  - funcion: cubica
+    dominio: [-2, 2]
+    codominio: [-3, 3]
+    nombre: "Ninguna: x³ - 3x de [-2, 2] en [-3, 3]"
+  - funcion: lineal
+    dominio: [-1, 1]
+    codominio: [-1, 3]
+    nombre: "Biyectiva: 2x + 1 de [-1, 1] en [-1, 3]"
+```
+:::
+
 ## Cómo usar la visualización
 
 Cada ejemplo muestra una función con flechas del dominio al codominio. Al terminar la reproducción el panel responde si es inyectiva, suprayectiva y biyectiva, e identifica la causa cuando no lo es: los elementos que comparten imagen se marcan en naranja y los elementos del codominio sin preimagen en ámbar. Un clic en un elemento del dominio y luego en uno del codominio mueve su flecha, de modo que el diagrama siempre sigue siendo función.
@@ -85,6 +114,25 @@ Se analizan tres funciones sobre los enteros.
 2. $g: \mathbb{Z} \to \{0, 1, 2\}$, $g(n) = $ residuo de $n$ entre 3. Es suprayectiva, pues $g(0) = 0$, $g(1) = 1$ y $g(2) = 2$; no es inyectiva, pues $g(0) = g(3)$.
 3. $h: \mathbb{Z} \to \mathbb{Z}$, $h(n) = n + 5$. Es inyectiva por el mismo argumento que $f$, y es suprayectiva porque cada $m$ es $h(m - 5)$. Por tanto es biyectiva.
 
+:::figura[Las tres funciones del ejemplo, dibujadas sobre una ventana finita de los enteros. En $f$ los números pares del codominio quedan sin flecha; en $g$ varios enteros comparten residuo; en $h$ cada elemento de la derecha recibe exactamente una flecha.]{componente="FunctionMapping"}
+```yaml
+modo: clasificacion
+ejemplos:
+  - nombre: "f(n) = 2n + 1"
+    dominio: ['-1', '0', '1', '2']
+    codominio: ['-1', '0', '1', '2', '3', '4', '5']
+    flechas: [[0, 0], [1, 2], [2, 4], [3, 6]]
+  - nombre: "g(n) = residuo de n entre 3"
+    dominio: ['0', '1', '2', '3', '4', '5']
+    codominio: ['0', '1', '2']
+    flechas: [[0, 0], [1, 1], [2, 2], [3, 0], [4, 1], [5, 2]]
+  - nombre: "h(n) = n + 5"
+    dominio: ['0', '1', '2', '3']
+    codominio: ['5', '6', '7', '8']
+    flechas: [[0, 0], [1, 1], [2, 2], [3, 3]]
+```
+:::
+
 ## Propiedades
 
 Para $A$ y $B$ finitos:
@@ -97,6 +145,14 @@ Para $A$ y $B$ finitos:
 
 Además, la composición de inyectivas es inyectiva y la de suprayectivas es suprayectiva, y $f$ tiene inversa si y solo si es biyectiva.
 
+:::figura[Principio del palomar: con 5 objetos y solo 4 cajas, incluso el reparto más parejo pone dos objetos en una misma caja, así que ninguna función de un conjunto de 5 elementos en uno de 4 es inyectiva.]{componente="PigeonholeViz"}
+```yaml
+objetos: 5
+cajas: 4
+estrategia: repartir
+```
+:::
+
 :::demostracion
 Si $f$ es inyectiva, los $|A|$ elementos tienen imágenes distintas, así que $f(A)$ tiene $|A|$ elementos y está contenido en $B$; por tanto $|A| \le |B|$. Si además $|A| = |B|$, entonces $f(A)$ es un subconjunto de $B$ con tantos elementos como $B$, y por ser finito coincide con $B$.
 :::
@@ -107,6 +163,21 @@ Si $f$ es inyectiva, los $|A|$ elementos tienen imágenes distintas, así que $f
 - **Olvidar el codominio al hablar de suprayectividad.** $x \mapsto x^2$ es suprayectiva sobre $[0, \infty)$ y no lo es sobre $\mathbb{R}$.
 - **Comprobar la inyectividad con unos cuantos valores.** Se necesita un argumento para todo par; un solo par que choca basta para negarla.
 - **Aplicar "inyectiva si y solo si suprayectiva" a conjuntos infinitos.** $n \mapsto 2n$ es inyectiva de $\mathbb{N}$ en $\mathbb{N}$ y no es suprayectiva.
+
+:::figura[La misma regla $x^2$ con dos codominios distintos. Hacia $[0, 4]$ toda altura se alcanza; hacia $[-2, 4]$ las alturas negativas quedan sin preimagen, marcadas con un círculo, y la función deja de ser suprayectiva sin que cambie la gráfica.]{componente="FunctionGraph"}
+```yaml
+modo: clasificacion
+funciones:
+  - funcion: cuadrado
+    dominio: [-2, 2]
+    codominio: [0, 4]
+    nombre: "x² hacia [0, 4]"
+  - funcion: cuadrado
+    dominio: [-2, 2]
+    codominio: [-2, 4]
+    nombre: "x² hacia [-2, 4]"
+```
+:::
 
 ## Conexiones
 

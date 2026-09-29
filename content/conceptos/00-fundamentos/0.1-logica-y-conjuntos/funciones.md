@@ -66,6 +66,13 @@ Una **función** $f$ de $A$ en $B$, escrita $f: A \to B$, es un subconjunto $f \
 
 Dos funciones son iguales si tienen el mismo dominio, el mismo codominio y $f(a) = g(a)$ para todo $a$.
 
+:::figura[Prueba de la recta vertical. Una curva del plano es la gráfica de una función de $x$ si ninguna recta vertical la corta más de una vez; el círculo y la parábola acostada fallan porque algunos valores de $x$ tendrían dos salidas.]{componente="FunctionGraph"}
+```yaml
+modo: vertical
+curvas: [parabola, circulo, parabola-lateral, seno, elipse, raiz]
+```
+:::
+
 ## Cómo usar la visualización
 
 A la izquierda está el dominio y a la derecha el codominio. La reproducción dibuja las flechas una por una y al final el panel dice si el diagrama es una función; los elementos que lo impiden se marcan en naranja y la imagen se sombrea en verde. Para editar, se hace clic en un elemento del dominio y luego en uno del codominio: la flecha se agrega o, si ya existía, se borra.
@@ -82,6 +89,17 @@ Una estación meteorológica registra la temperatura máxima de cada día de una
 4. La preimagen de $\{26\}$ es $f^{-1}(\{26\}) = \{\text{mar}, \text{mié}, \text{sáb}\}$, los días más calurosos.
 5. Que tres días compartan valor no viola la definición; lo que la violaría es que un día tuviera dos máximas.
 
+:::figura[La temperatura máxima de cada día del ejemplo. Cada día tiene exactamente una flecha, aunque tres días lleguen a 26; en el codominio mostrado, 22 y 27 quedan fuera de la imagen.]{componente="FunctionMapping"}
+```yaml
+modo: funcion
+ejemplos:
+  - nombre: Temperatura máxima
+    dominio: [lun, mar, mié, jue, vie, sáb, dom]
+    codominio: ['22', '23', '24', '25', '26', '27']
+    flechas: [[0, 2], [1, 4], [2, 4], [3, 1], [4, 3], [5, 4], [6, 2]]
+```
+:::
+
 ## Propiedades
 
 - $|f(A)| \le |A|$ y $f(A) \subseteq B$.
@@ -96,6 +114,21 @@ Una estación meteorológica registra la temperatura máxima de cada día de una
 - **Pensar que dos entradas con la misma salida violan la definición.** Lo prohibido es una entrada con dos salidas.
 - **Creer que una función necesita fórmula.** Una tabla o un diagrama de flechas definen funciones igual de válidas.
 - **Leer $f^{-1}(D)$ como si existiera una función inversa.** La preimagen de un conjunto existe siempre, aunque $f$ no sea invertible.
+
+:::figura[Codominio frente a imagen en una gráfica. Con el seno de $[-3.5, 3.5]$ en $[-2, 2]$, la imagen es solo $[-1, 1]$: las alturas entre 1 y 2 están en el codominio pero ninguna entrada las alcanza.]{componente="FunctionGraph"}
+```yaml
+modo: clasificacion
+funciones:
+  - funcion: seno
+    dominio: [-3.5, 3.5]
+    codominio: [-2, 2]
+    nombre: "sen x de [-3.5, 3.5] en [-2, 2]"
+  - funcion: seno
+    dominio: [-1.5, 1.5]
+    codominio: [-1, 1]
+    nombre: "sen x de [-1.5, 1.5] en [-1, 1]"
+```
+:::
 
 ## Conexiones
 

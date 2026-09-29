@@ -81,6 +81,32 @@ Un sistema de control de calidad clasifica 500 botellas. $L$ es el conjunto de b
 2. Botellas sin defecto de etiqueta y sin defecto de tapa: por De Morgan, $L^c \cap T^c = (L \cup T)^c$, así que son $500 - 55 = 445$.
 3. Botellas que no tienen ambos defectos a la vez: $(L \cap T)^c = L^c \cup T^c$, con $500 - 10 = 490$ botellas.
 
+:::figura[Las 500 botellas del ejemplo. Las consultas muestran que $(L \cup T)^c$ y $L^c \cap T^c$ sombrean la misma región, con 445 botellas, y que $(L \cap T)^c$ y $L^c \cup T^c$ también coinciden, con 490.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [L, T]
+universo: Botellas
+conteos:
+  L: 30
+  T: 15
+  LT: 10
+  ninguno: 445
+consultas:
+  - nombre: "L ∪ T"
+    regiones: [L, T, LT]
+  - nombre: "(L ∪ T)ᶜ"
+    regiones: [ninguno]
+  - nombre: "Lᶜ ∩ Tᶜ"
+    regiones: [ninguno]
+  - nombre: "L ∩ T"
+    regiones: [LT]
+  - nombre: "(L ∩ T)ᶜ"
+    regiones: [L, T, ninguno]
+  - nombre: "Lᶜ ∪ Tᶜ"
+    regiones: [L, T, ninguno]
+```
+:::
+
 ## Propiedades
 
 - Las leyes son duales: al intercambiar $\cup$ con $\cap$ y $\varnothing$ con $U$ una se transforma en la otra.
@@ -98,6 +124,25 @@ Usamos doble contención con la ley lógica: $x \in (A \cup B)^c$ equivale a $\l
 - **Negar "ni... ni" como "o".** "No es cierto que llueva o nieve" significa que no llueve y no nieva.
 - **Filtrar datos con condiciones negadas mal agrupadas.** Excluir registros "con edad faltante o ingreso faltante" deja los que tienen ambos datos, no los que tienen al menos uno.
 - **Olvidar el universo.** Los complementos se toman respecto del mismo $U$ en ambos lados.
+
+:::figura[El error de distribuir el complemento sin cambiar la operación. $(A \cup B)^c$ contiene solo los 7 elementos que no están en ningún conjunto, mientras que $A^c \cup B^c$ contiene 17: todos los que faltan en al menos uno de los dos.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [A, B]
+conteos:
+  A: 6
+  B: 4
+  AB: 3
+  ninguno: 7
+consultas:
+  - nombre: "(A ∪ B)ᶜ"
+    regiones: [ninguno]
+  - nombre: "Aᶜ ∪ Bᶜ"
+    regiones: [A, B, ninguno]
+  - nombre: "Aᶜ ∩ Bᶜ"
+    regiones: [ninguno]
+```
+:::
 
 ## Conexiones
 

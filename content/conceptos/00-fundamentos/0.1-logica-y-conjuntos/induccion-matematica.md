@@ -70,6 +70,13 @@ $$
 $$
 4. **Conclusión.** Por el principio de inducción, la igualdad vale para todo $n \ge 1$. Por ejemplo, con $n = 6$: $1 + 3 + 5 + 7 + 9 + 11 = 36$.
 
+:::figura[La identidad del ejemplo como figura. Cada capa en forma de L agrega el siguiente impar, $2k + 1$ cuadros, al cuadrado de lado $k$ y produce el de lado $k + 1$: es el paso inductivo dibujado.]{componente="InductionViz"}
+```yaml
+vista: impares
+n: 6
+```
+:::
+
 ## Propiedades
 
 - La inducción es equivalente al **principio del buen orden**: todo subconjunto no vacío de $\mathbb{N}$ tiene un elemento mínimo.

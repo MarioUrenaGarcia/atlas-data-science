@@ -74,6 +74,40 @@ En un laboratorio se convierte la temperatura de Celsius a Fahrenheit con $f(c) 
 2. **Orden.** $(f \circ g)(t) = \frac{9}{5}(t - 90) + 32$ es otra función: para $t = 95$ da $41$, no $5$.
 3. **Inversa.** $f$ es biyectiva de $\mathbb{R}$ en $\mathbb{R}$. Despejando $t = \frac{9}{5}c + 32$ se obtiene $f^{-1}(t) = \frac{5}{9}(t - 32)$. Comprobación: $f^{-1}(95) = \frac{5}{9} \cdot 63 = 35$.
 
+:::figura[La composición del ejemplo con tres temperaturas: cada una se convierte a Fahrenheit con $f$ y después al índice de riesgo con $g$. Seguir las dos flechas seguidas es aplicar $g \circ f$.]{componente="FunctionMapping"}
+```yaml
+modo: composicion
+a: ['30 °C', '35 °C', '40 °C']
+b: ['86 °F', '95 °F', '104 °F']
+c: ['-4', '5', '14']
+f: [0, 1, 2]
+g: [0, 1, 2]
+```
+:::
+
+:::figura[La inversa como reflejo respecto a la recta $y = x$. La conversión de Celsius a Fahrenheit se refleja en la conversión de regreso; con $x^2$ en $[-2, 2]$ el reflejo corta dos veces una recta vertical y no es gráfica de una función.]{componente="FunctionGraph"}
+```yaml
+modo: inversa
+funciones:
+  - funcion: fahrenheit
+    dominio: [-40, 40]
+    codominio: [-40, 104]
+    nombre: "Celsius a Fahrenheit"
+  - funcion: cubo
+    dominio: [-1.5, 1.5]
+    codominio: [-3.375, 3.375]
+    nombre: "x³ en [-1.5, 1.5]"
+  - funcion: cuadrado
+    dominio: [0, 2]
+    codominio: [0, 4]
+    nombre: "x² en [0, 2]"
+  - funcion: cuadrado
+    dominio: [-2, 2]
+    codominio: [0, 4]
+    nombre: "x² en [-2, 2], sin inversa"
+```
+:::
+
 ## Propiedades
 
 - **Asociatividad:** $h \circ (g \circ f) = (h \circ g) \circ f$.

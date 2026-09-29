@@ -76,6 +76,14 @@ Sea $S = \left\{\frac{n}{n + 1} : n \in \mathbb{N}\right\} = \left\{\frac{1}{2},
 3. Por tanto $\sup S = 1$, y como $1 \notin S$, $S$ no tiene máximo.
 4. **Ínfimo.** La sucesión es creciente, así que $\inf S = \frac{1}{2}$, que sí pertenece a $S$: es el mínimo.
 
+:::figura[El conjunto del ejemplo, $n/(n + 1)$, sobre la recta. Toda la zona desde 1 hacia la derecha son cotas superiores y, para cualquier distancia $\varepsilon$, algún elemento cae entre $1 - \varepsilon$ y 1; el supremo 1 no pertenece al conjunto.]{componente="SequenceSeries"}
+```yaml
+modo: supremo
+conjunto: cociente
+epsilon: 0.01
+```
+:::
+
 ## Propiedades
 
 - El supremo, si existe, es único.
@@ -96,6 +104,14 @@ Para la unicidad, si $s$ y $s'$ son ambos menores cotas superiores, entonces $s 
 - **Tomar cualquier cota superior como supremo.** 2 es cota de $\{1 - 1/n\}$, pero no la menor.
 - **Pensar que el supremo es el último elemento.** En un conjunto infinito puede no haber último elemento.
 - **Creer que todo conjunto acotado de racionales tiene supremo racional.** La completitud es una propiedad de $\mathbb{R}$.
+
+:::figura[Un conjunto de racionales sin supremo racional: los truncamientos decimales de $\sqrt{2}$ se acumulan contra $\sqrt{2}$, que es irracional. En $\mathbb{R}$ el supremo existe; en $\mathbb{Q}$ no.]{componente="SequenceSeries"}
+```yaml
+modo: supremo
+conjunto: raices-de-dos
+epsilon: 0.005
+```
+:::
 
 ## Conexiones
 

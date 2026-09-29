@@ -92,12 +92,28 @@ La última columna es siempre V: el razonamiento es válido. La única fila dond
 Una tabla con $k$ variables tiene $2^k$ filas y en cada una la fórmula puede valer V o F de forma independiente. Por el principio del producto hay $2 \cdot 2 \cdots 2 = 2^{2^k}$ columnas finales posibles.
 :::
 
+:::figura[Equivalencias clásicas comprobadas fila por fila. Cada fórmula es un bicondicional entre dos expresiones; que la última columna sea siempre V significa que ambas expresiones coinciden en todas las filas.]{componente="LogicViz"}
+```yaml
+modo: tabla
+formula: de-morgan-y
+formulas: [de-morgan-y, de-morgan-o, distributiva, contrapositiva]
+```
+:::
+
 ## Errores comunes
 
 - **Omitir filas.** Con tres variables hacen falta ocho filas; un orden sistemático (como contar en binario) evita olvidar combinaciones.
 - **Evaluar en el orden equivocado.** La negación afecta solo a lo que tiene inmediatamente a su derecha: $\lnot p \land q$ no es $\lnot(p \land q)$.
 - **Confundir argumento válido con conclusión verdadera.** La validez dice que la conclusión se sigue de las premisas; si una premisa es falsa, la conclusión puede ser falsa aunque el argumento sea válido.
 - **Concluir equivalencia comparando algunas filas.** Dos fórmulas son equivalentes solo si coinciden en todas las filas.
+
+:::figura[Tautología, contradicción y contingencia. El tercero excluido es verdadero en todas las filas, la contradicción es falsa en todas, y la conjunción con negación depende de los valores de $p$ y $q$.]{componente="LogicViz"}
+```yaml
+modo: tabla
+formula: tercero-excluido
+formulas: [tercero-excluido, contradiccion, conjuncion, silogismo]
+```
+:::
 
 ## Conexiones
 

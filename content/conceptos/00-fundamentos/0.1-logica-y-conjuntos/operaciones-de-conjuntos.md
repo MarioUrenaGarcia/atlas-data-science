@@ -84,6 +84,30 @@ En una escuela de 30 estudiantes, $F$ es el conjunto de quienes juegan futbol y 
 3. **Diferencia.** $|F \setminus B| = 14 - 4 = 10$ juegan solo futbol.
 4. **Diferencia simétrica.** $|F \,\triangle\, B| = 10 + (9 - 4) = 15$ juegan exactamente uno de los dos.
 
+:::figura[Los números del ejemplo en un diagrama con conteos por región: 10 juegan solo futbol, 5 solo basquetbol, 4 ambos y 11 ninguno. Cada consulta sombrea una operación y suma sus regiones.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [F, B]
+universo: Estudiantes
+conteos:
+  F: 10
+  B: 5
+  FB: 4
+  ninguno: 11
+consultas:
+  - nombre: "F ∪ B"
+    regiones: [F, B, FB]
+  - nombre: "F ∩ B"
+    regiones: [FB]
+  - nombre: "(F ∪ B)ᶜ"
+    regiones: [ninguno]
+  - nombre: "F \\ B"
+    regiones: [F]
+  - nombre: "F Δ B"
+    regiones: [F, B]
+```
+:::
+
 ## Propiedades
 
 - **Conmutatividad:** $A \cup B = B \cup A$ y $A \cap B = B \cap A$.
@@ -95,6 +119,31 @@ En una escuela de 30 estudiantes, $F$ es el conjunto de quienes juegan futbol y 
 
 :::demostracion
 Para la distributividad, $x \in A \cap (B \cup C)$ equivale a $x \in A \land (x \in B \lor x \in C)$, que por la distributividad lógica equivale a $(x \in A \land x \in B) \lor (x \in A \land x \in C)$, es decir, $x \in (A \cap B) \cup (A \cap C)$.
+:::
+
+:::figura[Distributividad comprobada por regiones. Los dos lados de cada ley sombrean exactamente las mismas regiones, así que son iguales para cualesquiera conjuntos.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [A, B, C]
+conteos:
+  A: 5
+  B: 4
+  C: 3
+  AB: 2
+  AC: 2
+  BC: 1
+  ABC: 1
+  ninguno: 6
+consultas:
+  - nombre: "A ∩ (B ∪ C)"
+    regiones: [AB, AC, ABC]
+  - nombre: "(A ∩ B) ∪ (A ∩ C)"
+    regiones: [AB, AC, ABC]
+  - nombre: "A ∪ (B ∩ C)"
+    regiones: [A, AB, AC, ABC, BC]
+  - nombre: "(A ∪ B) ∩ (A ∪ C)"
+    regiones: [A, AB, AC, ABC, BC]
+```
 :::
 
 ## Errores comunes

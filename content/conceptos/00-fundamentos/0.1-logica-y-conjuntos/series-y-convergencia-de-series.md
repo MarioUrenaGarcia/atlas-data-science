@@ -70,6 +70,14 @@ Un brazo robótico se aproxima a su posición final con movimientos cada vez má
 3. Por tanto $S_N \to 1$ y $\sum_{n=1}^{\infty} \frac{1}{n(n+1)} = 1$.
 4. Con $N = 9$: $S_9 = 1 - \frac{1}{10} = 0.9$, así que tras nueve movimientos el brazo ha recorrido 90 cm de un total de 1 m.
 
+:::figura[Los movimientos del brazo del ejemplo. Las barras son los tramos $1/(n(n+1))$ y la línea es la distancia recorrida $S_N = 1 - 1/(N+1)$, que se acerca a 1 metro.]{componente="SequenceSeries"}
+```yaml
+modo: serie
+serie: telescopica
+terminos: 30
+```
+:::
+
 ## Propiedades
 
 - **Condición necesaria:** si $\sum a_n$ converge, entonces $a_n \to 0$. El recíproco es falso.
@@ -90,6 +98,15 @@ Para la divergencia de la serie armónica agrupamos términos: $1 + \frac{1}{2} 
 - **Juzgar por las sumas parciales visibles.** La armónica crece como $\log N$: tras un millón de términos apenas supera 14, y aun así diverge.
 - **Reordenar una serie condicionalmente convergente.** Reordenando la armónica alternada se puede obtener cualquier suma.
 - **Confundir la sucesión de términos con la sucesión de sumas parciales.** Converger se refiere a la segunda.
+
+:::figura[La serie armónica con 400 términos. Los términos tienden a 0, pero las sumas parciales siguen subiendo lentamente, como $\log N$, sin estabilizarse.]{componente="SequenceSeries"}
+```yaml
+modo: serie
+serie: armonica
+series: [armonica, basilea]
+terminos: 400
+```
+:::
 
 ## Conexiones
 

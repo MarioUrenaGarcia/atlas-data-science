@@ -73,6 +73,42 @@ Una clínica atiende 240 pacientes al mes, clasificados por grupo sanguíneo: 10
 3. Si además se separa cada grupo por factor Rh, se obtiene una partición más fina con hasta 8 bloques; sus cantidades por grupo siguen sumando lo mismo.
 4. En cambio, "pacientes mayores de 60" y "pacientes con diabetes" no forman una partición: pueden traslaparse y dejar pacientes fuera.
 
+:::figura[Los 240 pacientes del ejemplo como una barra dividida en bloques proporcionales a cada grupo sanguíneo. Al refinar, cada grupo se separa según el factor Rh; los números de esa división son ilustrativos y cada grupo sigue sumando lo mismo.]{componente="SetStructures"}
+```yaml
+modo: reparto
+universo: Pacientes
+bloques:
+  - nombre: O
+    n: 108
+    partes:
+      - nombre: Rh+
+        n: 95
+      - nombre: Rh-
+        n: 13
+  - nombre: A
+    n: 84
+    partes:
+      - nombre: Rh+
+        n: 74
+      - nombre: Rh-
+        n: 10
+  - nombre: B
+    n: 36
+    partes:
+      - nombre: Rh+
+        n: 32
+      - nombre: Rh-
+        n: 4
+  - nombre: AB
+    n: 12
+    partes:
+      - nombre: Rh+
+        n: 11
+      - nombre: Rh-
+        n: 1
+```
+:::
+
 ## Propiedades
 
 - Toda partición define una relación de equivalencia ("estar en el mismo bloque"), y toda relación de equivalencia define una partición en clases.
@@ -87,6 +123,28 @@ Una clínica atiende 240 pacientes al mes, clasificados por grupo sanguíneo: 10
 - **Olvidar una categoría residual.** Una clasificación que deja elementos sin bloque no es partición; con frecuencia se agrega un bloque "otros".
 - **Contar el bloque vacío.** Por definición los bloques son no vacíos.
 - **Confundir una partición con un subconjunto del conjunto potencia cualquiera.** Una familia de subconjuntos no es partición si no cumple las tres condiciones.
+
+:::figura[Dos categorías que no forman partición: "mayores de 60" ($M$) y "con diabetes" ($D$). Se traslapan en 25 pacientes y 145 no están en ninguna, así que sumar $|M| + |D| = 75 + 45$ cuenta dos veces la región común y aun así no llega a 240.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [M, D]
+universo: Pacientes
+conteos:
+  M: 50
+  D: 20
+  MD: 25
+  ninguno: 145
+consultas:
+  - nombre: M
+    regiones: [M, MD]
+  - nombre: D
+    regiones: [D, MD]
+  - nombre: "M ∩ D"
+    regiones: [MD]
+  - nombre: Fuera de ambas
+    regiones: [ninguno]
+```
+:::
 
 ## Conexiones
 
