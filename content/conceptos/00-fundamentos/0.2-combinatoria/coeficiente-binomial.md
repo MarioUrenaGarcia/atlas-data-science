@@ -72,6 +72,22 @@ Un control de calidad inspecciona 12 piezas de un lote, de las cuales 4 están d
 4. Muestras con al menos una defectuosa: $220 - 56 = 164$.
 5. Si las muestras son igualmente probables, la probabilidad de detectar al menos una pieza defectuosa es $164/220 \approx 0.745$.
 
+:::figura[Las 220 muestras posibles del ejemplo separadas por el número de piezas defectuosas que contienen: $\binom{8}{3} = 56$ sin defectuosas, $\binom{4}{1}\binom{8}{2} = 112$ con una, $\binom{4}{2}\binom{8}{1} = 48$ con dos y $\binom{4}{3} = 4$ con tres.]{componente="SetStructures"}
+```yaml
+modo: reparto
+universo: Muestras de 3 piezas
+bloques:
+  - nombre: 0 defectuosas
+    n: 56
+  - nombre: 1 defectuosa
+    n: 112
+  - nombre: 2 defectuosas
+    n: 48
+  - nombre: 3 defectuosas
+    n: 4
+```
+:::
+
 ## Propiedades
 
 - **Simetría:** $\binom{n}{k} = \binom{n}{n-k}$.

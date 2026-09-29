@@ -74,6 +74,15 @@ Se cuentan las formas de pagar 10 pesos con monedas de 1, 2 y 5.
 3. Con monedas de 1 y 2: el coeficiente de $x^n$ en $\frac{1}{(1-x)(1-x^2)}$ es $\lfloor n/2 \rfloor + 1$, que para $n = 10$ vale 6.
 4. Con monedas de 5: se suman los casos de 0, 1 o 2 monedas de 5, con 10, 5 y 0 pesos restantes: $6 + 3 + 1 = 10$ formas.
 
+:::figura[El ejemplo de pagar 10 pesos con monedas de 1, 2 y 5. Con solo monedas de 1 cada total tiene una forma; al agregar las de 2 el coeficiente de 10 sube a 6, y al agregar las de 5 llega a 10.]{componente="GeneratingFunctionViz"}
+```yaml
+modo: ordinaria
+partes: [1, 2, 5]
+nombre: moneda
+objetivo: 10
+```
+:::
+
 ## Propiedades
 
 - **Serie geométrica:** $\frac{1}{1 - x} = \sum_{n} x^n$ y $\frac{1}{1 - cx} = \sum_n c^n x^n$.

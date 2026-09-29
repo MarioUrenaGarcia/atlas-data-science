@@ -70,6 +70,20 @@ Un dado se lanza 6 veces y se registra solo si sale 1, 2 o un número mayor que 
 2. El número total de secuencias de tres tipos de resultado es $3^6 = 729$, la suma de todos los coeficientes multinomiales con $n = 6$ y $r = 3$.
 3. Con probabilidades $1/6$, $1/6$ y $4/6$ para A, B y C, la probabilidad de ese recuento es $60 \left(\tfrac{1}{6}\right)^3\left(\tfrac{1}{6}\right)^2\left(\tfrac{4}{6}\right) = \frac{60 \cdot 4}{6^6} = \frac{240}{46656} \approx 0.0051$.
 
+:::figura[Las secuencias del ejemplo con 3 resultados A, 2 B y 1 C, contadas como palabras: $6! = 720$ ordenaciones con marcas se agrupan en $60$ secuencias distintas.]{componente="CombinatoricsBoard"}
+```yaml
+modo: anagramas
+palabra: AAABBC
+```
+:::
+
+:::figura[Todos los coeficientes de $(x + y + z)^6$. El del término $x^3y^2z$ es 60 y la suma de todos es $3^6 = 729$, el número total de secuencias de 6 lanzamientos con tres tipos de resultado.]{componente="PascalTriangle"}
+```yaml
+modo: multinomial
+n: 6
+```
+:::
+
 ## Propiedades
 
 - **Producto de binomiales:** $\binom{n}{k_1, \dots, k_r} = \binom{n}{k_1}\binom{n - k_1}{k_2}\cdots\binom{k_r}{k_r}$.

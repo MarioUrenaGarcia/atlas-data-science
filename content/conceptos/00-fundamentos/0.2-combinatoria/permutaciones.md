@@ -69,6 +69,55 @@ Una estación de radio programa 6 canciones distintas en un bloque sin repetir n
 3. Si dos canciones del mismo artista deben ir juntas, se tratan como un solo bloque: hay $5!$ órdenes de los 5 bloques y $2!$ órdenes dentro del bloque, en total $5! \cdot 2! = 240$.
 4. Por complemento, los órdenes en que esas dos canciones no quedan juntas son $720 - 240 = 480$.
 
+:::figura[Los tres casos del ejemplo de la radio. Sin restricciones hay $6! = 720$ órdenes; con la canción favorita fija al final, esa casilla tiene una sola opción; con dos canciones pegadas se ordenan 5 bloques y se multiplica por los 2 órdenes dentro del bloque.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Sin restricciones
+    casillas:
+      - etiqueta: pos. 1
+        opciones: 6
+      - etiqueta: pos. 2
+        opciones: 5
+      - etiqueta: pos. 3
+        opciones: 4
+      - etiqueta: pos. 4
+        opciones: 3
+      - etiqueta: pos. 5
+        opciones: 2
+      - etiqueta: pos. 6
+        opciones: 1
+  - nombre: Favorita al final
+    casillas:
+      - etiqueta: pos. 1
+        opciones: 5
+      - etiqueta: pos. 2
+        opciones: 4
+      - etiqueta: pos. 3
+        opciones: 3
+      - etiqueta: pos. 4
+        opciones: 2
+      - etiqueta: pos. 5
+        opciones: 1
+      - etiqueta: favorita
+        opciones: 1
+  - nombre: Dos canciones juntas
+    casillas:
+      - etiqueta: bloque 1
+        opciones: 5
+      - etiqueta: bloque 2
+        opciones: 4
+      - etiqueta: bloque 3
+        opciones: 3
+      - etiqueta: bloque 4
+        opciones: 2
+      - etiqueta: bloque 5
+        opciones: 1
+      - etiqueta: dentro del par
+        opciones: 2
+```
+:::
+
 ## Propiedades
 
 - **Recursión:** las permutaciones de $n$ objetos se obtienen insertando el objeto $n$ en cualquiera de las $n$ posiciones de cada permutación de los otros $n - 1$, lo que da $n \cdot (n-1)!$.

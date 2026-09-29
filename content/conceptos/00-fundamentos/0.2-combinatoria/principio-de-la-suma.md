@@ -77,6 +77,20 @@ Una contraseña de un sistema escolar tiene entre 1 y 3 caracteres, y cada cará
 4. Longitud 3: $26^3 = 17576$ contraseñas.
 5. Por el principio de la suma, el total es $26 + 676 + 17576 = 18278$.
 
+:::figura[Las contraseñas del ejemplo separadas por longitud. Cada bloque tiene un ancho proporcional a su tamaño: las de longitud 3 son casi todo el total, y los tres bloques juntos, sin traslaparse, suman 18278.]{componente="SetStructures"}
+```yaml
+modo: reparto
+universo: Contraseñas
+bloques:
+  - nombre: Longitud 1
+    n: 26
+  - nombre: Longitud 2
+    n: 676
+  - nombre: Longitud 3
+    n: 17576
+```
+:::
+
 ## Propiedades
 
 - **Casos complementarios:** si $A \subseteq U$, entonces $|U| = |A| + |A^c|$, de donde $|A| = |U| - |A^c|$. Contar por complemento es el principio de la suma aplicado a dos casos.

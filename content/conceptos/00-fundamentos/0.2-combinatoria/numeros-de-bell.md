@@ -67,6 +67,13 @@ Se calcula $B_5$ de dos maneras.
 2. **Por los números de Stirling:** $S(5, 1), \dots, S(5, 5) = 1, 15, 25, 10, 1$, que suman 52.
 3. **Con el triángulo de Bell:** cada fila empieza con el último número de la anterior y cada entrada es la suma de su vecino izquierdo y el número que está encima de ese vecino. Las filas son 1; 1 2; 2 3 5; 5 7 10 15; 15 20 27 37 52. La primera entrada de cada fila es un número de Bell.
 
+:::figura[Las 52 particiones de un conjunto de 5 elementos del ejemplo. El panel las separa por número de bloques, que son los números de Stirling $1, 15, 25, 10, 1$.]{componente="SetPartitionsViz"}
+```yaml
+modo: bell
+n: 5
+```
+:::
+
 ## Propiedades
 
 - **Primeros valores:** $1, 1, 2, 5, 15, 52, 203, 877, 4140, 21147, 115975$.

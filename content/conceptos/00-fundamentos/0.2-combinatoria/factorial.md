@@ -71,6 +71,49 @@ Un entrenador de natación decide el orden de salida de 8 nadadores en un relevo
 3. La aproximación de Stirling da $\sqrt{16\pi}\,(8/e)^{8} \approx 7.090 \cdot 5.628 \times 10^{3} \approx 39902$.
 4. El error relativo es $(40320 - 39902)/40320 \approx 1.0\,\%$, cercano a $1/(12 \cdot 8) \approx 1.04\,\%$.
 
+:::figura[El orden de salida de los 8 nadadores. Cada lugar tiene una opción menos que el anterior y el producto llega a $8! = 40320$; si el primer lugar ya está decidido, esa casilla tiene una sola opción y quedan $7! = 5040$ órdenes.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Todos por decidir
+    casillas:
+      - etiqueta: lugar 1
+        opciones: 8
+      - etiqueta: lugar 2
+        opciones: 7
+      - etiqueta: lugar 3
+        opciones: 6
+      - etiqueta: lugar 4
+        opciones: 5
+      - etiqueta: lugar 5
+        opciones: 4
+      - etiqueta: lugar 6
+        opciones: 3
+      - etiqueta: lugar 7
+        opciones: 2
+      - etiqueta: lugar 8
+        opciones: 1
+  - nombre: Primero decidido
+    casillas:
+      - etiqueta: lugar 1
+        opciones: 1
+      - etiqueta: lugar 2
+        opciones: 7
+      - etiqueta: lugar 3
+        opciones: 6
+      - etiqueta: lugar 4
+        opciones: 5
+      - etiqueta: lugar 5
+        opciones: 4
+      - etiqueta: lugar 6
+        opciones: 3
+      - etiqueta: lugar 7
+        opciones: 2
+      - etiqueta: lugar 8
+        opciones: 1
+```
+:::
+
 ## Propiedades
 
 - **Recursión:** $n! = n \cdot (n-1)!$.

@@ -71,6 +71,14 @@ Se usan las filas del triángulo para responder preguntas sobre un torneo de 6 e
 3. El número de formas de elegir 3 equipos para una fase de grupos es $\binom{6}{3} = 20$, la entrada central y la mayor de la fila.
 4. La suma de la fila es $1 + 6 + 15 + 20 + 15 + 6 + 1 = 64 = 2^6$: el número total de subconjuntos de equipos.
 
+:::figura[Los 15 partidos del torneo de 6 equipos: cada tarjeta es una pareja de equipos, y el número de parejas es la entrada $\binom{6}{2}$ de la fila 6 del triángulo.]{componente="CombinatoricsBoard"}
+```yaml
+modo: combinaciones
+objetos: [A, B, C, D, E, F]
+k: 2
+```
+:::
+
 ## Propiedades
 
 - **Simetría:** cada fila se lee igual de izquierda a derecha y de derecha a izquierda.

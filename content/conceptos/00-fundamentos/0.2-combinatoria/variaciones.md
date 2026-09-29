@@ -74,6 +74,33 @@ Un sistema de acceso de un hospital usa códigos de 4 dígitos (del 0 al 9).
 3. **Códigos con al menos un dígito repetido:** por complemento, $10000 - 5040 = 4960$, casi la mitad.
 4. La proporción de códigos sin repetición es $5040 / 10000 = 0.504$; este tipo de cálculo es la base de la paradoja del cumpleaños.
 
+:::figura[Los códigos del ejemplo. Con repetición cada dígito tiene 10 opciones y hay 10000 códigos; sin repetición las opciones bajan a 10, 9, 8 y 7, y hay 5040.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Con repetición
+    casillas:
+      - etiqueta: dígito 1
+        opciones: 10
+      - etiqueta: dígito 2
+        opciones: 10
+      - etiqueta: dígito 3
+        opciones: 10
+      - etiqueta: dígito 4
+        opciones: 10
+  - nombre: Sin repetición
+    casillas:
+      - etiqueta: dígito 1
+        opciones: 10
+      - etiqueta: dígito 2
+        opciones: 9
+      - etiqueta: dígito 3
+        opciones: 8
+      - etiqueta: dígito 4
+        opciones: 7
+```
+:::
+
 ## Propiedades
 
 - **Casos extremos:** $V(n, n) = n!$, $V(n, 1) = n$, $V(n, 0) = 1$, y $V(n, k) = 0$ si $k > n$.

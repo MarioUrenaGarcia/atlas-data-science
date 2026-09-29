@@ -71,6 +71,14 @@ Una fundación reparte 10 becas idénticas entre 3 escuelas.
 2. **Al menos una beca por escuela:** se asigna una a cada escuela y se reparten las 7 restantes libremente: $\binom{9}{2} = 36$ repartos.
 3. **Al menos dos becas a la primera escuela:** se asignan 2 a la primera y se reparten 8 libremente: $\binom{10}{2} = 45$ repartos.
 
+:::figura[Las 10 becas del ejemplo repartidas entre 3 escuelas: cada reparto es una fila de 10 estrellas separadas por 2 barras, y hay $\binom{12}{2} = 66$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: estrellas-y-barras
+tipos: [Escuela 1, Escuela 2, Escuela 3]
+k: 10
+```
+:::
+
 ## Propiedades
 
 - **Soluciones positivas:** el número de soluciones de $x_1 + \dots + x_n = k$ con $x_i \ge 1$ es $\binom{k - 1}{n - 1}$.

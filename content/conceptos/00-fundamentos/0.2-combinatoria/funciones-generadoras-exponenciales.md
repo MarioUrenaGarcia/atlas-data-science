@@ -84,6 +84,18 @@ Se cuentan las secuencias de longitud $n$ con letras A, C, G, T que tienen un n�
 4. Para $n = 6$: $\tfrac{1}{2}(4096 - 729 + 64 - 1) = \tfrac{3430}{2} = 1715$.
 5. Comprobación por complemento: las secuencias con número par de A son $\tfrac{1}{2}(4^6 + 2^6) = 2080$, y las que además no tienen G son $\tfrac{1}{2}(3^6 + 1) = 365$; la diferencia es $2080 - 365 = 1715$.
 
+:::figura[La función $\cosh x$ selecciona longitudes pares. Con una letra A que aparece un número par de veces y una letra B libre, el producto $\cosh x \, e^x$ cuenta $2^{n-1}$ palabras de cada longitud $n \ge 1$: la mitad de todas.]{componente="GeneratingFunctionViz"}
+```yaml
+modo: exponencial
+letras:
+  - letra: A
+    regla: par
+  - letra: B
+    regla: cualquiera
+n: 7
+```
+:::
+
 ## Propiedades
 
 - **Series básicas:** $e^x \leftrightarrow (1, 1, 1, \dots)$; $\frac{1}{1-x} \leftrightarrow (n!)$, las permutaciones; $e^{cx} \leftrightarrow (c^n)$.

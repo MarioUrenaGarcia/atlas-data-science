@@ -66,6 +66,22 @@ Un estacionamiento registra las placas de 1000 autos y las clasifica según sus 
 2. Por el principio general, alguna terminación la comparten al menos $\lceil 1000/100 \rceil = 10$ autos.
 3. Si se quiere garantizar que al menos 3 autos compartan terminación, basta tener $2 \cdot 100 + 1 = 201$ autos: con 200 podría haber exactamente 2 por terminación.
 
+:::figura[Una versión reducida del ejemplo: 21 autos clasificados por su último dígito, 10 casillas. Aun repartiendo lo más parejo posible, alguna terminación la comparten 3 autos, porque $\lceil 21/10 \rceil = 3$.]{componente="PigeonholeViz"}
+```yaml
+objetos: 21
+cajas: 10
+estrategia: repartir
+```
+:::
+
+:::figura[Con un reparto al azar las repeticiones llegan mucho antes de lo que el principio garantiza: con solo 6 objetos y 10 cajas, lo más común es que dos compartan caja.]{componente="PigeonholeViz"}
+```yaml
+objetos: 6
+cajas: 10
+estrategia: azar
+```
+:::
+
 ## Propiedades
 
 - **Forma fuerte:** si $n = q_1 + \dots + q_m - m + 1$ objetos se reparten en $m$ cajas, alguna caja $i$ recibe al menos $q_i$ objetos.

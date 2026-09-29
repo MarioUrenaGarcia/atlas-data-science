@@ -73,6 +73,16 @@ Se verifica la identidad $\sum_{k=0}^{n} \binom{n}{k}^2 = \binom{2n}{n}$ para $n
 2. Lado derecho: $\binom{8}{4} = 70$.
 3. Demostración: es Vandermonde con $m = p = r = n$, porque $\binom{n}{k}\binom{n}{n-k} = \binom{n}{k}^2$ por simetría. En palabras: elegir $n$ personas de un grupo de $n$ mujeres y $n$ hombres, separando por el número $k$ de mujeres.
 
+:::figura[La identidad del ejemplo como Vandermonde: comités de 4 personas tomadas de un grupo de 4 mujeres y otro de 4 hombres, separados por el número de mujeres. Las columnas tienen $1, 16, 36, 16, 1$ comités y suman $\binom{8}{4} = 70$.]{componente="PascalTriangle"}
+```yaml
+modo: identidades
+identidad: vandermonde
+n: 7
+k: 4
+grupos: [4, 4]
+```
+:::
+
 ## Propiedades
 
 - **Absorción:** $k\binom{n}{k} = n\binom{n-1}{k-1}$; se prueba contando comités con presidente de dos maneras.

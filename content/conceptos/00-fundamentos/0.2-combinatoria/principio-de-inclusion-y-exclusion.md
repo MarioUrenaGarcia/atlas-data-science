@@ -83,6 +83,32 @@ Después de sumar los tres conjuntos, la región central, que contiene al 30, es
 4. Unión: $500 + 333 + 200 - 166 - 100 - 66 + 33 = 734$.
 5. Por complemento, $1000 - 734 = 266$ números no son divisibles entre ninguno de los tres.
 
+:::figura[Los números del 1 al 1000 del ejemplo, con los múltiplos de 2, de 3 y de 5 contados por región. La unión suma 734 y la región exterior contiene los 266 números que no son divisibles entre ninguno.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: ['2', '3', '5']
+universo: Números del 1 al 1000
+conteos:
+  '2': 267
+  '3': 134
+  '5': 67
+  '23': 133
+  '25': 67
+  '35': 33
+  '235': 33
+  ninguno: 266
+consultas:
+  - nombre: Múltiplos de 2, 3 o 5
+    regiones: ['2', '3', '5', '23', '25', '35', '235']
+  - nombre: Múltiplos de 2 y de 3
+    regiones: ['23', '235']
+  - nombre: Múltiplos de los tres
+    regiones: ['235']
+  - nombre: De ninguno
+    regiones: [ninguno]
+```
+:::
+
 ## Propiedades
 
 - **Forma complementaria:** el número de elementos que no están en ningún $A_i$ es $|U| - |A_1 \cup \dots \cup A_n| = \sum_{S} (-1)^{|S|}\left|\bigcap_{i \in S} A_i\right|$, con la intersección vacía igual a $U$.

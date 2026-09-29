@@ -69,6 +69,53 @@ Un laboratorio registra una secuencia de 10 ensayos con resultado éxito (E), fr
 2. Por la fórmula: $\frac{10!}{5!\,3!\,2!} = \frac{3628800}{120 \cdot 6 \cdot 2} = \frac{3628800}{1440} = 2520$.
 3. Otra forma: se eligen las posiciones de los éxitos, $\binom{10}{5} = 252$, luego las de los fracasos entre las 5 restantes, $\binom{5}{3} = 10$, y los nulos ocupan lo que queda: $252 \cdot 10 = 2520$.
 
+:::figura[Una versión reducida del ejemplo: 3 éxitos, 2 fracasos y 1 nulo en 6 ensayos. Con los resultados iguales numerados hay $6! = 720$ secuencias; al borrar los números se agrupan de 12 en 12 y quedan $720 / (3! \cdot 2!) = 60$ secuencias distintas.]{componente="CombinatoricsBoard"}
+```yaml
+modo: anagramas
+palabra: EEEFFN
+```
+:::
+
+:::figura[El conteo completo del ejemplo por dos caminos. Elegir las posiciones de los éxitos, luego las de los fracasos, y dejar los nulos en lo que resta da $252 \cdot 10 \cdot 1$; ordenar las 10 marcas y dividir entre $5! \cdot 3! \cdot 2! = 1440$ da el mismo 2520.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Elegir posiciones
+    casillas:
+      - etiqueta: lugares de E
+        opciones: 252
+      - etiqueta: lugares de F
+        opciones: 10
+      - etiqueta: lugares de N
+        opciones: 1
+  - nombre: Ordenar y dividir
+    casillas:
+      - etiqueta: '1'
+        opciones: 10
+      - etiqueta: '2'
+        opciones: 9
+      - etiqueta: '3'
+        opciones: 8
+      - etiqueta: '4'
+        opciones: 7
+      - etiqueta: '5'
+        opciones: 6
+      - etiqueta: '6'
+        opciones: 5
+      - etiqueta: '7'
+        opciones: 4
+      - etiqueta: '8'
+        opciones: 3
+      - etiqueta: '9'
+        opciones: 2
+      - etiqueta: '10'
+        opciones: 1
+    divisor:
+      valor: 1440
+      texto: "5! · 3! · 2! órdenes entre iguales"
+```
+:::
+
 ## Propiedades
 
 - **Dos tipos:** con $k$ objetos de un tipo y $n - k$ de otro, la fórmula da $\frac{n!}{k!(n-k)!} = \binom{n}{k}$, el coeficiente binomial.

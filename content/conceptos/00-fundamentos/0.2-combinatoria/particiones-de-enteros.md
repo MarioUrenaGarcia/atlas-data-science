@@ -72,6 +72,15 @@ Se cuentan las formas de pagar exactamente 8 pesos solo con monedas de 1, 2 y 5,
 3. En total, $2 + 5 = 7$ formas: son las particiones de 8 cuyas partes están en $\{1, 2, 5\}$.
 4. Sin restringir las partes, $p(8) = 22$.
 
+:::figura[Las formas de pagar 8 pesos con monedas de 1, 2 y 5 como coeficiente de una función generadora: al multiplicar los factores de cada moneda, la barra de 8 llega a 7.]{componente="GeneratingFunctionViz"}
+```yaml
+modo: ordinaria
+partes: [1, 2, 5]
+nombre: moneda
+objetivo: 8
+```
+:::
+
 ## Propiedades
 
 - **Primeros valores:** $p(1), \dots, p(10) = 1, 2, 3, 5, 7, 11, 15, 22, 30, 42$.
@@ -79,6 +88,13 @@ Se cuentan las formas de pagar exactamente 8 pesos solo con monedas de 1, 2 y 5,
 - **Teorema de Euler:** el número de particiones de $n$ en partes distintas es igual al número de particiones en partes impares; en funciones generadoras, $\prod_k (1 + x^k) = \prod_k \frac{1}{1 - x^{2k-1}}$.
 - **Crecimiento:** $p(n) \sim \frac{1}{4n\sqrt{3}}\exp\left(\pi\sqrt{2n/3}\right)$ (Hardy y Ramanujan).
 - **Particiones con partes restringidas:** se obtienen quitando factores de la función generadora.
+
+:::figura[El teorema de Euler con $n = 8$: las particiones en partes distintas y las particiones en partes impares se listan lado a lado y siempre hay la misma cantidad, 6 en este caso.]{componente="IntegerPartitionsViz"}
+```yaml
+vista: euler
+n: 8
+```
+:::
 
 ## Errores comunes
 

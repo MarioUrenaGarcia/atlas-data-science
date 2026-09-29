@@ -71,6 +71,30 @@ Cinco estudiantes intercambian sus exámenes al azar para calificarlos entre par
 3. Con la recursión: $D_3 = 2$, $D_4 = 3(2 + 1) = 9$, $D_5 = 4(9 + 2) = 44$.
 4. La probabilidad de que un reparto al azar sea válido es $44/120 \approx 0.367$, y $120/e \approx 44.1$ redondea a 44.
 
+:::figura[Los 5 estudiantes del ejemplo: cada ensayo es un reparto al azar de los exámenes y el histograma cuenta cuántos reciben el propio. La barra de cero coincidencias se acerca a $44/120 \approx 0.367$.]{componente="DerangementsViz"}
+```yaml
+n: 5
+```
+:::
+
+:::figura[Las 120 permutaciones de 5 elementos separadas por su número de puntos fijos: 44 desarreglos, 45 con uno, 20 con dos, 10 con tres y 1 con cinco. Ninguna tiene exactamente cuatro, porque si cuatro quedan en su lugar el quinto también.]{componente="SetStructures"}
+```yaml
+modo: reparto
+universo: Permutaciones de 5
+bloques:
+  - nombre: 0 fijos
+    n: 44
+  - nombre: 1 fijo
+    n: 45
+  - nombre: 2 fijos
+    n: 20
+  - nombre: 3 fijos
+    n: 10
+  - nombre: 5 fijos
+    n: 1
+```
+:::
+
 ## Propiedades
 
 - **Primeros valores:** $D_0, \dots, D_6 = 1, 0, 1, 2, 9, 44, 265$.

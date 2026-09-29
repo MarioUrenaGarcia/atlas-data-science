@@ -73,6 +73,13 @@ Se calcula $C_5$ y se verifica con la recurrencia.
 3. Recurrencia: $C_5 = C_0C_4 + C_1C_3 + C_2C_2 + C_3C_1 + C_4C_0 = 14 + 5 + 4 + 5 + 14 = 42$.
 4. Interpretación: hay 42 formas de triangular un heptágono y 42 expresiones con 5 pares de paréntesis balanceados.
 
+:::figura[Las 42 triangulaciones del heptágono del ejemplo, una por una, y en las otras vistas los 42 caminos y las 42 palabras de paréntesis con $n = 5$.]{componente="CatalanViz"}
+```yaml
+vista: triangulaciones
+n: 5
+```
+:::
+
 ## Propiedades
 
 - **Primeros valores:** $1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862$.

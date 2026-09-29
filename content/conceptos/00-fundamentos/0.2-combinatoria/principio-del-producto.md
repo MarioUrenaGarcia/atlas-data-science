@@ -72,6 +72,45 @@ Las placas de un estado se forman con tres letras (de 26) seguidas de cuatro dí
 3. Por el principio del producto, hay $26^3 \cdot 10^4 = 17576 \cdot 10000 = 175760000$ placas.
 4. Si no se permiten letras repetidas, las etapas de letras tienen 26, 25 y 24 opciones: $26 \cdot 25 \cdot 24 \cdot 10^4 = 156000000$ placas. El número de opciones de cada etapa sigue siendo fijo, aunque las opciones concretas dependan de lo ya elegido.
 
+:::figura[Las placas del ejemplo como siete casillas. Cada casilla multiplica el conteo por su número de opciones; al prohibir letras repetidas solo cambian las tres primeras casillas, y las barras comparan ambos totales en escala logarítmica.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Letras repetibles
+    casillas:
+      - etiqueta: letra
+        opciones: 26
+      - etiqueta: letra
+        opciones: 26
+      - etiqueta: letra
+        opciones: 26
+      - etiqueta: dígito
+        opciones: 10
+      - etiqueta: dígito
+        opciones: 10
+      - etiqueta: dígito
+        opciones: 10
+      - etiqueta: dígito
+        opciones: 10
+  - nombre: Letras sin repetir
+    casillas:
+      - etiqueta: letra
+        opciones: 26
+      - etiqueta: letra
+        opciones: 25
+      - etiqueta: letra
+        opciones: 24
+      - etiqueta: dígito
+        opciones: 10
+      - etiqueta: dígito
+        opciones: 10
+      - etiqueta: dígito
+        opciones: 10
+      - etiqueta: dígito
+        opciones: 10
+```
+:::
+
 ## Propiedades
 
 - **Palabras de longitud $k$:** con $n$ símbolos y repetición hay $n^k$ palabras.

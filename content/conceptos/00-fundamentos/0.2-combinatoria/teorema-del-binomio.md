@@ -70,6 +70,15 @@ Se calcula $(2x - 3)^5$ y el coeficiente de $x^3$.
 3. El término es $\binom{5}{2}(2x)^3(-3)^2 = 10 \cdot 8x^3 \cdot 9 = 720x^3$.
 4. Comprobación de la suma de coeficientes: con $x = 1$, $(2 - 3)^5 = -1$, que debe coincidir con la suma de todos los coeficientes del desarrollo.
 
+:::figura[El desarrollo de $(a + b)^5$ con $a = 2$ y $b = -3$, los valores del ejemplo con $x = 1$. Los términos alternan de signo y su suma es $(2 - 3)^5 = -1$; la barra de $k = 2$ corresponde al término $720x^3$.]{componente="PascalTriangle"}
+```yaml
+modo: binomio
+n: 5
+a: 2
+b: -3
+```
+:::
+
 ## Propiedades
 
 - **Sumas de filas:** con $a = b = 1$, $\sum_k \binom{n}{k} = 2^n$; con $a = 1$, $b = -1$, $\sum_k (-1)^k\binom{n}{k} = 0$.

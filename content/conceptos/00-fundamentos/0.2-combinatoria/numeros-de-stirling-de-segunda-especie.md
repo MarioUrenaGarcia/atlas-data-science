@@ -77,6 +77,14 @@ Un centro de datos asigna 6 tareas distintas a 3 servidores idénticos, sin deja
 3. Si los servidores tuvieran nombre, habría $3! \cdot 90 = 540$ asignaciones suprayectivas.
 4. Comprobación con la recurrencia: $S(6, 3) = S(5, 2) + 3\,S(5, 3) = 15 + 3 \cdot 25 = 90$.
 
+:::figura[Las 6 tareas del ejemplo repartidas en 3 servidores idénticos. Las 90 particiones se separan según si la tarea 6 va sola, $S(5, 2) = 15$, o comparte servidor, $3 \cdot S(5, 3) = 75$.]{componente="SetPartitionsViz"}
+```yaml
+modo: stirling
+n: 6
+k: 3
+```
+:::
+
 ## Propiedades
 
 - **Casos simples:** $S(n, 1) = S(n, n) = 1$, $S(n, 2) = 2^{n-1} - 1$, $S(n, n-1) = \binom{n}{2}$.

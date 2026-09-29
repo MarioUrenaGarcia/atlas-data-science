@@ -69,6 +69,52 @@ Una ronda de negociación reúne a 7 representantes de países distintos en una 
 2. Si dos representantes que no se llevan bien no deben sentarse juntos, se cuentan primero los acomodos en que sí quedan juntos: se pegan como un bloque, se acomodan 6 unidades en círculo, $(6-1)! = 120$, y el bloque tiene 2 órdenes internos: $240$.
 3. Por complemento, hay $720 - 240 = 480$ acomodos en que quedan separados.
 
+:::figura[El ejemplo con 6 representantes, el máximo que se dibuja: 720 órdenes en fila se agrupan en $5! = 120$ acomodos alrededor de la mesa, cada uno con 6 giros.]{componente="CombinatoricsBoard"}
+```yaml
+modo: circular
+personas: [Arg, Bra, Chi, Mex, Per, Uru]
+```
+:::
+
+:::figura[Los conteos del ejemplo con 7 representantes. Fijar a uno elimina los giros y deja $6! = 720$ acomodos; para la pareja que se sienta junta se acomodan 6 unidades en círculo, $5! = 120$, por los 2 órdenes dentro de la pareja.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Todos los acomodos
+    casillas:
+      - etiqueta: fijo
+        opciones: 1
+      - etiqueta: asiento 2
+        opciones: 6
+      - etiqueta: asiento 3
+        opciones: 5
+      - etiqueta: asiento 4
+        opciones: 4
+      - etiqueta: asiento 5
+        opciones: 3
+      - etiqueta: asiento 6
+        opciones: 2
+      - etiqueta: asiento 7
+        opciones: 1
+  - nombre: Pareja junta
+    casillas:
+      - etiqueta: fijo
+        opciones: 1
+      - etiqueta: lugar 2
+        opciones: 5
+      - etiqueta: lugar 3
+        opciones: 4
+      - etiqueta: lugar 4
+        opciones: 3
+      - etiqueta: lugar 5
+        opciones: 2
+      - etiqueta: lugar 6
+        opciones: 1
+      - etiqueta: orden en la pareja
+        opciones: 2
+```
+:::
+
 ## Propiedades
 
 - **Fijar un elemento** elimina la simetría de rotación: las permutaciones circulares de $n$ objetos corresponden a las permutaciones lineales de los otros $n - 1$ a partir de él.

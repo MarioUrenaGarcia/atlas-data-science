@@ -73,6 +73,13 @@ Se estima el número de cadenas de 12 bits sin dos unos seguidos.
 4. Intervalo del 95 %: $0.095 \pm 1.96\sqrt{0.095 \cdot 0.905/2000} = 0.095 \pm 0.0129$, es decir, de 336 a 442 cadenas.
 5. El valor exacto, por la recurrencia $a_n = a_{n-1} + a_{n-2}$ con $a_0 = 1$ y $a_1 = 2$, es $a_{12} = 377$, que está dentro del intervalo. El error relativo de la estimación es de 3 %.
 
+:::figura[El ejemplo con cadenas de 12 bits: el valor exacto es 377, cerca del 9 % de las 4096 cadenas, y la estimación se estabiliza alrededor de él mientras la banda se estrecha.]{componente="MonteCarloCounting"}
+```yaml
+problema: sin-unos-consecutivos
+largo: 12
+```
+:::
+
 ## Propiedades
 
 - **Insesgadez:** $\mathbb{E}[\hat{p}] = p$, por la linealidad de la esperanza.

@@ -77,6 +77,16 @@ Se resuelve $a_n = 5a_{n-1} - 6a_{n-2}$ con $a_0 = 2$ y $a_1 = 5$, que modela un
 3. Condiciones iniciales: $A + B = 2$ y $3A + 2B = 5$, de donde $A = 1$ y $B = 1$.
 4. Forma cerrada: $a_n = 3^n + 2^n$. Comprobación: $a_2 = 5 \cdot 5 - 6 \cdot 2 = 13 = 9 + 4$.
 
+:::figura[La recurrencia del ejemplo, $a_n = 5a_{n-1} - 6a_{n-2}$, con raíces 3 y 2. Los términos calculados coinciden con la forma cerrada $3^n + 2^n$, y la raíz 3, fuera del círculo unitario, domina el crecimiento.]{componente="RecurrenceViz"}
+```yaml
+c1: 5
+c2: -6
+a0: 2
+a1: 5
+terminos: 12
+```
+:::
+
 ## Propiedades
 
 - **Comportamiento a largo plazo:** lo determina la raíz de mayor módulo. Si es menor que 1, $a_n \to 0$; si es mayor que 1, $|a_n|$ crece exponencialmente (salvo que su coeficiente sea 0).
@@ -84,6 +94,35 @@ Se resuelve $a_n = 5a_{n-1} - 6a_{n-2}$ con $a_0 = 2$ y $a_1 = 5$, que modela un
 - **Orden $d$:** una recurrencia de orden $d$ tiene ecuación característica de grado $d$ y la solución es combinación de $n^j r^n$ para cada raíz $r$ de multiplicidad mayor que $j$.
 - **No homogéneas:** $a_n = c_1 a_{n-1} + c_2 a_{n-2} + f(n)$ se resuelven sumando una solución particular a la solución homogénea.
 - **Funciones generadoras:** la función generadora de una recurrencia lineal es un cociente de polinomios cuyo denominador es $1 - c_1 x - c_2 x^2$.
+
+Los tres casos de la solución se ven en las raíces características.
+
+:::figura[**Raíces complejas.** Con $a_n = a_{n-1} - 0.5\,a_{n-2}$ las raíces tienen módulo $0.707$: la sucesión oscila y se amortigua.]{componente="RecurrenceViz"}
+```yaml
+c1: 1
+c2: -0.5
+a0: 4
+a1: 0
+```
+:::
+
+:::figura[**Raíz doble.** Con $a_n = 2a_{n-1} - a_{n-2}$ la única raíz es 1 y la solución es $(A + Bn) \cdot 1^n$: una recta.]{componente="RecurrenceViz"}
+```yaml
+c1: 2
+c2: -1
+a0: 1
+a1: 2
+```
+:::
+
+:::figura[**Raíces sobre el círculo unitario.** Con $a_n = a_{n-1} - a_{n-2}$ las raíces son complejas de módulo 1 y la sucesión se repite cada 6 términos sin crecer ni decaer.]{componente="RecurrenceViz"}
+```yaml
+c1: 1
+c2: -1
+a0: 1
+a1: 2
+```
+:::
 
 ## Errores comunes
 

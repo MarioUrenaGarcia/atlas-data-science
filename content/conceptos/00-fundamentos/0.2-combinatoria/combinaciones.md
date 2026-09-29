@@ -75,6 +75,36 @@ En una lotería se eligen 6 números distintos del 1 al 45, y el orden de extrac
 2. Un boleto gana el premio mayor con probabilidad $1/8145060 \approx 1.23 \times 10^{-7}$.
 3. Para acertar exactamente 5 números se eligen 5 de los 6 ganadores y 1 de los 39 no ganadores: $\binom{6}{5}\binom{39}{1} = 6 \cdot 39 = 234$ boletos.
 
+:::figura[Los boletos de la lotería. Seis casillas para los números en el orden en que salen y después una división entre $6! = 720$, porque cada boleto aparece en 720 órdenes; el caso de exactamente 5 aciertos combina una elección entre ganadores con otra entre no ganadores.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Todos los boletos
+    casillas:
+      - etiqueta: '1.º'
+        opciones: 45
+      - etiqueta: '2.º'
+        opciones: 44
+      - etiqueta: '3.º'
+        opciones: 43
+      - etiqueta: '4.º'
+        opciones: 42
+      - etiqueta: '5.º'
+        opciones: 41
+      - etiqueta: '6.º'
+        opciones: 40
+    divisor:
+      valor: 720
+      texto: "6! órdenes de cada boleto"
+  - nombre: Exactamente 5 aciertos
+    casillas:
+      - etiqueta: 5 de 6 ganadores
+        opciones: 6
+      - etiqueta: 1 de 39 no ganadores
+        opciones: 39
+```
+:::
+
 ## Propiedades
 
 - **Simetría:** $\binom{n}{k} = \binom{n}{n-k}$.
