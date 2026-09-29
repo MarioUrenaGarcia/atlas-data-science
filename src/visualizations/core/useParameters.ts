@@ -1,10 +1,11 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useContext, useMemo, useState } from 'react';
 import {
   coerceValue,
   initialValues,
   type ParameterDefinition,
   type ParameterValues,
 } from './parameters.ts';
+import { UrlSyncContext } from './urlSync.ts';
 
 const URL_PREFIX = 'v.';
 
@@ -44,8 +45,10 @@ export interface ParametersState<T extends readonly ParameterDefinition[]> {
 export function useParameters<const T extends readonly ParameterDefinition[]>(
   definitions: T,
   overrides: Record<string, unknown> = {},
-  syncUrl = true,
+  syncUrlOverride?: boolean,
 ): ParametersState<T> {
+  const syncFromContext = useContext(UrlSyncContext);
+  const syncUrl = syncUrlOverride ?? syncFromContext;
   const base = useMemo(() => initialValues(definitions, overrides), [definitions, overrides]);
   const [values, setValues] = useState<ParameterValues<T>>(() =>
     syncUrl

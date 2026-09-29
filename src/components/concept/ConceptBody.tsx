@@ -1,6 +1,8 @@
 import { useMemo, useRef, useState, type MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { ConceptSection } from '../../content/types.ts';
+import { splitFigures } from '../../content/figures.ts';
+import type { ConceptContent, ConceptSection } from '../../content/types.ts';
+import { ConceptFigure } from './ConceptFigure.tsx';
 import { ConceptPreview, type PreviewAnchor } from './ConceptPreview.tsx';
 import styles from './ConceptBody.module.css';
 import { useFocusableOverflow } from './useFocusableOverflow.ts';
@@ -20,13 +22,21 @@ function conceptLink(target: EventTarget | null): HTMLAnchorElement | null {
 
 const PREVIEW_DELAY_MS = 250;
 
-export function ConceptBody({ sections }: { sections: ConceptSection[] }) {
+interface ConceptBodyProps {
+  sections: ConceptSection[];
+  figures: ConceptContent['figuras'];
+  conceptId: string;
+  conceptTitle: string;
+}
+
+export function ConceptBody({ sections, figures, conceptId, conceptTitle }: ConceptBodyProps) {
   const navigate = useNavigate();
   const [preview, setPreview] = useState<PreviewAnchor | null>(null);
   const timer = useRef<number | undefined>(undefined);
   const rootRef = useRef<HTMLDivElement>(null);
   const rendered = useMemo(
-    () => sections.map((section) => ({ ...section, html: withBase(section.html) })),
+    () =>
+      sections.map((section) => ({ ...section, segments: splitFigures(withBase(section.html)) })),
     [sections],
   );
   useFocusableOverflow(rootRef, rendered);
@@ -86,7 +96,30 @@ export function ConceptBody({ sections }: { sections: ConceptSection[] }) {
           <h2 id={`${section.id}-titulo`} className={styles.heading}>
             {section.titulo}
           </h2>
-          <div className="prose" dangerouslySetInnerHTML={{ __html: section.html }} />
+          {section.segments.map((segment, index) => {
+            if (segment.type === 'html') {
+              return (
+                <div
+                  key={index}
+                  className="prose"
+                  dangerouslySetInnerHTML={{ __html: segment.html }}
+                />
+              );
+            }
+            const figure = figures[segment.index];
+            if (!figure) return null;
+            return (
+              <ConceptFigure
+                key={index}
+                number={segment.index + 1}
+                componente={figure.componente}
+                parametros={figure.parametros}
+                captionHtml={segment.captionHtml}
+                conceptId={conceptId}
+                conceptTitle={conceptTitle}
+              />
+            );
+          })}
         </section>
       ))}
       {preview && <ConceptPreview anchor={preview} />}

@@ -44,6 +44,8 @@ export interface ConceptContent {
   id: string;
   formulaHtml: string | null;
   sections: ConceptSection[];
+  /** Visualizations embedded in the sections; placeholders refer to them by index. */
+  figuras: { componente: string; parametros: Record<string, unknown> }[];
   visualizacion: { componente: string; parametros: Record<string, unknown> };
   referencias: { clave: BibliographyKey; capitulo?: string }[];
 }

@@ -126,7 +126,14 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
         </aside>
 
         <div className={styles.main}>
-          {content && <ConceptBody sections={content.sections} />}
+          {content && (
+            <ConceptBody
+              sections={content.sections}
+              figures={content.figuras ?? []}
+              conceptId={concept.id}
+              conceptTitle={concept.titulo}
+            />
+          )}
 
           <div className={styles.panels}>
             <section className={styles.panel} aria-labelledby="panel-prerrequisitos">

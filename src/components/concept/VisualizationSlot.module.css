@@ -1,3 +1,7 @@
 .slot {
   min-height: 360px;
 }
+
+.compact {
+  min-height: 240px;
+}

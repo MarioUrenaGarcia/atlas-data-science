@@ -9,13 +9,21 @@ interface VisualizationSlotProps {
   params: Record<string, unknown>;
   conceptId: string;
   title: string;
+  /** Smaller reserved height, for figures embedded in the text. */
+  compact?: boolean;
 }
 
-export function VisualizationSlot({ component, params, conceptId, title }: VisualizationSlotProps) {
+export function VisualizationSlot({
+  component,
+  params,
+  conceptId,
+  title,
+  compact = false,
+}: VisualizationSlotProps) {
   const Visualization = VISUALIZATIONS[component];
   if (!Visualization) return null;
   return (
-    <div className={styles.slot}>
+    <div className={compact ? `${styles.slot} ${styles.compact}` : styles.slot}>
       <ErrorBoundary resetKey={conceptId}>
         <Suspense fallback={<Loading />}>
           <Visualization params={params} conceptId={conceptId} title={title} />

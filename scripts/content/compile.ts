@@ -191,13 +191,21 @@ function checkBody(parsed: ParsedConcept, issues: Issue[]) {
   }
 }
 
-function checkVisualization(parsed: ParsedConcept, catalog: VisualizationCatalog, issues: Issue[]) {
-  const { componente, parametros } = parsed.meta.visualizacion;
+function checkComponent(
+  componente: string,
+  parametros: unknown,
+  file: string,
+  line: number | undefined,
+  what: string,
+  catalog: VisualizationCatalog,
+  issues: Issue[],
+) {
   const entry = catalog.get(componente);
   if (!entry) {
     issues.push({
       level: 'error',
-      file: parsed.file.path,
+      file,
+      line,
       message: `la visualización "${componente}" no existe en el registro`,
     });
     return;
@@ -206,13 +214,34 @@ function checkVisualization(parsed: ParsedConcept, catalog: VisualizationCatalog
     const result = entry.schema.safeParse(parametros);
     if (!result.success) {
       for (const message of formatZodIssues(result.error)) {
-        issues.push({
-          level: 'error',
-          file: parsed.file.path,
-          message: `parámetros de ${componente}: ${message}`,
-        });
+        issues.push({ level: 'error', file, line, message: `${what}${componente}: ${message}` });
       }
     }
+  }
+}
+
+function checkVisualization(parsed: ParsedConcept, catalog: VisualizationCatalog, issues: Issue[]) {
+  const { componente, parametros } = parsed.meta.visualizacion;
+  checkComponent(
+    componente,
+    parametros,
+    parsed.file.path,
+    undefined,
+    'parámetros de ',
+    catalog,
+    issues,
+  );
+  for (const figure of parsed.body.figures) {
+    if (!figure.componente) continue;
+    checkComponent(
+      figure.componente,
+      figure.parametros,
+      parsed.file.path,
+      figure.line,
+      'parámetros de la figura ',
+      catalog,
+      issues,
+    );
   }
 }
 
@@ -629,6 +658,10 @@ export function compileContent(raw: RawContent, options: CompileOptions): Compil
         id: concept.meta.id,
         formulaHtml: concept.formulaHtml,
         sections: concept.body.sections,
+        figuras: concept.body.figures.map(({ componente, parametros }) => ({
+          componente,
+          parametros,
+        })),
         visualizacion: concept.meta.visualizacion,
         referencias: concept.meta.referencias,
       };

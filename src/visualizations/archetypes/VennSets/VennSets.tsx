@@ -1,4 +1,5 @@
 import type { VisualizationProps } from '../../types.ts';
+import { CountsView } from './CountsView.tsx';
 import { DeMorganView } from './DeMorganView.tsx';
 import { InclusionExclusionView } from './InclusionExclusionView.tsx';
 import { OperationsView } from './OperationsView.tsx';
@@ -8,6 +9,7 @@ import type { VennSetsConfig } from './schema.ts';
 /** Finite sets drawn as Venn diagrams with their elements placed in each region. */
 export default function VennSets({ params, title }: VisualizationProps) {
   const config = params as unknown as VennSetsConfig;
+  if (config.modo === 'conteos') return <CountsView title={title} config={config} />;
   switch (config.modo) {
     case 'operaciones':
       return (

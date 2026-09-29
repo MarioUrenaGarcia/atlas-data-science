@@ -7,6 +7,7 @@ export const parametersSchema = z
     elementos: z.array(z.number().int().positive()).min(2).max(10),
     relacion: z.enum(RELATION_RULES),
     relaciones: z.array(z.enum(RELATION_RULES)).min(1).optional(),
+    vista: z.enum(['matriz', 'grafo', 'plano']).optional(),
     k: z.number().int().min(1).max(6).optional(),
   })
   .strict();

@@ -8,6 +8,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { visit } from 'unist-util-visit';
+import { parse as parseYaml } from 'yaml';
 import type { Element, ElementContent, Root as HastRoot } from 'hast';
 import type { Heading, PhrasingContent, Root as MdastRoot, RootContent, Text } from 'mdast';
 import type { ContainerDirective } from 'mdast-util-directive';
@@ -33,8 +34,16 @@ export interface MarkdownIssue {
   line?: number;
 }
 
+export interface BodyFigure {
+  componente: string;
+  parametros: Record<string, unknown>;
+  line?: number;
+}
+
 export interface ProcessedBody {
   sections: ConceptSection[];
+  /** Visualizations embedded in the body with :::figura, in order of appearance. */
+  figures: BodyFigure[];
   /** Section titles as they appear, in order, to validate structure. */
   headingTitles: string[];
   /** Word count of each section keyed by title. */
@@ -94,10 +103,65 @@ function remarkWikiLinks(links: ProcessedBody['links']) {
   };
 }
 
+/**
+ * Turns a :::figura container into a placeholder for an interactive
+ * visualization. The label is the caption, the `componente` attribute names
+ * the visualization and a yaml code block holds its parameters. Figures must
+ * sit at the top level of a section so the page can split the HTML around them.
+ */
+function convertFigure(
+  directive: ContainerDirective,
+  isTopLevel: boolean,
+  figures: BodyFigure[],
+  issues: MarkdownIssue[],
+) {
+  const line = directive.position?.start.line;
+  const componente = directive.attributes?.componente ?? '';
+  if (!componente) issues.push({ message: 'la figura no indica su componente', line });
+  if (!isTopLevel) {
+    issues.push({ message: 'una figura debe estar al nivel principal de su sección', line });
+  }
+  const first = directive.children[0];
+  const hasLabel =
+    first?.type === 'paragraph' &&
+    Boolean((first.data as { directiveLabel?: boolean } | undefined)?.directiveLabel);
+  const code = directive.children.find((child) => child.type === 'code');
+  let parametros: Record<string, unknown> = {};
+  if (code && code.type === 'code') {
+    try {
+      const parsed: unknown = parseYaml(code.value);
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        parametros = parsed as Record<string, unknown>;
+      } else if (parsed !== null && parsed !== undefined) {
+        issues.push({ message: 'los parámetros de la figura deben ser un objeto', line });
+      }
+    } catch (error) {
+      issues.push({
+        message: `parámetros de figura ilegibles: ${error instanceof Error ? error.message : String(error)}`,
+        line,
+      });
+    }
+  }
+  const index = figures.length;
+  figures.push({ componente, parametros, line });
+  directive.data = {
+    hName: 'figure',
+    hProperties: { className: ['concept-figure'], dataFigura: String(index) },
+  };
+  directive.children =
+    hasLabel && first.type === 'paragraph'
+      ? [{ type: 'paragraph', children: first.children, data: { hName: 'figcaption' } }]
+      : [];
+}
+
 /** Maps :::name containers to styled boxes; demonstrations become collapsible. */
-function remarkAtlasDirectives(issues: MarkdownIssue[]) {
+function remarkAtlasDirectives(issues: MarkdownIssue[], figures: BodyFigure[]) {
   return (tree: MdastRoot) => {
-    visit(tree, (node) => {
+    visit(tree, (node, _index, parent) => {
+      if (node.type === 'containerDirective' && node.name === 'figura') {
+        convertFigure(node, parent?.type === 'root', figures, issues);
+        return 'skip';
+      }
       if (node.type === 'textDirective' || node.type === 'leafDirective') {
         issues.push({
           message: `directiva no permitida ":${node.name}"; si es texto, agregue un espacio después de los dos puntos`,
@@ -263,6 +327,7 @@ export function processConceptBody(
 ): ProcessedBody {
   const result: ProcessedBody = {
     sections: [],
+    figures: [],
     headingTitles: [],
     wordCounts: {},
     plainText: {},
@@ -279,7 +344,7 @@ export function processConceptBody(
     .use(remarkMath)
     .use(remarkDirective)
     .use(remarkWikiLinks, result.links)
-    .use(remarkAtlasDirectives, result.issues)
+    .use(remarkAtlasDirectives, result.issues, result.figures)
     .use(() => (tree: MdastRoot) => collectSectionData(tree, result))
     .use(remarkRehype)
     .use(rehypeKatex, katexOptions(macros))

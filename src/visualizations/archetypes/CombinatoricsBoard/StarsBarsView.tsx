@@ -96,13 +96,11 @@ export function StarsBarsView({ title, types, k }: StarsBarsViewProps) {
         },
         { label: 'Listadas', value: `${shown} de ${total}` },
       ]}
-      legend={types
-        .slice(0, n)
-        .map((type, index) => ({
-          label: type,
-          color: seriesColor(index),
-          shape: 'circle' as const,
-        }))}
+      legend={types.slice(0, n).map((type, index) => ({
+        label: type,
+        color: seriesColor(index),
+        shape: 'circle' as const,
+      }))}
       description={description}
     >
       <p className={styles.formula}>

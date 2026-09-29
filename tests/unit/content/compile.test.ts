@@ -255,4 +255,43 @@ describe('compileContent with invalid content', () => {
       true,
     );
   });
+
+  it('embeds figures and validates their parameters', () => {
+    const raw = load();
+    const file = conceptFile(raw, 'concepto-alfa');
+    const fence = '```';
+    const figure = [
+      ':::figura[Pie con $x$]{componente="FixtureViz"}',
+      `${fence}yaml`,
+      'tamano: 5',
+      fence,
+      ':::',
+      '',
+    ].join('\n');
+    file.body = file.body.replace('## Ejemplo\n', `## Ejemplo\n\n${figure}\n`);
+    const valid = compile(raw);
+    expect(errors(valid)).toEqual([]);
+    const content = valid.output?.moduleContents[0]?.concepts['concepto-alfa'];
+    expect(content?.figuras).toEqual([{ componente: 'FixtureViz', parametros: { tamano: 5 } }]);
+    const example = content?.sections.find((section) => section.titulo === 'Ejemplo');
+    expect(example?.html).toContain(
+      '<figure class="concept-figure" data-figura="0"><figcaption>Pie con',
+    );
+
+    file.body = file.body.replace('tamano: 5', 'tamano: 5000');
+    const messages = errors(compile(raw));
+    expect(
+      messages.some((message) => message.startsWith('parámetros de la figura FixtureViz')),
+    ).toBe(true);
+  });
+
+  it('rejects figures nested inside other blocks', () => {
+    const raw = load();
+    const file = conceptFile(raw, 'concepto-alfa');
+    const nested = ['::::nota', ':::figura{componente="FixtureViz"}', ':::', '::::', ''].join('\n');
+    file.body = file.body.replace('## Ejemplo\n', `## Ejemplo\n\n${nested}\n`);
+    expect(errors(compile(raw))).toContain(
+      'una figura debe estar al nivel principal de su sección',
+    );
+  });
 });
