@@ -45,6 +45,8 @@ interface VizFrameProps {
   views?: { options: readonly ViewTab[]; value: string; onChange: (value: string) => void };
   /** Progress of a background computation in [0, 1], shown while it runs. */
   progress?: number | null;
+  /** How the chart is drawn; decides which downloads are offered (HTML charts have none). */
+  graphic?: 'svg' | 'canvas' | 'html';
 }
 
 const DESCRIPTION_INTERVAL_MS = 1500;
@@ -74,6 +76,7 @@ export function VizFrame({
   dataTable,
   views,
   progress = null,
+  graphic: graphicKind = 'svg',
 }: VizFrameProps) {
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -141,29 +144,32 @@ export function VizFrame({
             {strings.viz.resetParameters}
           </Button>
         )}
-        <Button
-          size="small"
-          variant="ghost"
-          onClick={() => {
-            const element = graphic();
-            if (element instanceof SVGSVGElement) downloadSvg(element, `${fileName}.svg`);
-          }}
-          disabled={false}
-        >
-          <Download size={14} aria-hidden="true" />
-          {strings.viz.downloadSvg}
-        </Button>
-        <Button
-          size="small"
-          variant="ghost"
-          onClick={() => {
-            const element = graphic();
-            if (element) void downloadPng(element, `${fileName}.png`);
-          }}
-        >
-          <Download size={14} aria-hidden="true" />
-          {strings.viz.downloadPng}
-        </Button>
+        {graphicKind === 'svg' && (
+          <Button
+            size="small"
+            variant="ghost"
+            onClick={() => {
+              const element = graphic();
+              if (element instanceof SVGSVGElement) downloadSvg(element, `${fileName}.svg`);
+            }}
+          >
+            <Download size={14} aria-hidden="true" />
+            {strings.viz.downloadSvg}
+          </Button>
+        )}
+        {graphicKind !== 'html' && (
+          <Button
+            size="small"
+            variant="ghost"
+            onClick={() => {
+              const element = graphic();
+              if (element) void downloadPng(element, `${fileName}.png`);
+            }}
+          >
+            <Download size={14} aria-hidden="true" />
+            {strings.viz.downloadPng}
+          </Button>
+        )}
         <Button size="small" variant="ghost" onClick={toggleFullscreen}>
           {fullscreen ? (
             <Minimize size={14} aria-hidden="true" />

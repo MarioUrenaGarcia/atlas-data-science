@@ -43,6 +43,7 @@ export function ScatterChart({
   const clipId = `recorte-${useId().replace(/:/g, '')}`;
   return (
     <ChartSvg
+      interactive
       label={label}
       aspect={0.72}
       minHeight={280}

@@ -66,6 +66,11 @@
   overflow-x: auto;
 }
 
+/* The focusable container scrolls; a second scroller inside it would be unreachable by keyboard. */
+.formula :global(.katex-display) {
+  overflow: visible;
+}
+
 .visualization {
   margin-bottom: var(--space-7);
 }

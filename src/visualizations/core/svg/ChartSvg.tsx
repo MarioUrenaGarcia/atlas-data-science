@@ -9,6 +9,11 @@ interface ChartSvgProps {
   maxHeight?: number;
   margins?: Partial<Margins>;
   label: string;
+  /**
+   * Set when the chart contains focusable elements: an image role would hide
+   * them from assistive technology, so the root becomes a labelled group.
+   */
+  interactive?: boolean;
   children: (box: ChartBox) => ReactNode;
   onPointerDown?: React.PointerEventHandler<SVGSVGElement>;
 }
@@ -24,6 +29,7 @@ export function ChartSvg({
   maxHeight = 520,
   margins,
   label,
+  interactive = false,
   children,
   onPointerDown,
 }: ChartSvgProps) {
@@ -48,7 +54,7 @@ export function ChartSvg({
           data-viz=""
           width={width}
           height={height}
-          role="img"
+          role={interactive ? 'group' : 'img'}
           aria-label={label}
           onPointerDown={onPointerDown}
         >

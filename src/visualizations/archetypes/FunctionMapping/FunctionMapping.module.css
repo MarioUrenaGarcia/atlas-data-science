@@ -1,0 +1,10 @@
+.hint {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.formula {
+  margin: 0;
+  text-align: center;
+}

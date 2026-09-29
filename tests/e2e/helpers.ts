@@ -7,6 +7,7 @@ interface GraphNode {
   titulo: string;
   modulo: number;
   prerrequisitos: string[];
+  componente: string;
 }
 
 /** Concepts in the generated content, read from disk so tests adapt as content grows. */

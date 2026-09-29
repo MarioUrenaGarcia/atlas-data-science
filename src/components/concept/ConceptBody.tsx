@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import type { ConceptSection } from '../../content/types.ts';
 import { ConceptPreview, type PreviewAnchor } from './ConceptPreview.tsx';
 import styles from './ConceptBody.module.css';
+import { useFocusableOverflow } from './useFocusableOverflow.ts';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -23,10 +24,12 @@ export function ConceptBody({ sections }: { sections: ConceptSection[] }) {
   const navigate = useNavigate();
   const [preview, setPreview] = useState<PreviewAnchor | null>(null);
   const timer = useRef<number | undefined>(undefined);
+  const rootRef = useRef<HTMLDivElement>(null);
   const rendered = useMemo(
     () => sections.map((section) => ({ ...section, html: withBase(section.html) })),
     [sections],
   );
+  useFocusableOverflow(rootRef, rendered);
 
   const show = (link: HTMLAnchorElement) => {
     window.clearTimeout(timer.current);
@@ -54,6 +57,7 @@ export function ConceptBody({ sections }: { sections: ConceptSection[] }) {
   return (
     // Event delegation over generated HTML: the handlers only enhance native links.
     <div
+      ref={rootRef}
       className={styles.body}
       onClick={onClick}
       onMouseOver={(event) => {

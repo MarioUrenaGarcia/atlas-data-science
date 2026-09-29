@@ -284,6 +284,7 @@ export default function StochasticPaths({ params, conceptId, title }: Visualizat
   return (
     <VizFrame
       title={title}
+      graphic="canvas"
       playback={playback}
       seed={seed}
       parameters={{ ...parameters, values }}

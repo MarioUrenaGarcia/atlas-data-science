@@ -98,7 +98,11 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
       )}
 
       {content && (
-        <section className={styles.visualization} aria-label={strings.concept.visualization}>
+        <section className={styles.visualization} aria-labelledby="titulo-visualizacion">
+          {/* Hidden heading so the panel titles inside the visualization keep a valid outline. */}
+          <h2 id="titulo-visualizacion" className="visually-hidden">
+            {strings.concept.visualization}
+          </h2>
           <VisualizationSlot
             component={content.visualizacion.componente}
             params={content.visualizacion.parametros}

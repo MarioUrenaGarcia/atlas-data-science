@@ -70,3 +70,16 @@
   line-height: 1;
   white-space: nowrap;
 }
+
+/* Elements that glide to a new position; SVG groups animate through the CSS transform property. */
+.movable {
+  transition:
+    transform 450ms cubic-bezier(0.2, 0, 0, 1),
+    opacity 300ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .movable {
+    transition: none;
+  }
+}
