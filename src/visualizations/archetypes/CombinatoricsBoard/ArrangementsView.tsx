@@ -178,7 +178,7 @@ export function ArrangementsView({
         }}
       </ChartSvg>
       {total <= MAX_LISTED && (
-        <ul className={styles.chips} aria-label="Ordenaciones listadas">
+        <ul tabIndex={0} className={styles.chips} aria-label="Ordenaciones listadas">
           {listed.slice(0, shown).map((arrangement, index) => (
             <li
               key={index}

@@ -235,7 +235,7 @@ export function IdentitiesView({ title, identity, identities, n, k, groups }: Id
         {layout.columns.map((column, index) => (
           <section key={column} className={styles.column} aria-label={column}>
             <span className={styles.columnTitle}>{column}</span>
-            <ul className={styles.words}>
+            <ul tabIndex={0} className={styles.words}>
               {layout.items.slice(0, shown).map((item, position) =>
                 item.column === index ? (
                   <li

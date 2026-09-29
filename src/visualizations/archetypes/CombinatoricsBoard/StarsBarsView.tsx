@@ -50,7 +50,7 @@ export function StarsBarsView({ title, types, k }: StarsBarsViewProps) {
         label: 'Objetos elegidos',
         symbol: 'k',
         min: 0,
-        max: 8,
+        max: 12,
         step: 1,
         default: k,
       },
@@ -171,7 +171,7 @@ export function StarsBarsView({ title, types, k }: StarsBarsViewProps) {
           );
         }}
       </ChartSvg>
-      <ul className={styles.chips} aria-label="Selecciones listadas">
+      <ul tabIndex={0} className={styles.chips} aria-label="Selecciones listadas">
         {all.slice(0, shown).map((multiset, index) => (
           <li
             key={index}

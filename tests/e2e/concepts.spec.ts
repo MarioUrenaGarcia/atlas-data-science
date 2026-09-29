@@ -1,6 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { generatedConcepts, trackErrors } from './helpers.ts';
+import { figureComponents, generatedConcepts, trackErrors } from './helpers.ts';
 
 const concepts = generatedConcepts();
 
@@ -18,11 +18,20 @@ for (const concept of concepts) {
 
 // Accessibility is audited once per visualization component, which covers
 // every distinct markup structure without auditing each concept page.
-const byComponent = new Map(concepts.map((concept) => [concept.componente, concept]));
-for (const [component, concept] of byComponent) {
+const byComponent = new Map(concepts.map((concept) => [concept.componente, concept.id]));
+for (const [component, id] of figureComponents()) {
+  if (!byComponent.has(component)) byComponent.set(component, id);
+}
+for (const [component, id] of byComponent) {
   test(`sin violaciones de accesibilidad en la visualización ${component}`, async ({ page }) => {
-    await page.goto(`/concepto/${concept.id}`);
+    await page.goto(`/concepto/${id}`);
     await expect(page.locator('figure').first()).toBeVisible();
+    await page
+      .locator('figure[aria-label^="Figura"]')
+      .last()
+      .scrollIntoViewIfNeeded()
+      .catch(() => undefined);
+    await page.waitForTimeout(1000);
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();

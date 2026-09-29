@@ -5,6 +5,7 @@ import { CircularView } from './CircularView.tsx';
 import { CombinationsView } from './CombinationsView.tsx';
 import { GrowthView } from './GrowthView.tsx';
 import type { CombinatoricsBoardConfig } from './schema.ts';
+import { SlotsView } from './SlotsView.tsx';
 import { StarsBarsView } from './StarsBarsView.tsx';
 import { SumView } from './SumView.tsx';
 import { TreeView } from './TreeView.tsx';
@@ -37,5 +38,7 @@ export default function CombinatoricsBoard({ params, title }: VisualizationProps
       return <CombinationsView title={title} objects={config.objetos} k={config.k} />;
     case 'estrellas-y-barras':
       return <StarsBarsView title={title} types={config.tipos} k={config.k} />;
+    case 'casillas':
+      return <SlotsView title={title} scenarios={config.escenarios} />;
   }
 }

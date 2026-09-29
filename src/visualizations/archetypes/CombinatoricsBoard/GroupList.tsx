@@ -23,6 +23,7 @@ interface GroupListProps {
 export function GroupList({ label, groups, current, wide = false }: GroupListProps) {
   return (
     <ul
+      tabIndex={0}
       className={wide ? `${styles.groups} ${styles.groupsWide}` : styles.groups}
       aria-label={label}
     >

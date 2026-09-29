@@ -202,7 +202,7 @@ export function BinomialView({ title, n, a, b }: BinomialViewProps) {
             <span className={styles.columnTitle}>
               {k} b: {placed[k]} de {choose(power, k)}
             </span>
-            <ul className={styles.words}>
+            <ul tabIndex={0} className={styles.words}>
               {all.slice(0, shown).map((word, index) =>
                 countB(word) === k ? (
                   <li

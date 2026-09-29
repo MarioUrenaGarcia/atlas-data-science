@@ -122,7 +122,7 @@ export function StirlingView({ title, n, k }: StirlingViewProps) {
         ].map((group) => (
           <section key={group.name} className={styles.column} aria-label={group.name}>
             <span className={styles.columnTitle}>{group.name}</span>
-            <ul className={styles.list}>
+            <ul tabIndex={0} className={styles.list}>
               {listed.map((partition, index) =>
                 group.test(partition) ? (
                   <PartitionChip key={index} blocks={partition} current={index === shown - 1} />

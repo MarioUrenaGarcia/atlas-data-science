@@ -34,6 +34,11 @@ function signedTerm(c: number, symbol: string, first: boolean): string {
   return c < 0 ? `- ${body}` : `+ ${body}`;
 }
 
+/** Slider bound: the usual one, widened when the configured value lies beyond it. */
+function range(usual: number, value: number): number {
+  return Math.max(usual, Math.ceil(Math.abs(value)));
+}
+
 function rootText(re: number, im: number): string {
   if (Math.abs(im) < 1e-12) return formatNumber(re, 3);
   return `${formatNumber(re, 3)} ${im < 0 ? '-' : '+'} ${formatNumber(Math.abs(im), 3)}i`;
@@ -54,8 +59,8 @@ export default function RecurrenceViz({ params, title }: VisualizationProps) {
         key: 'c1',
         label: 'Coeficiente de a(n-1)',
         symbol: 'c₁',
-        min: -2,
-        max: 2,
+        min: -range(2, config.c1),
+        max: range(2, config.c1),
         step: 0.05,
         default: config.c1,
         digits: 2,
@@ -65,8 +70,8 @@ export default function RecurrenceViz({ params, title }: VisualizationProps) {
         key: 'c2',
         label: 'Coeficiente de a(n-2)',
         symbol: 'c₂',
-        min: -1,
-        max: 1,
+        min: -range(1, config.c2),
+        max: range(1, config.c2),
         step: 0.05,
         default: config.c2,
         digits: 2,
@@ -76,8 +81,8 @@ export default function RecurrenceViz({ params, title }: VisualizationProps) {
         key: 'a0',
         label: 'Valor inicial a(0)',
         symbol: 'a₀',
-        min: -5,
-        max: 5,
+        min: -range(5, config.a0),
+        max: range(5, config.a0),
         step: 0.5,
         default: config.a0,
         digits: 1,
@@ -87,8 +92,8 @@ export default function RecurrenceViz({ params, title }: VisualizationProps) {
         key: 'a1',
         label: 'Valor inicial a(1)',
         symbol: 'a₁',
-        min: -5,
-        max: 5,
+        min: -range(5, config.a1),
+        max: range(5, config.a1),
         step: 0.5,
         default: config.a1,
         digits: 1,
@@ -117,7 +122,9 @@ export default function RecurrenceViz({ params, title }: VisualizationProps) {
         ? complex
           ? 'oscila y se amortigua hacia 0'
           : 'decae hacia 0'
-        : 'ni crece ni decae: la raíz dominante está sobre el círculo unitario';
+        : !complex && Math.abs(roots[0].re - roots[1].re) < 1e-9
+          ? 'crece como un polinomio en n: la raíz doble está sobre el círculo unitario'
+          : 'ni crece ni decae: la raíz dominante está sobre el círculo unitario';
   const [run, setRun] = useState(0);
   const [shown, update] = useResettableState<number>(`${c1}|${c2}|${a0}|${a1}|${run}`, () => 2);
   const playback = usePlayback({

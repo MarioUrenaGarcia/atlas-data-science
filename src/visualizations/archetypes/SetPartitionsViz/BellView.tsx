@@ -89,7 +89,7 @@ export function BellView({ title, n }: BellViewProps) {
         />
       </p>
       <PartitionDiagram n={size} blocks={current ?? []} label={description} />
-      <ul className={styles.list} aria-label="Particiones listadas">
+      <ul tabIndex={0} className={styles.list} aria-label="Particiones listadas">
         {all.slice(0, shown).map((partition, index) => (
           <PartitionChip key={index} blocks={partition} current={index === shown - 1} />
         ))}

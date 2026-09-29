@@ -59,7 +59,34 @@ export const parametersSchema = z.discriminatedUnion('modo', [
     .object({
       modo: z.literal('estrellas-y-barras'),
       tipos: labels(5),
-      k: z.number().int().min(0).max(8),
+      k: z.number().int().min(0).max(12),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('casillas'),
+      escenarios: z
+        .array(
+          z
+            .object({
+              nombre: z.string().min(1),
+              casillas: z
+                .array(
+                  z
+                    .object({ etiqueta: z.string(), opciones: z.number().int().positive() })
+                    .strict(),
+                )
+                .min(1)
+                .max(10),
+              divisor: z
+                .object({ valor: z.number().int().positive(), texto: z.string().min(1) })
+                .strict()
+                .optional(),
+            })
+            .strict(),
+        )
+        .min(1)
+        .max(5),
     })
     .strict(),
 ]);

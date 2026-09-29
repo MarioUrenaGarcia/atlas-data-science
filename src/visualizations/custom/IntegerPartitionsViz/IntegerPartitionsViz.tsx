@@ -164,7 +164,7 @@ export default function IntegerPartitionsViz({ params, title }: VisualizationPro
       ) : null}
       <div className={view === 'euler' ? styles.columns : undefined}>
         {view === 'ferrers' ? (
-          <ul className={styles.list} aria-label="Particiones listadas">
+          <ul tabIndex={0} className={styles.list} aria-label="Particiones listadas">
             {all.slice(0, shown).map((parts, index) => (
               <li
                 key={index}
@@ -185,7 +185,7 @@ export default function IntegerPartitionsViz({ params, title }: VisualizationPro
               <span className={styles.columnTitle}>
                 {group.name}: {Math.min(shown, group.items.length)} de {group.items.length}
               </span>
-              <ul className={styles.list}>
+              <ul tabIndex={0} className={styles.list}>
                 {group.items.slice(0, shown).map((parts, index) => (
                   <li
                     key={index}

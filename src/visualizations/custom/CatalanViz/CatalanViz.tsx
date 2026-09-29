@@ -246,7 +246,7 @@ export default function CatalanViz({ params, title }: VisualizationProps) {
           );
         }}
       </ChartSvg>
-      <ul className={styles.list} aria-label="Objetos listados">
+      <ul tabIndex={0} className={styles.list} aria-label="Objetos listados">
         {Array.from({ length: shown }, (_, position) => (
           <li
             key={position}
