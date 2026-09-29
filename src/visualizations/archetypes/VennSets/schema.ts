@@ -15,7 +15,7 @@ const setDefinition = z
 
 export const parametersSchema = z
   .object({
-    modo: z.enum(['operaciones', 'de-morgan', 'regiones']),
+    modo: z.enum(['operaciones', 'de-morgan', 'regiones', 'inclusion-exclusion']),
     /** Universe of discourse; defaults to the union of the sets. */
     universo: z.array(z.number().int()).min(1).max(60),
     conjuntos: z.array(setDefinition).min(2).max(3),
@@ -36,7 +36,10 @@ export const parametersSchema = z
         });
       }
     });
-    if (value.modo !== 'regiones' && value.conjuntos.length !== 2) {
+    if (
+      (value.modo === 'operaciones' || value.modo === 'de-morgan') &&
+      value.conjuntos.length !== 2
+    ) {
       context.addIssue({
         code: 'custom',
         path: ['conjuntos'],

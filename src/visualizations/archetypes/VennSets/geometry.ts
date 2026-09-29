@@ -110,3 +110,30 @@ export function placeElements(
   }
   return positions;
 }
+
+/** Grid step, in pixels, used to locate the center of each region. */
+const ANCHOR_STEP = 6;
+
+/**
+ * A representative point for each region inside the circles: the sampled
+ * point of the region farthest from every circle border, so a label placed
+ * there stays inside the region even for thin crescent shapes.
+ */
+export function regionAnchors(layout: VennLayout): Map<number, { x: number; y: number }> {
+  const best = new Map<number, { x: number; y: number; clearance: number }>();
+  const { frame } = layout;
+  for (let y = frame.y; y <= frame.y + frame.height; y += ANCHOR_STEP) {
+    for (let x = frame.x; x <= frame.x + frame.width; x += ANCHOR_STEP) {
+      const mask = regionOf(layout, x, y);
+      if (mask === 0) continue;
+      const clearance = Math.min(
+        ...layout.circles.map((circle) =>
+          Math.abs(Math.hypot(x - circle.cx, y - circle.cy) - circle.r),
+        ),
+      );
+      const previous = best.get(mask);
+      if (!previous || clearance > previous.clearance) best.set(mask, { x, y, clearance });
+    }
+  }
+  return new Map([...best].map(([mask, point]) => [mask, { x: point.x, y: point.y }]));
+}

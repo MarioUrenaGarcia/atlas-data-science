@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { DATA_COLORS, seriesColor } from '../../core/colors.ts';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import svgStyles from '../../core/svg/svg.module.css';
-import { placeElements, vennLayout } from './geometry.ts';
+import { placeElements, regionAnchors, vennLayout } from './geometry.ts';
 
 interface VennDiagramProps {
   labels: readonly string[];
@@ -19,6 +19,9 @@ interface VennDiagramProps {
   title?: string;
   compact?: boolean;
   onRegionClick?: (mask: number) => void;
+  /** Text drawn at the center of each region inside the circles, by mask. */
+  regionText?: ReadonlyMap<number, string>;
+  showElements?: boolean;
 }
 
 /**
@@ -38,6 +41,8 @@ export function VennDiagram({
   title,
   compact = false,
   onRegionClick,
+  regionText,
+  showElements = true,
 }: VennDiagramProps) {
   const id = useId().replace(/:/g, '');
   const count = labels.length;
@@ -146,7 +151,7 @@ export function VennDiagram({
             >
               {title ?? 'U'}
             </text>
-            <g aria-hidden="true" pointerEvents="none">
+            <g aria-hidden="true" pointerEvents="none" display={showElements ? undefined : 'none'}>
               {elements.map((element, index) => {
                 const position = positions[index];
                 if (!position) return null;
@@ -182,6 +187,29 @@ export function VennDiagram({
                 );
               })}
             </g>
+            {regionText && (
+              <g aria-hidden="true" pointerEvents="none">
+                {[...regionAnchors(layout)].map(([mask, point]) => (
+                  <text
+                    key={mask}
+                    x={point.x}
+                    y={point.y}
+                    textAnchor="middle"
+                    dy="0.35em"
+                    className={svgStyles.label}
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 800,
+                      paintOrder: 'stroke',
+                      stroke: 'var(--color-surface)',
+                      strokeWidth: 5,
+                    }}
+                  >
+                    {regionText.get(mask) ?? ''}
+                  </text>
+                ))}
+              </g>
+            )}
           </>
         );
       }}

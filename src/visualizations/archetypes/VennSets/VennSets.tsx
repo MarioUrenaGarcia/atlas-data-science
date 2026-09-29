@@ -1,5 +1,6 @@
 import type { VisualizationProps } from '../../types.ts';
 import { DeMorganView } from './DeMorganView.tsx';
+import { InclusionExclusionView } from './InclusionExclusionView.tsx';
 import { OperationsView } from './OperationsView.tsx';
 import { RegionsView } from './RegionsView.tsx';
 import type { VennSetsConfig } from './schema.ts';
@@ -29,5 +30,9 @@ export default function VennSets({ params, title }: VisualizationProps) {
       );
     case 'regiones':
       return <RegionsView title={title} universe={config.universo} sets={config.conjuntos} />;
+    case 'inclusion-exclusion':
+      return (
+        <InclusionExclusionView title={title} universe={config.universo} sets={config.conjuntos} />
+      );
   }
 }

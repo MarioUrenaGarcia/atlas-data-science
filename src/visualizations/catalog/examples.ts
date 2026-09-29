@@ -199,4 +199,108 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   { component: 'CountableSets', title: 'Racionales', params: { vista: 'racionales' } },
   { component: 'CantorDiagonal', title: 'Diagonal', params: {} },
   { component: 'InductionViz', title: 'Fichas', params: {} },
+  {
+    component: 'CombinatoricsBoard',
+    title: 'Suma',
+    params: {
+      modo: 'suma',
+      categorias: [
+        { nombre: 'Sopas', opciones: ['caldo', 'crema', 'pozole'] },
+        { nombre: 'Ensaladas', opciones: ['verde', 'rusa'] },
+      ],
+    },
+  },
+  {
+    component: 'CombinatoricsBoard',
+    title: 'Árbol',
+    params: {
+      modo: 'arbol',
+      etapas: [
+        { nombre: 'talla', opciones: ['S', 'M', 'L'] },
+        { nombre: 'color', opciones: ['rojo', 'azul'] },
+        { nombre: 'manga', opciones: ['corta', 'larga'] },
+      ],
+    },
+  },
+  {
+    component: 'CombinatoricsBoard',
+    title: 'Ordenaciones',
+    params: { modo: 'ordenaciones', objetos: ['A', 'B', 'C', 'D'], permitirRepeticion: true, k: 3 },
+  },
+  { component: 'CombinatoricsBoard', title: 'Factorial', params: { modo: 'crecimiento' } },
+  {
+    component: 'CombinatoricsBoard',
+    title: 'Anagramas',
+    params: { modo: 'anagramas', palabra: 'CASAS' },
+  },
+  {
+    component: 'CombinatoricsBoard',
+    title: 'Mesa redonda',
+    params: { modo: 'circular', personas: ['Ana', 'Beto', 'Caro', 'Dani', 'Eli'] },
+  },
+  {
+    component: 'CombinatoricsBoard',
+    title: 'Combinaciones',
+    params: { modo: 'combinaciones', objetos: ['A', 'B', 'C', 'D', 'E'], k: 3 },
+  },
+  {
+    component: 'CombinatoricsBoard',
+    title: 'Estrellas y barras',
+    params: { modo: 'estrellas-y-barras', tipos: ['fresa', 'limón', 'mango'], k: 4 },
+  },
+  { component: 'PascalTriangle', title: 'Triángulo', params: { modo: 'triangulo', filas: 10 } },
+  {
+    component: 'PascalTriangle',
+    title: 'Caminos',
+    params: { modo: 'caminos', derecha: 4, arriba: 3 },
+  },
+  {
+    component: 'PascalTriangle',
+    title: 'Identidades',
+    params: {
+      modo: 'identidades',
+      identidad: 'pascal',
+      identidades: ['pascal', 'vandermonde', 'simetria', 'suma-de-fila'],
+    },
+  },
+  { component: 'PascalTriangle', title: 'Binomio', params: { modo: 'binomio', n: 4, a: 1, b: 2 } },
+  { component: 'PascalTriangle', title: 'Multinomial', params: { modo: 'multinomial', n: 4 } },
+  {
+    component: 'VennSets',
+    title: 'Inclusión y exclusión',
+    params: {
+      modo: 'inclusion-exclusion',
+      universo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      conjuntos: [
+        { etiqueta: 'A', elementos: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] },
+        { etiqueta: 'B', elementos: [3, 6, 9, 12, 15, 18] },
+        { etiqueta: 'C', elementos: [5, 10, 15, 20] },
+      ],
+    },
+  },
+  { component: 'PigeonholeViz', title: 'Palomar', params: {} },
+  { component: 'DerangementsViz', title: 'Desarreglos', params: {} },
+  { component: 'CatalanViz', title: 'Catalan', params: { vista: 'triangulaciones' } },
+  { component: 'IntegerPartitionsViz', title: 'Particiones', params: {} },
+  { component: 'MonteCarloCounting', title: 'Monte Carlo', params: {} },
+  { component: 'SetPartitionsViz', title: 'Bell', params: { modo: 'bell', n: 4 } },
+  { component: 'SetPartitionsViz', title: 'Stirling', params: { modo: 'stirling', n: 5, k: 3 } },
+  {
+    component: 'GeneratingFunctionViz',
+    title: 'Ordinaria',
+    params: { modo: 'ordinaria', partes: [1, 2, 5, 10], nombre: 'moneda', objetivo: 20 },
+  },
+  {
+    component: 'GeneratingFunctionViz',
+    title: 'Exponencial',
+    params: {
+      modo: 'exponencial',
+      letras: [
+        { letra: 'A', regla: 'par' },
+        { letra: 'B', regla: 'cualquiera' },
+        { letra: 'C', regla: 'cualquiera' },
+      ],
+    },
+  },
+  { component: 'RecurrenceViz', title: 'Fibonacci', params: { c1: 1, c2: 1, a0: 0, a1: 1 } },
 ];

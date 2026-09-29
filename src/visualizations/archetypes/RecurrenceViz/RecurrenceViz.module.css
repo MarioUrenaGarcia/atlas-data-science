@@ -1,0 +1,24 @@
+.formula {
+  margin: 0;
+  text-align: center;
+}
+
+.behavior {
+  margin: 0;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: center;
+}
+
+@media (max-width: 40rem) {
+  .charts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

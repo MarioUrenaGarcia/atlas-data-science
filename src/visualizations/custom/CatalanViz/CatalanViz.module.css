@@ -1,0 +1,28 @@
+.formula {
+  margin: 0;
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  max-height: 10rem;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.itemCurrent {
+  border-color: var(--data-5);
+  background: color-mix(in srgb, var(--data-5) 22%, var(--color-surface));
+}
