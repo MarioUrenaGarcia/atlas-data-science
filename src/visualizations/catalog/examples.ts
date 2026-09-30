@@ -303,4 +303,500 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     },
   },
   { component: 'RecurrenceViz', title: 'Fibonacci', params: { c1: 1, c2: 1, a0: 0, a1: 1 } },
+  {
+    component: 'VectorPlane',
+    title: 'Operaciones',
+    params: { modo: 'operaciones', u: [2, 1], v: [1, 2] },
+  },
+  {
+    component: 'VectorPlane',
+    title: 'Combinación',
+    params: { modo: 'combinacion', v1: [1, 0.5], v2: [-0.5, 1] },
+  },
+  {
+    component: 'VectorPlane',
+    title: 'Producto punto',
+    params: { modo: 'producto-punto', u: [3, 1], v: [1, 2] },
+  },
+  { component: 'VectorPlane', title: 'Normas', params: { modo: 'normas', punto: [2, 1] } },
+  {
+    component: 'VectorPlane',
+    title: 'Distancias',
+    params: { modo: 'distancias', a: [-2, -1], b: [2, 2] },
+  },
+  {
+    component: 'VectorPlane',
+    title: 'Proyección',
+    params: { modo: 'proyeccion', a: [1, 3], b: [3, 1] },
+  },
+  {
+    component: 'VectorPlane',
+    title: 'Gram-Schmidt',
+    params: { modo: 'gram-schmidt', v1: [3, 1], v2: [2, 2] },
+  },
+  {
+    component: 'VectorPlane',
+    title: 'Cambio de base',
+    params: { modo: 'cambio-base', b1: [2, 1], b2: [-1, 1], punto: [3, 3] },
+  },
+  {
+    component: 'VectorPlane',
+    title: 'Sistema',
+    params: {
+      modo: 'sistema',
+      ecuaciones: [
+        [1, 1, 3],
+        [1, -1, 1],
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Transformación',
+    params: {
+      modo: 'transformacion',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [2, 1],
+            [1, 2],
+          ],
+        },
+      ],
+      circulo: true,
+      propios: true,
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Composición',
+    params: {
+      modo: 'composicion',
+      pares: [
+        {
+          nombre: 'Rotación y escala',
+          primera: [
+            [0, -1],
+            [1, 0],
+          ],
+          segunda: [
+            [2, 0],
+            [0, 1],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Inversa',
+    params: {
+      modo: 'inversa',
+      pares: [
+        {
+          nombre: 'Invertible',
+          primera: [
+            [2, 1],
+            [1, 1],
+          ],
+        },
+        {
+          nombre: 'Singular',
+          primera: [
+            [1, 2],
+            [0.5, 1],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Propios',
+    params: {
+      modo: 'propios',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [3, 1],
+            [0, 2],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'SVD',
+    params: {
+      modo: 'svd',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [2, 1],
+            [0.5, 1.5],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Forma cuadrática',
+    params: {
+      modo: 'forma-cuadratica',
+      matrices: [
+        {
+          nombre: 'Definida positiva',
+          matriz: [
+            [2, 1],
+            [1, 2],
+          ],
+        },
+        {
+          nombre: 'Indefinida',
+          matriz: [
+            [1, 2],
+            [2, -1],
+          ],
+        },
+        {
+          nombre: 'Semidefinida',
+          matriz: [
+            [1, 1],
+            [1, 1],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Potencia',
+    params: {
+      modo: 'potencia',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [2, 1],
+            [1, 3],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Diagonalización',
+    params: {
+      modo: 'diagonalizacion',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [1, 2],
+            [0, 3],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Espectral',
+    params: {
+      modo: 'espectral',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [2, 1],
+            [1, 2],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Característico',
+    params: {
+      modo: 'caracteristico',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [2, 1],
+            [1, 2],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Subespacios',
+    params: {
+      modo: 'subespacios',
+      matrices: [
+        {
+          nombre: 'Rango 1',
+          matriz: [
+            [1, 2],
+            [2, 4],
+          ],
+        },
+        {
+          nombre: 'Rango 2',
+          matriz: [
+            [2, 1],
+            [1, 3],
+          ],
+        },
+        {
+          nombre: 'Rango 0',
+          matriz: [
+            [0, 0],
+            [0, 0],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Pseudoinversa',
+    params: {
+      modo: 'pseudoinversa',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [1, 1],
+            [1, 1],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixTransform',
+    title: 'Estiramiento',
+    params: {
+      modo: 'estiramiento',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [3, 1],
+            [1, 1],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixSteps',
+    title: 'Gauss',
+    params: {
+      modo: 'gauss',
+      aumentada: true,
+      matrices: [
+        {
+          nombre: 'Sistema',
+          matriz: [
+            [2, 1, -1, 8],
+            [-3, -1, 2, -11],
+            [-2, 1, 2, -3],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixSteps',
+    title: 'Rango',
+    params: {
+      modo: 'rango',
+      reducida: true,
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [1, 2, 1],
+            [2, 4, 3],
+            [3, 6, 4],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixSteps',
+    title: 'LU',
+    params: {
+      modo: 'lu',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [2, 1, 1],
+            [4, -6, 0],
+            [-2, 7, 2],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixSteps',
+    title: 'Cholesky',
+    params: {
+      modo: 'cholesky',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [4, 12, -16],
+            [12, 37, -43],
+            [-16, -43, 98],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixSteps',
+    title: 'QR',
+    params: {
+      modo: 'qr',
+      matrices: [
+        {
+          nombre: 'A',
+          matriz: [
+            [3, 2],
+            [4, 1],
+            [0, 2],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'MatrixGrid',
+    title: 'Producto',
+    params: {
+      modo: 'operaciones',
+      a: [
+        [1, 2, 0],
+        [3, -1, 4],
+      ],
+      b: [
+        [2, 1],
+        [0, 3],
+        [1, -2],
+      ],
+    },
+  },
+  {
+    component: 'MatrixGrid',
+    title: 'Transpuesta',
+    params: {
+      modo: 'transpuesta',
+      a: [
+        [1, 2, 3],
+        [4, 5, 6],
+      ],
+      b: [
+        [1, 0],
+        [2, 1],
+        [0, 3],
+      ],
+    },
+  },
+  { component: 'MatrixGrid', title: 'Especiales', params: { modo: 'especiales' } },
+  {
+    component: 'MatrixGrid',
+    title: 'Traza',
+    params: {
+      modo: 'traza',
+      a: [
+        [2, 1, 0],
+        [1, 3, 4],
+        [0, 2, 5],
+      ],
+      b: [
+        [1, 0, 2],
+        [3, 1, 0],
+        [0, 1, 1],
+      ],
+    },
+  },
+  {
+    component: 'MatrixGrid',
+    title: 'Kronecker',
+    params: {
+      modo: 'kronecker',
+      a: [
+        [1, 2],
+        [0, 3],
+      ],
+      b: [
+        [1, -1],
+        [2, 0],
+      ],
+    },
+  },
+  { component: 'MatrixGrid', title: 'Dispersa', params: { modo: 'dispersa', patron: 'rejilla' } },
+  { component: 'MatrixGrid', title: 'Tensor', params: { modo: 'tensor' } },
+  { component: 'MatrixGrid', title: 'Bajo rango', params: { modo: 'bajo-rango' } },
+  {
+    component: 'VectorPlane',
+    title: 'Cerradura',
+    params: {
+      modo: 'cerradura',
+      conjuntos: ['recta-origen', 'recta-desplazada', 'primer-cuadrante', 'union-ejes'],
+    },
+  },
+  {
+    component: 'Space3D',
+    title: 'Espacio generado',
+    params: {
+      modo: 'generado',
+      conjuntos: [
+        {
+          nombre: 'Dos independientes',
+          vectores: [
+            [2, 0, 1],
+            [0, 2, 1],
+          ],
+        },
+        {
+          nombre: 'Tres coplanares',
+          vectores: [
+            [2, 0, 1],
+            [0, 2, 1],
+            [2, 2, 2],
+          ],
+        },
+        {
+          nombre: 'Tres independientes',
+          vectores: [
+            [2, 0, 0],
+            [0, 2, 0],
+            [1, 1, 2],
+          ],
+        },
+      ],
+    },
+  },
+  {
+    component: 'Space3D',
+    title: 'Proyección a un plano',
+    params: { modo: 'proyeccion', a1: [2, 0, 0], a2: [1, 2, 0], b: [1, 1, 2.5] },
+  },
 ];

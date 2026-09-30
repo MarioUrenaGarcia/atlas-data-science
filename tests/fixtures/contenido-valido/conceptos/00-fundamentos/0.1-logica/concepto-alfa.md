@@ -64,6 +64,7 @@ Es la base de [[concepto-beta]].
 ## Formulario
 
 :::formula[Conteo de un conjunto]
+
 $$
 N = |A|
 $$
@@ -71,4 +72,4 @@ $$
 - $N$: número de elementos contados.
 - $A$: conjunto cuyos elementos se cuentan.
 - $|A|$: cardinalidad de $A$.
-:::
+  :::

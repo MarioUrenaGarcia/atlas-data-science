@@ -388,3 +388,58 @@ export function conditionNumber(matrix: Matrix): number {
   const smallest = singularValues[singularValues.length - 1] ?? 0;
   return smallest === 0 ? Number.POSITIVE_INFINITY : (singularValues[0] ?? 0) / smallest;
 }
+
+/** Best rank-k approximation in Frobenius and spectral norm: the first k terms of the SVD. */
+export function lowRankApproximation(decomposition: Svd, k: number): Matrix {
+  const { u, singularValues, v } = decomposition;
+  const m = u.length;
+  const n = v.length;
+  const result = zeros(m, n);
+  for (let l = 0; l < Math.min(k, singularValues.length); l += 1) {
+    const sigma = singularValues[l] ?? 0;
+    for (let i = 0; i < m; i += 1) {
+      const scaled = sigma * at(u, i, l);
+      if (scaled === 0) continue;
+      const row = result[i] as number[];
+      for (let j = 0; j < n; j += 1) row[j] = (row[j] ?? 0) + scaled * at(v, j, l);
+    }
+  }
+  return result;
+}
+
+/** Kronecker product: the block matrix whose block (i, j) is a_ij B. */
+export function kronecker(a: Matrix, b: Matrix): Matrix {
+  const [p, q] = shape(a);
+  const [r, s] = shape(b);
+  return Array.from({ length: p * r }, (_, row) =>
+    Array.from(
+      { length: q * s },
+      (_, column) =>
+        at(a, Math.floor(row / r), Math.floor(column / s)) * at(b, row % r, column % s),
+    ),
+  );
+}
+
+export interface CompressedRows {
+  values: number[];
+  columnIndices: number[];
+  /** Start of each row in values, plus the total count at the end. */
+  rowPointers: number[];
+}
+
+/** Compressed sparse row storage: only the nonzero entries and where they are. */
+export function toCompressedRows(matrix: Matrix): CompressedRows {
+  const values: number[] = [];
+  const columnIndices: number[] = [];
+  const rowPointers = [0];
+  for (const row of matrix) {
+    row.forEach((value, j) => {
+      if (value !== 0) {
+        values.push(value);
+        columnIndices.push(j);
+      }
+    });
+    rowPointers.push(values.length);
+  }
+  return { values, columnIndices, rowPointers };
+}

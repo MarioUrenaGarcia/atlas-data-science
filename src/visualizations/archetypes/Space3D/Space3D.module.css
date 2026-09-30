@@ -1,0 +1,22 @@
+.scene {
+  width: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+.dragging {
+  cursor: grabbing;
+}
+
+.formula {
+  margin: 0;
+  text-align: center;
+}
+
+.stage {
+  margin: 0;
+  min-height: 1.6em;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}

@@ -30,3 +30,27 @@ export function formatProbability(value: number): string {
   if (value !== 0 && Math.abs(value) < 0.001) return formatNumber(value, 2);
   return value.toFixed(4);
 }
+
+/**
+ * Exact-looking fraction for values that come from small rational arithmetic,
+ * such as row reduction of integer matrices: the smallest denominator up to
+ * maxDenominator that reproduces the value. Falls back to decimals otherwise.
+ */
+export function formatFraction(value: number, maxDenominator = 60, digits = 3): string {
+  if (!Number.isFinite(value)) return formatNumber(value, digits);
+  for (let denominator = 1; denominator <= maxDenominator; denominator += 1) {
+    const numerator = Math.round(value * denominator);
+    if (Math.abs(numerator / denominator - value) < 1e-9) {
+      if (numerator === 0) return '0';
+      return denominator === 1 ? String(numerator) : `${numerator}/${denominator}`;
+    }
+  }
+  return formatNumber(value, digits);
+}
+
+/** LaTeX version of formatFraction, with \tfrac for proper display. */
+export function fractionLatex(value: number, maxDenominator = 60, digits = 3): string {
+  const text = formatFraction(value, maxDenominator, digits);
+  const match = /^(-?)(\d+)\/(\d+)$/.exec(text);
+  return match ? `${match[1]}\tfrac{${match[2]}}{${match[3]}}` : text;
+}

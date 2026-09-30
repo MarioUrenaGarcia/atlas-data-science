@@ -200,7 +200,8 @@ function remarkAtlasDirectives(
         const hasSymbols = body.some((child) => child.type === 'list');
         if (!hasMath || !hasSymbols) {
           issues.push({
-            message: 'cada :::formula necesita la fórmula en bloque y una lista que explique sus símbolos',
+            message:
+              'cada :::formula necesita la fórmula en bloque y una lista que explique sus símbolos',
             line: directive.position?.start.line,
           });
         }

@@ -1,0 +1,12 @@
+.formula {
+  margin: 0;
+  text-align: center;
+}
+
+.stage {
+  margin: 0;
+  min-height: 2.6em;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}
