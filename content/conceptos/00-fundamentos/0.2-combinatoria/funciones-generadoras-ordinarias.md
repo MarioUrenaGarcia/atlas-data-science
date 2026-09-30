@@ -59,6 +59,15 @@ Las series formales se suman y multiplican término a término, sin preocuparse 
 Si $a_k$ cuenta las formas de obtener un tamaño $k$ con un primer tipo de objeto y $b_j$ las formas de obtener un tamaño $j$ con un segundo tipo, entonces $[x^n]A(x)B(x)$ cuenta los pares de elecciones cuyos tamaños suman $n$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $(a_n)_{n \ge 0}$: la sucesión que se codifica; $a_n$ cuenta los objetos de tamaño $n$.
+- $A(x)$, $B(x)$: funciones generadoras, series de potencias en la variable formal $x$.
+- $[x^n]A(x)$: coeficiente de $x^n$ en $A(x)$.
+- $c_n$: coeficientes del producto; $k$ es el índice de la convolución.
+- $c$: constante (en la serie geométrica $\frac{1}{1 - cx}$).
+- $m$: exponente en las potencias del binomio.
+:::
+
 ## Cómo usar la visualización
 
 Cada barra es el coeficiente de $x^n$, el número de maneras de formar $n$ pesos con las monedas incorporadas hasta ese momento. La reproducción multiplica los factores uno por uno: primero solo monedas de 1 (todas las barras valen 1), luego se agregan las de 2, las de 5 y las de 10. El contorno punteado muestra los coeficientes antes del último factor. El panel indica el coeficiente del total buscado.
@@ -102,3 +111,39 @@ objetivo: 10
 ## Conexiones
 
 La función generadora de las [[particiones-de-enteros]] es un producto de factores de [[serie-geometrica|series geométricas]], y la de las [[combinaciones-con-repeticion]] es una potencia de $\frac{1}{1-x}$. Las [[funciones-generadoras-exponenciales]] adaptan la idea a objetos etiquetados, y las [[relaciones-de-recurrencia-lineales]] se resuelven con funciones generadoras racionales. En probabilidad, las funciones generadoras de probabilidad y de momentos son la misma herramienta aplicada a distribuciones.
+
+## Formulario
+
+:::formula[Función generadora ordinaria]
+$$
+A(x) = \sum_{n \ge 0} a_n x^{n}, \qquad a_n = [x^n]A(x)
+$$
+
+- $a_n$: número de objetos de tamaño $n$.
+- $x$: variable formal que marca el tamaño.
+:::
+
+:::formula[Producto y convolución]
+$$
+A(x)B(x) = \sum_{n \ge 0}\Big(\sum_{k=0}^{n} a_k b_{n-k}\Big)x^{n}
+$$
+
+- $a_k$: formas con el primer tipo de tamaño $k$.
+- $b_{n-k}$: formas con el segundo tipo del tamaño que falta.
+:::
+
+:::formula[Series básicas]
+$$
+\frac{1}{1 - x} = \sum_{n} x^{n}, \qquad \frac{1}{1 - cx} = \sum_n c^{n} x^{n}, \qquad \frac{1}{(1 - x)^m} = \sum_k \binom{m + k - 1}{k} x^{k}
+$$
+
+- $c$: constante; $m$: número de tipos (estrellas y barras).
+:::
+
+:::formula[Monedas de tamaño s]
+$$
+\frac{1}{1 - x^{s}} = 1 + x^{s} + x^{2s} + \cdots
+$$
+
+- $s$: valor de la moneda; el exponente es lo que aportan 0, 1, 2, ... monedas.
+:::

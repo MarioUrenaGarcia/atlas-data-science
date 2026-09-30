@@ -61,6 +61,14 @@ $$
 Una selección ordenada de $k$ elementos distintos se construye eligiendo primero el subconjunto y después uno de sus $k!$ órdenes. Por el principio del producto, $V(n, k) = \binom{n}{k}\, k!$, de donde $\binom{n}{k} = \frac{V(n, k)}{k!} = \frac{n!}{k!(n-k)!}$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de objetos del conjunto.
+- $k$: tamaño del grupo que se elige, sin orden.
+- $\binom{n}{k}$: número de combinaciones, se lee "$n$ en $k$".
+- $V(n, k)$: selecciones ordenadas de $k$ objetos distintos.
+- $k!$: número de órdenes de cada grupo.
+:::
+
 ## Cómo usar la visualización
 
 Cada tarjeta es un grupo de $k$ personas. La reproducción recorre todas las selecciones ordenadas y deposita cada una en la tarjeta de su grupo, escribiendo el orden en que se eligió. El medidor de cada tarjeta tiene $k!$ celdas. El panel compara el número de selecciones ordenadas, el número de órdenes por grupo y el número de grupos.
@@ -122,3 +130,41 @@ escenarios:
 ## Conexiones
 
 Las combinaciones son las [[variaciones]] sin orden y cuentan los subconjuntos de tamaño fijo del [[conjunto-potencia]]. Su número es el [[coeficiente-binomial]], que satisface identidades notables y forma el triángulo de Pascal. Si los objetos pueden repetirse, se obtienen las [[combinaciones-con-repeticion]]. En probabilidad, las combinaciones cuentan muestras sin reemplazo y dan lugar a las distribuciones binomial e hipergeométrica.
+
+## Formulario
+
+:::formula[Combinaciones]
+$$
+\binom{n}{k} = \frac{n!}{k!\,(n-k)!} = \frac{V(n, k)}{k!}
+$$
+
+- $n$: objetos disponibles.
+- $k$: tamaño del grupo.
+- $k!$: órdenes que se descartan porque el orden no importa.
+:::
+
+:::formula[Cálculo práctico]
+$$
+\binom{n}{k} = \frac{n(n-1)\cdots(n-k+1)}{k!}
+$$
+
+- Evita calcular factoriales completos.
+:::
+
+:::formula[Simetría y suma de una fila]
+$$
+\binom{n}{k} = \binom{n}{n-k}, \qquad \sum_{k=0}^{n} \binom{n}{k} = 2^{n}
+$$
+
+- Elegir los que entran equivale a elegir los que quedan fuera.
+- La suma cuenta todos los subconjuntos.
+:::
+
+:::formula[Elección en dos grupos]
+$$
+\binom{m}{a}\binom{p}{b}
+$$
+
+- $m$, $p$: tamaños de los dos grupos.
+- $a$, $b$: cuántos se eligen de cada uno.
+:::

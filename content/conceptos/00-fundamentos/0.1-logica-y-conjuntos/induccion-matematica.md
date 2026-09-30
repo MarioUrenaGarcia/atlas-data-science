@@ -52,6 +52,15 @@ En el paso inductivo, la suposición $P(k)$ se llama **hipótesis de inducción*
 
 **Inducción fuerte:** si $P(1)$ vale y, para todo $k$, $P(1) \land \dots \land P(k)$ implica $P(k + 1)$, entonces $P(n)$ vale para todo $n$. Es equivalente a la inducción usual.
 
+:::nota[Qué significa cada símbolo]
+- $P(n)$: la afirmación que se quiere demostrar para cada natural $n$.
+- $P(1)$: el caso base.
+- $k$: un natural fijo pero arbitrario en el paso inductivo.
+- $P(k)$: la hipótesis de inducción; $P(k+1)$: lo que hay que deducir.
+- $n_0$: primer valor desde el que se demuestra, cuando no se empieza en 1.
+- $\mathbb{N}$: los naturales.
+:::
+
 ## Cómo usar la visualización
 
 La vista "Base y paso" muestra una fila de $n$ fichas. El interruptor del caso base decide si la primera ficha recibe el empujón, y el control "El paso falla en k" crea un hueco entre la ficha $k$ y la $k + 1$. El panel indica cuántas fichas cayeron. La vista "Suma 1 + 2 + ... + n" construye una escalera de bloques, columna por columna, y la completa con una copia girada hasta formar un rectángulo de $n$ por $n + 1$.
@@ -98,3 +107,40 @@ Supongamos que se cumplen la base y el paso, pero que el conjunto $F = \{n : P(n
 ## Conexiones
 
 La inducción es la herramienta para demostrar afirmaciones con el cuantificador universal de [[cuantificadores-universal-y-existencial]] sobre los naturales, y se aplica de manera natural a [[sucesiones]] definidas recursivamente. Las fórmulas cerradas de la [[notacion-sumatoria-y-productoria]] y la suma parcial de la [[serie-geometrica]] se demuestran así. En probabilidad y en algoritmos, la inducción justifica fórmulas recursivas y la corrección de procedimientos iterativos.
+
+## Formulario
+
+:::formula[Principio de inducción]
+$$
+\big[P(1) \land \forall k\,(P(k) \Rightarrow P(k+1))\big] \Rightarrow \forall n\ P(n)
+$$
+
+- $P(1)$: caso base.
+- $P(k) \Rightarrow P(k+1)$: paso inductivo, para todo $k \ge 1$.
+- $\forall n\ P(n)$: la conclusión, válida para todo natural.
+:::
+
+:::formula[Inducción fuerte]
+$$
+\big[P(1) \land \forall k\,(P(1) \land \dots \land P(k) \Rightarrow P(k+1))\big] \Rightarrow \forall n\ P(n)
+$$
+
+- La hipótesis usa todos los casos anteriores, no solo el último.
+:::
+
+:::formula[Suma de impares]
+$$
+\sum_{i=1}^{n} (2i - 1) = n^{2}
+$$
+
+- $2i - 1$: el impar número $i$.
+- $n$: cuántos impares se suman.
+:::
+
+:::formula[Suma de los primeros naturales]
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+
+- $n$: último número sumado.
+:::

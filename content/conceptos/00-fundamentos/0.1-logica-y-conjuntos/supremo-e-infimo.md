@@ -61,6 +61,16 @@ El **ínfimo** $\inf S$ es la mayor cota inferior. Si $\sup S \in S$, se llama *
 Todo subconjunto no vacío de $\mathbb{R}$ acotado superiormente tiene supremo en $\mathbb{R}$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $S$: un conjunto de números reales, no vacío.
+- $u$: una cota superior de $S$, un número mayor o igual que todos sus elementos.
+- $\sup S$: supremo, la menor de las cotas superiores.
+- $\inf S$: ínfimo, la mayor de las cotas inferiores.
+- $\varepsilon$: distancia positiva arbitraria.
+- $x$: un elemento de $S$.
+- $-S$: el conjunto de los opuestos de los elementos de $S$.
+:::
+
 ## Cómo usar la visualización
 
 Los elementos del conjunto aparecen uno por uno sobre la recta. La zona a la derecha del supremo contiene todas las cotas superiores, y el intervalo $(\sup S - \varepsilon, \sup S]$ se resalta. El panel indica el supremo, el ínfimo, si el supremo es máximo y el primer elemento que entra al intervalo resaltado.
@@ -116,3 +126,39 @@ epsilon: 0.005
 ## Conexiones
 
 El supremo garantiza la convergencia de las [[sucesiones]] monótonas acotadas, y con ella la convergencia de las [[series-y-convergencia-de-series|series]] de términos positivos cuyas sumas parciales están acotadas. Su definición usa [[cuantificadores-universal-y-existencial|cuantificadores]] con la misma estructura que la definición de límite. En estadística, el estadístico de Kolmogorov y Smirnov es el supremo de la distancia entre dos funciones de distribución, y en probabilidad los extremos del soporte de una variable se definen como supremo e ínfimo.
+
+## Formulario
+
+:::formula[Caracterización del supremo]
+$$
+s = \sup S \iff \big(\forall x \in S:\ x \le s\big) \land \big(\forall \varepsilon > 0\ \exists x \in S:\ x > s - \varepsilon\big)
+$$
+
+- $s$: candidato a supremo.
+- Primera condición: $s$ es cota superior.
+- Segunda condición: nada menor que $s$ es cota, pues para cualquier $\varepsilon$ algún elemento supera $s - \varepsilon$.
+:::
+
+:::formula[Ínfimo a partir del supremo]
+$$
+\inf S = -\sup(-S)
+$$
+
+- $-S = \{-x : x \in S\}$: el conjunto reflejado.
+:::
+
+:::formula[Axioma del supremo]
+$$
+S \neq \varnothing \text{ y acotado superiormente} \Rightarrow \sup S \in \mathbb{R}
+$$
+
+- $\mathbb{R}$: los reales; en los racionales esta propiedad falla.
+:::
+
+:::formula[Monotonía respecto a la contención]
+$$
+A \subseteq B \Rightarrow \sup A \le \sup B,\quad \inf A \ge \inf B
+$$
+
+- $A, B$: conjuntos acotados de reales.
+:::

@@ -58,6 +58,14 @@ $C_0 = 1$ y $C_{n+1} = \sum_{i=0}^{n} C_i\,C_{n-i}$.
 Un camino de Dyck no vacío regresa al suelo por primera vez después de $2(i + 1)$ pasos para un único $i$. El tramo inicial es una subida, un camino de Dyck de longitud $2i$ elevado un nivel y una bajada; lo que sigue es un camino de Dyck de longitud $2(n - i)$. Hay $C_i\,C_{n-i}$ caminos para cada $i$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: tamaño: pares de paréntesis, subidas del camino o $n + 2$ lados del polígono.
+- $C_n$: número de Catalan.
+- $i$: índice de la recurrencia, el tamaño de la primera parte.
+- $C(x)$: función generadora de los números de Catalan.
+- $\sim$: "es asintóticamente igual a".
+:::
+
 ## Cómo usar la visualización
 
 La vista "Caminos de montaña" dibuja cada camino de Dyck como un perfil sobre el suelo. "Paréntesis" muestra el mismo camino con un paréntesis que abre en cada subida y uno que cierra en cada bajada. "Triangulaciones" dibuja las divisiones de un polígono de $n + 2$ lados. La reproducción lista todos los objetos de la vista elegida y el panel los compara con $C_n$.
@@ -97,3 +105,38 @@ n: 5
 ## Conexiones
 
 Los números de Catalan se expresan con el [[coeficiente-binomial]] y se interpretan como caminos en la rejilla con una restricción. Su recurrencia es un producto de convolución, típico de las [[funciones-generadoras-ordinarias]], y su crecimiento se estudia con [[relaciones-de-recurrencia-lineales|recurrencias]] y la [[factorial|aproximación de Stirling]]. En probabilidad, el principio de reflexión que da su fórmula es el mismo que se usa para estudiar máximos de caminatas aleatorias.
+
+## Formulario
+
+:::formula[Fórmula cerrada]
+$$
+C_n = \frac{1}{n+1}\binom{2n}{n} = \binom{2n}{n} - \binom{2n}{n+1}
+$$
+
+- $\binom{2n}{n}$: caminos con $n$ subidas y $n$ bajadas sin restricción.
+- $\binom{2n}{n+1}$: los que bajan del suelo, contados por reflexión.
+:::
+
+:::formula[Recurrencia]
+$$
+C_0 = 1, \qquad C_{n+1} = \sum_{i=0}^{n} C_i\,C_{n-i}
+$$
+
+- $i$: tamaño de la parte antes del primer regreso al suelo.
+:::
+
+:::formula[Función generadora]
+$$
+C(x) = \frac{1 - \sqrt{1 - 4x}}{2x}
+$$
+
+- $C(x) = \sum_n C_n x^n$; cumple $C(x) = 1 + x\,C(x)^2$.
+:::
+
+:::formula[Crecimiento]
+$$
+C_n \sim \frac{4^{n}}{n^{3/2}\sqrt{\pi}}
+$$
+
+- $\pi$: constante del círculo.
+:::

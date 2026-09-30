@@ -55,6 +55,13 @@ Para $n \ge 1$ hay $(n-1)!$ permutaciones circulares de $n$ objetos distintos. S
 Cada clase contiene exactamente $n$ ordenamientos en fila, los $n$ giros de uno de ellos, que son distintos entre sí porque los objetos son distintos. Por lo tanto el número de clases es $n!/n = (n-1)!$. Para $n \ge 3$, el reflejo de un acomodo no es ninguno de sus giros, así que al identificar reflejos cada clase tiene $2n$ ordenamientos.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de objetos distintos que se sientan en círculo.
+- $(a_1, \dots, a_n)$: un orden leído alrededor del círculo.
+- $r$: desplazamiento de un giro; los índices se toman módulo $n$.
+- $n!$: órdenes en fila; $(n-1)!$: acomodos distintos salvo giros.
+:::
+
 ## Cómo usar la visualización
 
 La mesa muestra el acomodo actual. La reproducción recorre todos los órdenes en fila y deposita cada uno en la tarjeta de su acomodo circular; cada tarjeta nombra el acomodo leído a partir de la primera persona y tiene un medidor con una celda por giro. El control cambia el número de personas.
@@ -131,3 +138,31 @@ escenarios:
 ## Conexiones
 
 Las permutaciones circulares son clases de [[permutaciones]] bajo la [[relaciones-y-relaciones-de-equivalencia|relación de equivalencia]] "difieren por un giro". Comparten la idea de dividir entre el tamaño de las clases con las [[permutaciones-con-repeticion]] y las [[combinaciones]]. El conteo con simetrías más generales se estudia con el lema de Burnside en teoría de grupos.
+
+## Formulario
+
+:::formula[Permutaciones circulares]
+$$
+\frac{n!}{n} = (n-1)!
+$$
+
+- $n!$: órdenes en fila.
+- $n$: giros de cada acomodo, que se consideran iguales.
+:::
+
+:::formula[Con reflejos iguales]
+$$
+\frac{(n-1)!}{2} \quad (n \ge 3)
+$$
+
+- El $2$ identifica cada acomodo con su reflejo, como en un collar.
+:::
+
+:::formula[Pareja que se sienta junta]
+$$
+(n-2)! \cdot 2
+$$
+
+- $n - 1$: unidades en círculo (la pareja cuenta como una), con $(n - 2)!$ acomodos.
+- $2$: órdenes dentro de la pareja.
+:::

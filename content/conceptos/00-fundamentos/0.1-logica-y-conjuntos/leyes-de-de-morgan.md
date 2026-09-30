@@ -67,6 +67,16 @@ $$
 \Big(\bigcup_{i \in I} A_i\Big)^c = \bigcap_{i \in I} A_i^c, \qquad \Big(\bigcap_{i \in I} A_i\Big)^c = \bigcup_{i \in I} A_i^c.
 $$
 
+:::nota[Qué significa cada símbolo]
+- $A, B$: subconjuntos de un universo $U$.
+- $A^c$: complemento de $A$, lo que está en $U$ fuera de $A$.
+- $\cup$, $\cap$: unión e intersección.
+- $p, q$: proposiciones; $\lnot$, $\lor$, $\land$: negación, "o" e "y".
+- $\equiv$: equivalencia lógica.
+- $I$: conjunto de índices de una familia de conjuntos; $A_i$ es el conjunto con índice $i$.
+- $\bigcup_{i \in I}$, $\bigcap_{i \in I}$: unión e intersección de todos los $A_i$.
+:::
+
 ## Cómo usar la visualización
 
 Dos diagramas se construyen en paralelo. El de la izquierda sombrea primero $A \cup B$ y después su complemento; el de la derecha sombrea $A^c$, luego $B^c$ y al final su intersección. Cuando termina la reproducción ambos diagramas coinciden y el panel muestra el mismo conjunto de elementos en los dos lados. El selector cambia a la ley del complemento de una intersección.
@@ -147,3 +157,42 @@ consultas:
 ## Conexiones
 
 Las leyes combinan las [[operaciones-de-conjuntos]] con la negación lógica y se verifican con [[tablas-de-verdad]]. Su versión con cuantificadores aparece en [[cuantificadores-universal-y-existencial]]. En probabilidad sostienen el cálculo por complemento, y en los [[diagramas-de-venn]] se ven como igualdades entre regiones.
+
+## Formulario
+
+:::formula[De Morgan para conjuntos]
+$$
+(A \cup B)^c = A^c \cap B^c, \qquad (A \cap B)^c = A^c \cup B^c
+$$
+
+- $A, B$: conjuntos dentro del universo $U$.
+- $^c$: complemento respecto a $U$.
+- Al complementar, la unión se vuelve intersección y viceversa.
+:::
+
+:::formula[De Morgan para proposiciones]
+$$
+\lnot (p \lor q) \equiv \lnot p \land \lnot q, \qquad \lnot (p \land q) \equiv \lnot p \lor \lnot q
+$$
+
+- $p, q$: proposiciones.
+- $\lnot$: negación; $\lor$: "o"; $\land$: "y".
+:::
+
+:::formula[De Morgan para familias]
+$$
+\Big(\bigcup_{i \in I} A_i\Big)^c = \bigcap_{i \in I} A_i^c, \qquad \Big(\bigcap_{i \in I} A_i\Big)^c = \bigcup_{i \in I} A_i^c
+$$
+
+- $I$: conjunto de índices, finito o infinito.
+- $A_i$: el conjunto número $i$ de la familia.
+:::
+
+:::formula[Probabilidad por complemento]
+$$
+P(A \cup B) = 1 - P(A^c \cap B^c)
+$$
+
+- $P(\cdot)$: probabilidad de un evento.
+- $A^c \cap B^c$: el evento "no ocurre ninguno".
+:::

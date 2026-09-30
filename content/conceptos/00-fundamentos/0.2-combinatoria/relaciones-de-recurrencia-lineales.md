@@ -62,6 +62,16 @@ Las constantes $A$ y $B$ se determinan con $a_0$ y $a_1$. Si las raíces son com
 Si $r$ es raíz, $a_n = r^n$ cumple la recurrencia porque $r^n = c_1 r^{n-1} + c_2 r^{n-2}$ equivale a $r^{n-2}(r^2 - c_1 r - c_2) = 0$. Por linealidad, cualquier combinación $Ar_1^n + Br_2^n$ también la cumple, y con dos raíces distintas se pueden ajustar $A$ y $B$ a cualquier par de valores iniciales. Como la recurrencia determina la sucesión a partir de $a_0$ y $a_1$, esa es la solución.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $a_n$: término $n$ de la sucesión.
+- $c_1, c_2$: coeficientes constantes de la recurrencia.
+- $a_0, a_1$: valores iniciales.
+- $r$: incógnita de la ecuación característica; $r_1, r_2$ sus raíces.
+- $A, B$: constantes que se ajustan a los valores iniciales.
+- $\rho e^{\pm i\theta}$: raíces complejas, con módulo $\rho$ y ángulo $\theta$.
+- $\varphi, \psi$: raíces de la recurrencia de Fibonacci.
+:::
+
 ## Cómo usar la visualización
 
 Los puntos son los términos calculados con la recurrencia, uno por paso; los círculos huecos son los valores de la forma cerrada, que coinciden con ellos. A la derecha, las raíces características aparecen en el plano complejo junto al círculo unitario. Los controles cambian los coeficientes y los valores iniciales.
@@ -134,3 +144,48 @@ a1: 2
 ## Conexiones
 
 Una recurrencia define una de las [[sucesiones]] término a término, y la validez de su forma cerrada se demuestra con [[induccion-matematica]]. Las [[funciones-generadoras-ordinarias]] ofrecen otra forma de resolverlas, y recurrencias como las de los [[desarreglos]], los [[numeros-de-catalan]] y el [[triangulo-de-pascal]] aparecen en todo el submódulo. En series de tiempo, los modelos autorregresivos son recurrencias lineales con ruido, y su estabilidad depende de las mismas raíces características.
+
+## Formulario
+
+:::formula[Recurrencia de orden 2 y ecuación característica]
+$$
+a_n = c_1 a_{n-1} + c_2 a_{n-2}, \qquad r^{2} = c_1 r + c_2
+$$
+
+- $c_1, c_2$: coeficientes.
+- $r$: incógnita cuya solución da las raíces $r_1$, $r_2$.
+:::
+
+:::formula[Raíces distintas]
+$$
+a_n = A\,r_1^{n} + B\,r_2^{n}
+$$
+
+- $r_1 \neq r_2$: raíces de la ecuación característica.
+- $A, B$: se obtienen de $a_0$ y $a_1$.
+:::
+
+:::formula[Raíz doble]
+$$
+a_n = (A + Bn)\,r^{n}
+$$
+
+- $r$: la raíz repetida.
+:::
+
+:::formula[Raíces complejas]
+$$
+a_n = \rho^{n}(A\cos n\theta + B\sin n\theta)
+$$
+
+- $\rho$: módulo de las raíces; decide si crece ($\rho > 1$) o se amortigua ($\rho < 1$).
+- $\theta$: ángulo; decide la frecuencia de la oscilación.
+:::
+
+:::formula[Fórmula de Binet]
+$$
+F_n = \frac{\varphi^{n} - \psi^{n}}{\sqrt{5}}, \qquad \varphi = \frac{1 + \sqrt{5}}{2},\ \psi = \frac{1 - \sqrt{5}}{2}
+$$
+
+- $F_n$: número de Fibonacci $n$, con $F_0 = 0$ y $F_1 = 1$.
+:::

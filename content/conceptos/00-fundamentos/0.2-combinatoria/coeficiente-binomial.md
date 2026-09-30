@@ -56,6 +56,15 @@ Se lee "$n$ en $k$" o "$n$ sobre $k$". Son equivalentes las siguientes interpret
 2. el número de palabras de longitud $n$ con $k$ letras $a$ y $n - k$ letras $b$;
 3. el número de caminos en la rejilla desde $(0, 0)$ hasta $(n - k, k)$ con pasos unitarios a la derecha y hacia arriba.
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de elementos o de pasos.
+- $k$: número de elementos elegidos, o de pasos en una dirección.
+- $\binom{n}{k}$: coeficiente binomial, "$n$ en $k$".
+- $(n - k, k)$: punto de llegada en la rejilla, $n - k$ pasos a la derecha y $k$ hacia arriba.
+- $e \approx 2.71828$: base de los logaritmos naturales, en la cota superior.
+- $\lfloor n/2 \rfloor$: parte entera de $n/2$.
+:::
+
 ## Cómo usar la visualización
 
 Cada punto de la rejilla indica cuántos caminos llegan a él desde la esquina inferior izquierda. La reproducción dibuja todos los caminos hasta la esquina opuesta, uno por uno, y escribe el actual como una palabra de pasos R (derecha) y U (arriba). Los controles cambian las dimensiones.
@@ -107,3 +116,39 @@ bloques:
 ## Conexiones
 
 El coeficiente binomial es el número de [[combinaciones]] y cumple las [[identidades-del-coeficiente-binomial]] que organizan el [[triangulo-de-pascal]]. Da nombre al [[teorema-del-binomio]] y se generaliza al [[coeficiente-multinomial]]. Los caminos en la rejilla reaparecen en los [[numeros-de-catalan]] cuando se prohíbe cruzar la diagonal. En probabilidad, las distribuciones binomial e hipergeométrica tienen el coeficiente binomial en su fórmula.
+
+## Formulario
+
+:::formula[Coeficiente binomial]
+$$
+\binom{n}{k} = \frac{n!}{k!\,(n-k)!}, \qquad \binom{n}{k} = 0 \text{ si } k < 0 \text{ o } k > n
+$$
+
+- $n$: tamaño del conjunto.
+- $k$: tamaño del subconjunto.
+:::
+
+:::formula[Regla de Pascal]
+$$
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+$$
+
+- Se separa según un elemento fijo esté o no en el subconjunto.
+:::
+
+:::formula[Cotas]
+$$
+\left(\frac{n}{k}\right)^{k} \le \binom{n}{k} \le \left(\frac{en}{k}\right)^{k}
+$$
+
+- $e$: base de los logaritmos naturales.
+:::
+
+:::formula[Muestreo sin reemplazo]
+$$
+\#\{\text{muestras con } j \text{ defectuosas}\} = \binom{D}{j}\binom{N - D}{m - j}
+$$
+
+- $N$: tamaño del lote; $D$: defectuosas en el lote.
+- $m$: tamaño de la muestra; $j$: defectuosas en la muestra.
+:::

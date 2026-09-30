@@ -56,6 +56,12 @@ $T(n, k) = \binom{n}{k}$ para todo $0 \le k \le n$.
 Por inducción sobre $n$. Para $n = 0$ ambas valen 1. Si la igualdad vale para la fila $n - 1$, los bordes de la fila $n$ valen $1 = \binom{n}{0} = \binom{n}{n}$ y cada entrada interior es $\binom{n-1}{k-1} + \binom{n-1}{k}$, que por la regla de Pascal es $\binom{n}{k}$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $T(n, k)$: entrada del triángulo en la fila $n$ y la posición $k$, contando desde 0.
+- $n$: número de fila; $k$: posición dentro de la fila, de $0$ a $n$.
+- $\binom{n}{k}$: coeficiente binomial, que es el valor de $T(n, k)$.
+:::
+
 ## Cómo usar la visualización
 
 El triángulo se construye celda por celda. Al calcular cada celda se resaltan sus dos celdas padre y el panel muestra la suma; también se indica la suma de su fila. El control de filas cambia el tamaño.
@@ -98,3 +104,37 @@ k: 2
 ## Conexiones
 
 El triángulo organiza los valores del [[coeficiente-binomial]] y su regla de construcción es una de las [[identidades-del-coeficiente-binomial]]. Sus filas son los coeficientes del [[teorema-del-binomio]], y la versión en tres dimensiones corresponde al [[coeficiente-multinomial]]. La recursión que lo define es un ejemplo de [[relaciones-de-recurrencia-lineales|recurrencia]] con dos índices. En probabilidad, la fila $n$ dividida entre $2^n$ es la distribución binomial con $p = 1/2$.
+
+## Formulario
+
+:::formula[Regla de construcción]
+$$
+T(n, 0) = T(n, n) = 1, \qquad T(n, k) = T(n-1, k-1) + T(n-1, k)
+$$
+
+- Los bordes valen 1; cada entrada interior suma las dos de arriba.
+:::
+
+:::formula[Entradas del triángulo]
+$$
+T(n, k) = \binom{n}{k}
+$$
+
+- $n$: fila; $k$: posición.
+:::
+
+:::formula[Suma de la fila n]
+$$
+\sum_{k=0}^{n} T(n, k) = 2^{n}
+$$
+
+- $2^n$: número de subconjuntos de un conjunto de $n$ elementos.
+:::
+
+:::formula[Diagonales]
+$$
+T(n, 1) = n, \qquad T(n, 2) = \frac{n(n-1)}{2}
+$$
+
+- La segunda diagonal son los naturales y la tercera los números triangulares.
+:::

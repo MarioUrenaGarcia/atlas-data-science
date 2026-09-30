@@ -67,6 +67,14 @@ $$
 Un elemento que pertenece a exactamente $m \ge 1$ de los conjuntos aparece en $\binom{m}{j}$ de las intersecciones de $j$ conjuntos. Su contribución total es $\sum_{j=1}^{m} (-1)^{j+1}\binom{m}{j} = 1 - \sum_{j=0}^{m} (-1)^{j}\binom{m}{j} = 1 - (1 - 1)^m = 1$, por el teorema del binomio.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $A_1, \dots, A_n$: los conjuntos cuya unión se cuenta; $n$ es cuántos son.
+- $S$: un subconjunto no vacío de índices $\{1, \dots, n\}$; $|S|$ es su tamaño.
+- $\bigcap_{i \in S} A_i$: intersección de los conjuntos cuyos índices están en $S$.
+- $(-1)^{|S|+1}$: signo del término, positivo con un número impar de conjuntos.
+- $U$: universo; $\lfloor x \rfloor$: parte entera de $x$ (en el ejemplo de divisibilidad).
+:::
+
 ## Cómo usar la visualización
 
 El universo son los números del 1 al 30 y los conjuntos son los múltiplos de 2, de 3 y de 5. La reproducción aplica un término de la fórmula a la vez y sombrea las regiones afectadas, en verde si se suma y en naranja si se resta. El número grande de cada región indica cuántas veces se han contado sus elementos hasta ese momento.
@@ -125,3 +133,46 @@ consultas:
 ## Conexiones
 
 El principio generaliza el [[principio-de-la-suma]] a conjuntos que se traslapan y se lee directamente en los [[diagramas-de-venn]]. Su demostración usa el [[teorema-del-binomio]]. Permite contar los [[desarreglos]] y las funciones suprayectivas, y está detrás de la fórmula explícita de los [[numeros-de-stirling-de-segunda-especie]]. En probabilidad da la probabilidad de una unión de eventos y resuelve el problema clásico de las coincidencias.
+
+## Formulario
+
+:::formula[Dos conjuntos]
+$$
+|A \cup B| = |A| + |B| - |A \cap B|
+$$
+
+- $|A \cap B|$: los comunes, contados dos veces en la suma.
+:::
+
+:::formula[Tres conjuntos]
+$$
+|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
+$$
+
+- Se suman los conjuntos, se restan las intersecciones de dos y se suma la de tres.
+:::
+
+:::formula[Forma general]
+$$
+\left|\bigcup_{i=1}^{n} A_i\right| = \sum_{\varnothing \neq S \subseteq \{1, \dots, n\}} (-1)^{|S|+1} \left|\bigcap_{i \in S} A_i\right|
+$$
+
+- $S$: cada grupo de índices.
+- $|S|$: cuántos conjuntos intervienen en ese término.
+:::
+
+:::formula[Ninguno de los conjuntos]
+$$
+|U| - \left|\bigcup_{i} A_i\right| = \sum_{S \subseteq \{1, \dots, n\}} (-1)^{|S|} \left|\bigcap_{i \in S} A_i\right|
+$$
+
+- La intersección vacía ($S = \varnothing$) se toma igual a $U$.
+:::
+
+:::formula[Múltiplos de d hasta N]
+$$
+|A_d| = \left\lfloor \frac{N}{d} \right\rfloor
+$$
+
+- $N$: último número considerado; $d$: divisor.
+:::

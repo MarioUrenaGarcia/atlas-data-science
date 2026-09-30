@@ -59,6 +59,14 @@ Para enteros no negativos, con la convención $\binom{n}{k} = 0$ fuera de $0 \le
 Para la regla de Pascal, se fija el elemento $n$ del conjunto $\{1, \dots, n\}$. Los subconjuntos de tamaño $k$ que lo contienen se forman eligiendo $k - 1$ de los otros $n - 1$; los que no lo contienen, eligiendo $k$ de los otros $n - 1$. Los dos casos son disjuntos y cubren todo, así que se suman. Para Vandermonde, un comité de $r$ personas de dos grupos de tamaños $m$ y $p$ tiene $j$ miembros del primero y $r - j$ del segundo para un único $j$; para cada $j$ hay $\binom{m}{j}\binom{p}{r-j}$ comités.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de elementos; $k$: tamaño del subconjunto.
+- $m$, $p$: tamaños de los dos grupos en la identidad de Vandermonde.
+- $r$: tamaño del comité que se forma con ambos grupos.
+- $j$: cuántos miembros del comité vienen del primer grupo.
+- $\sum$: suma sobre todos los valores posibles del índice.
+:::
+
 ## Cómo usar la visualización
 
 Se listan todos los objetos que cuenta el lado izquierdo de la identidad y cada uno se deposita en la columna del término del lado derecho que lo cuenta. El selector cambia de identidad; los controles ajustan $n$, $k$ y el tamaño de los grupos para Vandermonde.
@@ -99,3 +107,48 @@ grupos: [4, 4]
 ## Conexiones
 
 Estas identidades describen propiedades del [[coeficiente-binomial]]. La regla de Pascal construye el [[triangulo-de-pascal]], y la suma de una fila cuenta el [[conjunto-potencia]]. Las demostraciones separan en casos con el [[principio-de-la-suma]]. En probabilidad, Vandermonde garantiza que las probabilidades de la distribución hipergeométrica suman 1.
+
+## Formulario
+
+:::formula[Simetría]
+$$
+\binom{n}{k} = \binom{n}{n-k}
+$$
+
+- Elegir $k$ que entran equivale a elegir $n - k$ que quedan fuera.
+:::
+
+:::formula[Regla de Pascal]
+$$
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+$$
+
+- $\binom{n-1}{k-1}$: subconjuntos que contienen un elemento fijo.
+- $\binom{n-1}{k}$: los que no lo contienen.
+:::
+
+:::formula[Identidad de Vandermonde]
+$$
+\binom{m + p}{r} = \sum_{j=0}^{r} \binom{m}{j}\binom{p}{r - j}
+$$
+
+- $m$, $p$: tamaños de los grupos.
+- $r$: tamaño del comité; $j$: miembros del primer grupo.
+:::
+
+:::formula[Suma de una fila y suma de cuadrados]
+$$
+\sum_{k=0}^{n} \binom{n}{k} = 2^{n}, \qquad \sum_{k=0}^{n} \binom{n}{k}^{2} = \binom{2n}{n}
+$$
+
+- $2^n$: todos los subconjuntos.
+- La suma de cuadrados es Vandermonde con $m = p = r = n$.
+:::
+
+:::formula[Absorción y palo de hockey]
+$$
+k\binom{n}{k} = n\binom{n-1}{k-1}, \qquad \sum_{i=k}^{n} \binom{i}{k} = \binom{n+1}{k+1}
+$$
+
+- $i$: índice que recorre las filas del triángulo.
+:::

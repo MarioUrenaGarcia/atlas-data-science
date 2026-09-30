@@ -57,6 +57,14 @@ $$
 A cada solución se le asocia la fila con $x_1$ estrellas, una barra, $x_2$ estrellas, una barra, y así hasta $x_n$ estrellas. La fila tiene $k$ estrellas y $n - 1$ barras, y la correspondencia es biyectiva: de cualquier fila así se leen los $x_i$ contando las estrellas entre barras. Hay $\binom{n + k - 1}{n - 1}$ formas de elegir las posiciones de las barras.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de tipos de objetos.
+- $k$: número de objetos que se eligen, con posibles repeticiones de tipo.
+- $x_i$: cuántos objetos del tipo $i$ se eligen, un entero mayor o igual que 0.
+- $\left(\!\binom{n}{k}\!\right)$: número de multiconjuntos de tamaño $k$ sobre $n$ tipos.
+- Estrellas: los $k$ objetos; barras: las $n - 1$ divisiones entre tipos.
+:::
+
 ## Cómo usar la visualización
 
 Arriba se dibuja la compra actual como estrellas de colores separadas por barras, con el número de paletas de cada sabor debajo. La reproducción lista todas las compras en su forma de estrellas y barras. Los controles cambian el número de sabores y de paletas.
@@ -96,3 +104,31 @@ k: 10
 ## Conexiones
 
 Estrellas y barras reduce el conteo de multiconjuntos a las [[combinaciones]] mediante una biyección, como en [[funciones-inyectivas-suprayectivas-y-biyectivas]]. Las soluciones enteras de ecuaciones reaparecen en las [[particiones-de-enteros]], donde el orden de los sumandos tampoco importa pero los grupos no están etiquetados, y en las [[funciones-generadoras-ordinarias]]. En probabilidad, este conteo describe la estadística de Bose y Einstein.
+
+## Formulario
+
+:::formula[Estrellas y barras]
+$$
+\left(\!\binom{n}{k}\!\right) = \binom{n + k - 1}{k} = \binom{n + k - 1}{n - 1}
+$$
+
+- $n$: tipos.
+- $k$: objetos elegidos.
+- $n + k - 1$: número total de símbolos (estrellas y barras).
+:::
+
+:::formula[Soluciones no negativas]
+$$
+x_1 + \dots + x_n = k,\ x_i \ge 0: \quad \binom{n + k - 1}{n - 1} \text{ soluciones}
+$$
+
+- $x_i$: cantidad asignada al tipo o grupo $i$.
+:::
+
+:::formula[Soluciones positivas]
+$$
+x_1 + \dots + x_n = k,\ x_i \ge 1: \quad \binom{k - 1}{n - 1} \text{ soluciones}
+$$
+
+- Se asigna uno a cada grupo y se reparten los $k - n$ restantes.
+:::

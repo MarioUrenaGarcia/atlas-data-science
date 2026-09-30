@@ -54,6 +54,16 @@ El número de permutaciones de $n$ objetos distintos es $n!$.
 
 Las permutaciones de $\{1, \dots, n\}$ en sí mismo forman el **grupo simétrico** $S_n$: la composición de dos permutaciones es una permutación y toda permutación tiene inversa.
 
+:::nota[Qué significa cada símbolo]
+- $A$: conjunto de objetos que se ordenan; $n = |A|$, cuántos son.
+- $(a_1, \dots, a_n)$: una permutación, los objetos en un orden.
+- $\sigma$: una permutación vista como función de las posiciones en los objetos.
+- $\sigma(i)$: objeto en la posición $i$; si $\sigma(i) = i$, $i$ es un punto fijo.
+- $\sigma^{-1}$: la permutación inversa.
+- $S_n$: el conjunto de todas las permutaciones de $n$ objetos.
+- $n!$: factorial de $n$.
+:::
+
 ## Cómo usar la visualización
 
 Las casillas representan las posiciones del relevo y, debajo de cada una, el número de corredores disponibles en ese momento: 4, 3, 2 y 1. La reproducción lista todas las ordenaciones en orden alfabético y muestra la última en las casillas. El panel lleva el total $4! = 24$.
@@ -135,3 +145,32 @@ escenarios:
 ## Conexiones
 
 Las permutaciones cuentan con el [[factorial]] y son las biyecciones estudiadas en [[funciones-inyectivas-suprayectivas-y-biyectivas]]. Al elegir solo algunas posiciones se obtienen [[variaciones]]; con objetos repetidos, [[permutaciones-con-repeticion]]; en una mesa redonda, [[permutaciones-circulares]]; y sin puntos fijos, [[desarreglos]]. En estadística, las pruebas de permutación comparan un estadístico con su valor bajo reordenamientos aleatorios de las etiquetas.
+
+## Formulario
+
+:::formula[Número de permutaciones]
+$$
+P_n = n!
+$$
+
+- $n$: número de objetos distintos.
+- $P_n$: número de ordenamientos de todos ellos.
+:::
+
+:::formula[Con un objeto fijo]
+$$
+(n - 1)!
+$$
+
+- Si un objeto tiene lugar asignado, solo se ordenan los $n - 1$ restantes.
+:::
+
+:::formula[Objetos que deben ir juntos]
+$$
+(n - k + 1)! \cdot k!
+$$
+
+- $k$: número de objetos que forman un bloque.
+- $n - k + 1$: unidades a ordenar (el bloque cuenta como una).
+- $k!$: órdenes dentro del bloque.
+:::

@@ -55,6 +55,14 @@ $$
 Al desarrollar el producto de $n$ factores $(a + b)$ se obtiene la suma de los $2^n$ productos que resultan de elegir $a$ o $b$ en cada factor. Un producto vale $a^{n-k}b^k$ exactamente cuando se eligió $b$ en $k$ factores, y hay $\binom{n}{k}$ formas de elegir esos factores.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $a, b$: los dos sumandos del binomio; pueden ser números o expresiones como $2x$ y $-3$.
+- $n$: exponente, un entero no negativo.
+- $k$: número de factores en los que se elige $b$; va de $0$ a $n$.
+- $\binom{n}{k}$: coeficiente binomial, cuántas formas hay de elegir esos $k$ factores.
+- $\alpha$: exponente real en el binomio generalizado.
+:::
+
 ## Cómo usar la visualización
 
 Las palabras de $a$ y $b$ representan las elecciones en cada factor. La reproducción las reparte en columnas según su número de letras $b$; cada columna $k$ recibe $\binom{n}{k}$ palabras. Las barras muestran los términos $\binom{n}{k}a^{n-k}b^k$ con los valores elegidos de $a$ y $b$, y se llenan conforme llegan sus palabras. El panel compara la suma acumulada con $(a + b)^n$.
@@ -97,3 +105,40 @@ b: -3
 ## Conexiones
 
 Los coeficientes del desarrollo son los del [[coeficiente-binomial]], organizados en el [[triangulo-de-pascal]]. La generalización a más de dos sumandos es el [[coeficiente-multinomial]], y la versión con exponente real conecta con las [[series-y-convergencia-de-series|series]]. En probabilidad, el teorema del binomio prueba que la distribución binomial está bien definida y permite calcular su función generadora.
+
+## Formulario
+
+:::formula[Teorema del binomio]
+$$
+(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^{k}
+$$
+
+- $a, b$: sumandos que conmutan.
+- $n$: exponente.
+- $k$: potencia de $b$ en cada término; la de $a$ es $n - k$.
+:::
+
+:::formula[Término general]
+$$
+T_k = \binom{n}{k} a^{n-k} b^{k}
+$$
+
+- $T_k$: término con $b$ elevada a la $k$.
+:::
+
+:::formula[Sumas de filas]
+$$
+\sum_{k=0}^{n} \binom{n}{k} = 2^{n}, \qquad \sum_{k=0}^{n} (-1)^k\binom{n}{k} = 0 \ (n \ge 1)
+$$
+
+- Se obtienen con $a = b = 1$ y con $a = 1$, $b = -1$.
+:::
+
+:::formula[Binomio generalizado]
+$$
+(1 + x)^{\alpha} = \sum_{k \ge 0} \binom{\alpha}{k} x^{k}, \qquad \binom{\alpha}{k} = \frac{\alpha(\alpha-1)\cdots(\alpha-k+1)}{k!}, \quad |x| < 1
+$$
+
+- $\alpha$: exponente real cualquiera.
+- $x$: variable con valor absoluto menor que 1.
+:::

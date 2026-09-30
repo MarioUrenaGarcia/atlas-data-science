@@ -62,6 +62,15 @@ $$
 La recurrencia se obtiene separando las particiones según el bloque del elemento $n$: si está solo, al quitarlo queda una partición de los demás en $k - 1$ bloques; si no, al quitarlo queda una partición en $k$ bloques, y hay $k$ formas de reinsertarlo. La fórmula explícita cuenta con inclusión y exclusión las funciones suprayectivas de un conjunto de $n$ elementos en uno de $k$, que son $k!\,S(n, k)$ porque cada partición en $k$ bloques da $k!$ suprayecciones al asignar un valor distinto a cada bloque.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de elementos distintos.
+- $k$: número de bloques no vacíos, sin etiqueta.
+- $S(n, k)$: número de Stirling de segunda especie.
+- $j$: índice de la suma en la fórmula explícita (cuántos bloques se dejan vacíos).
+- $k!$: formas de ponerle nombre a los $k$ bloques.
+- $x(x-1)\cdots(x-k+1)$: factorial descendente de $x$.
+:::
+
 ## Cómo usar la visualización
 
 Los elementos están en un círculo y cada bloque de la partición actual se dibuja como una figura sombreada que une a sus miembros. La reproducción lista todas las particiones en $k$ bloques y las coloca en dos columnas: aquellas en que el último elemento está solo y aquellas en que comparte bloque. El panel muestra ambos conteos junto con la recurrencia.
@@ -103,3 +112,39 @@ k: 3
 ## Conexiones
 
 Los números de Stirling de segunda especie cuentan [[particiones-de-un-conjunto]] con un número fijo de bloques, y su fórmula explícita proviene del [[principio-de-inclusion-y-exclusion]]. Su suma sobre $k$ da los [[numeros-de-bell]]. La recurrencia es análoga a la regla de Pascal de las [[identidades-del-coeficiente-binomial]], con un factor $k$ que refleja la elección del bloque.
+
+## Formulario
+
+:::formula[Recurrencia]
+$$
+S(n, k) = S(n-1, k-1) + k\,S(n-1, k)
+$$
+
+- $S(n-1, k-1)$: el último elemento forma un bloque solo.
+- $k\,S(n-1, k)$: el último elemento se une a uno de los $k$ bloques.
+:::
+
+:::formula[Fórmula explícita]
+$$
+S(n, k) = \frac{1}{k!}\sum_{j=0}^{k} (-1)^{j}\binom{k}{j}(k-j)^{n}
+$$
+
+- $(k - j)^n$: funciones de $n$ elementos en $k - j$ bloques con nombre.
+- El $\frac{1}{k!}$ quita los nombres de los bloques.
+:::
+
+:::formula[Funciones suprayectivas]
+$$
+\#\{\text{suprayectivas de } n \text{ en } k\} = k!\,S(n, k)
+$$
+
+- $k!$: formas de asignar un valor distinto a cada bloque.
+:::
+
+:::formula[Casos particulares]
+$$
+S(n, 1) = S(n, n) = 1, \qquad S(n, 2) = 2^{n-1} - 1, \qquad S(n, n-1) = \binom{n}{2}
+$$
+
+- Se comprueban contando directamente.
+:::

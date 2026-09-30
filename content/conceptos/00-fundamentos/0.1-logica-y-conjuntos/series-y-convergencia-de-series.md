@@ -55,6 +55,16 @@ La serie $\sum_{n=1}^{\infty} a_n$ **converge** a $S$ si $S_N \to S$, y entonces
 
 La serie **converge absolutamente** si $\sum |a_n|$ converge, y **converge condicionalmente** si converge pero no absolutamente.
 
+:::nota[Qué significa cada símbolo]
+- $a_n$: término $n$ de la sucesión que se suma.
+- $S_N$: suma parcial, la suma de los primeros $N$ términos.
+- $S$: suma de la serie, el límite de las sumas parciales.
+- $\sum_{n=1}^{\infty}$: suma de todos los términos desde $n = 1$.
+- $|a_n|$: valor absoluto de cada término, que se usa en la convergencia absoluta.
+- $p$ (en las series $p$): el exponente de $1/n^p$.
+- $\rho$ (criterio de la razón): límite de $|a_{n+1}/a_n|$.
+:::
+
 ## Cómo usar la visualización
 
 Las barras claras son los términos $a_n$ y la línea es la sucesión de sumas parciales $S_n$. Cuando la serie converge, una línea discontinua marca su suma. El panel muestra el último término, la suma parcial y la suma de la serie.
@@ -111,3 +121,49 @@ terminos: 400
 ## Conexiones
 
 Una serie es el límite de la sucesión de sumas parciales, así que depende del concepto de límite de [[sucesiones]]. La [[serie-geometrica]] es el caso que se suma en forma cerrada, y la [[notacion-sumatoria-y-productoria]] es el lenguaje con el que se escriben. En probabilidad, la esperanza de una variable discreta es una serie, y existe solo cuando converge absolutamente.
+
+## Formulario
+
+:::formula[Suma parcial y suma de una serie]
+$$
+S_N = \sum_{n=1}^{N} a_n, \qquad \sum_{n=1}^{\infty} a_n = \lim_{N \to \infty} S_N
+$$
+
+- $a_n$: término $n$.
+- $N$: número de términos sumados.
+- $S_N$: suma parcial.
+:::
+
+:::formula[Condición necesaria]
+$$
+\sum a_n \text{ converge} \Rightarrow a_n \to 0
+$$
+
+- El recíproco es falso: la serie armónica tiene términos que tienden a 0 y diverge.
+:::
+
+:::formula[Series p]
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^{p}} \text{ converge} \iff p > 1
+$$
+
+- $p$: exponente; con $p = 1$ es la serie armónica.
+:::
+
+:::formula[Criterio de la razón]
+$$
+\rho = \lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right|: \quad \rho < 1 \Rightarrow \text{converge}, \quad \rho > 1 \Rightarrow \text{diverge}
+$$
+
+- $a_{n+1}/a_n$: cociente entre un término y el anterior.
+- $\rho$: su límite en valor absoluto.
+:::
+
+:::formula[Serie telescópica del ejemplo]
+$$
+\sum_{n=1}^{N} \frac{1}{n(n+1)} = 1 - \frac{1}{N+1}
+$$
+
+- $N$: número de términos sumados.
+- Cada término es $\frac{1}{n} - \frac{1}{n+1}$ y casi todos se cancelan.
+:::

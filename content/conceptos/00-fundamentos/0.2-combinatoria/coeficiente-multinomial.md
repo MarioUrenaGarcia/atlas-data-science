@@ -56,6 +56,14 @@ $$
 donde la suma recorre todas las $r$-tuplas de enteros no negativos con suma $n$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número total de objetos (o exponente de la potencia).
+- $r$: número de grupos o de variables.
+- $k_i$: tamaño del grupo $i$ (o exponente de $x_i$), con $k_1 + \dots + k_r = n$.
+- $x_1, \dots, x_r$: variables de la suma que se eleva a la $n$.
+- $\binom{n}{k_1, \dots, k_r}$: coeficiente multinomial.
+:::
+
 ## Cómo usar la visualización
 
 Cada celda del triángulo corresponde a un término $x^i y^j z^k$ de $(x + y + z)^n$ con $i + j + k = n$; la fila indica el exponente de $z$ y la posición dentro de la fila el de $y$. Su número es el coeficiente $\frac{n!}{i!\,j!\,k!}$ y su color es más intenso cuanto mayor es. La reproducción llena las celdas una por una y acumula la suma de coeficientes.
@@ -101,3 +109,31 @@ n: 6
 ## Conexiones
 
 El coeficiente multinomial generaliza el [[coeficiente-binomial]] y el [[teorema-del-binomio]], y es el número de [[permutaciones-con-repeticion]] de un multiconjunto. Sus términos se cuentan con [[combinaciones-con-repeticion|estrellas y barras]]. En probabilidad, es la constante de la distribución multinomial, que describe los recuentos de resultados en ensayos independientes con más de dos resultados posibles.
+
+## Formulario
+
+:::formula[Coeficiente multinomial]
+$$
+\binom{n}{k_1, \dots, k_r} = \frac{n!}{k_1!\cdots k_r!}, \qquad k_1 + \dots + k_r = n
+$$
+
+- $n$: objetos totales.
+- $k_i$: tamaño del grupo $i$.
+:::
+
+:::formula[Teorema multinomial]
+$$
+(x_1 + \dots + x_r)^n = \sum_{k_1 + \dots + k_r = n} \binom{n}{k_1, \dots, k_r} x_1^{k_1}\cdots x_r^{k_r}
+$$
+
+- La suma recorre todas las listas de exponentes no negativos que suman $n$.
+:::
+
+:::formula[Suma y número de términos]
+$$
+\sum \binom{n}{k_1, \dots, k_r} = r^{n}, \qquad \#\text{términos} = \binom{n + r - 1}{r - 1}
+$$
+
+- $r^n$: se obtiene con todas las variables iguales a 1.
+- El número de términos se cuenta con estrellas y barras.
+:::

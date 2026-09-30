@@ -62,6 +62,15 @@ Sea $\varphi$ una fórmula proposicional con variables $p_1, \dots, p_k$. Una **
 
 Dos fórmulas $\varphi$ y $\psi$ son **equivalentes** si y solo si $\varphi \leftrightarrow \psi$ es una tautología. Un argumento con premisas $\varphi_1, \dots, \varphi_m$ y conclusión $\psi$ es **válido** si y solo si $(\varphi_1 \land \dots \land \varphi_m) \rightarrow \psi$ es una tautología.
 
+:::nota[Qué significa cada símbolo]
+- $\varphi, \psi$: fórmulas proposicionales, combinaciones de variables con conectivos.
+- $p_1, \dots, p_k$: las variables de la fórmula; $k$ es cuántas hay.
+- $v$: una asignación, la elección de V o F para cada variable (una fila de la tabla).
+- $2^k$: número de filas de la tabla.
+- $\varphi_1, \dots, \varphi_m$: premisas de un argumento; $m$ es su número.
+- $\psi$ (en un argumento): la conclusión.
+:::
+
 ## Cómo usar la visualización
 
 La visualización llena la tabla celda por celda. Las primeras columnas contienen los valores de las variables; las siguientes, cada subfórmula en el orden en que se evalúa, y la última columna, remarcada, la fórmula completa. Al terminar se indica si es tautología, contradicción o contingencia.
@@ -118,3 +127,46 @@ formulas: [tercero-excluido, contradiccion, conjuncion, silogismo]
 ## Conexiones
 
 Las tablas se construyen a partir de los [[proposiciones-y-conectivos-logicos|conectivos lógicos]]. Con ellas se verifican las [[leyes-de-de-morgan]] en su versión lógica. El conteo de filas es una aplicación del principio del producto, y el número de subconjuntos de variables verdaderas se relaciona con el [[conjunto-potencia]].
+
+## Formulario
+
+:::formula[Número de filas]
+$$
+\text{filas} = 2^{k}
+$$
+
+- $k$: número de variables proposicionales distintas en la fórmula.
+- $2$: cada variable puede valer V o F.
+- $2^k$: número de asignaciones posibles, una por fila.
+:::
+
+:::formula[Número de tablas distintas]
+$$
+\text{funciones booleanas} = 2^{2^{k}}
+$$
+
+- $k$: número de variables.
+- $2^k$: número de filas.
+- $2^{2^k}$: número de formas de llenar la última columna con V o F.
+:::
+
+:::formula[Equivalencia]
+$$
+\varphi \equiv \psi \iff (\varphi \leftrightarrow \psi) \text{ es tautología}
+$$
+
+- $\varphi, \psi$: las dos fórmulas que se comparan.
+- $\leftrightarrow$: bicondicional.
+- Tautología: fórmula verdadera en todas las filas.
+:::
+
+:::formula[Argumento válido]
+$$
+(\varphi_1 \land \dots \land \varphi_m) \rightarrow \psi \ \text{ es tautología}
+$$
+
+- $\varphi_1, \dots, \varphi_m$: las $m$ premisas.
+- $\psi$: la conclusión.
+- $\land$: conjunción de todas las premisas.
+- $\rightarrow$: condicional; si es tautología, cada fila con premisas verdaderas tiene conclusión verdadera.
+:::

@@ -51,6 +51,15 @@ Sus elementos son conjuntos. Siempre $\varnothing \in \mathcal{P}(S)$ y $S \in \
 
 Si $S = \{s_1, \dots, s_n\}$ es finito, cada subconjunto $A$ se identifica con el vector $(\mathbf{1}\{s_1 \in A\}, \dots, \mathbf{1}\{s_n \in A\}) \in \{0, 1\}^n$. Esta correspondencia es biyectiva, por lo que $|\mathcal{P}(S)| = 2^n$.
 
+:::nota[Qué significa cada símbolo]
+- $S$: el conjunto de partida; $n = |S|$, su número de elementos.
+- $\mathcal{P}(S)$: conjunto potencia, el conjunto de todos los subconjuntos de $S$.
+- $A \subseteq S$: $A$ es un subconjunto de $S$.
+- $\mathbf{1}\{s_i \in A\}$: indicadora, vale 1 si $s_i$ está en $A$ y 0 si no.
+- $\{0, 1\}^n$: cadenas de $n$ ceros y unos.
+- $\binom{n}{k}$: número de subconjuntos con exactamente $k$ elementos.
+:::
+
 ## Cómo usar la visualización
 
 Cada rectángulo es un subconjunto, con su código binario debajo. Los subconjuntos se acomodan por niveles según su tamaño, del vacío abajo al conjunto completo arriba, y las líneas unen subconjuntos que difieren en un solo elemento. La reproducción los genera en el orden de su código, $000$, $001$, $010$, y así sucesivamente, resaltando el actual.
@@ -103,3 +112,41 @@ n: 4
 ## Conexiones
 
 El conjunto potencia se define con la noción de subconjunto de [[conjuntos-y-notacion]]. El [[argumento-diagonal-de-cantor]] usa la misma idea que el teorema de Cantor para mostrar que hay infinitos de distintos tamaños, como se estudia en [[cardinalidad-finita-numerable-y-no-numerable]]. En probabilidad, los eventos de un espacio muestral finito son los elementos de su conjunto potencia, y en combinatoria los subconjuntos de tamaño fijo se cuentan con coeficientes binomiales.
+
+## Formulario
+
+:::formula[Conjunto potencia]
+$$
+\mathcal{P}(S) = \{A : A \subseteq S\}
+$$
+
+- $S$: conjunto de partida.
+- $A$: cualquier subconjunto de $S$, incluidos $\varnothing$ y $S$.
+:::
+
+:::formula[Número de subconjuntos]
+$$
+|\mathcal{P}(S)| = 2^{n}, \qquad n = |S|
+$$
+
+- $n$: número de elementos de $S$.
+- $2$: cada elemento está o no está en el subconjunto.
+:::
+
+:::formula[Subconjuntos por tamaño]
+$$
+\sum_{k=0}^{n} \binom{n}{k} = 2^{n}
+$$
+
+- $k$: tamaño del subconjunto, de $0$ a $n$.
+- $\binom{n}{k}$: número de subconjuntos de tamaño $k$.
+:::
+
+:::formula[Teorema de Cantor]
+$$
+|S| < |\mathcal{P}(S)|
+$$
+
+- $S$: cualquier conjunto, finito o infinito.
+- $<$: no existe una función suprayectiva de $S$ en $\mathcal{P}(S)$.
+:::

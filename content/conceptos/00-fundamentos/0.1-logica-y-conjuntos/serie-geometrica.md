@@ -54,6 +54,15 @@ $$
 La serie geométrica converge si y solo si $|r| < 1$, y en ese caso $\sum_{k=0}^{\infty} a r^k = \dfrac{a}{1 - r}$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $a$: primer término de la serie.
+- $r$: razón, el número por el que se multiplica cada término para obtener el siguiente.
+- $k$: exponente de $r$ en cada término, empieza en 0.
+- $n$: número de términos sumados.
+- $S_n$: suma parcial de los primeros $n$ términos.
+- $|r|$: valor absoluto de la razón.
+:::
+
 ## Cómo usar la visualización
 
 Cada término $a r^{k}$ se apila como un segmento de una barra, y la reproducción agrega un segmento a la vez. Cuando $|r| < 1$ una línea marca el límite $a/(1 - r)$, y cada segmento nuevo cubre la misma fracción de lo que falta. El panel compara la suma parcial con el límite.
@@ -107,3 +116,42 @@ primero: 1
 ## Conexiones
 
 Es el ejemplo fundamental de [[series-y-convergencia-de-series]] y el punto de comparación de varios criterios de convergencia. Su suma parcial se deduce con la [[notacion-sumatoria-y-productoria|notación sumatoria]] y se demuestra también por [[induccion-matematica]]. En probabilidad aparece en la distribución geométrica, en el valor presente de flujos con descuento y en los modelos autorregresivos, cuyas respuestas a impulsos decaen geométricamente.
+
+## Formulario
+
+:::formula[Suma parcial]
+$$
+S_n = \sum_{k=0}^{n-1} a r^{k} = a\,\frac{1 - r^{n}}{1 - r} \quad (r \neq 1)
+$$
+
+- $a$: primer término.
+- $r$: razón.
+- $n$: número de términos.
+- Con $r = 1$, $S_n = na$.
+:::
+
+:::formula[Suma infinita]
+$$
+\sum_{k=0}^{\infty} a r^{k} = \frac{a}{1 - r} \quad (|r| < 1)
+$$
+
+- $|r| < 1$: condición para que la serie converja.
+- $a$: primer término que se suma.
+:::
+
+:::formula[Error al truncar]
+$$
+\frac{a}{1 - r} - S_n = \frac{a r^{n}}{1 - r}
+$$
+
+- $S_n$: suma de los primeros $n$ términos.
+- $a r^{n}$: primer término que se deja fuera.
+:::
+
+:::formula[Derivada de la serie]
+$$
+\sum_{k=1}^{\infty} k r^{k-1} = \frac{1}{(1 - r)^2} \quad (|r| < 1)
+$$
+
+- $k$: índice del término; aparece multiplicando porque se derivó $r^k$.
+:::

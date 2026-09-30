@@ -64,6 +64,16 @@ $$
 \forall x\, P(x) \equiv P(a_1) \land \dots \land P(a_n), \qquad \exists x\, P(x) \equiv P(a_1) \lor \dots \lor P(a_n).
 $$
 
+:::nota[Qué significa cada símbolo]
+- $D$: dominio, el conjunto de valores que puede tomar $x$.
+- $x$: variable que recorre el dominio.
+- $P(x)$: predicado, afirmación que se vuelve verdadera o falsa al sustituir $x$.
+- $\forall$: "para todo".
+- $\exists$: "existe al menos un".
+- $a, a_1, \dots, a_n$: elementos concretos del dominio; $n$ es el número de elementos si $D$ es finito.
+- $\iff$: "si y solo si".
+:::
+
 ## Cómo usar la visualización
 
 Cada círculo es un elemento del dominio. La reproducción los revisa en orden: verde si cumple el predicado y naranja si no. Arriba se lleva el estado de las dos afirmaciones; la universal se decide en falso con el primer contraejemplo, y la existencial en verdadero con el primer testigo. Los controles cambian el predicado, el primer elemento y el tamaño del dominio.
@@ -120,3 +130,36 @@ ejemplos:
 ## Conexiones
 
 Los cuantificadores extienden los [[proposiciones-y-conectivos-logicos|conectivos lógicos]]: sobre un dominio finito son conjunciones y disyunciones largas. La notación por comprensión de [[conjuntos-y-notacion]] usa predicados para definir conjuntos, y la [[induccion-matematica]] es la herramienta para demostrar afirmaciones universales sobre los naturales. Las definiciones de límite en [[sucesiones]] combinan varios cuantificadores en un orden preciso.
+
+## Formulario
+
+:::formula[Negación del cuantificador universal]
+$$
+\lnot\,\forall x \in D:\ P(x) \iff \exists x \in D:\ \lnot P(x)
+$$
+
+- $\forall x \in D$: "para todo $x$ del dominio $D$".
+- $\exists x \in D$: "existe un $x$ en $D$".
+- $P(x)$: el predicado; $\lnot P(x)$, su negación.
+- El $x$ que cumple $\lnot P(x)$ es un contraejemplo.
+:::
+
+:::formula[Negación del cuantificador existencial]
+$$
+\lnot\,\exists x \in D:\ P(x) \iff \forall x \in D:\ \lnot P(x)
+$$
+
+- $D$: dominio.
+- $P(x)$: predicado.
+- La afirmación dice que ningún elemento de $D$ cumple $P$.
+:::
+
+:::formula[Cuantificadores en un dominio finito]
+$$
+\forall x\, P(x) \equiv P(a_1) \land \dots \land P(a_n), \qquad \exists x\, P(x) \equiv P(a_1) \lor \dots \lor P(a_n)
+$$
+
+- $a_1, \dots, a_n$: los $n$ elementos del dominio finito $D$.
+- $\land$: todos deben cumplir.
+- $\lor$: basta que uno cumpla.
+:::

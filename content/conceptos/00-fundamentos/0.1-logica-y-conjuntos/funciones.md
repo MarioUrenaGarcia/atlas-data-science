@@ -73,6 +73,17 @@ curvas: [parabola, circulo, parabola-lateral, seno, elipse, raiz]
 ```
 :::
 
+:::nota[Qué significa cada símbolo]
+- $f: A \to B$: función $f$ con dominio $A$ y codominio $B$.
+- $A$: dominio, conjunto de entradas.
+- $B$: codominio, conjunto donde pueden caer las salidas.
+- $f(a)$: la salida que corresponde a la entrada $a$.
+- $f(A)$: imagen, las salidas que realmente se alcanzan.
+- $C \subseteq A$ y $f(C)$: imagen de una parte del dominio.
+- $D \subseteq B$ y $f^{-1}(D)$: preimagen, las entradas cuyas salidas caen en $D$.
+- $\exists!$: "existe exactamente uno".
+:::
+
 ## Cómo usar la visualización
 
 A la izquierda está el dominio y a la derecha el codominio. La reproducción dibuja las flechas una por una y al final el panel dice si el diagrama es una función; los elementos que lo impiden se marcan en naranja y la imagen se sombrea en verde. Para editar, se hace clic en un elemento del dominio y luego en uno del codominio: la flecha se agrega o, si ya existía, se borra.
@@ -133,3 +144,42 @@ funciones:
 ## Conexiones
 
 Una función es un subconjunto del [[producto-cartesiano]] con una condición de unicidad. Sus tipos se estudian en [[funciones-inyectivas-suprayectivas-y-biyectivas]] y se combinan en [[funcion-inversa-y-composicion]]. Las [[sucesiones]] son funciones con dominio en los naturales, y en probabilidad una variable aleatoria es una función del espacio muestral en los reales.
+
+## Formulario
+
+:::formula[Definición de función]
+$$
+f: A \to B, \qquad \forall a \in A\ \exists!\, b \in B:\ f(a) = b
+$$
+
+- $A$: dominio.
+- $B$: codominio.
+- $\exists!$: cada entrada tiene exactamente una salida.
+:::
+
+:::formula[Imagen]
+$$
+f(A) = \{f(a) : a \in A\} \subseteq B
+$$
+
+- $f(a)$: salida de cada entrada $a$.
+- $f(A)$: conjunto de salidas alcanzadas, contenido en el codominio.
+:::
+
+:::formula[Preimagen]
+$$
+f^{-1}(D) = \{a \in A : f(a) \in D\}
+$$
+
+- $D$: subconjunto del codominio.
+- $f^{-1}(D)$: entradas que caen en $D$; existe aunque $f$ no tenga inversa.
+:::
+
+:::formula[Número de funciones]
+$$
+\#\{f: A \to B\} = |B|^{|A|}
+$$
+
+- $|A|$: número de entradas, cada una elige su salida.
+- $|B|$: número de salidas posibles para cada entrada.
+:::

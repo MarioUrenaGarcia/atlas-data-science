@@ -130,6 +130,16 @@ vista: hasse
 ```
 :::
 
+:::nota[Qué significa cada símbolo]
+- $A$: conjunto sobre el que se define la relación.
+- $R \subseteq A \times A$: la relación, un conjunto de pares.
+- $a \mathrel{R} b$: el par $(a, b)$ está en la relación, "$a$ se relaciona con $b$".
+- $\sim$: relación de equivalencia.
+- $[a]$: clase de equivalencia de $a$, los elementos equivalentes a $a$.
+- $A/{\sim}$: conjunto cociente, el conjunto de todas las clases.
+- $\Rightarrow$: "implica".
+:::
+
 ## Cómo usar la visualización
 
 La matriz tiene una fila y una columna por elemento, y la celda $(a, b)$ se colorea cuando $a \mathrel{R} b$. La reproducción llena la matriz celda por celda; al terminar, el panel indica qué propiedades se cumplen y, para las que fallan, marca en la matriz el primer contraejemplo. Si la relación es de equivalencia, se listan sus clases.
@@ -190,3 +200,47 @@ vista: plano
 ## Conexiones
 
 Una relación es un subconjunto del [[producto-cartesiano]], y las funciones son un tipo especial de relación. La correspondencia entre clases y bloques enlaza este concepto con las [[particiones-de-un-conjunto]]. Los órdenes parciales organizan conjuntos como el [[conjunto-potencia]] con la contención. En estadística, agrupar observaciones por el valor de una variable categórica es tomar clases de equivalencia.
+
+## Formulario
+
+:::formula[Propiedades de una relación]
+$$
+\begin{aligned}
+&\text{reflexiva:} && a \mathrel{R} a \ \ \forall a \in A \\
+&\text{simétrica:} && a \mathrel{R} b \Rightarrow b \mathrel{R} a \\
+&\text{antisimétrica:} && a \mathrel{R} b \land b \mathrel{R} a \Rightarrow a = b \\
+&\text{transitiva:} && a \mathrel{R} b \land b \mathrel{R} c \Rightarrow a \mathrel{R} c
+\end{aligned}
+$$
+
+- $a, b, c$: elementos cualesquiera de $A$.
+- $R$: la relación.
+- $\land$: "y"; $\Rightarrow$: "implica".
+:::
+
+:::formula[Tipos de relación]
+$$
+\text{equivalencia} = \text{reflexiva} + \text{simétrica} + \text{transitiva}, \qquad \text{orden parcial} = \text{reflexiva} + \text{antisimétrica} + \text{transitiva}
+$$
+
+- Una equivalencia agrupa elementos "iguales en cierto aspecto".
+- Un orden parcial los acomoda de menor a mayor, con posibles incomparables.
+:::
+
+:::formula[Clase de equivalencia y cociente]
+$$
+[a] = \{b \in A : a \sim b\}, \qquad A/{\sim} = \{[a] : a \in A\}
+$$
+
+- $[a]$: todos los elementos equivalentes a $a$.
+- $A/{\sim}$: el conjunto de las clases, que forman una partición de $A$.
+:::
+
+:::formula[Congruencia módulo k]
+$$
+a \equiv b \pmod{k} \iff k \mid (a - b)
+$$
+
+- $k$: módulo, un entero positivo.
+- $k \mid (a - b)$: $k$ divide a la diferencia, es decir, $a$ y $b$ dejan el mismo residuo.
+:::

@@ -60,6 +60,17 @@ Dadas proposiciones $p$ y $q$:
 
 Dos proposiciones compuestas son **lógicamente equivalentes**, $A \equiv B$, si tienen el mismo valor de verdad para toda asignación de valores a sus variables.
 
+:::nota[Qué significa cada símbolo]
+- $p, q, r$: proposiciones, enunciados que son verdaderos (V) o falsos (F).
+- $\lnot$: "no", negación.
+- $\land$: "y", conjunción.
+- $\lor$: "o" inclusivo, disyunción.
+- $\oplus$: "o" exclusivo, verdadero cuando exactamente una es verdadera.
+- $\rightarrow$: "si ... entonces", condicional; lo que va antes es el antecedente y lo que va después el consecuente.
+- $\leftrightarrow$: "si y solo si", bicondicional.
+- $\equiv$: "es lógicamente equivalente a", mismo valor de verdad en todos los casos.
+:::
+
 ## Cómo usar la visualización
 
 La visualización muestra dos proposiciones concretas, $p$ y $q$, y una tabla con el valor de los seis conectivos para cada combinación de valores. La fila resaltada corresponde a los valores actuales. La reproducción recorre las cuatro combinaciones posibles; los botones del panel cambian el valor de $p$ o de $q$ directamente.
@@ -147,3 +158,47 @@ formulas: [reciproca, xor-vs-o, implicacion]
 ## Conexiones
 
 Las [[tablas-de-verdad]] organizan sistemáticamente el valor de cualquier combinación de conectivos. Los [[cuantificadores-universal-y-existencial]] extienden la lógica proposicional a enunciados sobre todos o algunos elementos de un conjunto. Las operaciones de conjuntos reflejan los conectivos: la unión corresponde a $\lor$, la intersección a $\land$ y el complemento a $\lnot$, como se ve en [[operaciones-de-conjuntos]] y en las [[leyes-de-de-morgan]].
+
+## Formulario
+
+:::formula[Condicional como disyunción]
+$$
+p \rightarrow q \equiv \lnot p \lor q
+$$
+
+- $p$: antecedente, la condición.
+- $q$: consecuente, lo que se afirma si se cumple la condición.
+- $\rightarrow$: condicional, falso solo cuando $p$ es V y $q$ es F.
+- $\lnot p$: negación de $p$.
+- $\lor$: disyunción inclusiva.
+- $\equiv$: equivalencia lógica.
+:::
+
+:::formula[Contrapositiva]
+$$
+p \rightarrow q \equiv \lnot q \rightarrow \lnot p
+$$
+
+- $p, q$: proposiciones cualesquiera.
+- $\lnot q \rightarrow \lnot p$: la contrapositiva, "si no ocurre $q$, no ocurrió $p$".
+- $\equiv$: ambas tienen el mismo valor de verdad en todas las filas.
+:::
+
+:::formula[Bicondicional como doble condicional]
+$$
+p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p)
+$$
+
+- $\leftrightarrow$: bicondicional, verdadero cuando $p$ y $q$ tienen el mismo valor.
+- $q \rightarrow p$: el recíproco de $p \rightarrow q$.
+- $\land$: conjunción, verdadera si ambas partes lo son.
+:::
+
+:::formula[Doble negación]
+$$
+\lnot \lnot p \equiv p
+$$
+
+- $\lnot \lnot p$: negar dos veces la proposición $p$.
+- $p$: la proposición original.
+:::

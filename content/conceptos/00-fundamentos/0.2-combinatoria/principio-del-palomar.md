@@ -52,6 +52,14 @@ Sea $f: A \to B$ una función entre conjuntos finitos.
 Si cada $b$ tuviera a lo más $\lceil |A|/|B| \rceil - 1$ preimágenes, entonces $|A| = \sum_{b \in B} |f^{-1}(\{b\})| \le |B|\left(\lceil |A|/|B| \rceil - 1\right) < |B| \cdot \frac{|A|}{|B|} = |A|$, una contradicción. La desigualdad estricta usa que $\lceil x \rceil - 1 < x$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $f: A \to B$: la asignación de objetos ($A$) a cajas ($B$).
+- $|A|$: número de objetos; $|B|$: número de cajas.
+- $n$ y $m$: otra forma de escribir el número de objetos y de cajas.
+- $f^{-1}(\{b\})$: objetos que caen en la caja $b$.
+- $\lceil x \rceil$: techo de $x$, el menor entero mayor o igual que $x$.
+:::
+
 ## Cómo usar la visualización
 
 Cada columna es una caja y los objetos caen uno por uno; los que llegan a una caja ya ocupada se pintan de otro color. La línea discontinua marca el nivel $\lceil n/m \rceil$ que el principio garantiza. Con "Lo más parejo posible" los objetos se reparten de la forma que más retrasa las repeticiones; con "Al azar" cada objeto elige caja con la semilla.
@@ -100,3 +108,31 @@ estrategia: azar
 ## Conexiones
 
 El principio es la afirmación de que no existen [[funciones-inyectivas-suprayectivas-y-biyectivas|funciones inyectivas]] de un conjunto finito a otro más pequeño, y su demostración es un argumento de conteo con el [[principio-de-la-suma]]. Se usa como herramienta de existencia en combinatoria, teoría de números y computación. En probabilidad, la paradoja del cumpleaños estudia con qué probabilidad aparecen repeticiones antes de que el principio las garantice.
+
+## Formulario
+
+:::formula[Principio del palomar]
+$$
+n > m \ \Rightarrow\ \text{alguna caja recibe al menos 2 objetos}
+$$
+
+- $n$: objetos; $m$: cajas.
+:::
+
+:::formula[Forma general]
+$$
+\exists\, b:\ |f^{-1}(\{b\})| \ge \left\lceil \frac{n}{m} \right\rceil
+$$
+
+- $f^{-1}(\{b\})$: objetos en la caja $b$.
+- $\lceil n/m \rceil$: el promedio de objetos por caja, redondeado hacia arriba.
+:::
+
+:::formula[Objetos necesarios para garantizar k en una caja]
+$$
+(k - 1)m + 1
+$$
+
+- $k$: número de objetos que se quiere tener juntos.
+- $m$: número de cajas.
+:::

@@ -60,6 +60,16 @@ Si $m > n$, la suma es vacía y vale 0, y el producto es vacío y vale 1.
 
 El índice $i$ es una variable **muda**: $\sum_{i=1}^{n} a_i = \sum_{k=1}^{n} a_k$. También se usa la forma $\sum_{i \in I} a_i$ para sumar sobre un conjunto finito de índices $I$.
 
+:::nota[Qué significa cada símbolo]
+- $\sum$: sumatoria, "sumar"; $\prod$: productoria, "multiplicar".
+- $i$: índice, la variable que recorre los valores.
+- $m$ y $n$: límites inferior y superior del índice.
+- $a_i$: término general, la expresión que depende de $i$.
+- $I$: conjunto finito de índices, cuando se suma sobre un conjunto.
+- $\bar{x}$: media de los datos $x_1, \dots, x_n$.
+- $c$: una constante que no depende del índice.
+:::
+
 ## Cómo usar la visualización
 
 Arriba se muestra la expresión en notación compacta. La reproducción hace recorrer al índice $i$ los valores de 1 a $n$: en cada paso se escribe el término correspondiente, se acumula y el panel actualiza el término actual, el acumulado y, cuando existe, la fórmula cerrada.
@@ -113,3 +123,50 @@ n: 8
 ## Conexiones
 
 La sumatoria abrevia las sumas parciales de las [[sucesiones]] y es la notación de las [[series-y-convergencia-de-series|series]]. Sus fórmulas cerradas se demuestran por [[induccion-matematica]]. En estadística todas las medidas descriptivas, como la media y la varianza muestral, se escriben con sumatorias, y la verosimilitud de una muestra independiente es una productoria que se convierte en suma al tomar logaritmos.
+
+## Formulario
+
+:::formula[Sumatoria y productoria]
+$$
+\sum_{i=m}^{n} a_i = a_m + \dots + a_n, \qquad \prod_{i=m}^{n} a_i = a_m \cdots a_n
+$$
+
+- $i$: índice; $m$, $n$: su primer y último valor.
+- $a_i$: término general.
+- Si $m > n$, la suma vale 0 y el producto vale 1.
+:::
+
+:::formula[Linealidad y constantes]
+$$
+\sum_{i} (c\,a_i + b_i) = c \sum_{i} a_i + \sum_{i} b_i, \qquad \sum_{i=1}^{n} c = nc, \qquad \prod_{i=1}^{n} c = c^{n}
+$$
+
+- $c$: constante que no depende de $i$.
+- $a_i, b_i$: dos términos generales.
+:::
+
+:::formula[Suma telescópica]
+$$
+\sum_{i=1}^{n} (b_{i+1} - b_i) = b_{n+1} - b_1
+$$
+
+- $b_i$: sucesión cualquiera; los términos intermedios se cancelan.
+:::
+
+:::formula[Fórmulas cerradas]
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}, \qquad \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}, \qquad \sum_{i=1}^{n} (2i - 1) = n^2
+$$
+
+- $n$: número de términos.
+:::
+
+:::formula[Media y desviaciones]
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i, \qquad \sum_{i=1}^{n} (x_i - \bar{x})^2 = \sum_{i=1}^{n} x_i^2 - n\bar{x}^2
+$$
+
+- $x_i$: dato número $i$; $n$: número de datos.
+- $\bar{x}$: media.
+- $x_i - \bar{x}$: desviación de cada dato respecto a la media.
+:::

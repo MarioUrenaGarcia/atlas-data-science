@@ -60,6 +60,19 @@ $A = B$ si y solo si tienen los mismos elementos: $\forall x\,(x \in A \leftrigh
 
 Conjuntos numéricos usuales: $\mathbb{N} = \{1, 2, 3, \dots\}$, $\mathbb{Z}$ (enteros), $\mathbb{Q}$ (racionales) y $\mathbb{R}$ (reales).
 
+:::nota[Qué significa cada símbolo]
+- $A, B, F, G$: conjuntos.
+- $x$: un objeto cualquiera.
+- $x \in A$: $x$ pertenece a $A$; $x \notin A$: no pertenece.
+- $U$: conjunto universal, de donde se toman los elementos.
+- $P(x)$: propiedad que define al conjunto por comprensión.
+- $\{\ \dots\ \}$: llaves que encierran los elementos o la regla.
+- $A \subseteq B$: $A$ es subconjunto de $B$.
+- $\varnothing$: conjunto vacío.
+- $|A|$: cardinalidad, número de elementos de $A$.
+- $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}$: naturales, enteros, racionales y reales.
+:::
+
 ## Cómo usar la visualización
 
 La fila superior es el conjunto universal $U$. La reproducción revisa cada elemento, lo compara con la propiedad elegida y, si la cumple, lo desplaza dentro del recuadro $A$. Arriba se muestra la notación por comprensión junto a la notación por extensión que se va completando. El panel indica la pertenencia del elemento actual y la cardinalidad.
@@ -124,3 +137,46 @@ operaciones: [diferencia, interseccion, union]
 ## Conexiones
 
 La notación por comprensión usa predicados, tomados de los [[cuantificadores-universal-y-existencial|cuantificadores]]. A partir de conjuntos se definen las [[operaciones-de-conjuntos]], el [[producto-cartesiano]] y el [[conjunto-potencia]]. En probabilidad, el espacio muestral y los eventos son conjuntos, y la cardinalidad es la base del conteo.
+
+## Formulario
+
+:::formula[Conjunto por comprensión]
+$$
+A = \{x \in U : P(x)\}
+$$
+
+- $A$: el conjunto que se define.
+- $x$: elemento genérico.
+- $U$: conjunto universal.
+- $:$ se lee "tales que".
+- $P(x)$: propiedad que deben cumplir los elementos.
+:::
+
+:::formula[Subconjunto]
+$$
+A \subseteq B \iff \forall x\,(x \in A \rightarrow x \in B)
+$$
+
+- $A, B$: conjuntos.
+- $\subseteq$: "está contenido en", permite que sean iguales.
+- $\forall x$: para todo objeto $x$.
+- $\rightarrow$: si pertenece a $A$, entonces pertenece a $B$.
+:::
+
+:::formula[Doble contención]
+$$
+A = B \iff A \subseteq B \ \text{ y } \ B \subseteq A
+$$
+
+- $A, B$: conjuntos.
+- $A = B$: tienen exactamente los mismos elementos.
+:::
+
+:::formula[Cardinalidad]
+$$
+|A| = \text{número de elementos de } A
+$$
+
+- $A$: conjunto finito.
+- $|\cdot|$: barras de cardinalidad; los elementos repetidos se cuentan una sola vez.
+:::

@@ -56,6 +56,15 @@ Escribimos $s_i = (s_{i,1}, s_{i,2}, \dots)$ y definimos $d_j = 1 - s_{j,j}$. Pa
 
 La misma construcción, aplicada a desarrollos decimales en $(0, 1)$ y cambiando cada dígito diagonal por otro distinto de 0 y de 9, muestra que $\mathbb{R}$ es no numerable. Evitar 0 y 9 impide que el número nuevo tenga dos desarrollos, como $0.1999\ldots = 0.2$.
 
+:::nota[Qué significa cada símbolo]
+- $S = \{0, 1\}^{\mathbb{N}}$: el conjunto de sucesiones infinitas de ceros y unos.
+- $s_1, s_2, s_3, \dots$: la lista que supuestamente contiene todas las sucesiones.
+- $s_{i,j}$: el dígito $j$ de la sucesión $i$ (fila $i$, columna $j$ de la tabla).
+- $s_{i,i}$: los dígitos de la diagonal.
+- $d = (d_1, d_2, \dots)$: la sucesión nueva, construida invirtiendo la diagonal.
+- $f: A \to \mathcal{P}(A)$ y $D$: en la versión general, una función cualquiera y el conjunto diagonal que ella no alcanza.
+:::
+
 ## Cómo usar la visualización
 
 Cada fila es una sucesión de la lista supuesta, de la que se ven los primeros dígitos. La reproducción recorre la diagonal: resalta el dígito $(i, i)$ y escribe su opuesto como el dígito $i$ de la sucesión nueva. Al terminar, el panel muestra que la sucesión nueva difiere de cada fila en su posición diagonal.
@@ -111,3 +120,33 @@ Para el caso general, si $f(a_0) = D$ para algún $a_0$, entonces $a_0 \in D$ si
 ## Conexiones
 
 El argumento completa la clasificación de [[cardinalidad-finita-numerable-y-no-numerable]] y es la misma idea que muestra que el [[conjunto-potencia]] es siempre más grande que el conjunto original. Es una demostración por contradicción que usa [[cuantificadores-universal-y-existencial|cuantificadores]] en el orden "para toda lista existe una sucesión ausente". La no numerabilidad de los reales explica por qué las variables aleatorias continuas asignan probabilidad cero a cada punto individual.
+
+## Formulario
+
+:::formula[Sucesión diagonal]
+$$
+d_i = 1 - s_{i,i}
+$$
+
+- $s_{i,i}$: dígito $i$ de la fila $i$.
+- $1 - s_{i,i}$: el dígito contrario (0 se vuelve 1 y 1 se vuelve 0).
+- $d_i$: dígito $i$ de la sucesión nueva.
+:::
+
+:::formula[La diagonal no está en la lista]
+$$
+d \neq s_i \quad \text{para todo } i
+$$
+
+- $d$ y $s_i$ difieren al menos en la posición $i$.
+:::
+
+:::formula[Versión general]
+$$
+D = \{a \in A : a \notin f(a)\} \notin f(A)
+$$
+
+- $f: A \to \mathcal{P}(A)$: cualquier función de un conjunto en sus subconjuntos.
+- $f(a)$: el subconjunto asignado al elemento $a$.
+- $D$: conjunto diagonal; ninguna $a$ cumple $f(a) = D$.
+:::

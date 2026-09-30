@@ -69,6 +69,18 @@ Sean $A$ y $B$ subconjuntos de un conjunto universal $U$.
 
 $A$ y $B$ son **disjuntos** si $A \cap B = \varnothing$. El complemento depende del universo elegido; la unión, la intersección y la diferencia no.
 
+:::nota[Qué significa cada símbolo]
+- $A, B, C$: subconjuntos de un universo.
+- $U$: conjunto universal.
+- $\cup$: unión, "está en uno o en otro".
+- $\cap$: intersección, "está en ambos".
+- $A^c$: complemento, lo que está en $U$ pero no en $A$.
+- $A \setminus B$: diferencia, lo que está en $A$ y no en $B$.
+- $A \,\triangle\, B$: diferencia simétrica, lo que está en exactamente uno.
+- $\varnothing$: conjunto vacío.
+- $|A|$: número de elementos de $A$.
+:::
+
 ## Cómo usar la visualización
 
 El rectángulo es el universo, del 1 al 15, y los círculos son $A$ (múltiplos de 2) y $B$ (múltiplos de 3). La región sombreada corresponde a la operación elegida. La reproducción revisa cada elemento y lo marca en verde cuando cumple la condición que aparece arriba; el panel muestra el resultado parcial y su cardinalidad.
@@ -156,3 +168,52 @@ consultas:
 ## Conexiones
 
 Cada operación traduce un conectivo de [[proposiciones-y-conectivos-logicos]]. Las [[leyes-de-de-morgan]] relacionan el complemento con la unión y la intersección, y los [[diagramas-de-venn]] muestran todas las regiones que se forman con varios conjuntos. La fórmula de la cardinalidad de la unión es el primer caso del principio de inclusión y exclusión, y las mismas operaciones definen los eventos compuestos en probabilidad.
+
+## Formulario
+
+:::formula[Unión e intersección]
+$$
+A \cup B = \{x \in U : x \in A \lor x \in B\}, \qquad A \cap B = \{x \in U : x \in A \land x \in B\}
+$$
+
+- $A, B$: conjuntos dentro del universo $U$.
+- $x$: elemento del universo.
+- $\lor$: "o"; $\land$: "y".
+:::
+
+:::formula[Complemento y diferencia]
+$$
+A^c = \{x \in U : x \notin A\}, \qquad A \setminus B = A \cap B^c
+$$
+
+- $U$: universo respecto al cual se toma el complemento.
+- $x \notin A$: $x$ no pertenece a $A$.
+- $B^c$: complemento de $B$.
+:::
+
+:::formula[Diferencia simétrica]
+$$
+A \,\triangle\, B = (A \setminus B) \cup (B \setminus A)
+$$
+
+- $A \setminus B$: elementos solo de $A$.
+- $B \setminus A$: elementos solo de $B$.
+:::
+
+:::formula[Cardinalidad de la unión]
+$$
+|A \cup B| = |A| + |B| - |A \cap B|
+$$
+
+- $|A|, |B|$: tamaños de cada conjunto finito.
+- $|A \cap B|$: elementos comunes, que la suma cuenta dos veces.
+:::
+
+:::formula[Distributividad]
+$$
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C), \qquad A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+$$
+
+- $A, B, C$: conjuntos cualesquiera.
+- Cada operación se reparte sobre la otra, como la multiplicación sobre la suma.
+:::

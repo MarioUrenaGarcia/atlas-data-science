@@ -56,6 +56,15 @@ con $D_0 = 1$ y $D_1 = 0$. Además, $D_n$ es el entero más cercano a $n!/e$ par
 Sea $A_i$ el conjunto de permutaciones que fijan $i$. Las permutaciones que fijan un conjunto dado de $k$ elementos son $(n-k)!$, y hay $\binom{n}{k}$ conjuntos así. Por inclusión y exclusión, las permutaciones sin puntos fijos son $\sum_{k=0}^{n} (-1)^k \binom{n}{k}(n-k)! = \sum_{k=0}^{n} (-1)^k \frac{n!}{k!}$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de objetos (invitados, exámenes).
+- $\sigma$: una permutación; $\sigma(i)$ es el lugar al que va el objeto $i$.
+- $D_n$ o $!n$: número de desarreglos, permutaciones sin puntos fijos.
+- $A_i$: permutaciones que dejan fijo al objeto $i$.
+- $e \approx 2.71828$: base de los logaritmos naturales.
+- $k$: índice de la suma, número de objetos que se fuerzan a quedar fijos.
+:::
+
 ## Cómo usar la visualización
 
 Arriba se ve el último reparto: bajo cada invitado aparece el abrigo que recibió, resaltado si es el suyo. Cada ensayo es una permutación al azar; el histograma acumula cuántas veces se obtuvieron 0, 1, 2, ... coincidencias y las líneas marcan la probabilidad exacta. El panel compara la proporción simulada sin coincidencias con $D_n/n!$ y con $1/e$.
@@ -112,3 +121,39 @@ bloques:
 ## Conexiones
 
 Los desarreglos son [[permutaciones]] sin puntos fijos y su fórmula es una aplicación directa del [[principio-de-inclusion-y-exclusion]]. La recursión es una de las [[relaciones-de-recurrencia-lineales|relaciones de recurrencia]] del submódulo, con coeficientes variables, y la función generadora exponencial de $D_n$ es $e^{-x}/(1-x)$, tema de las [[funciones-generadoras-exponenciales]]. En probabilidad, el problema de las coincidencias es un ejemplo temprano de aproximación de Poisson.
+
+## Formulario
+
+:::formula[Fórmula de los desarreglos]
+$$
+D_n = n! \sum_{k=0}^{n} \frac{(-1)^k}{k!}
+$$
+
+- $n!$: todas las permutaciones.
+- $k$: número de puntos fijos forzados en cada término de inclusión y exclusión.
+:::
+
+:::formula[Recursiones]
+$$
+D_n = (n-1)(D_{n-1} + D_{n-2}), \qquad D_n = n\,D_{n-1} + (-1)^n, \qquad D_0 = 1,\ D_1 = 0
+$$
+
+- $D_{n-1}$, $D_{n-2}$: desarreglos de menos objetos.
+:::
+
+:::formula[Proporción límite]
+$$
+\frac{D_n}{n!} \to \frac{1}{e} \approx 0.3679
+$$
+
+- $D_n / n!$: probabilidad de que una permutación al azar no tenga puntos fijos.
+:::
+
+:::formula[Exactamente k puntos fijos]
+$$
+\binom{n}{k} D_{n-k}
+$$
+
+- $\binom{n}{k}$: cuáles quedan fijos.
+- $D_{n-k}$: los demás no deben quedar en su lugar.
+:::

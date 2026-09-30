@@ -57,6 +57,15 @@ $$
 
 El factor $k$ registra cuántas partes iguales a $k$ se usan; el coeficiente de $x^n$ cuenta las formas de que las partes sumen $n$.
 
+:::nota[Qué significa cada símbolo]
+- $n$: el entero que se parte.
+- $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_r$: las partes de la partición, de mayor a menor; $r$ es cuántas hay.
+- $p(n)$: número de particiones de $n$.
+- $\lambda'$: partición conjugada, las longitudes de las columnas del diagrama de Ferrers.
+- $x$: variable formal de la función generadora; el exponente registra la suma.
+- $\prod_{k \ge 1}$: producto sobre todos los tamaños de parte $k$.
+:::
+
 ## Cómo usar la visualización
 
 En la vista de diagramas de Ferrers, la reproducción lista las particiones del número elegido, de la que tiene la parte más grande a la de puras partes 1. Se dibujan el diagrama de la partición actual y el de su conjugada, que es el mismo diagrama reflejado respecto a su diagonal. La vista "Partes distintas y partes impares" lista en paralelo las particiones con partes todas distintas y las que tienen solo partes impares.
@@ -105,3 +114,38 @@ n: 8
 ## Conexiones
 
 Las particiones de enteros son repartos de objetos idénticos en grupos sin etiqueta, a diferencia de las [[combinaciones-con-repeticion]] (grupos etiquetados) y de los [[numeros-de-bell]] (objetos distintos). Su función generadora es el ejemplo central de las [[funciones-generadoras-ordinarias]], construida con factores de [[serie-geometrica|series geométricas]]. En física estadística y en la teoría de representaciones de grupos simétricos, las particiones clasifican estados y representaciones.
+
+## Formulario
+
+:::formula[Partición]
+$$
+n = \lambda_1 + \lambda_2 + \dots + \lambda_r, \qquad \lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_r \ge 1
+$$
+
+- $\lambda_i$: parte número $i$; el orden no importa, por eso se escriben de mayor a menor.
+:::
+
+:::formula[Función generadora]
+$$
+\sum_{n \ge 0} p(n)\,x^n = \prod_{k \ge 1} \frac{1}{1 - x^{k}}
+$$
+
+- $\frac{1}{1 - x^k} = 1 + x^k + x^{2k} + \cdots$: cuántas partes iguales a $k$ se usan.
+:::
+
+:::formula[Teorema de Euler]
+$$
+\prod_{k \ge 1} (1 + x^{k}) = \prod_{k \ge 1} \frac{1}{1 - x^{2k-1}}
+$$
+
+- Izquierda: partes distintas (cada tamaño a lo más una vez).
+- Derecha: partes impares, con repetición.
+:::
+
+:::formula[Crecimiento de Hardy y Ramanujan]
+$$
+p(n) \sim \frac{1}{4n\sqrt{3}}\exp\left(\pi\sqrt{\frac{2n}{3}}\right)
+$$
+
+- $\exp$: función exponencial.
+:::

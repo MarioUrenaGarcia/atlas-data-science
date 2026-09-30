@@ -68,6 +68,15 @@ Si $a_k$ cuenta las estructuras de un tipo sobre $k$ etiquetas y $b_j$ las de ot
 El coeficiente de $x^n$ en el producto es $\sum_k \frac{a_k}{k!}\frac{b_{n-k}}{(n-k)!}$; al multiplicar por $n!$ se obtiene $\sum_k \frac{n!}{k!(n-k)!}a_k b_{n-k}$.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $(a_n)$: sucesión que cuenta estructuras con $n$ etiquetas o posiciones.
+- $\hat{A}(x)$: función generadora exponencial, con los términos divididos entre $n!$.
+- $[x^n]$: coeficiente de $x^n$; $a_n = n!\,[x^n]\hat{A}(x)$.
+- $\binom{n}{k}$: formas de repartir las $n$ etiquetas entre dos partes.
+- $\cosh x = \frac{e^x + e^{-x}}{2}$ y $\sinh x = \frac{e^x - e^{-x}}{2}$: coseno y seno hiperbólicos.
+- $c$: constante en $e^{cx}$.
+:::
+
 ## Cómo usar la visualización
 
 Cada barra es el número de secuencias de una longitud dada que cumplen las condiciones de las letras incorporadas. La reproducción multiplica las funciones generadoras de las letras una por una: A con número par de apariciones, C libre, G al menos una vez y T libre. El panel compara el conteo que da la función generadora con el que se obtiene al listar todas las secuencias posibles.
@@ -113,3 +122,38 @@ n: 7
 ## Conexiones
 
 Las funciones generadoras exponenciales adaptan las [[funciones-generadoras-ordinarias]] a objetos etiquetados, y su producto reparte posiciones como en las [[permutaciones-con-repeticion]]. Generan los [[numeros-de-bell]] y los [[desarreglos]], y la función exponencial que las define es la misma que aparece en la serie de Taylor. En probabilidad, la función generadora de momentos $\mathbb{E}[e^{tX}]$ es una función generadora exponencial de los momentos de $X$.
+
+## Formulario
+
+:::formula[Función generadora exponencial]
+$$
+\hat{A}(x) = \sum_{n \ge 0} a_n \frac{x^{n}}{n!}, \qquad a_n = n!\,[x^n]\hat{A}(x)
+$$
+
+- $a_n$: número de estructuras con $n$ etiquetas.
+- $n!$: el divisor que hace aparecer los coeficientes binomiales al multiplicar.
+:::
+
+:::formula[Producto]
+$$
+\hat{A}(x)\hat{B}(x) = \sum_{n \ge 0} \Big(\sum_{k=0}^{n} \binom{n}{k} a_k b_{n-k}\Big) \frac{x^{n}}{n!}
+$$
+
+- $\binom{n}{k}$: qué $k$ etiquetas van a la primera estructura.
+:::
+
+:::formula[Series básicas]
+$$
+e^{x} \leftrightarrow (1, 1, 1, \dots), \quad e^{cx} \leftrightarrow (c^{n}), \quad \frac{1}{1 - x} \leftrightarrow (n!), \quad \cosh x \leftrightarrow \text{tamaños pares}
+$$
+
+- $\leftrightarrow$ asocia cada función con la sucesión que genera.
+:::
+
+:::formula[Ejemplo de las secuencias de ADN]
+$$
+a_n = \tfrac{1}{2}\left(4^{n} - 3^{n} + 2^{n} - 1\right)
+$$
+
+- $n$: longitud de la secuencia; cuenta las de número par de A y al menos una G.
+:::

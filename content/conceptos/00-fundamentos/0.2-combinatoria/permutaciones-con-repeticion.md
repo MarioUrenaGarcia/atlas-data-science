@@ -55,6 +55,14 @@ $$
 Al distinguir las copias hay $n!$ ordenaciones. La relación "difieren solo en los subíndices" es de equivalencia, y cada clase contiene exactamente $k_1! \cdots k_r!$ ordenaciones, una por cada forma de permutar las copias de cada tipo entre sí. Por el principio de la suma, $n!$ es el número de clases multiplicado por ese tamaño común.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número total de objetos.
+- $r$: número de tipos de objetos.
+- $k_i$: número de copias idénticas del tipo $i$, con $k_1 + \dots + k_r = n$.
+- $n!$: órdenes si todas las copias se distinguieran.
+- $k_i!$: órdenes entre las copias del tipo $i$, que no producen palabras nuevas.
+:::
+
 ## Cómo usar la visualización
 
 Arriba se ve la ordenación actual con las copias numeradas. La reproducción recorre las 720 ordenaciones de las letras marcadas y deposita cada una en la tarjeta de la palabra que produce al borrar los números. Cada tarjeta tiene un medidor con tantas celdas como copias le corresponden.
@@ -132,3 +140,31 @@ escenarios:
 ## Conexiones
 
 La fórmula corrige el conteo de [[permutaciones]] cuando hay objetos idénticos, agrupando ordenaciones en clases como en [[relaciones-y-relaciones-de-equivalencia]]. Con dos tipos de objetos da el [[coeficiente-binomial]], y en general es el [[coeficiente-multinomial]]. En probabilidad, es el factor que aparece en la distribución multinomial al contar las secuencias de ensayos con un número fijo de resultados de cada tipo.
+
+## Formulario
+
+:::formula[Permutaciones con repetición]
+$$
+\frac{n!}{k_1!\,k_2!\cdots k_r!}, \qquad k_1 + \dots + k_r = n
+$$
+
+- $n$: número total de objetos.
+- $k_i$: copias del tipo $i$.
+- $r$: número de tipos.
+:::
+
+:::formula[Como producto de binomiales]
+$$
+\frac{n!}{k_1!\cdots k_r!} = \binom{n}{k_1}\binom{n - k_1}{k_2}\cdots\binom{k_r}{k_r}
+$$
+
+- $\binom{n}{k_1}$: posiciones del primer tipo; luego las del segundo entre las que quedan, y así.
+:::
+
+:::formula[Dos tipos]
+$$
+\frac{n!}{k!\,(n-k)!} = \binom{n}{k}
+$$
+
+- $k$: copias de un tipo; $n - k$: copias del otro.
+:::

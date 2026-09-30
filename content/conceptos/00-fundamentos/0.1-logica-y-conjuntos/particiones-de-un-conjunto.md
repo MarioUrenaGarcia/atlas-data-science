@@ -58,6 +58,15 @@ $$
 |S| = \sum_{i \in I} |A_i|.
 $$
 
+:::nota[Qué significa cada símbolo]
+- $S$: el conjunto que se parte.
+- $\{A_i\}_{i \in I}$: la familia de bloques; $I$ es el conjunto de índices y $A_i$ el bloque número $i$.
+- $\varnothing$: conjunto vacío.
+- $\cap$: intersección; $\bigcup$: unión de todos los bloques.
+- $|S|$, $|A_i|$: número de elementos.
+- $B_n$: número de Bell, cuántas particiones tiene un conjunto de $n$ elementos.
+:::
+
 ## Cómo usar la visualización
 
 Los números del 1 al 12 se asignan uno por uno a $k$ bloques. Con el criterio "mismo residuo al dividir entre k", cada número va al bloque de su residuo; con "asignación al azar" cada número se envía a un bloque elegido con la semilla. Al terminar, el panel indica si el resultado es una partición.
@@ -149,3 +158,42 @@ consultas:
 ## Conexiones
 
 Las particiones se definen con las [[operaciones-de-conjuntos]] de unión e intersección, y las regiones de los [[diagramas-de-venn]] son un ejemplo. Su equivalencia con las clases de las [[relaciones-y-relaciones-de-equivalencia|relaciones de equivalencia]] es uno de los resultados centrales del submódulo. En probabilidad, la ley de probabilidad total descompone un evento sobre una partición del espacio muestral.
+
+## Formulario
+
+:::formula[Condiciones de una partición]
+$$
+A_i \neq \varnothing, \qquad A_i \cap A_j = \varnothing \ (i \neq j), \qquad \bigcup_{i \in I} A_i = S
+$$
+
+- $A_i$: bloque número $i$.
+- $i \neq j$: dos bloques distintos no comparten elementos.
+- $\bigcup$: juntos cubren todo $S$.
+:::
+
+:::formula[Conteo por bloques]
+$$
+|S| = \sum_{i \in I} |A_i|
+$$
+
+- $|S|$: número total de elementos.
+- $|A_i|$: tamaño de cada bloque; la suma recorre todos los bloques.
+:::
+
+:::formula[Conteo de un subconjunto por bloques]
+$$
+|B| = \sum_{i \in I} |A_i \cap B|
+$$
+
+- $B$: cualquier subconjunto de $S$.
+- $A_i \cap B$: la parte de $B$ que cae en el bloque $i$.
+:::
+
+:::formula[Probabilidad total]
+$$
+P(B) = \sum_{i} P(B \cap A_i)
+$$
+
+- $P(\cdot)$: probabilidad.
+- $A_i$: bloques de una partición del espacio muestral.
+:::

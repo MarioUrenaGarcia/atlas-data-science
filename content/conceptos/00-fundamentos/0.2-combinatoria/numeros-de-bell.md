@@ -53,6 +53,14 @@ $$
 La primera igualdad separa las particiones por su número de bloques. Para la segunda, se fija el elemento $n + 1$: si su bloque contiene además a $j$ de los otros $n$ elementos, hay $\binom{n}{j}$ formas de elegirlos, y los $n - j$ restantes se parten de $B_{n-j}$ maneras. Sumando sobre $j$ y usando $\binom{n}{j} = \binom{n}{n-j}$ se obtiene la fórmula.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de elementos del conjunto.
+- $B_n$: número de Bell, todas las particiones de un conjunto de $n$ elementos.
+- $S(n, k)$: particiones con exactamente $k$ bloques.
+- $k$: número de bloques, o índice de la suma.
+- $e$: base de los logaritmos naturales, en la fórmula de Dobinski.
+:::
+
 ## Cómo usar la visualización
 
 La reproducción genera todas las particiones de $\{1, \dots, n\}$ colocando los elementos en orden: cada uno se une a un bloque existente o abre uno nuevo. La partición actual se dibuja en el círculo, con un color por bloque, y todas las generadas se listan abajo. El panel desglosa cuántas tienen 1, 2, 3, ... bloques.
@@ -91,3 +99,38 @@ n: 5
 ## Conexiones
 
 Los números de Bell suman los [[numeros-de-stirling-de-segunda-especie]] y cuentan todas las [[particiones-de-un-conjunto]], equivalentes a las [[relaciones-y-relaciones-de-equivalencia|relaciones de equivalencia]]. Su función generadora es un ejemplo de [[funciones-generadoras-exponenciales|función generadora exponencial]], y su contraste con las [[particiones-de-enteros]] muestra la diferencia entre objetos distinguibles e indistinguibles. En aprendizaje automático, el enorme número de particiones posibles justifica los métodos de agrupamiento aproximados.
+
+## Formulario
+
+:::formula[Bell como suma de Stirling]
+$$
+B_n = \sum_{k=0}^{n} S(n, k)
+$$
+
+- $S(n, k)$: particiones en $k$ bloques.
+:::
+
+:::formula[Recurrencia]
+$$
+B_{n+1} = \sum_{k=0}^{n} \binom{n}{k} B_k, \qquad B_0 = 1
+$$
+
+- $\binom{n}{k}$: formas de elegir quiénes no acompañan al elemento nuevo.
+- $B_k$: particiones de esos elementos.
+:::
+
+:::formula[Fórmula de Dobinski]
+$$
+B_n = \frac{1}{e}\sum_{k=0}^{\infty} \frac{k^{n}}{k!}
+$$
+
+- $k^n / k!$: términos de una serie que converge.
+:::
+
+:::formula[Función generadora exponencial]
+$$
+\sum_{n \ge 0} B_n \frac{x^n}{n!} = e^{e^{x} - 1}
+$$
+
+- $x$: variable formal de la función generadora.
+:::

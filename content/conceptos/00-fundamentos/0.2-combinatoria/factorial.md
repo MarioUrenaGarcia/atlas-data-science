@@ -56,6 +56,15 @@ n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^{n}, \qquad \text{es decir,} \quad
 $$
 :::
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de objetos distintos que se ordenan.
+- $n!$: factorial de $n$, el producto $n(n-1)\cdots 1$.
+- $\prod$: productoria, multiplicar todos los términos.
+- $\pi \approx 3.1416$ y $e \approx 2.71828$: constantes que aparecen en la fórmula de Stirling.
+- $\sim$: "es asintóticamente igual a", el cociente tiende a 1.
+- $\Gamma$: función gamma, que extiende el factorial a los reales.
+:::
+
 ## Cómo usar la visualización
 
 La gráfica usa escala logarítmica en el eje vertical: su altura es el número de cifras. Las curvas muestran $n!$, la aproximación de Stirling, $2^n$ y $n^n$, y se dibujan conforme avanza la reproducción. El control marca un valor de $n$; el panel muestra $n!$, su aproximación, el error relativo y el número de cifras.
@@ -133,3 +142,40 @@ escenarios:
 ## Conexiones
 
 El factorial es el caso de ordenar todos los objetos en el [[principio-del-producto]]. Aparece en las [[permutaciones]], el [[coeficiente-binomial]] y el [[coeficiente-multinomial]], y su definición recursiva se estudia con [[induccion-matematica]]. En probabilidad, la fórmula de Stirling permite aproximar coeficientes binomiales grandes y explica la forma de la distribución de Poisson.
+
+## Formulario
+
+:::formula[Factorial]
+$$
+n! = n(n-1)\cdots 2 \cdot 1, \qquad 0! = 1
+$$
+
+- $n$: entero no negativo, número de objetos.
+- $0! = 1$: una sola forma de ordenar cero objetos.
+:::
+
+:::formula[Recursión]
+$$
+n! = n \cdot (n-1)!
+$$
+
+- $(n-1)!$: órdenes de los objetos restantes una vez elegido el primero.
+:::
+
+:::formula[Fórmula de Stirling]
+$$
+n! \approx \sqrt{2\pi n}\left(\frac{n}{e}\right)^{n}, \qquad \text{error relativo} \approx \frac{1}{12n}
+$$
+
+- $n$: número grande.
+- $e$: base de los logaritmos naturales.
+- $\pi$: la constante del círculo.
+:::
+
+:::formula[Cociente de factoriales]
+$$
+\frac{n!}{(n-k)!} = n(n-1)\cdots(n-k+1)
+$$
+
+- $k$: número de factores que quedan, con $k \le n$.
+:::

@@ -60,6 +60,15 @@ $$
 Con círculos solo se logra un diagrama de Venn completo para $k \le 3$. Para cuatro o más conjuntos se usan elipses u otras curvas, porque cuatro círculos no generan las 16 regiones.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $k$: número de conjuntos dibujados.
+- $A_1, \dots, A_k$: los conjuntos; $U$: el universo, el rectángulo.
+- $\varepsilon = (\varepsilon_1, \dots, \varepsilon_k)$: vector de ceros y unos que indica en qué conjuntos está una región ($1$ = dentro, $0$ = fuera).
+- $R_{\varepsilon}$: la región con esa combinación de pertenencias.
+- $A_i^{(1)} = A_i$ y $A_i^{(0)} = A_i^c$: el conjunto o su complemento.
+- $\bigcap$: intersección de todos los factores.
+:::
+
 ## Cómo usar la visualización
 
 El universo son los números del 1 al 20, y los conjuntos son $A$ (pares), $B$ (múltiplos de 3) y $C$ (primos). Cada número aparece dentro de su región. La reproducción recorre las ocho regiones de adentro hacia afuera, sombreando una a la vez y describiendo su pertenencia; arriba se muestra la región como intersección de conjuntos y complementos. Un clic en cualquier zona salta a ella.
@@ -122,3 +131,41 @@ consultas:
 ## Conexiones
 
 Cada región es una intersección de conjuntos y complementos, construida con las [[operaciones-de-conjuntos]]; las [[leyes-de-de-morgan]] se leen como igualdades entre regiones. Las regiones forman una de las [[particiones-de-un-conjunto]]. El conteo por regiones se generaliza en el principio de inclusión y exclusión, y en probabilidad las áreas de un diagrama pueden hacerse proporcionales a las probabilidades.
+
+## Formulario
+
+:::formula[Número de regiones]
+$$
+\#\text{regiones} = 2^{k}
+$$
+
+- $k$: número de conjuntos.
+- $2$: cada región está dentro o fuera de cada conjunto.
+:::
+
+:::formula[Región de una combinación de pertenencias]
+$$
+R_{\varepsilon} = \bigcap_{i=1}^{k} A_i^{(\varepsilon_i)}, \qquad A_i^{(1)} = A_i,\quad A_i^{(0)} = A_i^c
+$$
+
+- $\varepsilon_i$: 1 si la región está dentro de $A_i$ y 0 si está fuera.
+- $A_i^c$: complemento de $A_i$.
+:::
+
+:::formula[Conjuntos que se pueden formar]
+$$
+\#\text{expresiones distintas} = 2^{2^{k}}
+$$
+
+- $2^k$: número de regiones.
+- Cada expresión con uniones, intersecciones y complementos es la unión de algunas regiones.
+:::
+
+:::formula[Regiones que suman el universo]
+$$
+|U| = \sum_{\varepsilon} |R_{\varepsilon}|
+$$
+
+- $|U|$: tamaño del universo.
+- $|R_{\varepsilon}|$: número de elementos de cada región; la suma recorre las $2^k$ regiones.
+:::

@@ -59,6 +59,15 @@ y para cualquier $k \ge 0$, $VR(n, k) = n^{k}$.
 
 Las variaciones sin repetición son las funciones inyectivas de $\{1, \dots, k\}$ en el conjunto; las variaciones con repetición son todas las funciones.
 
+:::nota[Qué significa cada símbolo]
+- $n$: número de objetos disponibles.
+- $k$: número de posiciones que se llenan.
+- $V(n, k)$: variaciones sin repetición, selecciones ordenadas sin repetir objetos.
+- $VR(n, k)$: variaciones con repetición, donde un objeto puede usarse varias veces.
+- $\binom{n}{k}$: número de subconjuntos de tamaño $k$.
+- $(n)_k$ o $n^{\underline{k}}$: otras notaciones del factorial descendente $n(n-1)\cdots(n-k+1)$.
+:::
+
 ## Cómo usar la visualización
 
 Las casillas representan las $k$ posiciones y debajo de cada una aparece cuántos objetos están disponibles para ella. La reproducción lista todas las variaciones y muestra la última en las casillas. Los controles cambian el número de objetos disponibles $n$, el número de posiciones $k$ y si se permite repetir.
@@ -117,3 +126,39 @@ escenarios:
 ## Conexiones
 
 Las variaciones generalizan las [[permutaciones]] a selecciones de solo $k$ objetos y se cuentan con el [[principio-del-producto]]. Al olvidar el orden se obtienen las [[combinaciones]], y las variaciones sin repetición corresponden a las funciones inyectivas de [[funciones-inyectivas-suprayectivas-y-biyectivas]]. En probabilidad, el muestreo ordenado con y sin reemplazo se cuenta exactamente con $n^k$ y con $V(n, k)$.
+
+## Formulario
+
+:::formula[Variaciones sin repetición]
+$$
+V(n, k) = n(n-1)\cdots(n-k+1) = \frac{n!}{(n-k)!}
+$$
+
+- $n$: objetos disponibles.
+- $k$: posiciones, con $k \le n$.
+:::
+
+:::formula[Variaciones con repetición]
+$$
+VR(n, k) = n^{k}
+$$
+
+- Cada una de las $k$ posiciones tiene las $n$ opciones.
+:::
+
+:::formula[Relación con combinaciones]
+$$
+V(n, k) = \binom{n}{k}\, k!
+$$
+
+- $\binom{n}{k}$: qué objetos se eligen.
+- $k!$: en qué orden se colocan.
+:::
+
+:::formula[Proporción sin repeticiones]
+$$
+\frac{V(n, k)}{n^{k}} = \prod_{i=0}^{k-1}\left(1 - \frac{i}{n}\right)
+$$
+
+- Fracción de las listas con repetición que no repiten ningún objeto.
+:::

@@ -57,6 +57,17 @@ $$
 $$
 El **error relativo** es aproximadamente $\sqrt{\frac{1 - p}{pN}}$: para una precisión relativa fija, el número de muestras necesario crece como $1/p$.
 
+:::nota[Qué significa cada símbolo]
+- $A$: el conjunto que se quiere contar.
+- $U$: universo que lo contiene, fácil de muestrear y de tamaño conocido.
+- $N$: número de muestras.
+- $X_i$: muestra $i$, elegida al azar de manera uniforme en $U$.
+- $\mathbf{1}\{X_i \in A\}$: indicadora, 1 si la muestra cae en $A$ y 0 si no.
+- $\hat{p}$: fracción de muestras que caen en $A$; $p = |A|/|U|$ es la fracción real.
+- $\widehat{|A|}$: estimación del tamaño de $A$.
+- $1.96$: valor de la normal estándar para un intervalo del 95 %.
+:::
+
 ## Cómo usar la visualización
 
 Cada muestra es una cadena binaria de 16 bits elegida al azar; los pares de unos seguidos se resaltan y la muestra se marca como "cumple" o "no cumple". La gráfica muestra la estimación en función del número de muestras, con la banda del intervalo del 95 % y la línea del valor exacto, que se conoce gracias a la recurrencia de Fibonacci. El selector cambia a otro problema: subconjuntos de $\{1, \dots, 20\}$ con suma acotada.
@@ -98,3 +109,39 @@ largo: 12
 ## Conexiones
 
 El método usa el [[principio-del-producto]] para conocer $|U|$ y se valida contra conteos exactos obtenidos con [[relaciones-de-recurrencia-lineales]]. Es la contraparte aproximada de los métodos exactos de este submódulo, útil cuando el [[principio-de-inclusion-y-exclusion]] o las [[funciones-generadoras-ordinarias]] no dan una fórmula manejable. Su justificación formal depende de la ley de los grandes números y del teorema central del límite, y es la base de la integración de Monte Carlo y de los métodos de muestreo en estadística bayesiana.
+
+## Formulario
+
+:::formula[Estimador de Monte Carlo]
+$$
+\widehat{|A|} = |U| \cdot \hat{p}, \qquad \hat{p} = \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}\{X_i \in A\}
+$$
+
+- $|U|$: tamaño del universo.
+- $\hat{p}$: fracción de aciertos entre las $N$ muestras.
+:::
+
+:::formula[Error estándar]
+$$
+\mathrm{EE} = |U|\sqrt{\frac{p(1-p)}{N}}
+$$
+
+- $p$: fracción real de $U$ que ocupa $A$.
+- $N$: número de muestras.
+:::
+
+:::formula[Intervalo del 95 %]
+$$
+|U|\left(\hat{p} \pm 1.96\sqrt{\frac{\hat{p}(1 - \hat{p})}{N}}\right)
+$$
+
+- $1.96$: cuantil de la normal estándar que deja 2.5 % en cada cola.
+:::
+
+:::formula[Error relativo]
+$$
+\frac{\mathrm{EE}}{|A|} \approx \sqrt{\frac{1 - p}{pN}}
+$$
+
+- Con $p$ pequeño se necesitan del orden de $1/p$ muestras.
+:::

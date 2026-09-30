@@ -61,6 +61,14 @@ En lenguaje de elecciones: si una tarea puede realizarse de una de $k$ formas ex
 
 Si los conjuntos no son disjuntos, la suma solo es una cota superior: $|A_1 \cup \dots \cup A_k| \le |A_1| + \dots + |A_k|$.
 
+:::nota[Qué significa cada símbolo]
+- $A_1, \dots, A_k$: los grupos de opciones; $k$ es cuántos grupos hay.
+- $|A_i|$: número de opciones del grupo $i$.
+- $\bigcup$: unión de todos los grupos.
+- $A_i \cap A_j = \varnothing$: los grupos $i$ y $j$ no comparten opciones (son disjuntos).
+- $n_i$: número de maneras de realizar la tarea por la forma $i$.
+:::
+
 ## Cómo usar la visualización
 
 Cada columna es una categoría de actividades. La reproducción cuenta una actividad a la vez y lleva el total; el panel compara la suma de las partes con el número de actividades distintas. Los interruptores quitan o agregan categorías.
@@ -111,3 +119,32 @@ Para dos conjuntos disjuntos $A$ y $B$ con $|A| = m$ y $|B| = n$, se numeran los
 ## Conexiones
 
 El principio de la suma es la cardinalidad de una unión disjunta, construida con las [[operaciones-de-conjuntos]], y se aplica a cualquier división en [[particiones-de-un-conjunto|bloques]]. Se combina con el [[principio-del-producto]] en casi todo problema de conteo, y su generalización a conjuntos que se traslapan es el [[principio-de-inclusion-y-exclusion]]. En probabilidad, la aditividad para eventos excluyentes tiene exactamente la misma forma.
+
+## Formulario
+
+:::formula[Principio de la suma]
+$$
+\left|\bigcup_{i=1}^{k} A_i\right| = \sum_{i=1}^{k} |A_i| \quad \text{si } A_i \cap A_j = \varnothing \text{ para } i \neq j
+$$
+
+- $k$: número de grupos o casos.
+- $|A_i|$: tamaño del grupo $i$.
+- La condición exige que ningún par de grupos comparta elementos.
+:::
+
+:::formula[Conteo por complemento]
+$$
+|A| = |U| - |A^c|
+$$
+
+- $U$: todas las posibilidades.
+- $A^c$: las que no cumplen la condición.
+:::
+
+:::formula[Desigualdad de la unión]
+$$
+|A_1 \cup \dots \cup A_k| \le |A_1| + \dots + |A_k|
+$$
+
+- Vale siempre; la igualdad se cumple solo si los grupos son disjuntos.
+:::

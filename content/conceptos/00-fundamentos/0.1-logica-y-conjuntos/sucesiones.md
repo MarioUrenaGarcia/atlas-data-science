@@ -63,6 +63,16 @@ Si no existe tal $L$, la sucesión **diverge**. Diverge a $+\infty$ si para todo
 
 $(a_n)$ es **acotada** si existe $M$ con $|a_n| \le M$ para todo $n$, y **monótona creciente** si $a_n \le a_{n+1}$ para todo $n$.
 
+:::nota[Qué significa cada símbolo]
+- $a_n$: término $n$ de la sucesión; $(a_n)_{n \ge 1}$, la sucesión completa.
+- $n$: índice, un natural.
+- $L$: límite, el valor al que se acercan los términos.
+- $\varepsilon$: tolerancia, cualquier número positivo por pequeño que sea.
+- $N$: índice a partir del cual todos los términos están a menos de $\varepsilon$ de $L$.
+- $|a_n - L|$: distancia entre el término y el límite.
+- $M$: cota, un número que ningún $|a_n|$ supera.
+:::
+
 ## Cómo usar la visualización
 
 Los términos $a_n$ aparecen uno por uno como puntos. Si la sucesión converge, se dibuja la banda $L \pm \varepsilon$ y se marca el índice $N(\varepsilon)$ a partir del cual todos los términos quedan dentro. El panel muestra el término actual, el límite y la distancia $|a_n - L|$.
@@ -120,3 +130,43 @@ terminos: 60
 ## Conexiones
 
 Una sucesión es una de las [[funciones]] con dominio en los naturales, y su definición de límite combina [[cuantificadores-universal-y-existencial|cuantificadores]] en un orden preciso. Las sumas parciales de una sucesión definen las [[series-y-convergencia-de-series|series]], y el teorema de convergencia monótona usa el [[supremo-e-infimo|supremo]]. En estadística, la consistencia de un estimador y la ley de los grandes números son afirmaciones sobre límites de sucesiones.
+
+## Formulario
+
+:::formula[Límite de una sucesión]
+$$
+\lim_{n \to \infty} a_n = L \iff \forall \varepsilon > 0\ \exists N\ \forall n \ge N:\ |a_n - L| < \varepsilon
+$$
+
+- $a_n$: término $n$.
+- $L$: límite.
+- $\varepsilon$: tolerancia elegida.
+- $N$: índice que depende de $\varepsilon$.
+:::
+
+:::formula[Álgebra de límites]
+$$
+a_n \to a,\ b_n \to b \ \Rightarrow\ a_n + b_n \to a + b,\quad a_n b_n \to ab,\quad \frac{a_n}{b_n} \to \frac{a}{b}\ (b \neq 0)
+$$
+
+- $a, b$: límites de cada sucesión.
+- $\to$ se lee "tiende a".
+:::
+
+:::formula[Compresión]
+$$
+a_n \le b_n \le c_n,\ \ a_n \to L,\ c_n \to L \ \Rightarrow\ b_n \to L
+$$
+
+- $a_n, c_n$: sucesiones que encierran a $b_n$.
+- $L$: límite común.
+:::
+
+:::formula[Límites básicos]
+$$
+\frac{1}{n} \to 0,\qquad r^n \to 0\ (|r| < 1),\qquad n^{1/n} \to 1,\qquad \left(1 + \frac{1}{n}\right)^n \to e
+$$
+
+- $r$: razón fija con valor absoluto menor que 1.
+- $e \approx 2.71828$: la base de los logaritmos naturales.
+:::

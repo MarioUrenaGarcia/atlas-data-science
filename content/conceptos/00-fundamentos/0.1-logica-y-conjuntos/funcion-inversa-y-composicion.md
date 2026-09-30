@@ -60,6 +60,14 @@ $$
 $f$ es invertible si y solo si es biyectiva. En ese caso, $f^{-1}(b)$ es la única preimagen de $b$, y la inversa es única.
 :::
 
+:::nota[Qué significa cada símbolo]
+- $f: A \to B$ y $g: B \to C$: dos funciones que se pueden encadenar.
+- $g \circ f$: composición, "$g$ después de $f$"; se aplica primero $f$.
+- $\mathrm{id}_A$: función identidad en $A$, que deja cada elemento igual.
+- $f^{-1}: B \to A$: función inversa de $f$, la que deshace su efecto.
+- $c$ y $t$ (en el ejemplo): temperatura en grados Celsius y en grados Fahrenheit.
+:::
+
 ## Cómo usar la visualización
 
 En la vista de composición aparecen tres columnas, $A$, $B$ y $C$, con las flechas de $f$ y de $g$. La reproducción sigue cada elemento de $A$: resalta su flecha por $f$, después la flecha de $g$ que sale del punto de llegada, y el panel registra $(g \circ f)(a)$. En la vista de inversa, las flechas de $f$ se invierten una por una, de $B$ hacia $A$.
@@ -132,3 +140,43 @@ Para $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$, basta comprobar que funciona como
 ## Conexiones
 
 La existencia de inversa depende de la clasificación de [[funciones-inyectivas-suprayectivas-y-biyectivas]]. Las biyecciones y sus inversas permiten comparar tamaños en [[cardinalidad-finita-numerable-y-no-numerable]]. La composición aparece en todo el Atlas: la regla de la cadena del cálculo, la función cuantil como inversa de la función de distribución y las redes neuronales como composición de capas.
+
+## Formulario
+
+:::formula[Composición]
+$$
+(g \circ f)(a) = g(f(a))
+$$
+
+- $a$: entrada en el dominio de $f$.
+- $f(a)$: resultado intermedio, que entra a $g$.
+- $g \circ f$: se lee de derecha a izquierda.
+:::
+
+:::formula[Inversa]
+$$
+f^{-1} \circ f = \mathrm{id}_A, \qquad f \circ f^{-1} = \mathrm{id}_B
+$$
+
+- $\mathrm{id}_A(a) = a$: identidad en el dominio.
+- $\mathrm{id}_B(b) = b$: identidad en el codominio.
+- Existe solo si $f$ es biyectiva.
+:::
+
+:::formula[Inversa de una composición]
+$$
+(g \circ f)^{-1} = f^{-1} \circ g^{-1}
+$$
+
+- $f^{-1}, g^{-1}$: inversas de cada función; el orden se invierte.
+:::
+
+:::formula[Celsius y Fahrenheit]
+$$
+f(c) = \tfrac{9}{5}c + 32, \qquad f^{-1}(t) = \tfrac{5}{9}(t - 32)
+$$
+
+- $c$: temperatura en grados Celsius.
+- $t$: temperatura en grados Fahrenheit.
+- $\tfrac{9}{5}$: tamaño de un grado Celsius medido en grados Fahrenheit; $32$: punto de congelación del agua en Fahrenheit.
+:::

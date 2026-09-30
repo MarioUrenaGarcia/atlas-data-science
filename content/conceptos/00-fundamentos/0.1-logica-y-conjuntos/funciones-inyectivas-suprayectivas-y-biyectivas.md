@@ -100,6 +100,15 @@ funciones:
 ```
 :::
 
+:::nota[Qué significa cada símbolo]
+- $f: A \to B$: función de $A$ (dominio) en $B$ (codominio).
+- $a_1, a_2$: dos elementos del dominio.
+- $b$: un elemento del codominio.
+- $f(A)$: imagen de $f$.
+- $|A|, |B|$: número de elementos de cada conjunto.
+- $\lceil x \rceil$ (en el principio del palomar): techo de $x$, el menor entero mayor o igual que $x$.
+:::
+
 ## Cómo usar la visualización
 
 Cada ejemplo muestra una función con flechas del dominio al codominio. Al terminar la reproducción el panel responde si es inyectiva, suprayectiva y biyectiva, e identifica la causa cuando no lo es: los elementos que comparten imagen se marcan en naranja y los elementos del codominio sin preimagen en ámbar. Un clic en un elemento del dominio y luego en uno del codominio mueve su flecha, de modo que el diagrama siempre sigue siendo función.
@@ -182,3 +191,41 @@ funciones:
 ## Conexiones
 
 Estas propiedades refinan la definición de [[funciones]]. Las biyecciones son exactamente las funciones con inversa, tema de [[funcion-inversa-y-composicion]], y son la herramienta para comparar tamaños de conjuntos en [[cardinalidad-finita-numerable-y-no-numerable]]. En combinatoria, el principio del palomar y el conteo por biyecciones se apoyan directamente en ellas.
+
+## Formulario
+
+:::formula[Inyectiva]
+$$
+f(a_1) = f(a_2) \Rightarrow a_1 = a_2
+$$
+
+- $a_1, a_2$: dos entradas cualesquiera.
+- Dos entradas distintas nunca comparten salida.
+:::
+
+:::formula[Suprayectiva]
+$$
+\forall b \in B\ \exists a \in A:\ f(a) = b \quad\iff\quad f(A) = B
+$$
+
+- $b$: cualquier elemento del codominio.
+- $a$: una entrada que lo alcanza.
+- $f(A) = B$: la imagen cubre todo el codominio.
+:::
+
+:::formula[Biyectiva]
+$$
+\forall b \in B\ \exists!\, a \in A:\ f(a) = b
+$$
+
+- $\exists!$: exactamente una preimagen para cada $b$.
+:::
+
+:::formula[Tamaños en conjuntos finitos]
+$$
+\text{inyectiva} \Rightarrow |A| \le |B|, \qquad \text{suprayectiva} \Rightarrow |A| \ge |B|, \qquad \text{biyectiva} \Rightarrow |A| = |B|
+$$
+
+- $|A|$: número de entradas.
+- $|B|$: número de salidas posibles.
+:::

@@ -56,6 +56,15 @@ Pero no todo infinito se deja listar. Los números reales no caben en ninguna li
 
 Un conjunto infinito $A$ es numerable si y solo si sus elementos pueden escribirse como una sucesión $a_1, a_2, a_3, \dots$ en la que cada elemento aparece.
 
+:::nota[Qué significa cada símbolo]
+- $|A|$: cardinalidad, el "tamaño" de $A$.
+- $|A| = |B|$: existe una biyección entre $A$ y $B$.
+- $|A| \le |B|$: existe una función inyectiva de $A$ en $B$.
+- $\mathbb{N} = \{1, 2, 3, \dots\}$: los naturales; $\mathbb{Z}$: los enteros; $\mathbb{Q}$: los racionales; $\mathbb{R}$: los reales.
+- $a_1, a_2, a_3, \dots$: una lista infinita de los elementos de un conjunto numerable.
+- $\mathcal{P}(A)$: conjunto potencia de $A$.
+:::
+
 ## Cómo usar la visualización
 
 La visualización tiene tres vistas. En "Conjuntos finitos" los días de la semana se emparejan con 1, 2, 3, ... hasta agotar el conjunto. En "Los enteros" cada posición de la lista se une con un entero siguiendo el orden 0, 1, -1, 2, -2, ...; la recta muestra que la lista alterna lados y nunca se salta un entero. En "Los racionales" un recorrido en zigzag sobre la tabla de fracciones $p/q$ cuenta cada racional positivo la primera vez que aparece y salta las fracciones repetidas como $2/4$.
@@ -117,3 +126,40 @@ ejemplos:
 ## Conexiones
 
 Las comparaciones de tamaño se hacen con las [[funciones-inyectivas-suprayectivas-y-biyectivas]]. El [[argumento-diagonal-de-cantor]] demuestra que los reales son no numerables, con la misma idea que muestra que el [[conjunto-potencia]] es siempre más grande. En probabilidad, la distinción entre numerable y no numerable separa las variables aleatorias discretas de las continuas, y la aditividad de la probabilidad se exige solo sobre familias numerables de eventos.
+
+## Formulario
+
+:::formula[Misma cardinalidad]
+$$
+|A| = |B| \iff \exists\, f: A \to B \text{ biyectiva}
+$$
+
+- $A, B$: conjuntos cualesquiera, finitos o infinitos.
+- $f$: una biyección que empareja sus elementos uno a uno.
+:::
+
+:::formula[Numerabilidad]
+$$
+A \text{ es infinito numerable} \iff |A| = |\mathbb{N}|
+$$
+
+- $\mathbb{N}$: los naturales.
+- Equivale a poder listar los elementos como $a_1, a_2, a_3, \dots$
+:::
+
+:::formula[Biyección de los naturales en los enteros]
+$$
+f(n) = \begin{cases} n/2 & n \text{ par} \\ -(n - 1)/2 & n \text{ impar} \end{cases}
+$$
+
+- $n$: posición en la lista, un natural.
+- $f(n)$: el entero que ocupa esa posición: $0, 1, -1, 2, -2, \dots$
+:::
+
+:::formula[Teorema de Cantor]
+$$
+|A| < |\mathcal{P}(A)|
+$$
+
+- $\mathcal{P}(A)$: conjunto potencia de $A$; siempre es estrictamente más grande.
+:::

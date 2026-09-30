@@ -54,6 +54,15 @@ Más generalmente, $A_1 \times \dots \times A_n = \{(a_1, \dots, a_n) : a_i \in 
 
 Si $A$ y $B$ son finitos, $|A \times B| = |A| \cdot |B|$. Si alguno es vacío, el producto es vacío.
 
+:::nota[Qué significa cada símbolo]
+- $(a, b)$: par ordenado, primero $a$ y después $b$.
+- $A \times B$: producto cartesiano, todos los pares con primera coordenada en $A$ y segunda en $B$.
+- $A_1 \times \dots \times A_n$: producto de $n$ conjuntos; sus elementos son $n$-tuplas $(a_1, \dots, a_n)$.
+- $A^n$: producto de $A$ consigo mismo $n$ veces.
+- $|A|$: número de elementos de $A$.
+- $\mathbb{R}^2 = \mathbb{R} \times \mathbb{R}$: el plano.
+:::
+
 ## Cómo usar la visualización
 
 Las filas son los elementos de $T$ (tallas) y las columnas los de $C$ (colores). La reproducción forma los pares uno a uno, recorriendo cada fila completa antes de pasar a la siguiente, y el panel lleva la cuenta junto con el producto $|T| \cdot |C|$.
@@ -122,3 +131,41 @@ vista: plano
 ## Conexiones
 
 El producto cartesiano se construye a partir de [[conjuntos-y-notacion]]. Una función es un subconjunto especial de $A \times B$, como se ve en [[funciones]], y las [[relaciones-y-relaciones-de-equivalencia|relaciones]] son subconjuntos arbitrarios de $A \times A$. En probabilidad, el espacio muestral de experimentos repetidos es un producto cartesiano, y su cardinalidad es la regla del producto de la combinatoria.
+
+## Formulario
+
+:::formula[Producto cartesiano]
+$$
+A \times B = \{(a, b) : a \in A,\ b \in B\}
+$$
+
+- $A$: conjunto de donde sale la primera coordenada.
+- $B$: conjunto de donde sale la segunda.
+- $(a, b)$: par ordenado.
+:::
+
+:::formula[Igualdad de pares ordenados]
+$$
+(a, b) = (c, d) \iff a = c \ \text{ y } \ b = d
+$$
+
+- $a, c$: primeras coordenadas; $b, d$: segundas coordenadas.
+:::
+
+:::formula[Cardinalidad del producto]
+$$
+|A_1 \times \dots \times A_n| = |A_1| \cdot |A_2| \cdots |A_n|
+$$
+
+- $n$: número de conjuntos.
+- $|A_i|$: número de elementos del conjunto $i$.
+:::
+
+:::formula[Distributividad]
+$$
+A \times (B \cup C) = (A \times B) \cup (A \times C)
+$$
+
+- $A, B, C$: conjuntos.
+- $\cup$: unión.
+:::

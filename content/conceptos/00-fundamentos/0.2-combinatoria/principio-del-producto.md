@@ -57,6 +57,13 @@ resultados distintos. En particular, para conjuntos finitos, $|A_1 \times \dots 
 
 La condición esencial es que el **número** de opciones de cada etapa sea el mismo para todas las elecciones previas, aunque las opciones concretas cambien.
 
+:::nota[Qué significa cada símbolo]
+- $k$: número de etapas de la elección.
+- $n_i$: número de opciones de la etapa $i$, el mismo sin importar lo elegido antes.
+- $A_1 \times \dots \times A_k$: producto cartesiano, las listas con un elemento de cada conjunto.
+- $|A_i|$: número de elementos del conjunto $i$.
+:::
+
 ## Cómo usar la visualización
 
 El árbol tiene un nivel por etapa: la raíz arriba y los menús completos en las hojas, numeradas abajo. La reproducción traza los caminos uno por uno, resaltando el último; el panel muestra el producto de las opciones y el menú trazado. Los controles reducen el número de opciones de cada etapa.
@@ -131,3 +138,33 @@ Para dos etapas: los resultados son los pares $(x, y)$ con $x$ entre las $n_1$ o
 ## Conexiones
 
 El principio del producto es la cardinalidad del [[producto-cartesiano]] y su demostración usa el [[principio-de-la-suma]]. De él se derivan el [[factorial]], las [[permutaciones]] y las [[variaciones]]. Los árboles de conteo de la visualización reaparecen en probabilidad como árboles de probabilidad, donde cada rama lleva una probabilidad en lugar de contar una opción.
+
+## Formulario
+
+:::formula[Principio del producto]
+$$
+N = n_1 \cdot n_2 \cdots n_k
+$$
+
+- $N$: número total de resultados.
+- $n_i$: opciones de la etapa $i$.
+- $k$: número de etapas.
+:::
+
+:::formula[Cardinalidad del producto cartesiano]
+$$
+|A_1 \times \dots \times A_k| = |A_1| \cdots |A_k|
+$$
+
+- $|A_i|$: número de elementos del conjunto $i$.
+:::
+
+:::formula[Palabras, subconjuntos y funciones]
+$$
+n^{k} \text{ palabras}, \qquad 2^{n} \text{ subconjuntos}, \qquad |B|^{|A|} \text{ funciones}
+$$
+
+- $n$: número de símbolos (o de elementos del conjunto).
+- $k$: longitud de la palabra.
+- $|A|$, $|B|$: tamaños del dominio y del codominio.
+:::
