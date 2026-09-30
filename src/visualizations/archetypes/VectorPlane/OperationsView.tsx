@@ -22,6 +22,21 @@ const STAGES = [
 ] as const;
 const STAGES_PER_SECOND = 0.45;
 
+/** Header formula of the operation shown at each stage of the animation. */
+function stageFormula(stage: number, u: Vec2, v: Vec2, c: number): string {
+  switch (stage) {
+    case 0:
+      return `\\mathbf{u} = ${vecLatex(u)},\\quad \\mathbf{v} = ${vecLatex(v)}`;
+    case 1:
+    case 2:
+      return `\\mathbf{u} + \\mathbf{v} = ${vecLatex(u)} + ${vecLatex(v)} = ${vecLatex(add(u, v))}`;
+    case 3:
+      return `\\mathbf{u} - \\mathbf{v} = ${vecLatex(u)} - ${vecLatex(v)} = ${vecLatex(sub(u, v))}`;
+    default:
+      return `c\\,\\mathbf{u} = ${formatNumber(c, 2)} ${vecLatex(u)} = ${vecLatex(scale(u, c))}`;
+  }
+}
+
 interface OperationsViewProps {
   title: string;
   u: Vec2;
@@ -95,7 +110,7 @@ export function OperationsView({ title, u, v, scalar }: OperationsViewProps) {
       description={description}
     >
       <p className={styles.formula}>
-        <Latex tex={`u + v = ${vecLatex(a)} + ${vecLatex(b)} = ${vecLatex(sum)}`} />
+        <Latex tex={stageFormula(stage, a, b, c)} />
       </p>
       <p className={styles.stage}>{STAGES[stage]}</p>
       <CartesianPlane extent={6} label={description} interactive>

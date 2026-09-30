@@ -7,7 +7,7 @@ import { VectorArrow } from '../../core/svg/VectorArrow.tsx';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { factorize, factorStages, type FactorKind } from './factorizations.ts';
-import { apply, blend, IDENTITY, matLatex, vecText, type Vec2 } from './matrix2.ts';
+import { apply, blend, IDENTITY, matLatex, vecText, type Mat2, type Vec2 } from './matrix2.ts';
 import styles from './MatrixTransform.module.css';
 import { TransformedGrid } from './TransformedGrid.tsx';
 import { useMatrixChoice, type NamedMatrix } from './useMatrixChoice.ts';
@@ -22,12 +22,48 @@ const FRAMES_PER_SECOND = 24;
 
 const NAMES: Record<
   FactorKind,
-  { directions: [string, string]; diagonal: string; values: string }
+  { directions: [string, string]; values: string; factors: [string, string, string] }
 > = {
-  svd: { directions: ['v₁', 'v₂'], diagonal: 'Σ', values: 'Valores singulares σ₁, σ₂' },
-  diagonalizacion: { directions: ['v₁', 'v₂'], diagonal: 'D', values: 'Valores propios λ₁, λ₂' },
-  espectral: { directions: ['q₁', 'q₂'], diagonal: 'Λ', values: 'Valores propios λ₁, λ₂' },
+  svd: {
+    directions: ['v₁', 'v₂'],
+    values: 'Valores singulares σ₁, σ₂',
+    factors: ['V^\\top', '\\Sigma', 'U'],
+  },
+  diagonalizacion: {
+    directions: ['v₁', 'v₂'],
+    values: 'Valores propios λ₁, λ₂',
+    factors: ['P^{-1}', 'D', 'P'],
+  },
+  espectral: {
+    directions: ['q₁', 'q₂'],
+    values: 'Valores propios λ₁, λ₂',
+    factors: ['Q^\\top', '\\Lambda', 'Q'],
+  },
 };
+
+/** Header of each phase: the factor being applied, with its numbers. */
+function phaseFormula(
+  phase: number,
+  factors: [string, string, string],
+  matrices: [Mat2, Mat2, Mat2],
+  a: Mat2,
+  product: string,
+): string {
+  const [left, middle, right] = factors;
+  const [l, m, r] = matrices;
+  switch (phase) {
+    case 0:
+      return `A = ${matLatex(a)} = ${product}`;
+    case 1:
+      return `\\text{Paso 1: } ${left} = ${matLatex(l, 3)}`;
+    case 2:
+      return `\\text{Paso 2: } ${middle} = ${matLatex(m, 3)}`;
+    case 3:
+      return `\\text{Paso 3: } ${right} = ${matLatex(r, 3)}`;
+    default:
+      return `${product} = ${matLatex(a)} = A`;
+  }
+}
 
 interface FactorViewProps {
   title: string;
@@ -107,7 +143,13 @@ export function FactorView({ title, kind, matrices }: FactorViewProps) {
         <Latex
           tex={
             result.ok
-              ? `A = ${matLatex(matrix)} = ${result.value.latex},\\quad ${names.diagonal} = ${matLatex(result.value.middle)}`
+              ? phaseFormula(
+                  frame >= total ? PHASES + 1 : shownPhase,
+                  names.factors,
+                  [result.value.left, result.value.middle, result.value.right],
+                  matrix,
+                  result.value.latex,
+                )
               : `A = ${matLatex(matrix)}`
           }
         />

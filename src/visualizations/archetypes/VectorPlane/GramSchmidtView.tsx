@@ -10,6 +10,7 @@ import { VizFrame } from '../../core/VizFrame.tsx';
 import type { Vec2 } from './schema.ts';
 import { useVectors } from './useVectors.ts';
 import { dot, length, roundOff, scale, sub, vecText } from './vectors.ts';
+import { gramSchmidtFormula } from './stageFormulas.ts';
 import styles from './VectorPlane.module.css';
 
 const STEPS = [
@@ -62,7 +63,7 @@ export function GramSchmidtView({ title, v1, v2 }: GramSchmidtViewProps) {
       description={description}
     >
       <p className={styles.formula}>
-        <Latex tex="q_1 = \frac{v_1}{\|v_1\|},\qquad w_2 = v_2 - (v_2 \cdot q_1)\,q_1,\qquad q_2 = \frac{w_2}{\|w_2\|}" />
+        <Latex tex={gramSchmidtFormula(step, p, q, q1, dot(q, q1), w2, q2)} />
       </p>
       <p className={styles.stage}>{STEPS[step]}</p>
       <CartesianPlane extent={5} label={description} interactive>

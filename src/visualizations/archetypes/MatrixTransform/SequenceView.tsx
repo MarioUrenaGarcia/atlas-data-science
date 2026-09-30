@@ -136,11 +136,13 @@ export function SequenceView({ title, mode, pairs }: SequenceViewProps) {
       <p className={styles.formula}>
         <Latex
           tex={
-            mode === 'inversa'
-              ? inv
-                ? `A = ${matLatex(a)},\\quad A^{-1} = ${matLatex(inv, 3)},\\quad A^{-1}A = I`
-                : `A = ${matLatex(a)},\\quad \\det A = 0 \\ \\Rightarrow\\ A^{-1} \\text{ no existe}`
-              : `${swapped ? 'A' : 'B'}\\,${swapped ? 'B' : 'A'} = ${matLatex(product ?? IDENTITY)}`
+            frame <= FRAMES_PER_PHASE
+              ? `\\text{Fase 1: } ${mode === 'inversa' || !swapped ? 'A' : 'B'} = ${matLatex(first)}`
+              : mode === 'inversa'
+                ? inv
+                  ? `\\text{Fase 2: } A^{-1} = ${matLatex(inv, 3)},\\quad A^{-1}A = I`
+                  : `\\det A = 0 \\ \\Rightarrow\\ A^{-1} \\text{ no existe}`
+                : `\\text{Fase 2: } ${swapped ? 'A' : 'B'} = ${matLatex(second ?? IDENTITY)},\\quad ${swapped ? 'A' : 'B'}\\,${swapped ? 'B' : 'A'} = ${matLatex(product ?? IDENTITY)}`
           }
         />
       </p>

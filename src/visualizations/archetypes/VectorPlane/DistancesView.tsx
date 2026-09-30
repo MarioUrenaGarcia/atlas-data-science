@@ -12,6 +12,7 @@ import { ballPath } from './balls.ts';
 import type { Vec2 } from './schema.ts';
 import { useVectors } from './useVectors.ts';
 import { pNorm, sub, vecText } from './vectors.ts';
+import { distanceFormula } from './stageFormulas.ts';
 import styles from './VectorPlane.module.css';
 
 const METRICS = [
@@ -100,7 +101,7 @@ export function DistancesView({ title, a, b, p }: DistancesViewProps) {
       description={description}
     >
       <p className={styles.formula}>
-        <Latex tex={`d_p(A, B) = \\left(|a_1 - b_1|^p + |a_2 - b_2|^p\\right)^{1/p}`} />
+        <Latex tex={distanceFormula(active.key, pa, pb, pMinkowski, distances[index] ?? 0)} />
       </p>
       <p className={styles.stage}>Resaltada: distancia {active.label}.</p>
       <CartesianPlane extent={6} label={description} interactive>
