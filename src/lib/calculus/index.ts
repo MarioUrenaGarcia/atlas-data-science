@@ -172,6 +172,8 @@ export const TAYLOR_FUNCTIONS: Record<string, TaylorFunction> = {
   },
 };
 
+export const TAYLOR_FUNCTION_IDS = Object.keys(TAYLOR_FUNCTIONS) as [string, ...string[]];
+
 /** Taylor polynomial of the given order around x0, as a function. */
 export function taylorPolynomial(fn: TaylorFunction, x0: number, order: number): RealFunction {
   const coefficients = Array.from(
@@ -203,4 +205,46 @@ export function sampleFunction(
     if (Number.isFinite(y)) result.push({ x, y });
   }
   return result;
+}
+
+/**
+ * Roots of f on [a, b]: sign changes on a regular grid refined by bisection.
+ * Roots where f touches zero without changing sign are not detected.
+ */
+export function findRoots(
+  f: RealFunction,
+  a: number,
+  b: number,
+  samples = 400,
+  tolerance = 1e-10,
+): number[] {
+  const roots: number[] = [];
+  let x0 = a;
+  let f0 = f(a);
+  for (let i = 1; i <= samples; i += 1) {
+    const x1 = a + ((b - a) * i) / samples;
+    const f1 = f(x1);
+    if (Number.isFinite(f0) && Number.isFinite(f1)) {
+      if (f0 === 0) roots.push(x0);
+      else if (f0 * f1 < 0) {
+        let lo = x0;
+        let hi = x1;
+        let flo = f0;
+        while (hi - lo > tolerance) {
+          const mid = (lo + hi) / 2;
+          const fm = f(mid);
+          if (flo * fm <= 0) hi = mid;
+          else {
+            lo = mid;
+            flo = fm;
+          }
+        }
+        roots.push((lo + hi) / 2);
+      }
+    }
+    x0 = x1;
+    f0 = f1;
+  }
+  if (f0 === 0) roots.push(b);
+  return roots;
 }

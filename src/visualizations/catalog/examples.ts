@@ -799,4 +799,97 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     title: 'Proyección a un plano',
     params: { modo: 'proyeccion', a1: [2, 0, 0], a2: [1, 2, 0], b: [1, 1, 2.5] },
   },
+  {
+    component: 'CalculusViz',
+    title: 'Transformaciones',
+    params: {
+      modo: 'transformaciones',
+      funciones: ['cuadrada', 'seno', 'valor-absoluto'],
+      valores: [-1.5, 2, 1, 0.5],
+    },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Límite',
+    params: {
+      modo: 'limite',
+      casos: ['removible', 'salto', 'infinito', 'oscilante'],
+      epsilon: true,
+    },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Secante',
+    params: { modo: 'secante', funcion: 'cubica', x0: 0.5, h: 1.5 },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Derivadas',
+    params: { modo: 'derivadas', funciones: ['cuartica', 'seno'], orden: 2, criticos: true },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Cadena',
+    params: { modo: 'cadena', exterior: 'seno', interior: 'cuadrada', x0: 1 },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Convexidad',
+    params: { modo: 'convexidad', funciones: ['cubica', 'exponencial'], cuerda: [-2, 0.5] },
+  },
+  {
+    component: 'CalculusViz',
+    title: "L'Hôpital",
+    params: { modo: 'lhopital', casos: ['seno-x', 'uno-menos-coseno'] },
+  },
+  { component: 'CalculusViz', title: 'Exponencial', params: { modo: 'exponencial', base: 2 } },
+  {
+    component: 'CalculusViz',
+    title: 'Taylor',
+    params: { modo: 'taylor', funciones: ['sin', 'exp', 'log1p'], orden: 9 },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Riemann',
+    params: { modo: 'riemann', funcion: 'seno', intervalo: [0, 4] },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Área',
+    params: { modo: 'area', funcion: 'cubica', intervalo: [-2, 2] },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Acumulada',
+    params: { modo: 'acumulada', funcion: 'coseno', desde: 0, hasta: 6.28 },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Sustitución',
+    params: { modo: 'sustitucion', casos: ['coseno-cuadrado', 'logaritmo'] },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Partes',
+    params: { modo: 'partes', casos: ['logaritmo', 'x-coseno'] },
+  },
+  {
+    component: 'CalculusViz',
+    title: 'Impropia',
+    params: { modo: 'impropia', casos: ['inverso-cuadrado', 'reciproca', 'inverso-raiz'] },
+  },
+  { component: 'CalculusViz', title: 'Gamma', params: { modo: 'gamma', x: 3.5 } },
+  { component: 'CalculusViz', title: 'Beta', params: { modo: 'beta', a: 2, b: 5 } },
+  { component: 'CalculusViz', title: 'Stirling', params: { modo: 'stirling', n: 5 } },
+  {
+    component: 'CalculusViz',
+    title: 'Indicadora',
+    params: {
+      modo: 'indicadora',
+      intervalos: [
+        [-1, 1],
+        [2, 3.5],
+      ],
+    },
+  },
 ];
