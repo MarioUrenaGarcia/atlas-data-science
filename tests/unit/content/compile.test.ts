@@ -77,8 +77,10 @@ describe('compileContent with valid content', () => {
       'propiedades',
       'errores-comunes',
       'conexiones',
+      'formulario',
     ]);
     const html = content?.sections.map((section) => section.html).join('\n') ?? '';
+    expect(html).toContain('<aside class="directive directive-formula">');
     expect(html).toContain('class="katex');
     expect(html).toContain('<math');
     expect(html).toContain('<details class="directive directive-demostracion">');
@@ -283,6 +285,19 @@ describe('compileContent with invalid content', () => {
     expect(
       messages.some((message) => message.startsWith('parámetros de la figura FixtureViz')),
     ).toBe(true);
+  });
+
+  it('requires a summary of formulas whose symbols are explained', () => {
+    const raw = load();
+    const file = conceptFile(raw, 'concepto-alfa');
+    file.body = file.body.replace(/\n- \$N\$[^\n]*\n- \$A\$[^\n]*\n- \$\|A\|\$[^\n]*/, '');
+    expect(errors(compile(raw))).toContain(
+      'cada :::formula necesita la fórmula en bloque y una lista que explique sus símbolos',
+    );
+    file.body = file.body.split('## Formulario')[0] ?? '';
+    expect(errors(compile(raw)).some((message) => message.includes('faltan: Formulario'))).toBe(
+      true,
+    );
   });
 
   it('rejects figures nested inside other blocks', () => {

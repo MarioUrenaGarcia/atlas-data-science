@@ -92,6 +92,15 @@
   background: var(--color-warning-soft);
 }
 
+.prose .directive-formula {
+  border-left: 4px solid var(--data-1);
+  background: var(--color-surface-2);
+}
+
+.prose .directive-formula ul {
+  margin-top: var(--space-2);
+}
+
 .prose .directive-nota {
   border-left: 4px solid var(--color-border-strong);
   color: var(--color-text-muted);

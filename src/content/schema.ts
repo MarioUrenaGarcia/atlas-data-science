@@ -21,6 +21,7 @@ export const SECTION_TITLES = [
   'Propiedades',
   'Errores comunes',
   'Conexiones',
+  'Formulario',
 ] as const;
 
 export const LIMITS = {

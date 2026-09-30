@@ -160,6 +160,13 @@ function checkBody(parsed: ParsedConcept, issues: Issue[]) {
       message: `las secciones deben ser exactamente: ${expected.join(' > ')} (${details})`,
     });
   }
+  if (body.headingTitles.includes('Formulario') && body.formulas === 0) {
+    issues.push({
+      level: 'error',
+      file: file.path,
+      message: 'el formulario debe tener al menos un bloque :::formula',
+    });
+  }
   const limits: [string, { min: number; max: number }][] = [
     ['Intuición', LIMITS.intuitionWords],
     ['Cómo usar la visualización', LIMITS.visualizationGuideWords],

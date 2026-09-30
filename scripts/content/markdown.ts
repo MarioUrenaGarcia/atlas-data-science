@@ -23,6 +23,7 @@ export const DIRECTIVES = {
   demostracion: 'Demostración',
   advertencia: 'Advertencia',
   nota: 'Nota',
+  formula: 'Fórmula',
 } as const;
 
 type DirectiveName = keyof typeof DIRECTIVES;
@@ -44,6 +45,8 @@ export interface ProcessedBody {
   sections: ConceptSection[];
   /** Visualizations embedded in the body with :::figura, in order of appearance. */
   figures: BodyFigure[];
+  /** Number of :::formula blocks, which make up the summary of formulas. */
+  formulas: number;
   /** Section titles as they appear, in order, to validate structure. */
   headingTitles: string[];
   /** Word count of each section keyed by title. */
@@ -155,7 +158,11 @@ function convertFigure(
 }
 
 /** Maps :::name containers to styled boxes; demonstrations become collapsible. */
-function remarkAtlasDirectives(issues: MarkdownIssue[], figures: BodyFigure[]) {
+function remarkAtlasDirectives(
+  issues: MarkdownIssue[],
+  figures: BodyFigure[],
+  counters: { formulas: number },
+) {
   return (tree: MdastRoot) => {
     visit(tree, (node, _index, parent) => {
       if (node.type === 'containerDirective' && node.name === 'figura') {
@@ -187,6 +194,17 @@ function remarkAtlasDirectives(issues: MarkdownIssue[], figures: BodyFigure[]) {
           ? first.children
           : [{ type: 'text', value: DIRECTIVES[directive.name] }];
       const body = hasLabel ? directive.children.slice(1) : directive.children;
+      if (directive.name === 'formula') {
+        counters.formulas += 1;
+        const hasMath = body.some((child) => child.type === 'math');
+        const hasSymbols = body.some((child) => child.type === 'list');
+        if (!hasMath || !hasSymbols) {
+          issues.push({
+            message: 'cada :::formula necesita la fórmula en bloque y una lista que explique sus símbolos',
+            line: directive.position?.start.line,
+          });
+        }
+      }
       const isProof = directive.name === 'demostracion';
       directive.data = {
         hName: isProof ? 'details' : 'aside',
@@ -328,6 +346,7 @@ export function processConceptBody(
   const result: ProcessedBody = {
     sections: [],
     figures: [],
+    formulas: 0,
     headingTitles: [],
     wordCounts: {},
     plainText: {},
@@ -344,7 +363,7 @@ export function processConceptBody(
     .use(remarkMath)
     .use(remarkDirective)
     .use(remarkWikiLinks, result.links)
-    .use(remarkAtlasDirectives, result.issues, result.figures)
+    .use(remarkAtlasDirectives, result.issues, result.figures, result)
     .use(() => (tree: MdastRoot) => collectSectionData(tree, result))
     .use(remarkRehype)
     .use(rehypeKatex, katexOptions(macros))
