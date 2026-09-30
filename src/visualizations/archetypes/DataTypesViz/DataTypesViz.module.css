@@ -1,0 +1,218 @@
+.formula {
+  margin: 0;
+  min-height: 2.4em;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.caption {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.stage {
+  margin: 0 0 var(--space-3);
+  min-height: 3em;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text);
+}
+
+.chartLabel {
+  fill: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.bins {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+
+.bin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 140px;
+  padding: var(--space-3);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+}
+
+.binTitle {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  text-align: center;
+}
+
+.binHint {
+  margin: 0;
+  font-size: var(--text-xs);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  min-height: 3em;
+  margin-bottom: var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.card:hover {
+  border-color: var(--data-1);
+}
+
+.cardActive {
+  border-color: var(--data-5);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--data-5) 40%, transparent);
+}
+
+.cardName {
+  font-weight: 600;
+}
+
+.cardValues {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: var(--text-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color var(--duration-normal) var(--ease-standard);
+}
+
+.table th {
+  background: var(--color-surface-2);
+  font-weight: 600;
+}
+
+.cellHighlight {
+  background: color-mix(in srgb, var(--data-5) 26%, transparent);
+}
+
+.cellSecondary {
+  background: color-mix(in srgb, var(--data-1) 18%, transparent);
+}
+
+.cellMissing {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.panelTitle {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 650;
+  text-align: center;
+}
+
+.code {
+  margin: 0;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.token {
+  border-radius: 3px;
+  transition: background-color var(--duration-normal) var(--ease-standard);
+}
+
+.tokenActive {
+  background: color-mix(in srgb, var(--data-5) 32%, transparent);
+}
+
+.ops {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--text-sm);
+}
+
+.ops th,
+.ops td {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.ops td {
+  white-space: nowrap;
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.ops th:first-child,
+.ops td:first-child {
+  text-align: left;
+}
+
+.yes {
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.no {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.activeRow {
+  background: color-mix(in srgb, var(--data-5) 18%, transparent);
+}
