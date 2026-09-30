@@ -105,7 +105,8 @@
 }
 
 .muted {
-  opacity: 0.35;
+  color: var(--color-text-faint);
+  font-weight: 400;
 }
 
 .row-changed .rowLabel {

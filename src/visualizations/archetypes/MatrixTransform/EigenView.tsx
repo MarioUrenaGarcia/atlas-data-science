@@ -6,13 +6,16 @@ import { CartesianPlane } from '../../core/svg/CartesianPlane.tsx';
 import { VectorArrow } from '../../core/svg/VectorArrow.tsx';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import { apply, eigen, eigenText, matLatex, vecText, type Vec2 } from './matrix2.ts';
+import { apply, eigen, eigenText, matLatex, svd2, vecText, type Vec2 } from './matrix2.ts';
 import styles from './MatrixTransform.module.css';
 import { useMatrixChoice, type NamedMatrix } from './useMatrixChoice.ts';
 
 const STEPS_PER_TURN = 180;
 const STEPS_PER_SECOND = 30;
 const TRACE_SAMPLES = 120;
+/** The plane shows the image of the unit circle with some margin, but never less than this. */
+const MIN_EXTENT = 1.6;
+const EXTENT_MARGIN = 1.25;
 /**
  * v moves in steps of 360 / STEPS_PER_TURN degrees, so it always passes within
  * half a step of each eigen direction; that is the tolerance for "parallel".
@@ -48,6 +51,7 @@ export function EigenView({ title, matrices }: EigenViewProps) {
     ) ?? -1;
   const parallel = matchIndex >= 0;
   const ratio = matchIndex >= 0 ? (real[matchIndex] ?? 0) : v[0] * image[0] + v[1] * image[1];
+  const extent = Math.max(MIN_EXTENT, svd2(matrix).sigma[0] * EXTENT_MARGIN);
   const traceCurve = Array.from({ length: TRACE_SAMPLES + 1 }, (_, index) => {
     const theta = (2 * Math.PI * index) / TRACE_SAMPLES;
     return apply(matrix, [Math.cos(theta), Math.sin(theta)]);
@@ -87,7 +91,7 @@ export function EigenView({ title, matrices }: EigenViewProps) {
       <p className={styles.formula}>
         <Latex tex={`A = ${matLatex(matrix)},\\qquad A\\mathbf{v} = \\lambda \\mathbf{v}`} />
       </p>
-      <CartesianPlane extent={4.5} label={description}>
+      <CartesianPlane extent={extent} label={description}>
         {(plane) => (
           <>
             <g aria-hidden="true">
