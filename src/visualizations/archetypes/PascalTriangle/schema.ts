@@ -27,6 +27,8 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       k: z.number().int().min(0).max(8).optional(),
       /** Sizes of the two groups in Vandermonde's identity. */
       grupos: z.tuple([z.number().int().min(1).max(8), z.number().int().min(1).max(8)]).optional(),
+      /** Names of the two groups, in plural, such as "mujeres" and "hombres". */
+      nombresGrupos: z.tuple([z.string().min(1), z.string().min(1)]).optional(),
     })
     .strict(),
   z
