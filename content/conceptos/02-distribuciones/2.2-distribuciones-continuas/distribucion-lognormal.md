@@ -12,7 +12,6 @@ orden: 13
 nivel: basico
 prerrequisitos:
   - distribucion-normal
-  - funcion-exponencial-y-logaritmo-natural
 relaciones:
   - tipo: relacionado
     id: distribucion-de-pareto

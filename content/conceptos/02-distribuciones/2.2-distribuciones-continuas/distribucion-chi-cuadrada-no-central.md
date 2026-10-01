@@ -12,7 +12,6 @@ orden: 28
 nivel: avanzado
 prerrequisitos:
   - distribucion-chi-cuadrada
-  - distribucion-de-poisson
 relaciones:
   - tipo: generaliza
     id: distribucion-chi-cuadrada

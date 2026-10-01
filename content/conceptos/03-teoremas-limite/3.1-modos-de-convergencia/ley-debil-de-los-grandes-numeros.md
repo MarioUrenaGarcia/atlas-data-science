@@ -155,7 +155,7 @@ escalaLog: true
 
 ## Conexiones
 
-Es una afirmación de [[convergencia-en-probabilidad]] sobre la media muestral. Su versión fuerte es la [[ley-fuerte-de-los-grandes-numeros]], y el [[teorema-central-del-limite]] describe las fluctuaciones de tamaño $1/\sqrt{n}$ alrededor de $\mu$. La [[teoria-de-grandes-desviaciones]] mide qué tan rápido decae la probabilidad de un error fijo, y [[cuando-el-tcl-falla]] muestra qué ocurre sin momentos. Con funciones continuas se extiende mediante el [[teorema-del-mapeo-continuo]]. Da fundamento a la [[interpretacion-frecuentista]] de la probabilidad: la frecuencia relativa de un evento se acerca a su probabilidad.
+Es una afirmación de [[convergencia-en-probabilidad]] sobre la media muestral. Su versión fuerte es la [[ley-fuerte-de-los-grandes-numeros]], y el [[teorema-central-del-limite]] describe las fluctuaciones de tamaño $1/\sqrt{n}$ alrededor de $\mu$. La [[teoria-de-grandes-desviaciones]] mide qué tan rápido decae la probabilidad de un error fijo, y [[cuando-el-tcl-falla]] muestra qué ocurre sin momentos. Con funciones continuas se extiende mediante el [[teorema-del-mapeo-continuo]]. Da fundamento a la [[interpretacion-frecuentista]] de la probabilidad: la frecuencia relativa de un evento se acerca a su probabilidad. Sin media finita la ley falla: el promedio de datos de la [[distribucion-de-cauchy]] no se estabiliza, y con la [[distribucion-de-pareto]] de índice cercano a 1 se estabiliza con enorme lentitud.
 
 ## Formulario
 
