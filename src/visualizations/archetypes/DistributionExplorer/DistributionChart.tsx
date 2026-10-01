@@ -127,7 +127,7 @@ export function DistributionChart({
   const quantile = distribution.quantile(probability);
 
   return (
-    <ChartSvg label={label} aspect={0.55}>
+    <ChartSvg label={label} aspect={0.55} interactive={view === 'densidad'}>
       {(box) => {
         const x = scaleLinear()
           .domain([lo, hi])
