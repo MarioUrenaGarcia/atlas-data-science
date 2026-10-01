@@ -151,14 +151,16 @@ export function slotCount(settings: GenesisSettings): number | null {
 
 /** One weight slider per category; the weights are normalized into probabilities. */
 function weightParameters(categories: readonly Category[]): NumberParameter[] {
+  // Weights may be given unnormalized (7, 6, 4, ...); the slider range must contain them.
+  const top = Math.max(1, ...categories.map((category) => category.probability));
   return categories.map((category, index) =>
     num(
       `w${index}`,
       `Peso de ${category.label}`,
       `w${index + 1}`,
       0,
-      1,
-      0.01,
+      top,
+      top > 1 ? 0.1 : 0.01,
       category.probability,
     ),
   );

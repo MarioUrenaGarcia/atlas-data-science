@@ -209,7 +209,15 @@ export function OutcomeChart({
         labels={labels}
         label={axisLabel}
       />
-      <Bars bars={bars} xScale={x} yScale={y} color={DATA_COLORS.light} opacity={0.75} gap={0} />
+      <Bars
+        bars={bars}
+        xScale={x}
+        yScale={y}
+        color={DATA_COLORS.light}
+        opacity={0.75}
+        gap={0}
+        animate={false}
+      />
       {structuralShare > 0 && lo <= 0 && hi >= 0 && (
         <rect
           aria-hidden="true"
