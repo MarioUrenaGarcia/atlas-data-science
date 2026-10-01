@@ -125,7 +125,7 @@ Si $\mathbf{x} = \sum c_i\mathbf{v}_i$ y $\mathbf{y} = \sum d_i\mathbf{v}_i$, en
 
 ## Conexiones
 
-La combinación lineal usa las operaciones de los [[espacios-vectoriales]]. Cuando ningún vector es combinación de los demás se tiene [[independencia-lineal]], y un conjunto independiente que genera todo el espacio es una [[base-y-dimension|base]]. El espacio generado es siempre uno de los [[subespacios]]. Resolver $A\mathbf{x} = \mathbf{b}$ equivale a preguntar si $\mathbf{b}$ es combinación lineal de las columnas de $A$, idea que se desarrolla en los [[sistemas-de-ecuaciones-lineales]]. En regresión, las predicciones de un modelo lineal son combinaciones lineales de las columnas de datos.
+La combinación lineal usa las operaciones de los [[espacios-vectoriales]]. Cuando ningún vector es combinación de los demás se tiene [[independencia-lineal]], y un conjunto independiente que genera todo el espacio es una [[base-y-dimension|base]]. El espacio generado es siempre uno de los [[subespacios]]. Resolver $\mathbf{A}\mathbf{x} = \mathbf{b}$ equivale a preguntar si $\mathbf{b}$ es combinación lineal de las columnas de $\mathbf{A}$, idea que se desarrolla en los [[sistemas-de-ecuaciones-lineales]]. En regresión, las predicciones de un modelo lineal son combinaciones lineales de las columnas de datos.
 
 ## Formulario
 

@@ -79,7 +79,7 @@ export function PseudoView({ title, matrices }: PseudoViewProps) {
     >
       <p className={styles.formula}>
         <Latex
-          tex={`A = ${matLatex(matrix)},\\quad A^{+} = V\\,\\Sigma^{+}\\,U^\\top = ${matLatex(plus, 3)}`}
+          tex={`\\mathbf{A} = ${matLatex(matrix)},\\quad \\mathbf{A}^{+} = \\mathbf{V}\\,\\boldsymbol{\\Sigma}^{+}\\,\\mathbf{U}^\\top = ${matLatex(plus, 3)}`}
         />
       </p>
       <div className={styles.pair}>

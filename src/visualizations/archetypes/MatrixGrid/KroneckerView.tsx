@@ -45,8 +45,8 @@ export function KroneckerView({ title, a, b }: KroneckerViewProps) {
   );
   const latex =
     current < 0
-      ? 'A \\otimes B = \\begin{pmatrix} a_{11}B & \\cdots & a_{1q}B \\\\ \\vdots & & \\vdots \\\\ a_{p1}B & \\cdots & a_{pq}B \\end{pmatrix}'
-      : `\\text{bloque } (${bi + 1}, ${bj + 1}) = a_{${bi + 1}${bj + 1}}\\,B = ${formatFraction(a[bi]?.[bj] ?? 0)}\\,B`;
+      ? '\\mathbf{A} \\otimes \\mathbf{B} = \\begin{pmatrix} a_{11}\\mathbf{B} & \\cdots & a_{1q}\\mathbf{B} \\\\ \\vdots & & \\vdots \\\\ a_{p1}\\mathbf{B} & \\cdots & a_{pq}\\mathbf{B} \\end{pmatrix}'
+      : `\\text{bloque } (${bi + 1}, ${bj + 1}) = a_{${bi + 1}${bj + 1}}\\,\\mathbf{B} = ${formatFraction(a[bi]?.[bj] ?? 0)}\\,\\mathbf{B}`;
   const text =
     current < 0
       ? `A es de ${p} por ${q} y B de ${r} por ${s}: el producto de Kronecker es de ${p * r} por ${q * s}.`

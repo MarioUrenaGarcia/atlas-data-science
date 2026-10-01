@@ -120,7 +120,7 @@ export function TransformView({ title, matrices, showCircle, showEigen }: Transf
       description={description}
     >
       <p className={styles.formula}>
-        <Latex tex={`A = ${matLatex(matrix)},\\qquad \\det A = ${formatNumber(det, 3)}`} />
+        <Latex tex={`\\mathbf{A} = ${matLatex(matrix)},\\qquad \\det \\mathbf{A} = ${formatNumber(det, 3)}`} />
       </p>
       <CartesianPlane extent={5} label={description} grid={false}>
         {(plane) => (

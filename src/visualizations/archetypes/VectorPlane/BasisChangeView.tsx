@@ -79,7 +79,7 @@ export function BasisChangeView({ title, b1, b2, point }: BasisChangeViewProps) 
     >
       <p className={styles.formula}>
         <Latex
-          tex={`x = c_1 b_1 + c_2 b_2,\\qquad [x]_B = ${valid ? vecLatex([c1, c2]) : '\\text{no definido}'}`}
+          tex={`\\mathbf{x} = c_1 \\mathbf{b}_1 + c_2 \\mathbf{b}_2,\\qquad [\\mathbf{x}]_B =${valid ? vecLatex([c1, c2]) : '\\text{no definido}'}`}
         />
       </p>
       <CartesianPlane extent={6} label={description} interactive grid={false}>

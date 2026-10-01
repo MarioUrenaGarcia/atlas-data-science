@@ -19,7 +19,7 @@ etiquetas:
 resumen: >
   El polinomio característico p(lambda) = det(A - lambda I) tiene como raíces los valores propios de A;
   para matrices de 2 por 2 es λ^2 - (tr A) λ + det A.
-formula: 'p(\lambda) = \det(A - \lambda I), \qquad n = 2:\ p(\lambda) = \lambda^2 - (\operatorname{tr}A)\,\lambda + \det A'
+formula: 'p(\lambda) = \det(\mathbf{A} - \lambda \mathbf{I}), \qquad n = 2:\ p(\lambda) = \lambda^2 - (\operatorname{tr}\mathbf{A})\,\lambda + \det \mathbf{A}'
 visualizacion:
   componente: MatrixTransform
   parametros:
@@ -38,54 +38,54 @@ publicado: true
 
 ## Intuición
 
-Los valores propios son los números $\lambda$ para los que la matriz $A - \lambda I$ aplasta alguna dirección hasta cero. Una matriz aplasta el plano exactamente cuando su determinante, el factor de área, vale cero. Entonces basta seguir el área que $A - \lambda I$ le da al cuadrado unitario mientras $\lambda$ recorre la recta numérica, y anotar dónde esa área se anula.
+Los valores propios son los números $\lambda$ para los que la matriz $\mathbf{A} - \lambda \mathbf{I}$ aplasta alguna dirección hasta cero. Una matriz aplasta el plano exactamente cuando su determinante, el factor de área, vale cero. Entonces basta seguir el área que $\mathbf{A} - \lambda \mathbf{I}$ le da al cuadrado unitario mientras $\lambda$ recorre la recta numérica, y anotar dónde esa área se anula.
 
 Esa área, como función de $\lambda$, es un polinomio: el polinomio característico. Para una matriz de $2 \times 2$ es una parábola que abre hacia arriba, y cada vez que cruza el eje horizontal marca un valor propio. Si la parábola corta el eje dos veces hay dos valores propios reales; si lo toca en un solo punto hay uno repetido; y si queda por encima del eje los valores propios son complejos y no hay direcciones reales que se conserven.
 
 ## Definición
 
 :::definicion[Polinomio característico]
-Para $A \in \mathbb{R}^{n \times n}$, el **polinomio característico** es
+Para $\mathbf{A} \in \mathbb{R}^{n \times n}$, el **polinomio característico** es
 $$
-p_A(\lambda) = \det(A - \lambda I),
+p_A(\lambda) = \det(\mathbf{A} - \lambda \mathbf{I}),
 $$
-un polinomio de grado $n$ en $\lambda$. Los valores propios de $A$ son exactamente sus raíces, y la **multiplicidad algebraica** de un valor propio es su multiplicidad como raíz.
+un polinomio de grado $n$ en $\lambda$. Los valores propios de $\mathbf{A}$ son exactamente sus raíces, y la **multiplicidad algebraica** de un valor propio es su multiplicidad como raíz.
 :::
 
 :::teorema[Caso de 2 por 2]
-Para $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$,
+Para $\mathbf{A} = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$,
 $$
-p_A(\lambda) = \lambda^2 - (a + d)\,\lambda + (ad - bc) = \lambda^2 - (\operatorname{tr}A)\,\lambda + \det A,
+p_A(\lambda) = \lambda^2 - (a + d)\,\lambda + (ad - bc) = \lambda^2 - (\operatorname{tr}\mathbf{A})\,\lambda + \det \mathbf{A},
 $$
-y los valores propios son $\lambda = \tfrac{1}{2}\big(\operatorname{tr}A \pm \sqrt{(\operatorname{tr}A)^2 - 4\det A}\big)$.
+y los valores propios son $\lambda = \tfrac{1}{2}\big(\operatorname{tr}\mathbf{A} \pm \sqrt{(\operatorname{tr}\mathbf{A})^2 - 4\det \mathbf{A}}\big)$.
 :::
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz cuadrada de $n \times n$.
+- $\mathbf{A}$: matriz cuadrada de $n \times n$.
 - $\lambda$: variable del polinomio; sus raíces son los valores propios.
-- $I$: identidad.
-- $p_A(\lambda)$: polinomio característico de $A$.
+- $\mathbf{I}$: identidad.
+- $p_A(\lambda)$: polinomio característico de $\mathbf{A}$.
 - $a, b, c, d$: entradas de una matriz de $2 \times 2$.
-- $\operatorname{tr}A$: traza, suma de la diagonal.
-- $\det A$: determinante.
-- $(\operatorname{tr}A)^2 - 4\det A$: discriminante; su signo decide si las raíces son reales.
+- $\operatorname{tr}\mathbf{A}$: traza, suma de la diagonal.
+- $\det \mathbf{A}$: determinante.
+- $(\operatorname{tr}\mathbf{A})^2 - 4\det \mathbf{A}$: discriminante; su signo decide si las raíces son reales.
 :::
 
 ## Cómo usar la visualización
 
-$\lambda$ recorre la recta real. A la izquierda se dibuja $p(\lambda) = \det(A - \lambda I)$ con el punto actual; a la derecha, la rejilla deformada por $B = A - \lambda I$ con su cuadrado de área $p(\lambda)$. El selector cambia de matriz y el panel muestra traza, determinante, discriminante y raíces.
+$\lambda$ recorre la recta real. A la izquierda se dibuja $p(\lambda) = \det(\mathbf{A} - \lambda \mathbf{I})$ con el punto actual; a la derecha, la rejilla deformada por $\mathbf{B} = \mathbf{A} - \lambda \mathbf{I}$ con su cuadrado de área $p(\lambda)$. El selector cambia de matriz y el panel muestra traza, determinante, discriminante y raíces.
 
-Cuando $\lambda$ pasa por una raíz, la rejilla de la derecha se aplasta sobre una recta: $B$ es singular y la dirección aplastada es un vector propio. Con raíces complejas la parábola nunca toca el eje y la rejilla nunca se aplasta. Con la raíz doble, la parábola apenas toca el eje en $\lambda = 2$.
+Cuando $\lambda$ pasa por una raíz, la rejilla de la derecha se aplasta sobre una recta: $\mathbf{B}$ es singular y la dirección aplastada es un vector propio. Con raíces complejas la parábola nunca toca el eje y la rejilla nunca se aplasta. Con la raíz doble, la parábola apenas toca el eje en $\lambda = 2$.
 
 ## Ejemplo
 
-La matriz $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ describe cómo se reparten dos tipos de clientes entre un mes y el siguiente en un modelo simplificado.
+La matriz $\mathbf{A} = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ describe cómo se reparten dos tipos de clientes entre un mes y el siguiente en un modelo simplificado.
 
-1. $\operatorname{tr}A = 7$ y $\det A = 12 - 2 = 10$.
+1. $\operatorname{tr}\mathbf{A} = 7$ y $\det \mathbf{A} = 12 - 2 = 10$.
 2. $p(\lambda) = \lambda^2 - 7\lambda + 10 = (\lambda - 5)(\lambda - 2)$: valores propios 5 y 2.
-3. Para $\lambda = 5$: $A - 5I = \begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}$, cuyo espacio nulo es $\operatorname{gen}\{(1, 1)\}$.
-4. Para $\lambda = 2$: $A - 2I = \begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}$, cuyo espacio nulo es $\operatorname{gen}\{(1, -2)\}$.
-5. Comprobación: $5 + 2 = 7 = \operatorname{tr}A$ y $5 \cdot 2 = 10 = \det A$.
+3. Para $\lambda = 5$: $\mathbf{A} - 5\mathbf{I} = \begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}$, cuyo espacio nulo es $\operatorname{gen}\{(1, 1)\}$.
+4. Para $\lambda = 2$: $\mathbf{A} - 2\mathbf{I} = \begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}$, cuyo espacio nulo es $\operatorname{gen}\{(1, -2)\}$.
+5. Comprobación: $5 + 2 = 7 = \operatorname{tr}\mathbf{A}$ y $5 \cdot 2 = 10 = \det \mathbf{A}$.
 
 :::figura[La matriz del ejemplo: la parábola λ² - 7λ + 10 corta el eje en 2 y en 5, y en esos valores A - λI aplasta el plano.]{componente="MatrixTransform"}
 ```yaml
@@ -98,12 +98,12 @@ matrices:
 
 ## Propiedades
 
-- **Coeficientes:** $p_A(\lambda) = (-1)^n\big(\lambda^n - (\operatorname{tr}A)\lambda^{n-1} + \dots + (-1)^n\det A\big)$; el término constante es $\det A$ y el de grado $n - 1$ involucra la traza.
+- **Coeficientes:** $p_A(\lambda) = (-1)^n\big(\lambda^n - (\operatorname{tr}\mathbf{A})\lambda^{n-1} + \dots + (-1)^n\det \mathbf{A}\big)$; el término constante es $\det \mathbf{A}$ y el de grado $n - 1$ involucra la traza.
 - **Invariancia:** matrices semejantes tienen el mismo polinomio característico.
-- **Raíces complejas conjugadas:** si $A$ es real, las raíces complejas aparecen en pares $\alpha \pm \beta i$.
+- **Raíces complejas conjugadas:** si $\mathbf{A}$ es real, las raíces complejas aparecen en pares $\alpha \pm \beta i$.
 - **Triangulares:** $p_A(\lambda) = \prod_i (a_{ii} - \lambda)$.
-- **Teorema de Cayley-Hamilton:** toda matriz anula su polinomio característico, $p_A(A) = 0$.
-- **Multiplicidades:** la multiplicidad geométrica de un valor propio, $\dim N(A - \lambda I)$, está entre 1 y la algebraica.
+- **Teorema de Cayley-Hamilton:** toda matriz anula su polinomio característico, $p_A(\mathbf{A}) = 0$.
+- **Multiplicidades:** la multiplicidad geométrica de un valor propio, $\dim N(\mathbf{A} - \lambda \mathbf{I})$, está entre 1 y la algebraica.
 
 :::figura[Casos del discriminante: positivo da dos valores propios reales distintos, cero da uno repetido y negativo da un par complejo.]{componente="MatrixTransform"}
 ```yaml
@@ -124,47 +124,47 @@ Caso de $2 \times 2$: $\det\begin{pmatrix} a - \lambda & b \\ c & d - \lambda \e
 
 ## Errores comunes
 
-- **Restar $\lambda$ a todas las entradas.** Solo se resta en la diagonal: $A - \lambda I$.
+- **Restar $\lambda$ a todas las entradas.** Solo se resta en la diagonal: $\mathbf{A} - \lambda \mathbf{I}$.
 - **Buscar raíces del polinomio para matrices grandes.** Para $n \ge 5$ no hay fórmula general y las raíces de un polinomio son sensibles a errores; en la práctica se usan métodos iterativos como QR.
 - **Olvidar las raíces complejas.** Un polinomio sin raíces reales no significa que la matriz no tenga valores propios.
 - **Confundir multiplicidad algebraica con número de vectores propios independientes.** La cizalla tiene $\lambda = 1$ doble y una sola dirección propia.
 
 ## Conexiones
 
-El polinomio característico traduce la búsqueda de [[valores-y-vectores-propios]] a encontrar raíces, usando el [[determinante-como-factor-de-volumen|determinante]] de $A - \lambda I$. Sus multiplicidades deciden si hay [[diagonalizacion]], y su término constante y su coeficiente de $\lambda^{n-1}$ se relacionan con la [[traza-de-una-matriz|traza]]. En series temporales, la estabilidad de un modelo autorregresivo depende de las raíces de un polinomio característico.
+El polinomio característico traduce la búsqueda de [[valores-y-vectores-propios]] a encontrar raíces, usando el [[determinante-como-factor-de-volumen|determinante]] de $\mathbf{A} - \lambda \mathbf{I}$. Sus multiplicidades deciden si hay [[diagonalizacion]], y su término constante y su coeficiente de $\lambda^{n-1}$ se relacionan con la [[traza-de-una-matriz|traza]]. En series temporales, la estabilidad de un modelo autorregresivo depende de las raíces de un polinomio característico.
 
 ## Formulario
 
 :::formula[Polinomio característico]
 $$
-p_A(\lambda) = \det(A - \lambda I)
+p_A(\lambda) = \det(\mathbf{A} - \lambda \mathbf{I})
 $$
 
-- $A$: matriz cuadrada.
+- $\mathbf{A}$: matriz cuadrada.
 - $\lambda$: variable; las raíces son los valores propios.
 :::
 
 :::formula[Caso de 2 por 2]
 $$
-p_A(\lambda) = \lambda^2 - (\operatorname{tr}A)\,\lambda + \det A
+p_A(\lambda) = \lambda^2 - (\operatorname{tr}\mathbf{A})\,\lambda + \det \mathbf{A}
 $$
 
-- $\operatorname{tr}A = a + d$.
-- $\det A = ad - bc$.
+- $\operatorname{tr}\mathbf{A} = a + d$.
+- $\det \mathbf{A} = ad - bc$.
 :::
 
 :::formula[Valores propios de 2 por 2]
 $$
-\lambda_{1,2} = \frac{\operatorname{tr}A \pm \sqrt{(\operatorname{tr}A)^2 - 4\det A}}{2}
+\lambda_{1,2} = \frac{\operatorname{tr}\mathbf{A} \pm \sqrt{(\operatorname{tr}\mathbf{A})^2 - 4\det \mathbf{A}}}{2}
 $$
 
-- El discriminante $(\operatorname{tr}A)^2 - 4\det A$ decide si las raíces son reales, repetidas o complejas.
+- El discriminante $(\operatorname{tr}\mathbf{A})^2 - 4\det \mathbf{A}$ decide si las raíces son reales, repetidas o complejas.
 :::
 
 :::formula[Cayley-Hamilton]
 $$
-p_A(A) = 0
+p_A(\mathbf{A}) = 0
 $$
 
-- $p_A(A)$: el polinomio evaluado en la propia matriz, con $\lambda^k$ sustituido por $A^k$.
+- $p_A(\mathbf{A})$: el polinomio evaluado en la propia matriz, con $\lambda^k$ sustituido por $\mathbf{A}^k$.
 :::
