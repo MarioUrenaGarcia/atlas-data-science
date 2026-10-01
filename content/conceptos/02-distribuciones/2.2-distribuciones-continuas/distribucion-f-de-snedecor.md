@@ -256,7 +256,7 @@ referencia:
 
 ## Conexiones
 
-La F es un cociente de dos [[distribucion-chi-cuadrada|chi-cuadradas]] y contiene el cuadrado de la [[distribucion-t-de-student]] como caso $d_1 = 1$. Una transformación de la F es una [[distribucion-beta]]. Es la distribución de referencia en el análisis de varianza y en la comparación de modelos de regresión. Por eso aparece al comparar dos varianzas en el análisis de varianza. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+La F es un cociente de dos [[distribucion-chi-cuadrada|chi-cuadradas]] y contiene el cuadrado de la [[distribucion-t-de-student]] como caso $d_1 = 1$. Una transformación de la F es una [[distribucion-beta]]. Es la distribución de referencia en el análisis de varianza y en la comparación de modelos de regresión. En el análisis de varianza compara la variación entre grupos con la variación dentro de los grupos. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
 
 :::figura[Chi-cuadrada y F: el cociente de dos chi-cuadradas divididas entre sus grados. Con d₁ = 5 y d₂ = 20 la curva queda centrada cerca de 1.]{componente="DistributionExplorer"}
 ```yaml
