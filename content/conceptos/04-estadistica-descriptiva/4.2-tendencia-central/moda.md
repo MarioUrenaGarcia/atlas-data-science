@@ -46,7 +46,7 @@ La moda es la medida de centro más directa y la única que funciona con cualqui
 ## Definición
 
 :::definicion[Moda]
-Sea $f(v)$ el número de observaciones iguales a $v$. La **moda** es el valor (o los valores) con la mayor frecuencia:
+Sea $f(v) = \#\{i : x_i = v\}$ el número de observaciones iguales a $v$. La **moda** es el valor (o los valores) con la mayor frecuencia:
 $$
 \operatorname{Mo} = \arg\max_{v} f(v).
 $$

@@ -120,11 +120,11 @@ etiquetas: [Carga 1, Carga 2, Carga 3]
 - **Promedio de promedios:** si $K$ grupos tienen tamaños $n_k$ y medias $\bar{x}_k$, la media del conjunto completo es $\sum n_k\bar{x}_k / \sum n_k$.
 - **Un peso dominante:** cuando un peso es mucho mayor que los demás, la media ponderada se acerca a su valor.
 
-:::figura[Propiedad del peso dominante: tres sucursales con ventas diarias medias de 12, 18 y 30 mil pesos, ponderadas por 25, 3 y 2 días de operación en el mes. La media ponderada queda cerca de 12.]{componente="DataStrip"}
+:::figura[Propiedad del peso dominante: tres sucursales con ventas diarias medias de 12, 18 y 30 mil pesos, ponderadas por 27, 2 y 1 días de operación en el mes. La media ponderada queda en 13, mucho más cerca de 12 que la media simple de 20.]{componente="DataStrip"}
 ```yaml
 modo: centro
 datos: [12, 18, 30]
-pesos: [25, 3, 2]
+pesos: [27, 2, 1]
 medidas: [ponderada, media]
 variable: Venta diaria media
 unidad: miles de pesos

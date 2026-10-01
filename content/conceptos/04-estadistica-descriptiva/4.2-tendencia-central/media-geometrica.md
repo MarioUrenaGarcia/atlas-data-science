@@ -28,7 +28,7 @@ visualizacion:
     modo: centro
     datos: [1.10, 0.95, 1.20, 1.05]
     medidas: [geometrica, media]
-    variable: Factor de crecimiento anual de un cultivo de bacterias
+    variable: Factor de crecimiento anual del fondo de inversión
     decimales: 2
     dominio: [0.9, 1.25]
 referencias:
@@ -86,7 +86,7 @@ dominio: [0, 36]
 
 ## Cómo usar la visualización
 
-Los cuatro círculos son los factores de crecimiento anual de un cultivo: 1.10 significa que creció 10 % en el año. El encabezado multiplica los factores visibles y saca la raíz correspondiente. Las dos líneas marcan la media geométrica y la aritmética.
+Los cuatro círculos son los factores de crecimiento anual del fondo de la intuición: 1.10 significa que creció 10 % en el año y 0.95 que perdió 5 %. El encabezado multiplica los factores visibles y saca la raíz correspondiente. Las dos líneas marcan la media geométrica y la aritmética.
 
 La media geométrica siempre queda a la izquierda de la aritmética, salvo que todos los factores sean iguales. Al arrastrar el factor 0.95 hacia valores más bajos, la geométrica cae más rápido que la aritmética: un año malo pesa mucho en el resultado acumulado. Al alinear los cuatro factores en un mismo valor, ambas medias coinciden con él.
 
