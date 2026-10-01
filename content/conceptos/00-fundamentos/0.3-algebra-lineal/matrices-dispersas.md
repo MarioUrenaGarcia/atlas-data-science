@@ -73,7 +73,7 @@ La temperatura de una varilla discretizada en $n = 1000$ puntos cumple ecuacione
 4. Densidad: $2998/1000000 \approx 0.3\ \%$.
 5. Además, un sistema tridiagonal se resuelve con eliminación en unas $8n$ operaciones, sin llenar de números nuevos las posiciones con cero.
 
-:::figura[Caso de una rejilla: la matriz de vecinos de una rejilla de 5 por 6 tiene cinco diagonales ocupadas, las de los vecinos laterales y las de los vecinos de arriba y abajo.]{componente="MatrixGrid"}
+:::figura[Caso de una rejilla: la matriz de vecinos de una rejilla de 5 por 6 tiene cinco diagonales ocupadas: la principal, con el número de vecinos de cada punto, las dos contiguas, de los vecinos laterales, y las dos a distancia 6, de los vecinos de arriba y abajo.]{componente="MatrixGrid"}
 ```yaml
 modo: dispersa
 patron: rejilla

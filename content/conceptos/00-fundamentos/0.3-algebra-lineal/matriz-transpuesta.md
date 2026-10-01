@@ -69,20 +69,22 @@ La matriz $A$ de $2 \times 3$ produce una transpuesta de $3 \times 2$. Los pasos
 
 Una clínica registra dos variables, glucosa y presión (en desviaciones respecto a la media), para tres pacientes:
 $$
-X = \begin{pmatrix} 1 & 2 \\ 3 & 0 \\ 2 & 1 \end{pmatrix}.
+X = \begin{pmatrix} -1 & 1 \\ 2 & -1 \\ -1 & 0 \end{pmatrix}.
 $$
 
-1. La transpuesta tiene una fila por variable: $X^\top = \begin{pmatrix} 1 & 3 & 2 \\ 2 & 0 & 1 \end{pmatrix}$.
-2. El producto $X^\top X$ es de $2 \times 2$. Entrada $(1, 1)$: $1 + 9 + 4 = 14$, suma de cuadrados de la glucosa.
-3. Entrada $(1, 2)$: $1 \cdot 2 + 3 \cdot 0 + 2 \cdot 1 = 4$, producto cruzado de ambas variables; la entrada $(2, 1)$ es la misma.
-4. Entrada $(2, 2)$: $4 + 0 + 1 = 5$.
-5. $X^\top X = \begin{pmatrix} 14 & 4 \\ 4 & 5 \end{pmatrix}$ es simétrica; dividida entre $n - 1 = 2$ es la matriz de covarianzas muestrales.
+Cada columna suma 0, como corresponde a datos centrados.
+
+1. La transpuesta tiene una fila por variable: $X^\top = \begin{pmatrix} -1 & 2 & -1 \\ 1 & -1 & 0 \end{pmatrix}$.
+2. El producto $X^\top X$ es de $2 \times 2$. Entrada $(1, 1)$: $1 + 4 + 1 = 6$, suma de cuadrados de la glucosa.
+3. Entrada $(1, 2)$: $(-1)(1) + (2)(-1) + (-1)(0) = -3$, producto cruzado de ambas variables; la entrada $(2, 1)$ es la misma.
+4. Entrada $(2, 2)$: $1 + 1 + 0 = 2$.
+5. $X^\top X = \begin{pmatrix} 6 & -3 \\ -3 & 2 \end{pmatrix}$ es simétrica. Como las columnas están centradas, al dividirla entre $n - 1 = 2$ se obtiene la matriz de covarianzas muestrales, $\begin{pmatrix} 3 & -1.5 \\ -1.5 & 1 \end{pmatrix}$: la covarianza negativa indica que, en estos tres pacientes, glucosa alta acompaña a presión baja.
 
 :::figura[El producto del ejemplo: Xᵀ por X. Cada entrada combina dos variables sobre los tres pacientes, y el resultado es simétrico.]{componente="MatrixGrid"}
 ```yaml
 modo: operaciones
-a: [[1, 3, 2], [2, 0, 1]]
-b: [[1, 2], [3, 0], [2, 1]]
+a: [[-1, 2, -1], [1, -1, 0]]
+b: [[-1, 1], [2, -1], [-1, 0]]
 vista: producto
 ```
 :::

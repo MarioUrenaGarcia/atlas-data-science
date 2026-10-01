@@ -125,7 +125,7 @@ $C(A^\top) \perp N(A)$: si $A\mathbf{x} = \mathbf{0}$, cada fila $\mathbf{r}_i$ 
 - **Confundir en qué espacio vive cada subespacio.** $C(A)$ está en $\mathbb{R}^m$ (salidas) y $N(A)$ en $\mathbb{R}^n$ (entradas); para matrices no cuadradas ni siquiera tienen vectores del mismo tamaño.
 - **Tomar las columnas de la forma escalonada como base de $C(A)$.** Las operaciones de fila cambian el espacio columna; la base son las columnas pivote de la matriz original.
 - **Creer que el espacio nulo siempre es trivial.** Toda matriz con más columnas que filas tiene espacio nulo no trivial.
-- **Pensar que el espacio nulo contiene solo el cero cuando el determinante no es cero en una matriz rectangular.** El determinante solo aplica a matrices cuadradas.
+- **Pensar que $N(A) = \{\mathbf{0}\}$ garantiza que $A\mathbf{x} = \mathbf{b}$ siempre tiene solución.** Solo garantiza que, si hay solución, es única. Con más filas que columnas, $m > n$, el espacio columna no llena $\mathbb{R}^m$ y hay vectores $\mathbf{b}$ sin solución aunque el espacio nulo sea trivial.
 
 ## Conexiones
 

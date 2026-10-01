@@ -73,7 +73,7 @@ Si $A$ no es definida positiva, en algún paso la cantidad bajo la raíz es cero
 
 A la izquierda está $A$ y a la derecha se construye $L$. Cada paso calcula una entrada de $L$, resaltada, y la entrada de $A$ que se usa; la fórmula de arriba muestra la cuenta, con la raíz para las entradas diagonales y la división entre el pivote para las demás. Al final aparece $LL^\top$, que coincide con $A$.
 
-En la matriz de $3 \times 3$ todas las raíces son exactas y $L$ tiene entradas 2, 1, 2 en la diagonal. En la matriz no definida positiva, la segunda entrada diagonal da $\sqrt{1 - 1} = 0$: el proceso se detiene y el panel indica que la matriz no es definida positiva.
+En la matriz de $3 \times 3$ todas las raíces son exactas y $L$ tiene entradas 2, 2 y 2 en la diagonal. En la matriz no definida positiva, la segunda entrada diagonal da $\sqrt{1 - 1} = 0$: el proceso se detiene y el panel indica que la matriz no es definida positiva.
 
 ## Ejemplo
 

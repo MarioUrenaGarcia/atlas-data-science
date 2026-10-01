@@ -118,7 +118,7 @@ Relación con la distancia: si $\lVert \mathbf{u} \rVert = \lVert \mathbf{v} \rV
 - **Llamar métrica a la distancia coseno.** $1 - \cos\theta$ no cumple la desigualdad del triángulo en general.
 - **Usarla cuando el tamaño importa.** Si la magnitud tiene significado, como un monto de compra, ignorarla pierde información.
 - **Aplicarla al vector cero.** Una noticia sin ninguna de las palabras contadas no tiene dirección y la similitud no está definida.
-- **Interpretar 0 como "opuestos".** Similitud 0 significa sin relación lineal (perpendiculares); opuestos es $-1$.
+- **Interpretar 0 como "opuestos".** Similitud 0 significa que los vectores son perpendiculares; opuestos es $-1$.
 
 ## Conexiones
 
