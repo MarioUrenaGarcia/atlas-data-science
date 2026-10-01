@@ -8,15 +8,17 @@ const field = z.enum(FIELD_IDS);
 const fields = z.array(field).min(1).max(6);
 const fraction = z.number().min(0.05).max(0.75);
 const interval = z.tuple([z.number(), z.number()]).refine(([a, b]) => a < b);
+/** Initial point of the views that study f near a point. */
+const point = z.tuple([z.number(), z.number()]).optional();
 
 export const parametersSchema = z.discriminatedUnion('modo', [
   z.object({ modo: z.literal('superficie'), campos: fields }).strict(),
   z.object({ modo: z.literal('curvas'), campos: fields }).strict(),
-  z.object({ modo: z.literal('parciales'), campos: fields }).strict(),
-  z.object({ modo: z.literal('gradiente'), campos: fields }).strict(),
-  z.object({ modo: z.literal('direccional'), campos: fields }).strict(),
-  z.object({ modo: z.literal('tangente'), campos: fields }).strict(),
-  z.object({ modo: z.literal('hessiana'), campos: fields }).strict(),
+  z.object({ modo: z.literal('parciales'), campos: fields, punto: point }).strict(),
+  z.object({ modo: z.literal('gradiente'), campos: fields, punto: point }).strict(),
+  z.object({ modo: z.literal('direccional'), campos: fields, punto: point }).strict(),
+  z.object({ modo: z.literal('tangente'), campos: fields, punto: point }).strict(),
+  z.object({ modo: z.literal('hessiana'), campos: fields, punto: point }).strict(),
   z.object({ modo: z.literal('criticos'), campos: fields }).strict(),
   z
     .object({
@@ -46,6 +48,11 @@ export const parametersSchema = z.discriminatedUnion('modo', [
     .object({
       modo: z.literal('coordenadas'),
       sistemas: z.array(z.enum(['polares', 'cilindricas', 'esfericas'])).min(1).max(3),
+      radio: z.number().min(0.3).max(1.8).optional(),
+      altura: z.number().min(0.2).max(1.6).optional(),
+      /** φ and θ in degrees. */
+      polar: z.number().min(10).max(80).optional(),
+      angulo: z.number().min(0).max(360).optional(),
     })
     .strict(),
   z.object({ modo: z.literal('gaussiana') }).strict(),
@@ -55,7 +62,14 @@ export const parametersSchema = z.discriminatedUnion('modo', [
   z
     .object({ modo: z.literal('lagrange'), casos: z.array(z.enum(LAGRANGE_CASE_IDS)).min(1).max(3) })
     .strict(),
-  z.object({ modo: z.literal('kkt'), casos: z.array(z.enum(KKT_CASE_IDS)).min(1).max(2) }).strict(),
+  z
+    .object({
+      modo: z.literal('kkt'),
+      casos: z.array(z.enum(KKT_CASE_IDS)).min(1).max(2),
+      /** Target shown in the first frame. */
+      objetivo: z.tuple([z.number(), z.number()]).optional(),
+    })
+    .strict(),
 ]);
 
 export type SurfaceVizConfig = z.infer<typeof parametersSchema>;

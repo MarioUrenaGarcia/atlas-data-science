@@ -25,6 +25,8 @@ const DOT_RADIUS = 5;
 interface TangentViewProps {
   title: string;
   ids: readonly string[];
+  /** Initial point; the sliders start here. */
+  start?: Point2;
 }
 
 /**
@@ -33,8 +35,10 @@ interface TangentViewProps {
  * than the distance h, so the ratio error / h tends to 0. That is what makes
  * the plane tangent and not just any plane through the point.
  */
-export function TangentView({ title, ids }: TangentViewProps) {
-  const { parameters, values, field, point } = useFieldChoice(ids, START);
+export function TangentView({ title, ids, start }: TangentViewProps) {
+  const [sx, sy] = start ?? START;
+  const initial = useMemo((): Point2 => [sx, sy], [sx, sy]);
+  const { parameters, values, field, point } = useFieldChoice(ids, initial);
   const range = useMemo(() => fieldRange(field.f, field.domain), [field]);
   const [step, setStep] = useState(0);
   const playback = usePlayback({

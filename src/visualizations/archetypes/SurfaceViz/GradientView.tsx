@@ -24,6 +24,8 @@ const DOT_RADIUS = 5;
 interface GradientViewProps {
   title: string;
   ids: readonly string[];
+  /** Initial point; the sliders start here. */
+  start?: Point2;
 }
 
 /**
@@ -32,8 +34,10 @@ interface GradientViewProps {
  * is the steepness. The animation climbs from the chosen point by following
  * the gradient, a path that always cuts the curves perpendicularly.
  */
-export function GradientView({ title, ids }: GradientViewProps) {
-  const { parameters, values, field, point } = useFieldChoice(ids, START);
+export function GradientView({ title, ids, start }: GradientViewProps) {
+  const [sx, sy] = start ?? START;
+  const initial = useMemo((): Point2 => [sx, sy], [sx, sy]);
+  const { parameters, values, field, point } = useFieldChoice(ids, initial);
   const range = useMemo(() => fieldRange(field.f, field.domain), [field]);
   const [[x0, x1], [y0, y1]] = field.domain;
   const [steps, setSteps] = useState(0);
@@ -56,6 +60,7 @@ export function GradientView({ title, ids }: GradientViewProps) {
     return list;
   }, [field, point, x0, x1, y0, y1]);
   const current = path[Math.min(steps, path.length - 1)] ?? point;
+  const [px, py] = field.grad(point[0], point[1]);
   const [gx, gy] = field.grad(current[0], current[1]);
   const size = Math.hypot(gx, gy);
   const maxSize = useMemo(() => {
@@ -92,7 +97,10 @@ export function GradientView({ title, ids }: GradientViewProps) {
       description={description}
     >
       <p className={styles.formula}>
-        <Latex tex={`\\nabla f(${num(current[0], 2)}, ${num(current[1], 2)}) = \\begin{pmatrix} ${num(gx, 3)} \\\\ ${num(gy, 3)} \\end{pmatrix},\\qquad \\lVert \\nabla f \\rVert = ${num(size, 3)}`} />
+        <Latex tex={`\\nabla f(${num(point[0], 2)}, ${num(point[1], 2)}) = \\begin{pmatrix} ${num(px, 3)} \\\\ ${num(py, 3)} \\end{pmatrix},\\qquad \\lVert \\nabla f \\rVert = ${num(Math.hypot(px, py), 3)}`} />
+      </p>
+      <p className={styles.formula}>
+        <Latex tex={`\\text{Paso ${Math.min(steps, path.length - 1)} del ascenso: } \\nabla f(${num(current[0], 2)}, ${num(current[1], 2)}) = \\begin{pmatrix} ${num(gx, 3)} \\\\ ${num(gy, 3)} \\end{pmatrix}`} />
       </p>
       <p className={styles.formula}>
         <Latex tex={`f(x, y) = ${field.latex}`} />

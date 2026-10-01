@@ -181,11 +181,11 @@ export function JacobianView({ title, maps, at }: JacobianViewProps) {
       description={description}
     >
       <p className={styles.formula}>
-        <Latex tex={`${map.latex},\\qquad J(${num(ua, 2)}, ${num(va, 2)}) = ${tex(jacobian)},\\qquad \\det J = ${num(det, 4)}`} />
+        <Latex tex={`${map.latex},\\qquad \\mathbf{J}(${num(ua, 2)}, ${num(va, 2)}) = ${tex(jacobian)},\\qquad \\det \\mathbf{J} = ${num(det, 4)}`} />
       </p>
       <p className={styles.formula}>
         <Latex
-          tex={`\\frac{\\text{área de la imagen}}{\\text{área del cuadrado}} = \\frac{${num(imageArea, 6)}}{${num(du * dv, 6)}} = ${num(ratio, 4)} \\ \\to\\ \\lvert \\det J \\rvert = ${num(Math.abs(det), 4)}`}
+          tex={`\\frac{\\text{área de la imagen}}{\\text{área del cuadrado}} = \\frac{${num(imageArea, 6)}}{${num(du * dv, 6)}} = ${num(ratio, 4)} \\ \\to\\ \\lvert \\det \\mathbf{J} \\rvert = ${num(Math.abs(det), 4)}`}
         />
       </p>
       <div className={styles.pair}>

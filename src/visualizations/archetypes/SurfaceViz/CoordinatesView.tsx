@@ -14,8 +14,9 @@ import styles from './SurfaceViz.module.css';
 
 export type CoordinateSystem = 'polares' | 'cilindricas' | 'esfericas';
 
-const STEPS = 90;
-const STEPS_PER_SECOND = 10;
+/** θ advances 3 degrees per step. */
+const STEPS = 120;
+const STEPS_PER_SECOND = 12;
 /** Increments of the coordinates that span the small element drawn around the point. */
 const DR = 0.25;
 const DANGLE = 0.25;
@@ -33,9 +34,22 @@ const NAMES: Record<CoordinateSystem, string> = {
   esfericas: 'Esféricas',
 };
 
+export interface CoordinatesStart {
+  /** r in polar and cylindrical coordinates, ρ in spherical ones. */
+  radio: number;
+  altura: number;
+  /** φ, in degrees. */
+  polar: number;
+  /** θ, in degrees. */
+  angulo: number;
+}
+
 interface CoordinatesViewProps {
   title: string;
   systems: readonly CoordinateSystem[];
+  start: CoordinatesStart;
+  /** Starts moving at once; figures that show a specific point open paused on it. */
+  autoplay: boolean;
 }
 
 const polar = (r: number, t: number): [number, number] => [r * Math.cos(t), r * Math.sin(t)];
@@ -59,7 +73,7 @@ function path(screen: Screen, points: Vec3[]): string {
  * increments of each coordinate, is not a square but a curved patch whose
  * size carries the factor r, or ρ² sen φ: the Jacobian of the change.
  */
-export function CoordinatesView({ title, systems }: CoordinatesViewProps) {
+export function CoordinatesView({ title, systems, start, autoplay }: CoordinatesViewProps) {
   const definitions = useMemo(() => {
     const single = systems.length === 1;
     // Controls used by only one system are hidden while another one is selected.
@@ -77,30 +91,32 @@ export function CoordinatesView({ title, systems }: CoordinatesViewProps) {
               default: systems[0] ?? 'polares',
             },
           ]),
-      { type: 'number' as const, key: 'radio', label: 'Distancia al origen o al eje', symbol: 'r', min: 0.3, max: 1.8, step: 0.05, default: 1.2, digits: 2 },
+      { type: 'number' as const, key: 'radio', label: 'Distancia al origen o al eje', symbol: 'r', min: 0.3, max: 1.8, step: 0.05, default: start.radio, digits: 2 },
       ...(systems.includes('cilindricas')
-        ? [{ type: 'number' as const, key: 'altura', label: 'Altura', symbol: 'z', min: 0.2, max: 1.6, step: 0.05, default: 0.9, digits: 2, ...only('cilindricas') }]
+        ? [{ type: 'number' as const, key: 'altura', label: 'Altura', symbol: 'z', min: 0.2, max: 1.6, step: 0.05, default: start.altura, digits: 2, ...only('cilindricas') }]
         : []),
       ...(systems.includes('esfericas')
-        ? [{ type: 'number' as const, key: 'polar', label: 'Ángulo desde el eje z', symbol: 'φ', unit: '°', min: 10, max: 80, step: 1, default: 50, ...only('esfericas') }]
+        ? [{ type: 'number' as const, key: 'polar', label: 'Ángulo desde el eje z', symbol: 'φ', unit: '°', min: 10, max: 80, step: 1, default: start.polar, ...only('esfericas') }]
         : []),
     ];
-  }, [systems]);
+  }, [systems, start.radio, start.altura, start.polar]);
   const parameters = useParameters(definitions);
   const values = parameters.values as Record<string, string | number>;
   const system = (systems.length > 1 ? String(values.sistema) : (systems[0] ?? 'polares')) as CoordinateSystem;
   const radius = Number(values.radio);
   const [camera, setCamera] = useState<Camera>(INITIAL_CAMERA);
-  const [step, setStep] = useState(10);
+  const firstStep = Math.round((start.angulo / 360) * STEPS) % STEPS;
+  const [step, setStep] = useState(firstStep);
   const playback = usePlayback({
     step: () => setStep((value) => (value + 1) % STEPS),
-    reset: () => setStep(10),
+    reset: () => setStep(firstStep),
     rate: STEPS_PER_SECOND,
+    autoplay,
   });
   const theta = (2 * Math.PI * step) / STEPS;
   const thetaDeg = (theta * 180) / Math.PI;
-  const z = Number(values.altura ?? 0.9);
-  const phi = (Number(values.polar ?? 50) * Math.PI) / 180;
+  const z = Number(values.altura ?? start.altura);
+  const phi = (Number(values.polar ?? start.polar) * Math.PI) / 180;
 
   let point: Vec3;
   let conversion: string;

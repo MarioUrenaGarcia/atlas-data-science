@@ -81,7 +81,7 @@ export function DoubleIntegralView({ title, cases }: DoubleIntegralViewProps) {
     return { i, j, height: field.f(cx, cy) };
   });
   const sum = cells.reduce((total, cell) => total + cell.height * dx * dy, 0);
-  const top = Math.max(...cells.map((cell) => cell.height), ...[0.5, 0.25, 0.75].map((t) => field.f(a + t * (b - a), c + t * (d - c))), 1e-9);
+  const top = Math.max(...cells.map((cell) => Math.abs(cell.height)), ...[0.5, 0.25, 0.75].map((t) => Math.abs(field.f(a + t * (b - a), c + t * (d - c)))), 1e-9);
   const scale = Math.max(b - a, d - c);
   const toScene = (x: number, y: number, z: number): Vec3 => [
     -HALF + (2 * HALF * (x - a)) / scale,
@@ -104,7 +104,10 @@ export function DoubleIntegralView({ title, cases }: DoubleIntegralViewProps) {
         { label: 'Integral', value: num(exact, 4), color: DATA_COLORS.secondary },
         { label: 'Error', value: num(Math.abs(sum - exact), 4) },
       ]}
-      legend={[{ label: 'Columna de altura f en el centro de la celda', color: DATA_COLORS.primary }]}
+      legend={[
+        { label: 'Columna de altura f en el centro de la celda', color: DATA_COLORS.primary },
+        { label: 'Columna donde f es negativa, que resta', color: DATA_COLORS.secondary },
+      ]}
       description={description}
     >
       <p className={styles.formula}>
@@ -117,7 +120,7 @@ export function DoubleIntegralView({ title, cases }: DoubleIntegralViewProps) {
           <p className={styles.panelTitle}>Columnas sobre la región</p>
           <Scene3D camera={camera} setCamera={setCamera} extent={EXTENT} label={description}>
             {(screen) => {
-              const faces: { points: { x: number; y: number }[]; depth: number; shade: number; key: string }[] = [];
+              const faces: { points: { x: number; y: number }[]; depth: number; shade: number; negative: boolean; key: string }[] = [];
               for (const { i, j, height } of cells) {
                 const xa = a + i * dx;
                 const ya = c + j * dy;
@@ -132,6 +135,7 @@ export function DoubleIntegralView({ title, cases }: DoubleIntegralViewProps) {
                   points: topFace,
                   depth: topFace.reduce((total, p) => total + p.depth, 0) / 4,
                   shade: 0.85,
+                  negative: height < 0,
                   key: `t${i}-${j}`,
                 });
                 corners.forEach(([x, y], side) => {
@@ -146,6 +150,7 @@ export function DoubleIntegralView({ title, cases }: DoubleIntegralViewProps) {
                     points: quad,
                     depth: quad.reduce((total, p) => total + p.depth, 0) / 4,
                     shade: side % 2 === 0 ? 0.55 : 0.4,
+                    negative: height < 0,
                     key: `s${i}-${j}-${side}`,
                   });
                 });
@@ -157,7 +162,7 @@ export function DoubleIntegralView({ title, cases }: DoubleIntegralViewProps) {
                     <polygon
                       key={face.key}
                       points={face.points.map((p) => `${p.x},${p.y}`).join(' ')}
-                      fill={DATA_COLORS.primary}
+                      fill={face.negative ? DATA_COLORS.secondary : DATA_COLORS.primary}
                       fillOpacity={face.shade}
                       stroke="var(--color-surface)"
                       strokeWidth={n > 8 ? 0.4 : 1}
@@ -183,8 +188,8 @@ export function DoubleIntegralView({ title, cases }: DoubleIntegralViewProps) {
                     y={y(c + (j + 1) * dy)}
                     width={x(a + dx) - x(a)}
                     height={y(c) - y(c + dy)}
-                    fill={DATA_COLORS.primary}
-                    fillOpacity={0.1 + 0.6 * (height / top)}
+                    fill={height < 0 ? DATA_COLORS.secondary : DATA_COLORS.primary}
+                    fillOpacity={0.1 + 0.6 * (Math.abs(height) / top)}
                     stroke="var(--color-surface)"
                   />
                 ))}

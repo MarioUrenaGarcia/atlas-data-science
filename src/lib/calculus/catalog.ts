@@ -235,6 +235,19 @@ const LIST: CalcFunction[] = [
     },
   ),
   entry(
+    'gauss-medio',
+    'e^{-x^2/2}',
+    (x) => Math.exp(-x * x / 2),
+    (x) => -x * Math.exp(-x * x / 2),
+    (x) => (x * x - 1) * Math.exp(-x * x / 2),
+    [-4, 4],
+    {
+      derivativeLatex: '-x\\,e^{-x^2/2}',
+      antiderivative: (x) => Math.sqrt(Math.PI / 2) * erf(x / Math.SQRT2),
+      antiderivativeLatex: '\\sqrt{\\tfrac{\\pi}{2}}\\operatorname{erf}\\big(\\tfrac{x}{\\sqrt{2}}\\big)',
+    },
+  ),
+  entry(
     'x-exp',
     'x\\,e^{-x}',
     (x) => x * Math.exp(-x),

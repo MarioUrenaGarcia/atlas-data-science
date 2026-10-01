@@ -20,6 +20,8 @@ const DOT_RADIUS = 5;
 interface DirectionalViewProps {
   title: string;
   ids: readonly string[];
+  /** Initial point; the sliders start here. */
+  start?: Point2;
 }
 
 /**
@@ -28,8 +30,10 @@ interface DirectionalViewProps {
  * the angle. It is a cosine wave: largest along the gradient, zero along the
  * level curve and most negative against the gradient.
  */
-export function DirectionalView({ title, ids }: DirectionalViewProps) {
-  const { parameters, values, field, point } = useFieldChoice(ids, START);
+export function DirectionalView({ title, ids, start }: DirectionalViewProps) {
+  const [sx, sy] = start ?? START;
+  const initial = useMemo((): Point2 => [sx, sy], [sx, sy]);
+  const { parameters, values, field, point } = useFieldChoice(ids, initial);
   const range = useMemo(() => fieldRange(field.f, field.domain), [field]);
   const [step, setStep] = useState(0);
   const playback = usePlayback({

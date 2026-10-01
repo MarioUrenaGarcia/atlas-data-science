@@ -24,6 +24,8 @@ const CASE_NAMES: Record<string, string> = {
 interface KktViewProps {
   title: string;
   cases: readonly string[];
+  /** Target shown before the animation starts moving it along its path. */
+  initial?: Point2;
 }
 
 /**
@@ -33,7 +35,7 @@ interface KktViewProps {
  * or a corner, the active constraints get positive multipliers and
  * -∇f = Σ μᵢ aᵢ balances the pull of the target.
  */
-export function KktView({ title, cases }: KktViewProps) {
+export function KktView({ title, cases, initial }: KktViewProps) {
   const definitions = useMemo(
     () =>
       cases.length > 1
@@ -58,8 +60,10 @@ export function KktView({ title, cases }: KktViewProps) {
     step: () => setStep((value) => (value + 1) % STEPS),
     reset: () => setStep(0),
     rate: STEPS_PER_SECOND,
+    // A figure that fixes a target opens on it; the reader starts the motion.
+    autoplay: initial === undefined,
   });
-  const target = problem.path((2 * Math.PI * step) / STEPS);
+  const target = step === 0 && initial ? initial : problem.path((2 * Math.PI * step) / STEPS);
   const solution = projectOntoPolygon(target, problem.planes);
     const region = useMemo(() => feasiblePolygon(problem.planes, problem.domain), [problem]);
   const [px, py] = solution.point;

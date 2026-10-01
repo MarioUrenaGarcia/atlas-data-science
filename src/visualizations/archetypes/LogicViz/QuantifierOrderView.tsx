@@ -110,7 +110,7 @@ export function QuantifierOrderView({ title, examples }: QuantifierOrderViewProp
       <p className={styles.note}>
         <Latex tex={stageTex} />
       </p>
-      <div className={styles.tableScroll}>
+      <div className={styles.tableScroll} role="region" aria-label={`Tabla de la relación ${example.relacion}`} tabIndex={0}>
         <table className={styles.table}>
           <thead>
             <tr>
