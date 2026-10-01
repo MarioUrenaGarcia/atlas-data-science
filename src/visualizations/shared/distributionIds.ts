@@ -28,6 +28,12 @@ export const DISTRIBUTION_IDS = [
   'poisson',
   'hipergeometrica',
   'uniforme-discreta',
+  'beta-binomial',
+  'zipf',
+  'logaritmica',
+  'poisson-inflada',
+  'skellam',
+  'rademacher',
 ] as const;
 
 export type DistributionId = (typeof DISTRIBUTION_IDS)[number];
