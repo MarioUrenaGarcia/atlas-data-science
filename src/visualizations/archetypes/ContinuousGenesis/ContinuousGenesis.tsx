@@ -3,7 +3,7 @@ import { formatNumber } from '../../../lib/format/number.ts';
 import { mean, median, variance } from '../../../lib/stats/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import { defaultSeed } from '../../core/defaultSeed.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { LegendItem } from '../../core/LegendList.tsx';
 import type { NumberParameter, ParameterDefinition } from '../../core/parameters.ts';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
@@ -12,7 +12,6 @@ import { usePlayback } from '../../core/usePlayback.ts';
 import { useRandomSource, useResettableState, useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import type { VisualizationProps } from '../../types.ts';
-import styles from './ContinuousGenesis.module.css';
 import { ContinuousStage } from './ContinuousStage.tsx';
 import { DensityOutcome, type DensityView } from './DensityOutcome.tsx';
 import { continuousHeader } from './headers.ts';
@@ -237,9 +236,7 @@ export default function ContinuousGenesis({ params, conceptId, title }: Visualiz
       description={description}
       dataTable={table}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       <ChartSvg
         label={description}
         aspect={0.85}

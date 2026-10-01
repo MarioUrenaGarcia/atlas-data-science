@@ -3,7 +3,7 @@ import { formatNumber, formatProbability } from '../../../lib/format/number.ts';
 import { covariance, mean, variance } from '../../../lib/stats/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import { defaultSeed } from '../../core/defaultSeed.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { LegendItem } from '../../core/LegendList.tsx';
 import type { NumberParameter, ParameterDefinition } from '../../core/parameters.ts';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
@@ -13,7 +13,6 @@ import { useRandomSource, useResettableState, useSeed } from '../../core/useSeed
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { plotWindow } from '../../shared/plotWindow.ts';
 import type { VisualizationProps } from '../../types.ts';
-import styles from './DistributionGenesis.module.css';
 import { GenesisStage } from './GenesisStage.tsx';
 import { genesisHeader } from './headers.ts';
 import { JointGrid } from './JointGrid.tsx';
@@ -400,9 +399,7 @@ export default function DistributionGenesis({ params, conceptId, title }: Visual
       description={description}
       dataTable={table}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       <ChartSvg
         label={description}
         aspect={0.85}
