@@ -1,7 +1,7 @@
 import { DATA_COLORS } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
 import { slotCount } from './processes.ts';
-import { experimentNumber, isDone, revealed, type StageProps } from './stage.ts';
+import { experimentNumber, isDone, revealed, stageTitle, type StageProps } from './stage.ts';
 
 const LANE_HEIGHT = 34;
 const GATE_WIDTH = 120;
@@ -57,7 +57,7 @@ export function TimelineStage({
   return (
     <g aria-hidden="true">
       <text x={box.x + 8} y={box.y + 18} className={styles.strong}>
-        {number > 0 ? `Intervalo ${number}` : 'Listo para el primer intervalo'}
+        {stageTitle('Intervalo', 'Listo para el primer intervalo', experiment, shown, completed)}
       </text>
       <text x={box.x + box.width - 8} y={box.y + 18} textAnchor="end" className={styles.caption}>
         {settings.unit}

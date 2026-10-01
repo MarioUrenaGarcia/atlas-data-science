@@ -127,7 +127,7 @@ export function genesisHeader(
         const last = events[events.length - 1];
         if (slots) {
           const position = last?.kind === 'slot' ? last.index + 1 : 0;
-          return `${arrived}\\ ${text('rendijas ocupadas de')}\\ ${position}\\ ${text('revisadas')},\\quad p = \\frac{\\lambda}{m} = ${texNumber(slotProbability(settings))}`;
+          return `${arrived}\\ ${text(arrived === 1 ? 'rendija ocupada de' : 'rendijas ocupadas de')}\\ ${position}\\ ${text(position === 1 ? 'revisada' : 'revisadas')},\\quad p = \\frac{\\lambda}{m} = ${texNumber(slotProbability(settings))}`;
         }
         const time = last?.kind === 'arrival' ? last.time : 0;
         return `N(${texNumber(time, 2)}) = ${arrived}`;
@@ -182,24 +182,26 @@ export function genesisHeader(
     case 'mezcla-geometrica': {
       const p = get('p', 0.8);
       const bias = events.find((event) => event.kind === 'bias');
-      if (!bias || bias.kind !== 'bias') return `U \\sim U(0, 1),\\quad s = (1 - p)^{U}`;
-      const head = `s = (${texNumber(1 - p)})^{${texNumber(bias.u ?? 0, 2)}} = ${texNumber(bias.p, 3)}`;
+      if (!bias || bias.kind !== 'bias')
+        return `${text('se sortea la probabilidad de éxito')}\\ s = (1 - p)^{U},\\quad U \\sim U(0, 1)`;
+      const head = `${text('probabilidad sorteada')}\\ s = (${texNumber(1 - p)})^{${texNumber(bias.u ?? 0, 2)}} = ${texNumber(bias.p, 3)}`;
       if (!done || !experiment)
         return `${head},\\quad ${total}\\ ${text(total === 1 ? 'ensayo' : 'ensayos')}`;
       const x = experiment.value;
-      return `X = ${x},\\quad P(X = ${x}) = \\frac{-(${texNumber(p)})^{${x}}}{${x}\\log(${texNumber(1 - p)})} = ${probabilityOf(x)}`;
+      const s = bias.p;
+      return `P(X = ${x} \\mid s) = (1 - s)^{${x - 1}} s = ${texNumber((1 - s) ** (x - 1) * s)},\\quad P(X = ${x}) = \\frac{-(${texNumber(p)})^{${x}}}{${x}\\log(${texNumber(1 - p)})} = ${probabilityOf(x)}`;
     }
     case 'ceros-inflados': {
       const pi = get('pi', 0.35);
       const lambda = get('lambda', 3);
       const gate = events.find((event) => event.kind === 'gate');
       if (!gate || gate.kind !== 'gate')
-        return `${text('cero estructural con probabilidad')}\\ \\pi = ${texNumber(pi)}`;
+        return `${text('primer sorteo: cero estructural con probabilidad')}\\ \\pi = ${texNumber(pi)}`;
       const arrived = events.filter((event) => event.kind === 'arrival').length;
       if (!done || !experiment)
         return gate.structural
-          ? `${text('cero estructural')}`
-          : `${text('rama Poisson:')}\\ N = ${arrived}`;
+          ? `${text('cero estructural (probabilidad')}\\ \\pi = ${texNumber(pi)}${text(')')}`
+          : `${text('rama Poisson (probabilidad')}\\ 1 - \\pi = ${texNumber(1 - pi)}${text('):')}\\ N = ${arrived}`;
       const k = experiment.value;
       if (k === 0)
         return `P(X = 0) = \\pi + (1 - \\pi)e^{-\\lambda} = ${texNumber(pi)} + ${texNumber(1 - pi)}\\,e^{-${texNumber(lambda)}} = ${probabilityOf(0)}`;
@@ -210,7 +212,8 @@ export function genesisHeader(
       const second = events.filter(
         (event) => event.kind === 'arrival' && event.stream === 1,
       ).length;
-      if (!done || !experiment) return `N_1 = ${first},\\quad N_2 = ${second}`;
+      if (!done || !experiment)
+        return `N_1 = ${first},\\quad N_2 = ${second},\\quad X = N_1 - N_2 = ${first - second}`;
       const d = experiment.value;
       return `X = N_1 - N_2 = ${first} - ${second} = ${d},\\quad P(X = ${d}) = ${probabilityOf(d)}`;
     }

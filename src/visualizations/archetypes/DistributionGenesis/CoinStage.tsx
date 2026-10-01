@@ -2,7 +2,14 @@ import { beta as betaDistribution } from '../../../lib/distributions/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
 import { texNumber } from './headers.ts';
-import { experimentNumber, fitRadius, isDone, revealed, type StageProps } from './stage.ts';
+import {
+  experimentNumber,
+  fitRadius,
+  isDone,
+  revealed,
+  stageTitle,
+  type StageProps,
+} from './stage.ts';
 
 /** Coins kept on screen for waiting-time processes; older trials are summarized in the caption. */
 const MAX_VISIBLE = 60;
@@ -90,7 +97,13 @@ export function CoinStage({ box, settings, experiment, shown, completed, animate
   return (
     <g aria-hidden="true">
       <text x={box.x + 8} y={top} className={styles.strong}>
-        {number > 0 ? `Experimento ${number}` : 'Listo para el primer experimento'}
+        {stageTitle(
+          'Experimento',
+          'Listo para el primer experimento',
+          experiment,
+          shown,
+          completed,
+        )}
       </text>
       {status && (
         <text x={box.x + box.width - 8} y={top} textAnchor="end" className={styles.caption}>

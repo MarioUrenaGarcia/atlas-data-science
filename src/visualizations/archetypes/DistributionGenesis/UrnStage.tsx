@@ -1,7 +1,7 @@
 import { DATA_COLORS } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
 import { urnSizes } from './processes.ts';
-import { experimentNumber, isDone, revealed, type StageProps } from './stage.ts';
+import { experimentNumber, isDone, revealed, stageTitle, type StageProps } from './stage.ts';
 
 const URN_SHARE = 0.58;
 const MAX_BALL = 10;
@@ -45,7 +45,7 @@ export function UrnStage({ box, settings, experiment, shown, completed, animate 
   return (
     <g aria-hidden="true">
       <text x={box.x + 8} y={box.y + 18} className={styles.strong}>
-        {number > 0 ? `Muestra ${number}` : 'Listo para la primera muestra'}
+        {stageTitle('Muestra', 'Listo para la primera muestra', experiment, shown, completed)}
       </text>
       <text x={trayLeft} y={box.y + 18} className={styles.caption}>
         {`${settings.replacement ? 'con' : 'sin'} reemplazo: ${hits} marcadas de ${drawn.length}`}

@@ -1,7 +1,7 @@
 import { seriesColor } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
 import { categoryProbabilities } from './processes.ts';
-import { experimentNumber, isDone, revealed, type StageProps } from './stage.ts';
+import { experimentNumber, isDone, revealed, stageTitle, type StageProps } from './stage.ts';
 
 const BOX_GAP = 14;
 const MAX_BALL = 11;
@@ -34,9 +34,7 @@ export function BinsStage({ box, settings, experiment, shown, completed, animate
   return (
     <g aria-hidden="true">
       <text x={box.x + 8} y={box.y + 18} className={styles.strong}>
-        {number > 0
-          ? `Experimento ${number}: ${balls.length} de ${n} bolas`
-          : 'Listo para el primer experimento'}
+        {`${stageTitle('Experimento', 'Listo para el primer experimento', experiment, shown, completed)}${number > 0 ? `: ${balls.length} de ${n} bolas` : ''}`}
       </text>
       {probabilities.map((p, index) => {
         const x = left + index * (boxWidth + BOX_GAP);

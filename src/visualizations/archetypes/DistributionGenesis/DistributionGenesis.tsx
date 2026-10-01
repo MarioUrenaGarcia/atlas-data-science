@@ -63,6 +63,8 @@ function stageShare(settings: GenesisSettings): number {
 const STAGE_GAP = 10;
 /** Wide window for plotWindow; the real limits come from the distribution itself. */
 const OUTCOME_LIMITS: [number, number] = [-1000, 1000];
+/** Finite supports up to this width are drawn completely instead of trimmed by quantiles. */
+const MAX_FULL_SUPPORT = 120;
 
 const DEFAULT_UNITS: Partial<Record<GenesisProcess, string>> = {
   llegadas: 'llegadas en el intervalo',
@@ -246,6 +248,10 @@ export default function DistributionGenesis({ params, conceptId, title }: Visual
   const domain = useMemo<[number, number]>(() => {
     if (categorical) return [0, categories.length - 1];
     if (config.proceso === 'ranking') return [1, Math.round(settings.values.N ?? 30)];
+    // Finite supports are shown whole: a value with tiny probability is still possible.
+    const [first, last] = theory.support;
+    if (Number.isFinite(first) && Number.isFinite(last) && last - first <= MAX_FULL_SUPPORT)
+      return [first, last];
     const window = plotWindow(
       reference ? [theory, reference.distribution] : [theory],
       OUTCOME_LIMITS,

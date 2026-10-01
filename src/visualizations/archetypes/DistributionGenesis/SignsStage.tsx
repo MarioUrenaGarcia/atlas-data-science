@@ -1,6 +1,13 @@
 import { DATA_COLORS } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
-import { experimentNumber, fitRadius, isDone, revealed, type StageProps } from './stage.ts';
+import {
+  experimentNumber,
+  fitRadius,
+  isDone,
+  revealed,
+  stageTitle,
+  type StageProps,
+} from './stage.ts';
 
 const PER_ROW = 20;
 const PATH_HEIGHT_SHARE = 0.45;
@@ -38,7 +45,13 @@ export function SignsStage({ box, settings, experiment, shown, completed, animat
   return (
     <g aria-hidden="true">
       <text x={box.x + 8} y={top} className={styles.strong}>
-        {number > 0 ? `Experimento ${number}` : 'Listo para el primer experimento'}
+        {stageTitle(
+          'Experimento',
+          'Listo para el primer experimento',
+          experiment,
+          shown,
+          completed,
+        )}
       </text>
       {walk && (
         <text x={box.x + box.width - 8} y={top} textAnchor="end" className={styles.caption}>

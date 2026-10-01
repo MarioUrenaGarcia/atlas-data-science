@@ -2,7 +2,7 @@ import { arc } from 'd3-shape';
 import { seriesColor } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
 import { categoryProbabilities } from './processes.ts';
-import { experimentNumber, revealed, type StageProps } from './stage.ts';
+import { experimentNumber, revealed, stageTitle, type StageProps } from './stage.ts';
 
 const LABEL_OFFSET = 16;
 /** Fraction of a sector where the needle can stop, keeping it away from the borders. */
@@ -44,7 +44,7 @@ export function SpinnerStage({ box, settings, experiment, shown, completed, anim
   return (
     <g aria-hidden="true">
       <text x={box.x + 8} y={box.y + 18} className={styles.strong}>
-        {number > 0 ? `Giro ${number}` : 'Listo para el primer giro'}
+        {stageTitle('Giro', 'Listo para el primer giro', experiment, shown, completed)}
       </text>
       <g transform={`translate(${cx},${cy})`}>
         {probabilities.map((p, index) => {

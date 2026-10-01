@@ -1,7 +1,7 @@
 import { zipf } from '../../../lib/distributions/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
-import { experimentNumber, revealed, type StageProps } from './stage.ts';
+import { experimentNumber, revealed, stageTitle, type StageProps } from './stage.ts';
 
 /** Ranks drawn as labelled bars; beyond this many only the bars are shown. */
 const LABELLED_RANKS = 12;
@@ -28,7 +28,7 @@ export function RankStage({ box, settings, experiment, shown, completed, animate
   return (
     <g aria-hidden="true">
       <text x={box.x + 8} y={box.y + 18} className={styles.strong}>
-        {number > 0 ? `Extracción ${number}` : 'Listo para la primera extracción'}
+        {stageTitle('Extracción', 'Listo para la primera extracción', experiment, shown, completed)}
       </text>
       {picked !== null && (
         <text x={box.x + box.width - 8} y={box.y + 18} textAnchor="end" className={styles.strong}>

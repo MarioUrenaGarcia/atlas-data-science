@@ -1,7 +1,7 @@
 import { DATA_COLORS } from '../../core/colors.ts';
 import styles from './DistributionGenesis.module.css';
 import { diceCount, dieRange } from './processes.ts';
-import { experimentNumber, isDone, revealed, type StageProps } from './stage.ts';
+import { experimentNumber, isDone, revealed, stageTitle, type StageProps } from './stage.ts';
 
 const MAX_TILE = 44;
 const MAX_DIE = 64;
@@ -24,7 +24,7 @@ export function DieStage({ box, settings, experiment, shown, completed, animate 
   const number = experimentNumber(experiment, shown, completed);
   const title = (
     <text x={box.x + 8} y={box.y + 18} className={styles.strong}>
-      {number > 0 ? `Tirada ${number}` : 'Listo para la primera tirada'}
+      {stageTitle('Tirada', 'Listo para la primera tirada', experiment, shown, completed)}
     </text>
   );
 

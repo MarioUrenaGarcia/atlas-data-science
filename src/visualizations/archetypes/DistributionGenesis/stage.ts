@@ -45,3 +45,18 @@ export function fitRadius(
   const byHeight = height / (Math.max(1, rows) * 2.6);
   return Math.max(3, Math.min(max, byWidth, byHeight));
 }
+
+/** Caption of the scene: whether an experiment is running, finished or not started. */
+export function stageTitle(
+  noun: string,
+  ready: string,
+  experiment: Experiment | null,
+  shown: number,
+  completed: number,
+): string {
+  const number = experimentNumber(experiment, shown, completed);
+  if (number === 0) return ready;
+  return isDone(experiment, shown)
+    ? `${noun} ${number}: resultado registrado`
+    : `${noun} ${number} en curso`;
+}

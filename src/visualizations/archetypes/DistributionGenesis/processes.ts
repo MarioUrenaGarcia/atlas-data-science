@@ -226,7 +226,7 @@ const PROCESS_SPECS: Record<GenesisProcess, ProcessSpec> = {
   moneda: {
     stage: 'coins',
     symbol: 'X',
-    describe: (settings) => `1 si ocurre "${settings.success}", 0 si no`,
+    describe: () => '1 si hay éxito, 0 si no',
     parameters: () => [num('p', 'Probabilidad de éxito', 'p', 0, 1, 0.01, 0.3)],
     simulate: (random, settings) => {
       const success = random.bernoulli(v(settings, 'p', 0.3));
@@ -237,7 +237,7 @@ const PROCESS_SPECS: Record<GenesisProcess, ProcessSpec> = {
   ensayos: {
     stage: 'coins',
     symbol: 'X',
-    describe: (settings) => `número de "${settings.success}" en n ensayos`,
+    describe: () => 'número de éxitos en n ensayos',
     parameters: () => [
       num('n', 'Número de ensayos', 'n', 1, 40, 1, 10),
       num('p', 'Probabilidad de éxito', 'p', 0, 1, 0.01, 0.5),
@@ -290,7 +290,7 @@ const PROCESS_SPECS: Record<GenesisProcess, ProcessSpec> = {
   urna: {
     stage: 'urn',
     symbol: 'X',
-    describe: (settings) => `bolas "${settings.success}" en la muestra`,
+    describe: () => 'bolas marcadas en la muestra',
     parameters: () => [
       num('N', 'Bolas en la urna', 'N', 2, 100, 1, 30),
       num('K', 'Bolas marcadas', 'K', 0, 100, 1, 10),
@@ -395,7 +395,7 @@ const PROCESS_SPECS: Record<GenesisProcess, ProcessSpec> = {
   'beta-binomial': {
     stage: 'coins',
     symbol: 'X',
-    describe: (settings) => `número de "${settings.success}" con p sorteada`,
+    describe: () => 'número de éxitos con p sorteada',
     parameters: () => [
       num('n', 'Número de ensayos', 'n', 1, 40, 1, 12),
       num('alpha', 'Forma α de la beta', 'α', 0.2, 20, 0.1, 1.5),
