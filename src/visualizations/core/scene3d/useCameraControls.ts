@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { usePlayback } from '../../core/usePlayback.ts';
+import { usePlayback } from '../usePlayback.ts';
 import type { Camera } from './projection.ts';
 
 const INITIAL_CAMERA: Camera = { azimuth: 35, elevation: 25 };

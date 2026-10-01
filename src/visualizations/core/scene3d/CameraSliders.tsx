@@ -1,4 +1,4 @@
-import { NumberControl } from '../../core/NumberControl.tsx';
+import { NumberControl } from '../NumberControl.tsx';
 import type { Camera } from './projection.ts';
 
 const AZIMUTH = {
