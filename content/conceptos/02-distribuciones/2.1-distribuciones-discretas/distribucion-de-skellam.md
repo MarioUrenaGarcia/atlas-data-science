@@ -25,14 +25,39 @@ resumen: >
   positivos y negativos; su media es la diferencia de las tasas y su varianza, la suma.
 formula: 'P(X = k) = e^{-(\mu_1 + \mu_2)}\left(\frac{\mu_1}{\mu_2}\right)^{k/2} I_{|k|}\!\left(2\sqrt{\mu_1\mu_2}\right)'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: diferencia-de-llegadas
-    valores:
-      mu1: 1.6
-      mu2: 1.1
-    flujos: [Local, Visitante]
-    unidad: diferencia de goles en un partido
+    explorador:
+      distribucion: skellam
+      valores:
+        mu1: 3
+        mu2: 2
+      casos:
+        - nombre: 'Partido parejo'
+          descripcion: 'μ₁ = μ₂ = 2: simétrica alrededor de 0; ganar y perder son igual de probables.'
+          valores: {mu1: 2, mu2: 2}
+        - nombre: 'Local favorito'
+          descripcion: 'μ₁ = 1.6 y μ₂ = 1.1: el centro se mueve a 0.5, pero el local gana menos de la mitad de los partidos.'
+          valores: {mu1: 1.6, mu2: 1.1}
+        - nombre: 'Ocupación de un piso'
+          descripcion: 'μ₁ = 3 y μ₂ = 2: ingresos menos altas; media 1 y varianza 5, la suma de las tasas.'
+          valores: {mu1: 3, mu2: 2}
+      ejemplo:
+        titulo: 'Ocupación que sube'
+        contexto: 'En un piso de hospital ingresan en promedio 3 pacientes por hora y salen 2, de forma independiente.'
+        pregunta: '¿Qué probabilidad hay de que la ocupación aumente en una hora?'
+        valores: {mu1: 3, mu2: 2}
+        region: derecha
+        desde: 1
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: diferencia-de-llegadas
+        valores:
+          mu1: 1.6
+          mu2: 1.1
+        flujos: [Local, Visitante]
+        unidad: diferencia de goles en un partido
 referencias:
   - clave: karlin-taylor
   - clave: ross-procesos
@@ -70,9 +95,9 @@ La suma recorre todas las formas de obtener la diferencia $k$: el segundo conteo
 
 ## Cómo usar la visualización
 
-Cada experimento es un partido. Los goles de cada equipo aparecen como marcas en su propia línea a lo largo del tiempo, y los números de la derecha son los marcadores. Al terminar, la diferencia local menos visitante cae en el histograma, que se compara con la función de masa de Skellam.
+La pestaña Distribución muestra la función de masa de la diferencia, con valores negativos y positivos, la región elegida y su probabilidad; los casos cargan un partido parejo, un local favorito y la ocupación de un piso de hospital, y el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge simula los goles de dos equipos en dos líneas de tiempo.
 
-Con tasas 1.6 y 1.1 el histograma tiene su máximo en 0 y está algo cargado a la derecha; la media se acerca a 0.5 y la varianza a 2.7. Al igualar las tasas la forma se vuelve simétrica alrededor de 0. Al subir ambas tasas a 5 sin cambiar su diferencia, la media no cambia pero la distribución se ensancha mucho.
+Al subir ambas tasas sin cambiar su diferencia, la media no cambia pero la distribución se ensancha, porque la varianza es la suma de las tasas.
 
 ## Ejemplo
 
@@ -90,8 +115,15 @@ distribucion: skellam
 valores:
   mu1: 3
   mu2: 2
+ejemplo:
+  titulo: 'Ocupación que sube'
+  contexto: 'En un piso de hospital ingresan en promedio 3 pacientes por hora y salen 2, de forma independiente.'
+  pregunta: '¿Qué probabilidad hay de que la ocupación aumente en una hora?'
+  valores: {mu1: 3, mu2: 2}
+  region: derecha
+  desde: 1
+region: derecha
 desde: 1
-hasta: 25
 muestras: false
 ```
 :::
@@ -114,6 +146,25 @@ unidad: cambio de ocupación en una hora
 - **Suma:** la suma de Skellam independientes es Skellam con las tasas sumadas por separado.
 - **Aproximación normal:** si $\mu_1 + \mu_2$ es grande, $X \approx \mathcal{N}(\mu_1 - \mu_2,\ \mu_1 + \mu_2)$.
 - **Probabilidad de empate:** $P(X = 0) = e^{-(\mu_1 + \mu_2)} I_0(2\sqrt{\mu_1\mu_2})$, que decrece cuando ambas tasas crecen.
+
+:::figura[Tres casos con contexto (partido parejo, local favorito, ocupación de un piso): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: skellam
+valores:
+  mu1: 3
+  mu2: 2
+casos:
+  - nombre: 'Partido parejo'
+    descripcion: 'μ₁ = μ₂ = 2: simétrica alrededor de 0; ganar y perder son igual de probables.'
+    valores: {mu1: 2, mu2: 2}
+  - nombre: 'Local favorito'
+    descripcion: 'μ₁ = 1.6 y μ₂ = 1.1: el centro se mueve a 0.5, pero el local gana menos de la mitad de los partidos.'
+    valores: {mu1: 1.6, mu2: 1.1}
+  - nombre: 'Ocupación de un piso'
+    descripcion: 'μ₁ = 3 y μ₂ = 2: ingresos menos altas; media 1 y varianza 5, la suma de las tasas.'
+    valores: {mu1: 3, mu2: 2}
+```
+:::
 
 :::figura[Con tasas iguales, 2 y 2, la distribución es simétrica alrededor de 0: ganar y perder tienen la misma probabilidad, 0.397, y el empate tiene 0.207.]{componente="DistributionExplorer"}
 ```yaml

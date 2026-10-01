@@ -27,14 +27,44 @@ resumen: >
   conteos con más ceros de los que permite una Poisson, como visitas al médico o capturas de pesca.
 formula: 'P(X = 0) = \pi + (1 - \pi)e^{-\lambda}, \quad P(X = k) = (1 - \pi)\frac{e^{-\lambda}\lambda^{k}}{k!}\ (k \ge 1)'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: ceros-inflados
-    valores:
-      pi: 0.35
-      lambda: 3
-    unidad: visitas al dentista en un año
-    comparar: true
+    explorador:
+      distribucion: poisson-inflada
+      valores:
+        pi: 0.4
+        lambda: 2.5
+      casos:
+        - nombre: 'Sin inflación'
+          descripcion: 'π = 0: es la Poisson(2.5); la barra del cero mide 0.082.'
+          valores: {pi: 0, lambda: 2.5}
+        - nombre: 'Pesca en el parque'
+          descripcion: 'π = 0.4 y λ = 2.5: la barra del cero sube a 0.449 porque el 40 % de los grupos no pesca.'
+          valores: {pi: 0.4, lambda: 2.5}
+        - nombre: 'Visitas al dentista'
+          descripcion: 'π = 0.35 y λ = 3: muchos ceros y, entre quienes van, un conteo de Poisson alrededor de 3.'
+          valores: {pi: 0.35, lambda: 3}
+      ejemplo:
+        titulo: 'Grupos sin pesca'
+        contexto: 'El número de peces que captura un grupo de visitantes sigue una Poisson inflada en ceros con π = 0.4 y λ = 2.5.'
+        pregunta: '¿Qué probabilidad hay de que un grupo no capture ningún pez?'
+        valores: {pi: 0.4, lambda: 2.5}
+        region: izquierda
+        desde: 0
+      referencia:
+        distribucion: poisson
+        valores: {lambda: 1.5}
+        etiqueta: 'Poisson con la misma media'
+        visible: true
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: ceros-inflados
+        valores:
+          pi: 0.35
+          lambda: 3
+        unidad: visitas al dentista en un año
+        comparar: true
 referencias:
   - clave: agresti
   - clave: mcelreath
@@ -74,9 +104,9 @@ La probabilidad del cero tiene dos sumandos: los ceros estructurales, $\pi$, y l
 
 ## Cómo usar la visualización
 
-Cada experimento es una persona. El recuadro de la izquierda hace el primer sorteo: si dice "Cero estructural", la persona no visita al dentista y la línea de tiempo queda apagada; si dice "Rama Poisson", las visitas aparecen como marcas a lo largo del año. El histograma pinta en verde la parte de la barra del cero que viene de ceros estructurales.
+La pestaña Distribución muestra la función de masa con la barra del cero inflada, junto a la Poisson de la misma media (línea punteada); la región elegida da su probabilidad. Los casos cargan una Poisson sin inflación, la pesca en un parque y las visitas al dentista, y el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge decide primero si el cero es estructural y, si no, cuenta llegadas de Poisson.
 
-Con $\pi = 0.35$ y $\lambda = 3$, la barra del cero, 0.382, es 2.7 veces la de la Poisson con la misma media (línea punteada), 0.142. Al bajar $\pi$ a 0 la parte verde desaparece y el histograma es una Poisson. Al subir $\pi$ el resto de las barras baja en proporción, sin cambiar de forma.
+Al subir $\pi$ solo crece la barra del cero y las demás bajan en proporción. La comparación muestra que la Poisson subestima los ceros.
 
 ## Ejemplo
 
@@ -105,9 +135,21 @@ distribucion: poisson-inflada
 valores:
   pi: 0.4
   lambda: 2.5
+ejemplo:
+  titulo: 'Grupos sin pesca'
+  contexto: 'El número de peces que captura un grupo de visitantes sigue una Poisson inflada en ceros con π = 0.4 y λ = 2.5.'
+  pregunta: '¿Qué probabilidad hay de que un grupo no capture ningún pez?'
+  valores: {pi: 0.4, lambda: 2.5}
+  region: izquierda
+  desde: 0
+region: izquierda
 desde: 0
-hasta: 0
 muestras: false
+referencia:
+  distribucion: poisson
+  valores: {lambda: 1.5}
+  etiqueta: 'Poisson con la misma media'
+  visible: true
 ```
 :::
 
@@ -118,6 +160,30 @@ muestras: false
 - **Probabilidad posterior del cero estructural:** $P(Z = 1 \mid X = 0) = \dfrac{\pi}{\pi + (1 - \pi)e^{-\lambda}}$.
 - **Forma de los positivos:** condicionada a $X \ge 1$, la distribución es la de una Poisson truncada en cero, igual que sin inflación.
 - **Caso límite:** con $\pi = 0$ se recupera la $\operatorname{Poisson}(\lambda)$.
+
+:::figura[Tres casos con contexto (sin inflación, pesca en el parque, visitas al dentista): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: poisson-inflada
+valores:
+  pi: 0.4
+  lambda: 2.5
+casos:
+  - nombre: 'Sin inflación'
+    descripcion: 'π = 0: es la Poisson(2.5); la barra del cero mide 0.082.'
+    valores: {pi: 0, lambda: 2.5}
+  - nombre: 'Pesca en el parque'
+    descripcion: 'π = 0.4 y λ = 2.5: la barra del cero sube a 0.449 porque el 40 % de los grupos no pesca.'
+    valores: {pi: 0.4, lambda: 2.5}
+  - nombre: 'Visitas al dentista'
+    descripcion: 'π = 0.35 y λ = 3: muchos ceros y, entre quienes van, un conteo de Poisson alrededor de 3.'
+    valores: {pi: 0.35, lambda: 3}
+referencia:
+  distribucion: poisson
+  valores: {lambda: 1.5}
+  etiqueta: 'Poisson con la misma media'
+  visible: true
+```
+:::
 
 :::figura[Sobredispersión: ZIP(0.35, 3) tiene media 1.95 y varianza 4.0; la Poisson de la misma media (línea punteada) tiene varianza 1.95.]{componente="DistributionExplorer"}
 ```yaml
