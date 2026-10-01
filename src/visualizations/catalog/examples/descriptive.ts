@@ -109,4 +109,47 @@ export const DESCRIPTIVE_EXAMPLES: CatalogExample[] = [
     title: 'Datos ordenados',
     params: { modo: 'ordenados', caso: 'clima' },
   },
+  {
+    component: 'DataStrip',
+    title: 'Medidas de centro con atípico',
+    params: {
+      modo: 'centro',
+      datos: [12, 15, 14, 18, 15, 13, 16],
+      medidas: ['media', 'mediana', 'moda'],
+      atipico: { indice: 6, hasta: 45 },
+      variable: 'Minutos de traslado',
+      unidad: 'min',
+      decimales: 0,
+    },
+  },
+  {
+    component: 'DataStrip',
+    title: 'Balanza y media ponderada',
+    params: {
+      modo: 'centro',
+      datos: [7.5, 8.8, 9.4, 6.9],
+      pesos: [8, 6, 4, 2],
+      medidas: ['ponderada', 'media'],
+      balanza: true,
+      variable: 'Calificación',
+      etiquetas: ['Cálculo', 'Física', 'Química', 'Taller'],
+    },
+  },
+  {
+    component: 'DataStrip',
+    title: 'Recortada y winsorizada',
+    params: {
+      modo: 'centro',
+      datos: [3.1, 3.4, 3.3, 3.6, 3.2, 3.5, 3.3, 3.4, 9.8, 0.4],
+      medidas: ['recortada', 'winsorizada', 'media'],
+      proporcion: 0.1,
+      variable: 'Peso al nacer',
+      unidad: 'kg',
+    },
+  },
+  {
+    component: 'DataStrip',
+    title: 'Semicírculo de medias',
+    params: { modo: 'semicirculo', a: 4, b: 9 },
+  },
 ];
