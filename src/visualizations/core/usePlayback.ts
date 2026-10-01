@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
+import { queueSkipSteps } from './skipToEnd.ts';
 import { useReducedMotion } from './useReducedMotion.ts';
 
 export const SPEEDS = [0.25, 0.5, 1, 2, 4] as const;
@@ -16,7 +17,10 @@ interface PlaybackOptions {
   reset: () => void;
   /** Steps per second at 1x speed. */
   rate: number;
-  /** When true, playback stops automatically. */
+  /**
+   * When true, playback stops automatically. Animations that pass this flag
+   * have a final state and get the skip-to-end action; endless loops omit it.
+   */
   done?: boolean;
   autoplay?: boolean;
 }
@@ -30,6 +34,10 @@ export interface Playback {
   toggle: () => void;
   stepOnce: () => void;
   restart: () => void;
+  /** Runs the simulation to its final state; null for animations without one. */
+  skipToEnd: (() => void) | null;
+  /** True while a skip to the end is in progress. */
+  skipping: boolean;
   setSpeed: (speed: Speed) => void;
   /** Called by the frame loop with the simulated seconds since the last frame. */
   advance: (seconds: number) => void;
@@ -44,18 +52,27 @@ export function usePlayback({
   stepMany,
   reset,
   rate,
-  done = false,
+  done: doneOption,
   autoplay = true,
 }: PlaybackOptions): Playback {
+  const finite = doneOption !== undefined;
+  const done = doneOption ?? false;
   const reducedMotion = useReducedMotion();
   const [playing, setPlaying] = useState(autoplay && !reducedMotion);
   const [speed, setSpeed] = useState<Speed>(1);
+  const [skipping, setSkipping] = useState(false);
   const carry = useRef(0);
 
   const advance = useCallback(
     (seconds: number) => {
       if (done) {
         setPlaying(false);
+        setSkipping(false);
+        return;
+      }
+      if (skipping) {
+        // Fast-forward: ignore elapsed time and queue a large batch of steps.
+        queueSkipSteps({ step, stepMany });
         return;
       }
       carry.current += seconds * rate;
@@ -65,7 +82,7 @@ export function usePlayback({
       if (stepMany) stepMany(count);
       else for (let i = 0; i < count; i += 1) step();
     },
-    [done, rate, step, stepMany],
+    [done, skipping, rate, step, stepMany],
   );
 
   return {
@@ -73,16 +90,32 @@ export function usePlayback({
     speed,
     done,
     play: () => setPlaying(true),
-    pause: () => setPlaying(false),
-    toggle: () => setPlaying((value) => !value),
+    pause: () => {
+      setSkipping(false);
+      setPlaying(false);
+    },
+    toggle: () => {
+      setSkipping(false);
+      setPlaying((value) => !value);
+    },
     stepOnce: () => {
+      setSkipping(false);
       setPlaying(false);
       if (!done) step();
     },
     restart: () => {
       carry.current = 0;
+      setSkipping(false);
       reset();
     },
+    skipToEnd: finite
+      ? () => {
+          if (done) return;
+          setSkipping(true);
+          setPlaying(true);
+        }
+      : null,
+    skipping: skipping && !done,
     setSpeed,
     advance,
   };
