@@ -124,6 +124,17 @@ funciones:
 - **Inversa de una composición:** $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$, con el orden invertido.
 - $(f^{-1})^{-1} = f$.
 - Si $g \circ f$ es inyectiva, $f$ es inyectiva; si $g \circ f$ es suprayectiva, $g$ es suprayectiva.
+
+:::figura[$g \circ f$ es inyectiva de $\{1, 2\}$ en $\{p, q\}$, y por eso $f$ también lo es; en cambio $g$ manda $y$ y $z$ al mismo $q$ y no es inyectiva, porque $z$ nunca se usa.]{componente="FunctionMapping"}
+```yaml
+modo: composicion
+a: ['1', '2']
+b: [x, y, z]
+c: [p, q]
+f: [0, 1]
+g: [0, 1, 1]
+```
+:::
 - La gráfica de $f^{-1}$ en el plano es la reflexión de la gráfica de $f$ respecto de la recta $y = x$.
 
 :::demostracion
@@ -134,6 +145,17 @@ Para $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$, basta comprobar que funciona como
 
 - **Aplicar la composición de izquierda a derecha.** En $g \circ f$ se aplica primero $f$.
 - **Confundir $f^{-1}(x)$ con $1/f(x)$.** La inversa deshace la función; el recíproco divide.
+
+:::figura[La inversa de $e^x$ es la reflexión de su gráfica en la recta $y = x$, la función $\log x$, que crece. El recíproco $1/e^x = e^{-x}$ decrece, así que no puede ser la curva reflejada.]{componente="FunctionGraph"}
+```yaml
+modo: inversa
+funciones:
+  - funcion: exponencial
+    dominio: [-2, 2]
+    codominio: [0.1, 7.5]
+    nombre: "eˣ y su inversa"
+```
+:::
 - **Buscar la inversa de una función no biyectiva.** $x \mapsto x^2$ sobre $\mathbb{R}$ no tiene inversa; la raíz cuadrada es inversa solo si se restringe el dominio a $[0, \infty)$.
 - **Invertir una composición sin cambiar el orden.** Para deshacer "ponerse calcetines y luego zapatos" hay que quitar primero los zapatos.
 

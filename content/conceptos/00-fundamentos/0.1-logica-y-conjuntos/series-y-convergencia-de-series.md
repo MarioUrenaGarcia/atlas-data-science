@@ -94,7 +94,23 @@ terminos: 30
 - **Serie armónica:** $\sum 1/n$ diverge. **Series $p$:** $\sum 1/n^p$ converge si y solo si $p > 1$.
 - **Comparación:** si $0 \le a_n \le b_n$ y $\sum b_n$ converge, entonces $\sum a_n$ converge.
 - **Criterio de la razón:** si $|a_{n+1}/a_n| \to \rho < 1$, la serie converge absolutamente; si $\rho > 1$, diverge.
+
+:::figura[La serie $\sum 1/n!$: cada término es el anterior dividido entre $n$, la razón tiende a 0 y las sumas parciales alcanzan $e - 1 \approx 1.718$ con muy pocos términos.]{componente="SequenceSeries"}
+```yaml
+modo: serie
+serie: factorial
+terminos: 15
+```
+:::
 - **Series alternantes:** si $b_n$ decrece a 0, $\sum (-1)^{n+1} b_n$ converge.
+
+:::figura[La armónica alternada $1 - \frac{1}{2} + \frac{1}{3} - \dots$: las sumas parciales saltan arriba y abajo de $\log 2 \approx 0.693$ con saltos cada vez menores.]{componente="SequenceSeries"}
+```yaml
+modo: serie
+serie: armonica-alternada
+terminos: 60
+```
+:::
 - La convergencia absoluta implica la convergencia, y solo en ese caso el reordenamiento de términos no cambia la suma.
 - **Linealidad:** $\sum (c a_n + b_n) = c \sum a_n + \sum b_n$ si ambas convergen.
 
@@ -108,6 +124,14 @@ Para la divergencia de la serie armónica agrupamos términos: $1 + \frac{1}{2} 
 - **Juzgar por las sumas parciales visibles.** La armónica crece como $\log N$: tras un millón de términos apenas supera 14, y aun así diverge.
 - **Reordenar una serie condicionalmente convergente.** Reordenando la armónica alternada se puede obtener cualquier suma.
 - **Confundir la sucesión de términos con la sucesión de sumas parciales.** Converger se refiere a la segunda.
+
+:::figura[La serie de Grandi, $1 - 1 + 1 - 1 + \dots$: los términos valen 1 y -1 y las sumas parciales alternan entre 1 y 0. Lo que no converge es la sucesión de sumas parciales.]{componente="SequenceSeries"}
+```yaml
+modo: serie
+serie: grandi
+terminos: 20
+```
+:::
 
 :::figura[La serie armónica con 400 términos. Los términos tienden a 0, pero las sumas parciales siguen subiendo lentamente, como $\log N$, sin estabilizarse.]{componente="SequenceSeries"}
 ```yaml
