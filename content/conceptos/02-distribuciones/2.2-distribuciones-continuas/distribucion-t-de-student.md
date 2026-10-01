@@ -41,6 +41,12 @@ visualizacion:
         - nombre: 'Treinta grados'
           descripcion: 'Con ν = 30 el denominador casi no varía y la t es casi la normal.'
           valores: {nu: 30}
+        - nombre: 'Muestra muy chica'
+          descripcion: 'ν = 2: colas muy gruesas; estimación con muy pocos datos y mucha incertidumbre.'
+          valores: {nu: 2}
+        - nombre: 'Experimento inicial'
+          descripcion: 'ν = 5: colas todavía gruesas; experimentos iniciales con seis observaciones.'
+          valores: {nu: 5}
       ejemplo:
         titulo: 'Resultado extremo'
         contexto: 'Con 8 mediciones de un contaminante, el estadístico t sigue una t con 7 grados de libertad.'
@@ -94,6 +100,14 @@ $$
 $$
 :::
 
+:::nota[Qué es X]
+$X$ = el estadístico $t$ de una prueba o de un intervalo de confianza para una media con varianza desconocida.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\nu$, grados de libertad:** cuánta información tiene la muestra; en una prueba t de una muestra, $\nu = n - 1$. Si aumenta, las colas se adelgazan y la curva se acerca a la normal estándar.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $T$: cociente con distribución t.
 - $Z$: normal estándar del numerador.
@@ -144,6 +158,32 @@ referencia:
 ```
 :::
 
+Segundo ejemplo, valor crítico con muestra chica. Una prueba t con 6 observaciones tiene $\nu = 5$ grados de libertad, y su valor crítico a dos colas al 5 % es 2.571.
+
+1. La pregunta es $P(|T| \ge 2.571) = 2\,P(T \ge 2.571)$ por simetría.
+2. Como 2.571 es el cuantil 0.975 de $t_{5}$, cada cola vale 0.025 y las dos suman 0.05.
+3. Con la normal estándar, las mismas colas sumarían solo 0.0101: usar 1.96 en lugar de 2.571 con seis datos rechazaría la hipótesis nula con demasiada facilidad.
+
+:::figura[Valor crítico con muestra chica: las dos colas más allá de ±2.571 suman 0.05. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: t
+valores:
+  nu: 5
+ejemplo:
+  titulo: 'Valor crítico con muestra chica'
+  contexto: 'Una prueba t con 6 observaciones tiene 5 grados de libertad; el valor crítico a dos colas al 5 % es 2.571.'
+  pregunta: '¿Qué probabilidad queda en las dos colas, más allá de -2.571 y de 2.571?'
+  valores: {nu: 5}
+  region: colas
+  desde: -2.571
+  hasta: 2.571
+region: colas
+desde: -2.571
+hasta: 2.571
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Simetría:** la densidad es simétrica alrededor de cero.
@@ -154,7 +194,7 @@ referencia:
 - **Límite:** $t_{\nu} \to \mathcal{N}(0, 1)$ cuando $\nu \to \infty$.
 - **Mezcla de normales:** $t_{\nu}$ es una normal cuya varianza se elige al azar con una gamma inversa, lo que la vuelve un modelo robusto para datos con atípicos.
 
-:::figura[Tres casos con contexto (un grado, ocho mediciones, treinta grados): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (un grado, ocho mediciones, treinta grados, muestra muy chica, experimento inicial): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: t
 valores:
@@ -169,6 +209,12 @@ casos:
   - nombre: 'Treinta grados'
     descripcion: 'Con ν = 30 el denominador casi no varía y la t es casi la normal.'
     valores: {nu: 30}
+  - nombre: 'Muestra muy chica'
+    descripcion: 'ν = 2: colas muy gruesas; estimación con muy pocos datos y mucha incertidumbre.'
+    valores: {nu: 2}
+  - nombre: 'Experimento inicial'
+    descripcion: 'ν = 5: colas todavía gruesas; experimentos iniciales con seis observaciones.'
+    valores: {nu: 5}
 referencia:
   distribucion: normal
   valores: {mu: 0, sigma: 1}
@@ -226,7 +272,25 @@ referencia:
 
 ## Conexiones
 
-La t de Student se obtiene de la [[normal-estandar-y-puntuacion-z|normal estándar]] y de la [[distribucion-chi-cuadrada]]; su cuadrado es una [[distribucion-f-de-snedecor]] con 1 y $\nu$ grados de libertad. Con un grado de libertad es la [[distribucion-de-cauchy]], y con infinitos, la [[distribucion-normal]]. Si el numerador tiene media distinta de cero se obtiene la [[distribucion-t-no-central]], que describe la potencia de las pruebas t.
+La t de Student se obtiene de la [[normal-estandar-y-puntuacion-z|normal estándar]] y de la [[distribucion-chi-cuadrada]]; su cuadrado es una [[distribucion-f-de-snedecor]] con 1 y $\nu$ grados de libertad. Con un grado de libertad es la [[distribucion-de-cauchy]], y con infinitos, la [[distribucion-normal]]. Si el numerador tiene media distinta de cero se obtiene la [[distribucion-t-no-central]], que describe la potencia de las pruebas t. La figura siguiente superpone la normal estándar para ver cómo se juntan las colas al subir $\nu$. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[t de Student y normal: con 2 grados la t (curva) tiene colas mucho más gruesas que la normal estándar (línea punteada). Al subir ν las dos curvas se juntan.]{componente="DistributionExplorer"}
+```yaml
+distribucion: t
+valores:
+  nu: 2
+region: derecha
+desde: 3
+muestras: false
+referencia:
+  distribucion: normal
+  valores:
+    mu: 0
+    sigma: 1
+  etiqueta: Normal estándar
+  visible: true
+```
+:::
 
 ## Formulario
 

@@ -47,6 +47,15 @@ visualizacion:
         - nombre: 'Desgaste fuerte'
           descripcion: 'k = 4: casi todas las piezas fallan cerca de la escala; la forma se parece a una campana.'
           valores: {k: 4, lambda: 3}
+        - nombre: 'Hardware nuevo'
+          descripcion: 'k = 0.8 y λ = 1: dominan las fallas tempranas, la llamada mortalidad infantil del hardware nuevo.'
+          valores: {k: 0.8, lambda: 1}
+        - nombre: 'Desgaste gradual'
+          descripcion: 'k = 1.5 y λ = 1.5: el riesgo sube poco a poco con el uso.'
+          valores: {k: 1.5, lambda: 1.5}
+        - nombre: 'Edad típica'
+          descripcion: 'k = 3 y λ = 2: envejecimiento marcado; los productos fallan cerca de una edad típica.'
+          valores: {k: 3, lambda: 2}
       ejemplo:
         titulo: 'Vida de un rodamiento'
         contexto: 'La vida de un rodamiento, en años, sigue una Weibull con forma 1.5 y escala 3.'
@@ -86,6 +95,15 @@ $$
 :::
 
 Su **tasa de falla** o función de riesgo es $h(x) = \frac{f(x)}{1 - F(x)} = \frac{k}{\lambda}\left(\frac{x}{\lambda}\right)^{k - 1}$, creciente si $k > 1$, constante si $k = 1$ y decreciente si $k < 1$.
+
+:::nota[Qué es X]
+$X$ = el tiempo hasta que un componente falla.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$k$, forma:** cómo cambia el riesgo con el tiempo: con $k < 1$ baja (fallas tempranas), con $k = 1$ es constante y con $k > 1$ sube (desgaste). Si aumenta, las fallas se concentran alrededor de una edad típica.
+- **$\lambda$, escala:** la vida característica: al llegar a $\lambda$ ya falló el 63.2 % de los componentes. Si aumenta, la curva se estira a la derecha y los componentes duran más.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $X$: tiempo de vida o resistencia.
@@ -134,6 +152,35 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, confiabilidad de un componente. La vida de un componente es $X \sim \operatorname{Weibull}(1.5, 2)$, con media $2\,\Gamma(1 + 1/1.5) \approx 1.81$.
+
+1. La función de supervivencia es $P(X > x) = e^{-(x/\lambda)^{k}}$.
+2. Con $x = \lambda = 2$: $P(X > 2) = e^{-1} \approx 0.3679$.
+3. Para cualquier forma $k$, la probabilidad de sobrevivir a la escala es 0.3679: al llegar a $\lambda$ ya falló el 63.2 %.
+
+:::figura[Confiabilidad de un componente: el área a la derecha de 2 vale 0.3679. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: weibull
+valores:
+  k: 1.5
+  lambda: 2
+dominio: [0, 10]
+rangos:
+  k: [0.3, 6]
+  lambda: [0.3, 8]
+ejemplo:
+  titulo: 'Confiabilidad de un componente'
+  contexto: 'La vida de un componente sigue una Weibull con k = 1.5 y λ = 2.'
+  pregunta: '¿Qué probabilidad hay de que dure más de 2 unidades de tiempo?'
+  valores: {k: 1.5, lambda: 2}
+  region: derecha
+  desde: 2
+region: derecha
+desde: 2
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y varianza:** $\mathbb{E}[X] = \lambda\Gamma(1 + 1/k)$ y $\operatorname{Var}(X) = \lambda^{2}\left[\Gamma(1 + 2/k) - \Gamma(1 + 1/k)^{2}\right]$.
@@ -143,7 +190,7 @@ muestras: false
 - **Mínimos:** el mínimo de $n$ Weibull independientes con la misma forma es Weibull con escala $\lambda n^{-1/k}$; la familia es cerrada bajo mínimos.
 - **Límite del eslabón más débil:** el mínimo reescalado de muchas variables con cola inferior de tipo $x^{k}$ converge a una Weibull.
 
-:::figura[Tres casos con contexto (fallas tempranas, rodamientos, desgaste fuerte): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (fallas tempranas, rodamientos, desgaste fuerte, hardware nuevo, desgaste gradual, edad típica): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: weibull
 valores:
@@ -163,6 +210,15 @@ casos:
   - nombre: 'Desgaste fuerte'
     descripcion: 'k = 4: casi todas las piezas fallan cerca de la escala; la forma se parece a una campana.'
     valores: {k: 4, lambda: 3}
+  - nombre: 'Hardware nuevo'
+    descripcion: 'k = 0.8 y λ = 1: dominan las fallas tempranas, la llamada mortalidad infantil del hardware nuevo.'
+    valores: {k: 0.8, lambda: 1}
+  - nombre: 'Desgaste gradual'
+    descripcion: 'k = 1.5 y λ = 1.5: el riesgo sube poco a poco con el uso.'
+    valores: {k: 1.5, lambda: 1.5}
+  - nombre: 'Edad típica'
+    descripcion: 'k = 3 y λ = 2: envejecimiento marcado; los productos fallan cerca de una edad típica.'
+    valores: {k: 3, lambda: 2}
 ```
 :::
 
@@ -220,7 +276,27 @@ referencia:
 
 ## Conexiones
 
-La Weibull generaliza la [[distribucion-exponencial]] permitiendo tasas de falla variables, y con forma 2 es la [[distribucion-de-rayleigh]]. Es una de las tres distribuciones límite de los extremos, junto con la [[distribucion-de-gumbel]] y la [[distribucion-de-frechet]]: describe mínimos de variables acotadas inferiormente. Se usa en confiabilidad, análisis de supervivencia, velocidades del viento y resistencia de materiales.
+La Weibull generaliza la [[distribucion-exponencial]] permitiendo tasas de falla variables, y con forma 2 es la [[distribucion-de-rayleigh]]. Es una de las tres distribuciones límite de los extremos, junto con la [[distribucion-de-gumbel]] y la [[distribucion-de-frechet]]: describe mínimos de variables acotadas inferiormente. Se usa en confiabilidad, análisis de supervivencia, velocidades del viento y resistencia de materiales. Con $k = 1$ el riesgo es constante y se recupera la exponencial, la única sin memoria; por eso la Weibull es la opción cuando el riesgo cambia con la edad. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Weibull y exponencial: con k = 1 la Weibull (curva) es la exponencial de tasa 1/λ (línea punteada): riesgo constante. Al mover k el riesgo cambia con la edad y las curvas se separan.]{componente="DistributionExplorer"}
+```yaml
+distribucion: weibull
+valores:
+  k: 1
+  lambda: 2
+rangos:
+  k: [0.3, 6]
+  lambda: [0.3, 8]
+dominio: [0, 10]
+muestras: false
+referencia:
+  distribucion: exponencial
+  enlace:
+    lambda: {de: [lambda], potencias: [-1]}
+  etiqueta: Exponencial con tasa 1/λ
+  visible: true
+```
+:::
 
 ## Formulario
 

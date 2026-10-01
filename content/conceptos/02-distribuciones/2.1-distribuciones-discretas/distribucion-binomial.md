@@ -91,6 +91,15 @@ $$
 
 Supuestos: número de ensayos $n$ fijo de antemano, dos resultados por ensayo, ensayos independientes y la misma probabilidad de éxito $p$ en todos.
 
+:::nota[Qué es X]
+$X$ = el número de éxitos en los $n$ intentos, un entero entre 0 y $n$.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$n$, número de intentos:** cuántos intentos se hacen; marca el máximo de éxitos posible. Si aumenta, hay más valores posibles y la distribución se ensancha.
+- **$p$, probabilidad de éxito:** la probabilidad de que cada intento salga bien. Si aumenta, el centro se mueve a la derecha, porque se esperan más éxitos.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: número de éxitos en los $n$ ensayos.
 - $X_i$: resultado del ensayo $i$, 1 si es éxito y 0 si no.
@@ -148,6 +157,32 @@ valores:
   p: 0.7
 exito: Mejora
 fracaso: Sin mejora
+```
+:::
+
+Segundo ejemplo, piezas defectuosas. Un analista de calidad revisa un lote de 20 piezas y cada una sale defectuosa con probabilidad 0.2, de forma independiente. El número de defectuosas es $X \sim \operatorname{Bin}(20, 0.2)$.
+
+1. La pregunta es $P(X \le 5) = \sum_{k=0}^{5} \binom{20}{k} 0.2^{k}\, 0.8^{20 - k}$.
+2. Los seis términos valen 0.0115, 0.0576, 0.1369, 0.2054, 0.2182 y 0.1746.
+3. Su suma es $P(X \le 5) \approx 0.8042$: en cuatro de cada cinco lotes aparecen 5 defectuosas o menos.
+4. La media es $np = 4$ y la varianza $np(1 - p) = 3.2$, así que 5 está apenas arriba del centro.
+
+:::figura[Piezas defectuosas: la región X ≤ 5 suma 0.8042. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: binomial
+valores:
+  n: 20
+  p: 0.2
+ejemplo:
+  titulo: 'Piezas defectuosas'
+  contexto: 'Un analista de calidad revisa un lote de 20 piezas; cada pieza sale defectuosa con probabilidad 0.2.'
+  pregunta: '¿Qué probabilidad hay de encontrar como máximo 5 defectuosas?'
+  valores: {n: 20, p: 0.2}
+  region: izquierda
+  desde: 5
+region: izquierda
+desde: 5
+muestras: false
 ```
 :::
 
@@ -267,7 +302,39 @@ muestras: false
 
 ## Conexiones
 
-La binomial es la suma de ensayos de la [[distribucion-de-bernoulli]], y su función de masa usa el [[coeficiente-binomial]]; que sume uno es el [[teorema-del-binomio]]. Si se cuenta el número de ensayos necesario en lugar de fijarlo, aparecen la [[distribucion-geometrica]] y la [[distribucion-binomial-negativa]]. Sin reemplazo en una población finita se convierte en la [[distribucion-hipergeometrica]]. Con $n$ grande y $p$ pequeña se aproxima por la [[distribucion-de-poisson]]. Con más de dos resultados por ensayo se generaliza a la [[distribucion-multinomial]], y si $p$ varía según una distribución beta, a la [[distribucion-beta-binomial]].
+La binomial es la suma de ensayos de la [[distribucion-de-bernoulli]], y su función de masa usa el [[coeficiente-binomial]]; que sume uno es el [[teorema-del-binomio]]. Si se cuenta el número de ensayos necesario en lugar de fijarlo, aparecen la [[distribucion-geometrica]] y la [[distribucion-binomial-negativa]]. Sin reemplazo en una población finita se convierte en la [[distribucion-hipergeometrica]]. Con $n$ grande y $p$ pequeña se aproxima por la [[distribucion-de-poisson]]. Con más de dos resultados por ensayo se generaliza a la [[distribucion-multinomial]], y si $p$ varía según una distribución beta, a la [[distribucion-beta-binomial]]. Las dos figuras siguientes superponen la Poisson con $\lambda = np$ y la Bernoulli del caso $n = 1$; sus curvas siguen a los controles. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Binomial y Poisson: con n = 50 y p = 0.05 la binomial (barras) casi coincide con la Poisson de λ = np = 2.5 (línea punteada). Al bajar p o subir n con np fijo, las dos se pegan más.]{componente="DistributionExplorer"}
+```yaml
+distribucion: binomial
+valores:
+  n: 50
+  p: 0.05
+muestras: false
+referencia:
+  distribucion: poisson
+  enlace:
+    lambda: {de: [n, p]}
+  etiqueta: Poisson con λ = np
+  visible: true
+```
+:::
+
+:::figura[Bernoulli y binomial: con n = 1 la binomial (barras) es la Bernoulli con la misma p (línea punteada); cada intento extra suma otra Bernoulli independiente.]{componente="DistributionExplorer"}
+```yaml
+distribucion: binomial
+valores:
+  n: 1
+  p: 0.3
+muestras: false
+referencia:
+  distribucion: bernoulli
+  enlace:
+    p: {de: [p]}
+  etiqueta: Bernoulli con la misma p
+  visible: true
+```
+:::
 
 ## Formulario
 

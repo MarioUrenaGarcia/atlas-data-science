@@ -42,6 +42,15 @@ visualizacion:
         - nombre: 'Muestras grandes'
           descripcion: 'd₁ = 30 y d₂ = 60: ambas varianzas son precisas y el cociente cae entre 0.6 y 1.6 en casi nueve de cada diez casos.'
           valores: {d1: 30, d2: 60}
+        - nombre: 'ANOVA chico'
+          descripcion: 'd₁ = 2 y d₂ = 10: cola derecha pesada; análisis de varianza con muestras chicas.'
+          valores: {d1: 2, d2: 10}
+        - nombre: 'Ejemplo de clase'
+          descripcion: 'd₁ = 5 y d₂ = 20: más estable; comparación de medias de seis grupos.'
+          valores: {d1: 5, d2: 20}
+        - nombre: 'ANOVA grande'
+          descripcion: 'd₁ = 10 y d₂ = 50: más concentrada; muestras grandes y comparación de modelos.'
+          valores: {d1: 10, d2: 50}
       ejemplo:
         titulo: 'Varianzas de dos máquinas'
         contexto: 'Dos máquinas igual de precisas producen varianzas muestrales con 9 y 14 grados de libertad.'
@@ -89,6 +98,15 @@ $$
 Si $S_1^{2}$ y $S_2^{2}$ son varianzas muestrales de muestras normales independientes de tamaños $n_1$ y $n_2$ con la misma varianza, entonces $S_1^{2}/S_2^{2} \sim F_{n_1 - 1,\, n_2 - 1}$.
 :::
 
+:::nota[Qué es X]
+$X$ = el cociente de dos varianzas estimadas, cada una dividida entre sus grados de libertad.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$d_1$, grados del numerador:** los grados de libertad de la varianza de arriba; en un análisis de varianza, el número de grupos menos uno. Si aumenta, la curva se concentra y el pico se acerca a 1.
+- **$d_2$, grados del denominador:** los grados de libertad de la varianza de abajo; en un análisis de varianza, las observaciones menos los grupos. Si aumenta, la cola derecha se acorta y la curva se estabiliza.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $F$: cociente de varianzas escaladas.
 - $V_1$, $V_2$: chi-cuadradas independientes.
@@ -132,6 +150,31 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, análisis de varianza de seis grupos. Con 6 grupos y 26 observaciones, el estadístico tiene $d_1 = 6 - 1 = 5$ y $d_2 = 26 - 6 = 20$ grados de libertad; si todas las medias son iguales sigue una $F_{5, 20}$, con media $20/18 \approx 1.11$.
+
+1. La pregunta es $P(F_{5, 20} > 2.71)$.
+2. Como 2.71 es el cuantil 0.95 de $F_{5, 20}$, la probabilidad es 0.05.
+3. Un valor observado mayor que 2.71 lleva a rechazar que las seis medias sean iguales al 5 %.
+
+:::figura[ANOVA de seis grupos: el área a la derecha de 2.71 vale 0.05. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: f
+valores:
+  d1: 5
+  d2: 20
+ejemplo:
+  titulo: 'ANOVA de seis grupos'
+  contexto: 'Un análisis de varianza con 6 grupos y 26 observaciones tiene d₁ = 5 y d₂ = 20; el valor crítico al 5 % es 2.71.'
+  pregunta: '¿Qué probabilidad hay de obtener un F mayor que 2.71 si todas las medias son iguales?'
+  valores: {d1: 5, d2: 20}
+  region: derecha
+  desde: 2.71
+region: derecha
+desde: 2.71
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media:** $\mathbb{E}[F] = d_2/(d_2 - 2)$ si $d_2 > 2$; no depende de $d_1$.
@@ -141,7 +184,7 @@ muestras: false
 - **Relación con la beta:** $\frac{d_1F/d_2}{1 + d_1F/d_2} \sim \operatorname{Beta}(d_1/2, d_2/2)$.
 - **Límite:** cuando $d_2 \to \infty$, $d_1F \to \chi^{2}_{d_1}$.
 
-:::figura[Tres casos con contexto (denominador pequeño, dos máquinas, muestras grandes): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (denominador pequeño, dos máquinas, muestras grandes, ANOVA chico, ejemplo de clase, ANOVA grande): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: f
 valores:
@@ -157,6 +200,15 @@ casos:
   - nombre: 'Muestras grandes'
     descripcion: 'd₁ = 30 y d₂ = 60: ambas varianzas son precisas y el cociente cae entre 0.6 y 1.6 en casi nueve de cada diez casos.'
     valores: {d1: 30, d2: 60}
+  - nombre: 'ANOVA chico'
+    descripcion: 'd₁ = 2 y d₂ = 10: cola derecha pesada; análisis de varianza con muestras chicas.'
+    valores: {d1: 2, d2: 10}
+  - nombre: 'Ejemplo de clase'
+    descripcion: 'd₁ = 5 y d₂ = 20: más estable; comparación de medias de seis grupos.'
+    valores: {d1: 5, d2: 20}
+  - nombre: 'ANOVA grande'
+    descripcion: 'd₁ = 10 y d₂ = 50: más concentrada; muestras grandes y comparación de modelos.'
+    valores: {d1: 10, d2: 50}
 ```
 :::
 
@@ -204,7 +256,17 @@ referencia:
 
 ## Conexiones
 
-La F es un cociente de dos [[distribucion-chi-cuadrada|chi-cuadradas]] y contiene el cuadrado de la [[distribucion-t-de-student]] como caso $d_1 = 1$. Una transformación de la F es una [[distribucion-beta]]. Es la distribución de referencia en el análisis de varianza y en la comparación de modelos de regresión.
+La F es un cociente de dos [[distribucion-chi-cuadrada|chi-cuadradas]] y contiene el cuadrado de la [[distribucion-t-de-student]] como caso $d_1 = 1$. Una transformación de la F es una [[distribucion-beta]]. Es la distribución de referencia en el análisis de varianza y en la comparación de modelos de regresión. Por eso aparece al comparar dos varianzas en el análisis de varianza. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Chi-cuadrada y F: el cociente de dos chi-cuadradas divididas entre sus grados. Con d₁ = 5 y d₂ = 20 la curva queda centrada cerca de 1.]{componente="DistributionExplorer"}
+```yaml
+distribucion: f
+valores:
+  d1: 5
+  d2: 20
+muestras: true
+```
+:::
 
 ## Formulario
 
