@@ -6,7 +6,7 @@ import {
   type DistributionSequenceId,
 } from '../../../lib/limits/distributionSequences.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { FunctionPlot } from '../../core/svg/FunctionPlot.tsx';
 import { useParameters } from '../../core/useParameters.ts';
@@ -147,14 +147,10 @@ export function DistributionModeView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={`${definition.latex}\\ \\xrightarrow{d}\\ ${definition.limitLatex}`} />
-      </p>
-      <p className={styles.formula}>
-        <Latex
-          tex={`F_{${n}}(${formatNumber(x0, 2)}) = ${formatNumber(fn, 4)},\\qquad F(${formatNumber(x0, 2)}) = ${formatNumber(f, 4)}`}
-        />
-      </p>
+      <FormulaLine tex={`${definition.latex}\\ \\xrightarrow{d}\\ ${definition.limitLatex}`} />
+      <FormulaLine
+        tex={`F_{${n}}(${formatNumber(x0, 2)}) = ${formatNumber(fn, 4)},\\qquad F(${formatNumber(x0, 2)}) = ${formatNumber(f, 4)}`}
+      />
       <p className={styles.panelTitle}>Funciones de distribución</p>
       <FunctionPlot
         xDomain={definition.domain}

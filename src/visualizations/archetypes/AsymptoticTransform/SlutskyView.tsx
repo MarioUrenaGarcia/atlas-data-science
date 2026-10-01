@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { mean, standardDeviation } from '../../../lib/stats/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -192,15 +192,13 @@ export function SlutskyView({
         ]}
         description={description}
       >
-        <p className={styles.formula}>
-          <Latex
-            tex={
-              dependent
-                ? "X_n \\xrightarrow{d} Z,\\quad Y_n = -X_n \\xrightarrow{d} Z,\\qquad X_n + Y_n = 0 \\not\\xrightarrow{d} Z + Z'"
-                : "X_n \\xrightarrow{d} Z,\\quad Y_n \\xrightarrow{d} Z',\\qquad X_n + Y_n \\sim \\mathcal{N}(0, 2)"
-            }
-          />
-        </p>
+        <FormulaLine
+          tex={
+            dependent
+              ? "X_n \\xrightarrow{d} Z,\\quad Y_n = -X_n \\xrightarrow{d} Z,\\qquad X_n + Y_n = 0 \\not\\xrightarrow{d} Z + Z'"
+              : "X_n \\xrightarrow{d} Z,\\quad Y_n \\xrightarrow{d} Z',\\qquad X_n + Y_n \\sim \\mathcal{N}(0, 2)"
+          }
+        />
         <div className={styles.pair}>
           <div>
             <p className={styles.panelTitle}>Xₙ</p>
@@ -291,11 +289,9 @@ export function SlutskyView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`T_{${n}} = \\frac{\\sqrt{${n}}\\,(\\bar{X}_{${n}} - \\mu)}{S_{${n}}} = \\underbrace{\\frac{\\sqrt{${n}}\\,(\\bar{X}_{${n}} - \\mu)}{\\sigma}}_{\\xrightarrow{d}\\ \\mathcal{N}(0,1)} \\cdot \\underbrace{\\frac{\\sigma}{S_{${n}}}}_{\\xrightarrow{p}\\ 1}`}
-        />
-      </p>
+      <FormulaLine
+        tex={`T_{${n}} = \\frac{\\sqrt{${n}}\\,(\\bar{X}_{${n}} - \\mu)}{S_{${n}}} = \\underbrace{\\frac{\\sqrt{${n}}\\,(\\bar{X}_{${n}} - \\mu)}{\\sigma}}_{\\xrightarrow{d}\\ \\mathcal{N}(0,1)} \\cdot \\underbrace{\\frac{\\sigma}{S_{${n}}}}_{\\xrightarrow{p}\\ 1}`}
+      />
       <div className={styles.pair}>
         <div>
           <p className={styles.panelTitle}>Cociente S/σ</p>

@@ -3,7 +3,7 @@ import { standardNormalCdf } from '../../../lib/distributions/special.ts';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -126,11 +126,9 @@ export function DonskerWalkView({ title, level, seed: initialSeed }: DonskerWalk
       description={description}
       graphic="canvas"
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`W_{${n}}(t) = \\frac{S_{\\lfloor ${n} t \\rfloor}}{\\sqrt{${n}}},\\qquad W_{${n}} \\xrightarrow{d} B \\ \\text{(movimiento browniano en } [0, 1])`}
-        />
-      </p>
+      <FormulaLine
+        tex={`W_{${n}}(t) = \\frac{S_{\\lfloor ${n} t \\rfloor}}{\\sqrt{${n}}},\\qquad W_{${n}} \\xrightarrow{d} B \\ \\text{(movimiento browniano en } [0, 1])`}
+      />
       <p className={styles.panelTitle}>Caminatas reescaladas</p>
       <TrajectoryCanvas
         paths={scaled}
