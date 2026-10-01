@@ -112,6 +112,17 @@ matrices:
 
 - **Cota inferior:** $\kappa(\mathbf{A}) \ge 1$, con igualdad para múltiplos de matrices ortogonales en la norma espectral.
 - **Escala:** $\kappa(cA) = \kappa(\mathbf{A})$; multiplicar todo por un número no mejora ni empeora el condicionamiento.
+
+:::figura[Multiplicar una matriz por 4 agranda la elipse cuatro veces en todas las direcciones, pero no cambia la razón entre el mayor y el menor estiramiento: las dos matrices tienen el mismo número de condición.]{componente="MatrixTransform"}
+```yaml
+modo: estiramiento
+matrices:
+  - nombre: A
+    matriz: [[2, 0.5], [0.5, 1.5]]
+  - nombre: 4A
+    matriz: [[8, 2], [2, 6]]
+```
+:::
 - **Pérdida de dígitos:** en aritmética de punto flotante se pierden aproximadamente $\log_{10}\kappa(\mathbf{A})$ dígitos correctos al resolver el sistema.
 - **Ecuaciones normales:** $\kappa(\mathbf{A}^\top \mathbf{A}) = \kappa(\mathbf{A})^2$, por eso resolver mínimos cuadrados con QR es preferible.
 - **Distancia a la singularidad:** $1/\kappa_2(\mathbf{A})$ es la distancia relativa, en norma espectral, de $\mathbf{A}$ a la matriz singular más cercana.
@@ -124,6 +135,15 @@ Cota: $\mathbf{A}\Delta\mathbf{x} = \Delta\mathbf{b}$ da $\lVert \Delta\mathbf{x
 ## Errores comunes
 
 - **Usar el determinante como medida de cercanía a la singularidad.** $\det(0.1\,\mathbf{I}_{10}) = 10^{-10}$ y la matriz tiene condición 1.
+
+:::figura[$0.1\,\mathbf{I}$ tiene determinante 0.01, pero encoge todas las direcciones por igual: el círculo sigue siendo círculo y el número de condición es 1, el mejor posible.]{componente="MatrixTransform"}
+```yaml
+modo: estiramiento
+matrices:
+  - nombre: 0.1 I
+    matriz: [[0.1, 0], [0, 0.1]]
+```
+:::
 - **Pensar que un buen algoritmo arregla un problema mal condicionado.** El algoritmo puede ser estable y la respuesta seguir siendo sensible a los datos.
 - **Confundir condición con error.** La condición es una cota del peor caso; un error concreto puede amplificarse mucho menos.
 - **Ignorar las unidades.** Cambiar la escala de una sola variable sí puede cambiar mucho el número de condición.

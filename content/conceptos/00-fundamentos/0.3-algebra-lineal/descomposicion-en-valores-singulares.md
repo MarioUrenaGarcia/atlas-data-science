@@ -97,6 +97,15 @@ matrices:
 
 - **Existencia:** toda matriz real tiene SVD; los valores singulares son únicos.
 - **Rango:** es el número de valores singulares positivos.
+
+:::figura[$\begin{pmatrix} 2 & 1 \\ 4 & 2 \end{pmatrix}$ tiene rango 1: su segundo valor singular es 0 y el círculo se aplasta en un segmento de semilongitud $\sigma_1 = 5$.]{componente="MatrixTransform"}
+```yaml
+modo: svd
+matrices:
+  - nombre: Rango 1
+    matriz: [[2, 1], [4, 2]]
+```
+:::
 - **Normas:** $\lVert \mathbf{A} \rVert_2 = \sigma_1$ y $\lVert \mathbf{A} \rVert_F = \sqrt{\sum\sigma_i^2}$.
 - **Determinante:** para $\mathbf{A}$ cuadrada, $|\det \mathbf{A}| = \prod_i \sigma_i$.
 - **Subespacios:** los primeros $r$ vectores $\mathbf{u}_i$ generan el espacio columna, los primeros $r$ vectores $\mathbf{v}_i$ el espacio fila y los restantes $\mathbf{v}_i$ el espacio nulo.
@@ -119,6 +128,15 @@ Construcción: $\mathbf{A}^\top \mathbf{A}$ es simétrica y semidefinida positiv
 ## Errores comunes
 
 - **Confundir valores singulares con valores propios.** Solo coinciden para matrices simétricas definidas positivas; una rotación tiene valores propios complejos y valores singulares 1.
+
+:::figura[$\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}$ gira 90 grados y duplica: sus valores propios son $\pm 2i$, complejos, mientras que sus dos valores singulares valen 2 y el círculo se convierte en otro círculo de radio 2.]{componente="MatrixTransform"}
+```yaml
+modo: svd
+matrices:
+  - nombre: Rotación por 2
+    matriz: [[0, -2], [2, 0]]
+```
+:::
 - **Obtener los $\mathbf{u}_i$ por separado sin cuidar los signos.** Hay que calcularlos como $\mathbf{A}\mathbf{v}_i/\sigma_i$ para que los signos sean consistentes.
 - **Esperar valores singulares negativos.** Siempre son no negativos; el signo queda en $\mathbf{U}$ o $\mathbf{V}$.
 - **Calcular la SVD numéricamente con $\mathbf{A}^\top \mathbf{A}$.** Formar $\mathbf{A}^\top \mathbf{A}$ pierde precisión; los algoritmos estables trabajan directamente con $\mathbf{A}$.

@@ -116,7 +116,25 @@ Norma espectral: con $\mathbf{A} = \mathbf{U}\boldsymbol{\\Sigma} \mathbf{V}^\to
 ## Errores comunes
 
 - **Tomar la mayor entrada como norma espectral.** $\max|a_{ij}|$ no es una norma inducida y puede subestimar mucho el estiramiento.
+
+:::figura[$\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$ tiene entradas de tamaño 1, pero estira la dirección $(1, 1)$ por 2: su norma espectral es 2, el doble de la mayor entrada.]{componente="MatrixTransform"}
+```yaml
+modo: estiramiento
+matrices:
+  - nombre: Unos
+    matriz: [[1, 1], [1, 1]]
+```
+:::
 - **Confundir la norma espectral con el mayor valor propio.** Coinciden en valor absoluto solo para matrices simétricas; en general se usan los valores singulares.
+
+:::figura[$\begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}$ tiene un solo valor propio, 1, pero estira algunas direcciones por $\sigma_1 = 2 + \sqrt{5} \approx 4.24$, que es su norma espectral.]{componente="MatrixTransform"}
+```yaml
+modo: estiramiento
+matrices:
+  - nombre: Cizalla fuerte
+    matriz: [[1, 4], [0, 1]]
+```
+:::
 - **Confundir $\lVert \mathbf{A} \rVert_1$ con la suma de todas las entradas.** Es la mayor suma por columna.
 - **Creer que Frobenius es una norma inducida.** No lo es: $\lVert \mathbf{I} \rVert_F = \sqrt{n}$, mientras que toda norma inducida da $\lVert \mathbf{I} \rVert = 1$.
 

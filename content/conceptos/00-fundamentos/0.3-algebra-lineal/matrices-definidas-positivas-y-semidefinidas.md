@@ -102,6 +102,17 @@ matrices:
 - **Invertibilidad:** una definida positiva es invertible y su inversa también es definida positiva.
 - **Matrices de Gram:** $\mathbf{B}^\top \mathbf{B}$ siempre es semidefinida positiva, y definida positiva si $\mathbf{B}$ tiene columnas independientes.
 - **Suma:** la suma de semidefinidas es semidefinida; sumar $\epsilon \mathbf{I}$ con $\epsilon > 0$ convierte una semidefinida en definida.
+
+:::figura[$\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$ es semidefinida y sus curvas de nivel son rectas paralelas; al sumarle $0.5\,\mathbf{I}$ los valores propios pasan de 2 y 0 a 2.5 y 0.5, y las curvas se cierran en elipses.]{componente="MatrixTransform"}
+```yaml
+modo: forma-cuadratica
+matrices:
+  - nombre: Semidefinida
+    matriz: [[1, 1], [1, 1]]
+  - nombre: Más 0.5 I
+    matriz: [[1.5, 1], [1, 1.5]]
+```
+:::
 - **Covarianzas:** toda matriz de covarianzas cumple $\operatorname{Var}(\mathbf{w}^\top X) = \mathbf{w}^\top\boldsymbol{\\Sigma}\mathbf{w} \ge 0$.
 - **Raíz cuadrada:** si $\mathbf{A} \succeq 0$ existe una única $\mathbf{A}^{1/2} \succeq 0$ con $(\mathbf{A}^{1/2})^2 = \mathbf{A}$.
 
@@ -123,6 +134,15 @@ Valores propios positivos implican definida positiva: con $\mathbf{A} = \mathbf{
 ## Errores comunes
 
 - **Revisar solo que las entradas sean positivas.** $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$ tiene entradas positivas y es indefinida.
+
+:::figura[$\begin{pmatrix} 1 & 3 \\ 3 & 2 \end{pmatrix}$ tiene todas sus entradas positivas, pero $q(1, -1) = 1 - 6 + 2 = -3$: sus curvas de nivel son hipérbolas y la matriz es indefinida.]{componente="MatrixTransform"}
+```yaml
+modo: forma-cuadratica
+matrices:
+  - nombre: Entradas positivas
+    matriz: [[1, 3], [3, 2]]
+```
+:::
 - **Aplicar el criterio de Sylvester a semidefinidas.** Para semidefinidas hay que revisar todos los menores principales, no solo los dominantes.
 - **Clasificar matrices no simétricas sin simetrizarlas.** La forma $\mathbf{x}^\top \mathbf{A}\mathbf{x}$ solo depende de $\tfrac{1}{2}(\mathbf{A} + \mathbf{A}^\top)$.
 - **Suponer que una covarianza estimada siempre es invertible.** Con más variables que observaciones es semidefinida pero singular.

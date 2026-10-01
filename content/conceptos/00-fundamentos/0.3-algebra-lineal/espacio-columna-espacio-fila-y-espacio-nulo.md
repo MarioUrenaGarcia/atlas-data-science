@@ -124,6 +124,16 @@ $C(\mathbf{A}^\top) \perp N(\mathbf{A})$: si $\mathbf{A}\mathbf{x} = \mathbf{0}$
 
 - **Confundir en qué espacio vive cada subespacio.** $C(\mathbf{A})$ está en $\mathbb{R}^m$ (salidas) y $N(\mathbf{A})$ en $\mathbb{R}^n$ (entradas); para matrices no cuadradas ni siquiera tienen vectores del mismo tamaño.
 - **Tomar las columnas de la forma escalonada como base de $C(\mathbf{A})$.** Las operaciones de fila cambian el espacio columna; la base son las columnas pivote de la matriz original.
+
+:::figura[$\begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}$ se escalona a $\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}$. La columna pivote escalonada es $(1, 0)$, pero el espacio columna de la matriz original es la recta de $(1, 3)$.]{componente="MatrixSteps"}
+```yaml
+modo: rango
+reducida: true
+matrices:
+  - nombre: Rango 1
+    matriz: [[1, 2], [3, 6]]
+```
+:::
 - **Creer que el espacio nulo siempre es trivial.** Toda matriz con más columnas que filas tiene espacio nulo no trivial.
 - **Pensar que $N(\mathbf{A}) = \{\mathbf{0}\}$ garantiza que $\mathbf{A}\mathbf{x} = \mathbf{b}$ siempre tiene solución.** Solo garantiza que, si hay solución, es única. Con más filas que columnas, $m > n$, el espacio columna no llena $\mathbb{R}^m$ y hay vectores $\mathbf{b}$ sin solución aunque el espacio nulo sea trivial.
 
