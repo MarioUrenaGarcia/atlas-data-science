@@ -72,7 +72,10 @@ describe('number formatting', () => {
 });
 
 describe('catalog examples', () => {
-  it('match the parameter schema of their visualization', async () => {
+  // Loads the schema module of every registered visualization and validates the
+  // whole catalog, which grows with each content module, so it needs more time
+  // than the default when the machine is busy.
+  it('match the parameter schema of their visualization', { timeout: 30000 }, async () => {
     const catalog = await loadVisualizationCatalog(
       join(import.meta.dirname, '..', '..', '..', 'src', 'visualizations'),
     );

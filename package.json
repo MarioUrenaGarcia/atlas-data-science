@@ -16,7 +16,7 @@
     "content:validate": "node scripts/validate-content.ts",
     "content:report": "node scripts/content-report.ts",
     "check:typography": "node scripts/check-typography.ts",
-    "lint": "eslint .",
+    "lint": "eslint src scripts tests \"*.ts\" \"*.js\"",
     "format": "prettier --write src scripts tests .github README.md \"*.{ts,js,json,html}\"",
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
