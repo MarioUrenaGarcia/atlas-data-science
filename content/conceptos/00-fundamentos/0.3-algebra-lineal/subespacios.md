@@ -92,7 +92,7 @@ conjuntos:
 
 - **Subespacios de $\mathbb{R}^3$:** el origen (dimensión 0), las rectas por el origen (1), los planos por el origen (2) y $\mathbb{R}^3$ (3).
 - **Espacio generado:** $\operatorname{gen}\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ es siempre un subespacio.
-- **Soluciones homogéneas:** el conjunto de soluciones de $A\mathbf{x} = \mathbf{0}$ es un subespacio; el de $A\mathbf{x} = \mathbf{b}$ con $\mathbf{b} \neq \mathbf{0}$ no lo es.
+- **Soluciones homogéneas:** el conjunto de soluciones de $\mathbf{A}\mathbf{x} = \mathbf{0}$ es un subespacio; el de $\mathbf{A}\mathbf{x} = \mathbf{b}$ con $\mathbf{b} \neq \mathbf{0}$ no lo es.
 - **Intersección:** la intersección de dos subespacios es un subespacio.
 - **Unión:** la unión de dos subespacios casi nunca lo es; solo cuando uno contiene al otro.
 - **Dimensión:** si $W \subseteq V$, entonces $\dim W \le \dim V$, con igualdad solo si $W = V$ (en dimensión finita).
@@ -137,10 +137,10 @@ $$
 
 :::formula[Espacio de soluciones homogéneas]
 $$
-W = \{\mathbf{x} : A\mathbf{x} = \mathbf{0}\}
+W = \{\mathbf{x} : \mathbf{A}\mathbf{x} = \mathbf{0}\}
 $$
 
-- $A$: matriz de coeficientes.
+- $\mathbf{A}$: matriz de coeficientes.
 - $\mathbf{x}$: vector de incógnitas.
 :::
 

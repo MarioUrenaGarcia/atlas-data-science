@@ -21,7 +21,7 @@ etiquetas:
 resumen: >
   El número de condición kappa(A) = sigma_max / sigma_min mide cuánto puede amplificar un sistema Ax = b los
   errores relativos de los datos; si es grande, pequeños cambios en b producen grandes cambios en x.
-formula: '\kappa(A) = \lVert A \rVert\,\lVert A^{-1} \rVert = \frac{\sigma_{\max}}{\sigma_{\min}}, \qquad \frac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \kappa(A)\,\frac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}'
+formula: '\kappa(\mathbf{A}) = \lVert \mathbf{A} \rVert\,\lVert \mathbf{A}^{-1} \rVert = \frac{\sigma_{\max}}{\sigma_{\min}}, \qquad \frac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \kappa(\mathbf{A})\,\frac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}'
 visualizacion:
   componente: MatrixTransform
   parametros:
@@ -48,23 +48,23 @@ El número de condición mide esa fragilidad. Una matriz estira unas direcciones
 ## Definición
 
 :::definicion[Número de condición]
-Para $A$ cuadrada e invertible y una norma matricial inducida,
+Para $\mathbf{A}$ cuadrada e invertible y una norma matricial inducida,
 $$
-\kappa(A) = \lVert A \rVert\,\lVert A^{-1} \rVert.
+\kappa(\mathbf{A}) = \lVert \mathbf{A} \rVert\,\lVert \mathbf{A}^{-1} \rVert.
 $$
-Con la norma espectral, $\kappa_2(A) = \sigma_{\max}/\sigma_{\min}$. Por convención, $\kappa(A) = \infty$ si $A$ es singular.
+Con la norma espectral, $\kappa_2(\mathbf{A}) = \sigma_{\max}/\sigma_{\min}$. Por convención, $\kappa(\mathbf{A}) = \infty$ si $\mathbf{A}$ es singular.
 :::
 
 :::teorema[Sensibilidad de un sistema]
-Si $A\mathbf{x} = \mathbf{b}$ y $A(\mathbf{x} + \Delta\mathbf{x}) = \mathbf{b} + \Delta\mathbf{b}$, entonces
+Si $\mathbf{A}\mathbf{x} = \mathbf{b}$ y $\mathbf{A}(\mathbf{x} + \Delta\mathbf{x}) = \mathbf{b} + \Delta\mathbf{b}$, entonces
 $$
-\frac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \kappa(A)\,\frac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}.
+\frac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \kappa(\mathbf{A})\,\frac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}.
 $$
 :::
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz cuadrada invertible.
-- $\kappa(A)$: número de condición.
+- $\mathbf{A}$: matriz cuadrada invertible.
+- $\kappa(\mathbf{A})$: número de condición.
 - $\sigma_{\max}, \sigma_{\min}$: mayor y menor valor singular.
 - $\mathbf{b}$: lado derecho; $\Delta\mathbf{b}$: su perturbación.
 - $\mathbf{x}$: solución; $\Delta\mathbf{x}$: cambio que produce la perturbación.
@@ -110,33 +110,33 @@ matrices:
 
 ## Propiedades
 
-- **Cota inferior:** $\kappa(A) \ge 1$, con igualdad para múltiplos de matrices ortogonales en la norma espectral.
-- **Escala:** $\kappa(cA) = \kappa(A)$; multiplicar todo por un número no mejora ni empeora el condicionamiento.
-- **Pérdida de dígitos:** en aritmética de punto flotante se pierden aproximadamente $\log_{10}\kappa(A)$ dígitos correctos al resolver el sistema.
-- **Ecuaciones normales:** $\kappa(A^\top A) = \kappa(A)^2$, por eso resolver mínimos cuadrados con QR es preferible.
-- **Distancia a la singularidad:** $1/\kappa_2(A)$ es la distancia relativa, en norma espectral, de $A$ a la matriz singular más cercana.
+- **Cota inferior:** $\kappa(\mathbf{A}) \ge 1$, con igualdad para múltiplos de matrices ortogonales en la norma espectral.
+- **Escala:** $\kappa(cA) = \kappa(\mathbf{A})$; multiplicar todo por un número no mejora ni empeora el condicionamiento.
+- **Pérdida de dígitos:** en aritmética de punto flotante se pierden aproximadamente $\log_{10}\kappa(\mathbf{A})$ dígitos correctos al resolver el sistema.
+- **Ecuaciones normales:** $\kappa(\mathbf{A}^\top \mathbf{A}) = \kappa(\mathbf{A})^2$, por eso resolver mínimos cuadrados con QR es preferible.
+- **Distancia a la singularidad:** $1/\kappa_2(\mathbf{A})$ es la distancia relativa, en norma espectral, de $\mathbf{A}$ a la matriz singular más cercana.
 - **El determinante no mide el condicionamiento:** una matriz puede tener determinante diminuto y condición 1.
 
 :::demostracion
-Cota: $A\Delta\mathbf{x} = \Delta\mathbf{b}$ da $\lVert \Delta\mathbf{x} \rVert \le \lVert A^{-1} \rVert\,\lVert \Delta\mathbf{b} \rVert$, y $\mathbf{b} = A\mathbf{x}$ da $\lVert \mathbf{b} \rVert \le \lVert A \rVert\,\lVert \mathbf{x} \rVert$. Dividiendo, $\dfrac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \lVert A \rVert\,\lVert A^{-1} \rVert\,\dfrac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}$.
+Cota: $\mathbf{A}\Delta\mathbf{x} = \Delta\mathbf{b}$ da $\lVert \Delta\mathbf{x} \rVert \le \lVert \mathbf{A}^{-1} \rVert\,\lVert \Delta\mathbf{b} \rVert$, y $\mathbf{b} = \mathbf{A}\mathbf{x}$ da $\lVert \mathbf{b} \rVert \le \lVert \mathbf{A} \rVert\,\lVert \mathbf{x} \rVert$. Dividiendo, $\dfrac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \lVert \mathbf{A} \rVert\,\lVert \mathbf{A}^{-1} \rVert\,\dfrac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}$.
 :::
 
 ## Errores comunes
 
-- **Usar el determinante como medida de cercanía a la singularidad.** $\det(0.1\,I_{10}) = 10^{-10}$ y la matriz tiene condición 1.
+- **Usar el determinante como medida de cercanía a la singularidad.** $\det(0.1\,\mathbf{I}_{10}) = 10^{-10}$ y la matriz tiene condición 1.
 - **Pensar que un buen algoritmo arregla un problema mal condicionado.** El algoritmo puede ser estable y la respuesta seguir siendo sensible a los datos.
 - **Confundir condición con error.** La condición es una cota del peor caso; un error concreto puede amplificarse mucho menos.
 - **Ignorar las unidades.** Cambiar la escala de una sola variable sí puede cambiar mucho el número de condición.
 
 ## Conexiones
 
-El número de condición combina las [[normas-matriciales]] de $A$ y de su inversa, y se lee de la [[descomposicion-en-valores-singulares]]. Describe la sensibilidad de los [[sistemas-de-ecuaciones-lineales]] y explica por qué se prefiere la [[descomposicion-qr]] para mínimos cuadrados. En regresión, una matriz de diseño mal condicionada es el síntoma numérico de la multicolinealidad.
+El número de condición combina las [[normas-matriciales]] de $\mathbf{A}$ y de su inversa, y se lee de la [[descomposicion-en-valores-singulares]]. Describe la sensibilidad de los [[sistemas-de-ecuaciones-lineales]] y explica por qué se prefiere la [[descomposicion-qr]] para mínimos cuadrados. En regresión, una matriz de diseño mal condicionada es el síntoma numérico de la multicolinealidad.
 
 ## Formulario
 
 :::formula[Número de condición]
 $$
-\kappa(A) = \lVert A \rVert\,\lVert A^{-1} \rVert, \qquad \kappa_2(A) = \frac{\sigma_{\max}}{\sigma_{\min}}
+\kappa(\mathbf{A}) = \lVert \mathbf{A} \rVert\,\lVert \mathbf{A}^{-1} \rVert, \qquad \kappa_2(\mathbf{A}) = \frac{\sigma_{\max}}{\sigma_{\min}}
 $$
 
 - $\sigma_{\max}, \sigma_{\min}$: valores singulares extremos.
@@ -144,7 +144,7 @@ $$
 
 :::formula[Amplificación de errores]
 $$
-\frac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \kappa(A)\,\frac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}
+\frac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \le \kappa(\mathbf{A})\,\frac{\lVert \Delta\mathbf{b} \rVert}{\lVert \mathbf{b} \rVert}
 $$
 
 - $\Delta\mathbf{b}$: error en los datos.
@@ -153,15 +153,15 @@ $$
 
 :::formula[Ecuaciones normales]
 $$
-\kappa_2(A^\top A) = \kappa_2(A)^2
+\kappa_2(\mathbf{A}^\top \mathbf{A}) = \kappa_2(\mathbf{A})^2
 $$
 
-- $A^\top A$: matriz de las ecuaciones normales.
+- $\mathbf{A}^\top \mathbf{A}$: matriz de las ecuaciones normales.
 :::
 
 :::formula[Dígitos perdidos]
 $$
-\text{dígitos perdidos} \approx \log_{10}\kappa(A)
+\text{dígitos perdidos} \approx \log_{10}\kappa(\mathbf{A})
 $$
 
 - $\log_{10}$: logaritmo base 10.

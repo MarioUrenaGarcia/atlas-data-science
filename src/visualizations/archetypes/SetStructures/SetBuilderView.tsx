@@ -48,6 +48,9 @@ export function SetBuilderView({ title, universe, predicate, predicates, k }: Se
               max: 30,
               step: 1,
               default: k,
+              ...(predicates.length > 1
+                ? { shownWhen: { key: 'predicado', values: ['menor-que'] } }
+                : {}),
             },
           ]
         : []),

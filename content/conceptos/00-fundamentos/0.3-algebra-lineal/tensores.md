@@ -51,7 +51,7 @@ Un **tensor** de orden $N$ es un arreglo $\mathcal{X} \in \mathbb{R}^{I_1 \times
 Para $\mathcal{X} \in \mathbb{R}^{I \times J \times K}$:
 - una **fibra** fija todos los índices menos uno, por ejemplo $\mathcal{X}_{:,j,k} \in \mathbb{R}^{I}$;
 - una **rebanada** fija un índice, por ejemplo $\mathcal{X}_{i,:,:} \in \mathbb{R}^{J \times K}$;
-- el **despliegue en el modo 1**, $X_{(1)} \in \mathbb{R}^{I \times JK}$, coloca como columnas todas las fibras del modo 1.
+- el **despliegue en el modo 1**, $\mathbf{X}_{(1)} \in \mathbb{R}^{I \times JK}$, coloca como columnas todas las fibras del modo 1.
 :::
 
 :::nota[Qué significa cada símbolo]
@@ -60,7 +60,7 @@ Para $\mathcal{X} \in \mathbb{R}^{I \times J \times K}$:
 - $I_n$ (o $I, J, K$): tamaño del índice $n$.
 - $x_{ijk}$: entrada en la posición $(i, j, k)$.
 - $:$: índice que se deja correr sobre todos sus valores.
-- $X_{(1)}$: despliegue del tensor como matriz en el modo 1.
+- $\mathbf{X}_{(1)}$: despliegue del tensor como matriz en el modo 1.
 :::
 
 ## Cómo usar la visualización
@@ -76,7 +76,7 @@ Un sensor de calidad del aire registra 3 contaminantes en 4 estaciones durante 4
 1. Número de entradas: $3 \cdot 4 \cdot 4 = 48$.
 2. La serie del contaminante 2 en la estación 1 es la fibra $\mathcal{X}_{2,1,:} \in \mathbb{R}^{4}$: sus cuatro mediciones horarias.
 3. El panorama de la hora 3 es la rebanada $\mathcal{X}_{:,:,3} \in \mathbb{R}^{3 \times 4}$, una matriz contaminante por estación.
-4. El despliegue $X_{(1)} \in \mathbb{R}^{3 \times 16}$ pone una fila por contaminante y 16 columnas, una por cada par estación y hora.
+4. El despliegue $\mathbf{X}_{(1)} \in \mathbb{R}^{3 \times 16}$ pone una fila por contaminante y 16 columnas, una por cada par estación y hora.
 5. Un lote de 10 días agrega un cuarto índice: $\mathbb{R}^{10 \times 3 \times 4 \times 4}$, con 480 entradas.
 
 :::figura[El tensor de la calidad del aire del ejemplo, de forma 3 por 4 por 4, con una rebanada por contaminante y su despliegue en una matriz de 3 por 16.]{componente="MatrixGrid"}
@@ -89,7 +89,7 @@ forma: [3, 4, 4]
 ## Propiedades
 
 - **Número de fibras y rebanadas:** un tensor de $I \times J \times K$ tiene $JK$ fibras del modo 1 y $I$ rebanadas con el primer índice fijo.
-- **Producto por una matriz en un modo:** $\mathcal{Y} = \mathcal{X} \times_1 U$ multiplica todas las fibras del modo 1 por $U$; en forma desplegada, $Y_{(1)} = UX_{(1)}$.
+- **Producto por una matriz en un modo:** $\mathcal{Y} = \mathcal{X} \times_1 \mathbf{U}$ multiplica todas las fibras del modo 1 por $\mathbf{U}$; en forma desplegada, $\mathbf{Y}_{(1)} = \mathbf{U}\mathbf{X}_{(1)}$.
 - **Tensor de rango 1:** $\mathcal{X} = \mathbf{a} \circ \mathbf{b} \circ \mathbf{c}$ con $x_{ijk} = a_ib_jc_k$, la generalización de $\mathbf{u}\mathbf{v}^\top$.
 - **Relación con Kronecker:** el despliegue de un tensor de rango 1 es $\mathbf{a}(\mathbf{c} \otimes \mathbf{b})^\top$.
 - **Descomposiciones:** las descomposiciones CP y de Tucker generalizan la SVD a tensores, aunque el rango de un tensor es mucho más difícil de calcular que el de una matriz.
@@ -130,11 +130,11 @@ $$
 
 :::formula[Despliegue y producto en un modo]
 $$
-X_{(1)} \in \mathbb{R}^{I \times JK}, \qquad (\mathcal{X} \times_1 U)_{(1)} = U X_{(1)}
+\mathbf{X}_{(1)} \in \mathbb{R}^{I \times JK}, \qquad (\mathcal{X} \times_1 \mathbf{U})_{(1)} = \mathbf{U} \mathbf{X}_{(1)}
 $$
 
-- $X_{(1)}$: despliegue en el modo 1.
-- $U$: matriz que actúa sobre el primer índice.
+- $\mathbf{X}_{(1)}$: despliegue en el modo 1.
+- $\mathbf{U}$: matriz que actúa sobre el primer índice.
 :::
 
 :::formula[Tensor de rango 1]

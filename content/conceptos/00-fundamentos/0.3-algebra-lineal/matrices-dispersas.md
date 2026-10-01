@@ -20,7 +20,7 @@ etiquetas:
 resumen: >
   Una matriz dispersa tiene casi todas sus entradas iguales a cero; guardar solo las no nulas y sus posiciones
   reduce la memoria y el costo del producto por un vector a un número proporcional a las entradas no nulas.
-formula: '\operatorname{nnz}(A) \ll mn, \qquad (A\mathbf{x})_i = \sum_{j:\,a_{ij} \neq 0} a_{ij}x_j'
+formula: '\operatorname{nnz}(\mathbf{A}) \ll mn, \qquad (\mathbf{A}\mathbf{x})_i = \sum_{j:\,a_{ij} \neq 0} a_{ij}x_j'
 visualizacion:
   componente: MatrixGrid
   parametros:
@@ -41,25 +41,25 @@ Las matrices con esta propiedad se llaman dispersas y aparecen en todas partes: 
 ## Definición
 
 :::definicion[Matriz dispersa]
-Una matriz $A \in \mathbb{R}^{m \times n}$ es **dispersa** si su número de entradas no nulas, $\operatorname{nnz}(A)$, es mucho menor que $mn$, típicamente proporcional a $m$ o a $n$. Su **densidad** es $\operatorname{nnz}(A)/(mn)$.
+Una matriz $\mathbf{A} \in \mathbb{R}^{m \times n}$ es **dispersa** si su número de entradas no nulas, $\operatorname{nnz}(\mathbf{A})$, es mucho menor que $mn$, típicamente proporcional a $m$ o a $n$. Su **densidad** es $\operatorname{nnz}(\mathbf{A})/(mn)$.
 :::
 
 :::definicion[Filas comprimidas]
-El formato de **filas comprimidas** (CSR) guarda tres arreglos: los valores no nulos recorridos por filas, el índice de columna de cada uno, y un puntero que indica dónde empieza cada fila. Ocupa $2\,\operatorname{nnz}(A) + m + 1$ números.
+El formato de **filas comprimidas** (CSR) guarda tres arreglos: los valores no nulos recorridos por filas, el índice de columna de cada uno, y un puntero que indica dónde empieza cada fila. Ocupa $2\,\operatorname{nnz}(\mathbf{A}) + m + 1$ números.
 :::
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz de $m \times n$ con entradas $a_{ij}$.
-- $\operatorname{nnz}(A)$: número de entradas distintas de cero.
+- $\mathbf{A}$: matriz de $m \times n$ con entradas $a_{ij}$.
+- $\operatorname{nnz}(\mathbf{A})$: número de entradas distintas de cero.
 - $m, n$: número de filas y de columnas.
 - $\ll$: "mucho menor que".
 - $\mathbf{x}$: vector que se multiplica.
-- $(A\mathbf{x})_i$: componente $i$ del producto.
+- $(\mathbf{A}\mathbf{x})_i$: componente $i$ del producto.
 :::
 
 ## Cómo usar la visualización
 
-Se dibuja el patrón de una matriz de $30 \times 30$: cada cuadro azul es una entrada no nula. La reproducción recorre el producto $A\mathbf{x}$ fila por fila, resaltando en amarillo las entradas que se usan. El selector cambia el patrón y el panel compara la memoria densa con la de filas comprimidas y cuenta las multiplicaciones realizadas.
+Se dibuja el patrón de una matriz de $30 \times 30$: cada cuadro azul es una entrada no nula. La reproducción recorre el producto $\mathbf{A}\mathbf{x}$ fila por fila, resaltando en amarillo las entradas que se usan. El selector cambia el patrón y el panel compara la memoria densa con la de filas comprimidas y cuenta las multiplicaciones realizadas.
 
 En la tridiagonal cada fila usa a lo más tres multiplicaciones en lugar de 30. En la rejilla de vecinos aparecen dos diagonales lejanas, las conexiones con la fila de arriba y la de abajo de la rejilla. En el patrón aleatorio, que usa la semilla, las entradas no siguen orden pero el ahorro es similar.
 
@@ -73,7 +73,7 @@ La temperatura de una varilla discretizada en $n = 1000$ puntos cumple ecuacione
 4. Densidad: $2998/1000000 \approx 0.3\ \%$.
 5. Además, un sistema tridiagonal se resuelve con eliminación en unas $8n$ operaciones, sin llenar de números nuevos las posiciones con cero.
 
-:::figura[Caso de una rejilla: la matriz de vecinos de una rejilla de 5 por 6 tiene cinco diagonales ocupadas, las de los vecinos laterales y las de los vecinos de arriba y abajo.]{componente="MatrixGrid"}
+:::figura[Caso de una rejilla: la matriz de vecinos de una rejilla de 5 por 6 tiene cinco diagonales ocupadas: la principal, con el número de vecinos de cada punto, las dos contiguas, de los vecinos laterales, y las dos a distancia 6, de los vecinos de arriba y abajo.]{componente="MatrixGrid"}
 ```yaml
 modo: dispersa
 patron: rejilla
@@ -89,15 +89,15 @@ patron: banda
 
 ## Propiedades
 
-- **Costo del producto:** $A\mathbf{x}$ cuesta $\operatorname{nnz}(A)$ multiplicaciones.
+- **Costo del producto:** $\mathbf{A}\mathbf{x}$ cuesta $\operatorname{nnz}(\mathbf{A})$ multiplicaciones.
 - **Relleno:** la eliminación gaussiana puede crear entradas no nulas nuevas (relleno); reordenar filas y columnas lo reduce.
 - **Estructuras de banda:** para una matriz de ancho de banda $b$, la factorización LU conserva la banda y cuesta del orden de $nb^2$.
 - **Inversas densas:** la inversa de una matriz dispersa suele ser densa, por eso se resuelven sistemas en lugar de calcular inversas.
-- **Métodos iterativos:** gradiente conjugado y métodos similares solo necesitan productos $A\mathbf{x}$ y aprovechan la dispersión.
+- **Métodos iterativos:** gradiente conjugado y métodos similares solo necesitan productos $\mathbf{A}\mathbf{x}$ y aprovechan la dispersión.
 - **Grafos:** el patrón de una matriz dispersa es un grafo: hay una arista de $i$ a $j$ si $a_{ij} \neq 0$.
 
 :::demostracion
-Tamaño de CSR: los valores y los índices de columna ocupan $\operatorname{nnz}(A)$ números cada uno, y el arreglo de punteros necesita una posición por fila más una final que marca el total: $2\,\operatorname{nnz}(A) + m + 1$.
+Tamaño de CSR: los valores y los índices de columna ocupan $\operatorname{nnz}(\mathbf{A})$ números cada uno, y el arreglo de punteros necesita una posición por fila más una final que marca el total: $2\,\operatorname{nnz}(\mathbf{A}) + m + 1$.
 :::
 
 ## Errores comunes
@@ -115,16 +115,16 @@ Las matrices dispersas son [[matrices-y-operaciones-con-matrices|matrices]] dond
 
 :::formula[Densidad]
 $$
-\text{densidad} = \frac{\operatorname{nnz}(A)}{mn}
+\text{densidad} = \frac{\operatorname{nnz}(\mathbf{A})}{mn}
 $$
 
-- $\operatorname{nnz}(A)$: entradas no nulas.
+- $\operatorname{nnz}(\mathbf{A})$: entradas no nulas.
 - $m, n$: tamaño de la matriz.
 :::
 
 :::formula[Producto disperso]
 $$
-(A\mathbf{x})_i = \sum_{j:\,a_{ij} \neq 0} a_{ij}\,x_j
+(\mathbf{A}\mathbf{x})_i = \sum_{j:\,a_{ij} \neq 0} a_{ij}\,x_j
 $$
 
 - Solo se suman los términos con $a_{ij}$ distinto de cero.
@@ -132,7 +132,7 @@ $$
 
 :::formula[Memoria en filas comprimidas]
 $$
-2\,\operatorname{nnz}(A) + m + 1 \ \text{ frente a } \ mn
+2\,\operatorname{nnz}(\mathbf{A}) + m + 1 \ \text{ frente a } \ mn
 $$
 
 - $m + 1$: tamaño del arreglo de punteros de fila.

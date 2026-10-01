@@ -113,7 +113,7 @@ export function QuadraticView({ title, matrices }: QuadraticViewProps) {
     >
       <p className={styles.formula}>
         <Latex
-          tex={`q(\\mathbf{x}) = \\mathbf{x}^\\top S\\,\\mathbf{x},\\quad S = \\tfrac{1}{2}(A + A^\\top) = ${matLatex(s)}`}
+          tex={`q(\\mathbf{x}) = \\mathbf{x}^\\top \\mathbf{S}\\,\\mathbf{x},\\quad \\mathbf{S} = \\tfrac{1}{2}(\\mathbf{A} + \\mathbf{A}^\\top) = ${matLatex(s)}`}
         />
       </p>
       <CartesianPlane extent={4} label={description} interactive>

@@ -33,7 +33,7 @@ visualizacion:
       - nombre: Raqueta
         opciones: [tenis, bádminton, frontón]
       - nombre: Acuáticos
-        opciones: [natación, clavados, waterpolo]
+        opciones: [natación, waterpolo]
 referencias:
   - clave: ross-probabilidad
     capitulo: '1'
@@ -73,7 +73,7 @@ Si los conjuntos no son disjuntos, la suma solo es una cota superior: $|A_1 \cup
 
 Cada columna es una categoría de actividades. La reproducción cuenta una actividad a la vez y lleva el total; el panel compara la suma de las partes con el número de actividades distintas. Los interruptores quitan o agregan categorías.
 
-Con las tres categorías activas, waterpolo aparece dos veces: la suma de las partes da 10, pero solo hay 9 actividades distintas, y la actividad repetida se resalta al final. Al desactivar la categoría de equipo, las dos restantes son disjuntas y la suma, 6, coincide con el número de opciones distintas.
+Con las tres categorías activas, waterpolo aparece dos veces: la suma de las partes da 9, pero solo hay 8 actividades distintas, y la actividad repetida se resalta al final. Al desactivar la categoría de equipo quedan los 3 deportes de raqueta y los 2 acuáticos del club: son disjuntos y la suma, 5, coincide con el número de opciones distintas.
 
 ## Ejemplo
 

@@ -124,7 +124,7 @@ export function SparseView({ title, conceptId, initialPattern }: SparseViewProps
     >
       <p className={styles.formula}>
         <Latex
-          tex={`(A\\mathbf{x})_i = \\sum_{j:\\,a_{ij} \\neq 0} a_{ij}\\,x_j,\\qquad \\text{costo} \\propto \\operatorname{nnz}(A) = ${nonzeros}`}
+          tex={`(\\mathbf{A}\\mathbf{x})_i = \\sum_{j:\\,a_{ij} \\neq 0} a_{ij}\\,x_j,\\qquad \\text{costo} \\propto \\operatorname{nnz}(\\mathbf{A}) = ${nonzeros}`}
         />
       </p>
       <ChartSvg

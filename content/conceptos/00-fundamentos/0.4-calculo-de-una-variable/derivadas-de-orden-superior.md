@@ -70,18 +70,19 @@ Donde la gráfica de $f''$ está sobre el eje, la tangente de arriba gira en sen
 
 ## Ejemplo
 
-Un tren se mueve según $s(t) = t^3 - 3t$ (kilómetros, minutos).
+Un vehículo de pruebas recorre una pista recta, avanza, se detiene, regresa, se detiene otra vez y vuelve a avanzar. Su posición es $s(t) = t^3 - 6t^2 + 9t$ (kilómetros) para $0 \le t \le 4$ (minutos), donde $t$ es el tiempo, $s$ la posición medida desde la salida, $v$ la velocidad y $a$ la aceleración.
 
-1. Velocidad: $v(t) = s'(t) = 3t^2 - 3$.
-2. Aceleración: $a(t) = s''(t) = 6t$.
-3. En $t = -1$: $v = 0$ y $a = -6$; el tren se detiene mientras frena, así que $s$ tiene un máximo local.
-4. En $t = 0$: $a = 0$ y cambia de signo: es un punto de inflexión de $s$, donde el tren pasa de frenar a acelerar.
-5. Tercera derivada: $s'''(t) = 6$, constante; la aceleración crece al mismo ritmo todo el tiempo.
+1. Velocidad: $v(t) = s'(t) = 3t^2 - 12t + 9 = 3(t - 1)(t - 3)$.
+2. Aceleración: $a(t) = s''(t) = 6t - 12$.
+3. En $t = 1$: $v = 0$ y $a = -6$; el vehículo se detiene antes de dar la vuelta, así que $s$ tiene un máximo local, $s(1) = 4$ km.
+4. En $t = 2$: $a = 0$ y cambia de signo: es un punto de inflexión de $s$. Entre $t = 1$ y $t = 2$ la velocidad y la aceleración son negativas, así que el vehículo regresa cada vez más rápido; entre $t = 2$ y $t = 3$ la velocidad sigue negativa pero la aceleración es positiva, así que frena. En $t = 2$ pasa de acelerar a frenar, con la mayor rapidez del regreso, $|v(2)| = 3$ km por minuto.
+5. En $t = 3$: $v = 0$ y $a = 6$; se detiene de nuevo y $s$ tiene un mínimo local, $s(3) = 0$.
+6. Tercera derivada: $s'''(t) = 6$, constante; la aceleración crece al mismo ritmo todo el tiempo.
 
-:::figura[El recorrido del tren del ejemplo con su velocidad y su aceleración: la aceleración 6t cambia de signo en t = 0, justo donde la curva de arriba cambia de concavidad.]{componente="CalculusViz"}
+:::figura[El recorrido del vehículo del ejemplo con su velocidad y su aceleración: la velocidad se anula en t = 1 y t = 3, donde la posición tiene un máximo y un mínimo locales, y la aceleración 6t - 12 cambia de signo en t = 2, justo donde la curva de arriba cambia de concavidad.]{componente="CalculusViz"}
 ```yaml
 modo: derivadas
-funciones: [cubica]
+funciones: [cubica-recorrido]
 orden: 2
 ```
 :::
