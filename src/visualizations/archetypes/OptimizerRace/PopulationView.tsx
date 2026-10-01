@@ -8,6 +8,7 @@ import {
 import type { Point } from '../../../lib/optimization/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import { FormulaLine } from '../../core/FormulaLine.tsx';
+import { formatNumber } from '../../../lib/format/number.ts';
 import { num } from '../../core/plane/levels.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { useSeed } from '../../core/useSeededRandom.ts';
@@ -29,6 +30,16 @@ const DEFAULT_MUTATION = 0.04;
 const DEFAULT_INERTIA = 0.7;
 /** Side of the initial Nelder-Mead triangle, as a fraction of the window width. */
 const TRIANGLE = 0.08;
+/** Below this size temperatures and probabilities switch to scientific notation instead of reading as 0. */
+const TINY = 0.001;
+
+const tiny = (v: number) => v !== 0 && Math.abs(v) < TINY;
+const texSmall = (v: number) => {
+  if (!tiny(v)) return num(v, 3);
+  const [mantissa = '0', exponent = '0'] = v.toExponential(1).split('e');
+  return `${mantissa} \\times 10^{${Number(exponent)}}`;
+};
+const textSmall = (v: number) => (tiny(v) ? formatNumber(v, 2) : num(v, 3));
 
 interface PopulationViewProps {
   title: string;
@@ -47,7 +58,8 @@ interface PopulationViewProps {
  * places found so far.
  */
 export function PopulationView({ title, ids, method, start, seed: initialSeed, options }: PopulationViewProps) {
-  const usesStart = method === 'nelder-mead' || method === 'recocido';
+  // A fixed initial triangle makes the start point irrelevant, so its controls are hidden.
+  const usesStart = (method === 'nelder-mead' && !options.triangle) || method === 'recocido';
   const { parameters, values, fn, start: x0 } = useFunctionChoice(ids, usesStart ? start : null);
   const seed = useSeed(initialSeed);
   const settings = SETTINGS[method];
@@ -93,13 +105,13 @@ export function PopulationView({ title, ids, method, start, seed: initialSeed, o
     const s = run.steps[k] ?? item(run.steps, 0);
     best = s.best;
     const delta = fn.f(s.candidate) - fn.f(run.steps[Math.max(0, k - 1)]?.current ?? s.current);
-    header = `T = ${num(s.temperature, 3)},\\quad \\Delta = ${num(delta, 3)},\\quad P(\\text{aceptar}) = ${delta <= 0 ? '1' : `e^{-\\Delta/T} = ${num(s.probability, 3)}`}\\ \\Rightarrow\\ \\text{${s.accepted ? 'se acepta' : 'se rechaza'}}`;
+    header = `T = ${texSmall(s.temperature)},\\quad \\Delta = ${num(delta, 3)},\\quad P(\\text{aceptar}) = ${delta <= 0 ? '1' : `e^{-\\Delta/T} = ${texSmall(s.probability)}`}\\ \\Rightarrow\\ \\text{${s.accepted ? 'se acepta' : 'se rechaza'}}`;
     extraReadouts = [
-      { label: 'Temperatura T', value: num(s.temperature, 3) },
-      { label: 'Probabilidad de aceptar', value: num(s.probability, 3) },
+      { label: 'Temperatura T', value: textSmall(s.temperature) },
+      { label: 'Probabilidad de aceptar', value: textSmall(s.probability) },
       { label: 'Punto actual', value: point(s.current) },
     ];
-    description = `Recocido simulado sobre ${fn.label}, iteración ${k}, temperatura ${num(s.temperature, 3)}. Mejor punto ${point(best)} con f = ${num(fn.f(best), 4)}.`;
+    description = `Recocido simulado sobre ${fn.label}, iteración ${k}, temperatura ${textSmall(s.temperature)}. Mejor punto ${point(best)} con f = ${num(fn.f(best), 4)}.`;
   } else if (run.kind === 'genetico') {
     const s = run.steps[k] ?? item(run.steps, 0);
     best = s.best;
