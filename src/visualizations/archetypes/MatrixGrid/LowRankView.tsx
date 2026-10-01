@@ -121,7 +121,7 @@ export function LowRankView({ title, initialImage }: LowRankViewProps) {
     >
       <p className={styles.formula}>
         <Latex
-          tex={`A_k = \\sum_{\\ell=1}^{${k}} \\sigma_\\ell\\, \\mathbf{u}_\\ell \\mathbf{v}_\\ell^\\top,\\qquad \\lVert A - A_k \\rVert_F = \\sqrt{\\textstyle\\sum_{\\ell > ${k}} \\sigma_\\ell^2}`}
+          tex={`\\mathbf{A}_k = \\sum_{\\ell=1}^{${k}} \\sigma_\\ell\\, \\mathbf{u}_\\ell \\mathbf{v}_\\ell^\\top,\\qquad \\lVert \\mathbf{A} - \\mathbf{A}_k \\rVert_F = \\sqrt{\\textstyle\\sum_{\\ell > ${k}} \\sigma_\\ell^2}`}
         />
       </p>
       <div className={styles.pixels}>

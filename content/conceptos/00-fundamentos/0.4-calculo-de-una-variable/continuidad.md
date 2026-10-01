@@ -108,7 +108,7 @@ Valor intermedio (idea): sea $c$ el supremo de los $x \in [a, b]$ con $f(x) < y$
 ## Errores comunes
 
 - **Revisar solo que la función esté definida.** Un valor definido que no coincide con el límite sigue siendo discontinuidad.
-- **Decir que $1/x$ es discontinua en 0.** En 0 no está definida; sobre su dominio, $\mathbb{R} \setminus \{0\}$, es continua.
+- **Concluir que $1/x$ no es una función continua.** Tiene una discontinuidad infinita en 0, pero 0 no pertenece a su dominio: en cada punto de $\mathbb{R} \setminus \{0\}$ es continua, así que es continua en todo su dominio. Las dos afirmaciones son ciertas a la vez y no se contradicen.
 - **Aplicar el valor intermedio sin continuidad.** Una función de salto puede pasar de negativa a positiva sin anularse.
 - **Confundir continuidad con derivabilidad.** Las esquinas son continuas y no derivables.
 

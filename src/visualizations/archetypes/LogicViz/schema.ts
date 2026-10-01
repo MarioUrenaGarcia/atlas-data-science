@@ -32,6 +32,25 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       k: z.number().int().optional(),
     })
     .strict(),
+  z
+    .object({
+      modo: z.literal('orden-cuantificadores'),
+      ejemplos: z
+        .array(
+          z
+            .object({
+              nombre: z.string().min(1),
+              filas: z.array(z.string().min(1)).min(1).max(8),
+              columnas: z.array(z.string().min(1)).min(1).max(8),
+              pares: z.array(z.tuple([z.number().int().min(0), z.number().int().min(0)])),
+              relacion: z.string().min(1),
+            })
+            .strict(),
+        )
+        .min(1)
+        .max(4),
+    })
+    .strict(),
 ]);
 
 export type LogicVizConfig = z.infer<typeof parametersSchema>;

@@ -45,6 +45,52 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     params: { poblacion: { distribucion: 'normal' }, estadistico: 'varianza', n: 8 },
   },
   {
+    component: 'SampleSpaceLab',
+    title: 'Eventos con dos dados',
+    params: { modo: 'eventos', experimento: 'dos-dados', eventoA: 'suma-7', eventoB: 'dobles' },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Regla de la suma',
+    params: { modo: 'union', experimento: 'carta', eventoA: 'corazon', eventoB: 'figura' },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Frecuencia relativa',
+    params: { modo: 'frecuencia', experimento: 'dos-dados', eventoA: 'suma-7', trayectorias: 3 },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Medida de probabilidad',
+    params: { modo: 'medida', experimento: 'dado', eventoA: 'par', pesos: [1, 1, 1, 1, 1, 3] },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Creencias como apuestas',
+    params: { modo: 'apuestas' },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Probabilidad condicional',
+    params: { modo: 'condicional', experimento: 'dos-dados', eventoA: 'suma-8', eventoB: 'dobles' },
+  },
+  {
+    component: 'GeometricProbability',
+    title: 'Problema del encuentro',
+    params: { escenario: 'encuentro', espera: 15 },
+  },
+  {
+    component: 'GeometricProbability',
+    title: 'Varilla rota',
+    params: { escenario: 'varilla-rota' },
+  },
+  {
+    component: 'GeometricProbability',
+    title: 'Disco con radio uniforme',
+    params: { escenario: 'disco', muestreo: 'radio' },
+  },
+  { component: 'BuffonNeedle', title: 'Aguja de Buffon', params: {} },
+  {
     component: 'ScatterPlayground',
     title: 'Conjuntos variados',
     params: {
@@ -884,6 +930,47 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   { component: 'CalculusViz', title: 'Gamma', params: { modo: 'gamma', x: 3.5 } },
   { component: 'CalculusViz', title: 'Beta', params: { modo: 'beta', a: 2, b: 5 } },
   { component: 'CalculusViz', title: 'Stirling', params: { modo: 'stirling', n: 5 } },
+  { component: 'DistributionGenesis', title: 'Dado', params: { proceso: 'dado' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Suma de dos dados',
+    params: { proceso: 'dado', valores: { k: 2 } },
+  },
+  { component: 'DistributionGenesis', title: 'Moneda', params: { proceso: 'moneda' } },
+  { component: 'DistributionGenesis', title: 'Ensayos', params: { proceso: 'ensayos' } },
+  { component: 'DistributionGenesis', title: 'Primer éxito', params: { proceso: 'primer-exito' } },
+  { component: 'DistributionGenesis', title: 'r éxitos', params: { proceso: 'r-exitos' } },
+  { component: 'DistributionGenesis', title: 'Urna', params: { proceso: 'urna', comparar: true } },
+  { component: 'DistributionGenesis', title: 'Llegadas', params: { proceso: 'llegadas' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Llegadas en rendijas',
+    params: { proceso: 'llegadas', rendijas: 20 },
+  },
+  { component: 'DistributionGenesis', title: 'Ruleta', params: { proceso: 'ruleta' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Bolas en cajas',
+    params: { proceso: 'bolas-en-cajas', vista: 'conjunta' },
+  },
+  { component: 'DistributionGenesis', title: 'Beta-binomial', params: { proceso: 'beta-binomial' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Ranking',
+    params: { proceso: 'ranking', etiquetas: ['de', 'la', 'que', 'el', 'en'] },
+  },
+  {
+    component: 'DistributionGenesis',
+    title: 'Mezcla de geométricas',
+    params: { proceso: 'mezcla-geometrica' },
+  },
+  { component: 'DistributionGenesis', title: 'Ceros inflados', params: { proceso: 'ceros-inflados' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Diferencia de llegadas',
+    params: { proceso: 'diferencia-de-llegadas', flujos: ['Local', 'Visitante'] },
+  },
+  { component: 'DistributionGenesis', title: 'Signos', params: { proceso: 'signos', valores: { n: 12 } } },
   {
     component: 'CalculusViz',
     title: 'Indicadora',

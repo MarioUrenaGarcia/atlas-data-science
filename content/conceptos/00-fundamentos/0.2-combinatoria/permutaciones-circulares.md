@@ -66,7 +66,7 @@ Cada clase contiene exactamente $n$ ordenamientos en fila, los $n$ giros de uno 
 
 La mesa muestra el acomodo actual. La reproducción recorre todos los órdenes en fila y deposita cada uno en la tarjeta de su acomodo circular; cada tarjeta nombra el acomodo leído a partir de la primera persona y tiene un medidor con una celda por giro. El control cambia el número de personas.
 
-Con 4 personas hay 24 órdenes y 6 tarjetas de 4 celdas. Al activar "Considerar iguales los reflejos", las tarjetas se reducen a 3 y cada una necesita 8 órdenes para llenarse. Con 3 personas y reflejos, queda una sola tarjeta: los tres únicos órdenes posibles alrededor de una mesa de tres son reflejos o giros entre sí.
+Con 4 personas hay 24 órdenes y 6 tarjetas de 4 celdas. Al activar "Considerar iguales los reflejos", las tarjetas se reducen a 3 y cada una necesita 8 órdenes para llenarse. Con 3 personas y reflejos queda una sola tarjeta: los 6 órdenes en fila forman 2 acomodos circulares, y cada uno es el reflejo del otro.
 
 ## Ejemplo
 

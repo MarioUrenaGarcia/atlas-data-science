@@ -71,6 +71,7 @@ Conjuntos numéricos usuales: $\mathbb{N} = \{1, 2, 3, \dots\}$, $\mathbb{Z}$ (e
 - $\varnothing$: conjunto vacío.
 - $|A|$: cardinalidad, número de elementos de $A$.
 - $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \mathbb{R}$: naturales, enteros, racionales y reales.
+- $3 \mid x$: 3 divide a $x$, es decir, $x$ es múltiplo de 3; aparece en la visualización como ejemplo de propiedad $P(x)$.
 :::
 
 ## Cómo usar la visualización

@@ -68,6 +68,32 @@ const LIST: CalcFunction[] = [
     },
   ),
   entry(
+    'cubica-recorrido',
+    'x^3 - 6x^2 + 9x',
+    (x) => x ** 3 - 6 * x * x + 9 * x,
+    (x) => 3 * x * x - 12 * x + 9,
+    (x) => 6 * x - 12,
+    [0, 4],
+    {
+      derivativeLatex: '3x^2 - 12x + 9',
+      antiderivative: (x) => x ** 4 / 4 - 2 * x ** 3 + (9 * x * x) / 2,
+      antiderivativeLatex: '\\tfrac{x^4}{4} - 2x^3 + \\tfrac{9x^2}{2}',
+    },
+  ),
+  entry(
+    'costo',
+    'x^3 - 6x^2 + 15x',
+    (x) => x ** 3 - 6 * x * x + 15 * x,
+    (x) => 3 * x * x - 12 * x + 15,
+    (x) => 6 * x - 12,
+    [0, 4.5],
+    {
+      derivativeLatex: '3x^2 - 12x + 15',
+      antiderivative: (x) => x ** 4 / 4 - 2 * x ** 3 + (15 * x * x) / 2,
+      antiderivativeLatex: '\\tfrac{x^4}{4} - 2x^3 + \\tfrac{15x^2}{2}',
+    },
+  ),
+  entry(
     'cuartica',
     'x^4 - 4x^2 + x',
     (x) => x ** 4 - 4 * x * x + x,

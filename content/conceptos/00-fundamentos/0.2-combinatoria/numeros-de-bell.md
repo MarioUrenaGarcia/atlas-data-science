@@ -35,7 +35,7 @@ publicado: true
 
 Un algoritmo de agrupamiento recibe 4 clientes y debe decidir cuáles se parecen lo suficiente como para quedar en el mismo segmento, sin un número de segmentos fijado de antemano. Puede agruparlos todos juntos, dejarlos todos separados o cualquier opción intermedia. ¿Cuántas agrupaciones distintas existen? Son 15: una con un solo grupo, 7 con dos grupos, 6 con tres y una con cuatro.
 
-Ese total es el número de Bell $B_4$. Cuenta todas las particiones de un conjunto, o equivalentemente todas las relaciones de equivalencia posibles sobre él. Crece muy rápido: con 10 clientes hay 115975 agrupaciones y con 20 hay más de 51 billones, lo que explica por qué un algoritmo de agrupamiento no puede revisar todas las opciones y necesita heurísticas.
+Ese total es el número de Bell $B_4$. Cuenta todas las particiones de un conjunto, o equivalentemente todas las relaciones de equivalencia posibles sobre él. Crece muy rápido: con 10 clientes hay 115,975 agrupaciones y con 20 hay más de 51 billones, lo que explica por qué un algoritmo de agrupamiento no puede revisar todas las opciones y necesita heurísticas.
 
 ## Definición
 

@@ -19,9 +19,9 @@ interface LatticePathsViewProps {
   up: number;
 }
 
-/** Word of R and U steps for a path whose up steps sit at the given positions. */
+/** Word of E (east) and N (north) steps for a path whose up steps sit at the given positions. */
 function stepsOf(ups: readonly number[], length: number): string[] {
-  return Array.from({ length }, (_, index) => (ups.includes(index) ? 'U' : 'R'));
+  return Array.from({ length }, (_, index) => (ups.includes(index) ? 'N' : 'E'));
 }
 
 /**
@@ -36,7 +36,7 @@ export function LatticePathsView({ title, right, up }: LatticePathsViewProps) {
       {
         type: 'number' as const,
         key: 'a',
-        label: 'Pasos a la derecha',
+        label: 'Pasos al este (derecha)',
         symbol: 'a',
         min: 1,
         max: 6,
@@ -46,7 +46,7 @@ export function LatticePathsView({ title, right, up }: LatticePathsViewProps) {
       {
         type: 'number' as const,
         key: 'b',
-        label: 'Pasos hacia arriba',
+        label: 'Pasos al norte (arriba)',
         symbol: 'b',
         min: 1,
         max: 6,
@@ -75,7 +75,7 @@ export function LatticePathsView({ title, right, up }: LatticePathsViewProps) {
   const current = shown > 0 ? paths[shown - 1] : undefined;
   const word = current ? stepsOf(current, length).join('') : '';
   const description =
-    `Caminos de ${a} pasos a la derecha y ${b} hacia arriba: se eligen las ${b} posiciones de subida entre ${length}, C(${length}, ${b}) = ${total}. ` +
+    `Caminos de ${a} pasos al este y ${b} al norte: se eligen las ${b} posiciones de subida entre ${length}, C(${length}, ${b}) = ${total}. ` +
     (current ? `Camino ${shown}: ${word}.` : '');
 
   return (
@@ -117,7 +117,7 @@ export function LatticePathsView({ title, right, up }: LatticePathsViewProps) {
             let y = 0;
             const coordinates = [point(0, 0)];
             stepsOf(ups, length).forEach((step) => {
-              if (step === 'U') y += 1;
+              if (step === 'N') y += 1;
               else x += 1;
               coordinates.push(point(x, y));
             });

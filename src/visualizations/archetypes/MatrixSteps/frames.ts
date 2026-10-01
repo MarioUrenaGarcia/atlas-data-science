@@ -126,7 +126,7 @@ export function gaussFrames(matrix: Matrix, augmented: boolean, reduced: boolean
       latex: step.operation
         ? operationLatex(step.operation)
         : augmented
-          ? '[\\,A \\mid \\mathbf{b}\\,]'
+          ? '[\\,\\mathbf{A} \\mid \\mathbf{b}\\,]'
           : 'A',
       text: step.operation
         ? operationText(step.operation)
@@ -153,7 +153,7 @@ export function gaussFrames(matrix: Matrix, augmented: boolean, reduced: boolean
     ],
     latex: augmented
       ? systemVerdict(final, variables, rank, matrix).latex
-      : `\\operatorname{rango}(A) = ${rank},\\quad \\operatorname{nulidad}(A) = ${variables - rank}`,
+      : `\\operatorname{rango}(\\mathbf{A}) = ${rank},\\quad \\operatorname{nulidad}(\\mathbf{A}) = ${variables - rank}`,
     text: augmented
       ? systemVerdict(final, variables, rank, matrix).text
       : `Forma ${reduced ? 'escalonada reducida' : 'escalonada'} con ${rank} pivote(s): el rango es ${rank} y quedan ${variables - rank} columna(s) sin pivote, una por variable libre.`,
@@ -207,7 +207,7 @@ export function luFrames(matrix: Matrix): FrameSet {
       step.operation && step.filled
         ? `${operationLatex(step.operation)},\\qquad \\ell_{${step.filled[0] + 1}${step.filled[1] + 1}} = ${fractionLatex(step.lower[step.filled[0]]?.[step.filled[1]] ?? 0)}`
         : index === 0
-          ? 'L = I,\\quad U = A'
+          ? '\\mathbf{L} = \\mathbf{I},\\quad \\mathbf{U} = \\mathbf{A}'
           : '',
     text:
       step.operation && step.filled
@@ -232,7 +232,7 @@ export function luFrames(matrix: Matrix): FrameSet {
         { name: 'U', matrix: last.upper, cells: (i, j) => (j < i ? 'zero' : undefined) },
         { name: 'LU', matrix: multiply(last.lower, last.upper) },
       ],
-      latex: 'A = L\\,U',
+      latex: '\\mathbf{A} = \\mathbf{L}\\,\\mathbf{U}',
       text: 'L es triangular inferior con unos en la diagonal, U es triangular superior, y su producto reproduce A.',
     });
   }
@@ -276,7 +276,7 @@ export function choleskyFrames(matrix: Matrix): FrameSet {
         },
       ],
       latex: !entry
-        ? 'A = L\\,L^\\top'
+        ? '\\mathbf{A} = \\mathbf{L}\\,\\mathbf{L}^\\top'
         : i === j
           ? `\\ell_{${i + 1}${i + 1}} = \\sqrt{a_{${i + 1}${i + 1}} - \\textstyle\\sum_{k<${i + 1}} \\ell_{${i + 1}k}^2} = \\sqrt{${formatNumber(step.partial, 3)}} = ${formatNumber(value, 3)}`
           : `\\ell_{${i + 1}${j + 1}} = \\dfrac{a_{${i + 1}${j + 1}} - \\sum_{k<${j + 1}} \\ell_{${i + 1}k}\\ell_{${j + 1}k}}{\\ell_{${j + 1}${j + 1}}} = ${formatNumber(value, 3)}`,
@@ -305,7 +305,7 @@ export function choleskyFrames(matrix: Matrix): FrameSet {
         },
         { name: 'L Lᵀ', matrix: multiply(lower, transpose(lower)), format: decimals },
       ],
-      latex: 'A = L\\,L^\\top',
+      latex: '\\mathbf{A} = \\mathbf{L}\\,\\mathbf{L}^\\top',
       text: 'Todas las raíces fueron de números positivos: A es definida positiva y L Lᵀ la reproduce.',
     });
   }
@@ -320,7 +320,7 @@ export function qrFrames(matrix: Matrix): FrameSet {
   const columns = matrix[0]?.length ?? 0;
   const start: Frame = {
     matrices: [{ name: 'A', matrix, format: decimals }],
-    latex: 'A = Q\\,R',
+    latex: '\\mathbf{A} = \\mathbf{Q}\\,\\mathbf{R}',
     text: 'Se ortonormalizan las columnas de A una por una; los coeficientes usados forman R.',
   };
   if (!steps) {
@@ -390,7 +390,7 @@ export function qrFrames(matrix: Matrix): FrameSet {
         },
         { name: 'QᵀQ', matrix: multiply(transpose(last.q), last.q), format: decimals },
       ],
-      latex: 'A = Q\\,R,\\quad Q^\\top Q = I',
+      latex: '\\mathbf{A} = \\mathbf{Q}\\,\\mathbf{R},\\quad \\mathbf{Q}^\\top \\mathbf{Q} = \\mathbf{I}',
       text: `Q tiene ${columns} columnas ortonormales y R es triangular superior con diagonal positiva.`,
     });
   }

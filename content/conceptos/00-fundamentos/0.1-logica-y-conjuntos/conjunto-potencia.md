@@ -73,7 +73,7 @@ Un analista tiene tres variables candidatas para un modelo: edad ($e$), ingreso 
 1. Los modelos son los elementos de $\mathcal{P}(\{e, i, s\})$.
 2. Por extensión: $\varnothing$, $\{e\}$, $\{i\}$, $\{s\}$, $\{e, i\}$, $\{e, s\}$, $\{i, s\}$, $\{e, i, s\}$.
 3. Hay $2^3 = 8$ modelos, contando el que no usa ninguna variable.
-4. Con 20 variables candidatas habría $2^{20} = 1048576$ modelos, lo que explica por qué la búsqueda exhaustiva de subconjuntos se vuelve impracticable.
+4. Con 20 variables candidatas habría $2^{20}$ modelos, es decir, 1,048,576, lo que explica por qué la búsqueda exhaustiva de subconjuntos se vuelve impracticable.
 
 :::figura[Los 8 modelos del ejemplo como subconjuntos de $\{e, i, s\}$, ordenados por tamaño: el modelo vacío abajo, los de una variable, los de dos y el completo arriba. Cada línea une modelos que difieren en una sola variable.]{componente="SetStructures"}
 ```yaml

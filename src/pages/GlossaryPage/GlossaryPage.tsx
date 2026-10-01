@@ -8,6 +8,7 @@ import { useAtlas } from '../../content/loader.ts';
 import type { ConceptNode } from '../../content/types.ts';
 import { normalizeText } from '../../lib/format/text.ts';
 import styles from './GlossaryPage.module.css';
+import { SummaryText } from '../../components/ui/SummaryText.tsx';
 
 function initial(title: string): string {
   const letter = normalizeText(title).charAt(0).toUpperCase();
@@ -93,7 +94,7 @@ export default function GlossaryPage() {
                   </span>
                   <LevelBadge level={node.nivel} />
                 </dt>
-                <dd className={styles.definition}>{node.resumen}</dd>
+                <dd className={styles.definition}><SummaryText text={node.resumen} /></dd>
               </div>
             ))}
           </dl>

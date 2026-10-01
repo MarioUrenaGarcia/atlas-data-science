@@ -22,7 +22,7 @@ etiquetas:
 resumen: >
   El rango de una matriz es el número máximo de columnas linealmente independientes, que coincide con el
   de filas independientes y con el número de pivotes al escalonarla; mide la dimensión de su imagen.
-formula: '\operatorname{rango}(A) = \dim \operatorname{gen}\{\text{columnas de } A\} = \dim \operatorname{gen}\{\text{filas de } A\}'
+formula: '\operatorname{rango}(\mathbf{A}) = \dim \operatorname{gen}\{\text{columnas de } \mathbf{A}\} = \dim \operatorname{gen}\{\text{filas de } \mathbf{A}\}'
 visualizacion:
   componente: MatrixSteps
   parametros:
@@ -51,21 +51,21 @@ Visto como transformación, el rango es la dimensión de todo lo que la matriz p
 ## Definición
 
 :::definicion[Rango]
-El **rango** de $A \in \mathbb{R}^{m \times n}$ es la dimensión del espacio generado por sus columnas:
+El **rango** de $\mathbf{A} \in \mathbb{R}^{m \times n}$ es la dimensión del espacio generado por sus columnas:
 $$
-\operatorname{rango}(A) = \dim \operatorname{gen}\{\mathbf{a}_1, \dots, \mathbf{a}_n\}.
+\operatorname{rango}(\mathbf{A}) = \dim \operatorname{gen}\{\mathbf{a}_1, \dots, \mathbf{a}_n\}.
 $$
-Coincide con la dimensión del espacio generado por sus filas y con el número de pivotes de cualquier forma escalonada de $A$.
+Coincide con la dimensión del espacio generado por sus filas y con el número de pivotes de cualquier forma escalonada de $\mathbf{A}$.
 :::
 
-La matriz tiene **rango completo** si $\operatorname{rango}(A) = \min(m, n)$, y **deficiencia de rango** si es menor. Siempre $0 \le \operatorname{rango}(A) \le \min(m, n)$.
+La matriz tiene **rango completo** si $\operatorname{rango}(\mathbf{A}) = \min(m, n)$, y **deficiencia de rango** si es menor. Siempre $0 \le \operatorname{rango}(\mathbf{A}) \le \min(m, n)$.
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz de $m$ filas y $n$ columnas.
-- $\mathbf{a}_j$: columna $j$ de $A$.
+- $\mathbf{A}$: matriz de $m$ filas y $n$ columnas.
+- $\mathbf{a}_j$: columna $j$ de $\mathbf{A}$.
 - $\operatorname{gen}$: espacio generado.
 - $\dim$: dimensión, el número de vectores de una base.
-- $\operatorname{rango}(A)$: rango de $A$.
+- $\operatorname{rango}(\mathbf{A})$: rango de $\mathbf{A}$.
 - $\min(m, n)$: el menor entre el número de filas y el de columnas.
 :::
 
@@ -79,13 +79,13 @@ En la matriz de $3 \times 4$, la segunda columna es el doble de la primera y nun
 
 Cuatro estaciones registran lluvia en la mañana, en la tarde y el total del día. Los datos forman
 $$
-X = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{pmatrix}.
+\mathbf{X} = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{pmatrix}.
 $$
 
 1. La tercera columna es la suma de las dos primeras, así que no aporta una dirección nueva.
 2. Escalonando: $R_2 \leftarrow R_2 - 2R_1$ da $(0, -3, -3)$ y $R_4 \leftarrow R_4 - R_1$ da $(0, -1, -1)$.
 3. Con el pivote $-3$ de la columna 2 se anulan las filas 3 y 4: $R_3 \leftarrow R_3 + \tfrac{1}{3}R_2$ y $R_4 \leftarrow R_4 - \tfrac{1}{3}R_2$.
-4. Quedan dos pivotes, en las columnas 1 y 2: $\operatorname{rango}(X) = 2$, aunque la matriz tenga 3 columnas y 4 filas.
+4. Quedan dos pivotes, en las columnas 1 y 2: $\operatorname{rango}(\mathbf{X}) = 2$, aunque la matriz tenga 3 columnas y 4 filas.
 5. En un modelo de regresión con estas tres columnas, los coeficientes no están determinados de forma única.
 
 :::figura[El escalonamiento de la tabla de lluvias paso a paso. Solo aparecen dos pivotes: la columna del total no aporta información nueva.]{componente="MatrixSteps"}
@@ -99,10 +99,10 @@ matrices:
 
 ## Propiedades
 
-- **Rango de filas igual a rango de columnas:** $\operatorname{rango}(A) = \operatorname{rango}(A^\top)$.
+- **Rango de filas igual a rango de columnas:** $\operatorname{rango}(\mathbf{A}) = \operatorname{rango}(\mathbf{A}^\top)$.
 - **Invertibilidad:** una matriz de $n \times n$ es invertible si y solo si tiene rango $n$.
-- **Producto:** $\operatorname{rango}(AB) \le \min(\operatorname{rango} A, \operatorname{rango} B)$.
-- **Matrices de Gram:** $\operatorname{rango}(A^\top A) = \operatorname{rango}(A)$.
+- **Producto:** $\operatorname{rango}(\mathbf{A}\mathbf{B}) \le \min(\operatorname{rango} \mathbf{A}, \operatorname{rango} \mathbf{B})$.
+- **Matrices de Gram:** $\operatorname{rango}(\mathbf{A}^\top \mathbf{A}) = \operatorname{rango}(\mathbf{A})$.
 - **Rango 1:** una matriz tiene rango 1 si y solo si es un producto $\mathbf{u}\mathbf{v}^\top$ de una columna por una fila, con ambos no nulos.
 - **Operaciones de fila:** no cambian el rango.
 - **Valores singulares:** el rango es el número de valores singulares distintos de cero.
@@ -122,7 +122,7 @@ matrices:
 :::
 
 :::demostracion
-Las operaciones de fila no cambian el rango de columnas: si $E$ es una matriz invertible que realiza operaciones de fila, $\sum c_j\mathbf{a}_j = \mathbf{0}$ si y solo si $\sum c_j E\mathbf{a}_j = \mathbf{0}$, así que las columnas de $A$ y de $EA$ tienen exactamente las mismas relaciones de dependencia.
+Las operaciones de fila no cambian el rango de columnas: si $\mathbf{E}$ es una matriz invertible que realiza operaciones de fila, $\sum c_j\mathbf{a}_j = \mathbf{0}$ si y solo si $\sum c_j \mathbf{E}\mathbf{a}_j = \mathbf{0}$, así que las columnas de $\mathbf{A}$ y de $\mathbf{E}\mathbf{A}$ tienen exactamente las mismas relaciones de dependencia.
 :::
 
 ## Errores comunes
@@ -130,42 +130,42 @@ Las operaciones de fila no cambian el rango de columnas: si $E$ es una matriz in
 - **Contar filas no nulas antes de escalonar.** Una matriz sin filas de ceros puede tener rango bajo; hay que escalonar primero.
 - **Suponer que el rango es el número de columnas.** Solo si las columnas son independientes.
 - **Confiar en el rango numérico sin tolerancia.** Con datos reales, una columna casi dependiente produce un pivote diminuto; en la práctica se cuentan valores singulares mayores que un umbral.
-- **Pensar que las columnas pivote de la forma escalonada son una base del espacio columna de $A$.** La base está formada por las columnas de la matriz original en esas posiciones.
+- **Pensar que las columnas pivote de la forma escalonada son una base del espacio columna de $\mathbf{A}$.** La base está formada por las columnas de la matriz original en esas posiciones.
 
 ## Conexiones
 
-El rango mide la [[independencia-lineal]] de las columnas en términos de [[base-y-dimension|dimensión]]. Es la dimensión del espacio columna estudiado en [[espacio-columna-espacio-fila-y-espacio-nulo]], y el [[teorema-del-rango-y-la-nulidad]] lo relaciona con las soluciones de $A\mathbf{x} = \mathbf{0}$. Se calcula con [[eliminacion-gaussiana]] y, de forma numéricamente estable, con la [[descomposicion-en-valores-singulares]]. La [[aproximacion-de-bajo-rango]] busca la matriz de rango dado más cercana a una matriz de datos.
+El rango mide la [[independencia-lineal]] de las columnas en términos de [[base-y-dimension|dimensión]]. Es la dimensión del espacio columna estudiado en [[espacio-columna-espacio-fila-y-espacio-nulo]], y el [[teorema-del-rango-y-la-nulidad]] lo relaciona con las soluciones de $\mathbf{A}\mathbf{x} = \mathbf{0}$. Se calcula con [[eliminacion-gaussiana]] y, de forma numéricamente estable, con la [[descomposicion-en-valores-singulares]]. La [[aproximacion-de-bajo-rango]] busca la matriz de rango dado más cercana a una matriz de datos.
 
 ## Formulario
 
 :::formula[Definición]
 $$
-\operatorname{rango}(A) = \dim \operatorname{gen}\{\mathbf{a}_1, \dots, \mathbf{a}_n\}
+\operatorname{rango}(\mathbf{A}) = \dim \operatorname{gen}\{\mathbf{a}_1, \dots, \mathbf{a}_n\}
 $$
 
-- $\mathbf{a}_j$: columnas de $A$.
+- $\mathbf{a}_j$: columnas de $\mathbf{A}$.
 :::
 
 :::formula[Cotas]
 $$
-0 \le \operatorname{rango}(A) \le \min(m, n), \qquad \operatorname{rango}(AB) \le \min(\operatorname{rango} A, \operatorname{rango} B)
+0 \le \operatorname{rango}(\mathbf{A}) \le \min(m, n), \qquad \operatorname{rango}(\mathbf{A}\mathbf{B}) \le \min(\operatorname{rango} \mathbf{A}, \operatorname{rango} \mathbf{B})
 $$
 
-- $m, n$: tamaño de $A$.
+- $m, n$: tamaño de $\mathbf{A}$.
 :::
 
 :::formula[Igualdades]
 $$
-\operatorname{rango}(A) = \operatorname{rango}(A^\top) = \operatorname{rango}(A^\top A) = \#\{\text{pivotes}\} = \#\{\sigma_i > 0\}
+\operatorname{rango}(\mathbf{A}) = \operatorname{rango}(\mathbf{A}^\top) = \operatorname{rango}(\mathbf{A}^\top \mathbf{A}) = \#\{\text{pivotes}\} = \#\{\sigma_i > 0\}
 $$
 
-- $\sigma_i$: valores singulares de $A$.
+- $\sigma_i$: valores singulares de $\mathbf{A}$.
 - $\#$: número de elementos.
 :::
 
 :::formula[Rango 1]
 $$
-\operatorname{rango}(A) = 1 \iff A = \mathbf{u}\mathbf{v}^\top, \quad \mathbf{u}, \mathbf{v} \neq \mathbf{0}
+\operatorname{rango}(\mathbf{A}) = 1 \iff \mathbf{A} = \mathbf{u}\mathbf{v}^\top, \quad \mathbf{u}, \mathbf{v} \neq \mathbf{0}
 $$
 
 - $\mathbf{u}$: vector columna de $\mathbb{R}^m$.

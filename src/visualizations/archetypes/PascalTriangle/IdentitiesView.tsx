@@ -43,6 +43,7 @@ function layoutFor(
   m: number,
   p: number,
   r: number,
+  names: readonly [string, string],
 ): Layout {
   switch (identity) {
     case 'pascal': {
@@ -92,9 +93,12 @@ function layoutFor(
       };
     }
     case 'vandermonde': {
+      // Members are tagged with the initial of their group, unless both groups share it.
+      const [first, second] = names.map((name) => name.charAt(0).toLowerCase());
+      const [tagA, tagB] = first && second && first !== second ? [first, second] : ['a', 'b'];
       const people = [
-        ...Array.from({ length: m }, (_, index) => `a${index + 1}`),
-        ...Array.from({ length: p }, (_, index) => `b${index + 1}`),
+        ...Array.from({ length: m }, (_, index) => `${tagA}${index + 1}`),
+        ...Array.from({ length: p }, (_, index) => `${tagB}${index + 1}`),
       ];
       const items = combinations(m + p, r).map((committee) => ({
         column: committee.filter((index) => index < m).length,
@@ -102,10 +106,10 @@ function layoutFor(
       }));
       const terms = Array.from({ length: r + 1 }, (_, j) => j);
       return {
-        columns: terms.map((j) => `${j} de A y ${r - j} de B: ${choose(m, j) * choose(p, r - j)}`),
+        columns: terms.map((j) => `${j} ${names[0]} y ${r - j} ${names[1]}: ${choose(m, j) * choose(p, r - j)}`),
         items,
         formula: `\\binom{${m + p}}{${r}} = ${terms.map((j) => `\\binom{${m}}{${j}}\\binom{${p}}{${r - j}}`).join(' + ')} = ${choose(m + p, r)}`,
-        summary: `Comités de ${r} personas tomadas de un grupo A de ${m} y un grupo B de ${p}, separados por cuántos miembros vienen de A.`,
+        summary: `Comités de ${r} personas tomadas de ${m} ${names[0]} y ${p} ${names[1]}, separados por cuántos miembros son ${names[0]}.`,
       };
     }
   }
@@ -118,6 +122,7 @@ interface IdentitiesViewProps {
   n: number;
   k: number;
   groups: readonly [number, number];
+  groupNames: readonly [string, string];
 }
 
 /**
@@ -125,9 +130,24 @@ interface IdentitiesViewProps {
  * side are listed one by one and placed in the column of the term on the right
  * side that counts them.
  */
-export function IdentitiesView({ title, identity, identities, n, k, groups }: IdentitiesViewProps) {
-  const definitions = useMemo(
-    () => [
+export function IdentitiesView({
+  title,
+  identity,
+  identities,
+  n,
+  k,
+  groups,
+  groupNames,
+}: IdentitiesViewProps) {
+  const definitions = useMemo(() => {
+    const single = identities.length === 1;
+    const others = identities.filter((id) => id !== 'vandermonde');
+    // A control that only some identities use is hidden while another one is selected.
+    const only = (ids: readonly Identity[]) =>
+      single ? {} : { shownWhen: { key: 'identidad', values: ids } };
+    const usesSet = !single || identity !== 'vandermonde';
+    const usesGroups = identities.includes('vandermonde');
+    return [
       ...(identities.length > 1
         ? [
             {
@@ -139,16 +159,21 @@ export function IdentitiesView({ title, identity, identities, n, k, groups }: Id
             },
           ]
         : []),
-      {
-        type: 'number' as const,
-        key: 'n',
-        label: 'Elementos',
-        symbol: 'n',
-        min: 2,
-        max: 7,
-        step: 1,
-        default: n,
-      },
+      ...(usesSet
+        ? [
+            {
+              type: 'number' as const,
+              key: 'n',
+              label: 'Elementos',
+              symbol: 'n',
+              min: 2,
+              max: 7,
+              step: 1,
+              default: n,
+              ...only(others),
+            },
+          ]
+        : []),
       {
         type: 'number' as const,
         key: 'k',
@@ -159,41 +184,46 @@ export function IdentitiesView({ title, identity, identities, n, k, groups }: Id
         step: 1,
         default: k,
       },
-      {
-        type: 'number' as const,
-        key: 'm',
-        label: 'Tamaño del grupo A',
-        symbol: 'm',
-        min: 1,
-        max: 6,
-        step: 1,
-        default: groups[0],
-      },
-      {
-        type: 'number' as const,
-        key: 'p',
-        label: 'Tamaño del grupo B',
-        symbol: 'p',
-        min: 1,
-        max: 6,
-        step: 1,
-        default: groups[1],
-      },
-    ],
-    [identities, identity, n, k, groups],
-  );
+      ...(usesGroups
+        ? [
+            {
+              type: 'number' as const,
+              key: 'm',
+              label: `Número de ${groupNames[0]}`,
+              symbol: 'm',
+              min: 1,
+              max: 6,
+              step: 1,
+              default: groups[0],
+              ...only(['vandermonde']),
+            },
+            {
+              type: 'number' as const,
+              key: 'p',
+              label: `Número de ${groupNames[1]}`,
+              symbol: 'p',
+              min: 1,
+              max: 6,
+              step: 1,
+              default: groups[1],
+              ...only(['vandermonde']),
+            },
+          ]
+        : []),
+    ];
+  }, [identities, identity, n, k, groups, groupNames]);
   const parameters = useParameters(definitions);
   const values = parameters.values as Record<string, number | string>;
   const chosen = (identities.length > 1 ? String(values.identidad) : identity) as Identity;
-  const size = Number(values.n);
+  const size = Number(values.n ?? n);
   // Pascal's rule needs 1 <= k <= n; the other identities accept 0 <= k <= n.
   const picked = Math.min(size, Math.max(chosen === 'pascal' ? 1 : 0, Number(values.k)));
-  const m = Number(values.m);
-  const p = Number(values.p);
+  const m = Number(values.m ?? groups[0]);
+  const p = Number(values.p ?? groups[1]);
   const committee = Math.min(m + p, picked);
   const layout = useMemo(
-    () => layoutFor(chosen, size, picked, m, p, committee),
-    [chosen, size, picked, m, p, committee],
+    () => layoutFor(chosen, size, picked, m, p, committee, groupNames),
+    [chosen, size, picked, m, p, committee, groupNames],
   );
   const total = layout.items.length;
   const [run, setRun] = useState(0);

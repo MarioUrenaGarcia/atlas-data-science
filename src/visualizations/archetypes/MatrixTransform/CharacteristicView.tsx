@@ -107,7 +107,7 @@ export function CharacteristicView({ title, matrices }: CharacteristicViewProps)
     >
       <p className={styles.formula}>
         <Latex
-          tex={`A = ${matLatex(matrix)},\\quad p(\\lambda) = \\det(A - \\lambda I) = \\lambda^2 ${signed(-tr)}\\,\\lambda ${signed(det)}`}
+          tex={`\\mathbf{A} = ${matLatex(matrix)},\\quad p(\\lambda) = \\det(\\mathbf{A} - \\lambda \\mathbf{I}) = \\lambda^2 ${signed(-tr)}\\,\\lambda ${signed(det)}`}
         />
       </p>
       <div className={styles.pair}>

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useAtlas } from '../../content/loader.ts';
 import { LevelBadge } from '../ui/LevelBadge.tsx';
 import styles from './ConceptPreview.module.css';
+import { SummaryText } from '../ui/SummaryText.tsx';
 
 export interface PreviewAnchor {
   id: string;
@@ -47,7 +48,7 @@ export function ConceptPreview({ anchor }: { anchor: PreviewAnchor }) {
         <span className={styles.title}>{concept.titulo}</span>
         <LevelBadge level={concept.nivel} />
       </div>
-      <p className={styles.summary}>{concept.resumen}</p>
+      <p className={styles.summary}><SummaryText text={concept.resumen} /></p>
     </div>,
     document.body,
   );

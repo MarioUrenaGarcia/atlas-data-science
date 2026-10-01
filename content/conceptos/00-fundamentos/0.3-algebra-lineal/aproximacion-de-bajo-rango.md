@@ -20,7 +20,7 @@ etiquetas:
 resumen: >
   La mejor aproximación de rango k de una matriz se obtiene conservando los k valores singulares más grandes
   de su SVD; el error que queda está dado exactamente por los valores singulares descartados.
-formula: 'A_k = \sum_{i=1}^{k}\sigma_i\,\mathbf{u}_i\mathbf{v}_i^\top, \qquad \lVert A - A_k \rVert_2 = \sigma_{k+1}, \quad \lVert A - A_k \rVert_F = \sqrt{\textstyle\sum_{i>k}\sigma_i^2}'
+formula: '\mathbf{A}_k = \sum_{i=1}^{k}\sigma_i\,\mathbf{u}_i\mathbf{v}_i^\top, \qquad \lVert \mathbf{A} - \mathbf{A}_k \rVert_2 = \sigma_{k+1}, \quad \lVert \mathbf{A} - \mathbf{A}_k \rVert_F = \sqrt{\textstyle\sum_{i>k}\sigma_i^2}'
 visualizacion:
   componente: MatrixGrid
   parametros:
@@ -41,20 +41,20 @@ Quedarse con las primeras capas y tirar las demás da una versión aproximada de
 ## Definición
 
 :::teorema[Eckart-Young]
-Sea $A = \sum_{i=1}^{r}\sigma_i\mathbf{u}_i\mathbf{v}_i^\top$ la SVD de $A$ con $\sigma_1 \ge \dots \ge \sigma_r > 0$, y sea $A_k = \sum_{i=1}^{k}\sigma_i\mathbf{u}_i\mathbf{v}_i^\top$ para $k < r$. Entonces, para toda matriz $B$ con $\operatorname{rango}(B) \le k$,
+Sea $\mathbf{A} = \sum_{i=1}^{r}\sigma_i\mathbf{u}_i\mathbf{v}_i^\top$ la SVD de $\mathbf{A}$ con $\sigma_1 \ge \dots \ge \sigma_r > 0$, y sea $\mathbf{A}_k = \sum_{i=1}^{k}\sigma_i\mathbf{u}_i\mathbf{v}_i^\top$ para $k < r$. Entonces, para toda matriz $\mathbf{B}$ con $\operatorname{rango}(\mathbf{B}) \le k$,
 $$
-\lVert A - A_k \rVert_2 = \sigma_{k+1} \le \lVert A - B \rVert_2, \qquad \lVert A - A_k \rVert_F = \sqrt{\sigma_{k+1}^2 + \dots + \sigma_r^2} \le \lVert A - B \rVert_F.
+\lVert \mathbf{A} - \mathbf{A}_k \rVert_2 = \sigma_{k+1} \le \lVert \mathbf{A} - \mathbf{B} \rVert_2, \qquad \lVert \mathbf{A} - \mathbf{A}_k \rVert_F = \sqrt{\sigma_{k+1}^2 + \dots + \sigma_r^2} \le \lVert \mathbf{A} - \mathbf{B} \rVert_F.
 $$
 :::
 
-Guardar $A_k$ requiere $k(m + n + 1)$ números en lugar de $mn$.
+Guardar $\mathbf{A}_k$ requiere $k(m + n + 1)$ números en lugar de $mn$.
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz de $m \times n$ y rango $r$.
+- $\mathbf{A}$: matriz de $m \times n$ y rango $r$.
 - $\sigma_i$: valores singulares ordenados de mayor a menor.
 - $\mathbf{u}_i, \mathbf{v}_i$: vectores singulares izquierdo y derecho.
-- $A_k$: aproximación truncada con $k$ términos.
-- $B$: cualquier matriz de rango a lo más $k$.
+- $\mathbf{A}_k$: aproximación truncada con $k$ términos.
+- $\mathbf{B}$: cualquier matriz de rango a lo más $k$.
 - $\lVert \cdot \rVert_2$: norma espectral; $\lVert \cdot \rVert_F$: norma de Frobenius.
 :::
 
@@ -66,13 +66,13 @@ La figura de anillo y cruz tiene rango 8: con $k = 8$ el error es cero. Las onda
 
 ## Ejemplo
 
-Se aproxima $A = \begin{pmatrix} 2 & 2 \\ -1 & 1 \end{pmatrix}$ con una matriz de rango 1. Su SVD tiene $\sigma_1 = 2\sqrt{2}$, $\mathbf{u}_1 = (1, 0)$, $\mathbf{v}_1 = (1, 1)/\sqrt{2}$ y $\sigma_2 = \sqrt{2}$.
+Se aproxima $\mathbf{A} = \begin{pmatrix} 2 & 2 \\ -1 & 1 \end{pmatrix}$ con una matriz de rango 1. Su SVD tiene $\sigma_1 = 2\sqrt{2}$, $\mathbf{u}_1 = (1, 0)$, $\mathbf{v}_1 = (1, 1)/\sqrt{2}$ y $\sigma_2 = \sqrt{2}$.
 
-1. $A_1 = \sigma_1\mathbf{u}_1\mathbf{v}_1^\top = 2\sqrt{2}\cdot\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 0 & 0 \end{pmatrix}$.
-2. Error: $A - A_1 = \begin{pmatrix} 0 & 0 \\ -1 & 1 \end{pmatrix}$, con norma de Frobenius $\sqrt{2} = \sigma_2$.
+1. $\mathbf{A}_1 = \sigma_1\mathbf{u}_1\mathbf{v}_1^\top = 2\sqrt{2}\cdot\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 0 & 0 \end{pmatrix}$.
+2. Error: $\mathbf{A} - \mathbf{A}_1 = \begin{pmatrix} 0 & 0 \\ -1 & 1 \end{pmatrix}$, con norma de Frobenius $\sqrt{2} = \sigma_2$.
 3. Norma espectral del error: la matriz $\begin{pmatrix} 0 & 0 \\ -1 & 1 \end{pmatrix}$ tiene un solo valor singular, $\sqrt{2}$, igual a $\sigma_2$.
-4. Error relativo en Frobenius: $\sqrt{2}/\sqrt{10} \approx 0.447$, porque $\lVert A \rVert_F^2 = 4 + 4 + 1 + 1 = 10$.
-5. Ninguna matriz de rango 1 queda más cerca de $A$.
+4. Error relativo en Frobenius: $\sqrt{2}/\sqrt{10} \approx 0.447$, porque $\lVert \mathbf{A} \rVert_F^2 = 4 + 4 + 1 + 1 = 10$.
+5. Ninguna matriz de rango 1 queda más cerca de $\mathbf{A}$.
 
 :::figura[La matriz del ejemplo y su aproximación de rango 1 como transformaciones: la original convierte el círculo en una elipse, y la aproximación la aplasta sobre su eje mayor.]{componente="MatrixTransform"}
 ```yaml
@@ -89,8 +89,8 @@ matrices:
 ## Propiedades
 
 - **Error conocido:** el error de la mejor aproximación depende solo de los valores singulares descartados.
-- **Fracción de energía:** $\lVert A_k \rVert_F^2/\lVert A \rVert_F^2 = \sum_{i \le k}\sigma_i^2/\sum_i \sigma_i^2$, la proporción conservada.
-- **Anidamiento:** $A_{k+1} = A_k + \sigma_{k+1}\mathbf{u}_{k+1}\mathbf{v}_{k+1}^\top$; cada capa corrige a las anteriores.
+- **Fracción de energía:** $\lVert \mathbf{A}_k \rVert_F^2/\lVert \mathbf{A} \rVert_F^2 = \sum_{i \le k}\sigma_i^2/\sum_i \sigma_i^2$, la proporción conservada.
+- **Anidamiento:** $\mathbf{A}_{k+1} = \mathbf{A}_k + \sigma_{k+1}\mathbf{u}_{k+1}\mathbf{v}_{k+1}^\top$; cada capa corrige a las anteriores.
 - **No unicidad:** si $\sigma_k = \sigma_{k+1}$, la mejor aproximación no es única.
 - **Componentes principales:** la mejor aproximación de rango $k$ de una matriz de datos centrada corresponde a proyectar los datos sobre sus $k$ primeras componentes principales.
 
@@ -102,7 +102,7 @@ imagen: degradado
 :::
 
 :::demostracion
-Idea para la norma espectral: si $\operatorname{rango}(B) \le k$, el espacio nulo de $B$ tiene dimensión al menos $n - k$ y corta al espacio generado por $\mathbf{v}_1, \dots, \mathbf{v}_{k+1}$ en algún $\mathbf{x}$ unitario. Para ese vector, $\lVert (A - B)\mathbf{x} \rVert = \lVert A\mathbf{x} \rVert \ge \sigma_{k+1}$.
+Idea para la norma espectral: si $\operatorname{rango}(\mathbf{B}) \le k$, el espacio nulo de $\mathbf{B}$ tiene dimensión al menos $n - k$ y corta al espacio generado por $\mathbf{v}_1, \dots, \mathbf{v}_{k+1}$ en algún $\mathbf{x}$ unitario. Para ese vector, $\lVert (\mathbf{A} - \mathbf{B})\mathbf{x} \rVert = \lVert \mathbf{A}\mathbf{x} \rVert \ge \sigma_{k+1}$.
 :::
 
 ## Errores comunes
@@ -120,7 +120,7 @@ La aproximación truncada usa directamente la [[descomposicion-en-valores-singul
 
 :::formula[Aproximación truncada]
 $$
-A_k = \sum_{i=1}^{k}\sigma_i\,\mathbf{u}_i\mathbf{v}_i^\top
+\mathbf{A}_k = \sum_{i=1}^{k}\sigma_i\,\mathbf{u}_i\mathbf{v}_i^\top
 $$
 
 - $k$: rango de la aproximación.
@@ -129,7 +129,7 @@ $$
 
 :::formula[Errores de Eckart-Young]
 $$
-\lVert A - A_k \rVert_2 = \sigma_{k+1}, \qquad \lVert A - A_k \rVert_F = \sqrt{\textstyle\sum_{i>k}\sigma_i^2}
+\lVert \mathbf{A} - \mathbf{A}_k \rVert_2 = \sigma_{k+1}, \qquad \lVert \mathbf{A} - \mathbf{A}_k \rVert_F = \sqrt{\textstyle\sum_{i>k}\sigma_i^2}
 $$
 
 - $\sigma_{k+1}$: primer valor singular descartado.
