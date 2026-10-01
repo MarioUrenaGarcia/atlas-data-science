@@ -7,6 +7,7 @@ import type { Random } from '../random/index.ts';
  */
 export const LLN_POPULATION_IDS = [
   'moneda',
+  'lluvia',
   'dado',
   'exponencial',
   'uniforme',
@@ -36,6 +37,13 @@ export const LLN_POPULATIONS: Record<LlnPopulationId, LlnPopulation> = {
     sd: 0.5,
     sample: (random) => (random.bernoulli(0.5) ? 1 : 0),
     window: 0.5,
+  },
+  lluvia: {
+    label: 'Lluvia diaria: 1 con probabilidad 0.3',
+    mean: 0.3,
+    sd: Math.sqrt(0.21),
+    sample: (random) => (random.bernoulli(0.3) ? 1 : 0),
+    window: 0.3,
   },
   dado: {
     label: 'Dado equilibrado',
