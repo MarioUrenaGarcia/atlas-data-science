@@ -24,6 +24,7 @@ export const CONTINUOUS_PROCESSES = [
   'inverso-cuadrado',
   'direccion',
   'suma-colas-pesadas',
+  'espera-residual',
 ] as const;
 
 export type ContinuousProcess = (typeof CONTINUOUS_PROCESSES)[number];

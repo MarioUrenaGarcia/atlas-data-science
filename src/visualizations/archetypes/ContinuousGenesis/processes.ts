@@ -1,6 +1,7 @@
 import {
   beta,
   cauchy,
+  exponential,
   chiSquare,
   fisherF,
   frechet,
@@ -796,6 +797,40 @@ const SPECS: Record<ContinuousProcess, ProcessSpec> = {
       const alpha = value(s, 'alpha', 1.5);
       return stable(alpha, 0, stableTailConstant(alpha) ** (-1 / alpha), 0);
     },
+  },
+  'espera-residual': {
+    stage: 'rows',
+    symbol: 'R',
+    describe: () => 'espera adicional después de haber esperado s',
+    parameters: () => [
+      num('lambda', 'Tasa', 'λ', 0.2, 3, 0.05, 0.5),
+      num('s', 'Tiempo ya esperado', 's', 0, 6, 0.1, 2),
+    ],
+    rows: (s) => {
+      const rate = value(s, 'lambda', 0.5);
+      return [
+        { label: 'T', domain: [0, value(s, 's', 2) + 5 / rate] },
+        { label: 'T - s', domain: [0, 5 / rate] },
+      ];
+    },
+    simulate: (random, s) => {
+      const rate = value(s, 'lambda', 0.5);
+      const waited = value(s, 's', 2);
+      const events: ContinuousEvent[] = [];
+      for (let i = 0; i < 2000; i += 1) {
+        const t = random.exponential(rate);
+        if (t > waited) {
+          return {
+            events: [...events, draw(0, t, 'chosen'), draw(1, t - waited, 'result'), end],
+            value: t - waited,
+          };
+        }
+        events.push(draw(0, t, 'rejected'));
+      }
+      const residual = random.exponential(rate);
+      return { events: [...events, draw(1, residual, 'result'), end], value: residual };
+    },
+    theory: (s) => ({ ...exponential(value(s, 'lambda', 0.5)), name: 'Exponencial' }),
   },
 };
 

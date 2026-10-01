@@ -207,6 +207,16 @@ export function continuousHeader(
         return `f(\\theta) = \\frac{e^{\\kappa\\cos(\\theta - \\mu)}}{2\\pi I_0(\\kappa)},\\quad \\kappa = ${tex(v('kappa', 2))}`;
       return `\\Theta = ${tex(x)}\\ ${text('rad')}${density(x)}`;
     }
+    case 'espera-residual': {
+      const waited = v('s', 2);
+      const attempts = draws(0);
+      const current = attempts.at(-1);
+      if (!current) return `R = T - s \\mid T > s,\\quad s = ${tex(waited)}`;
+      const discarded = attempts.filter((event) => event.tone === 'rejected').length;
+      if (current.tone === 'rejected')
+        return `T = ${tex(current.value)} \\le s:\\ ${text('ya terminó, se descarta')}\\ (${discarded})`;
+      return `T = ${tex(current.value)} > ${tex(waited)}:\\ R = ${tex(current.value - waited)}${done ? density(x) : ''}`;
+    }
     case 'suma-colas-pesadas': {
       const n = Math.round(v('n', 30));
       const alpha = v('alpha', 1.5);

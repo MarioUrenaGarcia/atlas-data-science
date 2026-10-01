@@ -140,4 +140,9 @@ export const DISTRIBUTION_EXAMPLES: CatalogExample[] = [
     title: 'Colas pesadas',
     params: { proceso: 'suma-colas-pesadas' },
   },
+  {
+    component: 'ContinuousGenesis',
+    title: 'Espera residual',
+    params: { proceso: 'espera-residual' },
+  },
 ];
