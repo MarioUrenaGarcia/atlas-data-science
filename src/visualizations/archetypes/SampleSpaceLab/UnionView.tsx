@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { experiment, findEvent, type ExperimentId } from '../../../lib/probability/sampleSpace.ts';
 import { formatProbability } from '../../../lib/format/number.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { useResettableState } from '../../core/useSeededRandom.ts';
@@ -114,9 +114,7 @@ export function UnionView({ title, config }: UnionViewProps) {
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={headers[stage] ?? ''} />
-      </p>
+      <FormulaLine tex={headers[stage] ?? ''} />
       <p className={styles.stage}>{STAGE_TEXT[stage]}</p>
       <p className={styles.caption}>
         A: {eventLabel(experimentId, eventA)}. B: {eventLabel(experimentId, eventB)}.

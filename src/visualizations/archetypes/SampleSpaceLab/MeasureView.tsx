@@ -4,7 +4,7 @@ import { experiment, findEvent, type ExperimentId } from '../../../lib/probabili
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Button } from '../../../components/ui/Button.tsx';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { DraggablePoint } from '../../core/svg/DraggablePoint.tsx';
@@ -138,9 +138,7 @@ export function MeasureView({ title, config }: MeasureViewProps) {
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       <ul className={styles.axioms}>
         <li className={`${styles.axiom} ${nonNegative ? styles.axiomOk : styles.axiomFail}`}>
           Axioma 1: toda probabilidad es mayor o igual que 0.

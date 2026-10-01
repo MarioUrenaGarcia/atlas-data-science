@@ -33,6 +33,7 @@ describe('sample spaces', () => {
       'dos-dados': 36,
       'cuatro-dados': 1296,
       carta: 52,
+      comite: 120,
     };
     for (const id of EXPERIMENT_IDS) {
       const space = experiment(id);
@@ -57,6 +58,14 @@ describe('sample spaces', () => {
     expect(eventProbability(cards.outcomes, findEvent('carta', 'figura')!.test)).toBeCloseTo(
       12 / 52,
     );
+  });
+
+  it('split the committees by number of engineers', () => {
+    const space = experiment('comite');
+    const counts = [0, 1, 2, 3].map(
+      (k) => space.outcomes.filter(findEvent('comite', `ingenieras-${k}`)!.test).length,
+    );
+    expect(counts).toEqual([4, 36, 60, 20]);
   });
 
   it('combine events and respect inclusion and exclusion', () => {

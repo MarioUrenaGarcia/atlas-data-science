@@ -55,7 +55,7 @@ Para eventos $A$ y $B$ de un espacio de probabilidad:
 3. **Acotación:** $0 \le P(A) \le 1$.
 4. **Diferencia:** $P(A \setminus B) = P(A) - P(A \cap B)$.
 5. **Monotonía:** si $A \subseteq B$, entonces $P(A) \le P(B)$ y $P(B \setminus A) = P(B) - P(A)$.
-   :::
+:::
 
 :::demostracion
 (1) $A$ y $A^{c}$ son excluyentes y $A \cup A^{c} = \Omega$; por los axiomas 2 y 3, $1 = P(A) + P(A^{c})$. (2) Es (1) con $A = \Omega$. (3) Por (1) y el axioma 1, $P(A) = 1 - P(A^{c}) \le 1$. (4) $A$ es la unión disjunta de $A \cap B$ y $A \setminus B$, así que $P(A) = P(A \cap B) + P(A \setminus B)$. (5) Si $A \subseteq B$, entonces $A \cap B = A$ y (4) aplicada a $B$ y $A$ da $P(B \setminus A) = P(B) - P(A) \ge 0$.
@@ -83,7 +83,7 @@ operaciones: [A, B, diferencia]
 - $A \cap B$: intersección, "ocurren $A$ y $B$".
 - $A \subseteq B$: $A$ está contenido en $B$; siempre que ocurre $A$ ocurre $B$.
 - $\implies$: "implica".
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -191,7 +191,7 @@ P(A^{c}) = 1 - P(A)
 $$
 
 - $A^{c}$: el evento "no ocurre $A$".
-  :::
+:::
 
 :::formula[Evento imposible y acotación]
 
@@ -200,7 +200,7 @@ P(\varnothing) = 0, \qquad 0 \le P(A) \le 1
 $$
 
 - $\varnothing$: evento que nunca ocurre.
-  :::
+:::
 
 :::formula[Diferencia]
 
@@ -210,7 +210,7 @@ $$
 
 - $A \setminus B$: ocurre $A$ pero no $B$.
 - $A \cap B$: ocurren los dos.
-  :::
+:::
 
 :::formula[Monotonía]
 
@@ -219,7 +219,7 @@ A \subseteq B \implies P(A) \le P(B), \quad P(B \setminus A) = P(B) - P(A)
 $$
 
 - $A \subseteq B$: todo resultado de $A$ está en $B$.
-  :::
+:::
 
 :::formula[Unión de dos eventos]
 
@@ -228,4 +228,4 @@ P(A \cup B) = P(A) + P(B) - P(A \cap B)
 $$
 
 - $A \cup B$: ocurre al menos uno de los dos.
-  :::
+:::

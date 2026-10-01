@@ -35,8 +35,14 @@ export function eventLabel(id: ExperimentId, eventId: string): string {
 /** Caption that explains how the grid is arranged. */
 export function gridCaption(id: ExperimentId): string {
   const space = experiment(id);
-  const coins = id.includes('moneda') ? ' C: cara, X: cruz.' : '';
+  const coins = id.includes('moneda')
+    ? ' C: cara, X: cruz.'
+    : id === 'comite'
+      ? ' I: ingeniera, M: médico.'
+      : '';
   if (space.rows === 1)
     return `Cada casilla es un resultado posible: ${space.outcomes.length} en total.${coins}`;
+  if (!space.colTitle)
+    return `Casillas: ${space.rowTitle}. Cada casilla es un resultado posible: ${space.outcomes.length} en total.${coins}`;
   return `Filas: ${space.rowTitle}. Columnas: ${space.colTitle}. Cada casilla es un resultado posible: ${space.outcomes.length} en total.${coins}`;
 }
