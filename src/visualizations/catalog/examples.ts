@@ -1,5 +1,7 @@
 import { DESCRIPTIVE_EXAMPLES } from './examples/descriptive.ts';
 import { DISTRIBUTION_EXAMPLES } from './examples/distributions.ts';
+import { MULTIVARIABLE_EXAMPLES } from './examples/multivariable.ts';
+import { LIMIT_EXAMPLES } from './examples/limits.ts';
 
 /** Sample configurations shown in the development catalog, one or more per visualization. */
 export interface CatalogExample {
@@ -44,6 +46,52 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     title: 'Varianza de una normal',
     params: { poblacion: { distribucion: 'normal' }, estadistico: 'varianza', n: 8 },
   },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Eventos con dos dados',
+    params: { modo: 'eventos', experimento: 'dos-dados', eventoA: 'suma-7', eventoB: 'dobles' },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Regla de la suma',
+    params: { modo: 'union', experimento: 'carta', eventoA: 'corazon', eventoB: 'figura' },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Frecuencia relativa',
+    params: { modo: 'frecuencia', experimento: 'dos-dados', eventoA: 'suma-7', trayectorias: 3 },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Medida de probabilidad',
+    params: { modo: 'medida', experimento: 'dado', eventoA: 'par', pesos: [1, 1, 1, 1, 1, 3] },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Creencias como apuestas',
+    params: { modo: 'apuestas' },
+  },
+  {
+    component: 'SampleSpaceLab',
+    title: 'Probabilidad condicional',
+    params: { modo: 'condicional', experimento: 'dos-dados', eventoA: 'suma-8', eventoB: 'dobles' },
+  },
+  {
+    component: 'GeometricProbability',
+    title: 'Problema del encuentro',
+    params: { escenario: 'encuentro', espera: 15 },
+  },
+  {
+    component: 'GeometricProbability',
+    title: 'Varilla rota',
+    params: { escenario: 'varilla-rota' },
+  },
+  {
+    component: 'GeometricProbability',
+    title: 'Disco con radio uniforme',
+    params: { escenario: 'disco', muestreo: 'radio' },
+  },
+  { component: 'BuffonNeedle', title: 'Aguja de Buffon', params: {} },
   {
     component: 'ScatterPlayground',
     title: 'Conjuntos variados',
@@ -897,4 +945,6 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   },
   ...DESCRIPTIVE_EXAMPLES,
   ...DISTRIBUTION_EXAMPLES,
+  ...MULTIVARIABLE_EXAMPLES,
+  ...LIMIT_EXAMPLES,
 ];

@@ -124,17 +124,17 @@ conteos:
   q: 5
   ninguno: 10
 consultas:
-  - nombre: "p ∧ q"
+  - nombre: "p y q"
     regiones: [pq]
-  - nombre: "p ∨ q"
+  - nombre: "p o q"
     regiones: [p, q, pq]
-  - nombre: "¬p"
+  - nombre: "no p"
     regiones: [q, ninguno]
-  - nombre: "p implica q"
+  - nombre: "si p entonces q"
     regiones: [q, pq, ninguno]
   - nombre: "p si y solo si q"
     regiones: [pq, ninguno]
-  - nombre: "p ⊕ q"
+  - nombre: "p o q, pero no ambas"
     regiones: [p, q]
 ```
 :::

@@ -125,7 +125,7 @@ escenarios:
 
 - **Usar combinaciones cuando el orden importa.** Un podio con oro, plata y bronce requiere variaciones.
 - **Olvidar dividir entre $k!$.** Contar comisiones como $5 \cdot 4 \cdot 3$ cuenta cada comisión seis veces.
-- **Contar dos veces al elegir en etapas sin orden.** "Elegir un hombre y luego otro" para una pareja de hombres produce cada pareja dos veces; hay que dividir o usar $\binom{m}{2}$ directamente.
+- **Contar dos veces al elegir en etapas sin orden.** "Elegir un jugador y luego otro" para formar una pareja dentro de un equipo de $m$ produce cada pareja dos veces; hay que dividir entre 2 o usar $\binom{m}{2}$ directamente.
 
 ## Conexiones
 

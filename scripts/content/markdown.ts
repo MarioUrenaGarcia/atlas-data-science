@@ -74,7 +74,7 @@ function isDirectiveName(name: string): name is DirectiveName {
 }
 
 /** Replaces [[id]] and [[id|label]] inside text nodes with links to concept pages. */
-function remarkWikiLinks(links: ProcessedBody['links']) {
+function remarkWikiLinks(links: ProcessedBody['links'], titles: Record<string, string>) {
   return (tree: MdastRoot) => {
     visit(tree, 'text', (node: Text, index, parent) => {
       if (!parent || index === undefined || !node.value.includes('[[')) return;
@@ -91,7 +91,7 @@ function remarkWikiLinks(links: ProcessedBody['links']) {
         replacement.push({
           type: 'link',
           url: `/concepto/${id}`,
-          children: [{ type: 'text', value: (rawLabel ?? id).trim() }],
+          children: [{ type: 'text', value: (rawLabel ?? titles[id] ?? id).trim() }],
           data: { hProperties: { className: ['concept-link'], dataConcept: id } },
         });
         lastIndex = start + whole.length;
@@ -343,6 +343,7 @@ export function katexOptions(macros: Record<string, string>) {
 export function processConceptBody(
   markdown: string,
   macros: Record<string, string>,
+  titles: Record<string, string> = {},
 ): ProcessedBody {
   const result: ProcessedBody = {
     sections: [],
@@ -363,7 +364,7 @@ export function processConceptBody(
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkDirective)
-    .use(remarkWikiLinks, result.links)
+    .use(remarkWikiLinks, result.links, titles)
     .use(remarkAtlasDirectives, result.issues, result.figures, result)
     .use(() => (tree: MdastRoot) => collectSectionData(tree, result))
     .use(remarkRehype)

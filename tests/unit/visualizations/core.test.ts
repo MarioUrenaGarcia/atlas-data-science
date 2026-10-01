@@ -82,5 +82,6 @@ describe('catalog examples', () => {
       const result = entry?.schema?.safeParse(example.params);
       expect(result?.success, `${example.component}: ${example.title}`).toBe(true);
     }
-  });
+    // Importing every schema module takes a few seconds when the whole suite runs in parallel.
+  }, 30000);
 });

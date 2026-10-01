@@ -21,7 +21,7 @@ etiquetas:
 resumen: >
   Una matriz es diagonalizable si tiene una base de vectores propios; entonces A = PDP^{-1}, con los
   vectores propios en P y los valores propios en la diagonal de D, y sus potencias se calculan fácilmente.
-formula: 'A = PDP^{-1}, \qquad A^k = PD^kP^{-1}'
+formula: '\mathbf{A} = \mathbf{P}\mathbf{D}\mathbf{P}^{-1}, \qquad \mathbf{A}^k = \mathbf{P}\mathbf{D}^kP^{-1}'
 visualizacion:
   componente: MatrixTransform
   parametros:
@@ -49,40 +49,40 @@ La receta tiene tres movimientos. Primero se traduce el punto a las coordenadas 
 ## Definición
 
 :::definicion[Matriz diagonalizable]
-$A \in \mathbb{R}^{n \times n}$ es **diagonalizable** si existen una matriz invertible $P$ y una diagonal $D$ con
+$\mathbf{A} \in \mathbb{R}^{n \times n}$ es **diagonalizable** si existen una matriz invertible $\mathbf{P}$ y una diagonal $\mathbf{D}$ con
 $$
-A = PDP^{-1}.
+\mathbf{A} = \mathbf{P}\mathbf{D}\mathbf{P}^{-1}.
 $$
-Las columnas de $P$ son vectores propios de $A$ y la diagonal de $D$ contiene los valores propios correspondientes.
+Las columnas de $\mathbf{P}$ son vectores propios de $\mathbf{A}$ y la diagonal de $\mathbf{D}$ contiene los valores propios correspondientes.
 :::
 
 :::teorema[Criterio]
-$A$ es diagonalizable si y solo si tiene $n$ vectores propios linealmente independientes. Esto ocurre, por ejemplo, si tiene $n$ valores propios distintos, y en general si para cada valor propio la multiplicidad geométrica es igual a la algebraica.
+$\mathbf{A}$ es diagonalizable si y solo si tiene $n$ vectores propios linealmente independientes. Esto ocurre, por ejemplo, si tiene $n$ valores propios distintos, y en general si para cada valor propio la multiplicidad geométrica es igual a la algebraica.
 :::
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz cuadrada de $n \times n$.
-- $P$: matriz cuyas columnas son vectores propios, invertible.
-- $D = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$: matriz diagonal con los valores propios.
-- $P^{-1}$: inversa de $P$, que pasa a coordenadas de vectores propios.
+- $\mathbf{A}$: matriz cuadrada de $n \times n$.
+- $\mathbf{P}$: matriz cuyas columnas son vectores propios, invertible.
+- $\mathbf{D} = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$: matriz diagonal con los valores propios.
+- $\mathbf{P}^{-1}$: inversa de $\mathbf{P}$, que pasa a coordenadas de vectores propios.
 - $k$: potencia entera.
 - $n$: tamaño de la matriz.
 :::
 
 ## Cómo usar la visualización
 
-La reproducción aplica los tres factores uno a la vez sobre la rejilla y el círculo unitario: $P^{-1}$ lleva los vectores propios $\mathbf{v}_1$ y $\mathbf{v}_2$ a los ejes, $D$ estira cada eje por su valor propio y $P$ regresa los ejes a las direcciones propias. El panel muestra valores y vectores propios y su producto punto.
+La reproducción aplica los tres factores uno a la vez sobre la rejilla y el círculo unitario: $\mathbf{P}^{-1}$ lleva los vectores propios $\mathbf{v}_1$ y $\mathbf{v}_2$ a los ejes, $\mathbf{D}$ estira cada eje por su valor propio y $\mathbf{P}$ regresa los ejes a las direcciones propias. El panel muestra valores y vectores propios y su producto punto.
 
 Con la matriz diagonalizable, al final de la segunda fase la figura solo se estiró a lo largo de los ejes. Con la cizalla aparece un aviso: el valor propio 2 se repite con una sola dirección propia. Con la rotación, los valores propios son complejos y no hay factorización real.
 
 ## Ejemplo
 
-Un modelo de dos especies usa $A = \begin{pmatrix} 5 & -2 \\ 1 & 2 \end{pmatrix}$ para pasar de una generación a la siguiente. Se busca $A^{10}$.
+Un modelo de dos especies usa $\mathbf{A} = \begin{pmatrix} 5 & -2 \\ 1 & 2 \end{pmatrix}$ para pasar de una generación a la siguiente. Se busca $\mathbf{A}^{10}$.
 
 1. $p(\lambda) = \lambda^2 - 7\lambda + 12 = (\lambda - 4)(\lambda - 3)$.
-2. Para $\lambda = 4$: $(A - 4I)\mathbf{v} = \mathbf{0}$ con $A - 4I = \begin{pmatrix} 1 & -2 \\ 1 & -2 \end{pmatrix}$ da $\mathbf{v}_1 = (2, 1)$. Para $\lambda = 3$: $A - 3I = \begin{pmatrix} 2 & -2 \\ 1 & -1 \end{pmatrix}$ da $\mathbf{v}_2 = (1, 1)$.
-3. $P = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$, $D = \begin{pmatrix} 4 & 0 \\ 0 & 3 \end{pmatrix}$ y $P^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$.
-4. $A^{10} = PD^{10}P^{-1}$ con $D^{10} = \operatorname{diag}(1048576, 59049)$.
+2. Para $\lambda = 4$: $(\mathbf{A} - 4\mathbf{I})\mathbf{v} = \mathbf{0}$ con $\mathbf{A} - 4\mathbf{I} = \begin{pmatrix} 1 & -2 \\ 1 & -2 \end{pmatrix}$ da $\mathbf{v}_1 = (2, 1)$. Para $\lambda = 3$: $\mathbf{A} - 3\mathbf{I} = \begin{pmatrix} 2 & -2 \\ 1 & -1 \end{pmatrix}$ da $\mathbf{v}_2 = (1, 1)$.
+3. $\mathbf{P} = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$, $\mathbf{D} = \begin{pmatrix} 4 & 0 \\ 0 & 3 \end{pmatrix}$ y $\mathbf{P}^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$.
+4. $\mathbf{A}^{10} = \mathbf{P}\mathbf{D}^{10}\mathbf{P}^{-1}$ con $\mathbf{D}^{10} = \operatorname{diag}(1048576, 59049)$.
 5. La primera entrada es $2 \cdot 1048576 \cdot 1 + 1 \cdot 59049 \cdot (-1) = 2038103$. A la larga domina el valor propio 4 y las poblaciones se acercan a la proporción $2 : 1$ de $\mathbf{v}_1$.
 
 :::figura[La matriz de las dos especies factorizada: un cambio a la base de vectores propios, un estiramiento por 4 y por 3 sobre los ejes y el regreso.]{componente="MatrixTransform"}
@@ -96,12 +96,12 @@ matrices:
 
 ## Propiedades
 
-- **Potencias y polinomios:** $A^k = PD^kP^{-1}$ y, en general, $f(A) = Pf(D)P^{-1}$ para polinomios $f$.
-- **Valores propios distintos:** si los $n$ valores propios son distintos, $A$ es diagonalizable.
-- **No única:** el orden de los valores propios y la escala de los vectores propios en $P$ se pueden elegir.
-- **Traza y determinante:** $\operatorname{tr}A = \sum \lambda_i$ y $\det A = \prod \lambda_i$, porque son invariantes de la semejanza.
-- **Simétricas:** siempre son diagonalizables, y además con $P$ ortogonal.
-- **Estabilidad de un sistema $\mathbf{x}_{k+1} = A\mathbf{x}_k$:** si todos los $|\lambda_i| < 1$, $\mathbf{x}_k \to \mathbf{0}$.
+- **Potencias y polinomios:** $\mathbf{A}^k = \mathbf{P}\mathbf{D}^kP^{-1}$ y, en general, $f(\mathbf{A}) = Pf(\mathbf{D})\mathbf{P}^{-1}$ para polinomios $f$.
+- **Valores propios distintos:** si los $n$ valores propios son distintos, $\mathbf{A}$ es diagonalizable.
+- **No única:** el orden de los valores propios y la escala de los vectores propios en $\mathbf{P}$ se pueden elegir.
+- **Traza y determinante:** $\operatorname{tr}\mathbf{A} = \sum \lambda_i$ y $\det \mathbf{A} = \prod \lambda_i$, porque son invariantes de la semejanza.
+- **Simétricas:** siempre son diagonalizables, y además con $\mathbf{P}$ ortogonal.
+- **Estabilidad de un sistema $\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k$:** si todos los $|\lambda_i| < 1$, $\mathbf{x}_k \to \mathbf{0}$.
 
 :::figura[Caso no diagonalizable: la cizalla con valor propio doble 2 solo conserva la dirección horizontal, marcada con la recta punteada. Una sola dirección no forma una base del plano.]{componente="MatrixTransform"}
 ```yaml
@@ -115,15 +115,15 @@ matrices:
 :::
 
 :::demostracion
-Si $A\mathbf{v}_i = \lambda_i\mathbf{v}_i$ para las columnas de $P$, entonces $AP = [\lambda_1\mathbf{v}_1 \ \cdots \ \lambda_n\mathbf{v}_n] = PD$. Si las columnas son independientes, $P$ es invertible y $A = PDP^{-1}$.
+Si $\mathbf{A}\mathbf{v}_i = \lambda_i\mathbf{v}_i$ para las columnas de $\mathbf{P}$, entonces $\mathbf{A}\mathbf{P} = [\lambda_1\mathbf{v}_1 \ \cdots \ \lambda_n\mathbf{v}_n] = \mathbf{P}\mathbf{D}$. Si las columnas son independientes, $\mathbf{P}$ es invertible y $\mathbf{A} = \mathbf{P}\mathbf{D}\mathbf{P}^{-1}$.
 :::
 
 ## Errores comunes
 
 - **Suponer que toda matriz es diagonalizable.** Las cizallas y otras matrices con valores propios repetidos pueden no serlo.
 - **Confundir diagonalizable con invertible.** $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ es diagonal pero no invertible; la cizalla es invertible pero no diagonalizable.
-- **Poner los vectores propios como filas de $P$.** Van como columnas.
-- **Olvidar el orden:** los valores propios de $D$ deben corresponder, en la misma posición, a los vectores propios de $P$.
+- **Poner los vectores propios como filas de $\mathbf{P}$.** Van como columnas.
+- **Olvidar el orden:** los valores propios de $\mathbf{D}$ deben corresponder, en la misma posición, a los vectores propios de $\mathbf{P}$.
 
 ## Conexiones
 
@@ -133,16 +133,16 @@ La diagonalización es un [[cambio-de-base]] a una base de [[valores-y-vectores-
 
 :::formula[Diagonalización]
 $$
-A = PDP^{-1}, \qquad AP = PD
+\mathbf{A} = \mathbf{P}\mathbf{D}\mathbf{P}^{-1}, \qquad \mathbf{A}\mathbf{P} = \mathbf{P}\mathbf{D}
 $$
 
-- $P$: vectores propios como columnas.
-- $D$: valores propios en la diagonal.
+- $\mathbf{P}$: vectores propios como columnas.
+- $\mathbf{D}$: valores propios en la diagonal.
 :::
 
 :::formula[Potencias]
 $$
-A^k = PD^kP^{-1}, \qquad D^k = \operatorname{diag}(\lambda_1^k, \dots, \lambda_n^k)
+\mathbf{A}^k = \mathbf{P}\mathbf{D}^kP^{-1}, \qquad \mathbf{D}^k = \operatorname{diag}(\lambda_1^k, \dots, \lambda_n^k)
 $$
 
 - $k$: potencia entera no negativa.
@@ -151,9 +151,9 @@ $$
 
 :::formula[Criterio]
 $$
-A \text{ diagonalizable} \iff \sum_{\lambda} \dim N(A - \lambda I) = n
+\mathbf{A} \text{ diagonalizable} \iff \sum_{\lambda} \dim N(\mathbf{A} - \lambda \mathbf{I}) = n
 $$
 
-- $\dim N(A - \lambda I)$: multiplicidad geométrica de $\lambda$.
-- $n$: tamaño de $A$.
+- $\dim N(\mathbf{A} - \lambda \mathbf{I})$: multiplicidad geométrica de $\lambda$.
+- $n$: tamaño de $\mathbf{A}$.
 :::

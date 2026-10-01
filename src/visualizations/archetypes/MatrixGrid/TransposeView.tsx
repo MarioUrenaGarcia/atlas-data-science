@@ -55,8 +55,8 @@ export function TransposeView({ title, a, b }: TransposeViewProps) {
       : null;
   const latex =
     current < 0
-      ? '(A^\\top)_{ij} = a_{ji}'
-      : `a_{${ci + 1}${cj + 1}} = ${formatFraction(a[ci]?.[cj] ?? 0)} \\ \\longrightarrow\\ (A^\\top)_{${cj + 1}${ci + 1}}`;
+      ? '(\\mathbf{A}^\\top)_{ij} = a_{ji}'
+      : `a_{${ci + 1}${cj + 1}} = ${formatFraction(a[ci]?.[cj] ?? 0)} \\ \\longrightarrow\\ (\\mathbf{A}^\\top)_{${cj + 1}${ci + 1}}`;
   const text =
     current < 0
       ? `A es de ${rows} por ${columns}, así que Aᵀ es de ${columns} por ${rows}.`

@@ -12,12 +12,27 @@ export interface VennLayout {
   frame: { x: number; y: number; width: number; height: number };
 }
 
-/** Circles for two or three sets inside the universe rectangle. */
-export function vennLayout(width: number, height: number, sets: number): VennLayout {
+/**
+ * Circles for two or three sets inside the universe rectangle. With two sets,
+ * `nested` names the set contained in the other: it is drawn inside, so the
+ * picture has no region for elements that cannot exist.
+ */
+export function vennLayout(
+  width: number,
+  height: number,
+  sets: number,
+  nested: 0 | 1 | null = null,
+): VennLayout {
   const pad = 10;
   const frame = { x: pad, y: pad, width: width - 2 * pad, height: height - 2 * pad };
   const cx = width / 2;
   const cy = height / 2;
+  if (sets === 2 && nested !== null) {
+    const outerRadius = Math.min(frame.width * 0.3, frame.height * 0.44);
+    const outer = { cx: cx + outerRadius * 0.1, cy, r: outerRadius };
+    const inner = { cx: cx - outerRadius * 0.25, cy, r: outerRadius * 0.45 };
+    return { width, height, frame, circles: nested === 0 ? [inner, outer] : [outer, inner] };
+  }
   if (sets === 2) {
     const r = Math.min(frame.width * 0.24, frame.height * 0.4);
     return {
@@ -136,4 +151,16 @@ export function regionAnchors(layout: VennLayout): Map<number, { x: number; y: n
     }
   }
   return new Map([...best].map(([mask, point]) => [mask, { x: point.x, y: point.y }]));
+}
+
+/**
+ * For two sets, the index of the one strictly contained in the other
+ * according to the members' masks, or null when neither contains the other.
+ */
+export function containedSet(masks: readonly number[]): 0 | 1 | null {
+  const present = new Set(masks);
+  if (!present.has(3)) return null;
+  if (!present.has(1) && present.has(2)) return 0;
+  if (!present.has(2) && present.has(1)) return 1;
+  return null;
 }

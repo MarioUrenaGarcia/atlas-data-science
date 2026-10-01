@@ -68,6 +68,32 @@ const LIST: CalcFunction[] = [
     },
   ),
   entry(
+    'cubica-recorrido',
+    'x^3 - 6x^2 + 9x',
+    (x) => x ** 3 - 6 * x * x + 9 * x,
+    (x) => 3 * x * x - 12 * x + 9,
+    (x) => 6 * x - 12,
+    [0, 4],
+    {
+      derivativeLatex: '3x^2 - 12x + 9',
+      antiderivative: (x) => x ** 4 / 4 - 2 * x ** 3 + (9 * x * x) / 2,
+      antiderivativeLatex: '\\tfrac{x^4}{4} - 2x^3 + \\tfrac{9x^2}{2}',
+    },
+  ),
+  entry(
+    'costo',
+    'x^3 - 6x^2 + 15x',
+    (x) => x ** 3 - 6 * x * x + 15 * x,
+    (x) => 3 * x * x - 12 * x + 15,
+    (x) => 6 * x - 12,
+    [0, 4.5],
+    {
+      derivativeLatex: '3x^2 - 12x + 15',
+      antiderivative: (x) => x ** 4 / 4 - 2 * x ** 3 + (15 * x * x) / 2,
+      antiderivativeLatex: '\\tfrac{x^4}{4} - 2x^3 + \\tfrac{15x^2}{2}',
+    },
+  ),
+  entry(
     'cuartica',
     'x^4 - 4x^2 + x',
     (x) => x ** 4 - 4 * x * x + x,
@@ -206,6 +232,19 @@ const LIST: CalcFunction[] = [
       derivativeLatex: '-2x\\,e^{-x^2}',
       antiderivative: (x) => (SQRT_PI / 2) * erf(x),
       antiderivativeLatex: '\\tfrac{\\sqrt{\\pi}}{2}\\operatorname{erf}(x)',
+    },
+  ),
+  entry(
+    'gauss-medio',
+    'e^{-x^2/2}',
+    (x) => Math.exp(-x * x / 2),
+    (x) => -x * Math.exp(-x * x / 2),
+    (x) => (x * x - 1) * Math.exp(-x * x / 2),
+    [-4, 4],
+    {
+      derivativeLatex: '-x\\,e^{-x^2/2}',
+      antiderivative: (x) => Math.sqrt(Math.PI / 2) * erf(x / Math.SQRT2),
+      antiderivativeLatex: '\\sqrt{\\tfrac{\\pi}{2}}\\operatorname{erf}\\big(\\tfrac{x}{\\sqrt{2}}\\big)',
     },
   ),
   entry(

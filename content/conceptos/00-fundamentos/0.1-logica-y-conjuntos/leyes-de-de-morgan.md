@@ -39,7 +39,7 @@ publicado: true
 
 ## Intuición
 
-Una aerolínea permite abordar sin pagar cargo extra si el equipaje no es pesado ni voluminoso. Hay dos maneras de describir quién paga el cargo: "quien lleva equipaje pesado o voluminoso". Y dos maneras de describir quién no lo paga: "quien no lleva equipaje pesado ni voluminoso", que es lo mismo que "quien no lleva equipaje pesado y tampoco voluminoso".
+Una aerolínea permite abordar sin pagar cargo extra si el equipaje no es pesado ni voluminoso. Paga el cargo "quien lleva equipaje pesado o voluminoso". Quien no lo paga admite dos descripciones equivalentes: "no es cierto que lleve equipaje pesado o voluminoso" y "no lleva equipaje pesado y tampoco voluminoso".
 
 Esa traducción es la ley de De Morgan. Lo que queda fuera de una unión es lo que no está en ninguna de las partes, es decir, lo que está fuera de la primera y también fuera de la segunda. Y lo que no cumple dos condiciones a la vez es lo que falla en al menos una: para no aprobar una materia que exige examen y proyecto basta fallar cualquiera de los dos.
 
@@ -131,7 +131,7 @@ Usamos doble contención con la ley lógica: $x \in (A \cup B)^c$ equivale a $\l
 ## Errores comunes
 
 - **Distribuir el complemento sin cambiar la operación.** $(A \cup B)^c \neq A^c \cup B^c$ en general.
-- **Negar "ni... ni" como "o".** "No es cierto que llueva o nieve" significa que no llueve y no nieva.
+- **Negar una "o" dejándola como "o".** "No es cierto que llueva o nieve" significa que no llueve y no nieva, no que "no llueve o no nieva": esta última frase es cierta en un día de lluvia sin nieve, y la original no.
 - **Filtrar datos con condiciones negadas mal agrupadas.** Excluir registros "con edad faltante o ingreso faltante" deja los que tienen ambos datos, no los que tienen al menos uno.
 - **Olvidar el universo.** Los complementos se toman respecto del mismo $U$ en ambos lados.
 

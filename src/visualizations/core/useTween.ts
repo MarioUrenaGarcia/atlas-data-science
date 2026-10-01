@@ -24,7 +24,13 @@ export function useTween(target: readonly number[], duration = 350): number[] {
 
   useEffect(() => {
     const goal = parse(key);
-    if (reducedMotion || duration <= 0 || shown.current.length !== goal.length) {
+    // Without animation the target is returned directly during rendering, so no
+    // state update is needed; skipping it avoids a second render on every change.
+    if (reducedMotion || duration <= 0) {
+      shown.current = goal;
+      return;
+    }
+    if (shown.current.length !== goal.length) {
       shown.current = goal;
       setCurrent(goal);
       return;
@@ -47,6 +53,7 @@ export function useTween(target: readonly number[], duration = 350): number[] {
     return () => cancelAnimationFrame(frame);
   }, [key, duration, reducedMotion]);
 
+  if (reducedMotion || duration <= 0) return [...target];
   // When the length changes the new target is shown immediately.
   return current.length === target.length ? current : [...target];
 }

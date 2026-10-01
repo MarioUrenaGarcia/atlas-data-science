@@ -22,7 +22,7 @@ etiquetas:
 resumen: >
   Un sistema de ecuaciones lineales se escribe Ax = b; puede tener una solución, infinitas o ninguna,
   según las rectas o planos se corten en un punto, coincidan o sean paralelos.
-formula: 'A\mathbf{x} = \mathbf{b} \ \text{tiene solución} \iff \mathbf{b} \in C(A) \iff \operatorname{rango}(A) = \operatorname{rango}[A \mid \mathbf{b}]'
+formula: '\mathbf{A}\mathbf{x} = \mathbf{b} \ \text{tiene solución} \iff \mathbf{b} \in C(\mathbf{A}) \iff \operatorname{rango}(\mathbf{A}) = \operatorname{rango}[\mathbf{A} \mid \mathbf{b}]'
 visualizacion:
   componente: VectorPlane
   parametros:
@@ -46,7 +46,7 @@ publicado: true
 
 Cada ecuación lineal con dos incógnitas es una recta en el plano: los puntos que la cumplen. Resolver un sistema de dos ecuaciones es encontrar los puntos que cumplen ambas, es decir, donde se cortan las dos rectas. Dos rectas en el plano solo pueden hacer tres cosas: cortarse en un punto, ser paralelas y nunca tocarse, o ser la misma recta. Por eso un sistema lineal tiene exactamente una solución, ninguna o infinitas; nunca dos ni diez.
 
-Hay una segunda lectura, por columnas. El sistema $A\mathbf{x} = \mathbf{b}$ pregunta con qué pesos hay que combinar las columnas de $A$ para llegar a $\mathbf{b}$. Si las columnas generan todo el plano, hay una combinación y es única. Si están sobre una misma recta y $\mathbf{b}$ está fuera de ella, no hay manera de alcanzarlo; si $\mathbf{b}$ está en la recta, hay infinitas maneras. Ambas lecturas describen el mismo sistema.
+Hay una segunda lectura, por columnas. El sistema $\mathbf{A}\mathbf{x} = \mathbf{b}$ pregunta con qué pesos hay que combinar las columnas de $\mathbf{A}$ para llegar a $\mathbf{b}$. Si las columnas generan todo el plano, hay una combinación y es única. Si están sobre una misma recta y $\mathbf{b}$ está fuera de ella, no hay manera de alcanzarlo; si $\mathbf{b}$ está en la recta, hay infinitas maneras. Ambas lecturas describen el mismo sistema.
 
 ## Definición
 
@@ -58,27 +58,27 @@ a_{11}x_1 + \dots + a_{1n}x_n &= b_1 \\
 &\ \,\vdots \\
 a_{m1}x_1 + \dots + a_{mn}x_n &= b_m
 \end{aligned}
-\qquad\Longleftrightarrow\qquad A\mathbf{x} = \mathbf{b}.
+\qquad\Longleftrightarrow\qquad \mathbf{A}\mathbf{x} = \mathbf{b}.
 $$
 Es **homogéneo** si $\mathbf{b} = \mathbf{0}$. Es **compatible** si tiene al menos una solución e **incompatible** si no tiene ninguna.
 :::
 
 :::teorema[Rouché-Frobenius]
-$A\mathbf{x} = \mathbf{b}$ tiene solución si y solo si $\operatorname{rango}(A) = \operatorname{rango}[A \mid \mathbf{b}]$. En ese caso la solución es única si el rango es $n$, y hay infinitas, con $n - \operatorname{rango}(A)$ parámetros libres, si es menor.
+$\mathbf{A}\mathbf{x} = \mathbf{b}$ tiene solución si y solo si $\operatorname{rango}(\mathbf{A}) = \operatorname{rango}[\mathbf{A} \mid \mathbf{b}]$. En ese caso la solución es única si el rango es $n$, y hay infinitas, con $n - \operatorname{rango}(\mathbf{A})$ parámetros libres, si es menor.
 :::
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz de coeficientes, de $m \times n$.
+- $\mathbf{A}$: matriz de coeficientes, de $m \times n$.
 - $a_{ij}$: coeficiente de la incógnita $x_j$ en la ecuación $i$.
 - $\mathbf{x} = (x_1, \dots, x_n)$: vector de incógnitas.
 - $\mathbf{b} = (b_1, \dots, b_m)$: lado derecho.
-- $[A \mid \mathbf{b}]$: matriz aumentada, $A$ con la columna $\mathbf{b}$ agregada.
+- $[\mathbf{A} \mid \mathbf{b}]$: matriz aumentada, $\mathbf{A}$ con la columna $\mathbf{b}$ agregada.
 - $m$, $n$: número de ecuaciones y de incógnitas.
 :::
 
 ## Cómo usar la visualización
 
-El selector elige un sistema de dos ecuaciones. En la vista de filas cada ecuación es una recta y la solución es su intersección; en la vista de columnas se combinan las dos columnas de $A$ con los pesos $x$ y $y$ para llegar al lado derecho. Los controles cambian los coeficientes, y el panel muestra el determinante, el tipo de sistema y la solución.
+El selector elige un sistema de dos ecuaciones. En la vista de filas cada ecuación es una recta y la solución es su intersección; en la vista de columnas se combinan las dos columnas de $\mathbf{A}$ con los pesos $x$ y $y$ para llegar al lado derecho. Los controles cambian los coeficientes, y el panel muestra el determinante, el tipo de sistema y la solución.
 
 En el sistema sin solución las rectas son paralelas y, en la vista de columnas, las dos columnas apuntan en la misma dirección mientras que el lado derecho se sale de ella. Al cambiar un solo coeficiente para que el determinante deje de ser cero, las rectas se cortan y aparece una solución única.
 
@@ -103,8 +103,8 @@ ecuaciones: [[1, 1, 5], [8, 5, 34]]
 
 - **Tres casos:** un sistema lineal tiene una, ninguna o infinitas soluciones.
 - **Sistemas homogéneos:** siempre tienen la solución $\mathbf{x} = \mathbf{0}$; sus soluciones forman el espacio nulo.
-- **Estructura de las soluciones:** si $\mathbf{x}_p$ resuelve $A\mathbf{x} = \mathbf{b}$, todas las soluciones son $\mathbf{x}_p + \mathbf{n}$ con $\mathbf{n} \in N(A)$.
-- **Matriz cuadrada:** si $\det A \neq 0$, la única solución es $\mathbf{x} = A^{-1}\mathbf{b}$.
+- **Estructura de las soluciones:** si $\mathbf{x}_p$ resuelve $\mathbf{A}\mathbf{x} = \mathbf{b}$, todas las soluciones son $\mathbf{x}_p + \mathbf{n}$ con $\mathbf{n} \in N(\mathbf{A})$.
+- **Matriz cuadrada:** si $\det \mathbf{A} \neq 0$, la única solución es $\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$.
 - **Operaciones equivalentes:** intercambiar ecuaciones, multiplicar una por un número no nulo o sumarle un múltiplo de otra no cambia las soluciones.
 - **En el espacio:** con tres incógnitas cada ecuación es un plano, y la solución es la intersección de planos: un punto, una recta, un plano o nada.
 
@@ -121,7 +121,7 @@ alternativas:
 :::
 
 :::demostracion
-Tres casos: si $\mathbf{x}_1 \neq \mathbf{x}_2$ son soluciones, $A(\mathbf{x}_1 - \mathbf{x}_2) = \mathbf{0}$ con $\mathbf{x}_1 - \mathbf{x}_2 \neq \mathbf{0}$. Entonces $\mathbf{x}_1 + t(\mathbf{x}_1 - \mathbf{x}_2)$ es solución para todo $t$: en cuanto hay dos, hay infinitas.
+Tres casos: si $\mathbf{x}_1 \neq \mathbf{x}_2$ son soluciones, $\mathbf{A}(\mathbf{x}_1 - \mathbf{x}_2) = \mathbf{0}$ con $\mathbf{x}_1 - \mathbf{x}_2 \neq \mathbf{0}$. Entonces $\mathbf{x}_1 + t(\mathbf{x}_1 - \mathbf{x}_2)$ es solución para todo $t$: en cuanto hay dos, hay infinitas.
 :::
 
 ## Errores comunes
@@ -133,30 +133,30 @@ Tres casos: si $\mathbf{x}_1 \neq \mathbf{x}_2$ son soluciones, $A(\mathbf{x}_1 
 
 ## Conexiones
 
-La existencia y el número de soluciones se leen del [[teorema-del-rango-y-la-nulidad]] y de si $\mathbf{b}$ está en el espacio columna. Con matriz cuadrada invertible la solución es $A^{-1}\mathbf{b}$, como en [[matriz-identidad-y-matriz-inversa]]. El método general de resolución es la [[eliminacion-gaussiana]], que la [[descomposicion-lu]] organiza para muchos lados derechos. Cuando no hay solución exacta, los mínimos cuadrados buscan la mejor aproximación con la [[pseudoinversa-de-moore-penrose]].
+La existencia y el número de soluciones se leen del [[teorema-del-rango-y-la-nulidad]] y de si $\mathbf{b}$ está en el espacio columna. Con matriz cuadrada invertible la solución es $\mathbf{A}^{-1}\mathbf{b}$, como en [[matriz-identidad-y-matriz-inversa]]. El método general de resolución es la [[eliminacion-gaussiana]], que la [[descomposicion-lu]] organiza para muchos lados derechos. Cuando no hay solución exacta, los mínimos cuadrados buscan la mejor aproximación con la [[pseudoinversa-de-moore-penrose]].
 
 ## Formulario
 
 :::formula[Forma matricial]
 $$
-A\mathbf{x} = \mathbf{b}, \qquad x_1\mathbf{a}_1 + \dots + x_n\mathbf{a}_n = \mathbf{b}
+\mathbf{A}\mathbf{x} = \mathbf{b}, \qquad x_1\mathbf{a}_1 + \dots + x_n\mathbf{a}_n = \mathbf{b}
 $$
 
-- $\mathbf{a}_j$: columna $j$ de $A$.
+- $\mathbf{a}_j$: columna $j$ de $\mathbf{A}$.
 - $x_j$: incógnita $j$, peso de la columna $j$.
 :::
 
 :::formula[Existencia]
 $$
-\operatorname{rango}(A) = \operatorname{rango}[A \mid \mathbf{b}]
+\operatorname{rango}(\mathbf{A}) = \operatorname{rango}[\mathbf{A} \mid \mathbf{b}]
 $$
 
-- $[A \mid \mathbf{b}]$: matriz aumentada.
+- $[\mathbf{A} \mid \mathbf{b}]$: matriz aumentada.
 :::
 
 :::formula[Solución general]
 $$
-\mathbf{x} = \mathbf{x}_p + c_1\mathbf{n}_1 + \dots + c_k\mathbf{n}_k, \qquad k = n - \operatorname{rango}(A)
+\mathbf{x} = \mathbf{x}_p + c_1\mathbf{n}_1 + \dots + c_k\mathbf{n}_k, \qquad k = n - \operatorname{rango}(\mathbf{A})
 $$
 
 - $\mathbf{x}_p$: solución particular.
@@ -166,8 +166,8 @@ $$
 
 :::formula[Caso cuadrado invertible]
 $$
-\det A \neq 0 \ \Rightarrow\ \mathbf{x} = A^{-1}\mathbf{b}
+\det \mathbf{A} \neq 0 \ \Rightarrow\ \mathbf{x} = \mathbf{A}^{-1}\mathbf{b}
 $$
 
-- $A^{-1}$: inversa de $A$.
+- $\mathbf{A}^{-1}$: inversa de $\mathbf{A}$.
 :::

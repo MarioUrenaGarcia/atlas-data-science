@@ -19,7 +19,7 @@ etiquetas:
 resumen: >
   La traza de una matriz cuadrada es la suma de su diagonal; es lineal, cumple tr(AB) = tr(BA) y es igual a
   la suma de los valores propios.
-formula: '\operatorname{tr}A = \sum_{i=1}^{n} a_{ii} = \sum_{i=1}^{n}\lambda_i, \qquad \operatorname{tr}(AB) = \operatorname{tr}(BA)'
+formula: '\operatorname{tr}\mathbf{A} = \sum_{i=1}^{n} a_{ii} = \sum_{i=1}^{n}\lambda_i, \qquad \operatorname{tr}(\mathbf{A}\mathbf{B}) = \operatorname{tr}(\mathbf{B}\mathbf{A})'
 visualizacion:
   componente: MatrixGrid
   parametros:
@@ -42,39 +42,39 @@ En estadística aparece con un significado concreto: la traza de una matriz de c
 ## Definición
 
 :::definicion[Traza]
-Para $A \in \mathbb{R}^{n \times n}$,
+Para $\mathbf{A} \in \mathbb{R}^{n \times n}$,
 $$
-\operatorname{tr}A = a_{11} + a_{22} + \dots + a_{nn} = \sum_{i=1}^{n} a_{ii}.
+\operatorname{tr}\mathbf{A} = a_{11} + a_{22} + \dots + a_{nn} = \sum_{i=1}^{n} a_{ii}.
 $$
 :::
 
 :::teorema[Traza y valores propios]
-Si $\lambda_1, \dots, \lambda_n$ son los valores propios de $A$ contados con multiplicidad (posiblemente complejos), entonces $\operatorname{tr}A = \lambda_1 + \dots + \lambda_n$.
+Si $\lambda_1, \dots, \lambda_n$ son los valores propios de $\mathbf{A}$ contados con multiplicidad (posiblemente complejos), entonces $\operatorname{tr}\mathbf{A} = \lambda_1 + \dots + \lambda_n$.
 :::
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz cuadrada de $n \times n$.
+- $\mathbf{A}$: matriz cuadrada de $n \times n$.
 - $a_{ii}$: entrada $i$ de la diagonal.
-- $\operatorname{tr}A$: traza de $A$.
-- $\lambda_i$: valores propios de $A$.
+- $\operatorname{tr}\mathbf{A}$: traza de $\mathbf{A}$.
+- $\lambda_i$: valores propios de $\mathbf{A}$.
 - $n$: tamaño de la matriz.
 :::
 
 ## Cómo usar la visualización
 
-Cada paso suma una entrada de la diagonal de $A$, resaltada, mientras el resto de la matriz aparece atenuado; la fórmula muestra la suma parcial. Al terminar se muestran $AB$ y $BA$ con sus diagonales resaltadas. El panel lista las trazas de $A$, $B$, $A + B$, $AB$ y $BA$.
+Cada paso suma una entrada de la diagonal de $\mathbf{A}$, resaltada, mientras el resto de la matriz aparece atenuado; la fórmula muestra la suma parcial. Al terminar se muestran $\mathbf{A}\mathbf{B}$ y $\mathbf{B}\mathbf{A}$ con sus diagonales resaltadas. El panel lista las trazas de $\mathbf{A}$, $\mathbf{B}$, $\mathbf{A} + \mathbf{B}$, $\mathbf{A}\mathbf{B}$ y $\mathbf{B}\mathbf{A}$.
 
-Las matrices $AB$ y $BA$ son claramente distintas, pero sus diagonales suman lo mismo. La traza de $A + B$ es la suma de las trazas. Las entradas fuera de la diagonal no intervienen en la traza de $A$.
+Las matrices $\mathbf{A}\mathbf{B}$ y $\mathbf{B}\mathbf{A}$ son claramente distintas, pero sus diagonales suman lo mismo. La traza de $\mathbf{A} + \mathbf{B}$ es la suma de las trazas. Las entradas fuera de la diagonal no intervienen en la traza de $\mathbf{A}$.
 
 ## Ejemplo
 
-Tres indicadores de salud de un grupo de pacientes tienen matriz de covarianzas $\Sigma = \begin{pmatrix} 4 & 1 & 0 \\ 1 & 9 & 2 \\ 0 & 2 & 1 \end{pmatrix}$.
+Tres indicadores de salud de un grupo de pacientes tienen matriz de covarianzas $\boldsymbol{\\Sigma} = \begin{pmatrix} 4 & 1 & 0 \\ 1 & 9 & 2 \\ 0 & 2 & 1 \end{pmatrix}$.
 
-1. Varianza total: $\operatorname{tr}\Sigma = 4 + 9 + 1 = 14$.
+1. Varianza total: $\operatorname{tr}\boldsymbol{\\Sigma} = 4 + 9 + 1 = 14$.
 2. La covarianza entre indicadores (entradas fuera de la diagonal) no cambia ese total.
-3. Si los datos se rotan a sus componentes principales, las varianzas nuevas son los valores propios de $\Sigma$, y también suman 14.
+3. Si los datos se rotan a sus componentes principales, las varianzas nuevas son los valores propios de $\boldsymbol{\\Sigma}$, y también suman 14.
 4. La proporción de varianza explicada por una componente es su valor propio dividido entre 14.
-5. Con la matriz $D = \operatorname{diag}(1, 2, 3)$: $\operatorname{tr}(\Sigma D) = 4 + 18 + 3 = 25 = \operatorname{tr}(D\Sigma)$.
+5. Con la matriz $\mathbf{D} = \operatorname{diag}(1, 2, 3)$: $\operatorname{tr}(\boldsymbol{\\Sigma} \mathbf{D}) = 4 + 18 + 3 = 25 = \operatorname{tr}(\mathbf{D}\boldsymbol{\\Sigma})$.
 
 :::figura[La matriz de covarianzas del ejemplo y la diagonal D: la traza de Σ es 14 y la de ΣD coincide con la de DΣ.]{componente="MatrixGrid"}
 ```yaml
@@ -86,12 +86,12 @@ b: [[1, 0, 0], [0, 2, 0], [0, 0, 3]]
 
 ## Propiedades
 
-- **Linealidad:** $\operatorname{tr}(A + B) = \operatorname{tr}A + \operatorname{tr}B$ y $\operatorname{tr}(cA) = c\operatorname{tr}A$.
-- **Transpuesta:** $\operatorname{tr}A^\top = \operatorname{tr}A$.
-- **Propiedad cíclica:** $\operatorname{tr}(AB) = \operatorname{tr}(BA)$ y $\operatorname{tr}(ABC) = \operatorname{tr}(BCA) = \operatorname{tr}(CAB)$, aunque los productos sean distintos.
-- **Invariancia por semejanza:** $\operatorname{tr}(P^{-1}AP) = \operatorname{tr}A$.
-- **Norma de Frobenius:** $\lVert A \rVert_F^2 = \operatorname{tr}(A^\top A)$.
-- **Formas cuadráticas:** $\mathbf{x}^\top A\mathbf{x} = \operatorname{tr}(A\mathbf{x}\mathbf{x}^\top)$, truco usado para calcular esperanzas de formas cuadráticas.
+- **Linealidad:** $\operatorname{tr}(\mathbf{A} + \mathbf{B}) = \operatorname{tr}\mathbf{A} + \operatorname{tr}\mathbf{B}$ y $\operatorname{tr}(cA) = c\operatorname{tr}\mathbf{A}$.
+- **Transpuesta:** $\operatorname{tr}\mathbf{A}^\top = \operatorname{tr}\mathbf{A}$.
+- **Propiedad cíclica:** $\operatorname{tr}(\mathbf{A}\mathbf{B}) = \operatorname{tr}(\mathbf{B}\mathbf{A})$ y $\operatorname{tr}(\mathbf{A}\mathbf{B}\mathbf{C}) = \operatorname{tr}(\mathbf{B}\mathbf{C}\mathbf{A}) = \operatorname{tr}(\mathbf{C}\mathbf{A}\mathbf{B})$, aunque los productos sean distintos.
+- **Invariancia por semejanza:** $\operatorname{tr}(\mathbf{P}^{-1}\mathbf{A}\mathbf{P}) = \operatorname{tr}\mathbf{A}$.
+- **Norma de Frobenius:** $\lVert \mathbf{A} \rVert_F^2 = \operatorname{tr}(\mathbf{A}^\top \mathbf{A})$.
+- **Formas cuadráticas:** $\mathbf{x}^\top \mathbf{A}\mathbf{x} = \operatorname{tr}(\mathbf{A}\mathbf{x}\mathbf{x}^\top)$, truco usado para calcular esperanzas de formas cuadráticas.
 
 :::figura[Caso de la relación con los valores propios: la matriz [[3, 1], [2, 2]] tiene traza 5 y valores propios 4 y 1, que suman 5.]{componente="MatrixTransform"}
 ```yaml
@@ -104,14 +104,14 @@ matrices:
 :::
 
 :::demostracion
-Propiedad cíclica: $\operatorname{tr}(AB) = \sum_i (AB)_{ii} = \sum_i\sum_k a_{ik}b_{ki} = \sum_k\sum_i b_{ki}a_{ik} = \sum_k (BA)_{kk} = \operatorname{tr}(BA)$.
+Propiedad cíclica: $\operatorname{tr}(\mathbf{A}\mathbf{B}) = \sum_i (\mathbf{A}\mathbf{B})_{ii} = \sum_i\sum_k a_{ik}b_{ki} = \sum_k\sum_i b_{ki}a_{ik} = \sum_k (\mathbf{B}\mathbf{A})_{kk} = \operatorname{tr}(\mathbf{B}\mathbf{A})$.
 :::
 
 ## Errores comunes
 
-- **Escribir $\operatorname{tr}(AB) = \operatorname{tr}A\,\operatorname{tr}B$.** La traza no es multiplicativa; $\operatorname{tr}(I_2 I_2) = 2 \neq 4$.
-- **Reordenar libremente los factores.** Solo se permiten permutaciones cíclicas: $\operatorname{tr}(ABC) \neq \operatorname{tr}(ACB)$ en general.
-- **Hablar de la traza de una matriz no cuadrada.** Solo está definida para matrices cuadradas, aunque $AB$ y $BA$ puedan serlo con $A$ y $B$ rectangulares.
+- **Escribir $\operatorname{tr}(\mathbf{A}\mathbf{B}) = \operatorname{tr}\mathbf{A}\,\operatorname{tr}\mathbf{B}$.** La traza no es multiplicativa; $\operatorname{tr}(\mathbf{I}_2 \mathbf{I}_2) = 2 \neq 4$.
+- **Reordenar libremente los factores.** Solo se permiten permutaciones cíclicas: $\operatorname{tr}(\mathbf{A}\mathbf{B}\mathbf{C}) \neq \operatorname{tr}(\mathbf{A}\mathbf{C}\mathbf{B})$ en general.
+- **Hablar de la traza de una matriz no cuadrada.** Solo está definida para matrices cuadradas, aunque $\mathbf{A}\mathbf{B}$ y $\mathbf{B}\mathbf{A}$ puedan serlo con $\mathbf{A}$ y $\mathbf{B}$ rectangulares.
 - **Confundir traza con determinante.** La traza suma los valores propios; el determinante los multiplica.
 
 ## Conexiones
@@ -122,7 +122,7 @@ La traza es la suma de los [[valores-y-vectores-propios|valores propios]] y apar
 
 :::formula[Traza]
 $$
-\operatorname{tr}A = \sum_{i=1}^{n} a_{ii}
+\operatorname{tr}\mathbf{A} = \sum_{i=1}^{n} a_{ii}
 $$
 
 - $a_{ii}$: entradas de la diagonal.
@@ -130,7 +130,7 @@ $$
 
 :::formula[Traza y valores propios]
 $$
-\operatorname{tr}A = \sum_{i=1}^{n}\lambda_i
+\operatorname{tr}\mathbf{A} = \sum_{i=1}^{n}\lambda_i
 $$
 
 - $\lambda_i$: valores propios con multiplicidad.
@@ -138,16 +138,16 @@ $$
 
 :::formula[Propiedad cíclica]
 $$
-\operatorname{tr}(AB) = \operatorname{tr}(BA), \qquad \operatorname{tr}(ABC) = \operatorname{tr}(CAB)
+\operatorname{tr}(\mathbf{A}\mathbf{B}) = \operatorname{tr}(\mathbf{B}\mathbf{A}), \qquad \operatorname{tr}(\mathbf{A}\mathbf{B}\mathbf{C}) = \operatorname{tr}(\mathbf{C}\mathbf{A}\mathbf{B})
 $$
 
-- $A, B, C$: matrices de tamaños compatibles.
+- $\mathbf{A}, \mathbf{B}, \mathbf{C}$: matrices de tamaños compatibles.
 :::
 
 :::formula[Frobenius]
 $$
-\lVert A \rVert_F^2 = \operatorname{tr}(A^\top A) = \sum_{i,j} a_{ij}^2
+\lVert \mathbf{A} \rVert_F^2 = \operatorname{tr}(\mathbf{A}^\top \mathbf{A}) = \sum_{i,j} a_{ij}^2
 $$
 
-- $\lVert A \rVert_F$: norma de Frobenius.
+- $\lVert \mathbf{A} \rVert_F$: norma de Frobenius.
 :::

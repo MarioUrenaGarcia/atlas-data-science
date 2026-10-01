@@ -108,7 +108,7 @@ Serie: se integra término a término la serie de $e^{-t^2} = \sum_{n \ge 0}\fra
 ## Errores comunes
 
 - **Olvidar el factor $\sqrt{2}$.** $\Phi(z)$ usa $\operatorname{erf}(z/\sqrt{2})$, no $\operatorname{erf}(z)$.
-- **Confundir erf con la probabilidad de un solo lado.** $\operatorname{erf}$ da la probabilidad en un intervalo simétrico; la de un lado es la mitad más un medio.
+- **Confundir erf con la probabilidad de un solo lado.** $\operatorname{erf}$ da la probabilidad en un intervalo simétrico; la acumulada de un lado es $\Phi(z) = \tfrac{1}{2} + \tfrac{1}{2}\operatorname{erf}(z/\sqrt{2})$, donde $\Phi$ es la función de distribución normal estándar y $z$ el punto de corte.
 - **Buscar una antiderivada elemental de $e^{-x^2}$.** No existe; por eso se definió la función error.
 - **Restar números casi iguales en las colas.** Para $x$ grande conviene usar $\operatorname{erfc}$ directamente en lugar de $1 - \operatorname{erf}(x)$.
 

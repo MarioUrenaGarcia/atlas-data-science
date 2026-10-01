@@ -69,7 +69,7 @@ $$
 
 La gráfica usa escala logarítmica en el eje vertical: su altura es el número de cifras. Las curvas muestran $n!$, la aproximación de Stirling, $2^n$ y $n^n$, y se dibujan conforme avanza la reproducción. El control marca un valor de $n$; el panel muestra $n!$, su aproximación, el error relativo y el número de cifras.
 
-En $n = 5$ la aproximación de Stirling se queda corta en cerca de 1.6 %; en $n = 20$ el error baja a unas cuatro décimas de punto porcentual, aunque el número tiene 19 cifras. La curva de $n!$ queda siempre entre la de $2^n$ y la de $n^n$, y se separa de la exponencial cada vez más.
+En $n = 5$ la aproximación de Stirling se queda corta en cerca de 1.6 %; en $n = 20$ el error baja a unas cuatro décimas de punto porcentual, aunque el número tiene 19 cifras. A partir de $n = 4$ la curva de $n!$ queda entre la de $2^n$ y la de $n^n$ (para $n = 1, 2, 3$ todavía $n! < 2^n$), y se separa de la exponencial cada vez más.
 
 ## Ejemplo
 
