@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
-import { DATA_COLORS } from '../../core/colors.ts';
-import svgStyles from '../../core/svg/svg.module.css';
-import { useResponsiveSize } from '../../core/useResponsiveSize.ts';
+import { DATA_COLORS } from '../colors.ts';
+import svgStyles from '../svg/svg.module.css';
+import { useResponsiveSize } from '../useResponsiveSize.ts';
 import { project, type Camera, type Vec3 } from './projection.ts';
-import styles from './Space3D.module.css';
+import styles from './scene3d.module.css';
 import { useCameraDrag } from './useCamera.ts';
 
 const ASPECT = 0.75;

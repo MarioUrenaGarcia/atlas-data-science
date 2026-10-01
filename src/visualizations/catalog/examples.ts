@@ -1,4 +1,5 @@
 import { DESCRIPTIVE_EXAMPLES } from './examples/descriptive.ts';
+import { MULTIVARIABLE_EXAMPLES } from './examples/multivariable.ts';
 
 /** Sample configurations shown in the development catalog, one or more per visualization. */
 export interface CatalogExample {
@@ -941,4 +942,5 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     },
   },
   ...DESCRIPTIVE_EXAMPLES,
+  ...MULTIVARIABLE_EXAMPLES,
 ];
