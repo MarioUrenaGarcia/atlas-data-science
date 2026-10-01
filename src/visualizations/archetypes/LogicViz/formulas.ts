@@ -27,6 +27,7 @@ export const FORMULA_IDS = [
   'contradiccion',
   'tercero-excluido',
   'xor-vs-o',
+  'alcance-negacion',
 ] as const;
 
 export type FormulaId = (typeof FORMULA_IDS)[number];
@@ -62,5 +63,9 @@ export const FORMULAS: Record<FormulaId, { label: string; formula: Formula }> = 
   'xor-vs-o': {
     label: 'Disyunción exclusiva frente a inclusiva',
     formula: iff(xor(p, q), or(p, q)),
+  },
+  'alcance-negacion': {
+    label: 'Alcance de la negación',
+    formula: iff(and(not(p), q), not(and(p, q))),
   },
 };

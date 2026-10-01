@@ -21,6 +21,8 @@ export function ParameterControls({
   return (
     <div className={styles.parameters}>
       {definitions.map((definition) => {
+        const condition = definition.shownWhen;
+        if (condition && !condition.values.includes(String(values[condition.key]))) return null;
         const isDisabled = disabled.includes(definition.key);
         if (definition.type === 'number') {
           return (

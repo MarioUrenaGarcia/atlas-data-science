@@ -60,10 +60,10 @@ export function TraceView({ title, a, b }: TraceViewProps) {
     .join(' + ');
   const latex =
     step === 0
-      ? `\\operatorname{tr}(A) = \\sum_{i=1}^{${n}} a_{ii}`
+      ? `\\operatorname{tr}(\\mathbf{A}) = \\sum_{i=1}^{${n}} a_{ii}`
       : step <= n
-        ? `\\operatorname{tr}(A) = ${summed.replace(/\+ -/g, '- ')}${step < n ? ' + \\cdots' : ''} = ${formatFraction(partial)}`
-        : `\\operatorname{tr}(AB) = ${formatFraction(trace(ab))} = \\operatorname{tr}(BA)`;
+        ? `\\operatorname{tr}(\\mathbf{A}) = ${summed.replace(/\+ -/g, '- ')}${step < n ? ' + \\cdots' : ''} = ${formatFraction(partial)}`
+        : `\\operatorname{tr}(\\mathbf{A}\\mathbf{B}) = ${formatFraction(trace(ab))} = \\operatorname{tr}(\\mathbf{B}\\mathbf{A})`;
   const text =
     step <= n
       ? 'Se suman las entradas de la diagonal; el resto de la matriz no interviene.'

@@ -7,6 +7,8 @@ import type { PascalTriangleConfig } from './schema.ts';
 import { TriangleView } from './TriangleView.tsx';
 
 /** Binomial and multinomial coefficients: the triangle, grid paths, identities and expansions. */
+const GROUP_NAMES: readonly [string, string] = ['miembros de A', 'miembros de B'];
+
 export default function PascalTriangle({ params, title }: VisualizationProps) {
   const config = params as unknown as PascalTriangleConfig;
   switch (config.modo) {
@@ -23,6 +25,7 @@ export default function PascalTriangle({ params, title }: VisualizationProps) {
           n={config.n ?? 5}
           k={config.k ?? 2}
           groups={config.grupos ?? [3, 4]}
+          groupNames={config.nombresGrupos ?? GROUP_NAMES}
         />
       );
     case 'binomio':

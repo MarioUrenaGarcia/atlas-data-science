@@ -85,9 +85,9 @@ Se verifica la identidad $\sum_{k=0}^{n} \binom{n}{k}^2 = \binom{2n}{n}$ para $n
 ```yaml
 modo: identidades
 identidad: vandermonde
-n: 7
 k: 4
 grupos: [4, 4]
+nombresGrupos: [mujeres, hombres]
 ```
 :::
 
@@ -100,7 +100,7 @@ grupos: [4, 4]
 
 ## Errores comunes
 
-- **Olvidar la convención de ceros.** En Vandermonde, términos como $\binom{3}{4}$ valen 0 y no deben omitirse de forma que cambie el rango.
+- **Olvidar la convención de ceros.** Al sumar de $j = 0$ a $r$ en Vandermonde, los términos con $j > m$ o $r - j > p$ valen 0, como $\binom{3}{4} = 0$. Se pueden omitir, pero la fórmula no cambia por ello: el rango sigue siendo de $0$ a $r$.
 - **Tratar los casos como no disjuntos.** En una demostración por casos hay que verificar que cada objeto cae en exactamente un caso.
 - **Confundir la regla de Pascal con $\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k+1}$.** Los índices inferiores de la suma son $k - 1$ y $k$.
 

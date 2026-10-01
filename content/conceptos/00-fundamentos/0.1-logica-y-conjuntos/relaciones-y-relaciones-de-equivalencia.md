@@ -156,10 +156,10 @@ Una empresa de transporte clasifica 8 viajes por la hora de salida: $6{:}10$, $6
 4. Las clases son $\{6{:}10, 6{:}45\}$, $\{9{:}20, 9{:}55\}$, $\{13{:}05, 13{:}40\}$ y $\{18{:}15, 18{:}50\}$: cuatro bloques disjuntos que cubren los 8 viajes.
 5. En cambio, "salir con menos de 40 minutos de diferencia" no es transitiva: con viajes a las $9{:}00$, $9{:}30$ y $10{:}00$, el primero se relaciona con el segundo y el segundo con el tercero, pero el primero y el tercero difieren 60 minutos.
 
-:::figura[Los 8 viajes del ejemplo como grafo de flechas. "Salir en la misma hora" produce cuatro grupos aislados de flechas de ida y vuelta, las clases de equivalencia. Con "difieren en menos de 40 minutos" aparecen flechas que encadenan viajes sin cerrar el triángulo, y la transitividad falla.]{componente="RelationViz"}
+:::figura[Los 8 viajes del ejemplo y uno más a las $9{:}00$, como grafo de flechas. "Salir en la misma hora" produce cuatro grupos aislados de flechas de ida y vuelta, las clases de equivalencia, con $9{:}00$, $9{:}20$ y $9{:}55$ en la misma clase. Con "difieren en menos de 40 minutos", $9{:}00$ se relaciona con $9{:}20$ y $9{:}20$ con $9{:}55$, pero falta la flecha de $9{:}00$ a $9{:}55$, que difieren 55 minutos: la transitividad falla.]{componente="RelationViz"}
 ```yaml
-elementos: [370, 405, 560, 595, 785, 820, 1095, 1130]
-etiquetas: ['6:10', '6:45', '9:20', '9:55', '13:05', '13:40', '18:15', '18:50']
+elementos: [370, 405, 540, 560, 595, 785, 820, 1095, 1130]
+etiquetas: ['6:10', '6:45', '9:00', '9:20', '9:55', '13:05', '13:40', '18:15', '18:50']
 relacion: misma-hora
 relaciones: [misma-hora, menos-de-40-minutos]
 vista: grafo

@@ -69,7 +69,7 @@ Si $f$ es continua en $[a, b]$, todas las sumas de Riemann convergen al mismo l�
 
 La curva es $e^{-x^2}$ en $[-2, 2]$. La reproducción duplica el número de piezas, de 1 a 128, y dibuja los rectángulos (o trapecios) de cada suma; las piezas bajo el eje aparecen en rosa porque restan. El selector cambia la regla de altura y el panel compara la suma con la integral exacta.
 
-Con la regla del punto medio el error cae muy rápido: al duplicar $n$ se divide aproximadamente entre cuatro. Con los extremos izquierdo o derecho solo se divide entre dos. En una curva simétrica como esta, izquierda y derecha dan la misma suma, porque los errores se compensan entre las dos mitades.
+Con la regla del punto medio el error cae muy rápido: al duplicar $n$ se divide aproximadamente entre cuatro. En esta curva, como $f(-2) = f(2)$, las sumas izquierda y derecha coinciden entre sí y con la del trapecio, y convergen casi tan rápido como el punto medio. Es un caso especial: en una función con valores distintos en los extremos, como $x^2$ en $[0, 2]$ del ejemplo, las sumas izquierda y derecha quedan de lados opuestos de la integral y su error solo se divide entre dos al duplicar $n$.
 
 ## Ejemplo
 

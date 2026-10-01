@@ -46,7 +46,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
       return {
         label: 'Identidad',
         matrix,
-        latex: 'I\\,\\mathbf{x} = \\mathbf{x},\\quad AI = IA = A',
+        latex: '\\mathbf{I}\\,\\mathbf{x} = \\mathbf{x},\\quad \\mathbf{A}\\mathbf{I} = \\mathbf{I}\\mathbf{A} = \\mathbf{A}',
         text: 'Unos en la diagonal y ceros fuera: deja todo vector igual.',
         check: {
           name: 'I x',
@@ -61,7 +61,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
       return {
         label: 'Diagonal',
         matrix,
-        latex: 'd_{ij} = 0 \\text{ si } i \\neq j,\\quad (D\\mathbf{x})_i = d_{ii}\\,x_i',
+        latex: 'd_{ij} = 0 \\text{ si } i \\neq j,\\quad (\\mathbf{D}\\mathbf{x})_i = d_{ii}\\,x_i',
         text: 'Solo la diagonal puede ser distinta de cero: cada coordenada se multiplica por su propio factor.',
         check: {
           name: 'D x',
@@ -76,7 +76,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
       return {
         label: 'Triangular superior',
         matrix,
-        latex: `u_{ij} = 0 \\text{ si } i > j,\\quad \\det U = \\prod_i u_{ii} = ${formatFraction(determinant(matrix))}`,
+        latex: `u_{ij} = 0 \\text{ si } i > j,\\quad \\det \\mathbf{U} = \\prod_i u_{ii} = ${formatFraction(determinant(matrix))}`,
         text: 'Ceros debajo de la diagonal. El determinante es el producto de la diagonal.',
         check: {
           name: 'Uᵀ',
@@ -91,7 +91,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
       return {
         label: 'Triangular inferior',
         matrix,
-        latex: `\\ell_{ij} = 0 \\text{ si } i < j,\\quad \\det L = \\prod_i \\ell_{ii} = ${formatFraction(determinant(matrix))}`,
+        latex: `\\ell_{ij} = 0 \\text{ si } i < j,\\quad \\det \\mathbf{L} = \\prod_i \\ell_{ii} = ${formatFraction(determinant(matrix))}`,
         text: 'Ceros encima de la diagonal. Un sistema L x = b se resuelve de arriba hacia abajo.',
         check: {
           name: 'L L',
@@ -106,7 +106,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
       return {
         label: 'Simétrica',
         matrix,
-        latex: 'A^\\top = A,\\quad a_{ij} = a_{ji}',
+        latex: '\\mathbf{A}^\\top = \\mathbf{A},\\quad a_{ij} = a_{ji}',
         text: 'Es su propio espejo respecto a la diagonal.',
         check: { name: 'Aᵀ', matrix: transpose(matrix), text: 'La transpuesta coincide con A.' },
         forcedZero: () => false,
@@ -117,7 +117,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
       return {
         label: 'Antisimétrica',
         matrix,
-        latex: 'A^\\top = -A,\\quad a_{ii} = 0',
+        latex: '\\mathbf{A}^\\top = -\\mathbf{A},\\quad a_{ii} = 0',
         text: 'El espejo respecto a la diagonal cambia el signo, así que la diagonal es cero.',
         check: { name: 'Aᵀ', matrix: transpose(matrix), text: 'La transpuesta es -A.' },
         forcedZero: (i, j) => i === j,
@@ -129,7 +129,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
         label: 'Ortogonal',
         matrix,
         latex:
-          'Q^\\top Q = I,\\quad Q^{-1} = Q^\\top,\\quad \\lVert Q\\mathbf{x} \\rVert = \\lVert \\mathbf{x} \\rVert',
+          '\\mathbf{Q}^\\top \\mathbf{Q} = \\mathbf{I},\\quad \\mathbf{Q}^{-1} = \\mathbf{Q}^\\top,\\quad \\lVert \\mathbf{Q}\\mathbf{x} \\rVert = \\lVert \\mathbf{x} \\rVert',
         text: 'Sus columnas son unitarias y perpendiculares entre sí: rota o refleja sin cambiar longitudes.',
         check: {
           name: 'QᵀQ',
@@ -145,7 +145,7 @@ export function specialExample(kind: SpecialKind, n: number): SpecialExample {
         label: 'Permutación',
         matrix,
         latex:
-          'P\\mathbf{x} \\text{ reordena las entradas de } \\mathbf{x},\\quad P^{-1} = P^\\top',
+          '\\mathbf{P}\\mathbf{x} \\text{ reordena las entradas de } \\mathbf{x},\\quad \\mathbf{P}^{-1} = \\mathbf{P}^\\top',
         text: 'Un solo 1 en cada fila y en cada columna: reordena las coordenadas.',
         check: {
           name: 'P x',

@@ -88,7 +88,7 @@ export function StretchView({ title, matrices }: StretchViewProps) {
     >
       <p className={styles.formula}>
         <Latex
-          tex={`A = ${matLatex(matrix)},\\quad \\lVert A \\rVert_2 = \\max_{\\lVert \\mathbf{v} \\rVert = 1} \\lVert A\\mathbf{v} \\rVert = \\sigma_1`}
+          tex={`\\mathbf{A} = ${matLatex(matrix)},\\quad \\lVert \\mathbf{A} \\rVert_2 = \\max_{\\lVert \\mathbf{v} \\rVert = 1} \\lVert \\mathbf{A}\\mathbf{v} \\rVert = \\sigma_1`}
         />
       </p>
       <div className={styles.pair}>

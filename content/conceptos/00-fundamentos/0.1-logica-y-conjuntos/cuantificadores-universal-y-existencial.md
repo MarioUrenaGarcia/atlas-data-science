@@ -89,7 +89,7 @@ Sea $D = \{12, 15, 18, 21\}$, las edades de los integrantes de un equipo juvenil
 3. $\exists x \in D:\ x > 20$ es verdadera, con testigo $21$.
 4. La negación de $\forall x \in D:\ Q(x)$ es $\exists x \in D:\ \lnot Q(x)$, "existe una edad impar", verdadera por el mismo contraejemplo.
 
-:::figura[El dominio del ejemplo, las edades 12, 15, 18 y 21. Con "x es múltiplo de 3" la afirmación universal se confirma al revisar todos los elementos; con "x es par" el primer contraejemplo, 15, la refuta de inmediato.]{componente="LogicViz"}
+:::figura[El dominio del ejemplo, las edades 12, 15, 18 y 21. Con "x es múltiplo de 3" la afirmación universal se confirma al revisar todos los elementos; con "x es par" la revisión pasa por 12, que sí es par, y se detiene en 15, el primer contraejemplo.]{componente="LogicViz"}
 ```yaml
 modo: cuantificadores
 predicado: divisible-entre-3
@@ -116,14 +116,20 @@ Si $\lnot \forall x\, P(x)$ es verdadera, no todo elemento cumple $P$, así que 
 - **Intercambiar cuantificadores.** "Todo estudiante tiene un tutor" ($\forall x\, \exists y$) no significa "hay un tutor de todos los estudiantes" ($\exists y\, \forall x$).
 - **Olvidar el dominio.** "$\exists x:\ x^2 = 2$" es falsa en los racionales y verdadera en los reales.
 
-:::figura[El orden de los cuantificadores. Cada estudiante tiene un tutor, así que "para todo estudiante existe un tutor" es verdadera; ningún tutor atiende a todos los estudiantes, así que "existe un tutor para todo estudiante" es falsa.]{componente="FunctionMapping"}
+:::figura[El orden de los cuantificadores. En la tabla de tutorías cada fila tiene alguna marca, así que "todo estudiante tiene un tutor" es verdadera, pero ninguna columna está completa: no hay un tutor de todos. En la segunda relación la columna de la Tutora Ruiz está llena, y entonces las dos afirmaciones son verdaderas.]{componente="LogicViz"}
 ```yaml
-modo: funcion
+modo: orden-cuantificadores
 ejemplos:
-  - nombre: Estudiantes y tutores
-    dominio: [Ana, Beto, Caro, Dani, Eli]
-    codominio: [Tutor 1, Tutor 2, Tutor 3]
-    flechas: [[0, 0], [1, 0], [2, 1], [3, 2], [4, 2]]
+  - nombre: Cada estudiante con su tutor
+    filas: [Ana, Beto, Caro, Dani, Eli]
+    columnas: [Tutor Gil, Tutora Ruiz, Tutor Paz]
+    pares: [[0, 0], [1, 0], [2, 1], [3, 2], [4, 2]]
+    relacion: T
+  - nombre: Una tutora que atiende a todos
+    filas: [Ana, Beto, Caro, Dani, Eli]
+    columnas: [Tutor Gil, Tutora Ruiz, Tutor Paz]
+    pares: [[0, 0], [0, 1], [1, 1], [2, 1], [3, 1], [3, 2], [4, 1]]
+    relacion: T
 ```
 :::
 

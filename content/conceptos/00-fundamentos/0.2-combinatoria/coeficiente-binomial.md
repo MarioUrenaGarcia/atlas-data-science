@@ -67,7 +67,7 @@ Se lee "$n$ en $k$" o "$n$ sobre $k$". Son equivalentes las siguientes interpret
 
 ## Cómo usar la visualización
 
-Cada punto de la rejilla indica cuántos caminos llegan a él desde la esquina inferior izquierda. La reproducción dibuja todos los caminos hasta la esquina opuesta, uno por uno, y escribe el actual como una palabra de pasos R (derecha) y U (arriba). Los controles cambian las dimensiones.
+Cada punto de la rejilla indica cuántos caminos llegan a él desde la esquina inferior izquierda. La reproducción dibuja todos los caminos hasta la esquina opuesta, uno por uno, y escribe el actual como una palabra de pasos E (este, a la derecha) y N (norte, hacia arriba), como los tramos del repartidor. Los controles cambian las dimensiones.
 
 El número de cada punto es la suma del que está a su izquierda y del que está debajo, porque todo camino llega por uno de esos dos lados. Leídos por diagonales, esos números reconstruyen el triángulo de Pascal. Al intercambiar los valores de $a$ y $b$ el número total no cambia, lo que ilustra la simetría $\binom{7}{3} = \binom{7}{4}$.
 

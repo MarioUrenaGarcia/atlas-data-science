@@ -3,7 +3,12 @@
  * once; VizFrame renders them and useParameters keeps their state.
  */
 
-export interface NumberParameter<K extends string = string> {
+/** Shows a control only while another parameter has one of the listed values. */
+interface Conditional {
+  shownWhen?: { key: string; values: readonly string[] };
+}
+
+export interface NumberParameter<K extends string = string> extends Conditional {
   type: 'number';
   key: K;
   label: string;
@@ -18,7 +23,7 @@ export interface NumberParameter<K extends string = string> {
   digits?: number;
 }
 
-export interface SelectParameter<K extends string = string> {
+export interface SelectParameter<K extends string = string> extends Conditional {
   type: 'select';
   key: K;
   label: string;
@@ -26,7 +31,7 @@ export interface SelectParameter<K extends string = string> {
   default: string;
 }
 
-export interface ToggleParameter<K extends string = string> {
+export interface ToggleParameter<K extends string = string> extends Conditional {
   type: 'toggle';
   key: K;
   label: string;

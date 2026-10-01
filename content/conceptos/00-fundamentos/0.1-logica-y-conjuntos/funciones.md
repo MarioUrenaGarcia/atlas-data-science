@@ -126,7 +126,7 @@ ejemplos:
 - **Creer que una función necesita fórmula.** Una tabla o un diagrama de flechas definen funciones igual de válidas.
 - **Leer $f^{-1}(D)$ como si existiera una función inversa.** La preimagen de un conjunto existe siempre, aunque $f$ no sea invertible.
 
-:::figura[Codominio frente a imagen en una gráfica. Con el seno de $[-3.5, 3.5]$ en $[-2, 2]$, la imagen es solo $[-1, 1]$: las alturas entre 1 y 2 están en el codominio pero ninguna entrada las alcanza.]{componente="FunctionGraph"}
+:::figura[Codominio frente a imagen en una gráfica. Con el seno de $[-3.5, 3.5]$ en $[-2, 2]$, la imagen es solo $[-1, 1]$: las alturas entre 1 y 2 están en el codominio pero ninguna entrada las alcanza. Al restringir a $[-\pi/2, \pi/2]$ con codominio $[-1, 1]$, imagen y codominio coinciden.]{componente="FunctionGraph"}
 ```yaml
 modo: clasificacion
 funciones:
@@ -135,9 +135,9 @@ funciones:
     codominio: [-2, 2]
     nombre: "sen x de [-3.5, 3.5] en [-2, 2]"
   - funcion: seno
-    dominio: [-1.5, 1.5]
+    dominio: [-1.5708, 1.5708]
     codominio: [-1, 1]
-    nombre: "sen x de [-1.5, 1.5] en [-1, 1]"
+    nombre: "sen x de [-π/2, π/2] en [-1, 1]"
 ```
 :::
 

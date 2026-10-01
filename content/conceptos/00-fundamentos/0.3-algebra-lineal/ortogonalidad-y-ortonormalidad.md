@@ -99,7 +99,7 @@ punto: [2, 1]
 - **Independencia:** un conjunto ortogonal de vectores no nulos es linealmente independiente.
 - **Teorema de Pitágoras:** si $\mathbf{u} \perp \mathbf{v}$, entonces $\lVert \mathbf{u} + \mathbf{v} \rVert^2 = \lVert \mathbf{u} \rVert^2 + \lVert \mathbf{v} \rVert^2$.
 - **Normalizar:** si $\mathbf{v} \neq \mathbf{0}$, el vector $\mathbf{v}/\lVert \mathbf{v} \rVert$ tiene norma 1 y la misma dirección.
-- **Matrices ortogonales:** si las columnas de $Q$ son ortonormales, $Q^\top Q = I$.
+- **Matrices ortogonales:** si las columnas de $\mathbf{Q}$ son ortonormales, $\mathbf{Q}^\top \mathbf{Q} = \mathbf{I}$.
 - **Complemento ortogonal:** los vectores ortogonales a todo un subespacio $W$ forman otro subespacio, $W^\perp$, y $\dim W + \dim W^\perp = n$.
 
 :::figura[Caso de dos vectores ortogonales que no son unitarios: (2, 1) y (-1, 2) tienen producto punto 0 pero longitud raíz de 5; al dividir cada uno entre esa longitud se obtiene un par ortonormal.]{componente="VectorPlane"}
@@ -137,12 +137,12 @@ $$
 
 :::formula[Conjunto ortonormal]
 $$
-\mathbf{q}_i \cdot \mathbf{q}_j = \delta_{ij}, \qquad Q^\top Q = I
+\mathbf{q}_i \cdot \mathbf{q}_j = \delta_{ij}, \qquad \mathbf{Q}^\top \mathbf{Q} = \mathbf{I}
 $$
 
 - $\delta_{ij}$: 1 si $i = j$, 0 en otro caso.
-- $Q$: matriz con columnas $\mathbf{q}_i$.
-- $I$: matriz identidad.
+- $\mathbf{Q}$: matriz con columnas $\mathbf{q}_i$.
+- $\mathbf{I}$: matriz identidad.
 :::
 
 :::formula[Coordenadas y Parseval]

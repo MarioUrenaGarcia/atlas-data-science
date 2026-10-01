@@ -89,7 +89,7 @@ export function EigenView({ title, matrices }: EigenViewProps) {
       description={description}
     >
       <p className={styles.formula}>
-        <Latex tex={`A = ${matLatex(matrix)},\\qquad A\\mathbf{v} = \\lambda \\mathbf{v}`} />
+        <Latex tex={`\\mathbf{A} = ${matLatex(matrix)},\\qquad \\mathbf{A}\\mathbf{v} = \\lambda \\mathbf{v}`} />
       </p>
       <CartesianPlane extent={extent} label={description}>
         {(plane) => (

@@ -4,6 +4,7 @@ import { useProgress } from '../../store/progress.ts';
 import { LevelBadge } from '../ui/LevelBadge.tsx';
 import { StatusIcon } from '../ui/StatusIcon.tsx';
 import styles from './ConceptListItem.module.css';
+import { SummaryText } from '../ui/SummaryText.tsx';
 
 interface ConceptListItemProps {
   concept: ConceptNode;
@@ -26,7 +27,7 @@ export function ConceptListItem({ concept, showSummary = true, prefix }: Concept
           </Link>
           <LevelBadge level={concept.nivel} />
         </div>
-        {showSummary && <p className={styles.summary}>{concept.resumen}</p>}
+        {showSummary && <p className={styles.summary}><SummaryText text={concept.resumen} /></p>}
       </div>
     </div>
   );
