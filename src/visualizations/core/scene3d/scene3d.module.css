@@ -1,0 +1,9 @@
+.scene {
+  width: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+.dragging {
+  cursor: grabbing;
+}

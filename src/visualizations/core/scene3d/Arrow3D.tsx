@@ -1,5 +1,5 @@
-import { Arrow } from '../../core/svg/Arrow.tsx';
-import svgStyles from '../../core/svg/svg.module.css';
+import { Arrow } from '../svg/Arrow.tsx';
+import svgStyles from '../svg/svg.module.css';
 import type { Vec3 } from './projection.ts';
 import type { Screen } from './Scene3D.tsx';
 
