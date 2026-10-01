@@ -9,6 +9,8 @@ import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { CurvePath, type XY } from '../../core/svg/CurvePath.tsx';
 import { DraggablePoint } from '../../core/svg/DraggablePoint.tsx';
 import styles from '../../core/svg/svg.module.css';
+import { inRegion, usesSecondBound } from './regions.ts';
+import type { Region } from './schema.ts';
 
 export type ChartView = 'densidad' | 'acumulada';
 
@@ -17,8 +19,10 @@ interface DistributionChartProps {
   reference: { distribution: Distribution; label: string } | null;
   domain: [number, number];
   view: ChartView;
+  /** Region bounds a and b, in the order they were set. */
   from: number;
   to: number;
+  region: Region;
   probability: number;
   samples: readonly number[];
   showSamples: boolean;
@@ -38,6 +42,7 @@ export function DistributionChart({
   view,
   from,
   to,
+  region,
   probability,
   samples,
   showSamples,
@@ -122,7 +127,7 @@ export function DistributionChart({
   const quantile = distribution.quantile(probability);
 
   return (
-    <ChartSvg label={label} aspect={0.55}>
+    <ChartSvg label={label} aspect={0.55} interactive={view === 'densidad'}>
       {(box) => {
         const x = scaleLinear()
           .domain([lo, hi])
@@ -133,7 +138,16 @@ export function DistributionChart({
           .range([box.inner.top + box.inner.height, box.inner.top]);
         const baseline = box.inner.top + box.inner.height;
         const toData = (px: number) => Math.min(hi, Math.max(lo, x.invert(px)));
-        const shaded = curve.filter((point) => point.x >= from && point.x <= to);
+        // Contiguous runs of the curve inside the region, each filled on its own (the tails give two).
+        const shadedRuns: XY[][] = [];
+        for (const point of curve) {
+          if (!inRegion(region, from, to, point.x)) continue;
+          const run = shadedRuns.at(-1);
+          const previous = run?.at(-1);
+          const gap = previous ? point.x - previous.x > ((hi - lo) / CURVE_POINTS) * 1.5 : true;
+          if (!run || gap) shadedRuns.push([point]);
+          else run.push(point);
+        }
         const stemWidth = Math.max(
           2,
           Math.min(18, (box.inner.width / Math.max(1, integers.length)) * 0.5),
@@ -162,7 +176,7 @@ export function DistributionChart({
             {view === 'densidad' && discrete && (
               <g aria-hidden="true">
                 {integers.map((k) => {
-                  const inside = k >= from && k <= to;
+                  const inside = inRegion(region, from, to, k);
                   const top = y(density(distribution, k));
                   return (
                     <rect
@@ -181,18 +195,21 @@ export function DistributionChart({
 
             {view === 'densidad' && !discrete && (
               <>
-                {shaded.length > 1 && (
-                  <CurvePath
-                    points={shaded}
-                    xScale={x}
-                    yScale={y}
-                    color={DATA_COLORS.secondary}
-                    fill
-                    fillOpacity={0.3}
-                    width={0}
-                    animate={false}
-                  />
-                )}
+                {shadedRuns
+                  .filter((run) => run.length > 1)
+                  .map((run, index) => (
+                    <CurvePath
+                      key={index}
+                      points={run}
+                      xScale={x}
+                      yScale={y}
+                      color={DATA_COLORS.secondary}
+                      fill
+                      fillOpacity={0.3}
+                      width={0}
+                      animate={false}
+                    />
+                  ))}
                 <CurvePath
                   points={curve}
                   xScale={x}
@@ -279,19 +296,26 @@ export function DistributionChart({
                   y={baseline}
                   color={DATA_COLORS.secondary}
                   axis="x"
-                  label="Extremo inferior del intervalo"
+                  label="Límite a de la región"
                   valueText={`a = ${from.toFixed(2)}`}
-                  onDrag={(px) => onIntervalChange(Math.min(toData(px), to), to)}
+                  onDrag={(px) =>
+                    onIntervalChange(
+                      usesSecondBound(region) ? Math.min(toData(px), to) : toData(px),
+                      to,
+                    )
+                  }
                 />
-                <DraggablePoint
-                  x={x(to)}
-                  y={baseline}
-                  color={DATA_COLORS.secondary}
-                  axis="x"
-                  label="Extremo superior del intervalo"
-                  valueText={`b = ${to.toFixed(2)}`}
-                  onDrag={(px) => onIntervalChange(from, Math.max(toData(px), from))}
-                />
+                {usesSecondBound(region) && (
+                  <DraggablePoint
+                    x={x(to)}
+                    y={baseline}
+                    color={DATA_COLORS.secondary}
+                    axis="x"
+                    label="Límite b de la región"
+                    valueText={`b = ${to.toFixed(2)}`}
+                    onDrag={(px) => onIntervalChange(from, Math.max(toData(px), from))}
+                  />
+                )}
               </>
             )}
           </>

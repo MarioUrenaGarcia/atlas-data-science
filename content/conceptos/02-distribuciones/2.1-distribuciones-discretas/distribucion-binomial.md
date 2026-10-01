@@ -26,14 +26,44 @@ resumen: >
   masa multiplica el número de órdenes posibles por la probabilidad de cada orden.
 formula: 'P(X = k) = \binom{n}{k} p^{k} (1 - p)^{n - k}, \quad k = 0, 1, \dots, n'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: ensayos
-    valores:
-      n: 12
-      p: 0.1
-    exito: Defectuosa
-    fracaso: Correcta
+    explorador:
+      distribucion: binomial
+      valores:
+        n: 8
+        p: 0.7
+      casos:
+        - nombre: 'Piezas defectuosas'
+          descripcion: 'n = 20 y p = 0.2: sesgo a la derecha; lo usual son 2 a 6 defectuosas y casi nunca más de 10.'
+          valores: {n: 20, p: 0.2}
+        - nombre: 'Caras en 20 volados'
+          descripcion: 'n = 20 y p = 0.5: simétrica alrededor de 10.'
+          valores: {n: 20, p: 0.5}
+        - nombre: 'Aprobados'
+          descripcion: 'n = 20 y p = 0.8: sesgo a la izquierda; la masa se acerca al máximo posible.'
+          valores: {n: 20, p: 0.8}
+      ejemplo:
+        titulo: 'Pacientes que mejoran'
+        contexto: 'Un medicamento mejora los síntomas en el 70 % de los pacientes y se prueba en 8 pacientes independientes.'
+        pregunta: '¿Qué probabilidad hay de que al menos 6 mejoren?'
+        valores: {n: 8, p: 0.7}
+        region: derecha
+        desde: 6
+      referencia:
+        distribucion: poisson
+        valores: {lambda: 5.6}
+        etiqueta: 'Poisson con la misma media'
+        visible: false
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: ensayos
+        valores:
+          n: 12
+          p: 0.1
+        exito: Defectuosa
+        fracaso: Correcta
 referencias:
   - clave: blitzstein-hwang
     capitulo: '3'
@@ -73,9 +103,9 @@ Supuestos: número de ensayos $n$ fijo de antemano, dos resultados por ensayo, e
 
 ## Cómo usar la visualización
 
-Cada experimento revisa una caja de $n$ piezas: las fichas aparecen una por una, rellenas si la pieza es defectuosa. Al terminar la caja, su número de defectuosas cae en el histograma, que se compara con la función de masa binomial (puntos). El encabezado muestra el conteo en curso y, al terminar, la fórmula con los números de ese conteo.
+La pestaña Distribución muestra la función de masa binomial, la región elegida y su probabilidad; los casos cargan las tres formas típicas con $n = 20$ (sesgo a la derecha, simétrica y sesgo a la izquierda) y el ejemplo de la ficha se carga con su botón. La comparación superpone la Poisson de la misma media. La pestaña Ver cómo surge revisa cajas de piezas, una pieza a la vez, y acumula el número de defectuosas.
 
-Con $p = 0.1$ y $n = 12$ el histograma se concentra en 0, 1 y 2 y tiene cola a la derecha. Al subir $p$ a 0.5 la forma se vuelve simétrica alrededor de $n/2$. Al aumentar $n$ hasta 40 con $p = 0.5$ la forma se parece a una campana, y la varianza de los resultados se acerca a $np(1 - p)$.
+Con $p$ pequeña y $n$ grande, la comparación muestra que la Poisson se acerca a la binomial. Al subir $n$ con $p = 0.5$ la forma se vuelve una campana.
 
 ## Ejemplo
 
@@ -92,9 +122,21 @@ distribucion: binomial
 valores:
   n: 8
   p: 0.7
+ejemplo:
+  titulo: 'Pacientes que mejoran'
+  contexto: 'Un medicamento mejora los síntomas en el 70 % de los pacientes y se prueba en 8 pacientes independientes.'
+  pregunta: '¿Qué probabilidad hay de que al menos 6 mejoren?'
+  valores: {n: 8, p: 0.7}
+  region: derecha
+  desde: 6
+region: derecha
 desde: 6
-hasta: 8
 muestras: false
+referencia:
+  distribucion: poisson
+  valores: {lambda: 5.6}
+  etiqueta: 'Poisson con la misma media'
+  visible: false
 ```
 :::
 
@@ -117,6 +159,30 @@ fracaso: Sin mejora
 - **Reflexión:** el número de fracasos $n - X$ tiene distribución $\operatorname{Bin}(n, 1 - p)$.
 - **Suma:** si $X \sim \operatorname{Bin}(n_1, p)$ y $Y \sim \operatorname{Bin}(n_2, p)$ son independientes, $X + Y \sim \operatorname{Bin}(n_1 + n_2, p)$.
 - **Aproximación normal:** si $np(1 - p)$ es grande, la binomial se parece a $\mathcal{N}(np, np(1 - p))$.
+
+:::figura[Tres casos con contexto (piezas defectuosas, caras en 20 volados, aprobados): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: binomial
+valores:
+  n: 8
+  p: 0.7
+casos:
+  - nombre: 'Piezas defectuosas'
+    descripcion: 'n = 20 y p = 0.2: sesgo a la derecha; lo usual son 2 a 6 defectuosas y casi nunca más de 10.'
+    valores: {n: 20, p: 0.2}
+  - nombre: 'Caras en 20 volados'
+    descripcion: 'n = 20 y p = 0.5: simétrica alrededor de 10.'
+    valores: {n: 20, p: 0.5}
+  - nombre: 'Aprobados'
+    descripcion: 'n = 20 y p = 0.8: sesgo a la izquierda; la masa se acerca al máximo posible.'
+    valores: {n: 20, p: 0.8}
+referencia:
+  distribucion: poisson
+  valores: {lambda: 5.6}
+  etiqueta: 'Poisson con la misma media'
+  visible: false
+```
+:::
 
 :::figura[Con p = 1/2 la binomial es simétrica: Bin(20, 0.5) tiene su moda y su media en 10.]{componente="DistributionExplorer"}
 ```yaml

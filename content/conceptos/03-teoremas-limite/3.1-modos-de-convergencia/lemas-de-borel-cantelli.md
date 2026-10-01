@@ -11,7 +11,7 @@ orden: 19
 nivel: avanzado
 prerrequisitos:
   - convergencia-casi-segura
-  - series-y-convergencia-de-series
+  - independencia-de-eventos
 etiquetas:
   - eventos
   - infinitas veces

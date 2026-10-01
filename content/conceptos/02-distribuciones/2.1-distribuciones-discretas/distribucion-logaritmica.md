@@ -28,13 +28,40 @@ resumen: >
   individuos tiene cada especie en una muestra ecológica y surge como mezcla de geométricas.
 formula: 'P(X = k) = \frac{-1}{\log(1 - p)}\,\frac{p^{k}}{k}, \quad k = 1, 2, 3, \dots'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: mezcla-geometrica
-    valores:
-      p: 0.8
-    exito: Éxito
-    fracaso: Fracaso
+    explorador:
+      distribucion: logaritmica
+      valores:
+        p: 0.9
+      casos:
+        - nombre: 'Abundancia baja'
+          descripcion: 'p = 0.3: casi todas las especies tienen uno o dos individuos.'
+          valores: {p: 0.3}
+        - nombre: 'Muestra de insectos'
+          descripcion: 'p = 0.9: el 39 % de las especies tiene un solo individuo, pero la media es 3.9.'
+          valores: {p: 0.9}
+        - nombre: 'Cola muy larga'
+          descripcion: 'p = 0.98: la moda sigue en 1 y la media sube a 12.5.'
+          valores: {p: 0.98}
+      ejemplo:
+        titulo: 'Especies abundantes'
+        contexto: 'El número de individuos por especie en una muestra de insectos sigue una distribución logarítmica con p = 0.9.'
+        pregunta: '¿Qué proporción de las especies tiene 4 o más individuos?'
+        valores: {p: 0.9}
+        region: derecha
+        desde: 4
+      referencia:
+        distribucion: geometrica
+        valores: {p: 0.256}
+        etiqueta: 'Geométrica de la misma media'
+        visible: false
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: mezcla-geometrica
+        valores:
+          p: 0.8
 referencias:
   - clave: ross-probabilidad
   - clave: newman
@@ -74,9 +101,9 @@ La constante sale de la serie de Taylor $-\log(1 - p) = \sum_{k \ge 1} p^{k}/k$,
 
 ## Cómo usar la visualización
 
-Cada experimento tiene dos pasos. Primero se sortea la probabilidad de éxito $s$: el triángulo cae en la franja sombreada, que va de $1 - p$ a 1. Después se lanzan ensayos con esa probabilidad hasta el primer éxito, y el número de ensayos cae en el histograma, que se compara con la función de masa logarítmica.
+La pestaña Distribución muestra la función de masa logarítmica, la región elegida y su probabilidad; los casos cargan abundancias baja, intermedia y con cola muy larga, y el ejemplo de la ficha se carga con su botón. La comparación superpone la geométrica de la misma media. La pestaña Ver cómo surge sortea una probabilidad de éxito y luego cuenta ensayos hasta el primer éxito.
 
-Con $p = 0.8$ casi la mitad de los experimentos termina en el primer ensayo, porque $s$ suele ser grande; pero cuando $s$ cae cerca de 0.2 la espera se alarga y alimenta la cola. Al llevar $p$ a 0.95 la franja se ensancha hasta 0.05 y aparecen esperas de 20 o más ensayos. Con $p = 0.2$ casi todos los experimentos terminan en uno o dos ensayos.
+Con la comparación activada se ve que la logarítmica conserva mucha más masa en la cola que la geométrica, aunque ambas tienen su moda en 1.
 
 ## Ejemplo
 
@@ -92,9 +119,21 @@ En una muestra de insectos, el número de individuos por especie sigue $\operato
 distribucion: logaritmica
 valores:
   p: 0.9
+ejemplo:
+  titulo: 'Especies abundantes'
+  contexto: 'El número de individuos por especie en una muestra de insectos sigue una distribución logarítmica con p = 0.9.'
+  pregunta: '¿Qué proporción de las especies tiene 4 o más individuos?'
+  valores: {p: 0.9}
+  region: derecha
+  desde: 4
+region: derecha
 desde: 4
-hasta: 40
 muestras: false
+referencia:
+  distribucion: geometrica
+  valores: {p: 0.256}
+  etiqueta: 'Geométrica de la misma media'
+  visible: false
 ```
 :::
 
@@ -116,6 +155,29 @@ fracaso: Sin captura
 - **Mezcla de geométricas:** es una geométrica cuya probabilidad de éxito $s = (1 - p)^{U}$ es aleatoria.
 - **Límite de la binomial negativa:** es el límite, cuando $r \to 0$, de la binomial negativa condicionada a ser positiva.
 - **Poisson compuesta:** sumar $N \sim \operatorname{Poisson}(\lambda)$ variables logarítmicas independientes da una binomial negativa; por eso Fisher la usó para conectar el número de especies con el de individuos.
+
+:::figura[Tres casos con contexto (abundancia baja, muestra de insectos, cola muy larga): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: logaritmica
+valores:
+  p: 0.9
+casos:
+  - nombre: 'Abundancia baja'
+    descripcion: 'p = 0.3: casi todas las especies tienen uno o dos individuos.'
+    valores: {p: 0.3}
+  - nombre: 'Muestra de insectos'
+    descripcion: 'p = 0.9: el 39 % de las especies tiene un solo individuo, pero la media es 3.9.'
+    valores: {p: 0.9}
+  - nombre: 'Cola muy larga'
+    descripcion: 'p = 0.98: la moda sigue en 1 y la media sube a 12.5.'
+    valores: {p: 0.98}
+referencia:
+  distribucion: geometrica
+  valores: {p: 0.256}
+  etiqueta: 'Geométrica de la misma media'
+  visible: false
+```
+:::
 
 :::figura[Efecto de p: con p = 0.98 la cola es muy larga y la media sube a 12.5, aunque la moda sigue en 1.]{componente="DistributionExplorer"}
 ```yaml

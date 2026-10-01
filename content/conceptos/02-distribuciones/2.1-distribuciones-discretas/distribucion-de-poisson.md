@@ -26,12 +26,36 @@ resumen: >
   una tasa constante λ. Su media y su varianza son iguales a λ.
 formula: 'P(X = k) = \frac{e^{-\lambda} \lambda^{k}}{k!}, \quad k = 0, 1, 2, \dots'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: llegadas
-    valores:
-      lambda: 4
-    unidad: pacientes que llegan a urgencias en una hora
+    explorador:
+      distribucion: poisson
+      valores:
+        lambda: 2.5
+      casos:
+        - nombre: 'Eventos raros'
+          descripcion: 'λ = 0.7: la barra del cero es la más alta; la mayoría de los intervalos no tiene eventos.'
+          valores: {lambda: 0.7}
+        - nombre: 'Accidentes al mes'
+          descripcion: 'λ = 2.5: sesgo moderado a la derecha; la media 2.5 no es un valor posible.'
+          valores: {lambda: 2.5}
+        - nombre: 'Llamadas por hora'
+          descripcion: 'λ = 15: casi simétrica, como una campana con desviación 3.9.'
+          valores: {lambda: 15}
+      ejemplo:
+        titulo: 'Mes con muchos accidentes'
+        contexto: 'Un tramo de carretera registra en promedio 2.5 accidentes por mes.'
+        pregunta: '¿Qué probabilidad hay de que en un mes ocurran al menos 4 accidentes?'
+        valores: {lambda: 2.5}
+        region: derecha
+        desde: 4
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: llegadas
+        valores:
+          lambda: 4
+        unidad: pacientes que llegan a urgencias en una hora
 referencias:
   - clave: blitzstein-hwang
     capitulo: '4'
@@ -69,9 +93,9 @@ Es el modelo adecuado para el número de eventos en un intervalo de tiempo, long
 
 ## Cómo usar la visualización
 
-La línea representa una hora. Las llegadas aparecen en orden, como marcas sobre la línea, mientras el cursor avanza; el número de la derecha es el conteo. Al cerrar la hora, el conteo cae en el histograma, que se compara con la función de masa de Poisson.
+La pestaña Distribución muestra la función de masa de Poisson, la región elegida y su probabilidad; los casos cargan tasas baja, moderada y alta, y el ejemplo de la ficha se carga con su botón. El panel muestra que la media y la varianza son iguales a $\lambda$. La pestaña Ver cómo surge muestra las llegadas sobre una línea de tiempo y acumula el conteo de cada intervalo.
 
-Con $\lambda = 4$, el histograma tiene su máximo en 3 y 4, y la media y la varianza de los resultados se acercan ambas a 4. Al bajar $\lambda$ a 0.5 la mayoría de las horas no tiene llegadas y la barra del 0 domina. Al subir $\lambda$ a 15 la forma se vuelve simétrica, como una campana, aunque la varianza sigue siendo igual a la media.
+Al pasar de $\lambda = 0.7$ a $\lambda = 15$ la forma pasa de decreciente a casi simétrica. Con el botón de simulación, la varianza de las muestras se acerca a la media.
 
 ## Ejemplo
 
@@ -87,8 +111,15 @@ Un tramo de carretera registra en promedio 2.5 accidentes por mes. Sea $X$ el n�
 distribucion: poisson
 valores:
   lambda: 2.5
+ejemplo:
+  titulo: 'Mes con muchos accidentes'
+  contexto: 'Un tramo de carretera registra en promedio 2.5 accidentes por mes.'
+  pregunta: '¿Qué probabilidad hay de que en un mes ocurran al menos 4 accidentes?'
+  valores: {lambda: 2.5}
+  region: derecha
+  desde: 4
+region: derecha
 desde: 4
-hasta: 15
 muestras: false
 ```
 :::
@@ -110,6 +141,24 @@ unidad: accidentes en un mes
 - **Suma:** si $X \sim \operatorname{Poisson}(\lambda_1)$ y $Y \sim \operatorname{Poisson}(\lambda_2)$ son independientes, $X + Y \sim \operatorname{Poisson}(\lambda_1 + \lambda_2)$.
 - **Adelgazamiento:** si cada evento se conserva con probabilidad $q$, independientemente, los eventos conservados forman una $\operatorname{Poisson}(q\lambda)$.
 - **Límite de la binomial:** si $n \to \infty$ y $p \to 0$ con $np = \lambda$, $\operatorname{Bin}(n, p) \to \operatorname{Poisson}(\lambda)$.
+
+:::figura[Tres casos con contexto (eventos raros, accidentes al mes, llamadas por hora): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: poisson
+valores:
+  lambda: 2.5
+casos:
+  - nombre: 'Eventos raros'
+    descripcion: 'λ = 0.7: la barra del cero es la más alta; la mayoría de los intervalos no tiene eventos.'
+    valores: {lambda: 0.7}
+  - nombre: 'Accidentes al mes'
+    descripcion: 'λ = 2.5: sesgo moderado a la derecha; la media 2.5 no es un valor posible.'
+    valores: {lambda: 2.5}
+  - nombre: 'Llamadas por hora'
+    descripcion: 'λ = 15: casi simétrica, como una campana con desviación 3.9.'
+    valores: {lambda: 15}
+```
+:::
 
 :::figura[Ley de los eventos raros: la hora dividida en 20 rendijas, cada una con probabilidad 4/20 de llegada, da una binomial (barras teóricas) muy parecida a la Poisson(4) (línea punteada). Con 200 rendijas son casi idénticas.]{componente="DistributionGenesis"}
 ```yaml

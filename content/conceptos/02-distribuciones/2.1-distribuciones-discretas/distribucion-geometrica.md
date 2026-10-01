@@ -26,14 +26,38 @@ resumen: >
   probabilidades decrecen como una progresión geométrica y no tiene memoria.
 formula: 'P(X = k) = (1 - p)^{k - 1} p, \quad k = 1, 2, 3, \dots'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: primer-exito
-    valores:
-      p: 0.2
-    exito: Venta
-    fracaso: Rechazo
-    conteo: ensayos
+    explorador:
+      distribucion: geometrica
+      valores:
+        p: 0.3
+      casos:
+        - nombre: 'Venta por teléfono'
+          descripcion: 'p = 0.2: barras que bajan multiplicándose por 0.8; la espera más probable es una llamada, aunque la media es 5.'
+          valores: {p: 0.2}
+        - nombre: 'Primer día de lluvia'
+          descripcion: 'p = 0.3: la mitad de las veces llueve en los dos primeros días.'
+          valores: {p: 0.3}
+        - nombre: 'Pieza defectuosa rara'
+          descripcion: 'p = 0.05: cola muy larga; en promedio hay que revisar 20 piezas para hallar la primera defectuosa.'
+          valores: {p: 0.05}
+      ejemplo:
+        titulo: 'Lluvia pronto'
+        contexto: 'En temporada de lluvias, cada día llueve con probabilidad 0.3, de forma independiente.'
+        pregunta: '¿Qué probabilidad hay de que llueva en alguno de los tres primeros días?'
+        valores: {p: 0.3}
+        region: izquierda
+        desde: 3
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: primer-exito
+        valores:
+          p: 0.2
+        exito: Venta
+        fracaso: Rechazo
+        conteo: ensayos
 referencias:
   - clave: blitzstein-hwang
     capitulo: '4'
@@ -76,9 +100,9 @@ $$
 
 ## Cómo usar la visualización
 
-Cada experimento es una jornada de llamadas: las fichas vacías son rechazos y la ficha rellena es la venta que termina el experimento. El número de llamadas cae en el histograma, que se compara con la función de masa geométrica. El selector "Qué se cuenta" cambia entre las dos convenciones: ensayos totales o solo fracasos.
+La pestaña Distribución muestra la función de masa geométrica, que siempre decrece desde $k = 1$, la región elegida y su probabilidad; los casos cargan tres probabilidades de éxito y el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge simula llamadas hasta la primera venta y permite contar ensayos o fracasos.
 
-Con $p = 0.2$ la barra más alta es la de 1 y las demás bajan multiplicándose por 0.8, aunque la media es 5. Al bajar $p$ a 0.05 las esperas se alargan y la cola se extiende. Al cambiar a "Solo los fracasos" todo el histograma se desplaza una unidad a la izquierda sin cambiar de forma.
+Con $p = 0.05$ la cola se alarga y la región desde 30 conserva todavía más de 0.2 de probabilidad. En la vista de función de distribución, la curva $1 - (1 - p)^{k}$ se acerca a 1 sin alcanzarlo.
 
 ## Ejemplo
 
@@ -94,8 +118,15 @@ En temporada de lluvias, cada día llueve con probabilidad 0.3, independientemen
 distribucion: geometrica
 valores:
   p: 0.3
-desde: 1
-hasta: 3
+ejemplo:
+  titulo: 'Lluvia pronto'
+  contexto: 'En temporada de lluvias, cada día llueve con probabilidad 0.3, de forma independiente.'
+  pregunta: '¿Qué probabilidad hay de que llueva en alguno de los tres primeros días?'
+  valores: {p: 0.3}
+  region: izquierda
+  desde: 3
+region: izquierda
+desde: 3
 muestras: false
 ```
 :::
@@ -118,6 +149,24 @@ conteo: ensayos
 - **Pérdida de memoria:** $P(X > m + n \mid X > m) = P(X > n)$ para enteros $m, n \ge 0$. Es la única distribución en los enteros positivos con esta propiedad.
 - **Cola geométrica:** $P(X > k) = (1 - p)^{k}$, que decrece exponencialmente.
 - **Mínimo de geométricas:** si $X_1, \dots, X_r$ son independientes con parámetros $p_i$, su mínimo es $\operatorname{Geom}\big(1 - \prod_i (1 - p_i)\big)$.
+
+:::figura[Tres casos con contexto (venta por teléfono, primer día de lluvia, pieza defectuosa rara): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: geometrica
+valores:
+  p: 0.3
+casos:
+  - nombre: 'Venta por teléfono'
+    descripcion: 'p = 0.2: barras que bajan multiplicándose por 0.8; la espera más probable es una llamada, aunque la media es 5.'
+    valores: {p: 0.2}
+  - nombre: 'Primer día de lluvia'
+    descripcion: 'p = 0.3: la mitad de las veces llueve en los dos primeros días.'
+    valores: {p: 0.3}
+  - nombre: 'Pieza defectuosa rara'
+    descripcion: 'p = 0.05: cola muy larga; en promedio hay que revisar 20 piezas para hallar la primera defectuosa.'
+    valores: {p: 0.05}
+```
+:::
 
 :::figura[La función de distribución P(X ≤ k) = 1 - 0.7^k sube rápido al principio y se acerca a 1 sin alcanzarlo. El cuantil 0.9 es 7 días.]{componente="DistributionExplorer"}
 ```yaml

@@ -13,6 +13,7 @@ nivel: intermedio
 prerrequisitos:
   - convergencia-en-distribucion
   - ley-debil-de-los-grandes-numeros
+  - distribucion-normal
 etiquetas:
   - distribución normal
   - sumas
