@@ -3,6 +3,7 @@ import {
   gammaFunction,
   invertMonotone,
   logBeta,
+  logChoose,
   logFactorial,
   logGamma,
   regularizedGammaP,
@@ -478,4 +479,44 @@ export function stable(
       return location + scale * x;
     },
   };
+}
+
+/** Sum of n uniforms on [0, 1] (Irwin-Hall), exact for the moderate n used here. */
+export function irwinHall(n: number): ContinuousDistribution {
+  const terms = (x: number, power: number) => {
+    let total = 0;
+    for (let k = 0; k <= Math.min(n, Math.floor(x)); k += 1) {
+      const sign = k % 2 === 0 ? 1 : -1;
+      total += sign * Math.exp(logChoose(n, k) + power * Math.log(x - k));
+    }
+    return total;
+  };
+  const cdf = (x: number) =>
+    x <= 0 ? 0 : x >= n ? 1 : Math.min(1, Math.max(0, terms(x, n) / Math.exp(logFactorial(n))));
+  return {
+    kind: 'continuous',
+    name: n === 1 ? 'Uniforme' : 'Suma de uniformes',
+    mean: n / 2,
+    variance: n / 12,
+    support: [0, n],
+    pdf: (x) =>
+      x <= 0 || x >= n
+        ? 0
+        : n === 1
+          ? 1
+          : Math.max(0, terms(x, n - 1) / Math.exp(logFactorial(n - 1))),
+    cdf,
+    quantile: (p) => invertMonotone(cdf, p, 0, n, 1e-10),
+    sample: (random) => {
+      let total = 0;
+      for (let i = 0; i < n; i += 1) total += random.next();
+      return total;
+    },
+  };
+}
+
+/** Constant of the generalized central limit theorem for a power tail of index alpha. */
+export function stableTailConstant(alpha: number): number {
+  if (Math.abs(alpha - 1) < 1e-6) return 2 / Math.PI;
+  return (1 - alpha) / (gammaFunction(2 - alpha) * Math.cos((Math.PI * alpha) / 2));
 }

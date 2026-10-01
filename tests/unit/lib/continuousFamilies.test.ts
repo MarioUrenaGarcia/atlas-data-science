@@ -4,6 +4,7 @@ import {
   cauchy,
   chiSquare,
   frechet,
+  irwinHall,
   inverseGamma,
   kumaraswamy,
   levy,
@@ -15,6 +16,7 @@ import {
   simpsonIntegral,
   skewNormal,
   stable,
+  stableTailConstant,
   studentT,
   truncatedNormal,
   vonMises,
@@ -199,5 +201,27 @@ describe('stable', () => {
     let below = 0;
     for (let i = 0; i < n; i += 1) if (d.sample(random) <= 0.5) below += 1;
     expect(Math.abs(below / n - d.cdf(0.5))).toBeLessThan(0.012);
+  });
+});
+
+describe('Irwin-Hall', () => {
+  it('is triangular for two uniforms and integrates to one', () => {
+    const two = irwinHall(2);
+    expect(two.pdf(0.5)).toBeCloseTo(0.5, 12);
+    expect(two.pdf(1)).toBeCloseTo(1, 12);
+    expect(two.cdf(1.5)).toBeCloseTo(0.875, 12);
+    const twelve = irwinHall(12);
+    expect(integral(twelve, 0, 12)).toBeCloseTo(1, 8);
+    expect(integral(twelve, 0, 12, (x) => (x - 6) ** 2)).toBeCloseTo(1, 7);
+    expect(twelve.quantile(0.5)).toBeCloseTo(6, 8);
+  });
+});
+
+describe('stable tail constant', () => {
+  it('is continuous at alpha = 1 and gives the Cauchy scale', () => {
+    expect(stableTailConstant(1)).toBeCloseTo(2 / Math.PI, 12);
+    expect(stableTailConstant(1 + 1e-4)).toBeCloseTo(2 / Math.PI, 3);
+    // A Cauchy has P(|X| > x) ~ 2 gamma / (pi x), the tail constant with alpha = 1.
+    expect(stableTailConstant(1.5)).toBeGreaterThan(0);
   });
 });
