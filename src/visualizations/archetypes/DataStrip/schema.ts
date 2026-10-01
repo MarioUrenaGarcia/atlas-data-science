@@ -15,6 +15,28 @@ export const CENTER_MEASURES = [
 
 const label = z.string().min(1);
 
+export const SPREAD_MEASURES = [
+  'rango',
+  'varianza',
+  'varianza-n',
+  'desviacion',
+  'cv',
+  'riq',
+  'mad',
+  'dam',
+] as const;
+
+const dataset = z
+  .object({
+    datos: z.array(z.number()).min(2).max(30),
+    variable: label,
+    unidad: z.string().optional(),
+    etiquetas: z.array(z.string()).optional(),
+    dominio: z.tuple([z.number(), z.number()]).optional(),
+    resaltar: z.number().int().nonnegative().optional(),
+  })
+  .strict();
+
 export const parametersSchema = z.discriminatedUnion('modo', [
   z
     .object({
@@ -62,6 +84,77 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       a: z.number().positive(),
       b: z.number().positive(),
       variable: label.optional(),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('dispersion'),
+      datos: z.array(z.number()).min(2).max(24),
+      medida: z.enum(SPREAD_MEASURES),
+      lecturas: z.array(z.enum(SPREAD_MEASURES)).min(1).max(6).optional(),
+      cuadrados: z.boolean().optional(),
+      banda: z.boolean().optional(),
+      variable: label,
+      unidad: z.string().optional(),
+      etiquetas: z.array(z.string()).optional(),
+      dominio: z.tuple([z.number(), z.number()]).optional(),
+      decimales: z.number().int().min(0).max(3).optional(),
+      comparar: dataset.optional(),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('bessel'),
+      n: z.number().int().min(2).max(30),
+      media: z.number(),
+      desviacion: z.number().positive(),
+      variable: label,
+      semilla: z.number().int().nonnegative().optional(),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('cuantiles'),
+      datos: z.array(z.number()).min(2).max(60),
+      familia: z.enum(['cuantil', 'cuartiles', 'deciles', 'percentiles']),
+      p: z.number().min(0.01).max(0.99).optional(),
+      metodo: z
+        .union([
+          z.literal(1),
+          z.literal(2),
+          z.literal(4),
+          z.literal(5),
+          z.literal(6),
+          z.literal(7),
+          z.literal(8),
+          z.literal(9),
+        ])
+        .optional(),
+      compararMetodos: z.boolean().optional(),
+      variable: label,
+      unidad: z.string().optional(),
+      decimales: z.number().int().min(0).max(3).optional(),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('caja'),
+      datos: z.array(z.number()).min(4).max(60),
+      k: z.number().min(0.5).max(3).optional(),
+      hasta: z.number().int().min(1).max(6).optional(),
+      variable: label,
+      unidad: z.string().optional(),
+      dominio: z.tuple([z.number(), z.number()]).optional(),
+      decimales: z.number().int().min(0).max(3).optional(),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('estandarizar'),
+      grupos: z.array(dataset).min(1).max(2),
+      robusta: z.boolean().optional(),
+      umbral: z.number().positive().optional(),
+      decimales: z.number().int().min(0).max(3).optional(),
     })
     .strict(),
 ]);
