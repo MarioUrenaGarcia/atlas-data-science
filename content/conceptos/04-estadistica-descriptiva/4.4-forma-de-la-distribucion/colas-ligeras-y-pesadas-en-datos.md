@@ -112,7 +112,7 @@ semilla: 77
 ## Propiedades
 
 - **La desviación estándar no basta:** dos variables con la misma desviación estándar pueden tener frecuencias de valores extremos muy distintas.
-- **Momentos infinitos:** en distribuciones de colas muy pesadas, como la t con 3 o menos grados de libertad, la curtosis poblacional es infinita; con 2 o menos, incluso la varianza lo es, y la desviación estándar muestral no se estabiliza al crecer $n$.
+- **Momentos infinitos:** en distribuciones de colas muy pesadas, como la t con 4 o menos grados de libertad, la curtosis poblacional es infinita; con 2 o menos, incluso la varianza lo es, y la desviación estándar muestral no se estabiliza al crecer $n$.
 - **Los extremos dominan sumas y promedios:** con colas pesadas, unos cuantos valores explican buena parte del total, como ocurre con las pérdidas por catástrofes.
 - **Cuantiles extremos lejanos:** el percentil 99.9 de datos con colas pesadas está mucho más lejos del centro que el de una normal con la misma dispersión.
 
