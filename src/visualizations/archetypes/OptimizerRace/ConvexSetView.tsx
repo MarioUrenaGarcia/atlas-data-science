@@ -8,7 +8,6 @@ import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import styles from './OptimizerRace.module.css';
 
 const TRIALS = 25;
 const STEPS_PER_SECOND = 1.5;
@@ -97,11 +96,9 @@ export function ConvexSetView({ title, sets, seed: initialSeed }: ConvexSetViewP
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`\\mathbf{x}, \\mathbf{y} \\in C,\\ \\lambda \\in [0, 1]\\ \\Rightarrow\\ \\lambda\\mathbf{x} + (1 - \\lambda)\\mathbf{y} \\in C`}
       />
       <FormulaLine
-        className={styles.formula}
         tex={
           current
             ? current.exit

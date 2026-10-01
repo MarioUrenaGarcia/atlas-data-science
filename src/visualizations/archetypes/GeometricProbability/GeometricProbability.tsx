@@ -4,7 +4,7 @@ import { frequencyBand } from '../../../lib/probability/sampleSpace.ts';
 import { formatNumber, formatProbability } from '../../../lib/format/number.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import { defaultSeed } from '../../core/defaultSeed.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { CurvePath } from '../../core/svg/CurvePath.tsx';
@@ -19,6 +19,8 @@ import type { GeometricProbabilityConfig } from './schema.ts';
 import { StickView } from './StickView.tsx';
 
 const POINTS_PER_SECOND = 30;
+/** Long simulations speed up so a full run at 1x takes about this long. */
+const FULL_RUN_SECONDS = 60;
 const DEFAULT_POINTS = 5000;
 const SHOWN_POINTS = 2500;
 const DENSE_HISTORY = 200;
@@ -167,7 +169,7 @@ export default function GeometricProbability({ params, conceptId, title }: Visua
     step: () => simulate(1),
     stepMany: simulate,
     reset: () => setRun((value) => value + 1),
-    rate: POINTS_PER_SECOND,
+    rate: Math.max(POINTS_PER_SECOND, maxPoints / FULL_RUN_SECONDS),
     done: simulation.total >= maxPoints,
   });
 
@@ -218,9 +220,7 @@ export default function GeometricProbability({ params, conceptId, title }: Visua
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       {scenario === 'varilla-rota' && <StickView point={last} />}
       <div className={styles.panels}>
         <ChartSvg label={description} aspect={1} minHeight={260} maxHeight={400}>

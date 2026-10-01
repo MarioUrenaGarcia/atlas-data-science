@@ -7,7 +7,6 @@ import { num } from '../../core/plane/levels.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { FunctionMap } from './FunctionMap.tsx';
-import styles from './OptimizerRace.module.css';
 import { item, point, pointTex, useFunctionChoice } from './shared.ts';
 
 const ITERATIONS = 40;
@@ -81,11 +80,9 @@ export function ConstrainedView({ title, ids, planes, start, rate }: Constrained
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`\\min_{\\mathbf{x}} f(\\mathbf{x})\\ \\text{ sujeto a }\\ ${planes.map((p) => p.label).join(',\\ ')}`}
       />
       <FormulaLine
-        className={styles.formula}
         tex={`\\mathbf{x}_{${step + 1}} = P_C\\big(\\mathbf{x}_{${step}} - \\eta\\,\\nabla f(\\mathbf{x}_{${step}})\\big) = P_C${pointTex(next.gradientPoint)} = ${pointTex(next.point)}`}
       />
       <FunctionMap fn={fn} label={description} highlight={fn.f(current.point)}>

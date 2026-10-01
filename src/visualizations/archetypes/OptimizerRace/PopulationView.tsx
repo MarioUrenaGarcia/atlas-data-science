@@ -13,7 +13,6 @@ import { usePlayback } from '../../core/usePlayback.ts';
 import { useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { FunctionMap } from './FunctionMap.tsx';
-import styles from './OptimizerRace.module.css';
 import { item, point, useFunctionChoice } from './shared.ts';
 
 export type PopulationMethod = 'nelder-mead' | 'recocido' | 'genetico' | 'enjambre';
@@ -136,7 +135,7 @@ export function PopulationView({ title, ids, method, start, seed: initialSeed, o
       ]}
       description={description}
     >
-      <FormulaLine className={styles.formula} tex={`\\text{${settings.name}}:\\quad ${header}`} />
+      <FormulaLine tex={`\\text{${settings.name}}:\\quad ${header}`} />
       <FunctionMap fn={fn} label={description}>
         {({ x, y }) => (
           <g aria-hidden="true">

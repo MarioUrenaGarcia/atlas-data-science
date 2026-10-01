@@ -1,9 +1,3 @@
-.formula {
-  margin: 0;
-  text-align: center;
-  overflow-x: auto;
-}
-
 .pair {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

@@ -1,4 +1,4 @@
-import { Pause, Play, RotateCcw, StepForward } from 'lucide-react';
+import { ChevronLast, Pause, Play, RotateCcw, StepForward } from 'lucide-react';
 import { strings } from '../../app/strings.ts';
 import { Button } from '../../components/ui/Button.tsx';
 import styles from './VizFrame.module.css';
@@ -32,6 +32,18 @@ export function PlaybackBar({ playback }: { playback: Playback }) {
       >
         <StepForward size={16} aria-hidden="true" />
       </Button>
+      {playback.skipToEnd && (
+        <Button
+          size="small"
+          iconOnly
+          onClick={playback.skipToEnd}
+          disabled={playback.done || playback.skipping}
+          aria-label={strings.viz.skipToEnd}
+          title={strings.viz.skipToEnd}
+        >
+          <ChevronLast size={16} aria-hidden="true" />
+        </Button>
+      )}
       <Button
         size="small"
         iconOnly

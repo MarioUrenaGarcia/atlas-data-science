@@ -2,7 +2,7 @@ import { scaleLinear } from 'd3-scale';
 import { useMemo, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { DraggablePoint } from '../../core/svg/DraggablePoint.tsx';
@@ -123,9 +123,7 @@ export function BetsView({ title, config }: BetsViewProps) {
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={headers[stage] ?? ''} />
-      </p>
+      <FormulaLine tex={headers[stage] ?? ''} />
       <p className={styles.caption}>
         A: {proposition}. Cada apuesta paga 1 si ocurre lo apostado y 0 si no.
       </p>

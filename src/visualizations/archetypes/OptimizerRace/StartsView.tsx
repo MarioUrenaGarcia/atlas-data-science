@@ -7,7 +7,6 @@ import { num } from '../../core/plane/levels.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { FunctionMap } from './FunctionMap.tsx';
-import styles from './OptimizerRace.module.css';
 import { useFunctionChoice } from './shared.ts';
 
 const GRID = 4;
@@ -109,7 +108,6 @@ export function StartsView({ title, ids }: StartsViewProps) {
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`\\mathbf{x}_{k+1} = \\mathbf{x}_k - ${num(rate, 4)}\\,\\nabla f(\\mathbf{x}_k),\\quad k = ${step}:\\quad \\text{${finished ? `${groups.length} punto${groups.length === 1 ? '' : 's'} final${groups.length === 1 ? '' : 'es'} para ${starts.length} inicios` : 'los caminos avanzan'}}`}
       />
       <FunctionMap fn={fn} label={description}>

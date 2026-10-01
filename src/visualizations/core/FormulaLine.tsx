@@ -1,36 +1,40 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { strings } from '../../app/strings.ts';
+import styles from './FormulaLine.module.css';
 import { Latex } from './Latex.tsx';
 
 interface FormulaLineProps {
   tex: string;
-  className?: string;
 }
 
 /**
- * A header formula that scrolls sideways when it does not fit. Only while it
- * overflows does it become a focusable region, so keyboard users can scroll
- * it without adding tab stops to formulas that fit.
+ * Centered formula above a visualization. Long formulas scroll horizontally;
+ * only then the line becomes a labelled, focusable region so keyboard users
+ * can scroll it, without adding a tab stop to formulas that fit.
  */
-export function FormulaLine({ tex, className }: FormulaLineProps) {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const [overflowing, setOverflowing] = useState(false);
-  useEffect(() => {
+export function FormulaLine({ tex }: FormulaLineProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [overflows, setOverflows] = useState(false);
+
+  useLayoutEffect(() => {
     const element = ref.current;
-    if (!element) return undefined;
-    const check = () => setOverflowing(element.scrollWidth > element.clientWidth + 1);
+    if (!element) return;
+    const check = () => setOverflows(element.scrollWidth > element.clientWidth + 1);
     check();
     const observer = new ResizeObserver(check);
     observer.observe(element);
     return () => observer.disconnect();
   }, [tex]);
+
   return (
-    <p
+    <div
       ref={ref}
-      className={className}
-      {...(overflowing ? { tabIndex: 0, role: 'region', 'aria-label': strings.viz.formula } : {})}
+      className={styles.formula}
+      role={overflows ? 'region' : undefined}
+      aria-label={overflows ? strings.viz.formulaRegion : undefined}
+      tabIndex={overflows ? 0 : undefined}
     >
       <Latex tex={tex} />
-    </p>
+    </div>
   );
 }

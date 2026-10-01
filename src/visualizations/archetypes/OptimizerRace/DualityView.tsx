@@ -83,11 +83,9 @@ export function DualityView({ title, target, normal, bound }: DualityViewProps) 
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`g(\\mu) = \\min_{\\mathbf{x}}\\ \\tfrac{1}{2}\\lVert \\mathbf{x} - \\mathbf{t} \\rVert^2 + \\mu(\\mathbf{a}^\\top\\mathbf{x} - c) = \\mu(\\mathbf{a}^\\top\\mathbf{t} - c) - \\tfrac{\\mu^2}{2}\\lVert \\mathbf{a} \\rVert^2`}
       />
       <FormulaLine
-        className={styles.formula}
         tex={`\\mu = ${num(mu, 3)}:\\quad g(\\mu) = ${num(g(mu), 4)}\\ \\le\\ p^* = ${num(primal, 4)},\\qquad \\max_{\\mu \\ge 0} g = g(${num(muStar, 3)}) = ${num(dualOptimum, 4)}`}
       />
       <div className={styles.pair}>

@@ -75,7 +75,7 @@ muestreo: area
 - $T$: duración de la ventana de llegada en el problema del encuentro; $w$: tiempo de espera.
 - $x$, $y$: momentos de llegada de cada persona, medidos desde el inicio de la ventana.
 - $r$: radio del disco interior; $\pi$: la constante 3.14159...
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -158,7 +158,7 @@ $$
 
 - $\lambda$: longitud, área o volumen.
 - $A$: región favorable; $\Omega$: región total.
-  :::
+:::
 
 :::formula[Problema del encuentro]
 
@@ -168,7 +168,7 @@ $$
 
 - $X$, $Y$: momentos de llegada, uniformes e independientes en $[0, T]$.
 - $w$: tiempo máximo de espera, con $0 \le w \le T$.
-  :::
+:::
 
 :::formula[Punto en un disco]
 
@@ -177,7 +177,7 @@ P(\text{distancia al centro} \le r) = \frac{\pi r^2}{\pi \cdot 1^2} = r^2
 $$
 
 - $r$: radio del disco interior, entre 0 y 1.
-  :::
+:::
 
 :::formula[Raíces reales con coeficientes uniformes]
 
@@ -187,4 +187,4 @@ $$
 
 - $b$, $c$: coeficientes de $x^2 + bx + c = 0$, uniformes en $[0, 1]$.
 - $\int_0^1 \dots\, db$: área bajo la parábola $c = b^2/4$.
-  :::
+:::

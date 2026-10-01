@@ -96,11 +96,9 @@ export function StochasticView({ title, batch, rate, seed: initialSeed }: Stocha
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`\\boldsymbol{\\beta}_{k+1} = \\boldsymbol{\\beta}_k - \\eta\\,\\frac{1}{${b}}\\sum_{i \\in B_k} \\nabla \\ell_i(\\boldsymbol{\\beta}_k),\\qquad |B_k| = ${b},\\ \\eta = ${num(eta, 3)}`}
       />
       <FormulaLine
-        className={styles.formula}
         tex={`k = ${step}:\\quad \\boldsymbol{\\beta}_k = (${num(current[0], 3)}, ${num(current[1], 3)}),\\quad \\text{error} = ${num(loss(current[0], current[1]), 4)},\\quad \\text{mínimo} = ${num(loss(solution[0], solution[1]), 4)}`}
       />
       <div className={styles.pair}>

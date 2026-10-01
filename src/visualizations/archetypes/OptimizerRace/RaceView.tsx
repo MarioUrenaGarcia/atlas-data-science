@@ -7,7 +7,6 @@ import { num } from '../../core/plane/levels.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { FunctionMap } from './FunctionMap.tsx';
-import styles from './OptimizerRace.module.css';
 import { METHOD_NAMES, point, pointTex, USES_RATE, useFunctionChoice } from './shared.ts';
 
 const ITERATIONS = 60;
@@ -103,13 +102,12 @@ export function RaceView({ title, ids, methods, start, rate }: RaceViewProps) {
         return (
           <FormulaLine
             key={m}
-            className={styles.formula}
             tex={`\\text{${METHOD_NAMES[m]}}:\\ \\mathbf{x}_{${Math.min(step, (paths[i]?.length ?? 1) - 1)}} = ${pointTex(s.point, DIGITS)},\\quad f = ${num(s.value, 5)}`}
           />
         );
       })}
       {detail && (
-        <FormulaLine className={styles.formula} tex={detail} />
+        <FormulaLine tex={detail} />
       )}
       <FunctionMap fn={fn} label={description}>
         {({ x, y }) => (

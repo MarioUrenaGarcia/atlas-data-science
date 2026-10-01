@@ -81,11 +81,9 @@ export function ParetoView({ title, seed: initialSeed, weight }: { title: string
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`\\min\\ \\big(f_1(\\mathbf{x}), f_2(\\mathbf{x})\\big) = \\big(\\lVert \\mathbf{x} - \\mathbf{a} \\rVert^2,\\ \\lVert \\mathbf{x} - \\mathbf{b} \\rVert^2\\big),\\quad \\mathbf{a} = (0, 0),\\ \\mathbf{b} = (2, 1)`}
       />
       <FormulaLine
-        className={styles.formula}
         tex={`w = ${num(w, 2)}:\\quad \\min\\ ${num(w, 2)}\\,f_1 + ${num(1 - w, 2)}\\,f_2\\ \\Rightarrow\\ \\mathbf{x} = (${num(chosen[0], 2)}, ${num(chosen[1], 2)}),\\ (f_1, f_2) = (${num(f1, 3)}, ${num(f2, 3)})`}
       />
       <div className={styles.pair}>

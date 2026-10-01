@@ -87,11 +87,9 @@ export function LineSearchView({ title, ids, start, alpha0, c1: initialC1, rho: 
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`\\varphi(\\alpha) = f(\\mathbf{x} + \\alpha\\mathbf{d}),\\quad \\mathbf{d} = -\\nabla f(\\mathbf{x}) = ${`\\begin{pmatrix} ${num(d[0], 3)} \\\\ ${num(d[1], 3)} \\end{pmatrix}`},\\quad \\varphi'(0) = -\\lVert \\nabla f \\rVert^2 = ${num(slope, 3)}`}
       />
       <FormulaLine
-        className={styles.formula}
         tex={`\\alpha = ${num(current?.alpha ?? alpha0, 4)}:\\quad \\varphi(\\alpha) = ${num(current?.value ?? f0, 4)}\\ ${accepted ? '\\le' : '>'}\\ ${num(f0, 4)} + ${num(c1, 4)}\\cdot${num(current?.alpha ?? alpha0, 4)}\\cdot(${num(slope, 3)}) = ${num(bound(current?.alpha ?? alpha0), 4)}`}
       />
       <div className={styles.pair}>

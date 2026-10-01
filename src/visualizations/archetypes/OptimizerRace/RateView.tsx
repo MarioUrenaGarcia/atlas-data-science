@@ -75,9 +75,8 @@ export function RateView({ title, ids, rates, start }: RateViewProps) {
       legend={rates.map((r, i) => ({ label: `η = ${r}`, color: seriesColor(i), shape: 'line' as const }))}
       description={description}
     >
-      <FormulaLine className={styles.formula} tex={`\\mathbf{x}_{k+1} = \\mathbf{x}_k - \\eta\\,\\nabla f(\\mathbf{x}_k),\\qquad k = ${step}${lambdaMax ? `,\\qquad \\eta < \\tfrac{2}{\\lambda_{\\max}} = ${num(2 / lambdaMax, 3)}` : ''}`} />
+      <FormulaLine tex={`\\mathbf{x}_{k+1} = \\mathbf{x}_k - \\eta\\,\\nabla f(\\mathbf{x}_k),\\qquad k = ${step}${lambdaMax ? `,\\qquad \\eta < \\tfrac{2}{\\lambda_{\\max}} = ${num(2 / lambdaMax, 3)}` : ''}`} />
       <FormulaLine
-        className={styles.formula}
         tex={rates.map((r, i) => `\\eta = ${r}:\\ f(\\mathbf{x}_{${step}}) - f^* = ${num(gap(at(paths[i] ?? [])), 5)}`).join(',\\quad ')}
       />
       <div className={styles.pair}>

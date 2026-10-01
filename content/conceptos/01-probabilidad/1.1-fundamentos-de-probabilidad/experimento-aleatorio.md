@@ -55,7 +55,7 @@ Un **experimento aleatorio** es un procedimiento que cumple tres condiciones:
 1. Puede repetirse, al menos conceptualmente, en condiciones esencialmente iguales.
 2. El conjunto de todos sus resultados posibles se conoce antes de realizarlo.
 3. El resultado de una realización concreta no puede predecirse con certeza.
-   :::
+:::
 
 Cada realización del experimento produce exactamente un **resultado** $\omega$, que pertenece al conjunto $\Omega$ de resultados posibles. Un experimento en el que el resultado sí está determinado por las condiciones (por ejemplo, calentar agua pura a nivel del mar hasta que hierva y medir si hierve a 100 °C) se llama **determinista**.
 
@@ -77,7 +77,7 @@ ensayos: 40
 - $\Omega$: conjunto de todos los resultados posibles (omega mayúscula), llamado espacio muestral.
 - $\omega \in \Omega$: el resultado obtenido es uno de los elementos de $\Omega$.
 - $\longmapsto$: "produce"; cada realización del experimento produce un resultado.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -174,7 +174,7 @@ $$
 - $\omega$: resultado de una realización.
 - $\Omega$: conjunto de todos los resultados posibles.
 - $\in$: pertenencia; el resultado es un elemento de $\Omega$.
-  :::
+:::
 
 :::formula[Frecuencia relativa tras n repeticiones]
 
@@ -185,4 +185,4 @@ $$
 - $n$: número de veces que se ha repetido el experimento.
 - $n_A$: número de repeticiones en las que ocurrió el resultado o evento $A$.
 - $f_n(A)$: proporción de repeticiones en las que ocurrió $A$.
-  :::
+:::

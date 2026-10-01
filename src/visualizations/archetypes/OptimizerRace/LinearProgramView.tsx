@@ -7,7 +7,6 @@ import { num } from '../../core/plane/levels.ts';
 import { Arrow } from '../../core/svg/Arrow.tsx';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import styles from './OptimizerRace.module.css';
 import { item } from './shared.ts';
 
 const SWEEP_STEPS = 40;
@@ -102,9 +101,8 @@ export function LinearProgramView({ title, lp, method, variables }: LinearProgra
       ]}
       description={description}
     >
-      <FormulaLine className={styles.formula} tex={`\\max\\ z = ${objectiveTex}\\ \\text{ sujeto a }\\ ${constraintsTex},\\ ${v1}, ${v2} \\ge 0`} />
+      <FormulaLine tex={`\\max\\ z = ${objectiveTex}\\ \\text{ sujeto a }\\ ${constraintsTex},\\ ${v1}, ${v2} \\ge 0`} />
       <FormulaLine
-        className={styles.formula}
         tex={
           method === 'grafico'
             ? `${objectiveTex} = ${num(level, 2)}${step >= total ? `\\ \\Rightarrow\\ \\text{óptimo en } (${num(optimum.x[0] ?? 0, 2)}, ${num(optimum.x[1] ?? 0, 2)})` : ''}`

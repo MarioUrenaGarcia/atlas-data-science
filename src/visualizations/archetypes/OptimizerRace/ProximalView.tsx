@@ -8,7 +8,6 @@ import { num } from '../../core/plane/levels.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import styles from './OptimizerRace.module.css';
 import { item } from './shared.ts';
 
 const ITERATIONS = 25;
@@ -87,11 +86,9 @@ export function ProximalView({ title, matrix, center, lambda, start }: ProximalV
       description={description}
     >
       <FormulaLine
-        className={styles.formula}
         tex={`\\min_{\\boldsymbol{\\beta}}\\ \\tfrac{1}{2}(\\boldsymbol{\\beta} - \\mathbf{b})^\\top \\mathbf{A}(\\boldsymbol{\\beta} - \\mathbf{b}) + ${num(lam, 2)}\\lVert \\boldsymbol{\\beta} \\rVert_1,\\qquad \\mathbf{b} = (${num(center[0], 2)}, ${num(center[1], 2)})`}
       />
       <FormulaLine
-        className={styles.formula}
         tex={
           halfway
             ? `\\mathbf{z} = \\boldsymbol{\\beta}_{${k}} - t\\,\\nabla g(\\boldsymbol{\\beta}_{${k}}) = (${num(next.gradientPoint[0], 4)}, ${num(next.gradientPoint[1], 4)})`

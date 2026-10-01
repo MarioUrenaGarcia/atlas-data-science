@@ -185,7 +185,7 @@ ejemplos:
 
 ## Conexiones
 
-Las escalas refinan la división entre [[datos-cualitativos-y-cuantitativos]]: nominal y ordinal para las primeras, intervalo y razón para las segundas. La escala nominal se apoya en una [[relaciones-y-relaciones-de-equivalencia|relación de equivalencia]] (tener la misma categoría) y la ordinal en una relación de orden. La escala determina qué medidas de tendencia central son válidas: la moda siempre, la mediana desde la ordinal, la media aritmética desde la de intervalo y la media geométrica solo en la de razón. Independientemente de la escala, una variable cuantitativa puede ser [[datos-discretos-y-continuos|discreta o continua]].
+Las escalas refinan la división entre [[datos-cualitativos-y-cuantitativos]]: nominal y ordinal para las primeras, intervalo y razón para las segundas. La escala nominal se apoya en una [[relaciones-y-relaciones-de-equivalencia|relación de equivalencia]] (tener la misma categoría) y la ordinal en una relación de orden. La escala determina qué medidas de tendencia central son válidas: la [[moda]] siempre, la [[mediana]] desde la ordinal, la [[media-aritmetica]] desde la de intervalo y la [[media-geometrica]] solo en la de razón. Independientemente de la escala, una variable cuantitativa puede ser [[datos-discretos-y-continuos|discreta o continua]].
 
 ## Formulario
 
