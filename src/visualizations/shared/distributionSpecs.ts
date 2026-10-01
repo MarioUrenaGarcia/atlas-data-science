@@ -586,3 +586,35 @@ export function specValues(
     }),
   );
 }
+
+/** Width of the automatic plotting window when slider ranges are widened. */
+const WIDE_DOMAIN: [number, number] = [-1e6, 1e6];
+const SLIDER_STEPS = 200;
+
+/**
+ * Copy of a spec whose sliders cover custom ranges, for examples in real
+ * units (heights in centimeters, times in minutes). The plotting window is
+ * then chosen from the distribution itself.
+ */
+export function withRanges(
+  spec: DistributionSpec,
+  ranges: Record<string, readonly [number, number]> | undefined,
+): DistributionSpec {
+  if (!ranges || Object.keys(ranges).length === 0) return spec;
+  return {
+    ...spec,
+    domain: WIDE_DOMAIN,
+    parameters: spec.parameters.map((parameter) => {
+      const range = ranges[parameter.key];
+      if (!range) return parameter;
+      const [min, max] = range;
+      const raw = (max - min) / SLIDER_STEPS;
+      const magnitude = 10 ** Math.floor(Math.log10(raw));
+      const step =
+        parameter.step >= 1
+          ? Math.max(1, Math.round(raw))
+          : Math.max(magnitude, Math.round(raw / magnitude) * magnitude);
+      return { ...parameter, min, max, step: Number(step.toPrecision(2)) };
+    }),
+  };
+}

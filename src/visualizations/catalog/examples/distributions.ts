@@ -2,6 +2,16 @@ import type { CatalogExample } from '../examples.ts';
 
 /** Catalog examples of the distribution visualizations. */
 export const DISTRIBUTION_EXAMPLES: CatalogExample[] = [
+  {
+    component: 'DistributionExplorer',
+    title: 'Normal en centímetros',
+    params: {
+      distribucion: 'normal',
+      valores: { mu: 170, sigma: 7 },
+      rangos: { mu: [140, 200], sigma: [1, 20] },
+      dominio: [140, 200],
+    },
+  },
   { component: 'DistributionGenesis', title: 'Dado', params: { proceso: 'dado' } },
   {
     component: 'DistributionGenesis',

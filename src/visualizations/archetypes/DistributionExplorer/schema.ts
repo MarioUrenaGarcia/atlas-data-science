@@ -19,6 +19,8 @@ export const parametersSchema = z
     /** Whether the simulated sample histogram is shown at start. */
     muestras: z.boolean().optional(),
     dominio: z.tuple([z.number(), z.number()]).optional(),
+    /** Custom slider ranges for examples in real units; they also apply to the reference curve. Use with dominio. */
+    rangos: z.record(z.string(), z.tuple([z.number(), z.number()])).optional(),
     /** A fixed second curve drawn for comparison. */
     referencia: z
       .object({

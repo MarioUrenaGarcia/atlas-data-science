@@ -8,7 +8,7 @@ import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { useRandomSource, useResettableState, useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import { DISTRIBUTION_SPECS, specValues } from '../../shared/distributionSpecs.ts';
+import { DISTRIBUTION_SPECS, specValues, withRanges } from '../../shared/distributionSpecs.ts';
 import { plotWindow } from '../../shared/plotWindow.ts';
 import type { VisualizationProps } from '../../types.ts';
 import { DistributionChart, type ChartView } from './DistributionChart.tsx';
@@ -25,7 +25,10 @@ const VIEWS = [
 
 export default function DistributionExplorer({ params, conceptId, title }: VisualizationProps) {
   const config = params as unknown as DistributionExplorerConfig;
-  const spec = DISTRIBUTION_SPECS[config.distribucion];
+  const spec = useMemo(
+    () => withRanges(DISTRIBUTION_SPECS[config.distribucion], config.rangos),
+    [config.distribucion, config.rangos],
+  );
   // Slider limits for the interval; the plotted window adapts inside them.
   const limits: [number, number] = config.dominio ?? spec.domain;
   const fixed = useMemo(() => new Set(config.fijos ?? []), [config.fijos]);
@@ -116,12 +119,15 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
   const distribution = useMemo(() => spec.create(distributionValues), [spec, distributionValues]);
   const reference = useMemo(() => {
     if (!config.referencia) return null;
-    const referenceSpec = DISTRIBUTION_SPECS[config.referencia.distribucion];
+    const referenceSpec = withRanges(
+      DISTRIBUTION_SPECS[config.referencia.distribucion],
+      config.rangos,
+    );
     return {
       distribution: referenceSpec.create(specValues(referenceSpec, config.referencia.valores)),
       label: config.referencia.etiqueta,
     };
-  }, [config.referencia]);
+  }, [config.referencia, config.rangos]);
 
   const domain = useMemo<[number, number]>(
     () => config.dominio ?? plotWindow([initialDistribution, distribution], limits, spec.discrete),
