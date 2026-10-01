@@ -9,7 +9,7 @@ function check(condition: boolean, message: string): void {
  * Smallest integer k in [lo, hi] with cdf(k) >= p. The search walks up from
  * an initial guess, which is fast for the distributions used in the Atlas.
  */
-function discreteQuantile(
+export function discreteQuantile(
   cdf: (k: number) => number,
   p: number,
   lo: number,
