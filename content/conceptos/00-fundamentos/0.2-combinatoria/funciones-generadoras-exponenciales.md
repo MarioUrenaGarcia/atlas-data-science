@@ -109,6 +109,18 @@ n: 7
 
 - **Series básicas:** $e^x \leftrightarrow (1, 1, 1, \dots)$; $\frac{1}{1-x} \leftrightarrow (n!)$, las permutaciones; $e^{cx} \leftrightarrow (c^n)$.
 - **Paridad:** $\cosh x$ selecciona los tamaños pares y $\sinh x$ los impares.
+
+:::figura[Palabras de 5 letras con un número par de A y un número impar de B: la función generadora es $\cosh x \cdot \sinh x$ y su coeficiente da $\binom{5}{0} + \binom{5}{2} + \binom{5}{4} = 16$ palabras.]{componente="GeneratingFunctionViz"}
+```yaml
+modo: exponencial
+letras:
+  - letra: A
+    regla: par
+  - letra: B
+    regla: impar
+n: 5
+```
+:::
 - **Conjuntos de estructuras:** si $\hat{A}(x)$ cuenta estructuras conexas, $\exp(\hat{A}(x))$ cuenta conjuntos de ellas; por ejemplo, $e^{e^x - 1}$ genera los números de Bell.
 - **Desarreglos:** $\sum_n D_n \frac{x^n}{n!} = \frac{e^{-x}}{1-x}$, porque toda permutación es un conjunto de puntos fijos junto con un desarreglo.
 - **Derivada:** $\hat{A}'(x)$ corresponde a la sucesión desplazada $a_{n+1}$.
@@ -118,6 +130,18 @@ n: 7
 - **Usar la versión ordinaria con objetos etiquetados.** El producto ordinario olvida el factor $\binom{n}{k}$ que reparte las posiciones.
 - **Olvidar multiplicar por $n!$ al final.** El número buscado es $a_n = n!\,[x^n]\hat{A}(x)$, no el coeficiente solo.
 - **Confundir "al menos una vez" con "exactamente una vez".** La primera condición da $e^x - 1$ y la segunda da $x$.
+
+:::figura[Palabras de 5 letras con A y B en las que A aparece al menos una vez: el factor de A es $e^x - 1$, que quita solo la palabra sin A, y quedan $2^5 - 1 = 31$.]{componente="GeneratingFunctionViz"}
+```yaml
+modo: exponencial
+letras:
+  - letra: A
+    regla: al-menos-uno
+  - letra: B
+    regla: cualquiera
+n: 5
+```
+:::
 
 ## Conexiones
 

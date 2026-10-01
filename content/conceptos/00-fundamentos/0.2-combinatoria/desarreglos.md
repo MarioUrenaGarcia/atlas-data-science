@@ -115,6 +115,12 @@ bloques:
 ## Errores comunes
 
 - **Pensar que la probabilidad de ninguna coincidencia tiende a 0 o a 1.** Se estabiliza en $1/e \approx 0.368$.
+
+:::figura[Con 10 invitados la proporción exacta de desarreglos es $D_{10}/10! = 1334961/3628800 = 0.36788$, prácticamente $1/e$; la frecuencia simulada se estabiliza en ese valor, lejos de 0 y de 1.]{componente="DerangementsViz"}
+```yaml
+n: 10
+```
+:::
 - **Contar con $(n-1)^n$.** Eso supondría que cada invitado elige un abrigo ajeno por separado, permitiendo que dos reciban el mismo.
 - **Confundir "ninguna coincidencia" con "no todas coinciden".** Esta última es el complemento de un solo caso: $n! - 1$.
 

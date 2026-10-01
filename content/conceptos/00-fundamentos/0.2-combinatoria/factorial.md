@@ -136,8 +136,52 @@ escenarios:
 
 - **Pensar que $0! = 0$.** Por convención y por coherencia con las fórmulas, $0! = 1$.
 - **Simplificar mal cocientes.** $\frac{10!}{8!} = 10 \cdot 9 = 90$, no $\frac{10}{8}$.
+
+:::figura[$10!/8!$ con casillas: de los 10 factores solo sobreviven los dos primeros, $10 \cdot 9 = 90$, porque $8!$ cancela los otros ocho.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: "10! / 8!"
+    casillas:
+      - etiqueta: "10"
+        opciones: 10
+      - etiqueta: "9"
+        opciones: 9
+```
+:::
 - **Calcular factoriales grandes directamente.** En una computadora, $171!$ ya excede el máximo de un número de punto flotante de doble precisión; conviene usar logaritmos.
 - **Confundir $(2n)!$ con $2 \cdot n!$.** $(2 \cdot 3)! = 720$, mientras que $2 \cdot 3! = 12$.
+
+:::figura[Con $n = 3$: $(2 \cdot 3)! = 6!$ multiplica seis factores y da 720; $2 \cdot 3!$ multiplica tres factores y luego duplica, y da 12.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: "(2 · 3)! = 6!"
+    casillas:
+      - etiqueta: "6"
+        opciones: 6
+      - etiqueta: "5"
+        opciones: 5
+      - etiqueta: "4"
+        opciones: 4
+      - etiqueta: "3"
+        opciones: 3
+      - etiqueta: "2"
+        opciones: 2
+      - etiqueta: "1"
+        opciones: 1
+  - nombre: "2 · 3!"
+    casillas:
+      - etiqueta: "3"
+        opciones: 3
+      - etiqueta: "2"
+        opciones: 2
+      - etiqueta: "1"
+        opciones: 1
+      - etiqueta: doble
+        opciones: 2
+```
+:::
 
 ## Conexiones
 

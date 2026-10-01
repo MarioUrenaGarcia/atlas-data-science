@@ -114,6 +114,19 @@ escenarios:
 
 - **Casos extremos:** $V(n, n) = n!$, $V(n, 1) = n$, $V(n, 0) = 1$, y $V(n, k) = 0$ si $k > n$.
 - **Relación con combinaciones:** $V(n, k) = \binom{n}{k}\, k!$, porque cada selección ordenada es un subconjunto de $k$ elementos junto con uno de sus $k!$ órdenes.
+
+:::figura[Las variaciones de 6 en 3 por etapas: primero se elige el subconjunto de 3, de $\binom{6}{3} = 20$ maneras, y después se ordena, de $3! = 6$ maneras; en total $V(6, 3) = 120$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Subconjunto y orden
+    casillas:
+      - etiqueta: subconjunto de 3
+        opciones: 20
+      - etiqueta: orden
+        opciones: 6
+```
+:::
 - **Factorial descendente:** $V(n, k)$ se escribe también $n^{\underline{k}}$ o $(n)_k$.
 - **Proporción sin repetición:** $\frac{V(n, k)}{n^k} = \prod_{i=0}^{k-1}\left(1 - \frac{i}{n}\right)$, que decrece rápidamente con $k$.
 

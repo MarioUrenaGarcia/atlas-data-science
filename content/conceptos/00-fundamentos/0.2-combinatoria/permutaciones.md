@@ -139,7 +139,24 @@ escenarios:
 ## Errores comunes
 
 - **Usar $n^n$ en lugar de $n!$.** Eso cuenta las sucesiones con repetición; en una permutación ningún objeto se repite.
+
+:::figura[Con 3 objetos y el interruptor de repetición: las sucesiones con repetición son $3^3 = 27$, y entre ellas solo 6 no repiten ningún objeto; esas son las permutaciones.]{componente="CombinatoricsBoard"}
+```yaml
+modo: ordenaciones
+objetos: [rojo, verde, azul]
+k: 3
+repeticion: true
+permitirRepeticion: true
+```
+:::
 - **Aplicar $n!$ cuando hay objetos idénticos.** Las permutaciones de las letras de OSO no son $3! = 6$ sino 3, porque las dos O son indistinguibles.
+
+:::figura[Las letras de OSO: de los $3! = 6$ órdenes, cada palabra aparece dos veces porque intercambiar las O no cambia nada, y quedan 3.]{componente="CombinatoricsBoard"}
+```yaml
+modo: anagramas
+palabra: OSO
+```
+:::
 - **Olvidar el orden interno de un bloque.** Al pegar objetos que deben quedar juntos, hay que multiplicar por los órdenes dentro del bloque.
 
 ## Conexiones
