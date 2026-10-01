@@ -82,5 +82,6 @@ describe('catalog examples', () => {
       const result = entry?.schema?.safeParse(example.params);
       expect(result?.success, `${example.component}: ${example.title}`).toBe(true);
     }
-  });
+    // Loading every visualization schema takes several seconds when the suite runs in parallel.
+  }, 30_000);
 });

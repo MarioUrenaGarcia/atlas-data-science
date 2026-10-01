@@ -262,6 +262,7 @@ export const strings = {
 
   viz: {
     play: 'Reproducir',
+    formula: 'Fórmula',
     pause: 'Pausar',
     step: 'Avanzar un paso',
     restart: 'Reiniciar',

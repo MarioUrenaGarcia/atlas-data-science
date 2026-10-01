@@ -1,0 +1,19 @@
+.formula {
+  margin: 0;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.panelTitle {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+}

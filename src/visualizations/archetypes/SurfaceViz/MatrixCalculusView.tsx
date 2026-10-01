@@ -14,8 +14,8 @@ import { FunctionPlot } from '../../core/svg/FunctionPlot.tsx';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import { ContourMap } from './ContourMap.tsx';
-import { num } from './levels.ts';
+import { ContourMap } from '../../core/plane/ContourMap.tsx';
+import { num } from '../../core/plane/levels.ts';
 import styles from './SurfaceViz.module.css';
 
 const ITERATIONS = 30;
