@@ -111,7 +111,7 @@ Una estación meteorológica registra cada día cinco variables. Se clasifican p
 
 1. **Temperatura máxima** (27.3 °C): entre 27.3 y 27.4 cabe 27.35. Continua.
 2. **Lluvia acumulada** (4.2 mm): es una altura de agua. Continua.
-3. **Horas con lluvia** contadas en horas completas (0, 1, 2, ..., 24): discreta, con 25 valores posibles.
+3. **Horas con lluvia**: número de horas del reloj (de 0 a 24) en las que se registró lluvia (0, 1, 2, ..., 24). Es un conteo de intervalos y por eso es discreta, con 25 valores posibles. La duración total de la lluvia, medida en minutos y fracciones, sería en cambio continua.
 4. **Número de rayos detectados** (0, 12, 57): conteo sin límite superior fijo. Discreta, con valores numerables.
 5. **Velocidad del viento** (14.8 km/h): continua.
 

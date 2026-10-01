@@ -110,17 +110,10 @@ caso: ventas
 - **Operaciones uniformes.** En datos ordenados, filtrar, agrupar, resumir, graficar y ajustar modelos usan siempre la misma estructura, con variables como columnas.
 - **Panel.** En datos de panel ordenados, la unidad de observación es la pareja unidad y periodo, con una columna para cada una.
 
-:::figura[Propiedad del número de filas: las calificaciones como cuadro de estudiantes por materia. Cada celda es una observación, un estudiante en una materia; 3 estudiantes por 3 materias dan 9 filas en formato largo.]{componente="DataTypesViz"}
+:::figura[Propiedad del número de filas: dos pacientes con cuatro visitas en columnas. Al pasar a formato largo se obtienen 2 · 4 = 8 filas, una por paciente en cada visita.]{componente="DataTypesViz"}
 ```yaml
-modo: panel
-unidades: [Ana, Beto, Carla]
-periodos: [Matemáticas, Historia, Biología]
-variable: Calificación
-valores:
-  - [9.1, 7.8, 8.5]
-  - [6.4, 8.9, 7.2]
-  - [8.0, 9.5, 9.0]
-vista: transversal
+modo: ordenados
+caso: presion
 ```
 :::
 
@@ -131,23 +124,10 @@ vista: transversal
 - **Varias variables en una celda.** Una celda "12/35" con aciertos sobre preguntas contiene dos variables; debe separarse en dos columnas.
 - **Contar filas como unidades.** En formato largo, 9 filas no son 9 estudiantes; son 9 calificaciones de 3 estudiantes.
 
-:::figura[Error de conteo: en el formato largo de temperaturas cada ciudad aparece tres veces; hay 9 filas pero solo 3 ciudades.]{componente="DataTypesViz"}
+:::figura[Error de conteo: goles de cuatro equipos en dos temporadas. Al terminar, el panel muestra 8 filas en la tabla ordenada pero solo 4 equipos distintos; las filas no son unidades.]{componente="DataTypesViz"}
 ```yaml
-modo: clasificar
-eje: estructura
-ejemplos:
-  - nombre: Tabla larga de temperaturas
-    valores: ciudad, mes, temperatura
-    clase: estructurado
-    razon: Está ordenada, pero cada ciudad ocupa varias filas; el número de ciudades no es el número de filas.
-  - nombre: Reporte con años en columnas
-    valores: estado, 2021, 2022, 2023
-    clase: estructurado
-    razon: Es estructurado pero no ordenado; los años son valores de una variable.
-  - nombre: Celdas como "12/35"
-    valores: aciertos y preguntas
-    clase: estructurado
-    razon: Estructurado, pero con dos variables en una celda.
+modo: ordenados
+caso: goles
 ```
 :::
 

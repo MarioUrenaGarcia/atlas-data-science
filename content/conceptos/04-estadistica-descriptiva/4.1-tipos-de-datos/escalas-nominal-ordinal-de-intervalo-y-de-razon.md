@@ -23,7 +23,7 @@ etiquetas:
 resumen: >
   Las cuatro escalas de medición ordenan a las variables según las comparaciones que admiten: igualdad,
   orden, diferencias y cocientes. Cada escala conserva las operaciones de las anteriores.
-formula: '\text{nominal: } g \text{ biyectiva};\ \text{ordinal: } g \text{ creciente};\ \text{intervalo: } a + bx;\ \text{razón: } bx'
+formula: 'x \mapsto g(x):\quad \text{biyectiva} \supset \text{creciente} \supset a + bx \supset bx'
 visualizacion:
   componente: DataTypesViz
   parametros:
@@ -151,9 +151,9 @@ variable: colores
 
 ## Errores comunes
 
-- **Calcular cocientes en escalas de intervalo.** "Hoy hace el doble de calor que ayer" o "el costo subió 30 % respecto al año 1990" aplicado al año calendario son afirmaciones sin sentido.
+- **Calcular cocientes en escalas de intervalo.** "Hoy hace el doble de calor que ayer" porque el termómetro pasó de 10 a 20 °C, o "el año 2000 es 0.05 % mayor que 1999", son afirmaciones sin sentido: el resultado cambia al mover el origen de la escala.
 - **Promediar respuestas ordinales sin advertencia.** La media de una escala de 1 a 5 supone que los saltos entre categorías son iguales. Es una práctica común, pero debe reconocerse como un supuesto adicional y contrastarse con la mediana.
-- **Confundir intervalo y razón por la presencia de un cero.** Que un valor cero sea posible no basta; debe significar ausencia de la magnitud. Una calificación de 0 en un examen no significa ausencia de conocimiento, y 8 no es el doble de 4 en conocimiento.
+- **Confundir intervalo y razón por la presencia de un cero.** Que un valor cero sea posible no basta; debe significar ausencia de la magnitud. Una calificación de 0 en un examen no significa ausencia de conocimiento, y 8 no es el doble de 4 en conocimiento. Por eso las calificaciones se tratan como escala de intervalo, o incluso como ordinal en textos más estrictos, pero no como de razón.
 
 :::figura[Casos que suelen clasificarse mal por la presencia de números o de un cero.]{componente="DataTypesViz"}
 ```yaml
@@ -163,7 +163,7 @@ ejemplos:
   - nombre: Calificación de examen
     valores: 0, 4, 8, 10
     clase: intervalo
-    razon: El 0 no es ausencia de conocimiento; se tratan las diferencias como comparables, no los cocientes.
+    razon: Se trata como de intervalo por convención; el 0 no es ausencia de conocimiento y los cocientes no tienen sentido.
   - nombre: Lugar en la carrera
     valores: 1, 2, 3
     clase: ordinal

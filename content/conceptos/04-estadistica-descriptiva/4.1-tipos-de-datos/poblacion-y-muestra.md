@@ -97,14 +97,14 @@ Al aumentar el tamaño de muestra $n$, la línea discontinua termina más cerca 
 
 ## Ejemplo
 
-Una preparatoria tiene 480 estudiantes inscritos y se quiere conocer cuántas horas duermen entre semana. Entrevistar a todos es costoso, así que se eligen 6 estudiantes al azar de la lista oficial.
+Una preparatoria tiene 400 estudiantes inscritos y se quiere conocer cuántas horas duermen entre semana. Entrevistar a todos es costoso, así que se eligen 6 estudiantes al azar de la lista oficial.
 
-1. Población: los $N = 480$ estudiantes inscritos. Muestra: los $n = 6$ elegidos. Fracción de muestreo: $f = 6/480 = 0.0125$, es decir, 1.25 %.
+1. Población: los $N = 400$ estudiantes inscritos. Muestra: los $n = 6$ elegidos. Fracción de muestreo: $f = 6/400 = 0.015$, es decir, 1.5 %.
 2. Las horas reportadas son 7, 6.5, 8, 5.5, 7 y 6.
 3. La media de la muestra es $(7 + 6.5 + 8 + 5.5 + 7 + 6)/6 = 40/6 \approx 6.67$ horas.
-4. Ese número describe a los seis entrevistados. Usarlo para hablar de los 480 es una generalización, razonable porque la muestra se tomó al azar de la lista completa, pero sujeta a error: otra selección de 6 daría otro valor.
+4. Ese número describe a los seis entrevistados. Usarlo para hablar de los 400 es una generalización, razonable porque la muestra se tomó al azar de la lista completa, pero sujeta a error: otra selección de 6 daría otro valor.
 
-:::figura[El ejemplo con una población simulada de 480 estudiantes y una muestra de 6. Al reiniciar con otra semilla se ve que la media de 6 entrevistados cambia de una muestra a otra.]{componente="DataTypesViz"}
+:::figura[El ejemplo con una población simulada de 400 estudiantes y una muestra de 6. Al reiniciar con otra semilla se ve que la media de 6 entrevistados cambia de una muestra a otra.]{componente="DataTypesViz"}
 ```yaml
 modo: poblacion
 enfoque: muestra

@@ -22,7 +22,7 @@ export interface TidyCase {
   steps: TidyStep[];
 }
 
-export type TidyCaseId = 'calificaciones' | 'clima' | 'ventas';
+export type TidyCaseId = 'calificaciones' | 'clima' | 'ventas' | 'presion' | 'goles';
 
 /** Wide to long: every value cell becomes one row keyed by its unit and its column header. */
 function pivotLonger(
@@ -134,4 +134,32 @@ export const TIDY_CASES: Record<TidyCaseId, TidyCase> = {
     ],
   ),
   ventas: ventas(),
+  presion: pivotLonger(
+    'Presión sistólica en visitas de control',
+    'Cada visita es una columna: una fila contiene cuatro mediciones de la misma persona.',
+    'paciente en una visita',
+    'paciente',
+    'visita',
+    'presión (mmHg)',
+    ['visita 1', 'visita 2', 'visita 3', 'visita 4'],
+    [
+      ['P-01', '142', '138', '131', '127'],
+      ['P-02', '156', '149', '150', '141'],
+    ],
+  ),
+  goles: pivotLonger(
+    'Goles por temporada',
+    'Las temporadas están en columnas; al alargar la tabla cada equipo aparece dos veces.',
+    'equipo en una temporada',
+    'equipo',
+    'temporada',
+    'goles',
+    ['2023', '2024'],
+    [
+      ['Tigres', '61', '55'],
+      ['Pumas', '48', '52'],
+      ['León', '57', '43'],
+      ['Toluca', '66', '70'],
+    ],
+  ),
 };

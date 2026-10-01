@@ -120,15 +120,16 @@ Si solo se miden dos plantas elegidas al azar, hay $\binom{5}{2} = 10$ muestras 
 2. El estadístico $\bar{x}$ toma valores entre 9.5 y 14.5 según la muestra que toque.
 3. El promedio de los diez valores posibles de $\bar{x}$ es $120/10 = 12$: la media muestral acierta en promedio, aunque casi ninguna muestra concreta dé exactamente 12.
 
-:::figura[Una población pequeña de 20 plantas y muestras de 2: los estadísticos saltan mucho de una muestra a otra, pero se reparten alrededor del parámetro.]{componente="DataTypesViz"}
+:::figura[Las cinco plantas del ejemplo y sus 10 muestras posibles de tamaño 2, recorridas una por una. Cada muestra deja su media en la franja inferior; al terminar, el panel muestra que el promedio de las 10 medias es exactamente 12, el valor del parámetro.]{componente="DataTypesViz"}
 ```yaml
 modo: poblacion
 enfoque: parametro
-tamano: 20
+tamano: 5
+valores: [12, 15, 9, 14, 10]
 n: 2
+enumerar: true
 forma: normal
 centro: 12
-dispersion: 2.2
 decimales: 0
 estadistico: media
 unidad: planta

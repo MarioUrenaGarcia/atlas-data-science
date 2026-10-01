@@ -92,3 +92,22 @@ export function biasedSample(values: readonly number[], n: number, random: Rando
   }
   return chosen;
 }
+
+/** Every subset of size n of the indices 0, ..., size - 1, in lexicographic order. */
+export function allSamples(size: number, n: number): number[][] {
+  const result: number[][] = [];
+  const current: number[] = [];
+  const visit = (start: number) => {
+    if (current.length === n) {
+      result.push([...current]);
+      return;
+    }
+    for (let i = start; i <= size - (n - current.length); i += 1) {
+      current.push(i);
+      visit(i + 1);
+      current.pop();
+    }
+  };
+  visit(0);
+  return result;
+}

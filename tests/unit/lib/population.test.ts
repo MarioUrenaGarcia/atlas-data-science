@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { Random } from '../../../src/lib/random/index.ts';
 import { mean } from '../../../src/lib/stats/index.ts';
 import {
+  allSamples,
   biasedSample,
   generatePopulation,
   populationStatistic,
@@ -51,5 +52,14 @@ describe('population', () => {
       means.push(mean(sample.map((index) => values[index] ?? 0)));
     }
     expect(mean(means)).toBeGreaterThan(120);
+  });
+
+  it('enumerates every sample and their means average to the parameter', () => {
+    const samples = allSamples(5, 2);
+    expect(samples).toHaveLength(10);
+    expect(samples[0]).toEqual([0, 1]);
+    const heights = [12, 15, 9, 14, 10];
+    const means = samples.map((pair) => mean(pair.map((index) => heights[index] ?? 0)));
+    expect(mean(means)).toBeCloseTo(12, 10);
   });
 });

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Random } from '../../../lib/random/index.ts';
 import {
+  allSamples,
   biasedSample,
   generatePopulation,
   populationStatistic,
@@ -54,6 +55,10 @@ interface PopulationViewProps {
   selection: 'aleatoria' | 'sesgada';
   decimals: number;
   seed: number;
+  /** Fixed population values; when given, nothing is simulated. */
+  fixed?: readonly number[];
+  /** Draws every possible sample once, in order, instead of random ones. */
+  enumerate?: boolean;
 }
 
 interface SamplingState {
@@ -78,7 +83,7 @@ export function PopulationView(props: PopulationViewProps) {
       label: 'Tamaño de muestra',
       symbol: 'n',
       min: 2,
-      max: Math.min(80, size),
+      max: Math.min(80, props.fixed?.length ?? size),
       step: 1,
       default: props.n,
     },
@@ -97,14 +102,23 @@ export function PopulationView(props: PopulationViewProps) {
   const n = Number(parameters.values.n);
   const selection = String(parameters.values.seleccion) as 'aleatoria' | 'sesgada';
   const seed = useSeed(props.seed);
-  const [population] = useResettableState(`${seed.seed}|${size}|${shape}|${center}|${spread}`, () =>
-    generatePopulation(
-      { size, shape, center, ...(spread === undefined ? {} : { spread }), decimals },
-      new Random(seed.seed),
-    ),
+  const fixed = props.fixed;
+  const [population] = useResettableState(
+    `${seed.seed}|${size}|${shape}|${center}|${spread}|${fixed?.join(',') ?? ''}`,
+    () =>
+      fixed
+        ? [...fixed]
+        : generatePopulation(
+            { size, shape, center, ...(spread === undefined ? {} : { spread }), decimals },
+            new Random(seed.seed),
+          ),
+  );
+  const [combinations] = useResettableState(`${population.length}|${n}|${props.enumerate}`, () =>
+    props.enumerate ? allSamples(population.length, n) : [],
   );
   const [run, setRun] = useState(0);
   const draw = (sampleIndex: number) => {
+    if (props.enumerate) return combinations[sampleIndex % Math.max(1, combinations.length)] ?? [];
     const random = new Random(seed.seed + 7919 * (sampleIndex + 1) + run);
     return selection === 'sesgada'
       ? biasedSample(population, n, random)
@@ -116,7 +130,8 @@ export function PopulationView(props: PopulationViewProps) {
   );
 
   const complete = state.drawn >= state.order.length;
-  const done = focus === 'muestra' ? complete : complete && state.history.length >= MAX_SAMPLES;
+  const sampleLimit = props.enumerate ? combinations.length : MAX_SAMPLES;
+  const done = focus === 'muestra' ? complete : complete && state.history.length >= sampleLimit;
   const playback = usePlayback({
     step: () =>
       update((previous) => {
@@ -170,13 +185,13 @@ export function PopulationView(props: PopulationViewProps) {
         ? `= \\frac{${sampleValues.length > 8 ? '\\dots + ' : ''}${shownValues.join(' + ')}}{${sampleValues.length}} `
         : '';
   const header =
-    `${names.parameter} = ${formatNumber(parameterValue, digits)}\\ \\text{(parámetro, ${size} unidades)}` +
+    `${names.parameter} = ${formatNumber(parameterValue, digits)}\\ \\text{(parámetro, ${population.length} unidades)}` +
     `\\qquad ${names.statistic} ${sumTex}= ${sampleValues.length === 0 ? '?' : formatNumber(statisticValue, digits)}` +
     `\\ \\text{(estadístico, ${sampleValues.length} de ${n})}`;
 
   const error = statisticValue - parameterValue;
   const description =
-    `Población de ${size} ${unit}s; ${names.name} de ${variable}: ${formatNumber(parameterValue, digits)}. ` +
+    `Población de ${population.length} ${unit}s; ${names.name} de ${variable}: ${formatNumber(parameterValue, digits)}. ` +
     (sampleValues.length === 0
       ? 'Aún no se ha extraído ninguna unidad.'
       : `Muestra actual con ${sampleValues.length} unidades: ${names.name} ${formatNumber(statisticValue, digits)}, error ${formatNumber(error, digits)}.`) +
@@ -194,7 +209,7 @@ export function PopulationView(props: PopulationViewProps) {
       seed={seed}
       parameters={parameters}
       readouts={[
-        { label: `Tamaño de la población N`, value: String(size) },
+        { label: `Tamaño de la población N`, value: String(population.length) },
         { label: 'Unidades en la muestra', value: `${sampleValues.length} de ${n}` },
         {
           label: `Parámetro: ${names.name} poblacional`,
@@ -207,7 +222,24 @@ export function PopulationView(props: PopulationViewProps) {
           color: DATA_COLORS.highlight,
         },
         ...(focus === 'parametro'
-          ? [{ label: 'Muestras completadas', value: String(state.history.length) }]
+          ? [
+              {
+                label: props.enumerate ? 'Muestras posibles recorridas' : 'Muestras completadas',
+                value: props.enumerate
+                  ? `${state.history.length} de ${combinations.length}`
+                  : String(state.history.length),
+              },
+              {
+                label: 'Promedio de los estadísticos',
+                value:
+                  state.history.length === 0
+                    ? 'sin datos'
+                    : formatNumber(
+                        state.history.reduce((a, b) => a + b, 0) / state.history.length,
+                        digits,
+                      ),
+              },
+            ]
           : []),
       ]}
       legend={[
@@ -239,8 +271,10 @@ export function PopulationView(props: PopulationViewProps) {
       >
         {(box) => {
           const gridHeight = box.inner.height * GRID_HEIGHT_SHARE;
-          const columns = Math.ceil(Math.sqrt((size * box.inner.width) / Math.max(1, gridHeight)));
-          const rows = Math.ceil(size / columns);
+          const columns = Math.ceil(
+            Math.sqrt((population.length * box.inner.width) / Math.max(1, gridHeight)),
+          );
+          const rows = Math.ceil(population.length / columns);
           const cell = Math.min(box.inner.width / columns, gridHeight / rows);
           const radius = Math.max(2, cell * 0.36);
           const gridLeft = box.inner.left + (box.inner.width - columns * cell) / 2;

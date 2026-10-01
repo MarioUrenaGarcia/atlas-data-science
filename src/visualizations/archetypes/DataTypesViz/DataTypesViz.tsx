@@ -30,6 +30,8 @@ export default function DataTypesViz({ params, conceptId, title }: Visualization
           selection={config.seleccion ?? 'aleatoria'}
           decimals={config.decimales ?? 0}
           seed={defaultSeed(conceptId, config.semilla)}
+          {...(config.valores ? { fixed: config.valores } : {})}
+          enumerate={config.enumerar ?? false}
         />
       );
     case 'clasificar':

@@ -66,6 +66,9 @@ export function TidyView({ title, caseId }: { title: string; caseId: TidyCaseId 
   const current = moves > 0 ? item.steps[moves - 1] : undefined;
   const revealed = item.steps.slice(0, moves).flatMap((step) => step.target);
   const done = moves >= item.steps.length;
+  const filledRows = new Set(revealed.map(([row]) => row));
+  // Rows are not units: several rows can share the same key value.
+  const distinctKeys = new Set([...filledRows].map((row) => item.target.rows[row]?.[0] ?? ''));
   const description =
     `${item.name}. ${item.problem} ` +
     `Se han movido ${moves} de ${item.steps.length} valores a la tabla ordenada, cuya unidad de observación es ${item.unit}.` +
@@ -89,6 +92,11 @@ export function TidyView({ title, caseId }: { title: string; caseId: TidyCaseId 
           value: `${item.target.rows.length} × ${item.target.headers.length}`,
         },
         { label: 'Unidad de observación', value: item.unit },
+        { label: 'Filas llenadas en la tabla ordenada', value: String(filledRows.size) },
+        {
+          label: `Valores distintos de ${item.target.headers[0] ?? ''}`,
+          value: String(distinctKeys.size),
+        },
       ]}
       description={description}
     >

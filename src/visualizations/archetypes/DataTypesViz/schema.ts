@@ -34,7 +34,11 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       modo: z.literal('poblacion'),
       /** "muestra" stops after one sample; "parametro" repeats samples and keeps a history. */
       enfoque: z.enum(['muestra', 'parametro']),
-      tamano: z.number().int().min(20).max(400),
+      tamano: z.number().int().min(3).max(400),
+      /** Fixed population values; tamano must equal their count. */
+      valores: z.array(z.number()).min(3).max(400).optional(),
+      /** Visits every possible sample once (only for small populations). */
+      enumerar: z.boolean().optional(),
       n: z.number().int().min(2).max(80),
       forma: z.enum(POPULATION_SHAPES),
       /** Center and spread of the values (normal and skewed shapes), or success rate (bernoulli). */
@@ -121,7 +125,7 @@ export const parametersSchema = z.discriminatedUnion('modo', [
   z
     .object({
       modo: z.literal('ordenados'),
-      caso: z.enum(['calificaciones', 'clima', 'ventas']),
+      caso: z.enum(['calificaciones', 'clima', 'ventas', 'presion', 'goles']),
     })
     .strict(),
 ]);

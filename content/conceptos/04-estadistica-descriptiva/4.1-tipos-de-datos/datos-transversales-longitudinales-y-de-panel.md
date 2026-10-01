@@ -106,7 +106,7 @@ Una cadena registra las ventas trimestrales, en miles de pesos, de tres sucursal
 1. Tipo de datos: panel balanceado con $n = 3$ sucursales, $T = 4$ trimestres y $nT = 12$ observaciones.
 2. Pregunta transversal, con el trimestre 4 fijo: ¿qué sucursal vende más? Centro, con 510, contra 330 de Sur.
 3. Pregunta longitudinal, con Sur fija: ¿cuánto creció? De 250 a 330, un aumento de $330 - 250 = 80$ miles de pesos, es decir, $80/250 = 32$ %.
-4. Pregunta de panel: ¿las sucursales que vendían menos crecieron más? Centro creció $90/420 \approx 21$ %, Norte $50/310 \approx 16$ % y Sur 32 %. Contestar esto exige seguir a cada sucursal, algo imposible con un solo trimestre.
+4. Pregunta de panel: ¿las sucursales que vendían menos crecieron más? Centro creció $90/420 \approx 21$ %, Norte $50/310 \approx 16$ % y Sur 32 %. La respuesta es que no de forma consistente: Sur, la que menos vendía, creció más, pero Norte vendía menos que Centro y creció menos. Contestar esto exige seguir a cada sucursal, algo imposible con un solo trimestre.
 
 :::figura[El panel de ventas del ejemplo en vista longitudinal: la reproducción recorre las sucursales y dibuja la trayectoria de cada una.]{componente="DataTypesViz"}
 ```yaml
