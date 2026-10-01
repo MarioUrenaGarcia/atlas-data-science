@@ -1,4 +1,4 @@
-import type { CatalogExample } from './examples.ts';
+import type { CatalogExample } from '../examples.ts';
 
 /** Catalog entries for the limit theorem visualizations. */
 export const LIMIT_EXAMPLES: CatalogExample[] = [

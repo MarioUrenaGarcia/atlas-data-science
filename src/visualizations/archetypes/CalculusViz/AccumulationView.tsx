@@ -71,6 +71,9 @@ export function AccumulationView({ title, id, from, to, scale, name }: Accumulat
     `${name}(x) acumula el área bajo ${scale === 1 ? 'f' : `${formatNumber(scale, 3)} f`} desde ${formatNumber(from, 2)}. ` +
     `En x = ${formatNumber(x, 2)}: ${name}(x) = ${formatNumber(value, 4)} y su pendiente es ${formatNumber(height, 4)}, la altura de la función en ese punto.`;
   const scaleLatex = scale === 1 ? '' : `${formatNumber(scale, 4)}`;
+  // Multi-letter names are operators, not products of variables; the integrand keeps only its left-hand name.
+  const nameLatex = name.length > 1 ? `\\operatorname{${name}}` : name;
+  const integrandLatex = (fn.latex.split(' = ')[0] ?? fn.latex).replace(/x/g, 't');
 
   return (
     <VizFrame
@@ -98,7 +101,7 @@ export function AccumulationView({ title, id, from, to, scale, name }: Accumulat
     >
       <p className={styles.formula}>
         <Latex
-          tex={`${name}(x) = ${scaleLatex}\\int_{${formatNumber(from, 2)}}^{x} ${fn.latex.replace(/x/g, 't')}\\,dt,\\qquad ${name}(${formatNumber(x, 2)}) = ${formatNumber(value, 4)},\\quad ${name}'(${formatNumber(x, 2)}) = ${formatNumber(height, 4)}`}
+          tex={`${nameLatex}(x) = ${scaleLatex}\\int_{${formatNumber(from, 2)}}^{x} ${integrandLatex}\\,dt,\\qquad ${nameLatex}(${formatNumber(x, 2)}) = ${formatNumber(value, 4)},\\quad ${nameLatex}'(${formatNumber(x, 2)}) = ${formatNumber(height, 4)}`}
         />
       </p>
       <p className={styles.panelTitle}>
