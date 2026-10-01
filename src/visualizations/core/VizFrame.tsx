@@ -114,6 +114,9 @@ export function VizFrame({
     } else if (event.key === 'ArrowRight') {
       event.preventDefault();
       playback.stepOnce();
+    } else if (event.key === 'End' && playback.skipToEnd) {
+      event.preventDefault();
+      playback.skipToEnd();
     } else if (event.key === 'r' || event.key === 'R') {
       event.preventDefault();
       playback.restart();
