@@ -4,7 +4,9 @@ import { parseSummary, type SummaryPiece } from '../../../src/lib/format/summary
 /** Compact rendering of the tree: sup as ^[...] and sub as _[...]. */
 function show(pieces: SummaryPiece[]): string {
   return pieces
-    .map((p) => (p.kind === 'text' ? p.value : `${p.kind === 'sup' ? '^' : '_'}[${show(p.children)}]`))
+    .map((p) =>
+      p.kind === 'text' ? p.value : `${p.kind === 'sup' ? '^' : '_'}[${show(p.children)}]`,
+    )
     .join('');
 }
 

@@ -182,7 +182,7 @@ exito: sí
 
 ## Conexiones
 
-La distinción supone clara la diferencia entre [[poblacion-y-muestra]]. Un estadístico es una [[funciones|función]] de los datos; en inferencia se le trata como variable aleatoria y su comportamiento de muestra en muestra es la distribución muestral. Los estadísticos más usados se estudian en el resto del módulo: la media aritmética, la mediana, la varianza muestral y los cuantiles. El tipo de variable, [[datos-cualitativos-y-cuantitativos|cualitativa o cuantitativa]], determina qué parámetros tienen sentido: para una variable cualitativa se estudian proporciones, no medias.
+La distinción supone clara la diferencia entre [[poblacion-y-muestra]]. Un estadístico es una [[funciones|función]] de los datos; en inferencia se le trata como variable aleatoria y su comportamiento de muestra en muestra es la distribución muestral. Los estadísticos más usados se estudian en el resto del módulo: la [[media-aritmetica]], la [[mediana]], la varianza muestral y los cuantiles. El tipo de variable, [[datos-cualitativos-y-cuantitativos|cualitativa o cuantitativa]], determina qué parámetros tienen sentido: para una variable cualitativa se estudian proporciones, no medias.
 
 ## Formulario
 
