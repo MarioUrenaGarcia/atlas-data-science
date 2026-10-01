@@ -1,3 +1,5 @@
+import { LIMIT_EXAMPLES } from './limitExamples.ts';
+
 /** Sample configurations shown in the development catalog, one or more per visualization. */
 export interface CatalogExample {
   component: string;
@@ -892,4 +894,5 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
       ],
     },
   },
+  ...LIMIT_EXAMPLES,
 ];

@@ -51,6 +51,7 @@ export function drawBottomAxis(
   theme: CanvasTheme,
   label?: string,
   ticks = 6,
+  tickValues?: readonly number[],
 ): void {
   const [d0 = 0, d1 = 1] = scale.domain();
   context.strokeStyle = theme.axis;
@@ -63,7 +64,7 @@ export function drawBottomAxis(
   context.stroke();
   context.textAlign = 'center';
   context.textBaseline = 'top';
-  for (const value of scale.ticks(ticks)) {
+  for (const value of tickValues ?? scale.ticks(ticks)) {
     const x = Math.round(scale(value)) + 0.5;
     context.beginPath();
     context.moveTo(x, y);
