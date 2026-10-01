@@ -3,7 +3,7 @@ import { formatNumber } from '../../../lib/format/number.ts';
 import { kolmogorovCdf, kolmogorovPdf, ksDistance } from '../../../lib/limits/empirical.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -150,11 +150,9 @@ export function DonskerEmpiricalView({
       description={description}
       graphic="canvas"
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`\\sqrt{${n}}\\,\\big(F_{${n}}(u) - u\\big) \\xrightarrow{d} \\mathbb{B}(u),\\qquad \\sqrt{n}\\,D_n \\xrightarrow{d} \\sup_u |\\mathbb{B}(u)|`}
-        />
-      </p>
+      <FormulaLine
+        tex={`\\sqrt{${n}}\\,\\big(F_{${n}}(u) - u\\big) \\xrightarrow{d} \\mathbb{B}(u),\\qquad \\sqrt{n}\\,D_n \\xrightarrow{d} \\sup_u |\\mathbb{B}(u)|`}
+      />
       <p className={styles.panelTitle}>Procesos empíricos: se parecen a puentes brownianos</p>
       <TrajectoryCanvas
         paths={shown}

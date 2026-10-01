@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { SEQUENCES, type SequenceId } from '../../../lib/limits/sequences.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -294,12 +294,8 @@ export function PathModeView({
       description={description}
       graphic="canvas"
     >
-      <p className={styles.formula}>
-        <Latex tex={`${definition.latex},\\qquad ${definition.limitLatex}`} />
-      </p>
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={`${definition.latex},\\qquad ${definition.limitLatex}`} />
+      <FormulaLine tex={header} />
       <p className={styles.panelTitle}>Trayectorias de Xₙ - X</p>
       <TrajectoryCanvas
         paths={paths}

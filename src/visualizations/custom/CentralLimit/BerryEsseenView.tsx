@@ -9,7 +9,7 @@ import {
   type CltPopulationId,
 } from '../../../lib/limits/clt.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { FunctionPlot } from '../../core/svg/FunctionPlot.tsx';
 import { useParameters } from '../../core/useParameters.ts';
@@ -155,11 +155,9 @@ export function BerryEsseenView({ title, population, populations, nMax }: BerryE
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`\\sup_z |F_{${n}}(z) - \\Phi(z)| = ${formatNumber(gap, 4)}\\ \\le\\ \\frac{${BERRY_ESSEEN_CONSTANT}\\cdot ${formatNumber(moments.absoluteThird, 3)}}{${formatNumber(sigma3, 3)}\\sqrt{${n}}} = ${formatNumber(bound, 4)}`}
-        />
-      </p>
+      <FormulaLine
+        tex={`\\sup_z |F_{${n}}(z) - \\Phi(z)| = ${formatNumber(gap, 4)}\\ \\le\\ \\frac{${BERRY_ESSEEN_CONSTANT}\\cdot ${formatNumber(moments.absoluteThird, 3)}}{${formatNumber(sigma3, 3)}\\sqrt{${n}}} = ${formatNumber(bound, 4)}`}
+      />
       <p className={styles.panelTitle}>Función de distribución de Zₙ frente a Φ</p>
       <FunctionPlot
         xDomain={Z_DOMAIN}
