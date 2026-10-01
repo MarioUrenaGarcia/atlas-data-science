@@ -1,3 +1,5 @@
+import { DESCRIPTIVE_EXAMPLES } from './examples/descriptive.ts';
+
 /** Sample configurations shown in the development catalog, one or more per visualization. */
 export interface CatalogExample {
   component: string;
@@ -933,4 +935,5 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
       ],
     },
   },
+  ...DESCRIPTIVE_EXAMPLES,
 ];
