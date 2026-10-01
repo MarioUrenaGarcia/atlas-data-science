@@ -6,6 +6,15 @@ const values = z.record(z.string(), z.number());
 export const REGIONS = ['intervalo', 'izquierda', 'derecha', 'colas'] as const;
 export type Region = (typeof REGIONS)[number];
 
+/** A reference parameter computed from the main parameters. */
+const link = z
+  .object({
+    de: z.array(z.string()).min(1),
+    potencias: z.array(z.number()).optional(),
+    factor: z.number().optional(),
+  })
+  .strict();
+
 /** A preset that loads parameter values and, optionally, a probability region. */
 const preset = z
   .object({
@@ -44,6 +53,11 @@ export const parametersSchema = z
       .object({
         distribucion: z.enum(DISTRIBUTION_IDS),
         valores: values.optional(),
+        /**
+         * Reference parameters that follow the main ones, each as a product
+         * factor * a^pa * b^pb ... of main parameters, such as λ = n p.
+         */
+        enlace: z.record(z.string(), link).optional(),
         etiqueta: z.string().min(1),
         visible: z.boolean().optional(),
       })
@@ -69,4 +83,5 @@ export const parametersSchema = z
   .strict();
 
 export type DistributionExplorerConfig = z.infer<typeof parametersSchema>;
+export type ReferenceLink = z.infer<typeof link>;
 export type ExplorerPreset = z.infer<typeof preset>;

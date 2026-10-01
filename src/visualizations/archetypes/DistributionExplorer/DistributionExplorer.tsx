@@ -13,6 +13,7 @@ import { plotWindow } from '../../shared/plotWindow.ts';
 import type { VisualizationProps } from '../../types.ts';
 import { Button } from '../../../components/ui/Button.tsx';
 import { DistributionChart, type ChartView } from './DistributionChart.tsx';
+import { linkedValues } from './linkedValues.ts';
 import { PresetPanel } from './PresetPanel.tsx';
 import { regionLabel, regionProbability, usesSecondBound } from './regions.ts';
 import type { DistributionExplorerConfig, ExplorerPreset, Region } from './schema.ts';
@@ -158,11 +159,14 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
       DISTRIBUTION_SPECS[config.referencia.distribucion],
       config.rangos,
     );
+    const linked = linkedValues(config.referencia.enlace, distributionValues);
     return {
-      distribution: referenceSpec.create(specValues(referenceSpec, config.referencia.valores)),
+      distribution: referenceSpec.create(
+        specValues(referenceSpec, { ...config.referencia.valores, ...linked }),
+      ),
       label: config.referencia.etiqueta,
     };
-  }, [config.referencia, config.rangos]);
+  }, [config.referencia, config.rangos, distributionValues]);
 
   const domain = useMemo<[number, number]>(
     () => config.dominio ?? plotWindow([initialDistribution, distribution], limits, spec.discrete),
