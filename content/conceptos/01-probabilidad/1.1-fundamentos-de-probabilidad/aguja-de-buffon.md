@@ -88,7 +88,7 @@ vista: espacio
 - $n$: número de agujas lanzadas; $h$: número de agujas que cruzan una recta.
 - $\hat{\pi}$: estimación de $\pi$ a partir de $n$ y $h$.
 - $p = 2l/(\pi t)$: probabilidad de cruce.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -117,7 +117,7 @@ largo: 0.5
 
 - **Caso $l = t$:** la probabilidad de cruce es $2/\pi \approx 0.637$, la máxima posible en este régimen.
 - **Estimador de $\pi$:** $\hat{\pi} = 2ln/(th)$. Su error estándar aproximado es $\pi\sqrt{(1 - p)/(np)}$; con $l = t$ vale cerca de $2.37/\sqrt{n}$.
-- **Convergencia lenta:** para obtener tres decimales correctos con alta confianza se requieren del orden de $10^8$ lanzamientos.
+- **Convergencia lenta:** con $l = t$, un error menor que $0.0005$ (tres decimales correctos) con 95 % de confianza exige $n \approx (1.96 \cdot 2.37 / 0.0005)^2 \approx 8.6 \times 10^7$ lanzamientos, del orden de $10^8$.
 - **Aguja larga:** si $l > t$, la aguja puede cruzar varias rectas; el número esperado de cruces sigue siendo $2l/(\pi t)$ para cualquier $l$, aunque la probabilidad de cruzar al menos una tiene otra fórmula.
 
 :::figura[Aguja tan larga como la separación: cerca del 64 % de las agujas cruza, el valor máximo 2/π. Con más cruces por aguja la estimación de π fluctúa menos.]{componente="BuffonNeedle"}
@@ -167,7 +167,7 @@ P(\text{cruza}) = \frac{2l}{\pi t}, \qquad l \le t
 $$
 
 - $l$: longitud de la aguja; $t$: separación entre rectas.
-  :::
+:::
 
 :::formula[Condición de cruce]
 
@@ -177,7 +177,7 @@ $$
 
 - $X$: distancia del centro a la recta más cercana, uniforme en $[0, t/2]$.
 - $\Theta$: ángulo con las rectas, uniforme en $[0, \pi]$.
-  :::
+:::
 
 :::formula[Estimador de pi]
 
@@ -186,7 +186,7 @@ $$
 $$
 
 - $n$: agujas lanzadas; $h$: agujas que cruzan.
-  :::
+:::
 
 :::formula[Error estándar aproximado]
 
@@ -195,4 +195,4 @@ $$
 $$
 
 - $p$: probabilidad de cruce; $\mathrm{EE}$: tamaño típico del error de $\hat{\pi}$.
-  :::
+:::

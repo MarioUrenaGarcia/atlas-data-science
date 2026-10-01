@@ -53,7 +53,7 @@ El **espacio muestral** $\Omega$ de un experimento aleatorio es el conjunto de t
 
 1. Cada realización del experimento produce algún $\omega \in \Omega$ (exhaustividad).
 2. Ninguna realización produce dos elementos distintos de $\Omega$ (exclusión mutua).
-   :::
+:::
 
 Cuando el experimento consiste en realizar $k$ experimentos simples, el espacio muestral suele ser un producto cartesiano: al lanzar dos dados,
 
@@ -79,7 +79,7 @@ operaciones: [A]
 - $\times$: producto cartesiano; $A \times B$ es el conjunto de pares $(a, b)$ con $a \in A$ y $b \in B$.
 - $(i, j)$: par ordenado; $i$ es la cara del primer dado y $j$ la del segundo.
 - $|\Omega|$: número de elementos del espacio muestral (su cardinalidad).
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -168,7 +168,7 @@ $$
 
 - $\Omega$: conjunto de todos los resultados posibles.
 - $\omega_i$: el $i$-ésimo resultado posible.
-  :::
+:::
 
 :::formula[Espacio de un experimento compuesto]
 
@@ -180,7 +180,7 @@ $$
 - $k$: número de etapas.
 - $\times$: producto cartesiano.
 - $|\Omega_i|$: número de resultados de la etapa $i$.
-  :::
+:::
 
 :::formula[Repeticiones del mismo experimento]
 
@@ -190,4 +190,4 @@ $$
 
 - $\Omega_1^{k}$: espacio de $k$ repeticiones de un experimento con espacio $\Omega_1$.
 - $|\Omega_1|$: número de resultados de una repetición.
-  :::
+:::

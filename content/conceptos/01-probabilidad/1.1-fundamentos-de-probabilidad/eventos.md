@@ -106,7 +106,7 @@ operaciones: [A, complemento]
 - $A^{c}$: complemento de $A$, los resultados de $\Omega$ que no están en $A$.
 - $\setminus$: diferencia de conjuntos.
 - $\varnothing$: conjunto vacío, el evento imposible.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -217,7 +217,7 @@ $$
 
 - $A$: evento; $\Omega$: espacio muestral.
 - $\omega$: resultado de la realización.
-  :::
+:::
 
 :::formula[Complemento]
 
@@ -227,7 +227,7 @@ $$
 
 - $A^{c}$: resultados en los que no ocurre $A$.
 - $\notin$: "no pertenece a".
-  :::
+:::
 
 :::formula[Eventos mutuamente excluyentes]
 
@@ -237,7 +237,7 @@ $$
 
 - $A \cap B$: resultados en los que ocurren $A$ y $B$ a la vez.
 - $\varnothing$: evento imposible.
-  :::
+:::
 
 :::formula[Leyes de De Morgan]
 
@@ -247,7 +247,7 @@ $$
 
 - $\cup$: al menos uno ocurre; $\cap$: ambos ocurren.
 - $^{c}$: complemento.
-  :::
+:::
 
 :::formula[Descomposición disjunta]
 
@@ -256,4 +256,4 @@ A = (A \cap B) \cup (A \cap B^{c})
 $$
 
 - Las dos piezas son mutuamente excluyentes y su unión es $A$.
-  :::
+:::

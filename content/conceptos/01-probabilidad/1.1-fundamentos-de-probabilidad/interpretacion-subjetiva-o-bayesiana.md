@@ -86,7 +86,7 @@ creenciaNoA: 0.7
 - $P(A)$: probabilidad subjetiva de $A$, igual a $q(A)$.
 - $s = q(A) + q(A^{c})$: precio total de los dos boletos.
 - $1 - s$ o $s - 1$: ganancia neta segura de la persona al comprar o vender ambos boletos.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -163,7 +163,7 @@ P(A) = q(A)
 $$
 
 - $q(A)$: precio que la persona considera justo por un boleto que paga 1 si ocurre $A$.
-  :::
+:::
 
 :::formula[Condición de coherencia para un evento y su complemento]
 
@@ -172,7 +172,7 @@ q(A) + q(A^{c}) = 1
 $$
 
 - $A^{c}$: el evento "no ocurre $A$".
-  :::
+:::
 
 :::formula[Pérdida segura con creencias incoherentes]
 
@@ -181,4 +181,4 @@ $$
 $$
 
 - La persona compra ambos boletos si la suma excede 1 y los vende si es menor que 1; en los dos casos pierde esa cantidad ocurra o no $A$.
-  :::
+:::

@@ -15,6 +15,7 @@ export const EXPERIMENT_IDS = [
   'dos-dados',
   'cuatro-dados',
   'carta',
+  'comite',
 ] as const;
 export type ExperimentId = (typeof EXPERIMENT_IDS)[number];
 
@@ -271,7 +272,55 @@ function buildExperiment(id: ExperimentId): Experiment {
         colTitle: 'valor',
         events: CARD_EVENTS,
       };
+    case 'comite':
+      return committeeExperiment();
   }
+}
+
+/** Committee of 3 chosen from 6 engineers (people 0 to 5) and 4 physicians (people 6 to 9). */
+const COMMITTEE_ENGINEERS = 6;
+const COMMITTEE_PEOPLE = 10;
+const COMMITTEE_SIZE = 3;
+const COMMITTEE_COLS = 12;
+
+const engineersIn = (o: Outcome) => o.filter((person) => person < COMMITTEE_ENGINEERS).length;
+
+function committees(): number[][] {
+  const result: number[][] = [];
+  for (let a = 0; a < COMMITTEE_PEOPLE; a += 1)
+    for (let b = a + 1; b < COMMITTEE_PEOPLE; b += 1)
+      for (let c = b + 1; c < COMMITTEE_PEOPLE; c += 1) result.push([a, b, c]);
+  // Grouping by the number of engineers makes each event a contiguous block of the grid.
+  return result.sort((x, y) => engineersIn(x) - engineersIn(y));
+}
+
+function committeeExperiment(): Experiment {
+  const outcomes = committees();
+  const position = new Map(outcomes.map((o, index) => [o.join(','), index]));
+  const rows = Math.ceil(outcomes.length / COMMITTEE_COLS);
+  // Cells are too small for full names, so each member is shown by profession only.
+  const name = (person: number) => (person < COMMITTEE_ENGINEERS ? 'I' : 'M');
+  return {
+    id: 'comite',
+    label: `Elegir al azar un comité de ${COMMITTEE_SIZE} entre 6 ingenieras y 4 médicos`,
+    outcomes,
+    format: (o) => o.map(name).join(''),
+    cell: (o) => {
+      const index = position.get(o.join(',')) ?? 0;
+      return { row: Math.floor(index / COMMITTEE_COLS), col: index % COMMITTEE_COLS };
+    },
+    rows,
+    cols: COMMITTEE_COLS,
+    rowLabels: Array.from({ length: rows }, () => ''),
+    colLabels: Array.from({ length: COMMITTEE_COLS }, () => ''),
+    rowTitle: 'comités ordenados por número de ingenieras',
+    colTitle: '',
+    events: [0, 1, 2, 3].map((count) => ({
+      id: `ingenieras-${count}`,
+      label: `el comité tiene exactamente ${count} ingeniera${count === 1 ? '' : 's'}`,
+      test: (o: Outcome) => engineersIn(o) === count,
+    })),
+  };
 }
 
 const cache = new Map<ExperimentId, Experiment>();
