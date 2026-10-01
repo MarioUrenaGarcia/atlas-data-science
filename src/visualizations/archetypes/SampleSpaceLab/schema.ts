@@ -46,6 +46,8 @@ export const parametersSchema = z
     escalaLog: z.boolean().optional(),
     /** Frequency mode: relative frequency, or the excess n_A - n P(A) that grows like sqrt(n). */
     grafica: z.enum(['relativa', 'exceso']).optional(),
+    /** Frequency mode: value marked with a thin line, such as 0.5 for a fair bet. */
+    referencia: z.number().min(0).max(1).optional(),
     /** Subjective mode: description of the uncertain event and initial degrees of belief. */
     proposicion: z.string().min(1).optional(),
     creenciaA: z.number().min(0).max(1).optional(),

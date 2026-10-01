@@ -91,7 +91,7 @@ eventos: [al-menos-una-cara, primera-cara, todas-iguales]
 - $\bigcup_{i=1}^{\infty} A_i$: evento "ocurre alguno de los $A_i$".
 - $\sum_{i=1}^{\infty} P(A_i)$: serie de las probabilidades.
 - $\mathbb{R}$: números reales.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -199,7 +199,7 @@ P(A) \ge 0
 $$
 
 - $A$: cualquier evento; $P(A)$: su probabilidad.
-  :::
+:::
 
 :::formula[Axioma 2: normalización]
 
@@ -208,7 +208,7 @@ P(\Omega) = 1
 $$
 
 - $\Omega$: espacio muestral, el evento seguro.
-  :::
+:::
 
 :::formula[Axioma 3: aditividad numerable]
 
@@ -218,7 +218,7 @@ $$
 
 - $A_1, A_2, \dots$: eventos mutuamente excluyentes.
 - $\bigcup$: unión; $\sum$: suma de la serie.
-  :::
+:::
 
 :::formula[Probabilidad en un espacio discreto]
 
@@ -228,4 +228,4 @@ $$
 
 - $p_\omega = P(\{\omega\})$: probabilidad del resultado $\omega$.
 - $\sum_{\omega \in A}$: suma sobre los resultados del evento $A$.
-  :::
+:::

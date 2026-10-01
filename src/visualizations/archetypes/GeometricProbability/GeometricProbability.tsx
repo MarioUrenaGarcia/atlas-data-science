@@ -19,6 +19,8 @@ import type { GeometricProbabilityConfig } from './schema.ts';
 import { StickView } from './StickView.tsx';
 
 const POINTS_PER_SECOND = 30;
+/** Long simulations speed up so a full run at 1x takes about this long. */
+const FULL_RUN_SECONDS = 60;
 const DEFAULT_POINTS = 5000;
 const SHOWN_POINTS = 2500;
 const DENSE_HISTORY = 200;
@@ -167,7 +169,7 @@ export default function GeometricProbability({ params, conceptId, title }: Visua
     step: () => simulate(1),
     stepMany: simulate,
     reset: () => setRun((value) => value + 1),
-    rate: POINTS_PER_SECOND,
+    rate: Math.max(POINTS_PER_SECOND, maxPoints / FULL_RUN_SECONDS),
     done: simulation.total >= maxPoints,
   });
 
