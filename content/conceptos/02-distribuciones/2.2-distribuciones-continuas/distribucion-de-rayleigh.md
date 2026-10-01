@@ -84,6 +84,14 @@ $$
 
 Equivalentemente, $R^{2}/\sigma^{2} \sim \chi^{2}_{2}$, y $R^{2}$ es exponencial con media $2\sigma^{2}$.
 
+:::nota[Qué representa la variable]
+$R$ = la distancia al origen de un punto cuyas dos coordenadas son normales independientes, como el error de un disparo o la velocidad del viento.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\sigma$, escala:** la desviación de cada coordenada, que es la moda de $R$. Si aumenta, la curva se estira a la derecha y baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $R$: distancia al origen, o magnitud del vector.
 - $X$, $Y$: componentes normales independientes.
@@ -187,7 +195,7 @@ valores:
 
 ## Conexiones
 
-La Rayleigh es la raíz de una [[distribucion-chi-cuadrada]] con dos grados de libertad, escalada, y es la [[distribucion-de-weibull]] con forma 2. Si el vector tiene una componente fija, la distancia sigue la [[distribucion-de-rice]]. Su simulación con $\sigma\sqrt{-2\log U}$ es el corazón del método de Box-Muller para generar normales.
+La Rayleigh es la raíz de una [[distribucion-chi-cuadrada]] con dos grados de libertad, escalada, y es la [[distribucion-de-weibull]] con forma 2. Si el vector tiene una componente fija, la distancia sigue la [[distribucion-de-rice]]. Su simulación con $\sigma\sqrt{-2\log U}$ es el corazón del método de Box-Muller para generar normales. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

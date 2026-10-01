@@ -68,6 +68,15 @@ $$
 
 Las etiquetas $1, \dots, k$ solo nombran las categorías. La **codificación one-hot** representa el resultado como el vector $\mathbf{e} = (e_1, \dots, e_k)$ con $e_j = \mathbf{1}\{X = j\}$; con ella, $P(X = j) = \prod_{i=1}^{k} p_i^{e_i}$ cuando $\mathbf{e}$ es el vector de la categoría $j$.
 
+:::nota[Qué es X]
+$X$ = la categoría que sale en un solo intento, numerada del 1 al $k$.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$k$, número de categorías:** cuántos resultados distintos puede tener el intento. Si aumenta, hay más barras y cada una tiende a ser más baja, porque las probabilidades siguen sumando 1.
+- **$p_j$, probabilidad de la categoría j:** qué tan frecuente es la categoría $j$. Si aumenta, su barra crece y las demás bajan en conjunto lo mismo.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: categoría observada, nombrada con un número del 1 al $k$.
 - $k$: número de categorías.
@@ -184,7 +193,7 @@ categorias:
 
 ## Conexiones
 
-La categórica generaliza la [[distribucion-de-bernoulli]] a más de dos resultados e incluye a la [[distribucion-uniforme-discreta]] como el caso de probabilidades iguales. Contar las categorías en $n$ repeticiones independientes da la [[distribucion-multinomial]]. Cuando sus probabilidades se tratan como desconocidas, la distribución de Dirichlet es el modelo natural para el vector $\mathbf{p}$. En aprendizaje automático, la función softmax produce un vector de probabilidades categóricas y la entropía cruzada mide qué tan bien predice la categoría observada.
+La categórica generaliza la [[distribucion-de-bernoulli]] a más de dos resultados e incluye a la [[distribucion-uniforme-discreta]] como el caso de probabilidades iguales. Contar las categorías en $n$ repeticiones independientes da la [[distribucion-multinomial]]. Cuando sus probabilidades se tratan como desconocidas, la distribución de Dirichlet es el modelo natural para el vector $\mathbf{p}$. En aprendizaje automático, la función softmax produce un vector de probabilidades categóricas y la entropía cruzada mide qué tan bien predice la categoría observada. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

@@ -85,6 +85,16 @@ $$
 
 **Construcción por selección:** si $Z_0, Z_1 \sim \mathcal{N}(0, 1)$ son independientes, la variable $Z_1$ si $Z_0 \le \alpha Z_1$ y $-Z_1$ en otro caso tiene distribución $\operatorname{SN}(0, 1, \alpha)$.
 
+:::nota[Qué es X]
+$X$ = una medición con forma de campana inclinada hacia un lado.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\xi$, localización:** desplaza toda la curva. Si aumenta, la curva se desliza a la derecha.
+- **$\omega$, escala:** la dispersión. Si aumenta, la curva se ensancha y baja.
+- **$\alpha$, forma:** la inclinación; positiva hacia la derecha y negativa hacia la izquierda. Si aumenta, la asimetría a la derecha crece; con $\alpha = 0$ es la normal.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $\xi$: localización; no es la media salvo si $\alpha = 0$.
 - $\omega$: escala; no es la desviación salvo si $\alpha = 0$.
@@ -192,7 +202,7 @@ referencia:
 
 ## Conexiones
 
-La normal asimétrica generaliza la [[distribucion-normal]] y en su límite se vuelve la seminormal, un caso de la [[distribucion-normal-truncada]]. Su cuadrado es una [[distribucion-chi-cuadrada]] con un grado de libertad. Es una alternativa a la [[distribucion-lognormal]] cuando la asimetría es moderada y los valores pueden ser negativos.
+La normal asimétrica generaliza la [[distribucion-normal]] y en su límite se vuelve la seminormal, un caso de la [[distribucion-normal-truncada]]. Su cuadrado es una [[distribucion-chi-cuadrada]] con un grado de libertad. Es una alternativa a la [[distribucion-lognormal]] cuando la asimetría es moderada y los valores pueden ser negativos. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

@@ -88,6 +88,15 @@ $$
 Si $E_1, \dots, E_n$ son $\operatorname{Exp}(1)$ independientes, entonces $\max_i E_i - \log n$ converge en distribución a la Gumbel estándar ($\mu = 0$, $\beta = 1$).
 :::
 
+:::nota[Qué es X]
+$X$ = el máximo de muchas observaciones con cola ligera, como el caudal máximo anual de un río.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, localización:** la moda, el máximo más probable. Si aumenta, la curva se desliza a la derecha.
+- **$\beta$, escala:** qué tan dispersos están los máximos. Si aumenta, la curva se ensancha y baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: valor máximo, por ejemplo el caudal máximo anual.
 - $\mu$: localización, que es la moda.
@@ -205,7 +214,7 @@ referencia:
 
 ## Conexiones
 
-La Gumbel es el límite del máximo de variables con colas como la [[distribucion-exponencial]]. Forma, con la [[distribucion-de-weibull]] y la [[distribucion-de-frechet]], la familia de distribuciones de valores extremos. La diferencia de dos Gumbel independientes es una [[distribucion-logistica]], hecho que sustenta los modelos de elección discreta.
+La Gumbel es el límite del máximo de variables con colas como la [[distribucion-exponencial]]. Forma, con la [[distribucion-de-weibull]] y la [[distribucion-de-frechet]], la familia de distribuciones de valores extremos. La diferencia de dos Gumbel independientes es una [[distribucion-logistica]], hecho que sustenta los modelos de elección discreta. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

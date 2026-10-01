@@ -59,6 +59,14 @@ $$
 P(S_n = s) = \binom{n}{(n + s)/2} 2^{-n}, \qquad s \in \{-n, -n + 2, \dots, n\}.
 $$
 
+:::nota[Qué es X]
+$X$ = un signo al azar: $-1$ o $+1$ con la misma probabilidad.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$n$, número de signos sumados:** cuántos pasos de $\pm 1$ se acumulan en la suma $S_n$. Si aumenta, la suma toma más valores, con desviación $\sqrt{n}$, y su forma se acerca a una campana.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: signo aleatorio, $-1$ o $+1$.
 - $B$: variable de Bernoulli con parámetro 1/2.
@@ -139,7 +147,7 @@ fracaso: Cruz
 
 ## Conexiones
 
-La Rademacher es una transformación lineal de la [[distribucion-de-bernoulli]] de parámetro 1/2, y sus sumas son [[distribucion-binomial|binomiales]] reescaladas. Sumar signos da la caminata aleatoria simple, cuyo límite es el movimiento browniano; si los pasos ocurren en tiempos de Poisson, la posición sigue una [[distribucion-de-skellam]]. Su cota exponencial la convierte en el ejemplo básico de variable subgaussiana y en la herramienta de simetrización en teoría del aprendizaje.
+La Rademacher es una transformación lineal de la [[distribucion-de-bernoulli]] de parámetro 1/2, y sus sumas son [[distribucion-binomial|binomiales]] reescaladas. Sumar signos da la caminata aleatoria simple, cuyo límite es el movimiento browniano; si los pasos ocurren en tiempos de Poisson, la posición sigue una [[distribucion-de-skellam]]. Su cota exponencial la convierte en el ejemplo básico de variable subgaussiana y en la herramienta de simetrización en teoría del aprendizaje. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

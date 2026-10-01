@@ -91,6 +91,15 @@ Su función de distribución es $F(x) = \frac{1}{2}e^{(x - \mu)/b}$ si $x < \mu$
 
 **Construcción:** si $E_1, E_2 \sim \operatorname{Exp}(1/b)$ son independientes, entonces $\mu + E_1 - E_2 \sim \operatorname{Laplace}(\mu, b)$.
 
+:::nota[Qué es X]
+$X$ = un valor con un pico agudo en el centro y colas exponenciales a ambos lados, como el error de una medición con valores atípicos ocasionales.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, localización:** el centro: media, mediana y moda. Si aumenta, la curva se desliza a la derecha.
+- **$b$, escala:** qué tan rápido decaen las colas. Si aumenta, la curva se ensancha y el pico baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: variable de Laplace.
 - $\mu$: localización, que es media, mediana y moda.
@@ -224,7 +233,7 @@ referencia:
 
 ## Conexiones
 
-La Laplace es la diferencia de dos [[distribucion-exponencial|exponenciales]] y se contrasta con la [[distribucion-normal]]: una se asocia con el error absoluto y la mediana, la otra con el error cuadrático y la media. La [[distribucion-logistica]] es su pariente de centro suave. En aprendizaje automático, una distribución previa de Laplace sobre los coeficientes equivale a la penalización lasso, que lleva coeficientes exactamente a cero.
+La Laplace es la diferencia de dos [[distribucion-exponencial|exponenciales]] y se contrasta con la [[distribucion-normal]]: una se asocia con el error absoluto y la mediana, la otra con el error cuadrático y la media. La [[distribucion-logistica]] es su pariente de centro suave. En aprendizaje automático, una distribución previa de Laplace sobre los coeficientes equivale a la penalización lasso, que lleva coeficientes exactamente a cero. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

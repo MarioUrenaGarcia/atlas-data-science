@@ -194,4 +194,9 @@ export const DISTRIBUTION_EXAMPLES: CatalogExample[] = [
     title: 'Espera residual',
     params: { proceso: 'espera-residual' },
   },
+  {
+    component: 'DistributionMap',
+    title: 'Mapa de relaciones entre distribuciones',
+    params: { relacion: 'binomial-poisson' },
+  },
 ];

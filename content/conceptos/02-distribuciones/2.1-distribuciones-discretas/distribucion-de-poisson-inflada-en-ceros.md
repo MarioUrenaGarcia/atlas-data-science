@@ -91,6 +91,15 @@ $$
 
 La probabilidad del cero tiene dos sumandos: los ceros estructurales, $\pi$, y los ceros de la parte Poisson, $(1 - \pi)e^{-\lambda}$.
 
+:::nota[Qué es X]
+$X$ = un conteo con más ceros de los que daría una Poisson, porque una parte de los casos no puede producir eventos.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\pi$, probabilidad de cero estructural:** la proporción de casos que siempre dan cero. Si aumenta, la barra del cero crece y el resto baja proporcionalmente.
+- **$\lambda$, media de la parte Poisson:** el promedio de eventos en los casos que sí pueden producirlos. Si aumenta, la parte de conteos positivos se corre a la derecha y se aleja del cero.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: conteo observado.
 - $Z$: indicadora de cero estructural.
@@ -234,7 +243,7 @@ comparar: false
 
 ## Conexiones
 
-La ZIP es una mezcla de un cero seguro, elegido con una [[distribucion-de-bernoulli]], y una [[distribucion-de-poisson]], a la que generaliza. Como la [[distribucion-binomial-negativa]], sirve para conteos sobredispersos, pero concentra el exceso en el cero; existe también una binomial negativa inflada en ceros que combina ambos fenómenos. Es un ejemplo de mezcla de distribuciones con dos componentes.
+La ZIP es una mezcla de un cero seguro, elegido con una [[distribucion-de-bernoulli]], y una [[distribucion-de-poisson]], a la que generaliza. Como la [[distribucion-binomial-negativa]], sirve para conteos sobredispersos, pero concentra el exceso en el cero; existe también una binomial negativa inflada en ceros que combina ambos fenómenos. Es un ejemplo de mezcla de distribuciones con dos componentes. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

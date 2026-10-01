@@ -87,6 +87,15 @@ donde $I_0(z) = \sum_{m \ge 0} \frac{(z/2)^{2m}}{(m!)^{2}}$ es la función de Be
 
 La razón $K = \nu^{2}/(2\sigma^{2})$, cociente entre la potencia de la señal directa y la del ruido, se llama factor $K$ en comunicaciones.
 
+:::nota[Qué representa la variable]
+$R$ = la amplitud de una señal fija más ruido normal en dos dimensiones.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\nu$, amplitud de la señal:** la distancia del centro de la nube al origen. Si aumenta, la curva se aleja del cero y se vuelve más simétrica.
+- **$\sigma$, ruido:** la desviación del ruido en cada componente. Si aumenta, la curva se ensancha y, con señal débil, se parece a una Rayleigh.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $R$: amplitud, o distancia al origen.
 - $\nu$: distancia del centro de la nube al origen, la amplitud de la señal fija.
@@ -201,7 +210,7 @@ referencia:
 
 ## Conexiones
 
-La Rice generaliza la [[distribucion-de-rayleigh]] al caso con señal fija, y su cuadrado reescalado es una [[distribucion-chi-cuadrada-no-central]] con dos grados de libertad. Con señal fuerte se aproxima por la [[distribucion-normal]]. Es el modelo estándar de desvanecimiento en comunicaciones inalámbricas con línea de vista.
+La Rice generaliza la [[distribucion-de-rayleigh]] al caso con señal fija, y su cuadrado reescalado es una [[distribucion-chi-cuadrada-no-central]] con dos grados de libertad. Con señal fuerte se aproxima por la [[distribucion-normal]]. Es el modelo estándar de desvanecimiento en comunicaciones inalámbricas con línea de vista. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

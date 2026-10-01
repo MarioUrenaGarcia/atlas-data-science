@@ -89,6 +89,17 @@ $$
 con una corrección logarítmica cuando $\alpha = 1$. Se escribe $X \sim S(\alpha, \beta, \gamma, \delta)$.
 :::
 
+:::nota[Qué es X]
+$X$ = una suma normalizada de muchas variables con colas pesadas; su forma se conserva al sumar copias independientes.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\alpha$, índice de estabilidad:** el peso de las colas, entre 0 y 2. Si aumenta, las colas se adelgazan; con $\alpha = 2$ es la normal.
+- **$\beta$, asimetría:** la inclinación, entre $-1$ y 1. Si aumenta, la cola derecha se alarga.
+- **$\gamma$, escala:** la dispersión. Si aumenta, la curva se ensancha.
+- **$\delta$, localización:** el desplazamiento. Si aumenta, la curva se desliza a la derecha.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $\alpha \in (0, 2]$: índice de estabilidad; controla el peso de las colas.
 - $\beta \in [-1, 1]$: asimetría; 0 es simétrica.
@@ -233,7 +244,7 @@ referencia:
 
 ## Conexiones
 
-Las estables generalizan la [[distribucion-normal]] e incluyen a la [[distribucion-de-cauchy]] y a la [[distribucion-de-levy]] como casos con densidad explícita. Sus colas son de ley de potencia, como la de la [[distribucion-de-pareto]], y son los únicos límites posibles de sumas normalizadas de variables independientes. Se usan en finanzas, física de procesos con saltos y procesamiento de señales con ruido impulsivo.
+Las estables generalizan la [[distribucion-normal]] e incluyen a la [[distribucion-de-cauchy]] y a la [[distribucion-de-levy]] como casos con densidad explícita. Sus colas son de ley de potencia, como la de la [[distribucion-de-pareto]], y son los únicos límites posibles de sumas normalizadas de variables independientes. Se usan en finanzas, física de procesos con saltos y procesamiento de señales con ruido impulsivo. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

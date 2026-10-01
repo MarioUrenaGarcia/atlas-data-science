@@ -48,6 +48,12 @@ visualizacion:
         - nombre: 'Opinión polarizada'
           descripcion: 'Beta(0.5, 0.5): la masa se acumula cerca de 0 y de 1, como en temas donde casi todos están de un lado.'
           valores: {a: 0.5, b: 0.5}
+        - nombre: 'Creencia equilibrada'
+          descripcion: 'Beta(2, 2): simétrica en 0.5; una creencia equilibrada sobre una tasa de conversión.'
+          valores: {a: 2, b: 2}
+        - nombre: 'Clics raros'
+          descripcion: 'Beta(2, 5): sesgada hacia valores bajos; probabilidades de clic o de defecto pequeñas.'
+          valores: {a: 2, b: 5}
       ejemplo:
         titulo: 'Conversión alta'
         contexto: 'La incertidumbre sobre la tasa de conversión de una página se describe con una Beta(3, 17).'
@@ -90,6 +96,15 @@ donde $B(a, b) = \int_0^1 t^{a - 1}(1 - t)^{b - 1}\,dt = \frac{\Gamma(a)\Gamma(b
 
 :::teorema[Estadísticos de orden de uniformes]
 Si $U_1, \dots, U_n$ son uniformes en $(0, 1)$ independientes y $U_{(k)}$ es el $k$-ésimo menor, entonces $U_{(k)} \sim \operatorname{Beta}(k, n - k + 1)$.
+:::
+
+:::nota[Qué es X]
+$X$ = una proporción o probabilidad desconocida entre 0 y 1, como la tasa de conversión real de una campaña.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$a$, peso hacia el 1:** puede pensarse como los éxitos observados más uno. Si aumenta, la curva se mueve hacia el 1.
+- **$b$, peso hacia el 0:** puede pensarse como los fracasos observados más uno. Si aumenta, la curva se mueve hacia el 0; si $a$ y $b$ suben juntos, la curva se angosta porque hay más certeza.
 :::
 
 :::nota[Qué significa cada símbolo]
@@ -159,6 +174,37 @@ referencia:
 ```
 :::
 
+Segundo ejemplo, tasa de conversión. Tras observar una campaña, la tasa de conversión real se modela con $X \sim \operatorname{Beta}(8, 12)$, con media $8/20 = 0.4$ y desviación 0.107.
+
+1. La pregunta es $P(0.2 \le X \le 0.4) = F(0.4) - F(0.2)$.
+2. Con la función de distribución de la beta, $F(0.4) \approx 0.5122$ y $F(0.2) \approx 0.0233$.
+3. $P(0.2 \le X \le 0.4) \approx 0.4889$: casi la mitad de la creencia está en ese intervalo, y la otra mitad, sobre todo por encima de 0.4.
+
+:::figura[Tasa de conversión: el área entre 0.2 y 0.4 vale 0.4889. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: beta
+valores:
+  a: 8
+  b: 12
+dominio: [0, 1]
+rangos:
+  a: [0.2, 60]
+  b: [0.2, 60]
+ejemplo:
+  titulo: 'Tasa de conversión entre 20 % y 40 %'
+  contexto: 'Tras observar una campaña, la tasa de conversión real se modela con una Beta(8, 12).'
+  pregunta: '¿Qué probabilidad hay de que la tasa real esté entre 20 % y 40 %?'
+  valores: {a: 8, b: 12}
+  region: intervalo
+  desde: 0.2
+  hasta: 0.4
+region: intervalo
+desde: 0.2
+hasta: 0.4
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y varianza:** $\mathbb{E}[X] = \dfrac{a}{a + b}$ y $\operatorname{Var}(X) = \dfrac{ab}{(a + b)^{2}(a + b + 1)}$.
@@ -168,7 +214,7 @@ referencia:
 - **Cociente de gammas:** si $G_1 \sim \operatorname{Gamma}(a, 1)$ y $G_2 \sim \operatorname{Gamma}(b, 1)$ son independientes, $G_1/(G_1 + G_2) \sim \operatorname{Beta}(a, b)$.
 - **Conjugación con la binomial:** con datos de $s$ éxitos y $f$ fracasos, $\operatorname{Beta}(a, b)$ se actualiza a $\operatorname{Beta}(a + s, b + f)$.
 
-:::figura[Tres casos con contexto (sin información, tasa de conversión, opinión polarizada): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (sin información, tasa de conversión, opinión polarizada, creencia equilibrada, clics raros): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: beta
 valores:
@@ -188,6 +234,12 @@ casos:
   - nombre: 'Opinión polarizada'
     descripcion: 'Beta(0.5, 0.5): la masa se acumula cerca de 0 y de 1, como en temas donde casi todos están de un lado.'
     valores: {a: 0.5, b: 0.5}
+  - nombre: 'Creencia equilibrada'
+    descripcion: 'Beta(2, 2): simétrica en 0.5; una creencia equilibrada sobre una tasa de conversión.'
+    valores: {a: 2, b: 2}
+  - nombre: 'Clics raros'
+    descripcion: 'Beta(2, 5): sesgada hacia valores bajos; probabilidades de clic o de defecto pequeñas.'
+    valores: {a: 2, b: 5}
 ```
 :::
 
@@ -244,7 +296,24 @@ muestras: false
 
 ## Conexiones
 
-La beta generaliza la [[distribucion-uniforme-continua]] y su normalización es la [[funcion-beta]]. Surge como cociente de variables de la [[distribucion-gamma]] y como estadístico de orden de uniformes. Es la distribución conjugada de la [[distribucion-binomial]], y mezclar una binomial sobre una probabilidad beta da la [[distribucion-beta-binomial]]. Una transformación de la [[distribucion-f-de-snedecor]] es beta, y la [[distribucion-de-kumaraswamy]] es una alternativa con función de distribución explícita.
+La beta generaliza la [[distribucion-uniforme-continua]] y su normalización es la [[funcion-beta]]. Surge como cociente de variables de la [[distribucion-gamma]] y como estadístico de orden de uniformes. Es la distribución conjugada de la [[distribucion-binomial]], y mezclar una binomial sobre una probabilidad beta da la [[distribucion-beta-binomial]]. Una transformación de la [[distribucion-f-de-snedecor]] es beta, y la [[distribucion-de-kumaraswamy]] es una alternativa con función de distribución explícita. Con $a = b = 1$ es plana, igual a la uniforme en $[0, 1]$, y por vivir entre 0 y 1 es el modelo natural para una probabilidad desconocida. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Uniforme dentro de la beta: con a = b = 1 la beta (curva) es plana y coincide con la uniforme en [0, 1] (línea punteada).]{componente="DistributionExplorer"}
+```yaml
+distribucion: beta
+valores:
+  a: 1
+  b: 1
+muestras: false
+referencia:
+  distribucion: uniforme
+  valores:
+    a: 0
+    b: 1
+  etiqueta: Uniforme en [0, 1]
+  visible: true
+```
+:::
 
 ## Formulario
 

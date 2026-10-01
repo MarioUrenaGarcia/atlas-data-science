@@ -92,6 +92,16 @@ $$
 
 El numerador elige $k$ marcados entre los $K$ y $n - k$ sin marca entre los $N - K$; el denominador cuenta todas las muestras posibles. Los límites de $k$ garantizan que ninguna de esas elecciones sea imposible.
 
+:::nota[Qué es X]
+$X$ = el número de elementos marcados que salen en una muestra tomada sin reemplazo.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$N$, tamaño de la población:** cuántos elementos hay en total. Si aumenta, con $K$ y $n$ fijos hay menos marcados en proporción y la masa se va a la izquierda.
+- **$K$, marcados en la población:** cuántos elementos tienen la característica que se cuenta. Si aumenta, se esperan más marcados en la muestra.
+- **$n$, tamaño de la muestra:** cuántos elementos se extraen sin reemplazo. Si aumenta, se esperan más marcados y la distribución se ensancha.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: número de elementos marcados en la muestra.
 - $N$: tamaño de la población.
@@ -246,7 +256,7 @@ valores:
 
 ## Conexiones
 
-La hipergeométrica se obtiene contando [[combinaciones]] en un espacio equiprobable de muestras. Es la versión sin reemplazo de la [[distribucion-binomial]], a la que se aproxima cuando la población es grande. Con más de dos tipos de elementos se generaliza a la hipergeométrica multivariada, la versión sin reemplazo de la [[distribucion-multinomial]]. Es la base de la prueba exacta de Fisher para tablas de contingencia y del método de captura y recaptura para estimar tamaños de poblaciones animales.
+La hipergeométrica se obtiene contando [[combinaciones]] en un espacio equiprobable de muestras. Es la versión sin reemplazo de la [[distribucion-binomial]], a la que se aproxima cuando la población es grande. Con más de dos tipos de elementos se generaliza a la hipergeométrica multivariada, la versión sin reemplazo de la [[distribucion-multinomial]]. Es la base de la prueba exacta de Fisher para tablas de contingencia y del método de captura y recaptura para estimar tamaños de poblaciones animales. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 
