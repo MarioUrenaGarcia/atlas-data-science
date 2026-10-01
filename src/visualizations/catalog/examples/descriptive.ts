@@ -276,4 +276,128 @@ export const DESCRIPTIVE_EXAMPLES: CatalogExample[] = [
       unidad: '%',
     },
   },
+  {
+    component: 'AssociationViz',
+    title: 'Covarianza con rectángulos',
+    params: {
+      modo: 'correlacion',
+      medida: 'covarianza',
+      lecturas: ['covarianza', 'pearson'],
+      puntos: [
+        [2, 3],
+        [4, 4],
+        [5, 7],
+        [7, 6],
+        [9, 10],
+      ],
+      nombres: { x: 'Horas de estudio', y: 'Calificación' },
+      decimales: 0,
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Spearman con rangos',
+    params: {
+      modo: 'correlacion',
+      medida: 'spearman',
+      lecturas: ['pearson', 'spearman'],
+      generador: { tipo: 'exponencial', n: 12, ruido: 0.1 },
+      nombres: { x: 'Dosis', y: 'Respuesta' },
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Kendall por pares',
+    params: {
+      modo: 'correlacion',
+      medida: 'kendall',
+      lecturas: ['kendall', 'spearman'],
+      puntos: [
+        [1, 2],
+        [2, 1],
+        [3, 4],
+        [4, 3],
+        [5, 5],
+      ],
+      nombres: { x: 'Juez A', y: 'Juez B' },
+      decimales: 0,
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Correlación de distancia',
+    params: {
+      modo: 'correlacion',
+      medida: 'distancia',
+      lecturas: ['distancia', 'pearson'],
+      generador: { tipo: 'parabola', n: 30, ruido: 0.2 },
+      nombres: { x: 'Temperatura', y: 'Consumo de energía' },
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Confusor',
+    params: {
+      modo: 'confusor',
+      vista: 'grupos',
+      nombres: { x: 'Helados vendidos', y: 'Golpes de calor', z: 'Mes' },
+      niveles: ['Enero', 'Abril', 'Julio'],
+      n: 90,
+      efectoX: 3,
+      efectoY: 3,
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Parcial',
+    params: {
+      modo: 'confusor',
+      vista: 'residuos',
+      nombres: { x: 'Estatura', y: 'Vocabulario', z: 'Edad' },
+      niveles: ['6', '8', '10', '12'],
+      n: 120,
+      efectoX: 2.5,
+      efectoY: 2.5,
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Espuria',
+    params: { modo: 'espuria', nombres: { x: 'Serie A', y: 'Serie B' }, pasos: 150 },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Matriz',
+    params: {
+      modo: 'matriz',
+      variables: [
+        { nombre: 'Horas de sueño', valores: [7, 6, 8, 5, 7, 6, 9, 5] },
+        { nombre: 'Café', valores: [1, 2, 0, 3, 1, 2, 0, 4] },
+        { nombre: 'Calificación', valores: [8, 7, 9, 6, 8, 7, 9, 5] },
+      ],
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'Tabla de contingencia',
+    params: {
+      modo: 'contingencia',
+      enfoque: 'cramer',
+      filas: { nombre: 'Turno', categorias: ['Mañana', 'Tarde'] },
+      columnas: { nombre: 'Resultado', categorias: ['Aprobada', 'Rechazada', 'Retrabajo'] },
+      conteos: [
+        [25, 15, 10],
+        [10, 20, 20],
+      ],
+    },
+  },
+  {
+    component: 'AssociationViz',
+    title: 'MIC',
+    params: {
+      modo: 'mic',
+      generador: { tipo: 'senoidal', n: 80, ruido: 0.15 },
+      nombres: { x: 'Hora', y: 'Demanda' },
+    },
+  },
 ];

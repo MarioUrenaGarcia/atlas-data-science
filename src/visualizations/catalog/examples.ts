@@ -952,7 +952,11 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     title: 'Bolas en cajas',
     params: { proceso: 'bolas-en-cajas', vista: 'conjunta' },
   },
-  { component: 'DistributionGenesis', title: 'Beta-binomial', params: { proceso: 'beta-binomial' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Beta-binomial',
+    params: { proceso: 'beta-binomial' },
+  },
   {
     component: 'DistributionGenesis',
     title: 'Ranking',
@@ -963,13 +967,21 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     title: 'Mezcla de geométricas',
     params: { proceso: 'mezcla-geometrica' },
   },
-  { component: 'DistributionGenesis', title: 'Ceros inflados', params: { proceso: 'ceros-inflados' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Ceros inflados',
+    params: { proceso: 'ceros-inflados' },
+  },
   {
     component: 'DistributionGenesis',
     title: 'Diferencia de llegadas',
     params: { proceso: 'diferencia-de-llegadas', flujos: ['Local', 'Visitante'] },
   },
-  { component: 'DistributionGenesis', title: 'Signos', params: { proceso: 'signos', valores: { n: 12 } } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Signos',
+    params: { proceso: 'signos', valores: { n: 12 } },
+  },
   {
     component: 'CalculusViz',
     title: 'Indicadora',
