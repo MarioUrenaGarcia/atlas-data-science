@@ -76,7 +76,7 @@ donde $g_1$ y $g_2$ son las derivadas parciales en $\boldsymbol{\theta}$.
 
 A la izquierda se acumulan pares de medias $(\bar{X}_n, \bar{Y}_n)$ alrededor del punto verdadero; la flecha es el gradiente de $g$ y las líneas rectas son curvas de nivel de su aproximación lineal, separadas por una desviación estándar predicha. A la derecha, el histograma de $g(\bar{X}_n, \bar{Y}_n)$ se compara con la normal del método delta. Los controles fijan la función, el tamaño de muestra y la correlación entre las coordenadas.
 
-Con el cociente $x/y$ y correlación 0.4, la desviación predicha es 0.155. Al bajar la correlación a 0 sube a 0.200, y con correlación negativa la nube se inclina contra el gradiente y la dispersión del cociente crece todavía más. Con la distancia al origen el gradiente apunta en la dirección radial.
+Con el cociente $x/y$ y correlación 0.4, la desviación predicha es 0.155. Al bajar la correlación a 0 sube a 0.200, y con correlación negativa el eje largo de la nube se alinea con la dirección del gradiente y la dispersión del cociente crece todavía más. Con la distancia al origen el gradiente apunta en la dirección radial.
 
 ## Ejemplo
 
