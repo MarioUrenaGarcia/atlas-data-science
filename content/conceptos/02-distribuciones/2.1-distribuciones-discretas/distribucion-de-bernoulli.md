@@ -82,7 +82,7 @@ Después de aplicar una vacuna, el 12 % de los pacientes presenta fiebre leve. P
 3. Segundo momento: como $X^2 = X$, $\mathbb{E}[X^2] = 0.12$.
 4. Varianza: $\operatorname{Var}(X) = 0.12 - 0.12^2 = 0.12 \cdot 0.88 = 0.1056$, con desviación estándar $\sqrt{0.1056} \approx 0.325$.
 
-:::figura[Un paciente tras la vacuna: la ficha marca F cuando aparece fiebre. La frecuencia del 1 se estabiliza cerca de 0.12 y la del 0 cerca de 0.88.]{componente="DistributionGenesis"}
+:::figura[Un paciente tras la vacuna: la ficha se rellena cuando aparece fiebre y queda vacía cuando no. La frecuencia del 1 se estabiliza cerca de 0.12 y la del 0 cerca de 0.88.]{componente="DistributionGenesis"}
 ```yaml
 proceso: moneda
 valores:

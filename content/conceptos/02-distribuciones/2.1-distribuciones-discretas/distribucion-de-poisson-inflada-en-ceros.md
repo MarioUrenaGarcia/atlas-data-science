@@ -76,7 +76,7 @@ La probabilidad del cero tiene dos sumandos: los ceros estructurales, $\pi$, y l
 
 Cada experimento es una persona. El recuadro de la izquierda hace el primer sorteo: si dice "Cero estructural", la persona no visita al dentista y la línea de tiempo queda apagada; si dice "Rama Poisson", las visitas aparecen como marcas a lo largo del año. El histograma pinta en verde la parte de la barra del cero que viene de ceros estructurales.
 
-Con $\pi = 0.35$ y $\lambda = 3$, la barra del cero es más de tres veces la de la Poisson con la misma media (línea punteada). Al bajar $\pi$ a 0 la parte verde desaparece y el histograma es una Poisson. Al subir $\pi$ el resto de las barras baja en proporción, sin cambiar de forma.
+Con $\pi = 0.35$ y $\lambda = 3$, la barra del cero, 0.382, es 2.7 veces la de la Poisson con la misma media (línea punteada), 0.142. Al bajar $\pi$ a 0 la parte verde desaparece y el histograma es una Poisson. Al subir $\pi$ el resto de las barras baja en proporción, sin cambiar de forma.
 
 ## Ejemplo
 
