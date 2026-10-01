@@ -11,7 +11,7 @@ import { formatNumber, formatProbability } from '../../../lib/format/number.ts';
 import { DATA_COLORS, seriesColor } from '../../core/colors.ts';
 import svgStyles from '../../core/svg/svg.module.css';
 import { defaultSeed } from '../../core/defaultSeed.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { CurvePath } from '../../core/svg/CurvePath.tsx';
@@ -219,9 +219,7 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       <SpaceGrid
         experiment={space}
         label={description}

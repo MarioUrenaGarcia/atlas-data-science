@@ -8,7 +8,7 @@ import {
 import { formatNumber } from '../../../lib/format/number.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import { defaultSeed } from '../../core/defaultSeed.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { CurvePath } from '../../core/svg/CurvePath.tsx';
@@ -180,9 +180,7 @@ export default function BuffonNeedle({ params, conceptId, title }: Visualization
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       {view === 'agujas' ? (
         <ChartSvg
           label={description}
