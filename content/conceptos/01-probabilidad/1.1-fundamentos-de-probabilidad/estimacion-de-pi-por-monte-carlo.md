@@ -84,7 +84,7 @@ puntos: 20000
 - $p = \pi/4$: probabilidad de caer dentro; $\hat{p}_N$: proporción observada.
 - $\hat{\pi}_N$: estimación de $\pi$; $\mathrm{EE}$: su error estándar.
 - $1.64$: valor aproximado de $4\sqrt{(\pi/4)(1 - \pi/4)}$.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -157,7 +157,7 @@ P(X^2 + Y^2 \le 1) = \frac{\pi}{4}
 $$
 
 - $(X, Y)$: punto uniforme en el cuadrado $[0, 1]^2$.
-  :::
+:::
 
 :::formula[Estimador de pi]
 
@@ -166,7 +166,7 @@ $$
 $$
 
 - $N$: número de puntos; $\mathbf{1}\{\cdot\}$: 1 si el punto cae dentro, 0 si no.
-  :::
+:::
 
 :::formula[Error estándar]
 
@@ -175,7 +175,7 @@ $$
 $$
 
 - $\frac{\pi}{4}\left(1 - \frac{\pi}{4}\right)$: varianza de la indicadora de caer dentro.
-  :::
+:::
 
 :::formula[Puntos necesarios para un margen de error]
 
@@ -184,4 +184,4 @@ N \approx \left(\frac{1.96 \cdot 1.64}{e}\right)^2
 $$
 
 - $e$: margen de error deseado para $\hat{\pi}$, con 95 % de confianza.
-  :::
+:::

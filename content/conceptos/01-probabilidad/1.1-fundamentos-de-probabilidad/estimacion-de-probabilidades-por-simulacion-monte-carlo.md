@@ -95,7 +95,7 @@ ensayos: 4000
 - $\sqrt{p(1-p)/N}$: error estándar, tamaño típico de $\hat{p}_N - p$.
 - $1.96$: factor para un intervalo de 95 %.
 - $e$: margen de error deseado al planear el número de simulaciones.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -113,12 +113,16 @@ El caballero de Méré apostaba a obtener al menos un 6 en cuatro lanzamientos d
 4. El valor exacto, $1 - (5/6)^4 \approx 0.5177$, está dentro del intervalo.
 5. Como el intervalo queda completamente por encima de 0.5, la simulación basta para concluir que la apuesta es favorable.
 
-:::figura[Una estimación de Monte Carlo de un problema geométrico: la probabilidad de que x al cuadrado + bx + c = 0 tenga raíces reales con b uniforme en [0, 2] y c uniforme en [0, 1]. El valor exacto es 1/3.]{componente="GeometricProbability"}
+:::figura[La simulación del ejemplo: 10000 rondas de cuatro dados. La banda de 95 % alrededor del valor exacto 0.5177 queda completamente por encima de la línea fina de 0.5 a partir de unas 3000 rondas, y la estimación termina dentro de ella.]{componente="SampleSpaceLab"}
 
 ```yaml
-escenario: raices-reales
-bMax: 2
-cMax: 1
+modo: frecuencia
+experimento: cuatro-dados
+eventoA: al-menos-un-seis
+eventos: [al-menos-un-seis]
+banda: true
+referencia: 0.5
+ensayos: 10000
 ```
 
 :::
@@ -130,6 +134,16 @@ cMax: 1
 - **Planeación:** para un margen de error $e$ al 95 % basta $N \approx 1.96^2\, p(1-p)/e^2 \le 0.9604/e^2$. Para $e = 0.01$ bastan unas 9604 simulaciones.
 - **Independencia de la dimensión:** el error no depende de cuán complicado sea el experimento, solo de $p$ y de $N$.
 - **Eventos raros:** si $p$ es pequeña, el error relativo es cercano a $1/\sqrt{Np}$: se necesitan del orden de $100/p$ simulaciones para un error relativo de 10 %.
+
+:::figura[El método no depende del tipo de problema: aquí estima la probabilidad de que x al cuadrado + bx + c = 0 tenga raíces reales con b uniforme en [0, 2] y c uniforme en [0, 1], cuyo valor exacto es 1/3.]{componente="GeometricProbability"}
+
+```yaml
+escenario: raices-reales
+bMax: 2
+cMax: 1
+```
+
+:::
 
 :::figura[Ocho simulaciones independientes del mismo problema: cada una produce una estimación distinta, pero todas quedan casi siempre dentro de la banda, que se estrecha como uno entre la raíz de N.]{componente="SampleSpaceLab"}
 
@@ -195,7 +209,7 @@ $$
 
 - $N$: número de simulaciones; $\omega_i$: resultado de la simulación $i$.
 - $\mathbf{1}\{\cdot\}$: indicadora, 1 si se cumple la condición y 0 si no.
-  :::
+:::
 
 :::formula[Error estándar]
 
@@ -204,7 +218,7 @@ $$
 $$
 
 - $p$: probabilidad verdadera; en la práctica se sustituye por $\hat{p}_N$.
-  :::
+:::
 
 :::formula[Intervalo de 95 %]
 
@@ -213,7 +227,7 @@ $$
 $$
 
 - $1.96$: cuantil de la normal estándar para 95 % de confianza.
-  :::
+:::
 
 :::formula[Número de simulaciones para un margen de error]
 
@@ -222,7 +236,7 @@ N \approx \frac{1.96^2\, p(1-p)}{e^2} \le \frac{0.9604}{e^2}
 $$
 
 - $e$: margen de error deseado; la cota usa $p(1 - p) \le 1/4$.
-  :::
+:::
 
 :::formula[Error relativo]
 
@@ -231,4 +245,4 @@ $$
 $$
 
 - Crece cuando $p$ es pequeña: los eventos raros requieren muchas más simulaciones.
-  :::
+:::

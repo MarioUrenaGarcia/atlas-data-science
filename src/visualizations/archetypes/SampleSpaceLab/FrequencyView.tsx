@@ -9,8 +9,9 @@ import {
 } from '../../../lib/probability/sampleSpace.ts';
 import { formatNumber, formatProbability } from '../../../lib/format/number.ts';
 import { DATA_COLORS, seriesColor } from '../../core/colors.ts';
+import svgStyles from '../../core/svg/svg.module.css';
 import { defaultSeed } from '../../core/defaultSeed.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { CurvePath } from '../../core/svg/CurvePath.tsx';
@@ -24,6 +25,8 @@ import type { SampleSpaceLabConfig } from './schema.ts';
 import { SpaceGrid } from './SpaceGrid.tsx';
 
 const TRIALS_PER_SECOND = 30;
+/** Long simulations speed up so a full run at 1x takes about this long. */
+const FULL_RUN_SECONDS = 60;
 const DEFAULT_TRIALS = 2000;
 /** Every trial is recorded up to this count; later ones are thinned so the chart stays light. */
 const DENSE_HISTORY = 200;
@@ -31,6 +34,7 @@ const HISTORY_POINTS = 600;
 const BAND_STEPS = 120;
 const MAX_TEXT_CELLS = 52;
 const MIN_EXCESS_RANGE = 5;
+const REFERENCE_MARGIN = 0.1;
 
 interface Series {
   hits: number;
@@ -112,6 +116,17 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
   const excess = values.grafica === 'exceso';
   const test = findEvent(experimentId, eventId)?.test ?? (() => false);
   const probability = eventProbability(space.outcomes, test);
+  const reference = config.referencia;
+  // A reference value zooms the axis around it and the probability, where the comparison happens.
+  const yWindow: [number, number] =
+    reference === undefined || excess
+      ? [0, 1]
+      : [
+          Math.max(0, Math.min(reference, probability) - REFERENCE_MARGIN),
+          Math.min(1, Math.max(reference, probability) + REFERENCE_MARGIN),
+        ];
+  const clampY = (value: number) =>
+    excess ? value : Math.min(yWindow[1], Math.max(yWindow[0], value));
   const thinning = Math.max(1, Math.ceil((maxTrials - DENSE_HISTORY) / HISTORY_POINTS));
 
   const seed = useSeed(defaultSeed(conceptId, config.semilla));
@@ -158,7 +173,7 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
     step: () => simulate(1),
     stepMany: simulate,
     reset: () => setRun((value) => value + 1),
-    rate: TRIALS_PER_SECOND,
+    rate: Math.max(TRIALS_PER_SECOND, maxTrials / FULL_RUN_SECONDS),
     done: simulation.trials >= maxTrials,
   });
 
@@ -204,9 +219,7 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       <SpaceGrid
         experiment={space}
         label={description}
@@ -252,7 +265,7 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
             ...simulation.series.flatMap((s) => s.history.map((p) => Math.abs(value(p.n, p.f)))),
           );
           const y = scaleLinear()
-            .domain(excess ? [-extreme, extreme] : [0, 1])
+            .domain(excess ? [-extreme, extreme] : yWindow)
             .range([box.inner.top + box.inner.height, box.inner.top]);
           const bandPoints = Array.from({ length: BAND_STEPS + 1 }, (_, i) => {
             const n = logScale ? xMax ** (i / BAND_STEPS) : 1 + ((xMax - 1) * i) / BAND_STEPS;
@@ -261,8 +274,8 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
               : { n, ...frequencyBand(probability, n) };
           });
           const band = [
-            ...bandPoints.map((point) => `${x(point.n)},${y(point.high)}`),
-            ...[...bandPoints].reverse().map((point) => `${x(point.n)},${y(point.low)}`),
+            ...bandPoints.map((point) => `${x(point.n)},${y(clampY(point.high))}`),
+            ...[...bandPoints].reverse().map((point) => `${x(point.n)},${y(clampY(point.low))}`),
           ].join(' ');
           return (
             <>
@@ -294,6 +307,27 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
                   strokeWidth={2}
                   strokeDasharray="6 4"
                 />
+                {reference !== undefined && !excess && (
+                  <>
+                    <line
+                      x1={box.inner.left}
+                      x2={box.inner.left + box.inner.width}
+                      y1={y(reference)}
+                      y2={y(reference)}
+                      stroke={DATA_COLORS.text}
+                      strokeWidth={1}
+                      strokeDasharray="2 3"
+                    />
+                    <text
+                      x={box.inner.left + box.inner.width - 4}
+                      y={y(reference) + 14}
+                      textAnchor="end"
+                      className={svgStyles.label}
+                    >
+                      {formatNumber(reference, 2)}
+                    </text>
+                  </>
+                )}
               </g>
               {simulation.series.map((series, index) =>
                 series.history.length > 1 ? (
@@ -301,7 +335,7 @@ export function FrequencyView({ title, conceptId, config }: FrequencyViewProps) 
                     key={index}
                     points={series.history.map((point) => ({
                       x: point.n,
-                      y: value(point.n, point.f),
+                      y: Math.min(yWindow[1], Math.max(yWindow[0], value(point.n, point.f))),
                     }))}
                     xScale={x}
                     yScale={y}

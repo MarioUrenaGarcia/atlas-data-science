@@ -256,6 +256,7 @@ export const strings = {
       ['Ctrl+K o /', 'Abrir la búsqueda'],
       ['Espacio', 'Reproducir o pausar la visualización con foco'],
       ['Flecha derecha', 'Avanzar un paso en la visualización'],
+      ['Fin', 'Saltar al estado final de la visualización'],
       ['R', 'Reiniciar la visualización'],
     ] as const,
   },
@@ -264,6 +265,7 @@ export const strings = {
     play: 'Reproducir',
     pause: 'Pausar',
     step: 'Avanzar un paso',
+    skipToEnd: 'Saltar al final',
     restart: 'Reiniciar',
     speed: 'Velocidad',
     seed: 'Semilla',
@@ -283,8 +285,9 @@ export const strings = {
     views: 'Vistas',
     computing: (percent: number) => `Calculando: ${percent} %`,
     keyboardHint:
-      'Con la visualización enfocada: espacio reproduce o pausa, flecha derecha avanza un paso y R reinicia.',
+      'Con la visualización enfocada: espacio reproduce o pausa, flecha derecha avanza un paso, Fin salta al final y R reinicia.',
     frameLabel: (title: string) => `Visualización interactiva: ${title}`,
+    formulaRegion: 'Fórmula de la etapa actual',
     finished: 'Simulación terminada',
   },
 

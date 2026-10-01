@@ -82,7 +82,7 @@ operaciones: [A]
 - $A$: evento de interés, un subconjunto de $\Omega$.
 - $|A|$: número de resultados de $A$ (casos favorables).
 - $\Omega$: espacio muestral; $|\Omega|$: número total de resultados (casos posibles).
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -189,7 +189,7 @@ $$
 
 - $|A|$: número de casos favorables.
 - $|\Omega|$: número de casos posibles, todos igualmente posibles.
-  :::
+:::
 
 :::formula[Complemento]
 
@@ -198,7 +198,7 @@ P(A^{c}) = 1 - \frac{|A|}{|\Omega|}
 $$
 
 - $A^{c}$: el evento "no ocurre $A$".
-  :::
+:::
 
 :::formula[Unión de eventos excluyentes]
 
@@ -208,4 +208,4 @@ $$
 
 - $A \cup B$: ocurre $A$ o $B$.
 - $A \cap B = \varnothing$: $A$ y $B$ no pueden ocurrir a la vez.
-  :::
+:::
