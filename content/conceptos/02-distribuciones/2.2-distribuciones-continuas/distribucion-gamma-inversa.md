@@ -80,6 +80,15 @@ f(x) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}\, x^{-\alpha - 1} e^{-\beta/x}, \qq
 $$
 :::
 
+:::nota[Qué es X]
+$X$ = una cantidad positiva con cola derecha pesada, típicamente una varianza desconocida.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\alpha$, forma:** controla la cola derecha y qué momentos existen. Si aumenta, la cola se adelgaza y la curva se concentra.
+- **$\beta$, escala:** el tamaño típico de $X$. Si aumenta, la curva se estira a la derecha.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: cantidad positiva, típicamente una varianza.
 - $G$: variable gamma cuyo recíproco es $X$.
@@ -189,7 +198,7 @@ referencia:
 
 ## Conexiones
 
-La gamma inversa es el recíproco de la [[distribucion-gamma]]. Mezclar normales con varianza gamma inversa da la [[distribucion-t-de-student]], y su cola es de ley de potencia como la de la [[distribucion-de-pareto]]. Es la inicial conjugada de la varianza de una [[distribucion-normal]] y su versión matricial es la Wishart inversa.
+La gamma inversa es el recíproco de la [[distribucion-gamma]]. Mezclar normales con varianza gamma inversa da la [[distribucion-t-de-student]], y su cola es de ley de potencia como la de la [[distribucion-de-pareto]]. Es la inicial conjugada de la varianza de una [[distribucion-normal]] y su versión matricial es la Wishart inversa. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

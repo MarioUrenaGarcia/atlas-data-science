@@ -84,6 +84,15 @@ $$
 
 **Construcción:** si $U \sim U(0, 1)$, entonces $x_m U^{-1/\alpha} \sim \operatorname{Pareto}(x_m, \alpha)$. Equivalentemente, $\log(X/x_m)$ es exponencial con tasa $\alpha$.
 
+:::nota[Qué es X]
+$X$ = una magnitud con cola de ley de potencia, como un ingreso, el tamaño de una ciudad o una pérdida asegurada.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$x_m$, valor mínimo:** el menor valor posible, que fija la escala. Si aumenta, toda la curva se estira a la derecha.
+- **$\alpha$, índice de cola:** qué tan pesada es la cola. Si aumenta, la cola se adelgaza y los valores enormes se vuelven raros.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: magnitud, como un ingreso o un tamaño.
 - $x_m$: valor mínimo posible, la escala.
@@ -209,7 +218,7 @@ referencia:
 
 ## Conexiones
 
-La Pareto es la exponencial de una [[distribucion-exponencial]] reescalada, y su versión discreta para rangos es la [[distribucion-de-zipf]]. Se contrasta con la [[distribucion-lognormal]], con la que a menudo se confunde en datos de ingresos. Es la cola típica de la [[distribucion-de-frechet]], que describe máximos de variables de cola pesada, y un ejemplo de las distribuciones de colas pesadas que rompen el teorema central del límite cuando $\alpha < 2$.
+La Pareto es la exponencial de una [[distribucion-exponencial]] reescalada, y su versión discreta para rangos es la [[distribucion-de-zipf]]. Se contrasta con la [[distribucion-lognormal]], con la que a menudo se confunde en datos de ingresos. Es la cola típica de la [[distribucion-de-frechet]], que describe máximos de variables de cola pesada, y un ejemplo de las distribuciones de colas pesadas que rompen el teorema central del límite cuando $\alpha < 2$. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

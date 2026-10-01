@@ -88,6 +88,14 @@ $$
 P(X \le k) = 1 - (1 - p)^{k}, \qquad P(X > k) = (1 - p)^{k}.
 $$
 
+:::nota[Qué es X]
+$X$ = el número de intentos hasta el primer éxito, contando el intento exitoso.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$p$, probabilidad de éxito:** la probabilidad de que cada intento salga bien. Si aumenta, el primer éxito llega antes y la masa se concentra cerca de 1.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: número de ensayos hasta el primer éxito, incluido el éxito.
 - $Y = X - 1$: número de fracasos antes del primer éxito.
@@ -225,7 +233,7 @@ muestras: false
 
 ## Conexiones
 
-La geométrica es la espera hasta el primer éxito en ensayos de [[distribucion-de-bernoulli|Bernoulli]], y sus probabilidades forman una [[serie-geometrica]] que suma 1. Esperar hasta el éxito número $r$ lleva a la [[distribucion-binomial-negativa]], que es la suma de $r$ geométricas independientes. Mientras la [[distribucion-binomial]] fija los ensayos y cuenta éxitos, la geométrica fija los éxitos y cuenta ensayos. Si la probabilidad de éxito se elige al azar antes de cada espera, se obtienen mezclas como la [[distribucion-logaritmica]].
+La geométrica es la espera hasta el primer éxito en ensayos de [[distribucion-de-bernoulli|Bernoulli]], y sus probabilidades forman una [[serie-geometrica]] que suma 1. Esperar hasta el éxito número $r$ lleva a la [[distribucion-binomial-negativa]], que es la suma de $r$ geométricas independientes. Mientras la [[distribucion-binomial]] fija los ensayos y cuenta éxitos, la geométrica fija los éxitos y cuenta ensayos. Si la probabilidad de éxito se elige al azar antes de cada espera, se obtienen mezclas como la [[distribucion-logaritmica]]. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

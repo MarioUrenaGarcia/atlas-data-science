@@ -89,6 +89,15 @@ tiene **distribución t no central** con $\nu$ grados de libertad y no centralid
 
 En una prueba t de una muestra con $n$ datos, efecto $\Delta$ y desviación $\sigma$, el estadístico sigue $t_{n-1}(\mu)$ con $\mu = \sqrt{n}\,\Delta/\sigma$.
 
+:::nota[Qué representa la variable]
+$T$ = el estadístico $t$ de una prueba cuando la hipótesis nula es falsa.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\nu$, grados de libertad:** la información de la muestra, $n - 1$ en una prueba de una muestra. Si aumenta, las colas se adelgazan y la curva se acerca a una normal desplazada.
+- **$\mu$, no centralidad:** el efecto estandarizado multiplicado por $\sqrt{n}$. Si aumenta, la curva se corre a la derecha, se vuelve asimétrica y la potencia sube.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $T$: estadístico t.
 - $Z$: normal estándar; $V$: chi-cuadrada independiente.
@@ -207,7 +216,7 @@ referencia:
 
 ## Conexiones
 
-La t no central generaliza la [[distribucion-t-de-student]] así como la [[distribucion-chi-cuadrada-no-central]] generaliza la chi-cuadrada. Con infinitos grados se vuelve una [[distribucion-normal]] desplazada. Es la herramienta para calcular tamaños de muestra y potencia de las pruebas t y para construir intervalos de confianza del tamaño del efecto.
+La t no central generaliza la [[distribucion-t-de-student]] así como la [[distribucion-chi-cuadrada-no-central]] generaliza la chi-cuadrada. Con infinitos grados se vuelve una [[distribucion-normal]] desplazada. Es la herramienta para calcular tamaños de muestra y potencia de las pruebas t y para construir intervalos de confianza del tamaño del efecto. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

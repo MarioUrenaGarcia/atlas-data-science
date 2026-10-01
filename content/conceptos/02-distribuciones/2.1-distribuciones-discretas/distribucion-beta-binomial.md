@@ -97,6 +97,16 @@ $$
 
 La fórmula resulta de promediar la función de masa binomial sobre todos los valores de $p$ con peso dado por la densidad beta: $P(X = k) = \int_0^1 \binom{n}{k} p^{k}(1-p)^{n-k}\,\frac{p^{\alpha-1}(1-p)^{\beta-1}}{B(\alpha,\beta)}\,dp$.
 
+:::nota[Qué es X]
+$X$ = el número de éxitos en $n$ ensayos cuya probabilidad de éxito común no se conoce y varía de un grupo a otro.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$n$, número de ensayos:** cuántos ensayos hay en cada grupo; es el máximo de éxitos posible. Si aumenta, hay más valores posibles y la distribución se ensancha.
+- **$\alpha$, peso hacia el éxito:** actúa como éxitos previos en la beta de la probabilidad. Si aumenta, la masa se mueve hacia valores altos.
+- **$\beta$, peso hacia el fracaso:** actúa como fracasos previos en la beta de la probabilidad. Si aumenta, la masa se mueve hacia valores bajos; si $\alpha$ y $\beta$ suben juntos, la distribución se acerca a una binomial.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: número de éxitos en los $n$ ensayos.
 - $n$: número de ensayos.
@@ -265,7 +275,7 @@ referencia:
 
 ## Conexiones
 
-La beta-binomial es una mezcla de la [[distribucion-binomial]] sobre su probabilidad de éxito, y su normalización usa la [[funcion-beta]]. Así como la [[distribucion-binomial-negativa]] es una Poisson con tasa variable, la beta-binomial es una binomial con probabilidad variable: ambas modelan sobredispersión. Con más de dos categorías se generaliza a la Dirichlet-multinomial, mezcla de la [[distribucion-multinomial]]. En estadística bayesiana aparece como distribución predictiva del modelo beta-binomial conjugado.
+La beta-binomial es una mezcla de la [[distribucion-binomial]] sobre su probabilidad de éxito, y su normalización usa la [[funcion-beta]]. Así como la [[distribucion-binomial-negativa]] es una Poisson con tasa variable, la beta-binomial es una binomial con probabilidad variable: ambas modelan sobredispersión. Con más de dos categorías se generaliza a la Dirichlet-multinomial, mezcla de la [[distribucion-multinomial]]. En estadística bayesiana aparece como distribución predictiva del modelo beta-binomial conjugado. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

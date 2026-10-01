@@ -89,6 +89,15 @@ $$
 F(x) = P(X \le x) = \begin{cases} 0, & x < a, \\ \dfrac{\lfloor x \rfloor - a + 1}{n}, & a \le x < b, \\ 1, & x \ge b. \end{cases}
 $$
 
+:::nota[Qué es X]
+$X$ = un entero elegido al azar entre $a$ y $b$, con todos los valores igual de probables.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$a$, menor valor:** el primer entero posible. Si aumenta, hay menos valores y cada barra sube.
+- **$b$, mayor valor:** el último entero posible. Si aumenta, hay más valores y cada barra baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: variable aleatoria con el valor obtenido.
 - $a$, $b$: menor y mayor valor posibles, enteros.
@@ -268,7 +277,7 @@ semilla: 30
 
 ## Conexiones
 
-La uniforme discreta es la distribución de un resultado elegido en un espacio equiprobable con valores numéricos consecutivos. Cuando los resultados no son igualmente probables se usa la [[distribucion-categorica]]; con solo dos valores, 0 y 1, e igual probabilidad, coincide con la [[distribucion-de-bernoulli]] de parámetro 1/2. La suma de varias uniformes discretas da distribuciones triangulares y, con muchos sumandos, aproximadamente normales. Las sumas de la media y la varianza usan la [[notacion-sumatoria-y-productoria]].
+La uniforme discreta es la distribución de un resultado elegido en un espacio equiprobable con valores numéricos consecutivos. Cuando los resultados no son igualmente probables se usa la [[distribucion-categorica]]; con solo dos valores, 0 y 1, e igual probabilidad, coincide con la [[distribucion-de-bernoulli]] de parámetro 1/2. La suma de varias uniformes discretas da distribuciones triangulares y, con muchos sumandos, aproximadamente normales. Las sumas de la media y la varianza usan la [[notacion-sumatoria-y-productoria]]. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 
