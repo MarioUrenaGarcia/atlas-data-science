@@ -8,7 +8,7 @@ import {
 import { formatNumber } from '../../../lib/format/number.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
 import { defaultSeed } from '../../core/defaultSeed.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { CurvePath } from '../../core/svg/CurvePath.tsx';
@@ -21,6 +21,8 @@ import styles from './BuffonNeedle.module.css';
 import type { BuffonNeedleConfig } from './schema.ts';
 
 const NEEDLES_PER_SECOND = 20;
+/** Long simulations speed up so a full run at 1x takes about this long. */
+const FULL_RUN_SECONDS = 60;
 const DEFAULT_NEEDLES = 5000;
 const SHOWN_NEEDLES = 400;
 const SHOWN_POINTS = 2500;
@@ -124,7 +126,7 @@ export default function BuffonNeedle({ params, conceptId, title }: Visualization
     step: () => drop(1),
     stepMany: drop,
     reset: () => setRun((value) => value + 1),
-    rate: NEEDLES_PER_SECOND,
+    rate: Math.max(NEEDLES_PER_SECOND, maxNeedles / FULL_RUN_SECONDS),
     done: simulation.total >= maxNeedles,
   });
 
@@ -178,9 +180,7 @@ export default function BuffonNeedle({ params, conceptId, title }: Visualization
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       {view === 'agujas' ? (
         <ChartSvg
           label={description}

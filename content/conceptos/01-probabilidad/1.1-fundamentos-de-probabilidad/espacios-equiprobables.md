@@ -85,7 +85,7 @@ eventos: [par, primo, mayor-que-4]
 - $A$: evento; $|A|$: número de resultados que contiene.
 - $\sum_{\omega \in A}$: suma sobre los resultados de $A$.
 - $\binom{n}{k}$: coeficiente binomial, número de formas de elegir $k$ objetos de $n$ sin importar el orden.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -102,15 +102,13 @@ Un comité de 3 personas se elige al azar entre 6 ingenieras y 4 médicos. ¿Cu�
 3. Probabilidad: $P(A) = 60/120 = 0.5$.
 4. Comprobación con el complemento: 0 ingenieras, $\binom{4}{3} = 4$; 1 ingeniera, $6 \cdot \binom{4}{2} = 36$; 3 ingenieras, $\binom{6}{3} = 20$. En total $4 + 36 + 60 + 20 = 120$.
 
-:::figura[El mismo razonamiento con cuatro monedas: elegir cuáles 2 de las 4 posiciones son caras da 6 secuencias equiprobables de 16, una probabilidad de 3/8.]{componente="SampleSpaceLab"}
+:::figura[Los 120 comités posibles del ejemplo, ordenados por número de ingenieras (I) y médicos (M). Al cambiar el evento, el barrido cuenta 4 comités sin ingenieras, 36 con una, 60 con dos y 20 con tres; los 60 favorables son la mitad del espacio.]{componente="SampleSpaceLab"}
 
 ```yaml
-modo: frecuencia
-experimento: cuatro-monedas
-eventoA: exactamente-dos-caras
-eventos: [exactamente-dos-caras]
-banda: true
-ensayos: 2000
+modo: eventos
+experimento: comite
+eventoA: ingenieras-2
+operaciones: [A]
 ```
 
 :::
@@ -130,6 +128,19 @@ experimento: carta
 eventoA: rey
 eventos: [rey, numero-par, trebol]
 operaciones: [A]
+```
+
+:::
+
+:::figura[Cuando el modelo equiprobable es correcto, la frecuencia observada se acerca a la proporción de casos: con cuatro monedas, "exactamente dos caras" ocupa 6 de 16 secuencias y la frecuencia se estabiliza en 3/8.]{componente="SampleSpaceLab"}
+
+```yaml
+modo: frecuencia
+experimento: cuatro-monedas
+eventoA: exactamente-dos-caras
+eventos: [exactamente-dos-caras]
+banda: true
+ensayos: 2000
 ```
 
 :::
@@ -178,7 +189,7 @@ P(\{\omega\}) = \frac{1}{|\Omega|}
 $$
 
 - $|\Omega|$: número total de resultados, todos con la misma probabilidad.
-  :::
+:::
 
 :::formula[Probabilidad de un evento]
 
@@ -187,7 +198,7 @@ P(A) = \frac{|A|}{|\Omega|}
 $$
 
 - $|A|$: número de resultados favorables.
-  :::
+:::
 
 :::formula[Muestreo al azar sin orden]
 
@@ -198,4 +209,4 @@ $$
 - $n = n_1 + n_2$: tamaño de la población, con $n_1$ elementos de un tipo y $n_2$ de otro.
 - $k = k_1 + k_2$: tamaño de la muestra; $k_1$ y $k_2$ son cuántos de cada tipo se piden.
 - $\binom{n}{k}$: número de muestras posibles de tamaño $k$.
-  :::
+:::

@@ -88,7 +88,7 @@ ensayos: 5000
 - $P(A)$: probabilidad del evento $A$.
 - $\sqrt{P(A)(1 - P(A))/n}$: tamaño típico de la diferencia entre $f_n(A)$ y $P(A)$ (error estándar).
 - $1.96$: factor que da una banda que contiene la frecuencia en el 95 % de las series.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -203,7 +203,7 @@ f_n(A) = \frac{n_A}{n}
 $$
 
 - $n$: número de repeticiones; $n_A$: veces que ocurrió $A$.
-  :::
+:::
 
 :::formula[Probabilidad como límite]
 
@@ -212,7 +212,7 @@ P(A) = \lim_{n \to \infty} f_n(A)
 $$
 
 - $\lim_{n \to \infty}$: valor al que tiende la frecuencia cuando las repeticiones crecen sin límite.
-  :::
+:::
 
 :::formula[Error estándar de la frecuencia]
 
@@ -222,7 +222,7 @@ $$
 
 - $\mathrm{EE}$: tamaño típico de la diferencia entre la frecuencia y la probabilidad.
 - $P(A)$: probabilidad del evento; $n$: número de repeticiones.
-  :::
+:::
 
 :::formula[Banda de 95 %]
 
@@ -231,7 +231,7 @@ P(A) \pm 1.96 \sqrt{\frac{P(A)\,(1 - P(A))}{n}}
 $$
 
 - $1.96$: cuantil de la normal estándar que deja 2.5 % en cada cola.
-  :::
+:::
 
 :::formula[Exceso absoluto]
 
@@ -241,4 +241,4 @@ $$
 
 - $n_A - n\,P(A)$: diferencia entre las ocurrencias observadas y las esperadas.
 - $\sqrt{n\,P(A)(1 - P(A))}$: su tamaño típico, que crece con $n$.
-  :::
+:::

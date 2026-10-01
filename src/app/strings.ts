@@ -287,6 +287,7 @@ export const strings = {
     keyboardHint:
       'Con la visualización enfocada: espacio reproduce o pausa, flecha derecha avanza un paso, Fin salta al final y R reinicia.',
     frameLabel: (title: string) => `Visualización interactiva: ${title}`,
+    formulaRegion: 'Fórmula de la etapa actual',
     finished: 'Simulación terminada',
   },
 

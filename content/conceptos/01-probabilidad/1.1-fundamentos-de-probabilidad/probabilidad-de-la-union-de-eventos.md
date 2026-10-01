@@ -105,7 +105,7 @@ consultas:
 - $\sum_{i<j}$: suma sobre todos los pares de índices distintos; $\sum_{i<j<k}$, sobre todos los tríos.
 - $(-1)^{n+1}$: signo del último término, positivo si $n$ es impar.
 - $B \setminus A$: ocurre $B$ y no ocurre $A$.
-  :::
+:::
 
 ## Cómo usar la visualización
 
@@ -115,38 +115,38 @@ Con A = "el primer dado es par" y B = "la suma es 10 o más", $P(A) + P(B) = 24/
 
 ## Ejemplo
 
-En la ciudad de la intuición, sea $P$ = "lee el periódico" y $R$ = "escucha la radio", con $P(P) = 0.40$, $P(R) = 0.30$ y $P(P \cap R) = 0.12$.
+En una ciudad, 40 % de los adultos lee el periódico, 30 % escucha noticias en la radio y 12 % hace ambas cosas. Sean $L$ = "lee el periódico" y $R$ = "escucha la radio", con $P(L) = 0.40$, $P(R) = 0.30$ y $P(L \cap R) = 0.12$.
 
-1. $P(P \cup R) = 0.40 + 0.30 - 0.12 = 0.58$.
-2. Solo periódico: $P(P \setminus R) = 0.40 - 0.12 = 0.28$. Solo radio: $0.30 - 0.12 = 0.18$.
+1. $P(L \cup R) = 0.40 + 0.30 - 0.12 = 0.58$.
+2. Solo periódico: $P(L \setminus R) = 0.40 - 0.12 = 0.28$. Solo radio: $0.30 - 0.12 = 0.18$.
 3. Ninguno de los dos: $1 - 0.58 = 0.42$.
 4. Comprobación: $0.28 + 0.18 + 0.12 + 0.42 = 1$.
-
-Para los estudiantes de la figura, con 100 encuestados: $P(M) = 0.39$, $P(F) = 0.27$, $P(Q) = 0.27$, $P(M \cap F) = 0.13$, $P(M \cap Q) = 0.11$, $P(F \cap Q) = 0.09$ y $P(M \cap F \cap Q) = 0.05$, de modo que $P(M \cup F \cup Q) = 0.39 + 0.27 + 0.27 - 0.13 - 0.11 - 0.09 + 0.05 = 0.65$.
 
 :::figura[Los datos del ejemplo por cada 100 adultos: 28 solo leen el periódico, 18 solo escuchan la radio, 12 hacen ambas cosas y 42 ninguna. La unión suma 58.]{componente="VennSets"}
 
 ```yaml
 modo: conteos
-etiquetas: [P, R]
+etiquetas: [L, R]
 universo: 100 adultos
 conteos:
-  P: 28
+  L: 28
   R: 18
-  PR: 12
+  LR: 12
   ninguno: 42
 consultas:
-  - nombre: P o R
-    regiones: [P, R, PR]
-  - nombre: Solo P
-    regiones: [P]
-  - nombre: P y R
-    regiones: [PR]
+  - nombre: L o R
+    regiones: [L, R, LR]
+  - nombre: Solo L
+    regiones: [L]
+  - nombre: L y R
+    regiones: [LR]
   - nombre: Ninguno
     regiones: [ninguno]
 ```
 
 :::
+
+Con tres eventos se procede igual. Para los 100 estudiantes de la figura de la definición: $P(M) = 0.39$, $P(F) = 0.27$, $P(Q) = 0.27$, $P(M \cap F) = 0.13$, $P(M \cap Q) = 0.11$, $P(F \cap Q) = 0.09$ y $P(M \cap F \cap Q) = 0.05$, de modo que $P(M \cup F \cup Q) = 0.39 + 0.27 + 0.27 - 0.13 - 0.11 - 0.09 + 0.05 = 0.65$.
 
 ## Propiedades
 
@@ -212,7 +212,7 @@ P(A \cup B) = P(A) + P(B) - P(A \cap B)
 $$
 
 - $P(A \cap B)$: probabilidad de que ocurran los dos, que la suma contaría dos veces.
-  :::
+:::
 
 :::formula[Unión de tres eventos]
 
@@ -221,7 +221,7 @@ P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C
 $$
 
 - $A$, $B$, $C$: eventos; los pares se restan y la triple intersección se vuelve a sumar.
-  :::
+:::
 
 :::formula[Inclusión y exclusión]
 
@@ -232,7 +232,7 @@ $$
 - $k$: número de eventos en cada intersección.
 - $i_1 < \dots < i_k$: índices distintos, cada combinación contada una vez.
 - $(-1)^{k+1}$: signo, positivo para $k$ impar y negativo para $k$ par.
-  :::
+:::
 
 :::formula[Desigualdad de Boole]
 
@@ -241,4 +241,4 @@ P\Big(\bigcup_{i=1}^{n} A_i\Big) \le \sum_{i=1}^{n} P(A_i)
 $$
 
 - La igualdad se cumple cuando los eventos son excluyentes.
-  :::
+:::
