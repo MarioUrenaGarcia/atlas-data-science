@@ -3,6 +3,55 @@ import type { CatalogExample } from '../examples.ts';
 /** Catalog examples of the distribution visualizations. */
 export const DISTRIBUTION_EXAMPLES: CatalogExample[] = [
   {
+    component: 'DistributionStudio',
+    title: 'Binomial con casos y ejemplo',
+    params: {
+      explorador: {
+        distribucion: 'binomial',
+        valores: { n: 20, p: 0.2 },
+        region: 'izquierda',
+        desde: 5,
+        casos: [
+          {
+            nombre: 'p = 0.2',
+            descripcion:
+              'Piezas defectuosas en un lote de 20 con 20 % de defectos: sesgo a la derecha.',
+            valores: { n: 20, p: 0.2 },
+          },
+          {
+            nombre: 'p = 0.5',
+            descripcion: 'Caras en 20 lanzamientos de moneda: simétrica alrededor de 10.',
+            valores: { n: 20, p: 0.5 },
+          },
+          {
+            nombre: 'p = 0.8',
+            descripcion:
+              'Aprobados en un grupo de 20 con 80 % de aprobación: sesgo a la izquierda.',
+            valores: { n: 20, p: 0.8 },
+          },
+        ],
+        ejemplo: {
+          titulo: 'Piezas defectuosas',
+          contexto: 'Un lote tiene 20 piezas y cada una sale defectuosa con probabilidad 0.2.',
+          pregunta: '¿Qué probabilidad hay de encontrar como máximo 5 defectuosas?',
+          valores: { n: 20, p: 0.2 },
+          region: 'izquierda',
+          desde: 5,
+        },
+        referencia: {
+          distribucion: 'poisson',
+          valores: { lambda: 4 },
+          etiqueta: 'Poisson con la misma media',
+          visible: false,
+        },
+      },
+      genesis: {
+        componente: 'DistributionGenesis',
+        parametros: { proceso: 'ensayos', valores: { n: 20, p: 0.2 } },
+      },
+    },
+  },
+  {
     component: 'DistributionExplorer',
     title: 'Normal en centímetros',
     params: {

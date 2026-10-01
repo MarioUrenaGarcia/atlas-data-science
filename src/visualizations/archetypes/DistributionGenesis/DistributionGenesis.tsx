@@ -229,6 +229,8 @@ export default function DistributionGenesis({ params, conceptId, title }: Visual
     reset: () => setRun((value) => value + 1),
     rate: eventRate(completed),
     done: completed >= MAX_EXPERIMENTS,
+    // The construction starts only when asked for; an animation running on arrival distracts from reading.
+    autoplay: false,
   });
 
   const probabilities = categoryProbabilities(settings);

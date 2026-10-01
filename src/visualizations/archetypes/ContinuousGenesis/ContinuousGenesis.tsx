@@ -131,6 +131,8 @@ export default function ContinuousGenesis({ params, conceptId, title }: Visualiz
     reset: () => setRun((value) => value + 1),
     rate: continuousRate(completed),
     done: completed >= MAX_EXPERIMENTS,
+    // The construction starts only when asked for; an animation running on arrival distracts from reading.
+    autoplay: false,
   });
 
   const [view, setView] = useState<string>(config.vista ?? 'densidad');

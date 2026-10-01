@@ -11,12 +11,24 @@ import { VizFrame } from '../../core/VizFrame.tsx';
 import { DISTRIBUTION_SPECS, specValues, withRanges } from '../../shared/distributionSpecs.ts';
 import { plotWindow } from '../../shared/plotWindow.ts';
 import type { VisualizationProps } from '../../types.ts';
+import { Button } from '../../../components/ui/Button.tsx';
 import { DistributionChart, type ChartView } from './DistributionChart.tsx';
-import type { DistributionExplorerConfig } from './schema.ts';
+import { PresetPanel } from './PresetPanel.tsx';
+import { regionLabel, regionProbability, usesSecondBound } from './regions.ts';
+import type { DistributionExplorerConfig, ExplorerPreset, Region } from './schema.ts';
 
 const SAMPLES_PER_SECOND = 30;
 const MAX_SAMPLES = 5000;
 const TABLE_POINTS = 21;
+/** Samples drawn at once by the quick simulation button. */
+const QUICK_SAMPLES = 1000;
+
+const REGION_OPTIONS = [
+  { value: 'intervalo', label: 'Entre a y b' },
+  { value: 'izquierda', label: 'Hasta a (X ≤ a)' },
+  { value: 'derecha', label: 'Desde a (X ≥ a)' },
+  { value: 'colas', label: 'Colas (X ≤ a o X ≥ b)' },
+];
 
 const VIEWS = [
   { value: 'densidad', label: 'Densidad o masa' },
@@ -40,6 +52,9 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
   const defaultFrom = config.desde ?? Number(initialDistribution.quantile(0.25).toFixed(2));
   const defaultTo = config.hasta ?? Number(initialDistribution.quantile(0.75).toFixed(2));
   const intervalStep = spec.discrete ? 1 : Number(((limits[1] - limits[0]) / 400).toPrecision(1));
+  // Discrete windows end on halves; the bound sliders must sit on integers.
+  const boundMin = spec.discrete ? Math.ceil(limits[0]) : limits[0];
+  const boundMax = spec.discrete ? Math.floor(limits[1]) : limits[1];
 
   const definitions = useMemo<ParameterDefinition[]>(
     () => [
@@ -50,22 +65,29 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
           default: initial[parameter.key] ?? parameter.default,
         })),
       {
+        type: 'select',
+        key: 'region',
+        label: 'Región de probabilidad',
+        options: REGION_OPTIONS,
+        default: config.region ?? 'intervalo',
+      },
+      {
         type: 'number',
         key: 'desde',
-        label: 'Inicio del intervalo',
+        label: 'Límite a',
         symbol: 'a',
-        min: limits[0],
-        max: limits[1],
+        min: boundMin,
+        max: boundMax,
         step: intervalStep,
         default: defaultFrom,
       },
       {
         type: 'number',
         key: 'hasta',
-        label: 'Fin del intervalo',
+        label: 'Límite b',
         symbol: 'b',
-        min: limits[0],
-        max: limits[1],
+        min: boundMin,
+        max: boundMax,
         step: intervalStep,
         default: defaultTo,
       },
@@ -82,20 +104,33 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
       {
         type: 'toggle',
         key: 'muestras',
-        label: 'Superponer muestras simuladas',
+        label: 'Mostrar muestras simuladas',
         default: config.muestras ?? true,
       },
+      ...(config.referencia
+        ? [
+            {
+              type: 'toggle' as const,
+              key: 'comparar',
+              label: `Superponer: ${config.referencia.etiqueta}`,
+              default: config.referencia.visible ?? true,
+            },
+          ]
+        : []),
     ],
     [
       spec,
       fixed,
       initial,
-      limits,
+      boundMin,
+      boundMax,
       intervalStep,
       defaultFrom,
       defaultTo,
       config.probabilidad,
       config.muestras,
+      config.region,
+      config.referencia,
     ],
   );
 
@@ -157,7 +192,8 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
     reset: () => setRun((value) => value + 1),
     rate: SAMPLES_PER_SECOND,
     done: samples.length >= MAX_SAMPLES,
-    autoplay: Boolean(values.muestras),
+    // Samples are drawn only when asked for, so the page opens on a still, readable chart.
+    autoplay: false,
   });
   const sampleCount = samples.length;
 
@@ -165,10 +201,10 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
   const to = Number(values.hasta);
   const probability = Number(values.probabilidad);
   const showSamples = Boolean(values.muestras);
-  const intervalProbability =
-    distribution.kind === 'discrete'
-      ? distribution.cdf(Math.floor(to)) - distribution.cdf(Math.ceil(from) - 1)
-      : distribution.cdf(to) - distribution.cdf(from);
+  const region = (values.region ?? 'intervalo') as Region;
+  const intervalProbability = regionProbability(distribution, region, from, to);
+  const regionText = regionLabel(region, from, to);
+  const showReference = reference !== null && Boolean(values.comparar);
   const quantile = distribution.quantile(probability);
   const currentSamples = samples;
 
@@ -177,7 +213,7 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
     { label: 'Varianza Var(X)', value: formatNumber(distribution.variance) },
     { label: 'Desviación estándar', value: formatNumber(Math.sqrt(distribution.variance)) },
     {
-      label: `P(${formatNumber(from, 2)} ≤ X ≤ ${formatNumber(to, 2)})`,
+      label: regionText,
       value: formatProbability(intervalProbability),
       color: DATA_COLORS.secondary,
     },
@@ -203,9 +239,9 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
       color: DATA_COLORS.primary,
       shape: 'line' as const,
     },
-    { label: 'Intervalo [a, b] y cuantil', color: DATA_COLORS.secondary },
+    { label: 'Región de probabilidad y cuantil', color: DATA_COLORS.secondary },
     ...(showSamples ? [{ label: 'Muestras simuladas', color: DATA_COLORS.light }] : []),
-    ...(reference
+    ...(reference && showReference
       ? [{ label: reference.label, color: DATA_COLORS.muted, shape: 'dashed' as const }]
       : []),
   ];
@@ -213,7 +249,7 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
   const description =
     `Distribución ${spec.label} con ${spec.parameters.map((parameter) => `${parameter.label.toLowerCase()} ${formatNumber(distributionValues[parameter.key] ?? 0, 2)}`).join(', ')}. ` +
     `Media ${formatNumber(distribution.mean)} y varianza ${formatNumber(distribution.variance)}. ` +
-    `La probabilidad entre ${formatNumber(from, 2)} y ${formatNumber(to, 2)} es ${formatProbability(intervalProbability)}. ` +
+    `${regionText} = ${formatProbability(intervalProbability)}. ` +
     (showSamples ? `Se han simulado ${sampleCount} valores.` : '');
 
   const table = useMemo(() => {
@@ -249,32 +285,82 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
     };
   }, [distribution, domain, spec.label]);
 
+  const [active, setActive] = useState<number | 'ejemplo' | null>(null);
+  const loadPreset = (preset: Pick<ExplorerPreset, 'valores' | 'region' | 'desde' | 'hasta'>) => {
+    for (const [key, value] of Object.entries(preset.valores)) {
+      if (spec.parameters.some((parameter) => parameter.key === key) && !fixed.has(key))
+        parameters.set(key, value);
+    }
+    if (preset.region) parameters.set('region', preset.region);
+    if (preset.desde !== undefined) parameters.set('desde', preset.desde);
+    if (preset.hasta !== undefined) parameters.set('hasta', preset.hasta);
+  };
+  const exampleAnswer =
+    active === 'ejemplo' ? `${regionText} = ${formatProbability(intervalProbability)}` : null;
+  const hasPresets = (config.casos?.length ?? 0) > 0 || config.ejemplo !== undefined;
+
   return (
     <VizFrame
       title={title}
       playback={playback}
       seed={seed}
-      parameters={{ ...parameters, values }}
+      parameters={{
+        ...parameters,
+        values,
+        disabled: usesSecondBound(region) ? [] : ['hasta'],
+      }}
+      controls={
+        <Button
+          size="small"
+          variant="secondary"
+          onClick={() => {
+            if (!showSamples) parameters.set('muestras', true);
+            stepMany(QUICK_SAMPLES);
+          }}
+        >
+          {`Simular ${QUICK_SAMPLES} muestras`}
+        </Button>
+      }
       views={{ options: VIEWS, value: view, onChange: (next) => setView(next as ChartView) }}
       readouts={readouts}
       legend={legend}
       description={description}
       dataTable={table}
     >
+      {hasPresets && (
+        <PresetPanel
+          cases={config.casos ?? []}
+          example={config.ejemplo}
+          active={active}
+          answer={exampleAnswer}
+          onLoadCase={(index) => {
+            const preset = config.casos?.[index];
+            if (!preset) return;
+            loadPreset(preset);
+            setActive(index);
+          }}
+          onLoadExample={() => {
+            if (!config.ejemplo) return;
+            loadPreset(config.ejemplo);
+            setActive('ejemplo');
+          }}
+        />
+      )}
       <DistributionChart
         distribution={distribution}
-        reference={reference}
+        reference={showReference ? reference : null}
         domain={domain}
         view={view}
-        from={Math.min(from, to)}
-        to={Math.max(from, to)}
+        from={from}
+        to={usesSecondBound(region) ? to : from}
+        region={region}
         probability={probability}
         samples={currentSamples}
         showSamples={showSamples}
         label={description}
         onIntervalChange={(nextFrom, nextTo) => {
           parameters.set('desde', nextFrom);
-          parameters.set('hasta', nextTo);
+          if (usesSecondBound(region)) parameters.set('hasta', nextTo);
         }}
       />
     </VizFrame>
