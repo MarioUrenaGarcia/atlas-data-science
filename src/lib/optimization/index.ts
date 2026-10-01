@@ -62,6 +62,47 @@ export const TEST_FUNCTIONS: Record<string, TestFunction> = {
       [3.584428, -1.848126],
     ],
   },
+  redonda: {
+    id: 'redonda',
+    label: 'Cuadrática redonda',
+    f: ([x, y]) => 0.5 * (x * x + y * y),
+    gradient: ([x, y]) => [x, y],
+    hessian: () => [
+      [1, 0],
+      [0, 1],
+    ],
+    domain: { x: [-3, 3], y: [-3, 3] },
+    minima: [[0, 0]],
+  },
+  girada: {
+    id: 'girada',
+    label: 'Cuadrática girada',
+    // 1/2 xᵀAx - bᵀx with A = [[3, 2], [2, 3]] (eigenvalues 5 and 1) and b = (1, -1).
+    f: ([x, y]) => 0.5 * (3 * x * x + 4 * x * y + 3 * y * y) - x + y,
+    gradient: ([x, y]) => [3 * x + 2 * y - 1, 2 * x + 3 * y + 1],
+    hessian: () => [
+      [3, 2],
+      [2, 3],
+    ],
+    domain: { x: [-3, 3], y: [-3, 3] },
+    minima: [[1, -1]],
+  },
+  rastrigin: {
+    id: 'rastrigin',
+    label: 'Rastrigin',
+    f: ([x, y]) =>
+      20 + x * x - 10 * Math.cos(2 * Math.PI * x) + y * y - 10 * Math.cos(2 * Math.PI * y),
+    gradient: ([x, y]) => [
+      2 * x + 20 * Math.PI * Math.sin(2 * Math.PI * x),
+      2 * y + 20 * Math.PI * Math.sin(2 * Math.PI * y),
+    ],
+    hessian: ([x, y]) => [
+      [2 + 40 * Math.PI ** 2 * Math.cos(2 * Math.PI * x), 0],
+      [0, 2 + 40 * Math.PI ** 2 * Math.cos(2 * Math.PI * y)],
+    ],
+    domain: { x: [-4, 4], y: [-4, 4] },
+    minima: [[0, 0]],
+  },
   silla: {
     id: 'silla',
     label: 'Punto silla',

@@ -21,8 +21,11 @@ export function FormulaLine({ tex }: FormulaLineProps) {
     if (!element) return;
     const check = () => setOverflows(element.scrollWidth > element.clientWidth + 1);
     check();
+    // The content can widen without the container resizing (for example when
+    // the math fonts finish loading), so both boxes are observed.
     const observer = new ResizeObserver(check);
     observer.observe(element);
+    if (element.firstElementChild) observer.observe(element.firstElementChild);
     return () => observer.disconnect();
   }, [tex]);
 

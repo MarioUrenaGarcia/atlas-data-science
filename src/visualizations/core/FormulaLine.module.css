@@ -5,6 +5,11 @@
   overflow-y: hidden;
 }
 
+/* ResizeObserver ignores inline boxes, so the rendered formula is an inline block. */
+.formula > span {
+  display: inline-block;
+}
+
 .formula:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;

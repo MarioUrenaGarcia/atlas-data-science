@@ -12,6 +12,9 @@ orden: 2
 nivel: avanzado
 prerrequisitos:
   - convergencia-en-probabilidad
+relaciones:
+  - tipo: relacionado
+    id: independencia-de-eventos
 etiquetas:
   - convergencia
   - trayectorias

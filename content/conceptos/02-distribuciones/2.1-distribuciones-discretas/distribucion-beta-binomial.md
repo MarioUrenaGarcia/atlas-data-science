@@ -28,16 +28,47 @@ resumen: >
   distribución beta. Tiene la misma media que una binomial, pero más varianza.
 formula: 'P(X = k) = \binom{n}{k}\frac{B(k + \alpha,\, n - k + \beta)}{B(\alpha, \beta)}, \quad k = 0, \dots, n'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: beta-binomial
-    valores:
-      n: 20
-      alpha: 4
-      beta: 2
-    exito: Correcta
-    fracaso: Incorrecta
-    comparar: true
+    explorador:
+      distribucion: beta-binomial
+      valores:
+        n: 10
+        alpha: 8
+        beta: 2
+      casos:
+        - nombre: 'Germinación por lote'
+          descripcion: 'n = 10, α = 8 y β = 2: media 8 pero varianza 2.9, mucho mayor que la binomial, porque los lotes difieren.'
+          valores: {n: 10, alpha: 8, beta: 2}
+        - nombre: 'Sin información'
+          descripcion: 'α = β = 1: todos los conteos de 0 a 10 son igual de probables.'
+          valores: {n: 10, alpha: 1, beta: 1}
+        - nombre: 'Opiniones polarizadas'
+          descripcion: 'α = β = 0.5: forma de U; casi todos los grupos están en un extremo.'
+          valores: {n: 10, alpha: 0.5, beta: 0.5}
+      ejemplo:
+        titulo: 'Charola pobre'
+        contexto: 'Una charola de 10 semillas viene de un lote cuya germinación sigue una Beta(8, 2).'
+        pregunta: '¿Qué probabilidad hay de que germinen 6 o menos semillas?'
+        valores: {n: 10, alpha: 8, beta: 2}
+        region: izquierda
+        desde: 6
+      referencia:
+        distribucion: binomial
+        valores: {n: 10, p: 0.8}
+        etiqueta: 'Binomial con p fija de 0.8'
+        visible: true
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: beta-binomial
+        valores:
+          n: 20
+          alpha: 4
+          beta: 2
+        exito: Correcta
+        fracaso: Incorrecta
+        comparar: true
 referencias:
   - clave: gelman-bda
     capitulo: '5'
@@ -78,9 +109,9 @@ La fórmula resulta de promediar la función de masa binomial sobre todos los va
 
 ## Cómo usar la visualización
 
-Cada experimento empieza sorteando la probabilidad de acierto $p$: la curva sobre la regla es la densidad beta y el triángulo marca el valor sorteado. Después se contestan las $n$ preguntas con esa $p$. El puntaje cae en el histograma, que se compara con la beta-binomial (puntos) y con la binomial de $p$ fija igual a la media (línea punteada).
+La pestaña Distribución muestra la función de masa beta-binomial junto a la binomial de $p$ fija (línea punteada), la región elegida y su probabilidad; los casos cargan lotes heterogéneos, ausencia de información y opiniones polarizadas, y el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge sortea primero la probabilidad de acierto y luego contesta las preguntas.
 
-Con $\alpha = 4$ y $\beta = 2$ la media es $20 \cdot 4/6 \approx 13.3$ en ambos modelos, pero la varianza de la beta-binomial es 16.5 contra 4.4 de la binomial: el histograma es mucho más ancho. Al subir $\alpha$ y $\beta$ manteniendo su cociente la beta se angosta y ambas distribuciones se acercan. Con $\alpha = \beta = 1$ todos los puntajes son igual de probables.
+La comparación muestra la sobredispersión: misma media, más varianza. Al subir $\alpha$ y $\beta$ con su cociente fijo, la beta-binomial se acerca a la binomial.
 
 ## Ejemplo
 
@@ -111,9 +142,21 @@ valores:
   n: 10
   alpha: 8
   beta: 2
-desde: 0
-hasta: 6
+ejemplo:
+  titulo: 'Charola pobre'
+  contexto: 'Una charola de 10 semillas viene de un lote cuya germinación sigue una Beta(8, 2).'
+  pregunta: '¿Qué probabilidad hay de que germinen 6 o menos semillas?'
+  valores: {n: 10, alpha: 8, beta: 2}
+  region: izquierda
+  desde: 6
+region: izquierda
+desde: 6
 muestras: false
+referencia:
+  distribucion: binomial
+  valores: {n: 10, p: 0.8}
+  etiqueta: 'Binomial con p fija de 0.8'
+  visible: true
 ```
 :::
 
@@ -125,6 +168,31 @@ muestras: false
 - **Caso uniforme:** con $\alpha = \beta = 1$, $P(X = k) = 1/(n + 1)$ para todo $k$.
 - **Límite binomial:** si $\alpha, \beta \to \infty$ con $\alpha/(\alpha + \beta) = \pi$ fijo, la beta se concentra en $\pi$ y la beta-binomial tiende a $\operatorname{Bin}(n, \pi)$.
 - **Predicción bayesiana:** es la distribución predictiva de nuevos éxitos cuando la incertidumbre sobre $p$ se describe con una beta.
+
+:::figura[Tres casos con contexto (germinación por lote, sin información, opiniones polarizadas): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: beta-binomial
+valores:
+  n: 10
+  alpha: 8
+  beta: 2
+casos:
+  - nombre: 'Germinación por lote'
+    descripcion: 'n = 10, α = 8 y β = 2: media 8 pero varianza 2.9, mucho mayor que la binomial, porque los lotes difieren.'
+    valores: {n: 10, alpha: 8, beta: 2}
+  - nombre: 'Sin información'
+    descripcion: 'α = β = 1: todos los conteos de 0 a 10 son igual de probables.'
+    valores: {n: 10, alpha: 1, beta: 1}
+  - nombre: 'Opiniones polarizadas'
+    descripcion: 'α = β = 0.5: forma de U; casi todos los grupos están en un extremo.'
+    valores: {n: 10, alpha: 0.5, beta: 0.5}
+referencia:
+  distribucion: binomial
+  valores: {n: 10, p: 0.8}
+  etiqueta: 'Binomial con p fija de 0.8'
+  visible: true
+```
+:::
 
 :::figura[Con α = β = 1 la beta es uniforme y la beta-binomial reparte la probabilidad por igual: con n = 10 cada puntaje tiene 1/11.]{componente="DistributionExplorer"}
 ```yaml

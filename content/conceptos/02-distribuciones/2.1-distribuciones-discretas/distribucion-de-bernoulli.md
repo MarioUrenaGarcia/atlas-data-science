@@ -24,13 +24,37 @@ resumen: >
   codificados como 1 y 0. Es la pieza con la que se construyen la binomial, la geométrica y otras.
 formula: 'P(X = 1) = p, \quad P(X = 0) = 1 - p'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: moneda
-    valores:
-      p: 0.75
-    exito: Encesta
-    fracaso: Falla
+    explorador:
+      distribucion: bernoulli
+      valores:
+        p: 0.12
+      casos:
+        - nombre: 'Fiebre tras vacuna'
+          descripcion: 'p = 0.12: la barra del 1 es baja; el evento ocurre en uno de cada ocho casos aproximadamente.'
+          valores: {p: 0.12}
+        - nombre: 'Moneda justa'
+          descripcion: 'p = 0.5: dos barras iguales y la varianza máxima, 0.25.'
+          valores: {p: 0.5}
+        - nombre: 'Tiro libre'
+          descripcion: 'p = 0.75: la barra del 1 domina; una jugadora encesta tres de cada cuatro tiros.'
+          valores: {p: 0.75}
+      ejemplo:
+        titulo: 'Fiebre tras la vacuna'
+        contexto: 'El 12 % de los pacientes presenta fiebre leve después de una vacuna.'
+        pregunta: '¿Qué probabilidad hay de que un paciente elegido al azar presente fiebre?'
+        valores: {p: 0.12}
+        region: derecha
+        desde: 1
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: moneda
+        valores:
+          p: 0.75
+        exito: Encesta
+        fracaso: Falla
 referencias:
   - clave: blitzstein-hwang
     capitulo: '3'
@@ -69,9 +93,9 @@ Si $A$ es un evento con $P(A) = p$, su indicadora $\mathbf{1}\{A\}$, que vale 1 
 
 ## Cómo usar la visualización
 
-Cada experimento es un tiro libre: la ficha se rellena con E cuando la jugadora encesta y queda vacía con F cuando falla. Debajo se acumulan las frecuencias relativas de 0 y 1 frente a las probabilidades teóricas $1 - p$ y $p$. El panel compara la media y la varianza teóricas, $p$ y $p(1 - p)$, con las de los resultados.
+La pestaña Distribución muestra las dos barras, $1 - p$ en el 0 y $p$ en el 1, con la región elegida y su probabilidad; el panel da la media $p$ y la varianza $p(1 - p)$. Los casos cargan situaciones con probabilidades distintas y el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge lanza tiros libres y acumula los resultados.
 
-Con $p = 0.75$ la barra del 1 se estabiliza cerca de 0.75 y la media de los resultados también, porque el promedio de unos y ceros es la proporción de éxitos. Al llevar $p$ a 0.5 la varianza teórica sube a su máximo, 0.25. Con $p = 0$ o $p = 1$ el resultado es siempre el mismo y la varianza vale cero.
+Al llevar $p$ a 0.5 la varianza llega a su máximo, 0.25; con $p = 0$ o $p = 1$ vale cero. Con el botón de simulación, la media de las muestras se acerca a $p$, porque el promedio de unos y ceros es la proporción de éxitos.
 
 ## Ejemplo
 
@@ -82,13 +106,31 @@ Después de aplicar una vacuna, el 12 % de los pacientes presenta fiebre leve. P
 3. Segundo momento: como $X^2 = X$, $\mathbb{E}[X^2] = 0.12$.
 4. Varianza: $\operatorname{Var}(X) = 0.12 - 0.12^2 = 0.12 \cdot 0.88 = 0.1056$, con desviación estándar $\sqrt{0.1056} \approx 0.325$.
 
-:::figura[Un paciente tras la vacuna: la ficha marca F cuando aparece fiebre. La frecuencia del 1 se estabiliza cerca de 0.12 y la del 0 cerca de 0.88.]{componente="DistributionGenesis"}
+:::figura[Un paciente tras la vacuna: la ficha se rellena cuando aparece fiebre y queda vacía cuando no. La frecuencia del 1 se estabiliza cerca de 0.12 y la del 0 cerca de 0.88.]{componente="DistributionGenesis"}
 ```yaml
 proceso: moneda
 valores:
   p: 0.12
 exito: Fiebre
 fracaso: Sin fiebre
+```
+:::
+
+:::figura[El ejemplo en la visualización: el botón carga los parámetros y la región de "Fiebre tras la vacuna" y muestra la probabilidad pedida.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.12
+ejemplo:
+  titulo: 'Fiebre tras la vacuna'
+  contexto: 'El 12 % de los pacientes presenta fiebre leve después de una vacuna.'
+  pregunta: '¿Qué probabilidad hay de que un paciente elegido al azar presente fiebre?'
+  valores: {p: 0.12}
+  region: derecha
+  desde: 1
+region: derecha
+desde: 1
+muestras: false
 ```
 :::
 
@@ -99,6 +141,24 @@ fracaso: Sin fiebre
 - **Simetría:** $1 - X \sim \operatorname{Bernoulli}(1 - p)$; intercambiar los nombres de éxito y fracaso refleja la distribución.
 - **Suma de ensayos:** la suma de $n$ variables $\operatorname{Bernoulli}(p)$ independientes es $\operatorname{Bin}(n, p)$.
 - **Producto:** si $X$ y $Y$ son Bernoulli independientes con parámetros $p$ y $q$, entonces $XY \sim \operatorname{Bernoulli}(pq)$, porque $XY = 1$ solo cuando ambas valen 1.
+
+:::figura[Tres casos con contexto (fiebre tras vacuna, moneda justa, tiro libre): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.12
+casos:
+  - nombre: 'Fiebre tras vacuna'
+    descripcion: 'p = 0.12: la barra del 1 es baja; el evento ocurre en uno de cada ocho casos aproximadamente.'
+    valores: {p: 0.12}
+  - nombre: 'Moneda justa'
+    descripcion: 'p = 0.5: dos barras iguales y la varianza máxima, 0.25.'
+    valores: {p: 0.5}
+  - nombre: 'Tiro libre'
+    descripcion: 'p = 0.75: la barra del 1 domina; una jugadora encesta tres de cada cuatro tiros.'
+    valores: {p: 0.75}
+```
+:::
 
 :::figura[Varianza máxima con p = 0.5: los dos valores tienen la misma masa y la varianza alcanza 0.25.]{componente="DistributionExplorer"}
 ```yaml

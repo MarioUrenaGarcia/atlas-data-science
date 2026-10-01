@@ -11,7 +11,6 @@ orden: 15
 nivel: intermedio
 prerrequisitos:
   - teorema-central-del-limite
-  - derivada-como-pendiente-y-razon-de-cambio
 etiquetas:
   - normalidad asintótica
   - transformaciones
@@ -164,7 +163,7 @@ n: 5
 
 ## Conexiones
 
-Combina el [[teorema-central-del-limite]] con la [[derivada-como-pendiente-y-razon-de-cambio|derivada]] y el desarrollo de [[serie-de-taylor-y-de-maclaurin|Taylor]]. Su demostración usa el [[teorema-de-slutsky]] y su versión para varios parámetros es el [[metodo-delta-multivariado]]. La conservación de la consistencia bajo funciones continuas es el [[teorema-del-mapeo-continuo]]. Se usa para obtener errores estándar de estimadores de máxima verosimilitud transformados, razones de momios y coeficientes de variación.
+Combina el [[teorema-central-del-limite]] con la [[derivada-como-pendiente-y-razon-de-cambio|derivada]] y el desarrollo de [[serie-de-taylor-y-de-maclaurin|Taylor]]. Su demostración usa el [[teorema-de-slutsky]] y su versión para varios parámetros es el [[metodo-delta-multivariado]]. La conservación de la consistencia bajo funciones continuas es el [[teorema-del-mapeo-continuo]]. Se usa para obtener errores estándar de estimadores de máxima verosimilitud transformados, razones de momios y coeficientes de variación. Un ejemplo clásico es la tasa de la [[distribucion-exponencial]], estimada como el inverso de la media muestral.
 
 ## Formulario
 

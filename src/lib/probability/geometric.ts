@@ -4,6 +4,7 @@
  * gives the sampler, the membership test and the exact probability, so a
  * simulation can be compared against the value it estimates.
  */
+import type { Random } from '../random/index.ts';
 
 export const GEOMETRIC_SCENARIOS = [
   'encuentro',
@@ -45,6 +46,59 @@ export function realRootsProbability(bMax: number, cMax: number): number {
   const cross = Math.min(bMax, 2 * Math.sqrt(cMax));
   const underParabola = cross ** 3 / 12 + (bMax - cross) * cMax;
   return underParabola / (bMax * cMax);
+}
+
+export const BERTRAND_METHODS = ['extremos', 'radio', 'punto-medio'] as const;
+export type BertrandMethod = (typeof BERTRAND_METHODS)[number];
+
+/** Answer to Bertrand's question (chord longer than the side of the inscribed triangle) for each method. */
+export const BERTRAND_ANSWERS: Record<BertrandMethod, number> = {
+  extremos: 1 / 3,
+  radio: 1 / 2,
+  'punto-medio': 1 / 4,
+};
+
+export interface Chord {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  /** Distance from the center of the unit circle to the chord's midpoint. */
+  distance: number;
+}
+
+function chordAtDistance(distance: number, angle: number): Chord {
+  const half = Math.sqrt(Math.max(0, 1 - distance * distance));
+  const mx = distance * Math.cos(angle);
+  const my = distance * Math.sin(angle);
+  const dx = -Math.sin(angle) * half;
+  const dy = Math.cos(angle) * half;
+  return { x1: mx - dx, y1: my - dy, x2: mx + dx, y2: my + dy, distance };
+}
+
+/**
+ * A random chord of the unit circle under each of Bertrand's three methods:
+ * two uniform points on the circle, a uniform point on a random radius, or a
+ * uniform point in the disc taken as the midpoint.
+ */
+export function bertrandChord(random: Random, method: BertrandMethod): Chord {
+  switch (method) {
+    case 'extremos': {
+      const a = random.uniform(0, 2 * Math.PI);
+      const b = random.uniform(0, 2 * Math.PI);
+      const chord = { x1: Math.cos(a), y1: Math.sin(a), x2: Math.cos(b), y2: Math.sin(b) };
+      return { ...chord, distance: Math.abs(Math.cos((a - b) / 2)) };
+    }
+    case 'radio':
+      return chordAtDistance(random.uniform(0, 1), random.uniform(0, 2 * Math.PI));
+    case 'punto-medio':
+      return chordAtDistance(Math.sqrt(random.uniform(0, 1)), random.uniform(0, 2 * Math.PI));
+  }
+}
+
+/** A chord is longer than the side sqrt(3) of the inscribed triangle exactly when its midpoint is within 1/2 of the center. */
+export function chordIsLong(chord: Chord): boolean {
+  return chord.distance < 0.5;
 }
 
 /** Probability that a needle of length l crosses one of the parallel lines spaced t apart, for l at most t. */

@@ -27,13 +27,38 @@ resumen: >
   justos, como un dado o un número de boleto elegido al azar.
 formula: 'P(X = k) = \frac{1}{b - a + 1}, \quad k = a, a + 1, \dots, b'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: dado
-    valores:
-      a: 1
-      b: 6
-      k: 1
+    explorador:
+      distribucion: uniforme-discreta
+      valores:
+        a: 1
+        b: 20
+      casos:
+        - nombre: 'Dado de seis caras'
+          descripcion: 'Valores del 1 al 6: seis barras iguales de 1/6; ninguna cara tiene ventaja.'
+          valores: {a: 1, b: 6}
+        - nombre: 'Día de auditoría'
+          descripcion: 'Un día hábil al azar entre 1 y 20: veinte barras de 0.05, media 10.5.'
+          valores: {a: 1, b: 20}
+        - nombre: 'Dígito aleatorio'
+          descripcion: 'Un dígito del 0 al 9: diez barras de 0.1; la media 4.5 no es un valor posible.'
+          valores: {a: 0, b: 9}
+      ejemplo:
+        titulo: 'Auditoría en la primera semana'
+        contexto: 'Una planta elige al azar uno de sus 20 días hábiles del mes para una auditoría sorpresa.'
+        pregunta: '¿Qué probabilidad hay de que la auditoría caiga en los primeros 5 días?'
+        valores: {a: 1, b: 20}
+        region: izquierda
+        desde: 5
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: dado
+        valores:
+          a: 1
+          b: 6
+          k: 1
 referencias:
   - clave: blitzstein-hwang
     capitulo: '3'
@@ -76,9 +101,9 @@ $$
 
 ## Cómo usar la visualización
 
-Arriba se lanza un dado cuyas caras van de $a$ a $b$; la cara obtenida se ilumina. Cada resultado se acumula en el histograma de abajo, que compara la frecuencia relativa observada (barras) con la probabilidad teórica $1/n$ (puntos). Las primeras tiradas son lentas y después el ritmo se acelera. El panel muestra la media y la varianza teóricas junto a las de los resultados.
+La pestaña Distribución muestra las barras de la función de masa, todas de altura $1/n$, y la región elegida en el selector con su probabilidad. Los casos cargan un dado, el día de una auditoría y un dígito al azar; el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge lanza un dado y acumula los resultados; con $k = 2$ suma dos dados y el histograma deja de ser plano.
 
-Con pocas tiradas las barras son muy desiguales, aunque ninguna cara tenga ventaja; al acumular cientos de tiradas se nivelan alrededor de $1/n$. Al mover $a$ sin cambiar el número de caras, la media se desplaza y la varianza no cambia. Al poner $k = 2$ se suman dos dados y el histograma deja de ser plano: forma un triángulo con máximo en el centro.
+Al mover $a$ sin cambiar el número de valores, la media se desplaza y la varianza no cambia. En la vista de función de distribución aparece una escalera de $n$ peldaños.
 
 ## Ejemplo
 
@@ -95,8 +120,15 @@ distribucion: uniforme-discreta
 valores:
   a: 1
   b: 20
-desde: 1
-hasta: 5
+ejemplo:
+  titulo: 'Auditoría en la primera semana'
+  contexto: 'Una planta elige al azar uno de sus 20 días hábiles del mes para una auditoría sorpresa.'
+  pregunta: '¿Qué probabilidad hay de que la auditoría caiga en los primeros 5 días?'
+  valores: {a: 1, b: 20}
+  region: izquierda
+  desde: 5
+region: izquierda
+desde: 5
 muestras: false
 ```
 :::
@@ -108,6 +140,25 @@ muestras: false
 - **Desplazamiento:** si $X \sim U\{a, \dots, b\}$ y $c$ es entero, entonces $X + c \sim U\{a + c, \dots, b + c\}$: la media se mueve $c$ y la varianza no cambia.
 - **Probabilidad de un tramo:** para $a \le c \le d \le b$, $P(c \le X \le d) = \dfrac{d - c + 1}{n}$.
 - **Máxima incertidumbre:** entre todas las distribuciones sobre $n$ valores, la uniforme es la que tiene mayor entropía.
+
+:::figura[Tres casos con contexto (dado de seis caras, día de auditoría, dígito aleatorio): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: uniforme-discreta
+valores:
+  a: 1
+  b: 20
+casos:
+  - nombre: 'Dado de seis caras'
+    descripcion: 'Valores del 1 al 6: seis barras iguales de 1/6; ninguna cara tiene ventaja.'
+    valores: {a: 1, b: 6}
+  - nombre: 'Día de auditoría'
+    descripcion: 'Un día hábil al azar entre 1 y 20: veinte barras de 0.05, media 10.5.'
+    valores: {a: 1, b: 20}
+  - nombre: 'Dígito aleatorio'
+    descripcion: 'Un dígito del 0 al 9: diez barras de 0.1; la media 4.5 no es un valor posible.'
+    valores: {a: 0, b: 9}
+```
+:::
 
 :::figura[Simetría y media: con valores del 3 al 9 la masa se reparte por igual a ambos lados de 6, que es la media (3 + 9)/2.]{componente="DistributionExplorer"}
 ```yaml

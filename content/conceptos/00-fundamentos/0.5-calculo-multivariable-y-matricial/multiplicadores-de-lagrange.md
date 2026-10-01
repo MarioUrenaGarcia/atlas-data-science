@@ -91,7 +91,7 @@ casos: [suma-circulo]
 
 ## Propiedades
 
-- **Interpretación de $\lambda$:** si la restricción es $h(\mathbf{x}) = c$, el valor óptimo $f^*(c)$ cumple $\dfrac{df^*}{dc} = \lambda$; en economía se llama precio sombra.
+- **Interpretación de $\lambda$:** si la restricción se escribe $h(\mathbf{x}) = c$, donde $h$ es una función y $c$ un número que fija el nivel de la restricción, y $f^*(c)$ es el valor óptimo de $f$ para ese nivel, entonces $\dfrac{df^*}{dc} = \lambda$; en economía $\lambda$ se llama precio sombra.
 - **Regularidad:** la condición puede fallar si $\nabla g(\mathbf{x}^*) = \mathbf{0}$; esos puntos se revisan aparte.
 - **Solo candidatos:** la condición es necesaria; hay que comparar los valores de $f$ en todos los candidatos para decidir cuál es el máximo y cuál el mínimo.
 - **Existencia:** si la restricción define un conjunto cerrado y acotado, como un círculo, $f$ continua alcanza su máximo y su mínimo, y ambos están entre los candidatos.
