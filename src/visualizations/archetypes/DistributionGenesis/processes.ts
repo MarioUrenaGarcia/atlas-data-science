@@ -3,7 +3,6 @@ import {
   betaBinomial,
   binomial,
   categorical,
-  discreteUniform,
   geometric,
   hypergeometric,
   logarithmic,
@@ -14,6 +13,7 @@ import {
   rademacherSum,
   shifted,
   skellam,
+  sumOfDiscreteUniforms,
   zeroInflatedPoisson,
   zipf,
   type DiscreteDistribution,
@@ -125,6 +125,10 @@ export function dieRange(settings: GenesisSettings) {
   return { low, high: Math.max(low, Math.round(v(settings, 'b', 6))) };
 }
 
+export function diceCount(settings: GenesisSettings): number {
+  return Math.max(1, Math.round(v(settings, 'k', 1)));
+}
+
 /** Probabilities of the categories after normalizing the weight sliders. */
 export function categoryProbabilities(settings: GenesisSettings): number[] {
   const weights = settings.categories.map((category, index) =>
@@ -196,19 +200,27 @@ const PROCESS_SPECS: Record<GenesisProcess, ProcessSpec> = {
   dado: {
     stage: 'die',
     symbol: 'X',
-    describe: () => 'valor obtenido',
+    describe: (settings) => (diceCount(settings) > 1 ? 'suma de los dados' : 'valor obtenido'),
     parameters: () => [
       num('a', 'Valor mínimo', 'a', 0, 10, 1, 1),
       num('b', 'Valor máximo', 'b', 1, 20, 1, 6),
+      num('k', 'Dados sumados', 'k', 1, 5, 1, 1),
     ],
     simulate: (random, settings) => {
       const { low, high } = dieRange(settings);
-      const value = random.int(low, high);
-      return { events: [{ kind: 'roll', value }, end], value };
+      const rolls: GenesisEvent[] = Array.from({ length: diceCount(settings) }, () => ({
+        kind: 'roll',
+        value: random.int(low, high),
+      }));
+      const value = rolls.reduce(
+        (sum, event) => sum + (event.kind === 'roll' ? event.value : 0),
+        0,
+      );
+      return { events: [...rolls, end], value };
     },
     theory: (settings) => {
       const { low, high } = dieRange(settings);
-      return discreteUniform(low, high);
+      return sumOfDiscreteUniforms(diceCount(settings), low, high);
     },
   },
   moneda: {

@@ -882,6 +882,11 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   { component: 'CalculusViz', title: 'Beta', params: { modo: 'beta', a: 2, b: 5 } },
   { component: 'CalculusViz', title: 'Stirling', params: { modo: 'stirling', n: 5 } },
   { component: 'DistributionGenesis', title: 'Dado', params: { proceso: 'dado' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Suma de dos dados',
+    params: { proceso: 'dado', valores: { k: 2 } },
+  },
   { component: 'DistributionGenesis', title: 'Moneda', params: { proceso: 'moneda' } },
   { component: 'DistributionGenesis', title: 'Ensayos', params: { proceso: 'ensayos' } },
   { component: 'DistributionGenesis', title: 'Primer éxito', params: { proceso: 'primer-exito' } },

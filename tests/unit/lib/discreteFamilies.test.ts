@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   betaBinomial,
+  finiteDiscrete,
   binomial,
   harmonicNumber,
   logarithmic,
@@ -11,6 +12,7 @@ import {
   sampleMultinomial,
   shifted,
   skellam,
+  sumOfDiscreteUniforms,
   zeroInflatedPoisson,
   zipf,
   type DiscreteDistribution,
@@ -154,6 +156,33 @@ describe('rademacher', () => {
     expect(d.cdf(4)).toBeCloseTo(1, 12);
     const moments = momentsOver(d, -4, 4);
     expect(moments.variance).toBeCloseTo(4, 12);
+  });
+});
+
+describe('sums of discrete uniforms', () => {
+  it('gives the triangular law of two dice', () => {
+    const d = sumOfDiscreteUniforms(2, 1, 6);
+    expect(d.support).toEqual([2, 12]);
+    expect(d.pmf(7)).toBeCloseTo(6 / 36, 14);
+    expect(d.pmf(2)).toBeCloseTo(1 / 36, 14);
+    expect(d.mean).toBeCloseTo(7, 12);
+    expect(d.variance).toBeCloseTo(35 / 6, 12);
+    expect(d.cdf(4)).toBeCloseTo(6 / 36, 14);
+    expect(d.quantile(0.5)).toBe(7);
+  });
+
+  it('reduces to the uniform with one die', () => {
+    const d = sumOfDiscreteUniforms(1, 0, 9);
+    for (let k = 0; k <= 9; k += 1) expect(d.pmf(k)).toBeCloseTo(0.1, 14);
+    expect(d.variance).toBeCloseTo(99 / 12, 12);
+  });
+
+  it('builds finite distributions from masses', () => {
+    const d = finiteDiscrete(-1, [1, 2, 1], 'prueba');
+    expect(d.pmf(0)).toBe(0.5);
+    expect(d.cdf(-1)).toBe(0.25);
+    expect(d.mean).toBeCloseTo(0, 14);
+    expect(d.variance).toBeCloseTo(0.5, 14);
   });
 });
 

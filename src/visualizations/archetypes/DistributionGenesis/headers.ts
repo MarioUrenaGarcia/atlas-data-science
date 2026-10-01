@@ -1,6 +1,7 @@
 import { multinomialPmf } from '../../../lib/distributions/index.ts';
 import {
   categoryProbabilities,
+  diceCount,
   dieRange,
   processSpec,
   slotCount,
@@ -56,9 +57,20 @@ export function genesisHeader(
     case 'dado': {
       const { low, high } = dieRange(settings);
       const faces = high - low + 1;
+      const dice = diceCount(settings);
+      const rolls = events.flatMap((event) => (event.kind === 'roll' ? [event.value] : []));
+      if (dice === 1) {
+        if (!done || !experiment)
+          return `X \\sim U\\{${low}, \\dots, ${high}\\},\\quad P(X = k) = \\frac{1}{${faces}}`;
+        return `X = ${experiment.value},\\quad P(X = ${experiment.value}) = \\frac{1}{${faces}} = ${texNumber(1 / faces)}`;
+      }
       if (!done || !experiment)
-        return `X \\sim U\\{${low}, \\dots, ${high}\\},\\quad P(X = k) = \\frac{1}{${faces}}`;
-      return `X = ${experiment.value},\\quad P(X = ${experiment.value}) = \\frac{1}{${faces}} = ${texNumber(1 / faces)}`;
+        return rolls.length === 0
+          ? `X = D_1 + \\dots + D_{${dice}}`
+          : `${rolls.join(' + ')}${rolls.length < dice ? ' + \\dots' : ''}`;
+      const total = faces ** dice;
+      const ways = Math.round(theory.pmf(experiment.value) * total);
+      return `X = ${rolls.join(' + ')} = ${experiment.value},\\quad P(X = ${experiment.value}) = \\frac{${ways}}{${total}} = ${probabilityOf(experiment.value)}`;
     }
     case 'moneda': {
       const p = get('p', 0.3);

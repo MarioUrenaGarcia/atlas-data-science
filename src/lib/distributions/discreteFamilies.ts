@@ -254,6 +254,52 @@ export function rademacherSum(n: number): DiscreteDistribution {
   };
 }
 
+/** Distribution with the given masses on the consecutive integers first, first + 1, ... */
+export function finiteDiscrete(
+  first: number,
+  masses: readonly number[],
+  name: string,
+): DiscreteDistribution {
+  check(Number.isInteger(first) && masses.length > 0, 'invalid support');
+  const total = masses.reduce((sum, mass) => sum + mass, 0);
+  const normalized = masses.map((mass) => mass / total);
+  const table = cumulativeTable(normalized);
+  const last = first + normalized.length - 1;
+  const mean = normalized.reduce((sum, mass, i) => sum + mass * (first + i), 0);
+  const variance = normalized.reduce((sum, mass, i) => sum + mass * (first + i - mean) ** 2, 0);
+  return {
+    kind: 'discrete',
+    name,
+    mean,
+    variance,
+    support: [first, last],
+    pmf: (k) => (Number.isInteger(k) && k >= first && k <= last ? (normalized[k - first] ?? 0) : 0),
+    cdf: (x) => {
+      const k = Math.floor(x);
+      return k < first ? 0 : k >= last ? 1 : Math.min(1, table[k - first] ?? 1);
+    },
+    quantile: (q) => first + searchCumulative(table, q - 1e-12),
+    sample: (random) => first + searchCumulative(table, random.next()),
+  };
+}
+
+/** Sum of k independent uniform values on {low, ..., high}, by repeated convolution. */
+export function sumOfDiscreteUniforms(k: number, low: number, high: number): DiscreteDistribution {
+  check(Number.isInteger(k) && k >= 1, 'k must be a positive integer');
+  check(Number.isInteger(low) && Number.isInteger(high) && high >= low, 'invalid bounds');
+  const faces = high - low + 1;
+  let masses = [1];
+  for (let i = 0; i < k; i += 1) {
+    const next = new Array<number>(masses.length + faces - 1).fill(0);
+    masses.forEach((mass, j) => {
+      for (let face = 0; face < faces; face += 1)
+        next[j + face] = (next[j + face] ?? 0) + mass / faces;
+    });
+    masses = next;
+  }
+  return finiteDiscrete(k * low, masses, k === 1 ? 'Uniforme discreta' : 'Suma de uniformes');
+}
+
 /** Distribution of X + c for an integer shift c, such as trials = failures + r. */
 export function shifted(distribution: DiscreteDistribution, shift: number): DiscreteDistribution {
   check(Number.isInteger(shift), 'the shift must be an integer');
