@@ -248,7 +248,7 @@ ejemplos:
 
 ## Conexiones
 
-Clasificar las variables es el primer paso después de definir la [[poblacion-y-muestra|población y la muestra]]. La división se refina en [[datos-discretos-y-continuos]] para las cuantitativas y en las [[escalas-nominal-ordinal-de-intervalo-y-de-razon|escalas de medición]] para ambas. Las variables cualitativas se analizan con tablas de contingencia y gráficos de barras; las cuantitativas con la [[media-aritmetica]], la [[mediana]] y el histograma. El [[parametro-y-estadistico|parámetro]] natural de una variable cualitativa es una proporción.
+Clasificar las variables es el primer paso después de definir la [[poblacion-y-muestra|población y la muestra]]. La división se refina en [[datos-discretos-y-continuos]] para las cuantitativas y en las [[escalas-nominal-ordinal-de-intervalo-y-de-razon|escalas de medición]] para ambas. Las variables cualitativas se analizan con [[tablas-de-contingencia]] y gráficos de barras; las cuantitativas con la [[media-aritmetica]], la [[mediana]] y el histograma. El [[parametro-y-estadistico|parámetro]] natural de una variable cualitativa es una proporción.
 
 ## Formulario
 
