@@ -94,6 +94,27 @@ function armijoAlpha(fn: TestFunction, x: Point, d: Point): number {
   return trials[trials.length - 1]?.alpha ?? 0;
 }
 
+const WOLFE_C1 = 1e-4;
+const WOLFE_C2 = 0.9;
+const MAX_EXPANSIONS = 30;
+
+/**
+ * Step satisfying the Wolfe conditions when possible: backtracking from 1
+ * until Armijo holds, or doubling while Armijo still holds and the slope is
+ * too negative. Quasi-Newton methods need the growth: a step capped at 1
+ * keeps their curvature estimates from learning long, flat directions.
+ */
+function wolfeAlpha(fn: TestFunction, x: Point, d: Point): number {
+  const f0 = fn.f(x);
+  const slope0 = dot(fn.gradient(x), d);
+  const armijo = (alpha: number) => fn.f(add(x, d, alpha)) <= f0 + WOLFE_C1 * alpha * slope0;
+  const curvature = (alpha: number) => dot(fn.gradient(add(x, d, alpha)), d) >= WOLFE_C2 * slope0;
+  let alpha = 1;
+  if (!armijo(alpha)) return armijoAlpha(fn, x, d);
+  for (let k = 0; k < MAX_EXPANSIONS && !curvature(alpha) && armijo(2 * alpha); k += 1) alpha *= 2;
+  return alpha;
+}
+
 /** Iterates of a method from x0, at most n steps. */
 export function optimizerPath(
   method: PathMethod,
@@ -180,7 +201,7 @@ export function optimizerPath(
       if (Math.hypot(...g) < GRADIENT_TOLERANCE) break;
       const hg = matVec(h, g);
       const d: Point = [-hg[0], -hg[1]];
-      const alpha = armijoAlpha(fn, x, d);
+      const alpha = wolfeAlpha(fn, x, d);
       const next = add(x, d, alpha);
       const s: Point = [next[0] - x[0], next[1] - x[1]];
       const nextG = fn.gradient(next);
@@ -230,7 +251,7 @@ export function optimizerPath(
       r = add(r, pair.s, (alphas[i] ?? 0) - b);
     });
     const d: Point = [-r[0], -r[1]];
-    const alpha = armijoAlpha(fn, x, d);
+    const alpha = wolfeAlpha(fn, x, d);
     const next = add(x, d, alpha);
     const nextG = fn.gradient(next);
     const s: Point = [next[0] - x[0], next[1] - x[1]];

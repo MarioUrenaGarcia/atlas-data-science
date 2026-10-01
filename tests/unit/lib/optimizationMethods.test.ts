@@ -46,10 +46,12 @@ describe('optimizer paths', () => {
     expect(Math.abs(last(converging).point[1])).toBeLessThan(1e-6);
   });
 
-  it('finds the Rosenbrock minimum with BFGS', () => {
-    const end = last(optimizerPath('bfgs', fn('rosenbrock'), [-1.2, 1], 200)).point;
-    expect(end[0]).toBeCloseTo(1, 3);
-    expect(end[1]).toBeCloseTo(1, 3);
+  it('finds the Rosenbrock minimum with BFGS and L-BFGS', () => {
+    for (const method of ['bfgs', 'lbfgs'] as const) {
+      const end = last(optimizerPath(method, fn('rosenbrock'), [-1.2, 1], 200)).point;
+      expect(end[0]).toBeCloseTo(1, 3);
+      expect(end[1]).toBeCloseTo(1, 3);
+    }
   });
 
   it('backtracks until the Armijo condition holds', () => {
