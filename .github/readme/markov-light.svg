@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="300" viewBox="0 0 580 300" role="img" aria-label="Ficha que salta entre los estados de una cadena de Markov">
+<title>Ficha que salta entre los estados de una cadena de Markov</title>
+<rect width="580" height="300" rx="18" fill="#fbfbfa"/>
+<line x1="150" y1="155" x2="290" y2="95" stroke="#deded9" stroke-width="2"/>
+<line x1="290" y1="95" x2="430" y2="155" stroke="#deded9" stroke-width="2"/>
+<line x1="430" y1="155" x2="290" y2="215" stroke="#deded9" stroke-width="2"/>
+<line x1="290" y1="215" x2="150" y2="155" stroke="#deded9" stroke-width="2"/>
+<line x1="290" y1="95" x2="290" y2="215" stroke="#deded9" stroke-width="2"/>
+<line x1="150" y1="155" x2="430" y2="155" stroke="#deded9" stroke-width="2"/>
+<circle cx="150" cy="155" r="30" fill="#008a65" fill-opacity="0.18" stroke="#008a65" stroke-width="2.5"/>
+<circle cx="150" cy="155" r="30" fill="#008a65"><animate attributeName="fill-opacity" dur="6s" repeatCount="indefinite" calcMode="discrete" keyTimes="0.000;0.125;0.250;0.375;0.500;0.625;0.750;0.875;1.000" values="0.6;0.12;0.12;0.12;0.12;0.6;0.12;0.12;0.6"/></circle>
+<text x="150" y="161" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#1c1d1f">A</text>
+<circle cx="290" cy="95" r="30" fill="#ab4a7d" fill-opacity="0.18" stroke="#ab4a7d" stroke-width="2.5"/>
+<circle cx="290" cy="95" r="30" fill="#ab4a7d"><animate attributeName="fill-opacity" dur="6s" repeatCount="indefinite" calcMode="discrete" keyTimes="0.000;0.125;0.250;0.375;0.500;0.625;0.750;0.875;1.000" values="0.12;0.6;0.12;0.12;0.6;0.12;0.12;0.12;0.12"/></circle>
+<text x="290" y="101" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#1c1d1f">B</text>
+<circle cx="430" cy="155" r="30" fill="#5b67c2" fill-opacity="0.18" stroke="#5b67c2" stroke-width="2.5"/>
+<circle cx="430" cy="155" r="30" fill="#5b67c2"><animate attributeName="fill-opacity" dur="6s" repeatCount="indefinite" calcMode="discrete" keyTimes="0.000;0.125;0.250;0.375;0.500;0.625;0.750;0.875;1.000" values="0.12;0.12;0.6;0.12;0.12;0.12;0.12;0.6;0.12"/></circle>
+<text x="430" y="161" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#1c1d1f">C</text>
+<circle cx="290" cy="215" r="30" fill="#558113" fill-opacity="0.18" stroke="#558113" stroke-width="2.5"/>
+<circle cx="290" cy="215" r="30" fill="#558113"><animate attributeName="fill-opacity" dur="6s" repeatCount="indefinite" calcMode="discrete" keyTimes="0.000;0.125;0.250;0.375;0.500;0.625;0.750;0.875;1.000" values="0.12;0.12;0.12;0.6;0.12;0.12;0.6;0.12;0.12"/></circle>
+<text x="290" y="221" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#1c1d1f">D</text>
+<circle r="8" fill="#1c1d1f"><animateMotion dur="6s" repeatCount="indefinite" path="M150 111 L290 51 L430 111 L290 171 L290 51 L150 111 L290 171 L430 111 L150 111"/></circle>
+<g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif"><text x="40" y="34" font-size="16" font-weight="700" fill="#1c1d1f">Cadenas de Markov</text>
+<text x="40" y="276" font-size="13" fill="#575a60">Una ficha salta entre estados según la matriz de transición</text></g>
+</svg>
