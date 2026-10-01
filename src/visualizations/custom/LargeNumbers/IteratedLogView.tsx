@@ -4,7 +4,7 @@ import { iteratedLogScale } from '../../../lib/limits/empirical.ts';
 import { randomWalk } from '../../../lib/limits/lln.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { useResettableState, useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
@@ -135,11 +135,9 @@ export function IteratedLogView({
       description={description}
       graphic="canvas"
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`\\frac{S_{${n}}}{\\sqrt{2 \\cdot ${n}\\,\\log\\log ${n}}} = \\frac{${first}}{${formatNumber(scaleN, 2)}} = ${formatNumber(firstRatio, 3)}`}
-        />
-      </p>
+      <FormulaLine
+        tex={`\\frac{S_{${n}}}{\\sqrt{2 \\cdot ${n}\\,\\log\\log ${n}}} = \\frac{${first}}{${formatNumber(scaleN, 2)}} = ${formatNumber(firstRatio, 3)}`}
+      />
       <p className={styles.panelTitle}>Caminatas Sₙ y sus envolventes (eje n logarítmico)</p>
       <TrajectoryCanvas
         paths={walks}

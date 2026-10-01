@@ -56,7 +56,7 @@ Con empates se usa la versión $\tau_b = \dfrac{C - D}{\sqrt{(C + D + T_x)(C + D
 
 Como Spearman, solo depende del orden de los datos y vale lo mismo si se aplican transformaciones crecientes a cualquiera de las variables.
 
-:::figura[Concordancia casi perfecta entre la edad de seis árboles y su diámetro: solo dos parejas quedan en orden opuesto.]{componente="AssociationViz"}
+:::figura[Concordancia casi perfecta entre la edad de seis árboles y su diámetro: solo tres parejas, de 15, quedan en orden opuesto.]{componente="AssociationViz"}
 ```yaml
 modo: correlacion
 medida: kendall

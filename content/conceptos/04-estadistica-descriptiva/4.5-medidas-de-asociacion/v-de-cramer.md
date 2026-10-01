@@ -92,7 +92,7 @@ conteos:
 
 La tabla cruza tres grupos de edad con tres medios de noticias. La reproducción recorre las nueve celdas: para cada una calcula el conteo esperado, lo muestra debajo del observado y suma el término $(O - E)^2/E$ a la chi cuadrada acumulada. Al terminar, el encabezado divide entre $n(k - 1)$ y saca la raíz.
 
-Las celdas que más aportan son las de las esquinas: jóvenes con redes sociales y mayores con prensa, donde lo observado supera mucho a lo esperado. En las barras de la derecha, cada grupo de edad tiene un medio dominante distinto. El resultado, $V \approx 0.32$, indica una asociación moderada.
+Las celdas que más aportan están en la diagonal: jóvenes con redes sociales, adultos con televisión y mayores con prensa, donde lo observado supera mucho a lo esperado. En las barras de la derecha, cada grupo de edad tiene un medio dominante distinto. El resultado, $V \approx 0.32$, indica una asociación moderada.
 
 ## Ejemplo
 
