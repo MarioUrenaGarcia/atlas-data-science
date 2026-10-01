@@ -1,0 +1,34 @@
+.formula {
+  margin: 0;
+  min-height: 2.4em;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.stage {
+  margin: 0;
+  min-height: 1.6em;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.trio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+
+.panelTitle {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-text);
+}

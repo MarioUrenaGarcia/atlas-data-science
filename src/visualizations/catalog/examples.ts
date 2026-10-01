@@ -1,4 +1,5 @@
 import { DESCRIPTIVE_EXAMPLES } from './examples/descriptive.ts';
+import { LIMIT_EXAMPLES } from './examples/limits.ts';
 
 /** Sample configurations shown in the development catalog, one or more per visualization. */
 export interface CatalogExample {
@@ -982,4 +983,5 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     },
   },
   ...DESCRIPTIVE_EXAMPLES,
+  ...LIMIT_EXAMPLES,
 ];
