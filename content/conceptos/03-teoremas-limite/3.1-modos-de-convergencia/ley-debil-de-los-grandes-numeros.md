@@ -12,6 +12,9 @@ orden: 6
 nivel: intermedio
 prerrequisitos:
   - convergencia-en-probabilidad
+relaciones:
+  - tipo: relacionado
+    id: falacia-del-jugador
 etiquetas:
   - grandes números
   - media muestral

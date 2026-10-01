@@ -10,6 +10,127 @@ export interface CatalogExample {
 }
 
 export const CATALOG_EXAMPLES: CatalogExample[] = [
+  { component: 'GamblersFallacy', title: 'Falacia del jugador', params: {} },
+  { component: 'BertrandParadox', title: 'Paradoja de Bertrand', params: {} },
+  { component: 'TwoEnvelopes', title: 'Dos sobres', params: {} },
+  { component: 'StPetersburg', title: 'San Petersburgo', params: {} },
+  { component: 'SecretaryProblem', title: 'Problema de la secretaria', params: {} },
+  { component: 'CouponCollector', title: 'Coleccionista de cupones', params: {} },
+  {
+    component: 'GamblersRuin',
+    title: 'Ruina del jugador',
+    params: { inicial: 5, meta: 10, p: 0.47 },
+  },
+  {
+    component: 'SimpsonParadox',
+    title: 'Cálculos renales',
+    params: {
+      subgrupos: ['cálculos pequeños', 'cálculos grandes'],
+      tratamientos: [
+        {
+          nombre: 'Cirugía abierta',
+          datos: [
+            { exitos: 81, total: 87 },
+            { exitos: 192, total: 263 },
+          ],
+        },
+        {
+          nombre: 'Nefrolitotomía',
+          datos: [
+            { exitos: 234, total: 270 },
+            { exitos: 55, total: 80 },
+          ],
+        },
+      ],
+    },
+  },
+  { component: 'BirthdayParadox', title: 'Cumpleaños', params: {} },
+  { component: 'MontyHall', title: 'Monty Hall', params: {} },
+  {
+    component: 'BayesUpdater',
+    title: 'Moneda equilibrada o cargada',
+    params: {
+      hipotesis: [
+        { nombre: 'Equilibrada', prior: 0.5 },
+        { nombre: 'Cargada', prior: 0.5 },
+      ],
+      observaciones: [
+        { nombre: 'Cara', verosimilitudes: [0.5, 0.8] },
+        { nombre: 'Cruz', verosimilitudes: [0.5, 0.2] },
+      ],
+      verdadera: 1,
+    },
+  },
+  {
+    component: 'IconArray',
+    title: 'Prueba diagnóstica',
+    params: {
+      prevalencia: 0.01,
+      sensibilidad: 0.9,
+      especificidad: 0.95,
+      condicion: 'tiene la enfermedad',
+    },
+  },
+  {
+    component: 'ProbabilityTree',
+    title: 'Prueba diagnóstica',
+    params: {
+      niveles: ['Estado', 'Resultado'],
+      ramas: [
+        {
+          etiqueta: 'Enfermo',
+          prob: 0.1,
+          ramas: [
+            { etiqueta: 'Positivo', prob: 0.9 },
+            { etiqueta: 'Negativo', prob: 0.1 },
+          ],
+        },
+        {
+          etiqueta: 'Sano',
+          prob: 0.9,
+          ramas: [
+            { etiqueta: 'Positivo', prob: 0.2 },
+            { etiqueta: 'Negativo', prob: 0.8 },
+          ],
+        },
+      ],
+      consultas: [
+        { nombre: 'Positivo', hojas: ['Enfermo/Positivo', 'Sano/Positivo'] },
+        {
+          nombre: 'Enfermo dado positivo',
+          hojas: ['Enfermo/Positivo'],
+          condicion: ['Enfermo/Positivo', 'Sano/Positivo'],
+        },
+      ],
+    },
+  },
+  {
+    component: 'ProbabilitySquare',
+    title: 'Teorema de Bayes',
+    params: {
+      modo: 'bayes',
+      particion: [
+        { etiqueta: 'Enfermo', prob: 0.1 },
+        { etiqueta: 'Sano', prob: 0.9 },
+      ],
+      evento: 'Positivo',
+      condicionales: [0.9, 0.2],
+    },
+  },
+  {
+    component: 'ProbabilitySquare',
+    title: 'Probabilidad total',
+    params: {
+      modo: 'total',
+      particion: [
+        { etiqueta: 'Planta 1', prob: 0.5 },
+        { etiqueta: 'Planta 2', prob: 0.3 },
+        { etiqueta: 'Planta 3', prob: 0.2 },
+      ],
+      evento: 'Defectuosa',
+      condicionales: [0.02, 0.05, 0.1],
+    },
+  },
   { component: 'DistributionExplorer', title: 'Normal', params: { distribucion: 'normal' } },
   {
     component: 'DistributionExplorer',
@@ -954,7 +1075,11 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     title: 'Bolas en cajas',
     params: { proceso: 'bolas-en-cajas', vista: 'conjunta' },
   },
-  { component: 'DistributionGenesis', title: 'Beta-binomial', params: { proceso: 'beta-binomial' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Beta-binomial',
+    params: { proceso: 'beta-binomial' },
+  },
   {
     component: 'DistributionGenesis',
     title: 'Ranking',
@@ -965,13 +1090,21 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     title: 'Mezcla de geométricas',
     params: { proceso: 'mezcla-geometrica' },
   },
-  { component: 'DistributionGenesis', title: 'Ceros inflados', params: { proceso: 'ceros-inflados' } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Ceros inflados',
+    params: { proceso: 'ceros-inflados' },
+  },
   {
     component: 'DistributionGenesis',
     title: 'Diferencia de llegadas',
     params: { proceso: 'diferencia-de-llegadas', flujos: ['Local', 'Visitante'] },
   },
-  { component: 'DistributionGenesis', title: 'Signos', params: { proceso: 'signos', valores: { n: 12 } } },
+  {
+    component: 'DistributionGenesis',
+    title: 'Signos',
+    params: { proceso: 'signos', valores: { n: 12 } },
+  },
   {
     component: 'CalculusViz',
     title: 'Indicadora',

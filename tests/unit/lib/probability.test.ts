@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
+  BERTRAND_ANSWERS,
+  BERTRAND_METHODS,
+  bertrandChord,
+  chordIsLong,
   buffonPiEstimate,
   buffonProbability,
   combineEvents,
@@ -136,6 +140,19 @@ describe('geometric probability', () => {
     expect(realRootsProbability(4, 1)).toBeCloseTo(2 / 3);
     expect(buffonProbability(1, 2)).toBeCloseTo(1 / Math.PI);
     expect(buffonPiEstimate(1, 2, 100, 32)).toBeCloseTo(3.125);
+  });
+
+  it('gives the three answers of Bertrand', () => {
+    const random = new Random(11);
+    const n = 60000;
+    for (const method of BERTRAND_METHODS) {
+      let long = 0;
+      for (let i = 0; i < n; i += 1) if (chordIsLong(bertrandChord(random, method))) long += 1;
+      expect(long / n).toBeCloseTo(BERTRAND_ANSWERS[method], 2);
+    }
+    const chord = bertrandChord(random, 'extremos');
+    const length = Math.hypot(chord.x2 - chord.x1, chord.y2 - chord.y1);
+    expect(length).toBeCloseTo(2 * Math.sqrt(1 - chord.distance ** 2));
   });
 
   it('matches simulations', () => {
