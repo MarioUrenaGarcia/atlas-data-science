@@ -90,7 +90,7 @@ export function OperationsView({ title, a, b, scalar, initialView }: OperationsV
     latex =
       view === 'suma'
         ? '\\text{tamaños distintos}'
-        : `\\text{columnas de }A = ${inner} \\neq ${b.length} = \\text{filas de }B`;
+        : `\\text{columnas de }\\mathbf{A} = ${inner} \\neq ${b.length} = \\text{filas de }\\mathbf{B}`;
     text =
       view === 'suma'
         ? 'Solo se suman matrices del mismo tamaño.'
@@ -101,7 +101,7 @@ export function OperationsView({ title, a, b, scalar, initialView }: OperationsV
         ? '(A + B)_{ij} = a_{ij} + b_{ij}'
         : view === 'escalar'
           ? '(cA)_{ij} = c\\,a_{ij}'
-          : `(AB)_{ij} = \\sum_{k=1}^{${inner}} a_{ik}\\,b_{kj}`;
+          : `(\\mathbf{A}\\mathbf{B})_{ij} = \\sum_{k=1}^{${inner}} a_{ik}\\,b_{kj}`;
     text = 'Cada paso calcula una entrada del resultado.';
   } else {
     const value = result[ci]?.[cj] ?? 0;

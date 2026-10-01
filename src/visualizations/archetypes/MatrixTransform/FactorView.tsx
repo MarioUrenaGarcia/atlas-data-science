@@ -27,17 +27,17 @@ const NAMES: Record<
   svd: {
     directions: ['v₁', 'v₂'],
     values: 'Valores singulares σ₁, σ₂',
-    factors: ['V^\\top', '\\Sigma', 'U'],
+    factors: ['\\mathbf{V}^\\top', '\\boldsymbol{\\Sigma}', '\\mathbf{U}'],
   },
   diagonalizacion: {
     directions: ['v₁', 'v₂'],
     values: 'Valores propios λ₁, λ₂',
-    factors: ['P^{-1}', 'D', 'P'],
+    factors: ['\\mathbf{P}^{-1}', '\\mathbf{D}', '\\mathbf{P}'],
   },
   espectral: {
     directions: ['q₁', 'q₂'],
     values: 'Valores propios λ₁, λ₂',
-    factors: ['Q^\\top', '\\Lambda', 'Q'],
+    factors: ['\\mathbf{Q}^\\top', '\\boldsymbol{\\Lambda}', '\\mathbf{Q}'],
   },
 };
 
@@ -53,7 +53,7 @@ function phaseFormula(
   const [l, m, r] = matrices;
   switch (phase) {
     case 0:
-      return `A = ${matLatex(a)} = ${product}`;
+      return `\\mathbf{A} = ${matLatex(a)} = ${product}`;
     case 1:
       return `\\text{Paso 1: } ${left} = ${matLatex(l, 3)}`;
     case 2:
@@ -61,7 +61,7 @@ function phaseFormula(
     case 3:
       return `\\text{Paso 3: } ${right} = ${matLatex(r, 3)}`;
     default:
-      return `${product} = ${matLatex(a)} = A`;
+      return `${product} = ${matLatex(a)} = \\mathbf{A}`;
   }
 }
 

@@ -18,7 +18,7 @@ etiquetas:
   - logaritmos
   - combinatoria
 resumen: >
-  Para n grande, n! es aproximadamente raíz de 2 pi n por (n/e)^n: el cociente entre ambos tiende a 1,
+  Para n grande, n! es aproximadamente raíz de 2πn por (n/e)^n: el cociente entre ambos tiende a 1,
   aunque su diferencia crezca; en logaritmos, log n! es cercano a n log n - n.
 formula: 'n! \sim \sqrt{2\pi n}\,\Big(\frac{n}{e}\Big)^{n}, \qquad \log n! = n\log n - n + \tfrac{1}{2}\log(2\pi n) + O\big(\tfrac{1}{n}\big)'
 visualizacion:

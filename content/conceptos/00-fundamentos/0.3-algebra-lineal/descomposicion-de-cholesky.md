@@ -21,7 +21,7 @@ etiquetas:
 resumen: >
   Toda matriz simétrica definida positiva se factoriza como A = LL^T con L triangular inferior de diagonal
   positiva; cuesta la mitad que LU y sirve para simular vectores normales correlacionados.
-formula: 'A = LL^\top, \quad \ell_{jj} = \sqrt{a_{jj} - \sum_{k<j}\ell_{jk}^2}, \quad \ell_{ij} = \frac{a_{ij} - \sum_{k<j}\ell_{ik}\ell_{jk}}{\ell_{jj}}'
+formula: '\mathbf{A} = \mathbf{L}\mathbf{L}^\top, \quad \ell_{jj} = \sqrt{a_{jj} - \sum_{k<j}\ell_{jk}^2}, \quad \ell_{ij} = \frac{a_{ij} - \sum_{k<j}\ell_{ik}\ell_{jk}}{\ell_{jj}}'
 visualizacion:
   componente: MatrixSteps
   parametros:
@@ -41,16 +41,16 @@ publicado: true
 
 ## Intuición
 
-Un número positivo tiene raíz cuadrada. Una matriz definida positiva, que es la versión matricial de un número positivo, también tiene una especie de raíz: una matriz triangular $L$ tal que $L$ por su transpuesta reproduce la original. Encontrarla es sacar raíces cuadradas de las entradas diagonales, una por una, después de descontar lo que ya explican las filas anteriores.
+Un número positivo tiene raíz cuadrada. Una matriz definida positiva, que es la versión matricial de un número positivo, también tiene una especie de raíz: una matriz triangular $\mathbf{L}$ tal que $\mathbf{L}$ por su transpuesta reproduce la original. Encontrarla es sacar raíces cuadradas de las entradas diagonales, una por una, después de descontar lo que ya explican las filas anteriores.
 
-Esa raíz tiene usos muy concretos. Para simular datos con una matriz de covarianzas dada, se generan variables independientes de varianza 1 y se multiplican por $L$: el resultado tiene exactamente la covarianza deseada. Geométricamente, $L$ transforma el círculo unitario en la elipse de la covarianza. Además, la factorización funciona como prueba: si en algún paso aparece un número negativo bajo la raíz, la matriz no era definida positiva.
+Esa raíz tiene usos muy concretos. Para simular datos con una matriz de covarianzas dada, se generan variables independientes de varianza 1 y se multiplican por $\mathbf{L}$: el resultado tiene exactamente la covarianza deseada. Geométricamente, $\mathbf{L}$ transforma el círculo unitario en la elipse de la covarianza. Además, la factorización funciona como prueba: si en algún paso aparece un número negativo bajo la raíz, la matriz no era definida positiva.
 
 ## Definición
 
 :::teorema[Factorización de Cholesky]
-Si $A \in \mathbb{R}^{n \times n}$ es simétrica y definida positiva, existe una única matriz triangular inferior $L$ con diagonal positiva tal que
+Si $\mathbf{A} \in \mathbb{R}^{n \times n}$ es simétrica y definida positiva, existe una única matriz triangular inferior $\mathbf{L}$ con diagonal positiva tal que
 $$
-A = LL^\top.
+\mathbf{A} = \mathbf{L}\mathbf{L}^\top.
 $$
 Sus entradas se calculan fila por fila:
 $$
@@ -58,32 +58,32 @@ $$
 $$
 :::
 
-Si $A$ no es definida positiva, en algún paso la cantidad bajo la raíz es cero o negativa y el algoritmo se detiene.
+Si $\mathbf{A}$ no es definida positiva, en algún paso la cantidad bajo la raíz es cero o negativa y el algoritmo se detiene.
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz simétrica definida positiva, con entradas $a_{ij}$.
-- $L$: factor de Cholesky, triangular inferior, con entradas $\ell_{ij}$.
-- $L^\top$: su transpuesta, triangular superior.
-- $\ell_{jj}$: entrada diagonal de $L$, positiva.
+- $\mathbf{A}$: matriz simétrica definida positiva, con entradas $a_{ij}$.
+- $\mathbf{L}$: factor de Cholesky, triangular inferior, con entradas $\ell_{ij}$.
+- $\mathbf{L}^\top$: su transpuesta, triangular superior.
+- $\ell_{jj}$: entrada diagonal de $\mathbf{L}$, positiva.
 - $k$: índice de las columnas anteriores que ya se calcularon.
 - $n$: tamaño de la matriz.
 :::
 
 ## Cómo usar la visualización
 
-A la izquierda está $A$ y a la derecha se construye $L$. Cada paso calcula una entrada de $L$, resaltada, y la entrada de $A$ que se usa; la fórmula de arriba muestra la cuenta, con la raíz para las entradas diagonales y la división entre el pivote para las demás. Al final aparece $LL^\top$, que coincide con $A$.
+A la izquierda está $\mathbf{A}$ y a la derecha se construye $\mathbf{L}$. Cada paso calcula una entrada de $\mathbf{L}$, resaltada, y la entrada de $\mathbf{A}$ que se usa; la fórmula de arriba muestra la cuenta, con la raíz para las entradas diagonales y la división entre el pivote para las demás. Al final aparece $\mathbf{L}\mathbf{L}^\top$, que coincide con $\mathbf{A}$.
 
-En la matriz de $3 \times 3$ todas las raíces son exactas y $L$ tiene entradas 2, 1, 2 en la diagonal. En la matriz no definida positiva, la segunda entrada diagonal da $\sqrt{1 - 1} = 0$: el proceso se detiene y el panel indica que la matriz no es definida positiva.
+En la matriz de $3 \times 3$ todas las raíces son exactas y $\mathbf{L}$ tiene entradas 2, 2 y 2 en la diagonal. En la matriz no definida positiva, la segunda entrada diagonal da $\sqrt{1 - 1} = 0$: el proceso se detiene y el panel indica que la matriz no es definida positiva.
 
 ## Ejemplo
 
-Tres indicadores financieros tienen matriz de covarianzas $\Sigma = \begin{pmatrix} 4 & 12 & -16 \\ 12 & 37 & -43 \\ -16 & -43 & 98 \end{pmatrix}$.
+Tres indicadores financieros tienen matriz de covarianzas $\boldsymbol{\\Sigma} = \begin{pmatrix} 4 & 12 & -16 \\ 12 & 37 & -43 \\ -16 & -43 & 98 \end{pmatrix}$.
 
 1. $\ell_{11} = \sqrt{4} = 2$; $\ell_{21} = 12/2 = 6$; $\ell_{31} = -16/2 = -8$.
 2. $\ell_{22} = \sqrt{37 - 6^2} = \sqrt{1} = 1$; $\ell_{32} = (-43 - (-8)(6))/1 = 5$.
 3. $\ell_{33} = \sqrt{98 - 64 - 25} = \sqrt{9} = 3$.
-4. $L = \begin{pmatrix} 2 & 0 & 0 \\ 6 & 1 & 0 \\ -8 & 5 & 3 \end{pmatrix}$ y se comprueba que $LL^\top = \Sigma$.
-5. Para simular: si $\mathbf{z}$ tiene tres componentes independientes de media 0 y varianza 1, entonces $\mathbf{x} = L\mathbf{z}$ tiene covarianza $L\,I\,L^\top = \Sigma$.
+4. $\mathbf{L} = \begin{pmatrix} 2 & 0 & 0 \\ 6 & 1 & 0 \\ -8 & 5 & 3 \end{pmatrix}$ y se comprueba que $\mathbf{L}\mathbf{L}^\top = \boldsymbol{\\Sigma}$.
+5. Para simular: si $\mathbf{z}$ tiene tres componentes independientes de media 0 y varianza 1, entonces $\mathbf{x} = \mathbf{L}\mathbf{z}$ tiene covarianza $\mathbf{L}\,\mathbf{I}\,\mathbf{L}^\top = \boldsymbol{\\Sigma}$.
 
 :::figura[La factorización de la matriz de covarianzas del ejemplo, entrada por entrada. Todas las raíces son de números positivos.]{componente="MatrixSteps"}
 ```yaml
@@ -106,37 +106,37 @@ matrices:
 
 ## Propiedades
 
-- **Unicidad:** con diagonal positiva, $L$ es única.
+- **Unicidad:** con diagonal positiva, $\mathbf{L}$ es única.
 - **Costo:** del orden de $\tfrac{1}{3}n^3$ operaciones, la mitad que la factorización LU.
 - **Estabilidad:** no requiere pivoteo para matrices definidas positivas.
-- **Determinante:** $\det A = \prod_i \ell_{ii}^2$, y $\log\det A = 2\sum_i \log\ell_{ii}$, útil para evaluar densidades normales.
-- **Sistemas:** $A\mathbf{x} = \mathbf{b}$ se resuelve con $L\mathbf{y} = \mathbf{b}$ y luego $L^\top\mathbf{x} = \mathbf{y}$.
-- **Relación con QR:** si $A = B^\top B$ y $B = QR$, entonces $L = R^\top$.
+- **Determinante:** $\det \mathbf{A} = \prod_i \ell_{ii}^2$, y $\log\det \mathbf{A} = 2\sum_i \log\ell_{ii}$, útil para evaluar densidades normales.
+- **Sistemas:** $\mathbf{A}\mathbf{x} = \mathbf{b}$ se resuelve con $\mathbf{L}\mathbf{y} = \mathbf{b}$ y luego $\mathbf{L}^\top\mathbf{x} = \mathbf{y}$.
+- **Relación con QR:** si $\mathbf{A} = \mathbf{B}^\top \mathbf{B}$ y $\mathbf{B} = \mathbf{Q}\mathbf{R}$, entonces $\mathbf{L} = \mathbf{R}^\top$.
 
 :::demostracion
-Entrada diagonal: igualando la entrada $(j, j)$ de $A = LL^\top$ se obtiene $a_{jj} = \sum_{k \le j}\ell_{jk}^2 = \ell_{jj}^2 + \sum_{k<j}\ell_{jk}^2$, de donde se despeja $\ell_{jj}$. La cantidad bajo la raíz es positiva porque es el cociente de dos menores principales dominantes consecutivos, positivos por el criterio de Sylvester.
+Entrada diagonal: igualando la entrada $(j, j)$ de $\mathbf{A} = \mathbf{L}\mathbf{L}^\top$ se obtiene $a_{jj} = \sum_{k \le j}\ell_{jk}^2 = \ell_{jj}^2 + \sum_{k<j}\ell_{jk}^2$, de donde se despeja $\ell_{jj}$. La cantidad bajo la raíz es positiva porque es el cociente de dos menores principales dominantes consecutivos, positivos por el criterio de Sylvester.
 :::
 
 ## Errores comunes
 
-- **Aplicarla a matrices que no son simétricas.** La factorización supone $A = A^\top$.
-- **Aplicarla a matrices semidefinidas.** Con un valor propio cero aparece $\sqrt{0}$ y la división siguiente falla; se usan variantes con pivoteo o se suma $\epsilon I$.
-- **Confundir $L$ con $L^\top$ al simular.** Se multiplica $\mathbf{x} = L\mathbf{z}$; con $L^\top\mathbf{z}$ la covarianza sería $L^\top L$, que en general es otra.
-- **Tomar raíces de las entradas de $A$ directamente.** Hay que descontar primero lo explicado por las columnas anteriores.
+- **Aplicarla a matrices que no son simétricas.** La factorización supone $\mathbf{A} = \mathbf{A}^\top$.
+- **Aplicarla a matrices semidefinidas.** Con un valor propio cero aparece $\sqrt{0}$ y la división siguiente falla; se usan variantes con pivoteo o se suma $\epsilon \mathbf{I}$.
+- **Confundir $\mathbf{L}$ con $\mathbf{L}^\top$ al simular.** Se multiplica $\mathbf{x} = \mathbf{L}\mathbf{z}$; con $\mathbf{L}^\top\mathbf{z}$ la covarianza sería $\mathbf{L}^\top \mathbf{L}$, que en general es otra.
+- **Tomar raíces de las entradas de $\mathbf{A}$ directamente.** Hay que descontar primero lo explicado por las columnas anteriores.
 
 ## Conexiones
 
-La factorización de Cholesky existe exactamente para las [[matrices-definidas-positivas-y-semidefinidas|matrices definidas positivas]] y es la versión simétrica de la [[descomposicion-lu]]. Se relaciona con la [[descomposicion-qr]] de una matriz $B$ con $A = B^\top B$. En estadística se usa para simular vectores normales multivariados, evaluar su densidad y resolver las ecuaciones normales de la regresión.
+La factorización de Cholesky existe exactamente para las [[matrices-definidas-positivas-y-semidefinidas|matrices definidas positivas]] y es la versión simétrica de la [[descomposicion-lu]]. Se relaciona con la [[descomposicion-qr]] de una matriz $\mathbf{B}$ con $\mathbf{A} = \mathbf{B}^\top \mathbf{B}$. En estadística se usa para simular vectores normales multivariados, evaluar su densidad y resolver las ecuaciones normales de la regresión.
 
 ## Formulario
 
 :::formula[Factorización]
 $$
-A = LL^\top
+\mathbf{A} = \mathbf{L}\mathbf{L}^\top
 $$
 
-- $A$: simétrica definida positiva.
-- $L$: triangular inferior con diagonal positiva.
+- $\mathbf{A}$: simétrica definida positiva.
+- $\mathbf{L}$: triangular inferior con diagonal positiva.
 :::
 
 :::formula[Entradas diagonales]
@@ -144,7 +144,7 @@ $$
 \ell_{jj} = \sqrt{a_{jj} - \sum_{k<j}\ell_{jk}^2}
 $$
 
-- $a_{jj}$: entrada diagonal de $A$.
+- $a_{jj}$: entrada diagonal de $\mathbf{A}$.
 - $\ell_{jk}$: entradas ya calculadas de la fila $j$.
 :::
 
@@ -158,9 +158,9 @@ $$
 
 :::formula[Simulación y determinante]
 $$
-\mathbf{x} = L\mathbf{z} \ \Rightarrow\ \operatorname{Cov}(\mathbf{x}) = LL^\top = \Sigma, \qquad \det\Sigma = \prod_i \ell_{ii}^2
+\mathbf{x} = \mathbf{L}\mathbf{z} \ \Rightarrow\ \operatorname{Cov}(\mathbf{x}) = \mathbf{L}\mathbf{L}^\top = \boldsymbol{\\Sigma}, \qquad \det\boldsymbol{\\Sigma} = \prod_i \ell_{ii}^2
 $$
 
 - $\mathbf{z}$: vector de componentes independientes de varianza 1.
-- $\Sigma$: covarianza deseada.
+- $\boldsymbol{\\Sigma}$: covarianza deseada.
 :::

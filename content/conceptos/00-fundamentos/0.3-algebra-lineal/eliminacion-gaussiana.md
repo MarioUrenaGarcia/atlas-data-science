@@ -22,7 +22,7 @@ etiquetas:
 resumen: >
   La eliminación gaussiana resuelve un sistema lineal con operaciones de fila que no cambian sus soluciones:
   anula las entradas bajo cada pivote hasta una forma escalonada y luego despeja de abajo hacia arriba.
-formula: 'R_i \leftarrow R_i - \frac{a_{ik}}{a_{kk}}\,R_k, \qquad [A \mid \mathbf{b}] \ \longrightarrow\ [U \mid \mathbf{c}]'
+formula: 'R_i \leftarrow R_i - \frac{a_{ik}}{a_{kk}}\,R_k, \qquad [\mathbf{A} \mid \mathbf{b}] \ \longrightarrow\ [\mathbf{U} \mid \mathbf{c}]'
 visualizacion:
   componente: MatrixSteps
   parametros:
@@ -57,7 +57,7 @@ Ninguna cambia el conjunto de soluciones del sistema.
 :::
 
 :::definicion[Algoritmo de eliminación]
-Para $k = 1, 2, \dots$: se elige como **pivote** una entrada no nula de la columna $k$ en la fila $k$ o debajo (intercambiando filas si hace falta) y se anulan las entradas debajo con $R_i \leftarrow R_i - \frac{a_{ik}}{a_{kk}}R_k$. El resultado es una **forma escalonada** $[U \mid \mathbf{c}]$, que se resuelve por **sustitución hacia atrás**. Si además se escala cada pivote a 1 y se anulan las entradas encima, se obtiene la **forma escalonada reducida** (Gauss-Jordan).
+Para $k = 1, 2, \dots$: se elige como **pivote** una entrada no nula de la columna $k$ en la fila $k$ o debajo (intercambiando filas si hace falta) y se anulan las entradas debajo con $R_i \leftarrow R_i - \frac{a_{ik}}{a_{kk}}R_k$. El resultado es una **forma escalonada** $[\mathbf{U} \mid \mathbf{c}]$, que se resuelve por **sustitución hacia atrás**. Si además se escala cada pivote a 1 y se anulan las entradas encima, se obtiene la **forma escalonada reducida** (Gauss-Jordan).
 :::
 
 :::nota[Qué significa cada símbolo]
@@ -67,8 +67,8 @@ Para $k = 1, 2, \dots$: se elige como **pivote** una entrada no nula de la colum
 - $a_{ik}$: entrada de la fila $i$ en la columna $k$.
 - $a_{kk}$: pivote de la columna $k$.
 - $c$: número por el que se multiplica una fila.
-- $[A \mid \mathbf{b}]$: matriz aumentada del sistema.
-- $U$: matriz escalonada, triangular superior si $A$ es cuadrada e invertible.
+- $[\mathbf{A} \mid \mathbf{b}]$: matriz aumentada del sistema.
+- $\mathbf{U}$: matriz escalonada, triangular superior si $\mathbf{A}$ es cuadrada e invertible.
 :::
 
 ## Cómo usar la visualización
@@ -108,8 +108,8 @@ matrices:
 - **Forma reducida única:** la forma escalonada reducida de una matriz es única; la forma escalonada no.
 - **Pivoteo parcial:** en aritmética de punto flotante se elige como pivote la entrada de mayor valor absoluto de la columna, para no dividir entre números pequeños.
 - **Determinante:** es el producto de los pivotes, con signo negativo por cada intercambio de filas.
-- **Inversa:** reducir $[A \mid I]$ hasta $[I \mid A^{-1}]$ calcula la inversa.
-- **Registro de multiplicadores:** guardar los factores usados produce la factorización $A = LU$.
+- **Inversa:** reducir $[\mathbf{A} \mid \mathbf{I}]$ hasta $[\mathbf{I} \mid \mathbf{A}^{-1}]$ calcula la inversa.
+- **Registro de multiplicadores:** guardar los factores usados produce la factorización $\mathbf{A} = LU$.
 
 :::figura[Caso de un pivote nulo: la matriz empieza con un cero en la esquina, así que el primer paso intercambia filas antes de eliminar.]{componente="MatrixSteps"}
 ```yaml
@@ -134,7 +134,7 @@ Las operaciones de fila no cambian las soluciones: cada una se deshace con otra 
 
 ## Conexiones
 
-La eliminación gaussiana resuelve los [[sistemas-de-ecuaciones-lineales]] y revela su [[rango-de-una-matriz|rango]] y sus variables libres. Registrar sus multiplicadores produce la [[descomposicion-lu]], y aplicada a $[A \mid I]$ calcula la [[matriz-identidad-y-matriz-inversa|inversa]]. El producto de los pivotes es el [[determinante-como-factor-de-volumen|determinante]]. La sensibilidad de la solución a errores de redondeo la mide el [[numero-de-condicion]].
+La eliminación gaussiana resuelve los [[sistemas-de-ecuaciones-lineales]] y revela su [[rango-de-una-matriz|rango]] y sus variables libres. Registrar sus multiplicadores produce la [[descomposicion-lu]], y aplicada a $[\mathbf{A} \mid \mathbf{I}]$ calcula la [[matriz-identidad-y-matriz-inversa|inversa]]. El producto de los pivotes es el [[determinante-como-factor-de-volumen|determinante]]. La sensibilidad de la solución a errores de redondeo la mide el [[numero-de-condicion]].
 
 ## Formulario
 
@@ -152,13 +152,13 @@ $$
 x_n = \frac{c_n}{u_{nn}}, \qquad x_i = \frac{1}{u_{ii}}\Big( c_i - \sum_{j > i} u_{ij}\,x_j \Big)
 $$
 
-- $u_{ij}$: entradas de la matriz escalonada $U$.
+- $u_{ij}$: entradas de la matriz escalonada $\mathbf{U}$.
 - $c_i$: lado derecho transformado.
 :::
 
 :::formula[Determinante por eliminación]
 $$
-\det A = (-1)^{s} \prod_{k=1}^{n} u_{kk}
+\det \mathbf{A} = (-1)^{s} \prod_{k=1}^{n} u_{kk}
 $$
 
 - $s$: número de intercambios de filas.

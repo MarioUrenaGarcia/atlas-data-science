@@ -95,7 +95,7 @@ export function PowerView({ title, matrices, startAngle }: PowerViewProps) {
     >
       <p className={styles.formula}>
         <Latex
-          tex={`A = ${matLatex(matrix)},\\qquad \\mathbf{x}_{k+1} = \\frac{A\\mathbf{x}_k}{\\lVert A\\mathbf{x}_k \\rVert}`}
+          tex={`\\mathbf{A} = ${matLatex(matrix)},\\qquad \\mathbf{x}_{k+1} = \\frac{\\mathbf{A}\\mathbf{x}_k}{\\lVert \\mathbf{A}\\mathbf{x}_k \\rVert}`}
         />
       </p>
       <CartesianPlane extent={1.8} label={description}>

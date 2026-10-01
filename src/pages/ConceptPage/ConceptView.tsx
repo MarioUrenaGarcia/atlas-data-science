@@ -17,6 +17,7 @@ import { useAtlas, useModuleContent } from '../../content/loader.ts';
 import type { ConceptNode } from '../../content/types.ts';
 import { MINUTES_BY_LEVEL } from '../../lib/format/time.ts';
 import styles from './ConceptPage.module.css';
+import { SummaryText } from '../../components/ui/SummaryText.tsx';
 
 export function ConceptView({ concept }: { concept: ConceptNode }) {
   const atlas = useAtlas();
@@ -85,7 +86,7 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
         </ul>
       </header>
 
-      <p className={styles.summary}>{concept.resumen}</p>
+      <p className={styles.summary}><SummaryText text={concept.resumen} /></p>
 
       {content?.formulaHtml && (
         <div

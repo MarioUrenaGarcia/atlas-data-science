@@ -77,18 +77,18 @@ Donde la tangente está horizontal, la gráfica de abajo cruza el cero. Con $e^x
 
 ## Ejemplo
 
-El costo de producir $x$ cientos de piezas es $C(x) = x^3 - 3x$ (en miles de pesos, sobre un costo base). Se busca el costo marginal.
+El costo variable de producir $x$ cientos de piezas es $C(x) = x^3 - 6x^2 + 15x$ (en miles de pesos). Se busca el costo marginal $C'(x)$, el costo aproximado de cada cien piezas adicionales.
 
-1. Por linealidad y la regla de la potencia: $C'(x) = 3x^2 - 3$.
-2. En $x = 2$: $C'(2) = 12 - 3 = 9$ miles de pesos por cada cien piezas adicionales.
-3. En $x = 1$: $C'(1) = 0$; el costo está momentáneamente plano.
+1. Por linealidad y la regla de la potencia: $C'(x) = 3x^2 - 12x + 15$.
+2. En $x = 1$: $C'(1) = 3 - 12 + 15 = 6$ miles de pesos por cada cien piezas adicionales.
+3. En $x = 2$: $C'(2) = 12 - 24 + 15 = 3$; en $x = 4$: $C'(4) = 48 - 48 + 15 = 15$. El costo marginal baja mientras la planta aprovecha mejor su capacidad y sube después, cuando se satura; nunca es negativo, porque $C'(x) = 3(x - 2)^2 + 3 \ge 3$.
 4. Regla del producto con $f(x) = x e^{-x}$: $f'(x) = 1\cdot e^{-x} + x(-e^{-x}) = (1 - x)e^{-x}$.
 5. Regla del cociente con $h(x) = \frac{x}{x^2 + 1}$: $h'(x) = \frac{(x^2 + 1) - x(2x)}{(x^2 + 1)^2} = \frac{1 - x^2}{(x^2 + 1)^2}$.
 
-:::figura[El costo del ejemplo y su costo marginal: la gráfica de abajo, 3x² - 3, se anula exactamente donde la tangente de arriba es horizontal.]{componente="CalculusViz"}
+:::figura[El costo del ejemplo y su costo marginal: la gráfica de abajo, 3x² - 12x + 15, es la pendiente de la de arriba; alcanza su valor más bajo, 3, en x = 2, donde la curva de costo es menos empinada.]{componente="CalculusViz"}
 ```yaml
 modo: derivadas
-funciones: [cubica]
+funciones: [costo]
 ```
 :::
 

@@ -21,6 +21,8 @@ import { TransformedGrid } from './TransformedGrid.tsx';
 
 const FRAMES_PER_PHASE = 40;
 const FRAMES_PER_SECOND = 25;
+/** Matrices are written in bold in formulas. */
+const bold = (name: string) => `\\mathbf{${name}}`;
 
 export interface MatrixPair {
   nombre: string;
@@ -137,12 +139,12 @@ export function SequenceView({ title, mode, pairs }: SequenceViewProps) {
         <Latex
           tex={
             frame <= FRAMES_PER_PHASE
-              ? `\\text{Fase 1: } ${mode === 'inversa' || !swapped ? 'A' : 'B'} = ${matLatex(first)}`
+              ? `\\text{Fase 1: } ${bold(mode === 'inversa' || !swapped ? 'A' : 'B')} = ${matLatex(first)}`
               : mode === 'inversa'
                 ? inv
-                  ? `\\text{Fase 2: } A^{-1} = ${matLatex(inv, 3)},\\quad A^{-1}A = I`
-                  : `\\det A = 0 \\ \\Rightarrow\\ A^{-1} \\text{ no existe}`
-                : `\\text{Fase 2: } ${swapped ? 'A' : 'B'} = ${matLatex(second ?? IDENTITY)},\\quad ${swapped ? 'A' : 'B'}\\,${swapped ? 'B' : 'A'} = ${matLatex(product ?? IDENTITY)}`
+                  ? `\\text{Fase 2: } \\mathbf{A}^{-1} = ${matLatex(inv, 3)},\\quad \\mathbf{A}^{-1}\\mathbf{A} = \\mathbf{I}`
+                  : `\\det \\mathbf{A} = 0 \\ \\Rightarrow\\ \\mathbf{A}^{-1} \\text{ no existe}`
+                : `\\text{Fase 2: } ${bold(swapped ? 'A' : 'B')} = ${matLatex(second ?? IDENTITY)},\\quad ${bold(swapped ? 'A' : 'B')}\\,${bold(swapped ? 'B' : 'A')} = ${matLatex(product ?? IDENTITY)}`
           }
         />
       </p>

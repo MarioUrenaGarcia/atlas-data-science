@@ -97,8 +97,8 @@ b: [2, 4]
 - **Punto más cercano:** $\lVert \mathbf{b} - \mathbf{p} \rVert \le \lVert \mathbf{b} - \mathbf{w} \rVert$ para todo $\mathbf{w} \in W$.
 - **Descomposición única:** $\mathbf{b} = \mathbf{p} + (\mathbf{b} - \mathbf{p})$ con $\mathbf{p} \in W$ y $\mathbf{b} - \mathbf{p} \in W^\perp$.
 - **Idempotencia:** proyectar dos veces es lo mismo que proyectar una: $\operatorname{proy}_W(\operatorname{proy}_W\mathbf{b}) = \operatorname{proy}_W\mathbf{b}$.
-- **Linealidad:** la proyección de una suma es la suma de las proyecciones; se representa con una matriz $P$ que cumple $P^2 = P$ y $P^\top = P$.
-- **Matriz de proyección:** si las columnas de $A$ son independientes y generan $W$, $P = A(A^\top A)^{-1}A^\top$.
+- **Linealidad:** la proyección de una suma es la suma de las proyecciones; se representa con una matriz $\mathbf{P}$ que cumple $\mathbf{P}^2 = \mathbf{P}$ y $\mathbf{P}^\top = \mathbf{P}$.
+- **Matriz de proyección:** si las columnas de $\mathbf{A}$ son independientes y generan $W$, $\mathbf{P} = \mathbf{A}(\mathbf{A}^\top \mathbf{A})^{-1}\mathbf{A}^\top$.
 - **Pitágoras:** $\lVert \mathbf{b} \rVert^2 = \lVert \mathbf{p} \rVert^2 + \lVert \mathbf{b} - \mathbf{p} \rVert^2$.
 
 :::figura[Caso de proyección sobre un plano en el espacio: el vector b cae perpendicularmente sobre el plano generado por a₁ y a₂; el residuo es vertical y perpendicular a ambos generadores.]{componente="Space3D"}
@@ -148,17 +148,17 @@ $$
 
 :::formula[Matriz de proyección]
 $$
-P = A(A^\top A)^{-1}A^\top, \qquad P^2 = P, \qquad P^\top = P
+\mathbf{P} = \mathbf{A}(\mathbf{A}^\top \mathbf{A})^{-1}\mathbf{A}^\top, \qquad \mathbf{P}^2 = \mathbf{P}, \qquad \mathbf{P}^\top = \mathbf{P}
 $$
 
-- $A$: matriz con columnas independientes que generan el subespacio.
-- $P$: matriz que proyecta cualquier vector sobre el espacio columna de $A$.
+- $\mathbf{A}$: matriz con columnas independientes que generan el subespacio.
+- $\mathbf{P}$: matriz que proyecta cualquier vector sobre el espacio columna de $\mathbf{A}$.
 :::
 
 :::formula[Residuo]
 $$
-\mathbf{r} = \mathbf{b} - \mathbf{p}, \qquad A^\top\mathbf{r} = \mathbf{0}
+\mathbf{r} = \mathbf{b} - \mathbf{p}, \qquad \mathbf{A}^\top\mathbf{r} = \mathbf{0}
 $$
 
-- $\mathbf{r}$: residuo, ortogonal a cada columna de $A$.
+- $\mathbf{r}$: residuo, ortogonal a cada columna de $\mathbf{A}$.
 :::

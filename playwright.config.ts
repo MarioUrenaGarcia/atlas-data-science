@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const PORT = 4173;
+// Several checkouts can run their suites at the same time; each one needs its own preview port,
+// otherwise reuseExistingServer would test another checkout's build.
+const PORT = Number(process.env.E2E_PORT ?? 4173);
 
 export default defineConfig({
   testDir: 'tests/e2e',

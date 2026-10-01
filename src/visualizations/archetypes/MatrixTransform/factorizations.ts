@@ -49,7 +49,7 @@ export function factorize(matrix: Mat2, kind: FactorKind): FactorResult {
           [v[0][1], v[1][1]],
         ],
         diagonal: sigma,
-        latex: 'U\\,\\Sigma\\,V^\\top',
+        latex: '\\mathbf{U}\\,\\boldsymbol{\\Sigma}\\,\\mathbf{V}^\\top',
         phases: [
           'Inicio: el círculo unitario y las direcciones v₁ y v₂.',
           'Paso 1, Vᵀ: una rotación (o reflexión) lleva v₁ y v₂ a los ejes.',
@@ -93,7 +93,7 @@ export function factorize(matrix: Mat2, kind: FactorKind): FactorResult {
         [p[0][1], p[1][1]],
       ],
       diagonal: [real[0], real[1]],
-      latex: spectral ? 'Q\\,\\Lambda\\,Q^\\top' : 'P\\,D\\,P^{-1}',
+      latex: spectral ? '\\mathbf{Q}\\,\\boldsymbol{\\Lambda}\\,\\mathbf{Q}^\\top' : '\\mathbf{P}\\,\\mathbf{D}\\,\\mathbf{P}^{-1}',
       phases: spectral
         ? [
             'Inicio: los vectores propios q₁ y q₂, perpendiculares entre sí.',

@@ -116,11 +116,11 @@ formulas: [de-morgan-y, de-morgan-o, distributiva, contrapositiva]
 - **Confundir argumento válido con conclusión verdadera.** La validez dice que la conclusión se sigue de las premisas; si una premisa es falsa, la conclusión puede ser falsa aunque el argumento sea válido.
 - **Concluir equivalencia comparando algunas filas.** Dos fórmulas son equivalentes solo si coinciden en todas las filas.
 
-:::figura[Tautología, contradicción y contingencia. El tercero excluido es verdadero en todas las filas, la contradicción es falsa en todas, y la conjunción con negación depende de los valores de $p$ y $q$.]{componente="LogicViz"}
+:::figura[Tres errores frente a la tabla completa. El alcance de la negación: $\lnot p \land q$ y $\lnot(p \land q)$ difieren en dos filas. La recíproca coincide con el condicional en las filas 1 y 4, pero no en las otras dos, así que revisar solo algunas filas lleva a una equivalencia falsa. La distributividad tiene tres variables y necesita ocho filas; con menos quedarían combinaciones sin revisar.]{componente="LogicViz"}
 ```yaml
 modo: tabla
-formula: tercero-excluido
-formulas: [tercero-excluido, contradiccion, conjuncion, silogismo]
+formula: alcance-negacion
+formulas: [alcance-negacion, reciproca, distributiva]
 ```
 :::
 

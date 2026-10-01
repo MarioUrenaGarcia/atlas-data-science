@@ -82,7 +82,7 @@ export function SubspacesView({ title, matrices }: SubspacesViewProps) {
     >
       <p className={styles.formula}>
         <Latex
-          tex={`A = ${matLatex(matrix)},\\qquad \\operatorname{rango}(A) + \\operatorname{nulidad}(A) = ${rank} + ${nullity} = 2`}
+          tex={`\\mathbf{A} = ${matLatex(matrix)},\\qquad \\operatorname{rango}(\\mathbf{A}) + \\operatorname{nulidad}(\\mathbf{A}) = ${rank} + ${nullity} = 2`}
         />
       </p>
       <div className={styles.pair}>

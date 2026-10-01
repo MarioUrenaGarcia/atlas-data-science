@@ -82,11 +82,19 @@ Un modelo de riesgo crediticio asigna a un cliente el puntaje $x = 2$.
 4. Softplus del mismo puntaje: $\log(1 + e^{2}) = \log 8.389 = 2.1269$, apenas mayor que 2.
 5. Para $x = -2$: $\sigma(-2) = 1 - \sigma(2) = 0.1192$ y $\operatorname{softplus}(-2) = 0.1269$, un número pequeño pero positivo.
 
-:::figura[La sigmoide del modelo de riesgo, comprimida en horizontal (b = 3) y trasladada (h = 1): la transición de 0 a 1 se vuelve más brusca y se centra en x = 1.]{componente="CalculusViz"}
+:::figura[El puntaje del ejemplo sobre la sigmoide: en x = 2 la altura es 0.8808 y las secantes giran hasta la tangente, cuya pendiente es la sensibilidad 0.1050.]{componente="CalculusViz"}
 ```yaml
-modo: transformaciones
-funciones: [sigmoide]
-valores: [1, 3, 1, 0]
+modo: secante
+funcion: sigmoide
+x0: 2
+```
+:::
+
+:::figura[El mismo puntaje sobre la softplus: en x = 2 la altura es 2.1269, apenas sobre la recta y = x, y la pendiente de la tangente es 0.8808, el valor de la sigmoide en 2, porque la derivada de la softplus es la sigmoide.]{componente="CalculusViz"}
+```yaml
+modo: secante
+funcion: softplus
+x0: 2
 ```
 :::
 

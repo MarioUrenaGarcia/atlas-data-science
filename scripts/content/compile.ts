@@ -258,6 +258,12 @@ function parseConcepts(
   issues: Issue[],
 ): ParsedConcept[] {
   const parsed: ParsedConcept[] = [];
+  // Unlabeled [[id]] links show the target's title, so titles are collected before any body is processed.
+  const titles: Record<string, string> = {};
+  for (const file of raw.concepts) {
+    const data = file.data as { id?: unknown; titulo?: unknown } | undefined;
+    if (typeof data?.id === 'string' && typeof data.titulo === 'string') titles[data.id] = data.titulo;
+  }
   for (const file of raw.concepts) {
     if (file.parseError) {
       issues.push({
@@ -295,7 +301,7 @@ function parseConcepts(
         formulaHtml = rendered.html;
       }
     }
-    const body = processConceptBody(file.body, macros);
+    const body = processConceptBody(file.body, macros, titles);
     parsed.push({ file, meta, body, formulaHtml });
   }
   return parsed;

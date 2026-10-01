@@ -19,9 +19,9 @@ etiquetas:
   - norma mínima
   - sistemas sin solución
 resumen: >
-  La pseudoinversa A^+ = V Sigma^+ U^T existe para cualquier matriz; x = A^+ b es la solución de mínimos
+  La pseudoinversa A^+ = V Σ^+ U^T existe para cualquier matriz; x = A^+ b es la solución de mínimos
   cuadrados de Ax = b y, entre todas ellas, la de menor longitud.
-formula: 'A^{+} = V\Sigma^{+}U^\top, \qquad \Sigma^{+} = \operatorname{diag}(1/\sigma_i \text{ si } \sigma_i > 0,\ 0 \text{ si no})'
+formula: '\mathbf{A}^{+} = \mathbf{V}\boldsymbol{\\Sigma}^{+}\mathbf{U}^\top, \qquad \boldsymbol{\\Sigma}^{+} = \operatorname{diag}(1/\sigma_i \text{ si } \sigma_i > 0,\ 0 \text{ si no})'
 visualizacion:
   componente: MatrixTransform
   parametros:
@@ -48,22 +48,22 @@ La pseudoinversa hace exactamente esas dos elecciones. Usando la descomposición
 ## Definición
 
 :::definicion[Pseudoinversa]
-Si $A = U\Sigma V^\top$ es la SVD de $A \in \mathbb{R}^{m \times n}$, la **pseudoinversa** es
+Si $\mathbf{A} = \mathbf{U}\boldsymbol{\\Sigma} \mathbf{V}^\top$ es la SVD de $\mathbf{A} \in \mathbb{R}^{m \times n}$, la **pseudoinversa** es
 $$
-A^{+} = V\Sigma^{+}U^\top,
+\mathbf{A}^{+} = \mathbf{V}\boldsymbol{\\Sigma}^{+}\mathbf{U}^\top,
 $$
-donde $\Sigma^{+} \in \mathbb{R}^{n \times m}$ es diagonal con entradas $1/\sigma_i$ para los $\sigma_i > 0$ y 0 para los demás.
+donde $\boldsymbol{\\Sigma}^{+} \in \mathbb{R}^{n \times m}$ es diagonal con entradas $1/\sigma_i$ para los $\sigma_i > 0$ y 0 para los demás.
 :::
 
 :::teorema[Mínimos cuadrados de norma mínima]
-Para todo $\mathbf{b}$, el vector $\mathbf{x}^{+} = A^{+}\mathbf{b}$ minimiza $\lVert A\mathbf{x} - \mathbf{b} \rVert$, y entre todos los minimizadores es el de menor norma. Además $AA^{+}$ es la proyección ortogonal sobre el espacio columna de $A$.
+Para todo $\mathbf{b}$, el vector $\mathbf{x}^{+} = \mathbf{A}^{+}\mathbf{b}$ minimiza $\lVert \mathbf{A}\mathbf{x} - \mathbf{b} \rVert$, y entre todos los minimizadores es el de menor norma. Además $\mathbf{A}\mathbf{A}^{+}$ es la proyección ortogonal sobre el espacio columna de $\mathbf{A}$.
 :::
 
 :::nota[Qué significa cada símbolo]
-- $A$: matriz de $m \times n$, de cualquier rango.
-- $A^{+}$: pseudoinversa, de $n \times m$.
-- $U, \Sigma, V$: factores de la SVD de $A$.
-- $\Sigma^{+}$: se invierten los valores singulares positivos y se dejan los ceros.
+- $\mathbf{A}$: matriz de $m \times n$, de cualquier rango.
+- $\mathbf{A}^{+}$: pseudoinversa, de $n \times m$.
+- $\mathbf{U}, \boldsymbol{\\Sigma}, \mathbf{V}$: factores de la SVD de $\mathbf{A}$.
+- $\boldsymbol{\\Sigma}^{+}$: se invierten los valores singulares positivos y se dejan los ceros.
 - $\sigma_i$: valores singulares.
 - $\mathbf{b}$: lado derecho del sistema.
 - $\mathbf{x}^{+}$: solución de mínimos cuadrados de norma mínima.
@@ -71,18 +71,18 @@ Para todo $\mathbf{b}$, el vector $\mathbf{x}^{+} = A^{+}\mathbf{b}$ minimiza $\
 
 ## Cómo usar la visualización
 
-El panel izquierdo es la salida: el vector $\mathbf{b}$ se arrastra y se proyecta sobre el espacio columna, dando $A\mathbf{x}^{+}$, lo más cercano que la matriz puede alcanzar. El panel derecho es la entrada: la línea punteada reúne todos los $\mathbf{x}$ que alcanzan esa proyección, y $\mathbf{x}^{+}$ es su punto más cercano al origen, sobre el espacio fila. El panel muestra $A^{+}$, el residuo y las longitudes.
+El panel izquierdo es la salida: el vector $\mathbf{b}$ se arrastra y se proyecta sobre el espacio columna, dando $\mathbf{A}\mathbf{x}^{+}$, lo más cercano que la matriz puede alcanzar. El panel derecho es la entrada: la línea punteada reúne todos los $\mathbf{x}$ que alcanzan esa proyección, y $\mathbf{x}^{+}$ es su punto más cercano al origen, sobre el espacio fila. El panel muestra $\mathbf{A}^{+}$, el residuo y las longitudes.
 
-Con la matriz invertible, el residuo es cero y $A^{+}$ es la inversa. Con las de rango 1, mover $\mathbf{b}$ perpendicularmente al espacio columna no cambia $\mathbf{x}^{+}$, porque esa parte de $\mathbf{b}$ es inalcanzable.
+Con la matriz invertible, el residuo es cero y $\mathbf{A}^{+}$ es la inversa. Con las de rango 1, mover $\mathbf{b}$ perpendicularmente al espacio columna no cambia $\mathbf{x}^{+}$, porque esa parte de $\mathbf{b}$ es inalcanzable.
 
 ## Ejemplo
 
-Dos máquinas producen dos piezas según $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$, y se piden $\mathbf{b} = (1, 3)$ piezas, una combinación imposible de lograr exactamente.
+Dos máquinas producen dos piezas según $\mathbf{A} = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$, y se piden $\mathbf{b} = (1, 3)$ piezas, una combinación imposible de lograr exactamente.
 
-1. $A = 5\,\mathbf{u}\mathbf{v}^\top$ con $\mathbf{u} = \mathbf{v} = (1, 2)/\sqrt{5}$: rango 1 y $\sigma_1 = 5$.
-2. $A^{+} = \tfrac{1}{5}\mathbf{v}\mathbf{u}^\top = \tfrac{1}{25}\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$.
-3. $\mathbf{x}^{+} = A^{+}\mathbf{b} = \tfrac{1}{25}(1 + 6,\ 2 + 12) = (0.28, 0.56)$ horas.
-4. Producción lograda: $A\mathbf{x}^{+} = (0.28 + 1.12,\ 0.56 + 2.24) = (1.4, 2.8)$, la proyección de $(1, 3)$ sobre la recta de $(1, 2)$.
+1. $\mathbf{A} = 5\,\mathbf{u}\mathbf{v}^\top$ con $\mathbf{u} = \mathbf{v} = (1, 2)/\sqrt{5}$: rango 1 y $\sigma_1 = 5$.
+2. $\mathbf{A}^{+} = \tfrac{1}{5}\mathbf{v}\mathbf{u}^\top = \tfrac{1}{25}\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$.
+3. $\mathbf{x}^{+} = \mathbf{A}^{+}\mathbf{b} = \tfrac{1}{25}(1 + 6,\ 2 + 12) = (0.28, 0.56)$ horas.
+4. Producción lograda: $\mathbf{A}\mathbf{x}^{+} = (0.28 + 1.12,\ 0.56 + 2.24) = (1.4, 2.8)$, la proyección de $(1, 3)$ sobre la recta de $(1, 2)$.
 5. Cualquier $\mathbf{x}^{+} + t(2, -1)$ produce lo mismo, pero $\mathbf{x}^{+}$ es el más corto: es perpendicular a $(2, -1)$, porque $0.56 - 0.56 = 0$.
 
 :::figura[Las máquinas del ejemplo. El pedido (1, 3) se proyecta sobre la recta alcanzable en (1.4, 2.8), y entre las entradas que lo logran la pseudoinversa elige la más corta, (0.28, 0.56).]{componente="MatrixTransform"}
@@ -96,22 +96,22 @@ matrices:
 
 ## Propiedades
 
-- **Condiciones de Penrose:** $AA^{+}A = A$, $A^{+}AA^{+} = A^{+}$, y $AA^{+}$ y $A^{+}A$ son simétricas; estas cuatro condiciones la determinan de forma única.
-- **Casos especiales:** si $A$ es invertible, $A^{+} = A^{-1}$; si tiene columnas independientes, $A^{+} = (A^\top A)^{-1}A^\top$; si tiene filas independientes, $A^{+} = A^\top(AA^\top)^{-1}$.
-- **Proyecciones:** $AA^{+}$ proyecta sobre el espacio columna y $A^{+}A$ sobre el espacio fila.
-- **Transpuesta:** $(A^\top)^{+} = (A^{+})^\top$ y $(A^{+})^{+} = A$.
+- **Condiciones de Penrose:** $\mathbf{A}\mathbf{A}^{+}\mathbf{A} = \mathbf{A}$, $\mathbf{A}^{+}\mathbf{A}\mathbf{A}^{+} = \mathbf{A}^{+}$, y $\mathbf{A}\mathbf{A}^{+}$ y $\mathbf{A}^{+}\mathbf{A}$ son simétricas; estas cuatro condiciones la determinan de forma única.
+- **Casos especiales:** si $\mathbf{A}$ es invertible, $\mathbf{A}^{+} = \mathbf{A}^{-1}$; si tiene columnas independientes, $\mathbf{A}^{+} = (\mathbf{A}^\top \mathbf{A})^{-1}\mathbf{A}^\top$; si tiene filas independientes, $\mathbf{A}^{+} = \mathbf{A}^\top(\mathbf{A}\mathbf{A}^\top)^{-1}$.
+- **Proyecciones:** $\mathbf{A}\mathbf{A}^{+}$ proyecta sobre el espacio columna y $\mathbf{A}^{+}\mathbf{A}$ sobre el espacio fila.
+- **Transpuesta:** $(\mathbf{A}^\top)^{+} = (\mathbf{A}^{+})^\top$ y $(\mathbf{A}^{+})^{+} = \mathbf{A}$.
 - **Sensibilidad:** si un valor singular es muy pequeño, $1/\sigma_i$ es enorme; en la práctica se trunca con un umbral o se regulariza.
 
 :::demostracion
-Con $\mathbf{c} = U^\top\mathbf{b}$ y $\mathbf{y} = V^\top\mathbf{x}$, $\lVert A\mathbf{x} - \mathbf{b} \rVert^2 = \lVert \Sigma\mathbf{y} - \mathbf{c} \rVert^2 = \sum_{\sigma_i > 0}(\sigma_i y_i - c_i)^2 + \sum_{\sigma_i = 0} c_i^2$. Se minimiza con $y_i = c_i/\sigma_i$ para $\sigma_i > 0$, y las demás $y_i$ son libres; la norma $\lVert \mathbf{x} \rVert = \lVert \mathbf{y} \rVert$ es mínima con esas $y_i = 0$, que es $\mathbf{y} = \Sigma^{+}\mathbf{c}$.
+Con $\mathbf{c} = \mathbf{U}^\top\mathbf{b}$ y $\mathbf{y} = \mathbf{V}^\top\mathbf{x}$, $\lVert \mathbf{A}\mathbf{x} - \mathbf{b} \rVert^2 = \lVert \boldsymbol{\\Sigma}\mathbf{y} - \mathbf{c} \rVert^2 = \sum_{\sigma_i > 0}(\sigma_i y_i - c_i)^2 + \sum_{\sigma_i = 0} c_i^2$. Se minimiza con $y_i = c_i/\sigma_i$ para $\sigma_i > 0$, y las demás $y_i$ son libres; la norma $\lVert \mathbf{x} \rVert = \lVert \mathbf{y} \rVert$ es mínima con esas $y_i = 0$, que es $\mathbf{y} = \boldsymbol{\\Sigma}^{+}\mathbf{c}$.
 :::
 
 ## Errores comunes
 
-- **Usar $(A^\top A)^{-1}A^\top$ cuando las columnas son dependientes.** $A^\top A$ es singular; la pseudoinversa sí existe.
-- **Pensar que $A^{+}A = I$.** Solo si las columnas de $A$ son independientes; en general es una proyección.
+- **Usar $(\mathbf{A}^\top \mathbf{A})^{-1}\mathbf{A}^\top$ cuando las columnas son dependientes.** $\mathbf{A}^\top \mathbf{A}$ es singular; la pseudoinversa sí existe.
+- **Pensar que $\mathbf{A}^{+}\mathbf{A} = \mathbf{I}$.** Solo si las columnas de $\mathbf{A}$ son independientes; en general es una proyección.
 - **Invertir valores singulares diminutos sin cuidado.** Un $\sigma_i$ de $10^{-12}$ producido por redondeo convierte ruido en respuestas enormes.
-- **Creer que da la solución exacta.** Da la mejor aproximación; si $\mathbf{b}$ no está en el espacio columna, $A\mathbf{x}^{+} \neq \mathbf{b}$.
+- **Creer que da la solución exacta.** Da la mejor aproximación; si $\mathbf{b}$ no está en el espacio columna, $\mathbf{A}\mathbf{x}^{+} \neq \mathbf{b}$.
 
 ## Conexiones
 
@@ -121,7 +121,7 @@ La pseudoinversa se construye con la [[descomposicion-en-valores-singulares]] y 
 
 :::formula[Definición por SVD]
 $$
-A^{+} = V\Sigma^{+}U^\top = \sum_{\sigma_i > 0} \frac{1}{\sigma_i}\,\mathbf{v}_i\mathbf{u}_i^\top
+\mathbf{A}^{+} = \mathbf{V}\boldsymbol{\\Sigma}^{+}\mathbf{U}^\top = \sum_{\sigma_i > 0} \frac{1}{\sigma_i}\,\mathbf{v}_i\mathbf{u}_i^\top
 $$
 
 - $\sigma_i$: valores singulares positivos.
@@ -130,7 +130,7 @@ $$
 
 :::formula[Solución de mínimos cuadrados de norma mínima]
 $$
-\mathbf{x}^{+} = A^{+}\mathbf{b} = \arg\min\big\{ \lVert \mathbf{x} \rVert : \mathbf{x} \text{ minimiza } \lVert A\mathbf{x} - \mathbf{b} \rVert \big\}
+\mathbf{x}^{+} = \mathbf{A}^{+}\mathbf{b} = \arg\min\big\{ \lVert \mathbf{x} \rVert : \mathbf{x} \text{ minimiza } \lVert \mathbf{A}\mathbf{x} - \mathbf{b} \rVert \big\}
 $$
 
 - $\mathbf{b}$: lado derecho.
@@ -138,16 +138,16 @@ $$
 
 :::formula[Columnas independientes]
 $$
-A^{+} = (A^\top A)^{-1}A^\top
+\mathbf{A}^{+} = (\mathbf{A}^\top \mathbf{A})^{-1}\mathbf{A}^\top
 $$
 
-- Válida solo si $A^\top A$ es invertible.
+- Válida solo si $\mathbf{A}^\top \mathbf{A}$ es invertible.
 :::
 
 :::formula[Condiciones de Penrose]
 $$
-AA^{+}A = A, \quad A^{+}AA^{+} = A^{+}, \quad (AA^{+})^\top = AA^{+}, \quad (A^{+}A)^\top = A^{+}A
+\mathbf{A}\mathbf{A}^{+}\mathbf{A} = \mathbf{A}, \quad \mathbf{A}^{+}\mathbf{A}\mathbf{A}^{+} = \mathbf{A}^{+}, \quad (\mathbf{A}\mathbf{A}^{+})^\top = \mathbf{A}\mathbf{A}^{+}, \quad (\mathbf{A}^{+}\mathbf{A})^\top = \mathbf{A}^{+}\mathbf{A}
 $$
 
-- Estas cuatro igualdades caracterizan a $A^{+}$.
+- Estas cuatro igualdades caracterizan a $\mathbf{A}^{+}$.
 :::

@@ -94,7 +94,7 @@ b: [1, 2]
 
 - **Mismo espacio en cada paso:** los primeros $j$ vectores $\mathbf{q}$ generan lo mismo que los primeros $j$ vectores $\mathbf{v}$.
 - **Depende del orden:** cambiar el orden de los $\mathbf{v}_j$ da otra base ortonormal.
-- **Factorización QR:** si $\mathbf{v}_j$ son las columnas de $A$, entonces $A = QR$ con $r_{ij} = \mathbf{v}_j \cdot \mathbf{q}_i$ y $r_{jj} = \lVert \mathbf{w}_j \rVert$.
+- **Factorización QR:** si $\mathbf{v}_j$ son las columnas de $\mathbf{A}$, entonces $\mathbf{A} = \mathbf{Q}\mathbf{R}$ con $r_{ij} = \mathbf{v}_j \cdot \mathbf{q}_i$ y $r_{jj} = \lVert \mathbf{w}_j \rVert$.
 - **Detección de dependencia:** $\mathbf{w}_j = \mathbf{0}$ exactamente cuando $\mathbf{v}_j$ está en el espacio generado por los anteriores.
 - **Versión modificada:** restar las proyecciones una por una sobre el vector ya corregido (Gram-Schmidt modificado) es más estable en punto flotante.
 - **Funciones:** con un producto interno entre funciones, el mismo proceso produce polinomios ortogonales, como los de Legendre.
@@ -139,5 +139,5 @@ $$
 r_{ij} = \mathbf{v}_j \cdot \mathbf{q}_i \ (i < j), \qquad r_{jj} = \lVert \mathbf{w}_j \rVert
 $$
 
-- $r_{ij}$: entradas de la matriz triangular $R$ en $A = QR$.
+- $r_{ij}$: entradas de la matriz triangular $\mathbf{R}$ en $\mathbf{A} = \mathbf{Q}\mathbf{R}$.
 :::

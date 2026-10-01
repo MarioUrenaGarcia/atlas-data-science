@@ -145,3 +145,21 @@
   font-size: var(--text-xs);
   color: var(--color-text-muted);
 }
+
+.activeRow th,
+.activeColumn {
+  background: var(--color-accent-soft);
+}
+
+.mark {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 50%;
+  background: var(--data-1);
+  vertical-align: middle;
+}
+
+.verdictTag {
+  margin-left: var(--space-1);
+}
