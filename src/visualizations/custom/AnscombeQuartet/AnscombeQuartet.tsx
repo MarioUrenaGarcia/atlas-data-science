@@ -350,6 +350,7 @@ export default function AnscombeQuartet({ params, title }: VisualizationProps) {
         <>
           <ChartSvg
             label={description}
+            interactive
             aspect={0.6}
             minHeight={260}
             maxHeight={400}
