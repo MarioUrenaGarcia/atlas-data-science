@@ -1,4 +1,5 @@
 import { DESCRIPTIVE_EXAMPLES } from './examples/descriptive.ts';
+import { DISTRIBUTION_EXAMPLES } from './examples/distributions.ts';
 import { MULTIVARIABLE_EXAMPLES } from './examples/multivariable.ts';
 import { LIMIT_EXAMPLES } from './examples/limits.ts';
 
@@ -931,59 +932,6 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   { component: 'CalculusViz', title: 'Gamma', params: { modo: 'gamma', x: 3.5 } },
   { component: 'CalculusViz', title: 'Beta', params: { modo: 'beta', a: 2, b: 5 } },
   { component: 'CalculusViz', title: 'Stirling', params: { modo: 'stirling', n: 5 } },
-  { component: 'DistributionGenesis', title: 'Dado', params: { proceso: 'dado' } },
-  {
-    component: 'DistributionGenesis',
-    title: 'Suma de dos dados',
-    params: { proceso: 'dado', valores: { k: 2 } },
-  },
-  { component: 'DistributionGenesis', title: 'Moneda', params: { proceso: 'moneda' } },
-  { component: 'DistributionGenesis', title: 'Ensayos', params: { proceso: 'ensayos' } },
-  { component: 'DistributionGenesis', title: 'Primer éxito', params: { proceso: 'primer-exito' } },
-  { component: 'DistributionGenesis', title: 'r éxitos', params: { proceso: 'r-exitos' } },
-  { component: 'DistributionGenesis', title: 'Urna', params: { proceso: 'urna', comparar: true } },
-  { component: 'DistributionGenesis', title: 'Llegadas', params: { proceso: 'llegadas' } },
-  {
-    component: 'DistributionGenesis',
-    title: 'Llegadas en rendijas',
-    params: { proceso: 'llegadas', rendijas: 20 },
-  },
-  { component: 'DistributionGenesis', title: 'Ruleta', params: { proceso: 'ruleta' } },
-  {
-    component: 'DistributionGenesis',
-    title: 'Bolas en cajas',
-    params: { proceso: 'bolas-en-cajas', vista: 'conjunta' },
-  },
-  {
-    component: 'DistributionGenesis',
-    title: 'Beta-binomial',
-    params: { proceso: 'beta-binomial' },
-  },
-  {
-    component: 'DistributionGenesis',
-    title: 'Ranking',
-    params: { proceso: 'ranking', etiquetas: ['de', 'la', 'que', 'el', 'en'] },
-  },
-  {
-    component: 'DistributionGenesis',
-    title: 'Mezcla de geométricas',
-    params: { proceso: 'mezcla-geometrica' },
-  },
-  {
-    component: 'DistributionGenesis',
-    title: 'Ceros inflados',
-    params: { proceso: 'ceros-inflados' },
-  },
-  {
-    component: 'DistributionGenesis',
-    title: 'Diferencia de llegadas',
-    params: { proceso: 'diferencia-de-llegadas', flujos: ['Local', 'Visitante'] },
-  },
-  {
-    component: 'DistributionGenesis',
-    title: 'Signos',
-    params: { proceso: 'signos', valores: { n: 12 } },
-  },
   {
     component: 'CalculusViz',
     title: 'Indicadora',
@@ -996,6 +944,7 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
     },
   },
   ...DESCRIPTIVE_EXAMPLES,
+  ...DISTRIBUTION_EXAMPLES,
   ...MULTIVARIABLE_EXAMPLES,
   ...LIMIT_EXAMPLES,
 ];
