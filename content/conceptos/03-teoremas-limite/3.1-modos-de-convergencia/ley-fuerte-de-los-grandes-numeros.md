@@ -156,7 +156,7 @@ escalaLog: true
 
 ## Conexiones
 
-Refuerza la [[ley-debil-de-los-grandes-numeros]] pasando de [[convergencia-en-probabilidad]] a [[convergencia-casi-segura]]. Su demostración usa los [[lemas-de-borel-cantelli]], y la [[ley-0-1-de-kolmogorov]] explica por qué la convergencia de la media tiene probabilidad 0 o 1. La [[ley-del-logaritmo-iterado]] precisa el tamaño exacto de las oscilaciones que quedan, y el [[teorema-de-glivenko-cantelli]] la extiende a toda la función de distribución.
+Refuerza la [[ley-debil-de-los-grandes-numeros]] pasando de [[convergencia-en-probabilidad]] a [[convergencia-casi-segura]]. Su demostración usa los [[lemas-de-borel-cantelli]], y la [[ley-0-1-de-kolmogorov]] explica por qué la convergencia de la media tiene probabilidad 0 o 1. La [[ley-del-logaritmo-iterado]] precisa el tamaño exacto de las oscilaciones que quedan, y el [[teorema-de-glivenko-cantelli]] la extiende a toda la función de distribución. Es lo que justifica la [[estimacion-de-probabilidades-por-simulacion-monte-carlo]] con una sola simulación larga.
 
 ## Formulario
 

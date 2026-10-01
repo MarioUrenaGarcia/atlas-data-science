@@ -134,7 +134,7 @@ n: 2
 
 ## Conexiones
 
-Extiende el [[tcl-de-lindeberg-levy]] a vectores mediante el recurso de Cramér-Wold. La matriz de covarianza límite es [[matrices-definidas-positivas-y-semidefinidas|semidefinida positiva]] y sus [[valores-y-vectores-propios]] dan los ejes de las elipses, como en una [[formas-cuadraticas|forma cuadrática]]. Es la base del [[metodo-delta-multivariado]] y del [[teorema-de-donsker]], que lo lleva a dimensión infinita.
+Extiende el [[tcl-de-lindeberg-levy]] a vectores mediante el recurso de Cramér-Wold. La matriz de covarianza límite es [[matrices-definidas-positivas-y-semidefinidas|semidefinida positiva]] y sus [[valores-y-vectores-propios]] dan los ejes de las elipses, como en una [[formas-cuadraticas|forma cuadrática]]. Es la base del [[metodo-delta-multivariado]] y del [[teorema-de-donsker]], que lo lleva a dimensión infinita. Aplicado a la [[distribucion-multinomial]], da la normalidad asintótica de las proporciones en que se basa la prueba ji cuadrada.
 
 ## Formulario
 

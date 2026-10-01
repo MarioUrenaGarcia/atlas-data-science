@@ -132,7 +132,7 @@ nMaximo: 60
 
 ## Conexiones
 
-Cuantifica la velocidad del [[tcl-de-lindeberg-levy]] y del [[teorema-central-del-limite]] en general, en la métrica de la [[convergencia-en-distribucion]] dada por la mayor diferencia entre funciones de distribución. Su cociente $\rho/(\sigma^3\sqrt{n})$ es el de la condición del [[tcl-de-lyapunov]] con $\delta = 1$. Las fallas por colas pesadas se estudian en [[cuando-el-tcl-falla]], y las probabilidades de colas extremas, donde la normal falla en términos relativos, en la [[teoria-de-grandes-desviaciones]].
+Cuantifica la velocidad del [[tcl-de-lindeberg-levy]] y del [[teorema-central-del-limite]] en general, en la métrica de la [[convergencia-en-distribucion]] dada por la mayor diferencia entre funciones de distribución. Su cociente $\rho/(\sigma^3\sqrt{n})$ es el de la condición del [[tcl-de-lyapunov]] con $\delta = 1$. Las fallas por colas pesadas se estudian en [[cuando-el-tcl-falla]], y las probabilidades de colas extremas, donde la normal falla en términos relativos, en la [[teoria-de-grandes-desviaciones]]. El ejemplo usa sumas de variables con [[distribucion-de-bernoulli]], para las que la mayor diferencia aparece en los escalones de la binomial.
 
 ## Formulario
 

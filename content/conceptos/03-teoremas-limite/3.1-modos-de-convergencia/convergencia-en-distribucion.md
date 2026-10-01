@@ -158,7 +158,7 @@ sucesion: signo-alternante
 
 ## Conexiones
 
-Es implicada por la [[convergencia-en-probabilidad]] y es el modo del [[teorema-central-del-limite]], del [[tcl-multivariado]] y del [[metodo-delta]]. El [[teorema-de-slutsky]] y el [[teorema-del-mapeo-continuo]] permiten combinarla y transformarla. El [[teorema-de-berry-esseen]] mide qué tan rápido converge la distribución de una media estandarizada, y el [[teorema-de-donsker]] la extiende a trayectorias completas. Las relaciones con los demás modos están en [[relaciones-entre-modos-de-convergencia]].
+Es implicada por la [[convergencia-en-probabilidad]] y es el modo del [[teorema-central-del-limite]], del [[tcl-multivariado]] y del [[metodo-delta]]. El [[teorema-de-slutsky]] y el [[teorema-del-mapeo-continuo]] permiten combinarla y transformarla. El [[teorema-de-berry-esseen]] mide qué tan rápido converge la distribución de una media estandarizada, y el [[teorema-de-donsker]] la extiende a trayectorias completas. Las relaciones con los demás modos están en [[relaciones-entre-modos-de-convergencia]]. El ejemplo de las llamadas es la aproximación de la binomial por la [[distribucion-de-poisson]].
 
 ## Formulario
 
