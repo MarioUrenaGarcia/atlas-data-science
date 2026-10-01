@@ -72,7 +72,7 @@ Si $\mathbf{A}$ es simétrica, $\nabla_{\mathbf{x}} (\mathbf{x}^\top \mathbf{A}\
 
 Cada caso es una función cuadrática $f(\mathbf{x}) = \tfrac{1}{2}\mathbf{x}^\top \mathbf{A}\mathbf{x} - \mathbf{b}^\top \mathbf{x}$, cuyo gradiente es $\mathbf{A}\mathbf{x} - \mathbf{b}$. El mapa muestra sus curvas de nivel, el mínimo $\mathbf{A}^{-1}\mathbf{b}$ en verde y el camino del descenso por gradiente. El encabezado escribe la multiplicación $\mathbf{A}\mathbf{x}_k - \mathbf{b}$ con los números de cada iteración. En el caso de mínimos cuadrados, un segundo panel dibuja los datos y la recta de la iteración actual.
 
-Con $\mathbf{A} = 2\mathbf{I}$ el gradiente apunta directo al mínimo. Con valores propios 1 y 9 el camino se tuerce, porque el gradiente apunta hacia la dirección empinada del valle y no hacia el mínimo.
+Con $\mathbf{A} = 2\mathbf{I}$ la dirección de descenso $-(\mathbf{A}\mathbf{x} - \mathbf{b})$ apunta directo al mínimo. Con valores propios 1 y 9 el camino se tuerce, porque menos el gradiente apunta hacia el fondo empinado del valle y no hacia el mínimo.
 
 ## Ejemplo
 
@@ -100,7 +100,7 @@ casos: [minimos-cuadrados]
 - **Comprobación de dimensiones:** el gradiente respecto a $\mathbf{x}$ tiene la forma de $\mathbf{x}$; si una regla produce algo de otra forma, hay un error de transpuesta.
 - **Regularización:** con penalización ridge, $\nabla(\lVert \mathbf{X}\boldsymbol{\beta} - \mathbf{y} \rVert^2 + \lambda\lVert \boldsymbol{\beta} \rVert^2) = 2\mathbf{X}^\top(\mathbf{X}\boldsymbol{\beta} - \mathbf{y}) + 2\lambda\boldsymbol{\beta}$.
 
-:::figura[Con A = 2I las curvas de nivel son círculos y el gradiente Ax - b apunta siempre hacia el mínimo (1, 0.5): el descenso va en línea recta.]{componente="SurfaceViz"}
+:::figura[Con A = 2I las curvas de nivel son círculos y Ax - b = 2(x - x*) apunta en sentido opuesto al mínimo (1, 0.5), así que la dirección de descenso -(Ax - b) apunta siempre hacia él: el descenso va en línea recta.]{componente="SurfaceViz"}
 ```yaml
 modo: matricial
 casos: [redonda]
@@ -112,9 +112,9 @@ casos: [redonda]
 - **Usar $2\mathbf{A}\mathbf{x}$ con $\mathbf{A}$ no simétrica.** La regla general es $(\mathbf{A} + \mathbf{A}^\top)\mathbf{x}$; solo coincide con $2\mathbf{A}\mathbf{x}$ si $\mathbf{A} = \mathbf{A}^\top$.
 - **Equivocar la transpuesta.** $\nabla_{\mathbf{x}}(\mathbf{b}^\top \mathbf{A}\mathbf{x}) = \mathbf{A}^\top \mathbf{b}$, no $\mathbf{A}\mathbf{b}$.
 - **Resolver las ecuaciones normales invirtiendo $\mathbf{X}^\top \mathbf{X}$ cuando está mal condicionada.** Es más estable usar una factorización QR.
-- **Creer que el gradiente apunta al mínimo.** En una cuadrática alargada apunta hacia la parte empinada del valle, no al mínimo, y el descenso avanza en curva.
+- **Creer que la dirección opuesta al gradiente lleva directo al mínimo.** En una cuadrática alargada, $-(\mathbf{A}\mathbf{x} - \mathbf{b})$ apunta hacia la parte empinada del valle, no al mínimo, y el descenso avanza en curva.
 
-:::figura[Con valores propios 1 y 9, el gradiente Ax - b no apunta hacia el mínimo (-0.33, 0.67): el camino del descenso se tuerce primero hacia el fondo del valle y luego lo recorre despacio.]{componente="SurfaceViz"}
+:::figura[Con valores propios 1 y 9, la dirección de descenso -(Ax - b) no apunta hacia el mínimo (-0.33, 0.67): el camino del descenso se tuerce primero hacia el fondo del valle y luego lo recorre despacio.]{componente="SurfaceViz"}
 ```yaml
 modo: matricial
 casos: [alargada]

@@ -110,3 +110,18 @@ describe('integration and maps', () => {
     );
   });
 });
+
+describe('critical points of harder fields', () => {
+  it('reports the degenerate monkey saddle once', () => {
+    const points = criticalPoints(FIELDS['silla-mono']!);
+    expect(points).toHaveLength(1);
+    expect(points[0]?.kind).toBe('degenerado');
+  });
+
+  it('finds the nine critical points of Himmelblau', () => {
+    const kinds = criticalPoints(FIELDS.himmelblau!).map((p) => p.kind);
+    expect(kinds.filter((k) => k === 'mínimo')).toHaveLength(4);
+    expect(kinds.filter((k) => k === 'máximo')).toHaveLength(1);
+    expect(kinds.filter((k) => k === 'silla')).toHaveLength(4);
+  });
+});

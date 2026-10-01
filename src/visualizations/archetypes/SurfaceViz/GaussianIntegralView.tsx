@@ -6,8 +6,8 @@ import { Latex } from '../../core/Latex.tsx';
 import { FunctionPlot } from '../../core/svg/FunctionPlot.tsx';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import { EqualPlane } from './EqualPlane.tsx';
-import { num } from './levels.ts';
+import { EqualPlane } from '../../core/plane/EqualPlane.tsx';
+import { num } from '../../core/plane/levels.ts';
 import styles from './SurfaceViz.module.css';
 
 const LIMIT = 2.6;

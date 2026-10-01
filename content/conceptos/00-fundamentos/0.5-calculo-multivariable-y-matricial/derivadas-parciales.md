@@ -70,7 +70,7 @@ Con las dos colinas, si el punto se coloca en la cima la tangente del corte nara
 
 ## Ejemplo
 
-Un paso de montaña tiene forma de silla: la altura, en cientos de metros, es $f(x, y) = x^2 - y^2$, con $x$ en la dirección del camino que cruza el paso y $y$ en la dirección de la cresta. Se buscan las pendientes en el punto $(1, 0.5)$.
+Un paso de montaña tiene forma de silla: la altura, en cientos de metros, es $f(x, y) = x^2 - y^2$, con $x$ y $y$ también en cientos de metros, $x$ en la dirección del camino que cruza el paso y $y$ en la dirección de la cresta. Se buscan las pendientes en el punto $(1, 0.5)$.
 
 1. Respecto a $x$, con $y$ constante: $\dfrac{\partial f}{\partial x} = 2x$, y en el punto vale $2 \cdot 1 = 2$.
 2. Respecto a $y$, con $x$ constante: $\dfrac{\partial f}{\partial y} = -2y$, y en el punto vale $-2 \cdot 0.5 = -1$.
