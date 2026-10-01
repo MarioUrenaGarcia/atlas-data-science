@@ -40,7 +40,7 @@ visualizacion:
           descripcion: 'd₁ = 9 y d₂ = 14: varianzas de 10 y 15 botellas; el cociente se concentra cerca de 1.'
           valores: {d1: 9, d2: 14}
         - nombre: 'Muestras grandes'
-          descripcion: 'd₁ = 30 y d₂ = 60: ambas varianzas son precisas y el cociente casi siempre está entre 0.6 y 1.6.'
+          descripcion: 'd₁ = 30 y d₂ = 60: ambas varianzas son precisas y el cociente cae entre 0.6 y 1.6 en casi nueve de cada diez casos.'
           valores: {d1: 30, d2: 60}
       ejemplo:
         titulo: 'Varianzas de dos máquinas'
@@ -155,7 +155,7 @@ casos:
     descripcion: 'd₁ = 9 y d₂ = 14: varianzas de 10 y 15 botellas; el cociente se concentra cerca de 1.'
     valores: {d1: 9, d2: 14}
   - nombre: 'Muestras grandes'
-    descripcion: 'd₁ = 30 y d₂ = 60: ambas varianzas son precisas y el cociente casi siempre está entre 0.6 y 1.6.'
+    descripcion: 'd₁ = 30 y d₂ = 60: ambas varianzas son precisas y el cociente cae entre 0.6 y 1.6 en casi nueve de cada diez casos.'
     valores: {d1: 30, d2: 60}
 ```
 :::

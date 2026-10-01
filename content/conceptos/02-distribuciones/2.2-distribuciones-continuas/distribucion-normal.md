@@ -108,8 +108,8 @@ Al pasar de un caso a otro la campana se desplaza sin cambiar de forma. Al dupli
 La estatura de las personas adultas de una población sigue $\mathcal{N}(170, 7^{2})$ en centímetros.
 
 1. Para comparar con la normal estándar se calcula $z = (180 - 170)/7 \approx 1.43$.
-2. Proporción de personas de más de 180 cm: $P(X > 180) = 1 - \Phi(1.43) \approx 0.0766$, algo menos del 8 %.
-3. Proporción entre 160 y 180 cm: $\Phi(1.43) - \Phi(-1.43) \approx 0.847$.
+2. Proporción de personas de más de 180 cm: $P(X > 180) = 1 - \Phi(1.4286) \approx 0.0766$, algo menos del 8 %.
+3. Proporción entre 160 y 180 cm: $\Phi(1.4286) - \Phi(-1.4286) \approx 0.847$.
 4. Estatura que solo supera el 5 % de la población: el cuantil 0.95 es $170 + 1.645 \cdot 7 \approx 181.5$ cm.
 
 :::figura[Estaturas de más de 180 cm: el área sombreada a la derecha vale 0.0766.]{componente="DistributionExplorer"}

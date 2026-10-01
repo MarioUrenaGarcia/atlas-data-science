@@ -184,7 +184,7 @@ valores:
 ```
 :::
 
-:::figura[Promediar no ayuda: cada resultado es el promedio de 30 pasos con colas de tipo Cauchy (P(|X| > x) = 1/x). El promedio no se concentra y sigue una Cauchy, tan dispersa como un solo paso.]{componente="ContinuousGenesis"}
+:::figura[Promediar no ayuda: cada resultado es el promedio de 30 pasos con colas de tipo Cauchy (P(|X| > x) = 1/x). El promedio se parece a una Cauchy y no se concentra al aumentar n.]{componente="ContinuousGenesis"}
 ```yaml
 proceso: suma-colas-pesadas
 valores:

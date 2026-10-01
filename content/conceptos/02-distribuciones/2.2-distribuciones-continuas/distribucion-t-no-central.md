@@ -181,12 +181,12 @@ valores:
 
 ## Errores comunes
 
-- **Calcular la potencia con la normal.** Con pocos datos, usar $\mathcal{N}(\mu, 1)$ en lugar de la t no central sobreestima la potencia.
+- **Calcular la potencia con la normal.** Con pocos datos, usar $\mathcal{N}(\mu, 1)$ con su propio valor crítico, 1.645, en lugar de la t no central con el valor crítico de la t sobreestima la potencia: con 4 grados y $\mu = 2$ da 0.639 en lugar de 0.504.
 - **Desplazar la t central.** $t_{\nu} + \mu$ no es la t no central; la t no central es asimétrica.
 - **Confundir μ con el tamaño del efecto.** La no centralidad es el efecto estandarizado multiplicado por $\sqrt{n}$.
 - **Usar el valor crítico de la no central.** El valor crítico viene de la t central bajo la nula.
 
-:::figura[Normal frente a t no central con 4 grados y μ = 2: la normal de media 2 (línea punteada) es más angosta; con pocos grados calcularía una potencia demasiado optimista.]{componente="DistributionExplorer"}
+:::figura[Normal frente a t no central con 4 grados y μ = 2: con el mismo corte, 2.132, la t no central da potencia 0.504 y la normal de media 2 (línea punteada) 0.447. La aproximación normal se vuelve optimista cuando usa su propio corte, 1.645, y da 0.639.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: t-no-central
 valores:

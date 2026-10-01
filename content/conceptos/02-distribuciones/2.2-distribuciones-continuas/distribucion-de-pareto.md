@@ -189,15 +189,15 @@ referencia:
 - **Ajustar toda la distribución con una Pareto.** Muchas veces solo la cola superior sigue una ley de potencia; el cuerpo se parece más a una lognormal.
 - **Confundir el índice con la pendiente de la densidad.** En escala log-log la función de supervivencia tiene pendiente $-\alpha$ y la densidad, $-(\alpha + 1)$.
 
-:::figura[Cola de ley de potencia frente a cola exponencial: la Pareto (curva) y la exponencial de la misma media (línea punteada); más allá de 6 la Pareto conserva mucha más masa.]{componente="DistributionExplorer"}
+:::figura[Cola de ley de potencia frente a cola exponencial: la Pareto (curva) y la exponencial de la misma media (línea punteada) se cruzan cerca de 8.6. Antes manda la exponencial, pero más allá de 12 la Pareto conserva casi tres veces más masa: 0.0069 frente a 0.0025.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: pareto
 valores:
   xm: 1
   alpha: 2
-dominio: [0, 12]
-desde: 6
-hasta: 12
+dominio: [0, 20]
+region: derecha
+desde: 12
 muestras: false
 referencia:
   distribucion: exponencial
