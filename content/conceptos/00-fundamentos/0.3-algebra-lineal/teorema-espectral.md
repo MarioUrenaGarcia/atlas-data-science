@@ -20,7 +20,7 @@ etiquetas:
   - covarianza
 resumen: >
   Toda matriz simétrica real tiene valores propios reales y una base ortonormal de vectores propios, así que
-  A = Q Lambda Q^T: gira a los ejes propios, estira por los valores propios y gira de regreso.
+  A = Q Λ Q^T: gira a los ejes propios, estira por los valores propios y gira de regreso.
 formula: 'A = A^\top \ \Longrightarrow\ A = Q\Lambda Q^\top = \sum_{i=1}^{n} \lambda_i\,\mathbf{q}_i\mathbf{q}_i^\top'
 visualizacion:
   componente: MatrixTransform

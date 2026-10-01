@@ -18,7 +18,7 @@ etiquetas:
   - raíces
 resumen: >
   El polinomio característico p(lambda) = det(A - lambda I) tiene como raíces los valores propios de A;
-  para matrices de 2 por 2 es lambda^2 - (tr A) lambda + det A.
+  para matrices de 2 por 2 es λ^2 - (tr A) λ + det A.
 formula: 'p(\lambda) = \det(A - \lambda I), \qquad n = 2:\ p(\lambda) = \lambda^2 - (\operatorname{tr}A)\,\lambda + \det A'
 visualizacion:
   componente: MatrixTransform

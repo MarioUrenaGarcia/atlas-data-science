@@ -15,6 +15,7 @@ import { useAtlas, useMapLayout } from '../../content/loader.ts';
 import type { ConceptNode, Level } from '../../content/types.ts';
 import { useProgress } from '../../store/progress.ts';
 import styles from './MapPage.module.css';
+import { SummaryText } from '../../components/ui/SummaryText.tsx';
 
 type StatusFilter = 'todos' | 'pendientes' | 'vistos' | 'dominados';
 
@@ -172,7 +173,7 @@ export default function MapPage() {
             </div>
             <h2 className={styles.panelTitle}>{selectedNode.titulo}</h2>
             <LevelBadge level={selectedNode.nivel} />
-            <p className={styles.panelSummary}>{selectedNode.resumen}</p>
+            <p className={styles.panelSummary}><SummaryText text={selectedNode.resumen} /></p>
             <p className={styles.panelMeta}>{strings.map.dependents(selectedNode.descendientes)}</p>
             <div className={styles.panelActions}>
               <ButtonLink to={`/concepto/${selectedNode.id}`} variant="primary" size="small">

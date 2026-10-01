@@ -18,7 +18,7 @@ etiquetas:
   - factorización
   - geometría
 resumen: >
-  Toda matriz se escribe A = U Sigma V^T: una rotación, un estiramiento por los valores singulares a lo
+  Toda matriz se escribe A = U Σ V^T: una rotación, un estiramiento por los valores singulares a lo
   largo de ejes perpendiculares y otra rotación. El círculo unitario se convierte en una elipse.
 formula: 'A = U\Sigma V^\top = \sum_{i=1}^{r} \sigma_i\,\mathbf{u}_i\mathbf{v}_i^\top, \qquad A\mathbf{v}_i = \sigma_i\mathbf{u}_i'
 visualizacion:

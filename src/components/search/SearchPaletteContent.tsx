@@ -8,6 +8,7 @@ import { moduleColor } from '../ui/moduleColor.ts';
 import { runSearch, suggestConcepts, type SearchHit } from './searchEngine.ts';
 import styles from './SearchPalette.module.css';
 import { useSearchEngine } from './useSearchEngine.ts';
+import { SummaryText } from '../ui/SummaryText.tsx';
 
 const MAX_RESULTS = 24;
 
@@ -162,7 +163,7 @@ export function SearchPaletteContent({ initialQuery, onClose }: SearchPaletteCon
                             {hit.node.titulo}
                             <LevelBadge level={hit.node.nivel} />
                           </span>
-                          <span className={styles.hitSummary}>{hit.node.resumen}</span>
+                          <span className={styles.hitSummary}><SummaryText text={hit.node.resumen} /></span>
                         </Link>
                         <Link
                           to={`/roadmap/${hit.node.id}`}

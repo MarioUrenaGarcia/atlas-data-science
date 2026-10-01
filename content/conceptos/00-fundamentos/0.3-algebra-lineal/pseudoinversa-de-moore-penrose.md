@@ -19,7 +19,7 @@ etiquetas:
   - norma mínima
   - sistemas sin solución
 resumen: >
-  La pseudoinversa A^+ = V Sigma^+ U^T existe para cualquier matriz; x = A^+ b es la solución de mínimos
+  La pseudoinversa A^+ = V Σ^+ U^T existe para cualquier matriz; x = A^+ b es la solución de mínimos
   cuadrados de Ax = b y, entre todas ellas, la de menor longitud.
 formula: 'A^{+} = V\Sigma^{+}U^\top, \qquad \Sigma^{+} = \operatorname{diag}(1/\sigma_i \text{ si } \sigma_i > 0,\ 0 \text{ si no})'
 visualizacion:

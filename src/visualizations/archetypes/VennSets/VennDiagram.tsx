@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { DATA_COLORS, seriesColor } from '../../core/colors.ts';
 import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import svgStyles from '../../core/svg/svg.module.css';
-import { placeElements, regionAnchors, vennLayout } from './geometry.ts';
+import { containedSet, placeElements, regionAnchors, vennLayout } from './geometry.ts';
 
 interface VennDiagramProps {
   labels: readonly string[];
@@ -55,7 +55,7 @@ export function VennDiagram({
       margins={{ top: 0, right: 0, bottom: 0, left: 0 }}
     >
       {(box) => {
-        const layout = vennLayout(box.width, box.height, count);
+        const layout = vennLayout(box.width, box.height, count, count === 2 ? containedSet(masks) : null);
         const spacing = Math.max(22, Math.min(34, box.width / 22));
         const positions = placeElements(layout, masks, spacing);
         const regions = Array.from({ length: 2 ** count }, (_, mask) => mask);
