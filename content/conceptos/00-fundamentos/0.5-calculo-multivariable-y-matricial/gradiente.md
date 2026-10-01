@@ -67,7 +67,7 @@ Cuando $f$ es diferenciable en $\mathbf{x}$ y $\nabla f(\mathbf{x}) \neq \mathbf
 
 El mapa muestra las curvas de nivel de $f$ y, encima, un campo de flechas grises: el gradiente en una rejilla de puntos, con longitud proporcional a la pendiente. La flecha naranja es el gradiente en la posición actual. Al reproducir, el punto sube dando pasos cortos en la dirección del gradiente y deja un camino. El primer renglón del encabezado da el gradiente y su norma en el punto elegido; el segundo, el gradiente en el paso actual del ascenso.
 
-Las flechas cruzan siempre las curvas de nivel en ángulo recto. Con el tazón alargado $x^2 + 3y^2$, las flechas no apuntan hacia el centro sino hacia el lado más empinado. Con dos colinas, el camino que sale de la izquierda termina en la colina baja: seguir el gradiente lleva a la cima más cercana, no a la más alta.
+Las flechas cruzan siempre las curvas de nivel en ángulo recto. Con el tazón alargado $x^2 + 3y^2$, las flechas no salen en línea recta desde el centro: se inclinan hacia el eje $y$, donde el fondo es más empinado. Con dos colinas, el camino que sale de la izquierda termina en la colina baja: seguir el gradiente lleva a la cima más cercana, no a la más alta.
 
 ## Ejemplo
 
@@ -106,7 +106,7 @@ punto: [0.5, 0.5]
 ## Errores comunes
 
 - **Creer que el gradiente apunta al máximo global.** Apunta al ascenso más rápido en ese lugar. Siguiéndolo se llega a la cima más cercana, que puede ser solo un máximo local.
-- **Creer que apunta al centro de las curvas.** En un tazón alargado el gradiente apunta hacia la pendiente más fuerte, que en general no pasa por el mínimo.
+- **Creer que la dirección opuesta al gradiente lleva directo al mínimo.** En un tazón alargado, $-\nabla f$ apunta hacia la pendiente más fuerte, que en general no pasa por el mínimo; por eso el descenso por gradiente avanza en curva.
 - **Confundir el gradiente con la gráfica.** El gradiente es un vector en el plano de las entradas, no una flecha sobre la superficie.
 - **Olvidar el signo en el descenso.** Para minimizar se resta el gradiente; sumarlo hace subir la función.
 
