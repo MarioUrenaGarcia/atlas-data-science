@@ -129,12 +129,12 @@ decimales: 0
 - **Confundirla con la desviación absoluta mediana.** Ambas se abrevian a veces como MAD; una promedia distancias a la media y la otra toma la mediana de distancias a la mediana.
 - **Compararla directamente con la desviación estándar de otro estudio.** Para datos normales la DAM es un 20 % menor; mezclar ambas medidas exagera o reduce las diferencias.
 
-:::figura[Sin valor absoluto, las distancias con signo de los pedidos se cancelan: los segmentos azules y naranjas suman lo mismo a cada lado de la media.]{componente="DataStrip"}
+:::figura[Sin valor absoluto, las distancias con signo de los pedidos se cancelan: los segmentos naranjas suman -7, los azules +7, y el encabezado acumula una suma final de 0.]{componente="DataStrip"}
 ```yaml
 modo: dispersion
 datos: [15, 18, 22, 20, 25]
-medida: varianza
-lecturas: [dam, varianza]
+medida: suma
+lecturas: [suma, dam]
 variable: Pedidos diarios
 unidad: pedidos
 decimales: 0

@@ -4,6 +4,7 @@ import { BesselView } from './BesselView.tsx';
 import { BoxView } from './BoxView.tsx';
 import { DispersionView } from './DispersionView.tsx';
 import { QuantileView } from './QuantileView.tsx';
+import { ShapeView } from './ShapeView.tsx';
 import { StandardizeView } from './StandardizeView.tsx';
 import { CenterView } from './CenterView.tsx';
 import type { DataStripConfig } from './schema.ts';
@@ -104,6 +105,23 @@ export default function DataStrip({ params, title, conceptId }: VisualizationPro
           unit={config.unidad ?? ''}
           decimals={config.decimales ?? 1}
           {...(config.dominio ? { domain: config.dominio } : {})}
+        />
+      );
+    case 'forma':
+      return (
+        <ShapeView
+          title={title}
+          families={config.formas ?? [config.forma]}
+          family={config.forma}
+          shape={config.parametro ?? 4}
+          weight={config.peso ?? 0.5}
+          n={config.n ?? 400}
+          focus={config.enfoque}
+          center={config.centro}
+          scale={config.escala}
+          variable={config.variable}
+          unit={config.unidad ?? ''}
+          seed={defaultSeed(conceptId, config.semilla)}
         />
       );
     case 'estandarizar':

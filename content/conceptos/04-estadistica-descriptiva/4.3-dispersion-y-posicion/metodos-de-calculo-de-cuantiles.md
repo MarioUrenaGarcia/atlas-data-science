@@ -64,7 +64,7 @@ La clasificación de Hyndman y Fan reconoce nueve métodos. Los más usados son:
 | 8 | $(p + 1)/3$ | $(n + \tfrac{1}{3})p + \tfrac{1}{3}$ | aproximadamente insesgado para la mediana de cualquier distribución |
 | 9 | $p/4 + 3/8$ | $(n + \tfrac{1}{4})p + \tfrac{3}{8}$ | aproximadamente insesgado si los datos son normales |
 
-Los tipos 1 y 2 no interpolan: toman un dato observado (o el promedio de dos) según la función de distribución empírica.
+Los tipos 1 y 2 no interpolan: toman un dato observado (o el promedio de dos) según la función de distribución empírica. Las visualizaciones comparan ocho de los nueve métodos; se omite el tipo 3, que redondea la posición al dato de índice par más cercano y casi no se usa fuera de un programa estadístico específico.
 
 :::figura[El tercer cuartil de seis tiempos de respuesta con los ocho métodos. Las marcas sobre el eje muestran el valor de cada método; el seleccionado aparece resaltado.]{componente="DataStrip"}
 ```yaml

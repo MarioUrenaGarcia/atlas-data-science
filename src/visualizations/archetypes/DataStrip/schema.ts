@@ -15,6 +15,16 @@ export const CENTER_MEASURES = [
 
 const label = z.string().min(1);
 
+export const SHAPE_FAMILIES = [
+  'normal',
+  'sesgo-derecha',
+  'sesgo-izquierda',
+  'colas-pesadas',
+  'uniforme',
+  'laplace',
+  'mezcla',
+] as const;
+
 export const SPREAD_MEASURES = [
   'rango',
   'varianza',
@@ -24,6 +34,7 @@ export const SPREAD_MEASURES = [
   'riq',
   'mad',
   'dam',
+  'suma',
 ] as const;
 
 const dataset = z
@@ -146,6 +157,23 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       unidad: z.string().optional(),
       dominio: z.tuple([z.number(), z.number()]).optional(),
       decimales: z.number().int().min(0).max(3).optional(),
+    })
+    .strict(),
+  z
+    .object({
+      modo: z.literal('forma'),
+      enfoque: z.enum(['asimetria', 'curtosis', 'modas', 'colas']),
+      forma: z.enum(SHAPE_FAMILIES),
+      /** Families offered in the selector; they should share the same kind of shape control. */
+      formas: z.array(z.enum(SHAPE_FAMILIES)).min(1).max(7).optional(),
+      parametro: z.number().positive().optional(),
+      peso: z.number().min(0.05).max(0.95).optional(),
+      n: z.number().int().min(40).max(2000).optional(),
+      centro: z.number(),
+      escala: z.number().positive(),
+      variable: label,
+      unidad: z.string().optional(),
+      semilla: z.number().int().nonnegative().optional(),
     })
     .strict(),
   z

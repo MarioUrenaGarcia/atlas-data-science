@@ -10,7 +10,7 @@ import {
 } from './index.ts';
 
 export type SpreadMeasure =
-  'rango' | 'varianza' | 'varianza-n' | 'desviacion' | 'cv' | 'riq' | 'mad' | 'dam';
+  'rango' | 'varianza' | 'varianza-n' | 'desviacion' | 'cv' | 'riq' | 'mad' | 'dam' | 'suma';
 
 /** Scale factor that makes the MAD estimate sigma for normal data: 1 / Phi^-1(3/4). */
 export const MAD_NORMAL_SCALE = 1.4826;
@@ -38,6 +38,11 @@ export function spreadMeasure(measure: SpreadMeasure, values: readonly number[])
       return quantile(values, 0.75) - quantile(values, 0.25);
     case 'mad':
       return medianAbsoluteDeviation(values);
+    case 'suma': {
+      // Signed deviations from the mean always add up to zero; kept to show that cancellation.
+      const m = mean(values);
+      return values.reduce((total, value) => total + (value - m), 0);
+    }
     case 'dam':
       return meanAbsoluteDeviation(values);
   }

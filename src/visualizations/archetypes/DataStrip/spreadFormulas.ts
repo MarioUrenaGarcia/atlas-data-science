@@ -13,6 +13,7 @@ export const SPREAD_NAMES: Record<SpreadMeasure, string> = {
   riq: 'Rango intercuartílico',
   mad: 'Desviación absoluta mediana',
   dam: 'Desviación absoluta media',
+  suma: 'Suma de desviaciones con signo',
 };
 
 function list(terms: string[]): string {
@@ -70,6 +71,11 @@ export function spreadFormula(
         return `\\mathrm{MAD} = \\operatorname{mediana}\\{${list(abs).replace(/ \+ /g, ',\\ ')}${revealed < n ? ',\\ \\dots' : ''}\\}`;
       const deviations = sorted(values.map((x) => Math.abs(x - center)));
       return `\\mathrm{MAD} = \\operatorname{mediana}\\{${list(deviations.map(g)).replace(/ \+ /g, ',\\ ')}\\} = ${g(value)}`;
+    }
+    case 'suma': {
+      const terms = shown.map((x) => `(${g(x - center)})`);
+      const partial = shown.reduce((total, x) => total + (x - center), 0);
+      return `\\sum_i (x_i - \\bar{x}) =${list(terms)}${pending} = ${g(Math.abs(partial) < 1e-9 ? 0 : partial)}`;
     }
     case 'dam': {
       const abs = shown.map((x) => `|${f(x)} - ${g(center)}|`);
