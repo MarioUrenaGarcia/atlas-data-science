@@ -8,7 +8,12 @@ import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { useRandomSource, useResettableState, useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import { DISTRIBUTION_SPECS, specValues, withRanges } from '../../shared/distributionSpecs.ts';
+import {
+  DISTRIBUTION_SPECS,
+  referenceValues,
+  specValues,
+  withRanges,
+} from '../../shared/distributionSpecs.ts';
 import { plotWindow } from '../../shared/plotWindow.ts';
 import type { VisualizationProps } from '../../types.ts';
 import { Button } from '../../../components/ui/Button.tsx';
@@ -160,12 +165,15 @@ export default function DistributionExplorer({ params, conceptId, title }: Visua
       config.rangos,
     );
     const linked = linkedValues(config.referencia.enlace, distributionValues);
-    return {
-      distribution: referenceSpec.create(
-        specValues(referenceSpec, { ...config.referencia.valores, ...linked }),
-      ),
-      label: config.referencia.etiqueta,
-    };
+    const requested = { ...config.referencia.valores, ...linked };
+    let distribution;
+    try {
+      distribution = referenceSpec.create(referenceValues(referenceSpec, requested));
+    } catch {
+      // Linked values can leave the valid parameter space at extreme slider positions.
+      distribution = referenceSpec.create(specValues(referenceSpec, requested));
+    }
+    return { distribution, label: config.referencia.etiqueta };
   }, [config.referencia, config.rangos, distributionValues]);
 
   const domain = useMemo<[number, number]>(

@@ -19,8 +19,13 @@ export function FormulaLine({ tex }: FormulaLineProps) {
   useLayoutEffect(() => {
     const element = ref.current;
     if (!element) return;
-    const check = () => setOverflows(element.scrollWidth > element.clientWidth + 1);
+    // Any overflow, even of a single pixel, makes the box scrollable for
+    // assistive technology, so there is no tolerance in the comparison.
+    const check = () => setOverflows(element.scrollWidth > element.clientWidth);
     check();
+    // Font metrics change once the math fonts load, which can widen the formula
+    // after the first measurement.
+    void document.fonts?.ready.then(check);
     // The content can widen without the container resizing (for example when
     // the math fonts finish loading), so both boxes are observed.
     const observer = new ResizeObserver(check);
