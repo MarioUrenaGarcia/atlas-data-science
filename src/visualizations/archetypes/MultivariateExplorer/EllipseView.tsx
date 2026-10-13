@@ -59,7 +59,7 @@ export function EllipseView({ config, conceptId, title }: EllipseViewProps) {
     () => [
       ...bivariateDefinitions(initial),
       ...(mode === 'elipse'
-        ? [num('nivel', 'Nivel de confianza', 'q', 0.5, 0.995, 0.005, initial.nivel ?? 0.95, 3)]
+        ? [num('nivel', 'Nivel de confianza', 'q', 0.5, 0.995, 0.001, initial.nivel ?? 0.95, 3)]
         : []),
       ...(mode === 't' ? [num('nu', 'Grados de libertad', 'ν', 1, 30, 1, initial.nu ?? 3, 0)] : []),
       {

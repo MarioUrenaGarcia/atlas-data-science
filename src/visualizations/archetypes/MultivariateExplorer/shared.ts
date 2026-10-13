@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import type { Matrix, Vector } from '../../../lib/linalg/index.ts';
-import type { Random } from '../../../lib/random/index.ts';
+import { Random } from '../../../lib/random/index.ts';
 import type { NumberParameter, ParameterDefinition } from '../../core/parameters.ts';
 import { usePlayback, type Playback } from '../../core/usePlayback.ts';
 import { useRandomSource, useResettableState, type SeedState } from '../../core/useSeededRandom.ts';
@@ -58,16 +58,26 @@ export function matrixText(matrix: Matrix, digits = 2): string {
 }
 
 /** Samples drawn on demand, kept until the parameters, the seed or a restart change them. */
+/** Mixed into the seed so the first batch does not repeat the playback draws. */
+const INITIAL_BATCH_SALT = 0x9e3779b9;
+
 export function useSamples<T>(
   seed: SeedState,
   runKey: string,
   draw: (random: Random) => T,
-  options: { max: number; rate: number },
+  options: { max: number; rate: number; initial?: number },
 ): { samples: T[]; stepMany: (count: number) => void; playback: Playback } {
   const [run, setRun] = useState(0);
   const key = `${runKey}|${run}|${seed.seed}`;
   const random = useRandomSource(seed.seed, key);
-  const [samples, update] = useResettableState<T[]>(key, () => []);
+  // An optional first batch comes from its own generator, derived from the
+  // seed, so the chart opens with something to read and stays reproducible.
+  const [samples, update] = useResettableState<T[]>(key, () => {
+    const count = options.initial ?? 0;
+    if (count === 0) return [];
+    const generator = new Random((seed.seed ^ INITIAL_BATCH_SALT) >>> 0);
+    return Array.from({ length: count }, () => draw(generator));
+  });
   const stepMany = useCallback(
     (count: number) => {
       const generator = random();

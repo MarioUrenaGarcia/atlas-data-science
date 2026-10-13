@@ -67,6 +67,7 @@ export function LkjView({ config, conceptId, title }: LkjViewProps) {
   const { samples, stepMany, playback } = useSamples(seed, `${d}|${eta}`, draw, {
     max: MAX_SAMPLES,
     rate: SAMPLES_PER_SECOND,
+    initial: 20,
   });
   const r12 = samples.map((m) => m[0]?.[1] ?? 0);
   const bars = useMemo(() => {

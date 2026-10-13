@@ -117,6 +117,7 @@ export function WishartView({ config, conceptId, title }: WishartViewProps) {
   const { samples, stepMany, playback } = useSamples(seed, `${nu}|${s1}|${s2}|${rho}`, draw, {
     max: MAX_MATRICES,
     rate: MATRICES_PER_SECOND,
+    initial: 12,
   });
   const last = samples[samples.length - 1];
   const average = samples.length
