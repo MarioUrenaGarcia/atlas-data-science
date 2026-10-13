@@ -94,6 +94,13 @@ punto: [3, 2]
 
 - **Derivada direccional nula:** en un punto con gradiente cero, la derivada en cualquier dirección es 0.
 - **Máximos:** las mismas pruebas con la desigualdad invertida: $\nabla f = \mathbf{0}$ y $\mathbf{H}_f \prec 0$ bastan para un máximo local estricto.
+
+:::figura[Las dos colinas tienen tres puntos críticos: dos máximos, en $(-0.99, -0.50)$ y $(1.00, 0.50)$, con hessiana definida negativa, y una silla entre ellos, en $(-0.18, -0.09)$.]{componente="SurfaceViz"}
+```yaml
+modo: criticos
+campos: [dos-colinas]
+```
+:::
 - **Funciones convexas:** si $f$ es convexa y diferenciable, $\nabla f(\mathbf{x}^*) = \mathbf{0}$ basta para un mínimo global.
 - **Criterio de parada:** los algoritmos se detienen cuando $\lVert \nabla f(\mathbf{x}_k) \rVert$ es menor que una tolerancia, una versión aproximada de la condición de primer orden.
 - **Con restricciones:** en la frontera de la región factible el gradiente no tiene que anularse y las condiciones se reemplazan por las de Karush-Kuhn-Tucker.
