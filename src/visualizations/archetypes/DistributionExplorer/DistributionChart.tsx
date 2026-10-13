@@ -9,6 +9,8 @@ import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
 import { CurvePath, type XY } from '../../core/svg/CurvePath.tsx';
 import { DraggablePoint } from '../../core/svg/DraggablePoint.tsx';
 import styles from '../../core/svg/svg.module.css';
+import { inRegion, usesSecondBound } from './regions.ts';
+import type { Region } from './schema.ts';
 
 export type ChartView = 'densidad' | 'acumulada';
 
@@ -17,8 +19,10 @@ interface DistributionChartProps {
   reference: { distribution: Distribution; label: string } | null;
   domain: [number, number];
   view: ChartView;
+  /** Region bounds a and b, in the order they were set. */
   from: number;
   to: number;
+  region: Region;
   probability: number;
   samples: readonly number[];
   showSamples: boolean;
@@ -27,6 +31,8 @@ interface DistributionChartProps {
 }
 
 const CURVE_POINTS = 320;
+/** Radius of the markers of a discrete reference distribution. */
+const REFERENCE_MARKER = 3.5;
 const HISTOGRAM_BINS = 40;
 /** Densities that diverge (beta with a < 1) are clipped so the rest stays readable. */
 const MAX_DENSITY = 4;
@@ -38,6 +44,7 @@ export function DistributionChart({
   view,
   from,
   to,
+  region,
   probability,
   samples,
   showSamples,
@@ -63,15 +70,27 @@ export function DistributionChart({
     return points;
   }, [lo, hi, distribution, view]);
 
+  // A discrete reference has mass only at integers; sampling it on the
+  // continuous grid would miss almost every atom.
+  const discreteReference = reference?.distribution.kind === 'discrete' && view === 'densidad';
   const referenceCurve = useMemo<XY[] | null>(() => {
     if (!reference) return null;
+    if (discreteReference) {
+      const support = reference.distribution.support;
+      const first = Math.ceil(Math.max(lo, support[0]));
+      const last = Math.floor(Math.min(hi, support[1]));
+      return Array.from({ length: Math.max(0, last - first + 1) }, (_, index) => {
+        const k = first + index;
+        return { x: k, y: density(reference.distribution, k) };
+      });
+    }
     return Array.from({ length: CURVE_POINTS + 1 }, (_, i) => {
       const x = lo + ((hi - lo) * i) / CURVE_POINTS;
       const y =
         view === 'densidad' ? density(reference.distribution, x) : reference.distribution.cdf(x);
       return { x, y: Number.isFinite(y) ? Math.min(y, MAX_DENSITY) : MAX_DENSITY };
     });
-  }, [lo, hi, reference, view]);
+  }, [lo, hi, reference, view, discreteReference]);
 
   const histogram = useMemo<Bar[]>(() => {
     if (!showSamples || samples.length === 0 || view !== 'densidad') return [];
@@ -122,7 +141,7 @@ export function DistributionChart({
   const quantile = distribution.quantile(probability);
 
   return (
-    <ChartSvg label={label} aspect={0.55}>
+    <ChartSvg label={label} aspect={0.55} interactive={view === 'densidad'}>
       {(box) => {
         const x = scaleLinear()
           .domain([lo, hi])
@@ -133,7 +152,16 @@ export function DistributionChart({
           .range([box.inner.top + box.inner.height, box.inner.top]);
         const baseline = box.inner.top + box.inner.height;
         const toData = (px: number) => Math.min(hi, Math.max(lo, x.invert(px)));
-        const shaded = curve.filter((point) => point.x >= from && point.x <= to);
+        // Contiguous runs of the curve inside the region, each filled on its own (the tails give two).
+        const shadedRuns: XY[][] = [];
+        for (const point of curve) {
+          if (!inRegion(region, from, to, point.x)) continue;
+          const run = shadedRuns.at(-1);
+          const previous = run?.at(-1);
+          const gap = previous ? point.x - previous.x > ((hi - lo) / CURVE_POINTS) * 1.5 : true;
+          if (!run || gap) shadedRuns.push([point]);
+          else run.push(point);
+        }
         const stemWidth = Math.max(
           2,
           Math.min(18, (box.inner.width / Math.max(1, integers.length)) * 0.5),
@@ -162,7 +190,7 @@ export function DistributionChart({
             {view === 'densidad' && discrete && (
               <g aria-hidden="true">
                 {integers.map((k) => {
-                  const inside = k >= from && k <= to;
+                  const inside = inRegion(region, from, to, k);
                   const top = y(density(distribution, k));
                   return (
                     <rect
@@ -181,18 +209,21 @@ export function DistributionChart({
 
             {view === 'densidad' && !discrete && (
               <>
-                {shaded.length > 1 && (
-                  <CurvePath
-                    points={shaded}
-                    xScale={x}
-                    yScale={y}
-                    color={DATA_COLORS.secondary}
-                    fill
-                    fillOpacity={0.3}
-                    width={0}
-                    animate={false}
-                  />
-                )}
+                {shadedRuns
+                  .filter((run) => run.length > 1)
+                  .map((run, index) => (
+                    <CurvePath
+                      key={index}
+                      points={run}
+                      xScale={x}
+                      yScale={y}
+                      color={DATA_COLORS.secondary}
+                      fill
+                      fillOpacity={0.3}
+                      width={0}
+                      animate={false}
+                    />
+                  ))}
                 <CurvePath
                   points={curve}
                   xScale={x}
@@ -245,6 +276,21 @@ export function DistributionChart({
                 dashed
               />
             )}
+            {referenceCurve && discreteReference && (
+              <g aria-hidden="true">
+                {referenceCurve.map((point) => (
+                  <circle
+                    key={point.x}
+                    cx={x(point.x)}
+                    cy={y(point.y)}
+                    r={REFERENCE_MARKER}
+                    fill="var(--color-surface)"
+                    stroke={DATA_COLORS.muted}
+                    strokeWidth={1.5}
+                  />
+                ))}
+              </g>
+            )}
 
             {Number.isFinite(quantile) && quantile >= lo && quantile <= hi && (
               <g aria-hidden="true">
@@ -279,19 +325,26 @@ export function DistributionChart({
                   y={baseline}
                   color={DATA_COLORS.secondary}
                   axis="x"
-                  label="Extremo inferior del intervalo"
+                  label="Límite a de la región"
                   valueText={`a = ${from.toFixed(2)}`}
-                  onDrag={(px) => onIntervalChange(Math.min(toData(px), to), to)}
+                  onDrag={(px) =>
+                    onIntervalChange(
+                      usesSecondBound(region) ? Math.min(toData(px), to) : toData(px),
+                      to,
+                    )
+                  }
                 />
-                <DraggablePoint
-                  x={x(to)}
-                  y={baseline}
-                  color={DATA_COLORS.secondary}
-                  axis="x"
-                  label="Extremo superior del intervalo"
-                  valueText={`b = ${to.toFixed(2)}`}
-                  onDrag={(px) => onIntervalChange(from, Math.max(toData(px), from))}
-                />
+                {usesSecondBound(region) && (
+                  <DraggablePoint
+                    x={x(to)}
+                    y={baseline}
+                    color={DATA_COLORS.secondary}
+                    axis="x"
+                    label="Límite b de la región"
+                    valueText={`b = ${to.toFixed(2)}`}
+                    onDrag={(px) => onIntervalChange(from, Math.max(toData(px), from))}
+                  />
+                )}
               </>
             )}
           </>

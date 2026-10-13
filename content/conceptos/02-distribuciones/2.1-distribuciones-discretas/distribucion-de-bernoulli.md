@@ -24,13 +24,43 @@ resumen: >
   codificados como 1 y 0. Es la pieza con la que se construyen la binomial, la geométrica y otras.
 formula: 'P(X = 1) = p, \quad P(X = 0) = 1 - p'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: moneda
-    valores:
-      p: 0.75
-    exito: Encesta
-    fracaso: Falla
+    explorador:
+      distribucion: bernoulli
+      valores:
+        p: 0.12
+      casos:
+        - nombre: 'Fiebre tras vacuna'
+          descripcion: 'p = 0.12: la barra del 1 es baja; el evento ocurre en uno de cada ocho casos aproximadamente.'
+          valores: {p: 0.12}
+        - nombre: 'Tiro libre'
+          descripcion: 'p = 0.75: la barra del 1 domina; una jugadora encesta tres de cada cuatro tiros.'
+          valores: {p: 0.75}
+        - nombre: 'Prueba A/B'
+          descripcion: 'p = 0.5: asignar a cada usuario al grupo A o al B al azar; los dos resultados pesan igual.'
+          valores: {p: 0.5}
+        - nombre: 'Clic en un anuncio'
+          descripcion: 'p = 0.1: éxito raro; un visitante hace clic en uno de cada diez casos y la barra del 1 es baja.'
+          valores: {p: 0.1}
+        - nombre: 'Máquina confiable'
+          descripcion: 'p = 0.9: éxito casi seguro; una máquina arranca bien nueve de cada diez veces.'
+          valores: {p: 0.9}
+      ejemplo:
+        titulo: 'Fiebre tras la vacuna'
+        contexto: 'El 12 % de los pacientes presenta fiebre leve después de una vacuna.'
+        pregunta: '¿Qué probabilidad hay de que un paciente elegido al azar presente fiebre?'
+        valores: {p: 0.12}
+        region: derecha
+        desde: 1
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: moneda
+        valores:
+          p: 0.75
+        exito: Encesta
+        fracaso: Falla
 referencias:
   - clave: blitzstein-hwang
     capitulo: '3'
@@ -59,6 +89,14 @@ De forma compacta, $P(X = k) = p^{k}(1 - p)^{1 - k}$ para $k \in \{0, 1\}$.
 
 Si $A$ es un evento con $P(A) = p$, su indicadora $\mathbf{1}\{A\}$, que vale 1 cuando ocurre $A$ y 0 cuando no, tiene distribución $\operatorname{Bernoulli}(p)$. Un **ensayo de Bernoulli** es un experimento cuyo resultado se registra de esta manera.
 
+:::nota[Qué es X]
+$X$ = el resultado de un solo intento: 1 si sale bien (éxito) y 0 si sale mal (fracaso).
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$p$, probabilidad de éxito:** la probabilidad de que ese único intento salga bien. Si aumenta, la barra del 1 crece y la del 0 baja exactamente lo mismo, porque las dos suman 1.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: resultado codificado, 1 para éxito y 0 para fracaso.
 - $p$: probabilidad de éxito, entre 0 y 1.
@@ -69,9 +107,9 @@ Si $A$ es un evento con $P(A) = p$, su indicadora $\mathbf{1}\{A\}$, que vale 1 
 
 ## Cómo usar la visualización
 
-Cada experimento es un tiro libre: la ficha se rellena con E cuando la jugadora encesta y queda vacía con F cuando falla. Debajo se acumulan las frecuencias relativas de 0 y 1 frente a las probabilidades teóricas $1 - p$ y $p$. El panel compara la media y la varianza teóricas, $p$ y $p(1 - p)$, con las de los resultados.
+La pestaña Distribución muestra las dos barras, $1 - p$ en el 0 y $p$ en el 1, con la región elegida y su probabilidad; el panel da la media $p$ y la varianza $p(1 - p)$. Los casos cargan situaciones con probabilidades distintas y el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge lanza tiros libres y acumula los resultados.
 
-Con $p = 0.75$ la barra del 1 se estabiliza cerca de 0.75 y la media de los resultados también, porque el promedio de unos y ceros es la proporción de éxitos. Al llevar $p$ a 0.5 la varianza teórica sube a su máximo, 0.25. Con $p = 0$ o $p = 1$ el resultado es siempre el mismo y la varianza vale cero.
+Al llevar $p$ a 0.5 la varianza llega a su máximo, 0.25; con $p = 0$ o $p = 1$ vale cero. Con el botón de simulación, la media de las muestras se acerca a $p$, porque el promedio de unos y ceros es la proporción de éxitos.
 
 ## Ejemplo
 
@@ -82,13 +120,55 @@ Después de aplicar una vacuna, el 12 % de los pacientes presenta fiebre leve. P
 3. Segundo momento: como $X^2 = X$, $\mathbb{E}[X^2] = 0.12$.
 4. Varianza: $\operatorname{Var}(X) = 0.12 - 0.12^2 = 0.12 \cdot 0.88 = 0.1056$, con desviación estándar $\sqrt{0.1056} \approx 0.325$.
 
-:::figura[Un paciente tras la vacuna: la ficha marca F cuando aparece fiebre. La frecuencia del 1 se estabiliza cerca de 0.12 y la del 0 cerca de 0.88.]{componente="DistributionGenesis"}
+:::figura[Un paciente tras la vacuna: la ficha se rellena cuando aparece fiebre y queda vacía cuando no. La frecuencia del 1 se estabiliza cerca de 0.12 y la del 0 cerca de 0.88.]{componente="DistributionGenesis"}
 ```yaml
 proceso: moneda
 valores:
   p: 0.12
 exito: Fiebre
 fracaso: Sin fiebre
+```
+:::
+
+:::figura[El ejemplo en la visualización: el botón carga los parámetros y la región de "Fiebre tras la vacuna" y muestra la probabilidad pedida.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.12
+ejemplo:
+  titulo: 'Fiebre tras la vacuna'
+  contexto: 'El 12 % de los pacientes presenta fiebre leve después de una vacuna.'
+  pregunta: '¿Qué probabilidad hay de que un paciente elegido al azar presente fiebre?'
+  valores: {p: 0.12}
+  region: derecha
+  desde: 1
+region: derecha
+desde: 1
+muestras: false
+```
+:::
+
+Segundo ejemplo, clic en un anuncio. Un anuncio tiene una tasa de clics del 10 % y para cada visitante se anota $X = 1$ si hace clic y $X = 0$ si no, de modo que $X \sim \operatorname{Bernoulli}(0.1)$.
+
+1. La pregunta es $P(X \ge 1)$, que para una Bernoulli es lo mismo que $P(X = 1)$.
+2. $P(X = 1) = p = 0.1$.
+3. Media $0.1$ y varianza $0.1 \cdot 0.9 = 0.09$: en mil visitantes se esperan unos 100 clics.
+
+:::figura[Clic en un anuncio: la región X ≥ 1 sombrea solo la barra del 1, que vale 0.1. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.1
+ejemplo:
+  titulo: 'Clic en un anuncio'
+  contexto: 'Un anuncio tiene una tasa de clics del 10 %.'
+  pregunta: '¿Qué probabilidad hay de que un visitante haga clic?'
+  valores: {p: 0.1}
+  region: derecha
+  desde: 1
+region: derecha
+desde: 1
+muestras: false
 ```
 :::
 
@@ -99,6 +179,30 @@ fracaso: Sin fiebre
 - **Simetría:** $1 - X \sim \operatorname{Bernoulli}(1 - p)$; intercambiar los nombres de éxito y fracaso refleja la distribución.
 - **Suma de ensayos:** la suma de $n$ variables $\operatorname{Bernoulli}(p)$ independientes es $\operatorname{Bin}(n, p)$.
 - **Producto:** si $X$ y $Y$ son Bernoulli independientes con parámetros $p$ y $q$, entonces $XY \sim \operatorname{Bernoulli}(pq)$, porque $XY = 1$ solo cuando ambas valen 1.
+
+:::figura[Casos con contexto (fiebre tras vacuna, tiro libre, prueba A/B, clic en un anuncio, máquina confiable): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.12
+casos:
+  - nombre: 'Fiebre tras vacuna'
+    descripcion: 'p = 0.12: la barra del 1 es baja; el evento ocurre en uno de cada ocho casos aproximadamente.'
+    valores: {p: 0.12}
+  - nombre: 'Tiro libre'
+    descripcion: 'p = 0.75: la barra del 1 domina; una jugadora encesta tres de cada cuatro tiros.'
+    valores: {p: 0.75}
+  - nombre: 'Prueba A/B'
+    descripcion: 'p = 0.5: asignar a cada usuario al grupo A o al B al azar; los dos resultados pesan igual.'
+    valores: {p: 0.5}
+  - nombre: 'Clic en un anuncio'
+    descripcion: 'p = 0.1: éxito raro; un visitante hace clic en uno de cada diez casos y la barra del 1 es baja.'
+    valores: {p: 0.1}
+  - nombre: 'Máquina confiable'
+    descripcion: 'p = 0.9: éxito casi seguro; una máquina arranca bien nueve de cada diez veces.'
+    valores: {p: 0.9}
+```
+:::
 
 :::figura[Varianza máxima con p = 0.5: los dos valores tienen la misma masa y la varianza alcanza 0.25.]{componente="DistributionExplorer"}
 ```yaml
@@ -160,7 +264,24 @@ valores:
 
 ## Conexiones
 
-Repetir ensayos de Bernoulli independientes y contar los éxitos da la [[distribucion-binomial]]; contar los ensayos hasta el primer éxito da la [[distribucion-geometrica]], y hasta el éxito número $r$, la [[distribucion-binomial-negativa]]. Con más de dos resultados el modelo se generaliza a la [[distribucion-categorica]]. Codificar los dos resultados como $-1$ y $+1$ con probabilidad 1/2 da la [[distribucion-de-rademacher]]. Con $p = 1/2$, la Bernoulli es la [[distribucion-uniforme-discreta]] sobre $\{0, 1\}$.
+Repetir ensayos de Bernoulli independientes y contar los éxitos da la [[distribucion-binomial]]; contar los ensayos hasta el primer éxito da la [[distribucion-geometrica]], y hasta el éxito número $r$, la [[distribucion-binomial-negativa]]. Con más de dos resultados el modelo se generaliza a la [[distribucion-categorica]]. Codificar los dos resultados como $-1$ y $+1$ con probabilidad 1/2 da la [[distribucion-de-rademacher]]. Con $p = 1/2$, la Bernoulli es la [[distribucion-uniforme-discreta]] sobre $\{0, 1\}$. A la inversa, una binomial con $n = 1$ es una Bernoulli, como muestra la figura siguiente. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Bernoulli y binomial: la Bernoulli con p = 0.3 (barras) coincide con la binomial con n = 1 y la misma p (línea punteada). Al mover p, la binomial lo sigue.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.3
+muestras: false
+referencia:
+  distribucion: binomial
+  valores:
+    n: 1
+  enlace:
+    p: {de: [p]}
+  etiqueta: Binomial con n = 1 y la misma p
+  visible: true
+```
+:::
 
 ## Formulario
 

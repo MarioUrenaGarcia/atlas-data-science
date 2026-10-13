@@ -26,13 +26,38 @@ resumen: >
   visitas a páginas o tamaños de ciudades: pocos elementos concentran gran parte de los casos.
 formula: 'P(K = k) = \frac{k^{-s}}{H_{N,s}}, \quad H_{N,s} = \sum_{j=1}^{N} j^{-s}'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: ranking
-    valores:
-      N: 30
-      s: 1
-    etiquetas: [de, la, que, el, en, y, a, los, se, del, las, un]
+    explorador:
+      distribucion: zipf
+      valores:
+        N: 50
+        s: 1
+      casos:
+        - nombre: 'Palabras de un texto'
+          descripcion: 'N = 50 y s = 1: la primera palabra se lleva casi un cuarto y la segunda la mitad de eso.'
+          valores: {N: 50, s: 1}
+        - nombre: 'Popularidad pareja'
+          descripcion: 's = 0: todos los rangos tienen la misma probabilidad; desaparece la ley de potencia.'
+          valores: {N: 50, s: 0}
+        - nombre: 'Mercado concentrado'
+          descripcion: 's = 2: el primer rango se lleva 0.62 y los cinco primeros el 90 %.'
+          valores: {N: 50, s: 2}
+      ejemplo:
+        titulo: 'Tráfico de un sitio'
+        contexto: 'Las visitas a un sitio de 50 páginas siguen una ley de Zipf con exponente 1.'
+        pregunta: '¿Qué fracción del tráfico reciben las cinco páginas más visitadas?'
+        valores: {N: 50, s: 1}
+        region: izquierda
+        desde: 5
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: ranking
+        valores:
+          N: 30
+          s: 1
+        etiquetas: [de, la, que, el, en, y, a, los, se, del, las, un]
 referencias:
   - clave: newman
   - clave: murphy
@@ -58,6 +83,15 @@ $$
 
 El denominador $H_{N,s}$, el número armónico generalizado, hace que las probabilidades sumen uno. Con infinitos rangos, $N = \infty$, la suma converge solo si $s > 1$ y el denominador es la función zeta de Riemann $\zeta(s)$; esa versión se llama distribución zeta.
 
+:::nota[Qué representa la variable]
+$K$ = el rango del elemento elegido: 1 para el más frecuente, 2 para el segundo y así sucesivamente.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$N$, número de elementos:** cuántos elementos distintos hay. Si aumenta, aparecen más rangos posibles y la cola se alarga.
+- **$s$, exponente:** qué tan rápido cae la probabilidad con el rango. Si aumenta, la masa se concentra en los primeros rangos.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $K$: rango del elemento elegido; 1 es el más frecuente.
 - $k$: un rango particular.
@@ -70,9 +104,9 @@ El denominador $H_{N,s}$, el número armónico generalizado, hace que las probab
 
 ## Cómo usar la visualización
 
-Las barras de arriba son las palabras ordenadas por rango, con altura proporcional a $k^{-s}$. Cada extracción toma una palabra al azar e ilumina su barra; el rango obtenido se acumula en el histograma de abajo. La pestaña "Escala log-log" dibuja la frecuencia contra el rango con ambos ejes logarítmicos.
+La pestaña Distribución muestra la probabilidad de cada rango, la región elegida y su probabilidad; los casos cargan una ley de Zipf típica, una distribución pareja y un mercado concentrado, y el ejemplo de la ficha se carga con su botón. La pestaña Ver cómo surge extrae palabras de un texto y acumula su rango; allí la vista log-log muestra la recta de pendiente $-s$.
 
-Con $s = 1$ casi un cuarto de las extracciones es la palabra "de" y las primeras diez palabras reúnen el 73 % de los casos. En la vista log-log la curva teórica es una recta de pendiente $-1$ y los puntos simulados la siguen en los primeros rangos, con más ruido en la cola. Al bajar $s$ a 0 todas las palabras son igual de probables; al subirlo a 2 casi todo se concentra en las tres primeras.
+Al subir $s$ la masa se concentra en los primeros rangos. La región hasta 5 da la fracción que acaparan los cinco primeros.
 
 ## Ejemplo
 
@@ -90,8 +124,15 @@ distribucion: zipf
 valores:
   N: 50
   s: 1
-desde: 1
-hasta: 5
+ejemplo:
+  titulo: 'Tráfico de un sitio'
+  contexto: 'Las visitas a un sitio de 50 páginas siguen una ley de Zipf con exponente 1.'
+  pregunta: '¿Qué fracción del tráfico reciben las cinco páginas más visitadas?'
+  valores: {N: 50, s: 1}
+  region: izquierda
+  desde: 5
+region: izquierda
+desde: 5
 muestras: false
 ```
 :::
@@ -114,6 +155,25 @@ etiquetas: [Inicio, Productos, Precios, Contacto, Ayuda]
 - **Concentración:** al aumentar $s$ la masa se concentra en los primeros rangos.
 - **Momentos:** $\mathbb{E}[K] = H_{N,s-1}/H_{N,s}$ y $\mathbb{E}[K^{2}] = H_{N,s-2}/H_{N,s}$.
 - **Versión infinita:** con $N = \infty$ la media existe solo si $s > 2$ y la varianza solo si $s > 3$.
+
+:::figura[Tres casos con contexto (palabras de un texto, popularidad pareja, mercado concentrado): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: zipf
+valores:
+  N: 50
+  s: 1
+casos:
+  - nombre: 'Palabras de un texto'
+    descripcion: 'N = 50 y s = 1: la primera palabra se lleva casi un cuarto y la segunda la mitad de eso.'
+    valores: {N: 50, s: 1}
+  - nombre: 'Popularidad pareja'
+    descripcion: 's = 0: todos los rangos tienen la misma probabilidad; desaparece la ley de potencia.'
+    valores: {N: 50, s: 0}
+  - nombre: 'Mercado concentrado'
+    descripcion: 's = 2: el primer rango se lleva 0.62 y los cinco primeros el 90 %.'
+    valores: {N: 50, s: 2}
+```
+:::
 
 :::figura[En escala log-log la ley de Zipf es una recta de pendiente -s. Los puntos simulados se alinean en los primeros rangos y se dispersan en la cola.]{componente="DistributionGenesis"}
 ```yaml
@@ -167,7 +227,7 @@ semilla: 7
 
 ## Conexiones
 
-La Zipf es una [[distribucion-categorica]] cuyas probabilidades siguen una ley de potencia en el rango; con $s = 0$ se reduce a la [[distribucion-uniforme-discreta]]. Su normalización es una suma armónica, y la versión infinita requiere la convergencia de una [[series-y-convergencia-de-series|serie]] $p$. Es la contraparte discreta de la distribución de Pareto y aparece en el análisis de redes con distribuciones de grado de cola pesada. Junto con la [[distribucion-logaritmica]], se usa para describir abundancias muy desiguales.
+La Zipf es una [[distribucion-categorica]] cuyas probabilidades siguen una ley de potencia en el rango; con $s = 0$ se reduce a la [[distribucion-uniforme-discreta]]. Su normalización es una suma armónica, y la versión infinita requiere la convergencia de una [[series-y-convergencia-de-series|serie]] $p$. Es la contraparte discreta de la distribución de Pareto y aparece en el análisis de redes con distribuciones de grado de cola pesada. Junto con la [[distribucion-logaritmica]], se usa para describir abundancias muy desiguales. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

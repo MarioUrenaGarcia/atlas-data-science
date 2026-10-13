@@ -6,7 +6,7 @@ import {
   type LdPopulationId,
 } from '../../../lib/limits/largeDeviations.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { FunctionPlot } from '../../core/svg/FunctionPlot.tsx';
 import { useParameters } from '../../core/useParameters.ts';
@@ -172,11 +172,9 @@ export function LargeDeviationsView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`P(\\bar{X}_{${n}} \\ge ${formatNumber(a, 2)}) = ${logToTex(row.exact)}\\ \\le\\ e^{-${n}\\cdot ${formatNumber(rate, 4)}}`}
-        />
-      </p>
+      <FormulaLine
+        tex={`P(\\bar{X}_{${n}} \\ge ${formatNumber(a, 2)}) = ${logToTex(row.exact)}\\ \\le\\ e^{-${n}\\cdot ${formatNumber(rate, 4)}}`}
+      />
       <p className={styles.panelTitle}>Probabilidad de la cola según n (escala logarítmica)</p>
       <SeriesChart
         series={[

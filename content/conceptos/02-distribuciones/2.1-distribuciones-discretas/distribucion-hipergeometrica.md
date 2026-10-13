@@ -25,15 +25,46 @@ resumen: >
   elementos con K marcados. Las extracciones dependen entre sí, a diferencia de la binomial.
 formula: 'P(X = k) = \frac{\binom{K}{k}\binom{N - K}{n - k}}{\binom{N}{n}}'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: urna
-    valores:
-      N: 50
-      K: 10
-      n: 12
-    exito: Marcado
-    fracaso: Sin marca
+    explorador:
+      distribucion: hipergeometrica
+      valores:
+        N: 20
+        K: 4
+        n: 5
+      casos:
+        - nombre: 'Lote de medicamentos'
+          descripcion: 'N = 20, K = 4 y n = 5: casi siempre aparecen 0, 1 o 2 caducados.'
+          valores: {N: 20, K: 4, n: 5}
+        - nombre: 'Peces marcados'
+          descripcion: 'N = 50, K = 10 y n = 12: media 2.4, menos dispersa que una binomial con p = 0.2.'
+          valores: {N: 50, K: 10, n: 12}
+        - nombre: 'Muestra casi completa'
+          descripcion: 'N = 12, K = 6 y n = 10: con la muestra cerca del total, el conteo queda casi fijo alrededor de 5.'
+          valores: {N: 12, K: 6, n: 10}
+      ejemplo:
+        titulo: 'Detectar caducados'
+        contexto: 'Un lote de 20 frascos tiene 4 caducados y un inspector revisa 5 sin reemplazo.'
+        pregunta: '¿Qué probabilidad hay de que la inspección detecte al menos un caducado?'
+        valores: {N: 20, K: 4, n: 5}
+        region: derecha
+        desde: 1
+      referencia:
+        distribucion: binomial
+        valores: {n: 5, p: 0.2}
+        etiqueta: 'Con reemplazo (binomial)'
+        visible: false
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: urna
+        valores:
+          N: 50
+          K: 10
+          n: 12
+        exito: Marcado
+        fracaso: Sin marca
 referencias:
   - clave: blitzstein-hwang
     capitulo: '3'
@@ -61,6 +92,16 @@ $$
 
 El numerador elige $k$ marcados entre los $K$ y $n - k$ sin marca entre los $N - K$; el denominador cuenta todas las muestras posibles. Los límites de $k$ garantizan que ninguna de esas elecciones sea imposible.
 
+:::nota[Qué es X]
+$X$ = el número de elementos marcados que salen en una muestra tomada sin reemplazo.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$N$, tamaño de la población:** cuántos elementos hay en total. Si aumenta, con $K$ y $n$ fijos hay menos marcados en proporción y la masa se va a la izquierda.
+- **$K$, marcados en la población:** cuántos elementos tienen la característica que se cuenta. Si aumenta, se esperan más marcados en la muestra.
+- **$n$, tamaño de la muestra:** cuántos elementos se extraen sin reemplazo. Si aumenta, se esperan más marcados y la distribución se ensancha.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: número de elementos marcados en la muestra.
 - $N$: tamaño de la población.
@@ -74,9 +115,9 @@ El numerador elige $k$ marcados entre los $K$ y $n - k$ sin marca entre los $N -
 
 ## Cómo usar la visualización
 
-La urna de la izquierda contiene $N$ bolas, $K$ de ellas de color. Cada extracción mueve una bola a la bandeja de la derecha y deja un hueco punteado en la urna. Al completar las $n$ extracciones, el número de bolas de color cae en el histograma, que se compara con la función de masa hipergeométrica.
+La pestaña Distribución muestra la función de masa hipergeométrica, la región elegida y su probabilidad; los casos cargan un lote pequeño, un estanque con peces marcados y una muestra casi completa, y el ejemplo de la ficha se carga con su botón. La comparación superpone la binomial con la misma proporción, que corresponde a extraer con reemplazo. La pestaña Ver cómo surge saca bolas de una urna sin devolverlas.
 
-Con $N = 50$, $K = 10$ y $n = 12$ la media es $12 \cdot 10/50 = 2.4$. Al activar "Extraer con reemplazo", las bolas regresan a la urna, el modelo pasa a ser binomial y la varianza teórica sube de 1.49 a 1.92. Al activar la comparación se dibujan ambas distribuciones a la vez; con $n$ cercano a $N$ la diferencia es enorme.
+Con la muestra casi completa la hipergeométrica se vuelve muy angosta frente a la binomial. Con una población grande y una muestra pequeña, ambas casi coinciden.
 
 ## Ejemplo
 
@@ -107,9 +148,21 @@ valores:
   N: 20
   K: 4
   n: 5
+ejemplo:
+  titulo: 'Detectar caducados'
+  contexto: 'Un lote de 20 frascos tiene 4 caducados y un inspector revisa 5 sin reemplazo.'
+  pregunta: '¿Qué probabilidad hay de que la inspección detecte al menos un caducado?'
+  valores: {N: 20, K: 4, n: 5}
+  region: derecha
+  desde: 1
+region: derecha
 desde: 1
-hasta: 4
 muestras: false
+referencia:
+  distribucion: binomial
+  valores: {n: 5, p: 0.2}
+  etiqueta: 'Con reemplazo (binomial)'
+  visible: false
 ```
 :::
 
@@ -120,6 +173,31 @@ muestras: false
 - **Soporte acotado:** no puede haber más marcados que $K$ ni que $n$, y si $n > N - K$ la muestra contiene al menos $n - (N - K)$ marcados.
 - **Simetría de papeles:** $\operatorname{Hiper}(N, K, n)$ y $\operatorname{Hiper}(N, n, K)$ son la misma distribución.
 - **Límite binomial:** si $N \to \infty$ con $K/N \to p$ y $n$ fijo, la hipergeométrica tiende a $\operatorname{Bin}(n, p)$.
+
+:::figura[Tres casos con contexto (lote de medicamentos, peces marcados, muestra casi completa): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: hipergeometrica
+valores:
+  N: 20
+  K: 4
+  n: 5
+casos:
+  - nombre: 'Lote de medicamentos'
+    descripcion: 'N = 20, K = 4 y n = 5: casi siempre aparecen 0, 1 o 2 caducados.'
+    valores: {N: 20, K: 4, n: 5}
+  - nombre: 'Peces marcados'
+    descripcion: 'N = 50, K = 10 y n = 12: media 2.4, menos dispersa que una binomial con p = 0.2.'
+    valores: {N: 50, K: 10, n: 12}
+  - nombre: 'Muestra casi completa'
+    descripcion: 'N = 12, K = 6 y n = 10: con la muestra cerca del total, el conteo queda casi fijo alrededor de 5.'
+    valores: {N: 12, K: 6, n: 10}
+referencia:
+  distribucion: binomial
+  valores: {n: 5, p: 0.2}
+  etiqueta: 'Con reemplazo (binomial)'
+  visible: false
+```
+:::
 
 :::figura[Soporte acotado: con N = 10, K = 7 y n = 6 solo hay 3 bolas sin marca, así que la muestra tiene al menos 3 marcadas. Las barras de 0, 1 y 2 valen cero.]{componente="DistributionExplorer"}
 ```yaml
@@ -178,7 +256,7 @@ valores:
 
 ## Conexiones
 
-La hipergeométrica se obtiene contando [[combinaciones]] en un espacio equiprobable de muestras. Es la versión sin reemplazo de la [[distribucion-binomial]], a la que se aproxima cuando la población es grande. Con más de dos tipos de elementos se generaliza a la hipergeométrica multivariada, la versión sin reemplazo de la [[distribucion-multinomial]]. Es la base de la prueba exacta de Fisher para tablas de contingencia y del método de captura y recaptura para estimar tamaños de poblaciones animales.
+La hipergeométrica se obtiene contando [[combinaciones]] en un espacio equiprobable de muestras. Es la versión sin reemplazo de la [[distribucion-binomial]], a la que se aproxima cuando la población es grande. Con más de dos tipos de elementos se generaliza a la hipergeométrica multivariada, la versión sin reemplazo de la [[distribucion-multinomial]]. Es la base de la prueba exacta de Fisher para tablas de contingencia y del método de captura y recaptura para estimar tamaños de poblaciones animales. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

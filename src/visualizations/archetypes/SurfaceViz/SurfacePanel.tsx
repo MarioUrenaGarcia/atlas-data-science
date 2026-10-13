@@ -4,7 +4,7 @@ import { CameraSliders } from '../../core/scene3d/CameraSliders.tsx';
 import type { Camera, Vec3 } from '../../core/scene3d/projection.ts';
 import { Scene3D, type Screen } from '../../core/scene3d/Scene3D.tsx';
 import { SurfaceMesh } from '../../core/scene3d/SurfaceMesh.tsx';
-import { relative, type FieldRange } from './levels.ts';
+import { relative, type FieldRange } from '../../core/plane/levels.ts';
 import styles from './SurfaceViz.module.css';
 
 const HALF = 2;

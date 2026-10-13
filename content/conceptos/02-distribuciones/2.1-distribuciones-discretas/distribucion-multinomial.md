@@ -64,6 +64,15 @@ $$
 para enteros $x_j \ge 0$ con $x_1 + \dots + x_k = n$, y probabilidad cero en otro caso.
 :::
 
+:::nota[Qué representa la variable]
+$\mathbf{X}$ = el vector de conteos de cada categoría después de $n$ repeticiones.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$n$, número de repeticiones:** cuántos intentos se reparten entre las categorías. Si aumenta, todos los conteos crecen y sus proporciones se estabilizan.
+- **$p_j$, probabilidad de la categoría j:** qué tan frecuente es la categoría $j$ en cada repetición. Si aumenta, su conteo esperado $np_j$ crece y los demás bajan.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $\mathbf{X}$: vector de conteos por categoría.
 - $X_j$: número de repeticiones con resultado $j$.
@@ -171,7 +180,7 @@ vista: conjunta
 
 ## Conexiones
 
-La multinomial es la suma de repeticiones de la [[distribucion-categorica]] y generaliza la [[distribucion-binomial]], que es su marginal. Su coeficiente es el [[coeficiente-multinomial]]. Sin reemplazo se convierte en la hipergeométrica multivariada, extensión de la [[distribucion-hipergeometrica]]. Es la base de la prueba ji cuadrada de bondad de ajuste y de los modelos de tablas de contingencia. Cuando las probabilidades varían según una distribución de Dirichlet se obtiene la Dirichlet-multinomial, análoga a la [[distribucion-beta-binomial]].
+La multinomial es la suma de repeticiones de la [[distribucion-categorica]] y generaliza la [[distribucion-binomial]], que es su marginal. Su coeficiente es el [[coeficiente-multinomial]]. Sin reemplazo se convierte en la hipergeométrica multivariada, extensión de la [[distribucion-hipergeometrica]]. Es la base de la prueba ji cuadrada de bondad de ajuste y de los modelos de tablas de contingencia. Cuando las probabilidades varían según una distribución de Dirichlet se obtiene la Dirichlet-multinomial, análoga a la [[distribucion-beta-binomial]]. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

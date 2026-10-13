@@ -8,6 +8,17 @@ import {
   discreteUniform,
   exponential,
   fisherF,
+  frechet,
+  inverseGamma,
+  kumaraswamy,
+  levy,
+  noncentralChiSquare,
+  noncentralT,
+  rice,
+  skewNormal,
+  stable,
+  truncatedNormal,
+  vonMises,
   gamma,
   geometric,
   gumbel,
@@ -417,6 +428,149 @@ export const DISTRIBUTION_SPECS: Record<DistributionId, DistributionSpec> = {
     domain: [-2.5, 2.5],
     notation: () => '\\operatorname{Rademacher}',
   },
+  frechet: {
+    id: 'frechet',
+    label: 'Fréchet',
+    discrete: false,
+    parameters: [
+      num('alpha', 'Forma', 'α', 0.5, 8, 0.05, 3),
+      num('s', 'Escala', 's', 0.2, 4, 0.05, 1),
+      num('m', 'Localización', 'm', -2, 4, 0.1, 0),
+    ],
+    create: (v) => frechet(v.alpha ?? 3, v.s ?? 1, v.m ?? 0),
+    domain: [-2, 15],
+    notation: (v) => `\\operatorname{Fréchet}(${f(v.alpha)},\\ ${f(v.s)},\\ ${f(v.m)})`,
+  },
+  rice: {
+    id: 'rice',
+    label: 'Rice',
+    discrete: false,
+    parameters: [
+      num('nu', 'Distancia al origen', 'ν', 0, 8, 0.1, 2),
+      num('sigma', 'Escala', 'σ', 0.2, 3, 0.05, 1),
+    ],
+    create: (v) => rice(v.nu ?? 2, v.sigma ?? 1),
+    domain: [0, 16],
+    notation: (v) => `\\operatorname{Rice}(${f(v.nu)},\\ ${f(v.sigma)})`,
+  },
+  'von-mises': {
+    id: 'von-mises',
+    label: 'Von Mises',
+    discrete: false,
+    parameters: [
+      num('mu', 'Dirección media (radianes)', 'μ', -3.1, 3.1, 0.05, 0),
+      num('kappa', 'Concentración', 'κ', 0, 20, 0.1, 2),
+    ],
+    create: (v) => vonMises(v.mu ?? 0, v.kappa ?? 2),
+    domain: [-6.3, 6.3],
+    notation: (v) => `\\operatorname{vM}(${f(v.mu)},\\ ${f(v.kappa)})`,
+  },
+  'normal-truncada': {
+    id: 'normal-truncada',
+    label: 'Normal truncada',
+    discrete: false,
+    parameters: [
+      num('mu', 'Media de la normal original', 'μ', -4, 4, 0.1, 0),
+      num('sigma', 'Desviación de la normal original', 'σ', 0.2, 3, 0.05, 1),
+      num('a', 'Límite inferior', 'a', -6, 5.9, 0.1, -1),
+      num('b', 'Límite superior', 'b', -5.9, 6, 0.1, 2),
+    ],
+    create: (v) => {
+      const a = v.a ?? -1;
+      const b = Math.max(a + 0.1, v.b ?? 2);
+      return truncatedNormal(v.mu ?? 0, v.sigma ?? 1, a, b);
+    },
+    domain: [-6, 6],
+    notation: (v) =>
+      `\\mathcal{N}(${f(v.mu)},\\ ${f((v.sigma ?? 1) ** 2)})\\ \\text{en}\\ [${f(v.a)},\\ ${f(v.b)}]`,
+  },
+  'normal-asimetrica': {
+    id: 'normal-asimetrica',
+    label: 'Normal asimétrica',
+    discrete: false,
+    parameters: [
+      num('xi', 'Localización', 'ξ', -3, 3, 0.1, 0),
+      num('omega', 'Escala', 'ω', 0.2, 3, 0.05, 1),
+      num('alpha', 'Forma (asimetría)', 'α', -10, 10, 0.1, 4),
+    ],
+    create: (v) => skewNormal(v.xi ?? 0, v.omega ?? 1, v.alpha ?? 4),
+    domain: [-8, 8],
+    notation: (v) => `\\operatorname{SN}(${f(v.xi)},\\ ${f(v.omega)},\\ ${f(v.alpha)})`,
+  },
+  'gamma-inversa': {
+    id: 'gamma-inversa',
+    label: 'Gamma inversa',
+    discrete: false,
+    parameters: [
+      num('alpha', 'Forma', 'α', 0.5, 12, 0.1, 3),
+      num('beta', 'Escala', 'β', 0.2, 10, 0.1, 2),
+    ],
+    create: (v) => inverseGamma(v.alpha ?? 3, v.beta ?? 2),
+    domain: [0, 8],
+    notation: (v) => `\\operatorname{Inv\\text{-}Gamma}(${f(v.alpha)},\\ ${f(v.beta)})`,
+  },
+  'chi-cuadrada-no-central': {
+    id: 'chi-cuadrada-no-central',
+    label: 'Chi-cuadrada no central',
+    discrete: false,
+    parameters: [
+      num('k', 'Grados de libertad', 'k', 1, 30, 1, 4),
+      num('lambda', 'Parámetro de no centralidad', 'λ', 0, 30, 0.1, 5),
+    ],
+    create: (v) => noncentralChiSquare(v.k ?? 4, v.lambda ?? 5),
+    domain: [0, 80],
+    notation: (v) => `\\chi^2_{${f(v.k, 0)}}(${f(v.lambda)})`,
+  },
+  't-no-central': {
+    id: 't-no-central',
+    label: 't no central',
+    discrete: false,
+    parameters: [
+      num('nu', 'Grados de libertad', 'ν', 1, 60, 1, 8),
+      num('mu', 'Parámetro de no centralidad', 'μ', -4, 6, 0.1, 2),
+    ],
+    create: (v) => noncentralT(v.nu ?? 8, v.mu ?? 2),
+    domain: [-8, 14],
+    notation: (v) => `t_{${f(v.nu, 0)}}(${f(v.mu)})`,
+  },
+  kumaraswamy: {
+    id: 'kumaraswamy',
+    label: 'Kumaraswamy',
+    discrete: false,
+    parameters: [
+      num('a', 'Forma a', 'a', 0.2, 10, 0.1, 2),
+      num('b', 'Forma b', 'b', 0.2, 10, 0.1, 5),
+    ],
+    create: (v) => kumaraswamy(v.a ?? 2, v.b ?? 5),
+    domain: [0, 1],
+    notation: (v) => `\\operatorname{Kum}(${f(v.a)},\\ ${f(v.b)})`,
+  },
+  levy: {
+    id: 'levy',
+    label: 'Lévy',
+    discrete: false,
+    parameters: [
+      num('mu', 'Localización', 'μ', -2, 2, 0.1, 0),
+      num('c', 'Escala', 'c', 0.1, 4, 0.05, 1),
+    ],
+    create: (v) => levy(v.mu ?? 0, v.c ?? 1),
+    domain: [-2, 20],
+    notation: (v) => `\\operatorname{Lévy}(${f(v.mu)},\\ ${f(v.c)})`,
+  },
+  estable: {
+    id: 'estable',
+    label: 'Estable',
+    discrete: false,
+    parameters: [
+      num('alpha', 'Índice de estabilidad', 'α', 0.5, 2, 0.05, 1.5),
+      num('beta', 'Asimetría', 'β', -1, 1, 0.05, 0),
+      num('gamma', 'Escala', 'γ', 0.2, 3, 0.05, 1),
+      num('delta', 'Localización', 'δ', -3, 3, 0.1, 0),
+    ],
+    create: (v) => stable(v.alpha ?? 1.5, v.beta ?? 0, v.gamma ?? 1, v.delta ?? 0),
+    domain: [-12, 12],
+    notation: (v) => `S(${f(v.alpha)},\\ ${f(v.beta)},\\ ${f(v.gamma)},\\ ${f(v.delta)})`,
+  },
 };
 
 /** Parameter values for a distribution: defaults overridden by the given values, clamped to range. */
@@ -431,4 +585,36 @@ export function specValues(
       return [parameter.key, Math.min(parameter.max, Math.max(parameter.min, value))];
     }),
   );
+}
+
+/** Width of the automatic plotting window when slider ranges are widened. */
+const WIDE_DOMAIN: [number, number] = [-1e6, 1e6];
+const SLIDER_STEPS = 200;
+
+/**
+ * Copy of a spec whose sliders cover custom ranges, for examples in real
+ * units (heights in centimeters, times in minutes). The plotting window is
+ * then chosen from the distribution itself.
+ */
+export function withRanges(
+  spec: DistributionSpec,
+  ranges: Record<string, readonly [number, number]> | undefined,
+): DistributionSpec {
+  if (!ranges || Object.keys(ranges).length === 0) return spec;
+  return {
+    ...spec,
+    domain: WIDE_DOMAIN,
+    parameters: spec.parameters.map((parameter) => {
+      const range = ranges[parameter.key];
+      if (!range) return parameter;
+      const [min, max] = range;
+      const raw = (max - min) / SLIDER_STEPS;
+      const magnitude = 10 ** Math.floor(Math.log10(raw));
+      const step =
+        parameter.step >= 1
+          ? Math.max(1, Math.round(raw))
+          : Math.max(magnitude, Math.round(raw / magnitude) * magnitude);
+      return { ...parameter, min, max, step: Number(step.toPrecision(2)) };
+    }),
+  };
 }

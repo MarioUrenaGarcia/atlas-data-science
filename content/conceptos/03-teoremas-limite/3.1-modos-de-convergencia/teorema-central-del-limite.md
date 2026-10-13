@@ -13,6 +13,7 @@ nivel: intermedio
 prerrequisitos:
   - convergencia-en-distribucion
   - ley-debil-de-los-grandes-numeros
+  - distribucion-normal
 relaciones:
   - tipo: relacionado
     id: asimetria

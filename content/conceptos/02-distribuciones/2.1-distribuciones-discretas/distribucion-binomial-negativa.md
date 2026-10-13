@@ -28,15 +28,54 @@ resumen: >
   independientes. Es la suma de r geométricas y modela conteos con varianza mayor que la media.
 formula: 'P(X = k) = \binom{k + r - 1}{k} p^{r} (1 - p)^{k}, \quad k = 0, 1, 2, \dots'
 visualizacion:
-  componente: DistributionGenesis
+  componente: DistributionStudio
   parametros:
-    proceso: r-exitos
-    valores:
-      r: 3
-      p: 0.25
-    exito: Productivo
-    fracaso: Seco
-    conteo: ensayos
+    explorador:
+      distribucion: binomial-negativa
+      valores:
+        r: 3
+        p: 0.4
+      casos:
+        - nombre: 'Un solo éxito'
+          descripcion: 'r = 1: la binomial negativa es la geométrica de los fracasos; la barra más alta está en cero.'
+          valores: {r: 1, p: 0.4}
+        - nombre: 'Tres voluntarios'
+          descripcion: 'r = 3 y p = 0.4: los rechazos antes del tercer voluntario; media 4.5 y cola a la derecha.'
+          valores: {r: 3, p: 0.4}
+        - nombre: 'Diez éxitos'
+          descripcion: 'r = 10: la suma de diez esperas geométricas ya parece una campana alrededor de 15.'
+          valores: {r: 10, p: 0.4}
+        - nombre: 'Contacto con clientes'
+          descripcion: 'r = 3 y p = 0.6: conteos moderados; intentos de contacto fallidos antes de convertir a tres clientes.'
+          valores: {r: 3, p: 0.6}
+        - nombre: 'Servicio sobredisperso'
+          descripcion: 'r = 5 y p = 0.5: más variabilidad; solicitudes de servicio con varianza mayor que la media.'
+          valores: {r: 5, p: 0.5}
+        - nombre: 'Reclamos variables'
+          descripcion: 'r = 8 y p = 0.3: cola muy pesada; conteos de incidentes o reclamos muy variables.'
+          valores: {r: 8, p: 0.3}
+      ejemplo:
+        titulo: 'Reclutamiento rápido'
+        contexto: 'Se necesitan 3 voluntarios y cada persona contactada acepta con probabilidad 0.4.'
+        pregunta: '¿Qué probabilidad hay de completar el reclutamiento con a lo más 2 rechazos?'
+        valores: {r: 3, p: 0.4}
+        region: izquierda
+        desde: 2
+      referencia:
+        distribucion: poisson
+        valores: {lambda: 4.5}
+        etiqueta: 'Poisson con la misma media'
+        visible: false
+    genesis:
+      componente: DistributionGenesis
+      parametros:
+        proceso: r-exitos
+        valores:
+          r: 3
+          p: 0.25
+        exito: Productivo
+        fracaso: Seco
+        conteo: ensayos
 referencias:
   - clave: blitzstein-hwang
     capitulo: '4'
@@ -68,6 +107,15 @@ $$
 P(T = t) = \binom{t - 1}{r - 1} p^{r} (1 - p)^{t - r}, \qquad t = r, r + 1, \dots
 $$
 
+:::nota[Qué es X]
+$X$ = el número de fracasos antes de conseguir el éxito número $r$.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$r$, éxitos necesarios:** cuántos éxitos hacen falta para detenerse. Si aumenta, se esperan más fracasos y hay más dispersión.
+- **$p$, probabilidad de éxito:** la probabilidad de que cada intento salga bien. Si aumenta, hacen falta menos fracasos y la masa se va a la izquierda.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: número de fracasos antes del éxito número $r$.
 - $T = X + r$: número total de ensayos.
@@ -80,9 +128,9 @@ $$
 
 ## Cómo usar la visualización
 
-Cada experimento es una campaña de perforación: las fichas vacías son pozos secos y las rellenas, productivos. La campaña termina con el pozo productivo número $r$, y el total de perforaciones cae en el histograma. El selector cambia entre contar ensayos totales y contar solo los fracasos; el panel compara media y varianza teóricas con las simuladas.
+La pestaña Distribución muestra la función de masa de los fracasos antes del éxito número $r$, la región elegida y su probabilidad; los casos cargan uno, tres y diez éxitos, y el ejemplo de la ficha se carga con su botón. La comparación superpone la Poisson de la misma media, más angosta. La pestaña Ver cómo surge simula perforaciones hasta el tercer pozo productivo.
 
-Con $r = 3$ y $p = 0.25$ la media es 12 perforaciones y la varianza 36: la varianza triplica a la media. Con $r = 1$ el histograma toma la forma decreciente de la geométrica. Al aumentar $r$ hasta 10 la forma se vuelve más simétrica, como una campana desplazada a la derecha.
+Con la comparación activada se ve la sobredispersión: la varianza de la binomial negativa siempre supera a su media. Al subir $r$ la forma se vuelve más simétrica.
 
 ## Ejemplo
 
@@ -99,9 +147,21 @@ distribucion: binomial-negativa
 valores:
   r: 3
   p: 0.4
-desde: 0
-hasta: 2
+ejemplo:
+  titulo: 'Reclutamiento rápido'
+  contexto: 'Se necesitan 3 voluntarios y cada persona contactada acepta con probabilidad 0.4.'
+  pregunta: '¿Qué probabilidad hay de completar el reclutamiento con a lo más 2 rechazos?'
+  valores: {r: 3, p: 0.4}
+  region: izquierda
+  desde: 2
+region: izquierda
+desde: 2
 muestras: false
+referencia:
+  distribucion: poisson
+  valores: {lambda: 4.5}
+  etiqueta: 'Poisson con la misma media'
+  visible: false
 ```
 :::
 
@@ -117,6 +177,31 @@ conteo: fracasos
 ```
 :::
 
+Segundo ejemplo, llamadas de venta. Un equipo llama a prospectos hasta lograr 3 ventas, y cada llamada vende con probabilidad 0.4. El número de llamadas fallidas es $X \sim \operatorname{BN}(3, 0.4)$, con media $3 \cdot 0.6/0.4 = 4.5$.
+
+1. La pregunta es $P(X \ge 6) = 1 - P(X \le 5)$.
+2. Los términos $\binom{k + 2}{k} 0.4^{3}\, 0.6^{k}$ para $k = 0, \dots, 5$ valen 0.0640, 0.1152, 0.1382, 0.1382, 0.1244 y 0.1045, que suman 0.6846.
+3. $P(X \ge 6) = 1 - 0.6846 = 0.3154$: casi una de cada tres veces hacen falta 6 o más llamadas fallidas.
+
+:::figura[Llamadas de venta: la región X ≥ 6 suma 0.3154. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: binomial-negativa
+valores:
+  r: 3
+  p: 0.4
+ejemplo:
+  titulo: 'Llamadas de venta'
+  contexto: 'Un equipo de ventas llama a prospectos hasta lograr 3 ventas; cada llamada vende con probabilidad 0.4.'
+  pregunta: '¿Qué probabilidad hay de tener 6 o más llamadas fallidas?'
+  valores: {r: 3, p: 0.4}
+  region: derecha
+  desde: 6
+region: derecha
+desde: 6
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y varianza:** $\mathbb{E}[X] = \dfrac{r(1 - p)}{p}$ y $\operatorname{Var}(X) = \dfrac{r(1 - p)}{p^{2}}$; para los ensayos totales, $\mathbb{E}[T] = r/p$ con la misma varianza.
@@ -125,6 +210,39 @@ conteo: fracasos
 - **Caso $r = 1$:** se recupera la geométrica de los fracasos.
 - **Dualidad con la binomial:** necesitar a lo más $n$ ensayos equivale a obtener al menos $r$ éxitos en $n$ ensayos: $P(T \le n) = P(\operatorname{Bin}(n, p) \ge r)$.
 - **Parámetro real:** la fórmula se extiende a $r > 0$ no entero escribiendo el coeficiente con la función gamma; así surge como mezcla de Poisson con tasa gamma.
+
+:::figura[Casos con contexto (un solo éxito, tres voluntarios, diez éxitos, contacto con clientes, servicio sobredisperso, reclamos variables): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+```yaml
+distribucion: binomial-negativa
+valores:
+  r: 3
+  p: 0.4
+casos:
+  - nombre: 'Un solo éxito'
+    descripcion: 'r = 1: la binomial negativa es la geométrica de los fracasos; la barra más alta está en cero.'
+    valores: {r: 1, p: 0.4}
+  - nombre: 'Tres voluntarios'
+    descripcion: 'r = 3 y p = 0.4: los rechazos antes del tercer voluntario; media 4.5 y cola a la derecha.'
+    valores: {r: 3, p: 0.4}
+  - nombre: 'Diez éxitos'
+    descripcion: 'r = 10: la suma de diez esperas geométricas ya parece una campana alrededor de 15.'
+    valores: {r: 10, p: 0.4}
+  - nombre: 'Contacto con clientes'
+    descripcion: 'r = 3 y p = 0.6: conteos moderados; intentos de contacto fallidos antes de convertir a tres clientes.'
+    valores: {r: 3, p: 0.6}
+  - nombre: 'Servicio sobredisperso'
+    descripcion: 'r = 5 y p = 0.5: más variabilidad; solicitudes de servicio con varianza mayor que la media.'
+    valores: {r: 5, p: 0.5}
+  - nombre: 'Reclamos variables'
+    descripcion: 'r = 8 y p = 0.3: cola muy pesada; conteos de incidentes o reclamos muy variables.'
+    valores: {r: 8, p: 0.3}
+referencia:
+  distribucion: poisson
+  valores: {lambda: 4.5}
+  etiqueta: 'Poisson con la misma media'
+  visible: false
+```
+:::
 
 :::figura[Dualidad con la binomial: en Bin(5, 0.4), obtener al menos 3 éxitos (barras sombreadas) tiene probabilidad 0.3174, la misma que reclutar a los tres voluntarios en a lo más cinco contactos.]{componente="DistributionExplorer"}
 ```yaml
@@ -188,7 +306,7 @@ conteo: ensayos
 
 ## Conexiones
 
-La binomial negativa generaliza la [[distribucion-geometrica]], que es el caso de un solo éxito, y su coeficiente se obtiene contando [[combinaciones]]. Frente a la [[distribucion-binomial]], intercambia lo fijo y lo aleatorio. Por su varianza mayor que la media se usa como alternativa a la [[distribucion-de-poisson]] para conteos sobredispersos, por ejemplo en ecología y en número de reclamaciones de seguros. Su versión con $r$ real se escribe con la [[funcion-gamma]].
+La binomial negativa generaliza la [[distribucion-geometrica]], que es el caso de un solo éxito, y su coeficiente se obtiene contando [[combinaciones]]. Frente a la [[distribucion-binomial]], intercambia lo fijo y lo aleatorio. Por su varianza mayor que la media se usa como alternativa a la [[distribucion-de-poisson]] para conteos sobredispersos, por ejemplo en ecología y en número de reclamaciones de seguros. Su versión con $r$ real se escribe con la [[funcion-gamma]]. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
 
 ## Formulario
 

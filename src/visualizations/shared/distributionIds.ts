@@ -34,6 +34,17 @@ export const DISTRIBUTION_IDS = [
   'poisson-inflada',
   'skellam',
   'rademacher',
+  'frechet',
+  'rice',
+  'von-mises',
+  'normal-truncada',
+  'normal-asimetrica',
+  'gamma-inversa',
+  'chi-cuadrada-no-central',
+  't-no-central',
+  'kumaraswamy',
+  'levy',
+  'estable',
 ] as const;
 
 export type DistributionId = (typeof DISTRIBUTION_IDS)[number];

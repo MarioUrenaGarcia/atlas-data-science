@@ -400,4 +400,260 @@ export const DESCRIPTIVE_EXAMPLES: CatalogExample[] = [
       nombres: { x: 'Hora', y: 'Demanda' },
     },
   },
+  {
+    component: 'ChartGallery',
+    title: 'Histograma',
+    params: {
+      grafico: 'histograma',
+      muestra: { nombre: 'Tiempos', forma: 'sesgo-derecha', centro: 20, escala: 6, n: 300 },
+      eje: { variable: 'Tiempo de espera', unidad: 'min' },
+      reglas: true,
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Cajas y violines',
+    params: {
+      grafico: 'cajas',
+      violin: true,
+      puntos: true,
+      grupos: [
+        { nombre: 'Línea A', forma: 'normal', centro: 50, escala: 3, n: 80 },
+        { nombre: 'Línea B', forma: 'mezcla', parametro: 4, centro: 52, escala: 2, n: 80 },
+      ],
+      eje: { variable: 'Peso del paquete', unidad: 'g' },
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Tallo y hojas',
+    params: {
+      grafico: 'tallo',
+      valores: [62, 75, 81, 68, 79, 90, 73, 85, 77, 66, 88, 71],
+      eje: { variable: 'Calificación' },
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Densidad',
+    params: {
+      grafico: 'densidad',
+      muestra: {
+        nombre: 'Estaturas',
+        forma: 'mezcla',
+        parametro: 3,
+        centro: 165,
+        escala: 5,
+        n: 120,
+      },
+      eje: { variable: 'Estatura', unidad: 'cm' },
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'ECDF de dos grupos',
+    params: {
+      grafico: 'ecdf',
+      grupos: [
+        { nombre: 'Sucursal Norte', forma: 'normal', centro: 12, escala: 3, n: 60 },
+        { nombre: 'Sucursal Sur', forma: 'normal', centro: 14, escala: 3, n: 60 },
+      ],
+      eje: { variable: 'Tiempo de entrega', unidad: 'min' },
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Q-Q',
+    params: {
+      grafico: 'probabilidad',
+      tipo: 'qq',
+      muestra: {
+        nombre: 'Ingresos',
+        forma: 'sesgo-derecha',
+        parametro: 2,
+        centro: 15,
+        escala: 5,
+        n: 80,
+      },
+      eje: { variable: 'Ingreso', unidad: 'miles de pesos' },
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Dispersión con hexágonos',
+    params: {
+      grafico: 'dispersion',
+      generador: { n: 3000, pendiente: 0.8, ruido: 1, media: 10, escala: 2, redondeo: 1 },
+      ejes: { x: { variable: 'Horas de estudio' }, y: { variable: 'Calificación' } },
+      vista: 'hexagonos',
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Matriz de dispersión',
+    params: {
+      grafico: 'matriz-dispersion',
+      variables: [
+        { nombre: 'Largo', valores: [5.1, 4.9, 4.7, 7.0, 6.4, 6.9, 6.3, 5.8, 7.1, 5.0] },
+        { nombre: 'Ancho', valores: [3.5, 3.0, 3.2, 3.2, 3.2, 3.1, 3.3, 2.7, 3.0, 3.6] },
+        { nombre: 'Pétalo', valores: [1.4, 1.4, 1.3, 4.7, 4.5, 4.9, 6.0, 5.1, 5.9, 1.4] },
+      ],
+      grupos: [0, 0, 0, 1, 1, 1, 2, 2, 2, 0],
+      nombresGrupos: ['Especie A', 'Especie B', 'Especie C'],
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Mapa de calor',
+    params: {
+      grafico: 'calor',
+      filas: ['Lun', 'Mar', 'Mié'],
+      columnas: ['8 h', '12 h', '16 h', '20 h'],
+      valores: [
+        [12, 30, 25, 8],
+        [10, 28, 27, 9],
+        [14, 35, 22, 6],
+      ],
+      paleta: 'secuencial',
+      variable: 'Pasajeros por minuto',
+      compararPaletas: true,
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Barras y pastel',
+    params: {
+      grafico: 'barras',
+      categorias: ['Autobús', 'Metro', 'Auto', 'Bicicleta', 'A pie'],
+      valores: [31, 27, 22, 9, 11],
+      variable: 'Porcentaje de viajes',
+      vista: 'ambas',
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Líneas',
+    params: {
+      grafico: 'lineas',
+      periodos: ['2019', '2020', '2021', '2022', '2023', '2024'],
+      series: [
+        { nombre: 'Norte', valores: [10, 14, 21, 33, 52, 80] },
+        { nombre: 'Sur', valores: [40, 42, 45, 47, 50, 52] },
+      ],
+      variable: 'Usuarios (miles)',
+      escala: 'lineal',
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Coordenadas paralelas',
+    params: {
+      grafico: 'paralelas',
+      variables: ['Calorías', 'Proteína', 'Grasa', 'Azúcar'],
+      filas: [
+        { grupo: 'Cereal', valores: [380, 7, 3, 30] },
+        { grupo: 'Cereal', valores: [360, 8, 2, 25] },
+        { grupo: 'Cereal', valores: [400, 6, 5, 35] },
+        { grupo: 'Nuez', valores: [600, 20, 50, 4] },
+        { grupo: 'Nuez', valores: [650, 15, 60, 5] },
+        { grupo: 'Nuez', valores: [580, 22, 48, 6] },
+      ],
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Mosaico',
+    params: {
+      grafico: 'mosaico',
+      filas: { nombre: 'Turno', categorias: ['Mañana', 'Noche'] },
+      columnas: { nombre: 'Resultado', categorias: ['Sin defecto', 'Con defecto'] },
+      conteos: [
+        [460, 40],
+        [210, 90],
+      ],
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Enjambre',
+    params: {
+      grafico: 'enjambre',
+      grupos: [
+        { nombre: 'Control', forma: 'normal', centro: 120, escala: 10, n: 60 },
+        { nombre: 'Tratamiento', forma: 'mezcla', parametro: 3, centro: 112, escala: 8, n: 60 },
+      ],
+      eje: { variable: 'Presión sistólica', unidad: 'mmHg' },
+      modo: 'enjambre',
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Ridgeline',
+    params: {
+      grafico: 'ridgeline',
+      grupos: [
+        { nombre: 'Enero', forma: 'normal', centro: 14, escala: 3, n: 120 },
+        { nombre: 'Marzo', forma: 'normal', centro: 18, escala: 3, n: 120 },
+        { nombre: 'Mayo', forma: 'normal', centro: 23, escala: 3, n: 120 },
+        { nombre: 'Julio', forma: 'normal', centro: 21, escala: 2.5, n: 120 },
+        { nombre: 'Septiembre', forma: 'normal', centro: 19, escala: 3, n: 120 },
+        { nombre: 'Noviembre', forma: 'normal', centro: 15, escala: 3, n: 120 },
+      ],
+      eje: { variable: 'Temperatura máxima', unidad: 'grados C' },
+      solapamiento: 1,
+    },
+  },
+  { component: 'AnscombeQuartet', title: 'Cuarteto', params: {} },
+  {
+    component: 'AnscombeQuartet',
+    title: 'Un conjunto',
+    params: { vista: 'conjunto', conjunto: 3 },
+  },
+  {
+    component: 'DatasaurusDozen',
+    title: 'Del dinosaurio al círculo',
+    params: { forma: 'circulo' },
+  },
+  {
+    component: 'DatasaurusDozen',
+    title: 'Recorrido',
+    params: { forma: 'estrella', recorrido: true },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Tinta de datos',
+    params: {
+      grafico: 'tinta',
+      categorias: ['Norte', 'Centro', 'Sur', 'Golfo'],
+      valores: [42, 57, 35, 48],
+      variable: 'Ventas (millones)',
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Eje truncado',
+    params: {
+      grafico: 'enganoso',
+      truco: 'eje-truncado',
+      etiquetas: ['2023', '2024'],
+      valores: [50, 54],
+      variable: 'Tasa de aprobación (%)',
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Ventana de tiempo',
+    params: {
+      grafico: 'enganoso',
+      truco: 'ventana',
+      etiquetas: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+      valores: [80, 76, 72, 70, 66, 63, 60, 58, 61, 64],
+      variable: 'Accidentes por mes',
+    },
+  },
+  {
+    component: 'ChartGallery',
+    title: 'Percepción',
+    params: { grafico: 'percepcion', a: 40, b: 80 },
+  },
 ];

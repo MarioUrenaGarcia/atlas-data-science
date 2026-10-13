@@ -20,6 +20,10 @@ npm run dev
 | `npm run check`    | Lint, tipos, tipografía y pruebas unitarias |
 | `npm run test:e2e` | Pruebas de extremo a extremo                |
 
-## Licencias
+## Licencia
 
-El código se distribuye bajo la licencia MIT (`LICENSE`). El contenido académico se distribuye bajo CC BY 4.0 (`LICENSE-CONTENT`).
+Copyright (c) 2026 Mario Ureña García. El código y el contenido se distribuyen bajo la licencia [Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es) (CC BY-NC-SA 4.0). Los términos completos están en `LICENSE`.
+
+- Estudiantes y docentes pueden usar el Atlas como material de apoyo en cualquier clase, incluso en instituciones privadas, dando crédito a Mario Ureña García y al Atlas de Data Science.
+- Las adaptaciones deben publicarse bajo la misma licencia.
+- No se permite el uso comercial, lo que incluye ofrecer un curso, taller o producto de pago cuyo contenido principal sea el Atlas. Para un uso comercial se requiere una licencia aparte, que se solicita abriendo un issue en este repositorio.

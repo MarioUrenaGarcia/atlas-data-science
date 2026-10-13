@@ -28,6 +28,11 @@ interface OutcomeChartProps {
 
 const MARGIN = { left: 50, right: 16, top: 10, bottom: 36 };
 const BAR_SHARE = 0.7;
+/**
+ * Room above the theoretical masses. The axis follows the theory, not the noisy first frequencies,
+ * so it stays still while results accumulate; taller early bars are clipped at the top.
+ */
+const HEADROOM = 1.3;
 
 function powersOfTen(lo: number, hi: number): number[] {
   const result: number[] = [];
@@ -186,16 +191,15 @@ export function OutcomeChart({
   const referenceMax = reference
     ? Math.max(...integers.map((k) => reference.distribution.pmf(k)), 0)
     : 0;
-  const frequencyMax = Math.max(...integers.map(frequency), 0);
   const y = scaleLinear()
-    .domain([0, Math.max(0.05, theoryMax, referenceMax, frequencyMax) * 1.1])
+    .domain([0, Math.max(0.05, theoryMax, referenceMax) * HEADROOM])
     .nice()
     .range([baseline, inner.top]);
   const structuralShare = total > 0 ? structural / total : 0;
   const bars: Bar[] = integers.map((k) => ({
     x0: k - barHalf / slot,
     x1: k + barHalf / slot,
-    value: frequency(k),
+    value: Math.min(frequency(k), Math.max(0.05, theoryMax, referenceMax) * HEADROOM),
     color: k === latest ? DATA_COLORS.highlight : undefined,
   }));
 

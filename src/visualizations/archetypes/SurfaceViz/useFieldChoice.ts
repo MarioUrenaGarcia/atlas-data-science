@@ -14,6 +14,7 @@ const PLAIN: Record<string, string> = {
   gaussiana: 'e^(-(x² + y²)) (campana)',
   'dos-colinas': 'dos colinas',
   'min-y-silla': 'x³ - 3x + y² (mínimo y silla)',
+  himmelblau: 'Himmelblau (cuatro mínimos)',
   ondas: 'sen x cos y (ondas)',
   plano: '2x - y + 1 (plano)',
   rosenbrock: 'valle de Rosenbrock',

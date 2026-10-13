@@ -64,7 +64,7 @@ Una restricción es **activa** si $g_i(\mathbf{x}^*) = 0$. Por la holgura comple
 
 ## Cómo usar la visualización
 
-La región azul es el conjunto factible. Un objetivo naranja se mueve alrededor de ella y el punto amarillo es el punto factible más cercano a él, la solución de minimizar $\lVert \mathbf{x} - \mathbf{t} \rVert^2$. Las flechas verdes son los términos $\mu_i\mathbf{a}_i$ de las restricciones activas. El encabezado escribe el equilibrio $-\nabla f = \sum \mu_i \mathbf{a}_i$ con los números del instante y la lista de restricciones activas; el panel muestra cada multiplicador.
+La región azul es el conjunto factible. Un objetivo naranja se mueve alrededor de ella y el punto amarillo es el punto factible más cercano a él, la solución de minimizar $\lVert \mathbf{x} - \mathbf{t} \rVert^2$. Las restricciones son lineales, $g_i(\mathbf{x}) = \mathbf{a}_i^\top \mathbf{x} - c_i \le 0$, así que $\mathbf{a}_i = \nabla g_i$ es el vector perpendicular al lado $i$ que apunta hacia fuera de la región. Las flechas verdes son los términos $\mu_i\mathbf{a}_i$ de las restricciones activas. El encabezado escribe el equilibrio $-\nabla f = \sum \mu_i \mathbf{a}_i$ con los números del instante y la lista de restricciones activas; el panel muestra cada multiplicador.
 
 Cuando el objetivo pasa por dentro de la región, la solución es el propio objetivo y todos los multiplicadores valen 0. Frente a un lado, se activa una restricción; frente a una esquina, dos, y sus flechas se suman para apuntar hacia el objetivo.
 

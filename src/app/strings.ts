@@ -243,10 +243,11 @@ export const strings = {
       'Las marcas de visto y dominado se guardan en el navegador y permiten ocultar lo ya aprendido en las rutas.',
     ],
     bibliographyHeading: 'Bibliografía',
-    licensesHeading: 'Licencias',
+    licensesHeading: 'Licencia',
     licenses: [
-      'El código fuente se distribuye bajo la licencia MIT.',
-      'El contenido de las fichas se distribuye bajo la licencia Creative Commons Atribución 4.0 Internacional (CC BY 4.0).',
+      'El Atlas de Data Science es obra de Mario Ureña García. El código y el contenido se distribuyen bajo la licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0).',
+      'Estudiantes y docentes pueden usarlo como material de apoyo en cualquier clase, incluso en instituciones privadas, siempre que den crédito a Mario Ureña García y al Atlas de Data Science. Las adaptaciones deben publicarse bajo la misma licencia.',
+      'No está permitido el uso comercial, lo que incluye ofrecer un curso, taller o producto de pago cuyo contenido principal sea el Atlas. Para un uso comercial se requiere una licencia aparte, que se solicita abriendo un issue en el repositorio del proyecto.',
     ],
     privacyHeading: 'Privacidad',
     privacy:
@@ -298,7 +299,8 @@ export const strings = {
   },
 
   footer: {
-    licenses: 'Código bajo licencia MIT. Contenido bajo licencia CC BY 4.0.',
+    licenses:
+      'Mario Ureña García. Licencia CC BY-NC-SA 4.0: uso educativo libre con crédito, sin uso comercial.',
     about: 'Acerca del Atlas',
   },
 

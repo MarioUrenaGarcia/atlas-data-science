@@ -1,21 +1,40 @@
-MIT License
+Atlas de Data Science
+Copyright (c) 2026 Mario Ureña García
 
-Copyright (c) 2026 Los autores de Atlas de Data Science
+Todo el contenido de este repositorio, tanto el código fuente como el contenido
+académico (fichas, textos, figuras y visualizaciones), se distribuye bajo la
+licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0
+Internacional (CC BY-NC-SA 4.0).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Bajo esta licencia se permite copiar, redistribuir, adaptar y transformar el
+material con estas condiciones:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Atribución. Se debe dar crédito a Mario Ureña García y al Atlas de Data
+   Science, incluir un enlace a la licencia e indicar si se realizaron cambios.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. No comercial. No se permite usar el material con fines comerciales.
+
+3. Compartir igual. Si se adapta, transforma o amplía el material, el
+   resultado debe distribuirse bajo esta misma licencia.
+
+Aclaración sobre el uso educativo
+---------------------------------
+
+Para efectos de esta licencia:
+
+- Está permitido usar el Atlas como material de apoyo en cualquier clase,
+  curso o programa educativo, en instituciones públicas o privadas, incluso
+  cuando el curso tenga costo, siempre que se dé el crédito indicado arriba.
+
+- Se considera uso comercial, y por lo tanto no está permitido, ofrecer un
+  curso, taller, programa o producto de pago cuyo contenido principal sea el
+  Atlas o una adaptación del Atlas.
+
+Licencias comerciales
+---------------------
+
+Cualquier uso comercial requiere una licencia aparte otorgada por el titular de
+los derechos. Para solicitarla, abra un issue en el repositorio del proyecto.
+
+Texto legal completo: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.es
+Resumen: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es

@@ -143,7 +143,7 @@ nMaximo: 40
 
 ## Conexiones
 
-Generaliza a variables aleatorias la [[continuidad]] de funciones reales y se aplica a los tres modos: [[convergencia-casi-segura]], [[convergencia-en-probabilidad]] y [[convergencia-en-distribucion]]. El [[teorema-de-slutsky]] es un caso particular, y el [[metodo-delta]] lo complementa cuando el límite es una constante. Junto con el [[teorema-central-del-limite]] y el [[tcl-multivariado]] produce las distribuciones ji cuadrada asintóticas de muchas pruebas.
+Generaliza a variables aleatorias la [[continuidad]] de funciones reales y se aplica a los tres modos: [[convergencia-casi-segura]], [[convergencia-en-probabilidad]] y [[convergencia-en-distribucion]]. El [[teorema-de-slutsky]] es un caso particular, y el [[metodo-delta]] lo complementa cuando el límite es una constante. Junto con el [[teorema-central-del-limite]] y el [[tcl-multivariado]] produce las distribuciones ji cuadrada asintóticas de muchas pruebas. Por ejemplo, si un estadístico converge a una normal estándar, su cuadrado converge a una [[distribucion-chi-cuadrada]] con un grado de libertad.
 
 ## Formulario
 

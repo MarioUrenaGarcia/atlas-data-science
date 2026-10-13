@@ -10,7 +10,11 @@ import { PageHeader } from '../../components/ui/PageHeader.tsx';
 import { ProgressBar } from '../../components/ui/ProgressBar.tsx';
 import { useAtlas } from '../../content/loader.ts';
 import { useProgress } from '../../store/progress.ts';
-import { exportProgress, parseProgressFile } from '../../store/progressFile.ts';
+import {
+  exportProgress,
+  MAX_PROGRESS_FILE_BYTES,
+  parseProgressFile,
+} from '../../store/progressFile.ts';
 import styles from './ProgressPage.module.css';
 
 export default function ProgressPage() {
@@ -43,7 +47,8 @@ export default function ProgressPage() {
     const file = event.target.files?.[0];
     event.target.value = '';
     if (!file) return;
-    const parsed = parseProgressFile(await file.text());
+    const parsed =
+      file.size <= MAX_PROGRESS_FILE_BYTES ? parseProgressFile(await file.text()) : null;
     if (!parsed) {
       setMessage({ text: strings.progress.importError, error: true });
       return;
