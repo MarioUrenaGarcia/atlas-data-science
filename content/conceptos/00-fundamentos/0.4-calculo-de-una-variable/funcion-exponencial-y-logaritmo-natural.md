@@ -87,6 +87,15 @@ base: 2.718
 - **Derivadas:** $(e^{x})' = e^{x}$ y $(\log x)' = \frac{1}{x}$.
 - **Crecimiento:** $e^x$ crece más rápido que cualquier polinomio y $\log x$ más lento que cualquier potencia positiva.
 - **Desigualdad básica:** $e^{x} \ge 1 + x$ para todo $x$, con igualdad solo en $x = 0$; equivalentemente $\log x \le x - 1$.
+
+:::figura[La tangente de $e^x$ en 0 es la recta $1 + x$, y la curva queda por encima de ella en todo punto: por eso $e^x \ge 1 + x$, con igualdad solo en $x = 0$.]{componente="CalculusViz"}
+```yaml
+modo: secante
+funcion: exponencial
+x0: 0
+h: 1
+```
+:::
 - **Ecuación diferencial:** $y' = ky$ con $y(0) = y_0$ tiene solución única $y = y_0 e^{kt}$.
 
 :::figura[Caso de reflexiones: con a = -1 la exponencial se refleja sobre el eje horizontal y -e^x decrece sin cota; el selector cambia a log x, cuyo reflejo -log x es la función que aparece en la entropía.]{componente="CalculusViz"}

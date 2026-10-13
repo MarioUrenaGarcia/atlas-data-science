@@ -114,8 +114,24 @@ Coeficientes: si $f(x) = \sum c_k (x - a)^k$, derivando $k$ veces término a té
 ## Errores comunes
 
 - **Suponer que más términos siempre mejoran.** Fuera del radio de convergencia la aproximación empeora.
+
+:::figura[La serie geométrica $1 + x + x^2 + \dots$ de $1/(1 - x)$: dentro de $(-1, 1)$ los polinomios se pegan a la curva al subir el orden, y fuera se alejan cada vez más.]{componente="CalculusViz"}
+```yaml
+modo: taylor
+funciones: [geometric]
+orden: 10
+```
+:::
 - **Olvidar el factorial.** El coeficiente de $(x - a)^k$ es $f^{(k)}(a)/k!$, no $f^{(k)}(a)$.
 - **Desarrollar en un punto y evaluar lejos de él.** La calidad depende de $|x - a|$; conviene elegir $a$ cerca de donde se evalúa.
+
+:::figura[El polinomio de grado 5 de $\operatorname{sen} x$ en 0 es casi exacto cerca del origen, pero en $x = 3.5$ ya se separa claramente de la curva: la calidad depende de la distancia al centro.]{componente="CalculusViz"}
+```yaml
+modo: taylor
+funciones: [sin]
+orden: 5
+```
+:::
 - **Confundir polinomio con serie.** El polinomio es una suma finita con error; la serie es un límite que puede o no converger.
 
 ## Conexiones

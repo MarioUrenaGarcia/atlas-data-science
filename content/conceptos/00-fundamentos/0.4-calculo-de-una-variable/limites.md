@@ -105,9 +105,33 @@ Unicidad: si $L$ y $M$ fueran límites distintos, con $\varepsilon = |L - M|/2$ 
 ## Errores comunes
 
 - **Calcular el límite evaluando en el punto.** En $\frac{x^2 - 1}{x - 1}$ evaluar en 1 da $0/0$, que no es un número; hay que simplificar a $x + 1$ y el límite es 2.
+
+:::figura[Un hueco removible: la función no está definida en el punto, pero los valores de ambos lados se acercan al mismo número, y la banda de tolerancia se puede cumplir tan cerca como se quiera.]{componente="CalculusViz"}
+```yaml
+modo: limite
+casos: [removible]
+epsilon: true
+```
+:::
 - **Creer que el límite y el valor coinciden siempre.** Solo coinciden si la función es continua en el punto.
 - **Declarar que existe con un solo lado.** $|x|/x$ tiende a $-1$ por la izquierda y a $1$ por la derecha: no tiene límite en 0.
+
+:::figura[$|x|/x$ tiende a $-1$ por la izquierda y a 1 por la derecha: ninguna banda estrecha alrededor de un solo número contiene a los dos lados, así que no hay límite.]{componente="CalculusViz"}
+```yaml
+modo: limite
+casos: [salto]
+epsilon: true
+```
+:::
 - **Confiar en una tabla con pocos valores.** $\operatorname{sen}(\pi/x)$ vale 0 en $x = 1, 0.1, 0.01, \dots$ y sin embargo no tiene límite en 0.
+
+:::figura[$\operatorname{sen}(\pi/x)$ cerca de 0: aunque vale 0 en $x = 1, 0.1, 0.01, \dots$, oscila entre $-1$ y 1 cada vez más rápido y no se queda en ninguna banda.]{componente="CalculusViz"}
+```yaml
+modo: limite
+casos: [oscilante]
+epsilon: true
+```
+:::
 
 ## Conexiones
 
