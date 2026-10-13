@@ -105,6 +105,13 @@ Caso sencillo: si $f(a) = g(a) = 0$, $f'$ y $g'$ son continuas y $g'(a) \neq 0$,
 ## Errores comunes
 
 - **Aplicarla sin forma indeterminada.** $\lim_{x \to 0}\frac{x + 1}{x + 2} = \frac{1}{2}$ directamente; derivar daría 1, que es incorrecto.
+
+:::figura[$\cos x/(x + 1)$ en 0 no es $0/0$: vale $1/1 = 1$ directamente. Si se derivara de todos modos, $-\operatorname{sen} x/1$ tendería a 0, un valor equivocado; las dos curvas de cocientes se separan cerca del punto.]{componente="CalculusViz"}
+```yaml
+modo: lhopital
+casos: [coseno-sin-indeterminacion]
+```
+:::
 - **Derivar el cociente con la regla del cociente.** Se derivan numerador y denominador por separado.
 - **Concluir que no hay límite si $f'/g'$ no tiene límite.** La regla solo dice algo cuando $\lim f'/g'$ existe; $\frac{x + \operatorname{sen} x}{x}$ tiende a 1 en el infinito aunque $\frac{1 + \cos x}{1}$ oscile.
 - **Olvidar revisar la indeterminación antes de cada nueva aplicación.**

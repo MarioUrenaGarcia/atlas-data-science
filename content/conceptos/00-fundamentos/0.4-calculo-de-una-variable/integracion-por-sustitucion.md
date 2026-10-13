@@ -85,6 +85,13 @@ casos: [gauss-lineal]
 ## Propiedades
 
 - **Sustituciones lineales:** $\int f(ax + b)\,dx = \frac{1}{a}F(ax + b) + C$.
+
+:::figura[Una sustitución lineal: al cambiar $u = ax + b$ la región se estira en horizontal por $a$ y su altura no cambia, así que el área en $u$ es $a$ veces la del integrando original y hay que dividir entre $a$.]{componente="CalculusViz"}
+```yaml
+modo: sustitucion
+casos: [lineal-interior]
+```
+:::
 - **Logarítmica:** $\int \frac{g'(x)}{g(x)}\,dx = \log|g(x)| + C$.
 - **Potencias:** $\int g(x)^{n}\,g'(x)\,dx = \frac{g(x)^{n+1}}{n + 1} + C$ para $n \neq -1$.
 - **Simetría:** con $u = -x$ se prueba que $\int_{-a}^{a} f = 0$ si $f$ es impar.

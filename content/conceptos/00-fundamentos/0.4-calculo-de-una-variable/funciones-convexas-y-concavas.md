@@ -93,6 +93,14 @@ cuerda: [-1, 2]
 - **Mínimos globales:** en una función convexa todo mínimo local es global; si es estrictamente convexa, el mínimo es único.
 - **Operaciones:** la suma de convexas y el máximo de convexas son convexos; $f(ax + b)$ es convexa si $f$ lo es.
 - **Ejemplos:** $x^2$, $|x|$, $e^x$ y $-\log x$ son convexas; $\log x$ y $\sqrt{x}$ son cóncavas.
+
+:::figura[$|x|$ es convexa aunque tenga una esquina: la cuerda entre $-1$ y 2 queda por encima de la gráfica, sin necesidad de derivada en 0.]{componente="CalculusViz"}
+```yaml
+modo: convexidad
+funciones: [valor-absoluto]
+cuerda: [-1, 2]
+```
+:::
 - **Tangentes:** una función convexa derivable queda sobre sus rectas tangentes.
 - **Desigualdad de Jensen:** si $f$ es convexa, $f\big(\mathbb{E}[X]\big) \le \mathbb{E}\big[f(X)\big]$.
 
@@ -112,6 +120,14 @@ Mínimo local implica global: si $c$ es mínimo local y existiera $q$ con $f(q) 
 
 - **Confundir la terminología.** En algunos textos "cóncava hacia arriba" significa convexa; conviene fijarse en la definición.
 - **Pensar que convexa implica creciente.** $x^2$ es convexa y decrece para $x < 0$.
+
+:::figura[$x^2$ entre $-2$ y $-0.5$: la función decrece en todo el tramo y la cuerda queda por encima de la curva, como en cualquier tramo de una función convexa.]{componente="CalculusViz"}
+```yaml
+modo: convexidad
+funciones: [cuadrada]
+cuerda: [-2, -0.5]
+```
+:::
 - **Creer que una función convexa siempre tiene mínimo.** $e^x$ es convexa y no alcanza un mínimo en $\mathbb{R}$.
 - **Aplicar Jensen en la dirección equivocada.** Para cóncavas la desigualdad se invierte: $\mathbb{E}[\log X] \le \log \mathbb{E}[X]$.
 

@@ -17,6 +17,8 @@ const TANGENT_HALF_WIDTH = 0.8;
 const FLAT = 1e-9;
 const PANEL_ASPECT = 0.42;
 const SHADE_BANDS = 120;
+/** Distance to each side, as a fraction of the window, where the sign of f'' is compared. */
+const INFLECTION_PROBE = 1e-3;
 
 interface DerivativeViewProps {
   title: string;
@@ -48,10 +50,13 @@ export function DerivativeView({ title, ids, order, critical }: DerivativeViewPr
     () => (critical ? findRoots(fn.df, a, b) : []),
     [critical, fn, a, b],
   );
-  const inflections = useMemo(
-    () => (critical && order === 2 ? findRoots(fn.d2f, a, b) : []),
-    [critical, order, fn, a, b],
-  );
+  // A zero of f'' is an inflection only if the concavity changes there: x^4
+  // has f''(0) = 0 and stays convex on both sides.
+  const inflections = useMemo(() => {
+    if (!critical || order !== 2) return [];
+    const offset = (b - a) * INFLECTION_PROBE;
+    return findRoots(fn.d2f, a, b).filter((c) => fn.d2f(c - offset) * fn.d2f(c + offset) < 0);
+  }, [critical, order, fn, a, b]);
   const kind = (x: number) => {
     const second = fn.d2f(x);
     return second > FLAT

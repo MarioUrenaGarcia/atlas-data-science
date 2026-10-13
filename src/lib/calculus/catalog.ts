@@ -103,6 +103,19 @@ const LIST: CalcFunction[] = [
     { derivativeLatex: '4x^3 - 8x + 1' },
   ),
   entry(
+    'potencia-cuatro',
+    'x^4',
+    (x) => x ** 4,
+    (x) => 4 * x ** 3,
+    (x) => 12 * x * x,
+    [-1.5, 1.5],
+    {
+      derivativeLatex: '4x^3',
+      antiderivative: (x) => x ** 5 / 5,
+      antiderivativeLatex: '\\tfrac{x^5}{5}',
+    },
+  ),
+  entry(
     'seno',
     '\\operatorname{sen} x',
     Math.sin,
@@ -237,14 +250,15 @@ const LIST: CalcFunction[] = [
   entry(
     'gauss-medio',
     'e^{-x^2/2}',
-    (x) => Math.exp(-x * x / 2),
-    (x) => -x * Math.exp(-x * x / 2),
-    (x) => (x * x - 1) * Math.exp(-x * x / 2),
+    (x) => Math.exp((-x * x) / 2),
+    (x) => -x * Math.exp((-x * x) / 2),
+    (x) => (x * x - 1) * Math.exp((-x * x) / 2),
     [-4, 4],
     {
       derivativeLatex: '-x\\,e^{-x^2/2}',
       antiderivative: (x) => Math.sqrt(Math.PI / 2) * erf(x / Math.SQRT2),
-      antiderivativeLatex: '\\sqrt{\\tfrac{\\pi}{2}}\\operatorname{erf}\\big(\\tfrac{x}{\\sqrt{2}}\\big)',
+      antiderivativeLatex:
+        '\\sqrt{\\tfrac{\\pi}{2}}\\operatorname{erf}\\big(\\tfrac{x}{\\sqrt{2}}\\big)',
     },
   ),
   entry(

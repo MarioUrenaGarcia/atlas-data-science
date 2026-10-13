@@ -90,6 +90,13 @@ x: 0.5
 - **Recurrencia:** $\Gamma(x + 1) = x\,\Gamma(x)$ para todo $x > 0$.
 - **Factoriales:** $\Gamma(n + 1) = n!$.
 - **Mínimo:** en los positivos, $\Gamma$ alcanza su mínimo cerca de $x \approx 1.4616$, con valor $\approx 0.8856$.
+
+:::figura[En $x = 1.4616$ la función gamma alcanza su mínimo en los positivos, cerca de 0.8856: el área bajo $t^{0.4616}e^{-t}$ es la menor de toda la familia.]{componente="CalculusViz"}
+```yaml
+modo: gamma
+x: 1.4616
+```
+:::
 - **Crecimiento:** crece más rápido que cualquier exponencial; su logaritmo, $\log\Gamma(x)$, es convexo.
 - **Reflexión:** $\Gamma(x)\,\Gamma(1 - x) = \frac{\pi}{\operatorname{sen}(\pi x)}$ para $0 < x < 1$.
 - **Relación con la beta:** $B(a, b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a + b)}$.
@@ -108,6 +115,13 @@ Recurrencia: por partes con $u = t^{x}$ y $dv = e^{-t}dt$, $\Gamma(x + 1) = \big
 ## Errores comunes
 
 - **Olvidar el desfase de uno.** $\Gamma(n) = (n - 1)!$, no $n!$.
+
+:::figura[$\Gamma(5) = 24 = 4!$, no $5! = 120$: el área bajo $t^{4}e^{-t}$ da el factorial del número anterior al argumento.]{componente="CalculusViz"}
+```yaml
+modo: gamma
+x: 5
+```
+:::
 - **Evaluar en $x \le 0$ con la integral.** La integral diverge para $x \le 0$; la función se extiende a negativos no enteros por otros medios y tiene polos en $0, -1, -2, \dots$.
 - **Calcular $\Gamma$ de números grandes directamente.** Desborda rápidamente; en la práctica se trabaja con $\log\Gamma$.
 - **Confundir la función gamma con la distribución gamma.** La distribución usa la función como constante de normalización.

@@ -110,6 +110,14 @@ Monotonía: si $f \le g$, cada suma de Riemann cumple $\sum f(x_i^{*})\Delta x \
 ## Errores comunes
 
 - **Confundir integral con área total.** $\int_0^{2\pi}\operatorname{sen} x\,dx = 0$, pero el área encerrada es 4.
+
+:::figura[$\operatorname{sen} x$ en $[0, 2\pi]$: el arco positivo encierra 2 y el negativo $-2$, así que la integral vale 0 aunque el área total sombreada sea 4.]{componente="CalculusViz"}
+```yaml
+modo: area
+funcion: seno
+intervalo: [0, 6.2832]
+```
+:::
 - **Olvidar el $dx$.** Indica respecto a qué variable se integra y cambia en una sustitución.
 - **Invertir los límites sin cambiar el signo.** $\int_3^1 f = -\int_1^3 f$.
 - **Pensar que una integral positiva implica función positiva.** Puede haber tramos negativos compensados por tramos positivos mayores.
