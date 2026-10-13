@@ -1,8 +1,9 @@
-import { lazy, Suspense, useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from '../../components/ui/ErrorBoundary.tsx';
 import { Loading } from '../../components/ui/Loading.tsx';
 import { useUi } from '../../store/ui.ts';
+import { lazyWithRecovery } from '../staleDeploy.ts';
 import { strings } from '../strings.ts';
 import { Footer } from './Footer.tsx';
 import { Header } from './Header.tsx';
@@ -10,7 +11,7 @@ import styles from './Layout.module.css';
 import { useGlobalShortcuts } from './useGlobalShortcuts.ts';
 import { useThemeEffect } from './useThemeEffect.ts';
 
-const SearchPalette = lazy(() => import('../../components/search/SearchPalette.tsx'));
+const SearchPalette = lazyWithRecovery(() => import('../../components/search/SearchPalette.tsx'));
 
 export function Layout() {
   useThemeEffect();
