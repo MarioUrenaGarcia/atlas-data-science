@@ -45,6 +45,15 @@ visualizacion:
         - nombre: 'Diez éxitos'
           descripcion: 'r = 10: la suma de diez esperas geométricas ya parece una campana alrededor de 15.'
           valores: {r: 10, p: 0.4}
+        - nombre: 'Contacto con clientes'
+          descripcion: 'r = 3 y p = 0.6: conteos moderados; intentos de contacto fallidos antes de convertir a tres clientes.'
+          valores: {r: 3, p: 0.6}
+        - nombre: 'Servicio sobredisperso'
+          descripcion: 'r = 5 y p = 0.5: más variabilidad; solicitudes de servicio con varianza mayor que la media.'
+          valores: {r: 5, p: 0.5}
+        - nombre: 'Reclamos variables'
+          descripcion: 'r = 8 y p = 0.3: cola muy pesada; conteos de incidentes o reclamos muy variables.'
+          valores: {r: 8, p: 0.3}
       ejemplo:
         titulo: 'Reclutamiento rápido'
         contexto: 'Se necesitan 3 voluntarios y cada persona contactada acepta con probabilidad 0.4.'
@@ -97,6 +106,15 @@ El coeficiente cuenta las maneras de acomodar $k$ fracasos entre los primeros $k
 $$
 P(T = t) = \binom{t - 1}{r - 1} p^{r} (1 - p)^{t - r}, \qquad t = r, r + 1, \dots
 $$
+
+:::nota[Qué es X]
+$X$ = el número de fracasos antes de conseguir el éxito número $r$.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$r$, éxitos necesarios:** cuántos éxitos hacen falta para detenerse. Si aumenta, se esperan más fracasos y hay más dispersión.
+- **$p$, probabilidad de éxito:** la probabilidad de que cada intento salga bien. Si aumenta, hacen falta menos fracasos y la masa se va a la izquierda.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $X$: número de fracasos antes del éxito número $r$.
@@ -159,6 +177,31 @@ conteo: fracasos
 ```
 :::
 
+Segundo ejemplo, llamadas de venta. Un equipo llama a prospectos hasta lograr 3 ventas, y cada llamada vende con probabilidad 0.4. El número de llamadas fallidas es $X \sim \operatorname{BN}(3, 0.4)$, con media $3 \cdot 0.6/0.4 = 4.5$.
+
+1. La pregunta es $P(X \ge 6) = 1 - P(X \le 5)$.
+2. Los términos $\binom{k + 2}{k} 0.4^{3}\, 0.6^{k}$ para $k = 0, \dots, 5$ valen 0.0640, 0.1152, 0.1382, 0.1382, 0.1244 y 0.1045, que suman 0.6846.
+3. $P(X \ge 6) = 1 - 0.6846 = 0.3154$: casi una de cada tres veces hacen falta 6 o más llamadas fallidas.
+
+:::figura[Llamadas de venta: la región X ≥ 6 suma 0.3154. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: binomial-negativa
+valores:
+  r: 3
+  p: 0.4
+ejemplo:
+  titulo: 'Llamadas de venta'
+  contexto: 'Un equipo de ventas llama a prospectos hasta lograr 3 ventas; cada llamada vende con probabilidad 0.4.'
+  pregunta: '¿Qué probabilidad hay de tener 6 o más llamadas fallidas?'
+  valores: {r: 3, p: 0.4}
+  region: derecha
+  desde: 6
+region: derecha
+desde: 6
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y varianza:** $\mathbb{E}[X] = \dfrac{r(1 - p)}{p}$ y $\operatorname{Var}(X) = \dfrac{r(1 - p)}{p^{2}}$; para los ensayos totales, $\mathbb{E}[T] = r/p$ con la misma varianza.
@@ -168,7 +211,7 @@ conteo: fracasos
 - **Dualidad con la binomial:** necesitar a lo más $n$ ensayos equivale a obtener al menos $r$ éxitos en $n$ ensayos: $P(T \le n) = P(\operatorname{Bin}(n, p) \ge r)$.
 - **Parámetro real:** la fórmula se extiende a $r > 0$ no entero escribiendo el coeficiente con la función gamma; así surge como mezcla de Poisson con tasa gamma.
 
-:::figura[Tres casos con contexto (un solo éxito, tres voluntarios, diez éxitos): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (un solo éxito, tres voluntarios, diez éxitos, contacto con clientes, servicio sobredisperso, reclamos variables): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: binomial-negativa
 valores:
@@ -184,6 +227,15 @@ casos:
   - nombre: 'Diez éxitos'
     descripcion: 'r = 10: la suma de diez esperas geométricas ya parece una campana alrededor de 15.'
     valores: {r: 10, p: 0.4}
+  - nombre: 'Contacto con clientes'
+    descripcion: 'r = 3 y p = 0.6: conteos moderados; intentos de contacto fallidos antes de convertir a tres clientes.'
+    valores: {r: 3, p: 0.6}
+  - nombre: 'Servicio sobredisperso'
+    descripcion: 'r = 5 y p = 0.5: más variabilidad; solicitudes de servicio con varianza mayor que la media.'
+    valores: {r: 5, p: 0.5}
+  - nombre: 'Reclamos variables'
+    descripcion: 'r = 8 y p = 0.3: cola muy pesada; conteos de incidentes o reclamos muy variables.'
+    valores: {r: 8, p: 0.3}
 referencia:
   distribucion: poisson
   valores: {lambda: 4.5}
@@ -254,7 +306,7 @@ conteo: ensayos
 
 ## Conexiones
 
-La binomial negativa generaliza la [[distribucion-geometrica]], que es el caso de un solo éxito, y su coeficiente se obtiene contando [[combinaciones]]. Frente a la [[distribucion-binomial]], intercambia lo fijo y lo aleatorio. Por su varianza mayor que la media se usa como alternativa a la [[distribucion-de-poisson]] para conteos sobredispersos, por ejemplo en ecología y en número de reclamaciones de seguros. Su versión con $r$ real se escribe con la [[funcion-gamma]].
+La binomial negativa generaliza la [[distribucion-geometrica]], que es el caso de un solo éxito, y su coeficiente se obtiene contando [[combinaciones]]. Frente a la [[distribucion-binomial]], intercambia lo fijo y lo aleatorio. Por su varianza mayor que la media se usa como alternativa a la [[distribucion-de-poisson]] para conteos sobredispersos, por ejemplo en ecología y en número de reclamaciones de seguros. Su versión con $r$ real se escribe con la [[funcion-gamma]]. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
 
 ## Formulario
 

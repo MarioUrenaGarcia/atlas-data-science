@@ -82,6 +82,15 @@ $$
 
 **Construcción:** si $Z \sim \mathcal{N}(0, 1)$, entonces $\mu + c/Z^{2}$ tiene distribución de Lévy. El tiempo que un movimiento browniano estándar tarda en alcanzar el nivel $d > 0$ es Lévy con $\mu = 0$ y $c = d^{2}$.
 
+:::nota[Qué es X]
+$X$ = un tiempo de primer paso, como el tiempo que tarda un movimiento browniano en alcanzar una barrera.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, localización:** el valor mínimo posible. Si aumenta, toda la curva se desliza a la derecha.
+- **$c$, escala:** el cuadrado de la distancia a la barrera en el primer paso. Si aumenta, la curva se estira a la derecha y los tiempos crecen.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: tiempo de primer paso u otra cantidad con cola extrema.
 - $\mu$: localización, el valor mínimo.
@@ -192,7 +201,7 @@ referencia:
 
 ## Conexiones
 
-La Lévy se construye con la [[normal-estandar-y-puntuacion-z|normal estándar]] y, como la [[distribucion-de-cauchy]], es una de las [[distribuciones-estables]] con densidad explícita. Su cola, de índice 1/2, es más pesada que la de la [[distribucion-de-pareto]] con cualquier índice mayor que 1/2. Es el tiempo de primer paso del movimiento browniano, resultado que se obtiene con el principio de reflexión.
+La Lévy se construye con la [[normal-estandar-y-puntuacion-z|normal estándar]] y, como la [[distribucion-de-cauchy]], es una de las [[distribuciones-estables]] con densidad explícita. Su cola, de índice 1/2, es más pesada que la de la [[distribucion-de-pareto]] con cualquier índice mayor que 1/2. Es el tiempo de primer paso del movimiento browniano, resultado que se obtiene con el principio de reflexión. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

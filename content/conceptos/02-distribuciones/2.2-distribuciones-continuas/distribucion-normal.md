@@ -87,6 +87,15 @@ $$
 
 Su función de distribución no tiene fórmula elemental; se escribe con la normal estándar $\Phi$ como $F(x) = \Phi\!\left(\frac{x - \mu}{\sigma}\right)$, donde $\Phi(z) = \int_{-\infty}^{z} \frac{1}{\sqrt{2\pi}} e^{-t^{2}/2}\,dt$.
 
+:::nota[Qué es X]
+$X$ = una medición que se agrupa alrededor de un valor central, como una estatura, el error de un sensor o un puntaje $z$.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, media:** el centro de la campana, el valor promedio. Si aumenta, toda la campana se desliza a la derecha sin cambiar de forma.
+- **$\sigma$, desviación estándar:** qué tan dispersas están las mediciones alrededor del centro. Si aumenta, la campana se ensancha y baja; el área sigue valiendo 1.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: variable aleatoria normal.
 - $\mu$: media, el centro de la campana.
@@ -131,6 +140,32 @@ ejemplo:
   desde: 180
 region: derecha
 desde: 180
+muestras: false
+```
+:::
+
+Segundo ejemplo, significancia estadística. En una prueba de hipótesis el puntaje $Z$ es normal estándar cuando la hipótesis nula es cierta, y el corte usual a dos colas al 5 % es 1.96.
+
+1. La pregunta es $P(Z > 1.96) = 1 - \Phi(1.96)$.
+2. En la tabla, $\Phi(1.96) = 0.9750$, así que $P(Z > 1.96) = 0.0250$.
+3. Por simetría $P(Z < -1.96) = 0.0250$ también, y las dos colas juntas suman 0.05: ese es el 5 % de la prueba.
+
+:::figura[Significancia estadística: la cola derecha desde 1.96 vale 0.0250. Con la región de colas entre -1.96 y 1.96 se ven las dos mitades del 5 %.]{componente="DistributionExplorer"}
+```yaml
+distribucion: normal
+valores:
+  mu: 0
+  sigma: 1
+dominio: [-4, 4]
+ejemplo:
+  titulo: 'Significancia estadística'
+  contexto: 'En una prueba de hipótesis, un puntaje z mayor que 1.96 es el corte usual del 5 % a dos colas.'
+  pregunta: 'Si el puntaje es normal estándar, ¿qué probabilidad hay de ver un valor mayor que 1.96?'
+  valores: {mu: 0, sigma: 1}
+  region: derecha
+  desde: 1.96
+region: derecha
+desde: 1.96
 muestras: false
 ```
 :::
@@ -223,6 +258,27 @@ I^{2} = \int\!\!\int e^{-(z^{2} + w^{2})/2}\,dz\,dw = \int_{0}^{2\pi}\!\!\int_{0
 $$
 :::
 
+:::figura[Casos en escala estándar (normal estándar, ruido de un sensor, peso de una especie): cada botón carga μ y σ y una frase explica la forma.]{componente="DistributionExplorer"}
+```yaml
+distribucion: normal
+valores:
+  mu: 0
+  sigma: 1
+dominio: [-8, 9]
+casos:
+  - nombre: 'Normal estándar'
+    descripcion: 'μ = 0 y σ = 1: la de los puntajes z de las pruebas de hipótesis.'
+    valores: {mu: 0, sigma: 1}
+  - nombre: 'Ruido de un sensor'
+    descripcion: 'μ = 0 y σ = 2: más dispersión, como el ruido de un sensor eléctrico de baja calidad; la campana es más ancha y más baja.'
+    valores: {mu: 0, sigma: 2}
+  - nombre: 'Peso de una especie'
+    descripcion: 'μ = 5 y σ = 1: la misma forma que la estándar, desplazada; pesos agrupados alrededor de un valor típico.'
+    valores: {mu: 5, sigma: 1}
+muestras: false
+```
+:::
+
 ## Errores comunes
 
 - **Suponer que todo es normal.** Ingresos, tiempos de espera o tamaños de archivos son asimétricos y con colas largas; tratarlos como normales subestima los valores extremos.
@@ -248,7 +304,26 @@ referencia:
 
 ## Conexiones
 
-La normal se construye con la [[funcion-exponencial-y-logaritmo-natural|exponencial]] de una parábola y su función de distribución se expresa con la [[funcion-error]]. Su versión con media 0 y varianza 1 es la [[normal-estandar-y-puntuacion-z]], y la [[regla-empirica-68-95-99-7]] resume sus probabilidades más usadas. Muchas distribuciones se derivan de ella: la [[distribucion-chi-cuadrada]] (sumas de cuadrados), la [[distribucion-t-de-student]] y la [[distribucion-f-de-snedecor]] (cocientes) y la [[distribucion-lognormal]] (exponencial de una normal). Aparece como límite de la [[distribucion-binomial]] y de la [[distribucion-de-poisson]] cuando sus varianzas son grandes.
+La normal se construye con la [[funcion-exponencial-y-logaritmo-natural|exponencial]] de una parábola y su función de distribución se expresa con la [[funcion-error]]. Su versión con media 0 y varianza 1 es la [[normal-estandar-y-puntuacion-z]], y la [[regla-empirica-68-95-99-7]] resume sus probabilidades más usadas. Muchas distribuciones se derivan de ella: la [[distribucion-chi-cuadrada]] (sumas de cuadrados), la [[distribucion-t-de-student]] y la [[distribucion-f-de-snedecor]] (cocientes) y la [[distribucion-lognormal]] (exponencial de una normal). Aparece como límite de la [[distribucion-binomial]] y de la [[distribucion-de-poisson]] cuando sus varianzas son grandes. Por el [[teorema-central-del-limite]], los promedios de casi cualquier distribución tienden a ser normales cuando la muestra crece. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[t de Student y normal: la normal estándar (curva) frente a la t con 2 grados de libertad (línea punteada), con colas mucho más gruesas: más allá de 3 deja 0.048 contra 0.0013 de la normal.]{componente="DistributionExplorer"}
+```yaml
+distribucion: normal
+valores:
+  mu: 0
+  sigma: 1
+dominio: [-6, 6]
+region: derecha
+desde: 3
+muestras: false
+referencia:
+  distribucion: t
+  valores:
+    nu: 2
+  etiqueta: t con 2 grados de libertad
+  visible: true
+```
+:::
 
 ## Formulario
 

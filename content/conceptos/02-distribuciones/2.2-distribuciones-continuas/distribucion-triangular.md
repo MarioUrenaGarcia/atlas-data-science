@@ -79,6 +79,16 @@ $$
 y $f(x) = 0$ fuera de $[a, b]$. Su función de distribución es $F(x) = \frac{(x - a)^{2}}{(b - a)(c - a)}$ para $a \le x \le c$ y $F(x) = 1 - \frac{(b - x)^{2}}{(b - a)(b - c)}$ para $c < x \le b$.
 :::
 
+:::nota[Qué es X]
+$X$ = una cantidad con mínimo, máximo y valor más probable conocidos, como la duración estimada de una tarea.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$a$, mínimo:** el menor valor posible. Si aumenta, el triángulo se acorta por la izquierda y sube.
+- **$c$, moda:** el valor más probable. Si aumenta, el pico se mueve a la derecha.
+- **$b$, máximo:** el mayor valor posible. Si aumenta, el triángulo se alarga por la derecha y baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: cantidad con límites conocidos.
 - $a$: mínimo posible.
@@ -185,7 +195,7 @@ muestras: false
 
 ## Conexiones
 
-La triangular es la suma de dos variables de la [[distribucion-uniforme-continua]] y la versión continua de la suma de dos dados de la [[distribucion-uniforme-discreta]]. En gestión de proyectos compite con la [[distribucion-beta]], usada en el método PERT, y se usa como entrada en simulaciones de Monte Carlo cuando solo hay juicio experto.
+La triangular es la suma de dos variables de la [[distribucion-uniforme-continua]] y la versión continua de la suma de dos dados de la [[distribucion-uniforme-discreta]]. En gestión de proyectos compite con la [[distribucion-beta]], usada en el método PERT, y se usa como entrada en simulaciones de Monte Carlo cuando solo hay juicio experto. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

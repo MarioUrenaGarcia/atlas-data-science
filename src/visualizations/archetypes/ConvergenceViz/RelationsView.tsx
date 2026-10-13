@@ -5,6 +5,7 @@ import {
   type SequenceId,
 } from '../../../lib/limits/sequences.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import { Latex } from '../../core/Latex.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
@@ -124,9 +125,7 @@ export function RelationsView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={`${definition.latex},\\qquad ${definition.limitLatex}`} />
-      </p>
+      <FormulaLine tex={`${definition.latex},\\qquad ${definition.limitLatex}`} />
       <p className={styles.stage}>
         <Latex tex={stageTex} />
       </p>

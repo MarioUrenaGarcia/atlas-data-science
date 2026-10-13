@@ -43,6 +43,12 @@ visualizacion:
         - nombre: 'Doce sumandos'
           descripcion: 'Con 12 grados la suma ya se parece a una normal de media 12 y varianza 24.'
           valores: {k: 12}
+        - nombre: 'Tabla chica'
+          descripcion: 'k = 2: sesgo fuerte; tablas de contingencia chicas o ajustes con pocas categorías.'
+          valores: {k: 2}
+        - nombre: 'Análisis mediano'
+          descripcion: 'k = 5: sesgo moderado; análisis categóricos de tamaño mediano.'
+          valores: {k: 5}
       ejemplo:
         titulo: 'Aterrizaje del dron'
         contexto: 'El error de aterrizaje de un dron es normal estándar en cada uno de tres ejes, de forma independiente.'
@@ -84,6 +90,14 @@ $$
 :::
 
 Es el caso $\operatorname{Gamma}(k/2, 1/2)$ de la familia gamma. La definición por la densidad permite grados de libertad no enteros.
+
+:::nota[Qué es X]
+$X$ = el estadístico $\chi^{2}$ de una prueba de independencia, de bondad de ajuste o de varianza; nunca es negativo.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$k$, grados de libertad:** cuántas normales estándar al cuadrado se suman; en una tabla de contingencia, $k = (\text{filas} - 1)(\text{columnas} - 1)$. Si aumenta, el pico se corre a la derecha y el sesgo disminuye.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $Q$: suma de cuadrados.
@@ -128,6 +142,31 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, prueba de independencia. Bajo la hipótesis de que no hay relación entre las variables de la tabla, el estadístico sigue una $\chi^{2}_{5}$, con media 5 y varianza 10.
+
+1. La pregunta es $P(\chi^{2}_{5} > 11.07)$.
+2. Como 11.07 es el cuantil 0.95 de $\chi^{2}_{5}$, la probabilidad es 0.05.
+3. Ese es el nivel de la prueba: si no hay relación, en el 5 % de las muestras se declararía una por error.
+
+:::figura[Prueba de independencia: el área a la derecha de 11.07 vale 0.05. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: chi-cuadrada
+valores:
+  k: 5
+dominio: [0, 30]
+ejemplo:
+  titulo: 'Prueba de independencia'
+  contexto: 'Una prueba de independencia con 5 grados de libertad usa 11.07 como valor crítico al 5 %.'
+  pregunta: '¿Qué probabilidad hay de obtener un estadístico mayor que 11.07 si no hay relación?'
+  valores: {k: 5}
+  region: derecha
+  desde: 11.07
+region: derecha
+desde: 11.07
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y varianza:** $\mathbb{E}[Q] = k$ y $\operatorname{Var}(Q) = 2k$.
@@ -137,7 +176,7 @@ muestras: false
 - **Varianza muestral:** si $X_1, \dots, X_n$ son $\mathcal{N}(\mu, \sigma^{2})$ independientes, $(n - 1)S^{2}/\sigma^{2} \sim \chi^{2}_{n-1}$; se pierde un grado de libertad al estimar la media.
 - **Límite normal:** para $k$ grande, $Q \approx \mathcal{N}(k, 2k)$.
 
-:::figura[Tres casos con contexto (un grado, error del dron, doce sumandos): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (un grado, error del dron, doce sumandos, tabla chica, análisis mediano): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: chi-cuadrada
 valores:
@@ -153,6 +192,12 @@ casos:
   - nombre: 'Doce sumandos'
     descripcion: 'Con 12 grados la suma ya se parece a una normal de media 12 y varianza 24.'
     valores: {k: 12}
+  - nombre: 'Tabla chica'
+    descripcion: 'k = 2: sesgo fuerte; tablas de contingencia chicas o ajustes con pocas categorías.'
+    valores: {k: 2}
+  - nombre: 'Análisis mediano'
+    descripcion: 'k = 5: sesgo moderado; análisis categóricos de tamaño mediano.'
+    valores: {k: 5}
 ```
 :::
 
@@ -201,7 +246,34 @@ comparar: true
 
 ## Conexiones
 
-La chi-cuadrada se construye con cuadrados de la [[normal-estandar-y-puntuacion-z|normal estándar]] y es un caso de la [[distribucion-gamma]]. Dividir una normal estándar entre la raíz de una chi-cuadrada sobre sus grados da la [[distribucion-t-de-student]]; el cociente de dos chi-cuadradas, cada una entre sus grados, da la [[distribucion-f-de-snedecor]]. Si las normales no tienen media cero aparece la [[distribucion-chi-cuadrada-no-central]]. La raíz de una $\chi^{2}_{2}$ con escala es la [[distribucion-de-rayleigh]].
+La chi-cuadrada se construye con cuadrados de la [[normal-estandar-y-puntuacion-z|normal estándar]] y es un caso de la [[distribucion-gamma]]. Dividir una normal estándar entre la raíz de una chi-cuadrada sobre sus grados da la [[distribucion-t-de-student]]; el cociente de dos chi-cuadradas, cada una entre sus grados, da la [[distribucion-f-de-snedecor]]. Si las normales no tienen media cero aparece la [[distribucion-chi-cuadrada-no-central]]. La raíz de una $\chi^{2}_{2}$ con escala es la [[distribucion-de-rayleigh]]. Como gamma, tiene forma $k/2$ y escala 2; las figuras siguientes muestran esa coincidencia y el cociente que produce la F. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Chi-cuadrada dentro de la gamma: la chi-cuadrada con k grados (curva) coincide con la gamma de forma k/2 y tasa 1/2 (línea punteada); con k = 6 es la gamma de forma 3.]{componente="DistributionExplorer"}
+```yaml
+distribucion: chi-cuadrada
+valores:
+  k: 6
+dominio: [0, 30]
+muestras: false
+referencia:
+  distribucion: gamma
+  valores:
+    beta: 0.5
+  enlace:
+    alpha: {de: [k], factor: 0.5}
+  etiqueta: Gamma de forma k/2 y escala 2
+  visible: true
+```
+:::
+
+:::figura[Chi-cuadrada y F: en cada experimento se divide una chi-cuadrada con 5 grados entre 5 y otra con 20 grados entre 20; el cociente sigue la F con 5 y 20 grados.]{componente="ContinuousGenesis"}
+```yaml
+proceso: cociente-f
+valores:
+  d1: 5
+  d2: 20
+```
+:::
 
 ## Formulario
 

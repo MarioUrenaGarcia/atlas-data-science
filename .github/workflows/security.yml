@@ -1,0 +1,65 @@
+name: Seguridad
+
+on:
+  schedule:
+    # Weekly, so advisories published after the last push are still caught.
+    - cron: '17 6 * * 1'
+  push:
+    branches: [main]
+    paths:
+      - package.json
+      - package-lock.json
+      - .github/**
+  pull_request:
+    paths:
+      - package.json
+      - package-lock.json
+      - .github/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+      # Install scripts are skipped: this job only inspects the dependency tree.
+      - run: npm ci --ignore-scripts
+      - name: Vulnerabilidades conocidas
+        run: npm audit --audit-level=moderate
+      - name: Firmas y procedencia del registro
+        run: npm audit signatures
+      - name: Origen de los paquetes del lockfile
+        run: |
+          if grep -E '"resolved": "' package-lock.json | grep -vE '"resolved": "https://registry\.npmjs\.org/'; then
+            echo "Hay paquetes resueltos fuera del registro oficial de npm." >&2
+            exit 1
+          fi
+
+  workflows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Acciones fijadas por commit
+        run: |
+          if grep -rnE '^\s*-?\s*uses:\s*[^.][^@]*@' .github/workflows | grep -vE '@[0-9a-f]{40}(\s|$)'; then
+            echo "Toda acción externa debe fijarse por SHA completo." >&2
+            exit 1
+          fi
+      - name: Sin disparadores privilegiados
+        run: |
+          if grep -rnE 'pull_request_[t]arget|workflow_[r]un' .github/workflows; then
+            echo "Disparador con permisos elevados sobre código externo." >&2
+            exit 1
+          fi

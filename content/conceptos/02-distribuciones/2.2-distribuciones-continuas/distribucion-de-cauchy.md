@@ -92,6 +92,15 @@ y su función de distribución es $F(x) = \frac{1}{2} + \frac{1}{\pi}\arctan\!\l
 
 **Construcción del faro:** si $\Theta \sim U(-\pi/2, \pi/2)$, entonces $x_0 + \gamma\tan\Theta \sim \operatorname{Cauchy}(x_0, \gamma)$.
 
+:::nota[Qué es X]
+$X$ = una posición en la recta con colas tan pesadas que no tiene media, como el punto donde el haz de un faro que gira al azar toca la costa.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$x_0$, localización:** la mediana y la moda. Si aumenta, la curva se desliza a la derecha sin cambiar de forma.
+- **$\gamma$, escala:** la mitad de la distancia entre los cuartiles. Si aumenta, la curva se ensancha y baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: posición en la recta.
 - $x_0$: localización, que es la mediana y la moda.
@@ -219,7 +228,7 @@ referencia:
 
 ## Conexiones
 
-La Cauchy se obtiene transformando la [[distribucion-uniforme-continua]] del ángulo con la tangente, y es la [[distribucion-t-de-student]] con un grado de libertad. Contrasta con la [[distribucion-normal]]: ambas son simétricas, pero la Cauchy no tiene varianza. Es un caso de las [[distribuciones-estables]] con índice 1, y junto con la [[distribucion-de-levy]] es de las pocas estables con densidad explícita.
+La Cauchy se obtiene transformando la [[distribucion-uniforme-continua]] del ángulo con la tangente, y es la [[distribucion-t-de-student]] con un grado de libertad. Contrasta con la [[distribucion-normal]]: ambas son simétricas, pero la Cauchy no tiene varianza. Es un caso de las [[distribuciones-estables]] con índice 1, y junto con la [[distribucion-de-levy]] es de las pocas estables con densidad explícita. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

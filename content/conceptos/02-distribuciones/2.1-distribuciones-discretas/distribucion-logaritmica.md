@@ -89,6 +89,14 @@ La constante sale de la serie de Taylor $-\log(1 - p) = \sum_{k \ge 1} p^{k}/k$,
 
 **Construcción como mezcla.** Si $U \sim U(0, 1)$, se define la probabilidad de éxito $s = (1 - p)^{U}$ y, dado $s$, se cuenta el número $X$ de ensayos hasta el primer éxito, $X \mid s \sim \operatorname{Geom}(s)$. Entonces $X \sim \operatorname{Log}(p)$.
 
+:::nota[Qué es X]
+$X$ = un conteo positivo con muchos valores pequeños y una cola larga, como los individuos observados de cada especie.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$p$, parámetro de cola:** controla qué tan lento decae la probabilidad de los conteos grandes. Si aumenta, la cola se alarga y la barra del 1 pierde peso.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: conteo, por ejemplo individuos de una especie.
 - $k$: valor particular, entero positivo.
@@ -227,7 +235,7 @@ referencia:
 
 ## Conexiones
 
-La logarítmica es una mezcla de la [[distribucion-geometrica]] sobre su probabilidad de éxito, y su normalización es la [[serie-de-taylor-y-de-maclaurin|serie de Taylor]] de $-\log(1 - p)$. Aparece como límite de la [[distribucion-binomial-negativa]] truncada en cero, y una suma de Poisson de logarítmicas reproduce la binomial negativa. Junto con la [[distribucion-de-zipf]], describe abundancias muy desiguales en ecología, lingüística y economía.
+La logarítmica es una mezcla de la [[distribucion-geometrica]] sobre su probabilidad de éxito, y su normalización es la [[serie-de-taylor-y-de-maclaurin|serie de Taylor]] de $-\log(1 - p)$. Aparece como límite de la [[distribucion-binomial-negativa]] truncada en cero, y una suma de Poisson de logarítmicas reproduce la binomial negativa. Junto con la [[distribucion-de-zipf]], describe abundancias muy desiguales en ecología, lingüística y economía. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

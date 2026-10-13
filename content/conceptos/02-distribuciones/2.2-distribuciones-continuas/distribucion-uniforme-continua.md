@@ -35,7 +35,7 @@ visualizacion:
       rangos:
         a: [-10, 10]
         b: [-5, 20]
-      dominio: [-1, 11]
+      dominio: [-3, 11]
       casos:
         - nombre: 'Espera de autobús'
           descripcion: 'Pasa cada 10 minutos y se llega sin ver el horario: toda espera entre 0 y 10 es igual de probable, un rectángulo de altura 0.1.'
@@ -43,9 +43,15 @@ visualizacion:
         - nombre: 'Error de redondeo'
           descripcion: 'Una báscula redondea al gramo: el error va de -0.5 a 0.5. El intervalo es corto, así que la densidad sube a 1.'
           valores: {a: -0.5, b: 0.5}
-        - nombre: 'Ángulo al azar'
-          descripcion: 'Una ruleta se detiene en cualquier ángulo entre 0 y 6.28 radianes: rectángulo bajo y ancho, de altura 1/6.28.'
-          valores: {a: 0, b: 6.28}
+        - nombre: 'Números aleatorios'
+          descripcion: 'Intervalo [0, 1]: los números aleatorios estándar de una computadora y los valores p cuando la hipótesis nula es cierta.'
+          valores: {a: 0, b: 1}
+        - nombre: 'Autobús cada 5 minutos'
+          descripcion: 'Intervalo [0, 5]: espera de un autobús que pasa cada 5 minutos si se llega a cualquier hora.'
+          valores: {a: 0, b: 5}
+        - nombre: 'Cuantización de audio'
+          descripcion: 'Intervalo [-2, 2]: error de cuantización al redondear una señal de audio; rectángulo centrado en cero.'
+          valores: {a: -2, b: 2}
       ejemplo:
         titulo: 'Espera larga'
         contexto: 'El autobús pasa cada 10 minutos y una persona llega a la parada sin consultar el horario.'
@@ -89,6 +95,15 @@ Su función de distribución crece en línea recta entre 0 y 1:
 $$
 F(x) = \begin{cases} 0, & x < a, \\ \dfrac{x - a}{b - a}, & a \le x \le b, \\ 1, & x > b. \end{cases}
 $$
+
+:::nota[Qué es X]
+$X$ = un valor elegido al azar dentro del intervalo $[a, b]$, sin preferir ninguna zona.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$a$, límite inferior:** dónde empieza el intervalo. Si aumenta, el intervalo se encoge desde la izquierda y la altura $1/(b - a)$ sube para que el área siga valiendo 1.
+- **$b$, límite superior:** dónde termina el intervalo. Si aumenta, el intervalo se alarga y la altura baja.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $X$: valor elegido al azar en el intervalo.
@@ -138,6 +153,32 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, un autobús de cada 5 minutos. Si pasa exactamente cada 5 minutos y se llega a una hora cualquiera, la espera es $X \sim \mathcal{U}(0, 5)$, con densidad constante $1/5$.
+
+1. La pregunta es $P(X \le 2)$, el área de un rectángulo de base 2 y altura $1/5$.
+2. $P(X \le 2) = 2/5 = 0.4$.
+3. La espera media es $(0 + 5)/2 = 2.5$ minutos.
+
+:::figura[El autobús de cada 5 minutos: el rectángulo sombreado hasta 2 vale 0.4. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: uniforme
+valores:
+  a: 0
+  b: 5
+dominio: [-1, 6]
+ejemplo:
+  titulo: 'El autobús de cada 5 minutos'
+  contexto: 'Un autobús pasa exactamente cada 5 minutos y se llega a la parada a una hora cualquiera.'
+  pregunta: '¿Qué probabilidad hay de esperar 2 minutos o menos?'
+  valores: {a: 0, b: 5}
+  region: izquierda
+  desde: 2
+region: izquierda
+desde: 2
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Probabilidad de un tramo:** para $a \le c \le d \le b$, $P(c \le X \le d) = \dfrac{d - c}{b - a}$.
@@ -146,7 +187,7 @@ muestras: false
 - **Cambio de escala:** si $U \sim U(0, 1)$, entonces $a + (b - a)U \sim U(a, b)$.
 - **Transformada integral:** si $X$ es continua con función de distribución $F$, entonces $F(X) \sim U(0, 1)$; al revés, $F^{-1}(U)$ tiene distribución $F$.
 
-:::figura[Tres casos con contexto (espera de autobús, error de redondeo, ángulo al azar): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (espera de autobús, error de redondeo, números aleatorios, autobús cada 5 minutos, cuantización de audio): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: uniforme
 valores:
@@ -163,9 +204,15 @@ casos:
   - nombre: 'Error de redondeo'
     descripcion: 'Una báscula redondea al gramo: el error va de -0.5 a 0.5. El intervalo es corto, así que la densidad sube a 1.'
     valores: {a: -0.5, b: 0.5}
-  - nombre: 'Ángulo al azar'
-    descripcion: 'Una ruleta se detiene en cualquier ángulo entre 0 y 6.28 radianes: rectángulo bajo y ancho, de altura 1/6.28.'
-    valores: {a: 0, b: 6.28}
+  - nombre: 'Números aleatorios'
+    descripcion: 'Intervalo [0, 1]: los números aleatorios estándar de una computadora y los valores p cuando la hipótesis nula es cierta.'
+    valores: {a: 0, b: 1}
+  - nombre: 'Autobús cada 5 minutos'
+    descripcion: 'Intervalo [0, 5]: espera de un autobús que pasa cada 5 minutos si se llega a cualquier hora.'
+    valores: {a: 0, b: 5}
+  - nombre: 'Cuantización de audio'
+    descripcion: 'Intervalo [-2, 2]: error de cuantización al redondear una señal de audio; rectángulo centrado en cero.'
+    valores: {a: -2, b: 2}
 ```
 :::
 
@@ -224,7 +271,25 @@ comparar: false
 
 ## Conexiones
 
-La uniforme continua es la versión continua de la [[distribucion-uniforme-discreta]]: la probabilidad deja de contar puntos y pasa a medir longitudes, es decir, [[integral-definida-como-area|áreas bajo la densidad]]. La suma de dos uniformes da la [[distribucion-triangular]], y la de muchas se parece a la [[distribucion-normal]]. Transformar una uniforme con la inversa de una función de distribución produce cualquier distribución continua; de ahí salen la [[distribucion-exponencial]] y la [[distribucion-de-pareto]] en el generador de números aleatorios.
+La uniforme continua es la versión continua de la [[distribucion-uniforme-discreta]]: la probabilidad deja de contar puntos y pasa a medir longitudes, es decir, [[integral-definida-como-area|áreas bajo la densidad]]. La suma de dos uniformes da la [[distribucion-triangular]], y la de muchas se parece a la [[distribucion-normal]]. Transformar una uniforme con la inversa de una función de distribución produce cualquier distribución continua; de ahí salen la [[distribucion-exponencial]] y la [[distribucion-de-pareto]] en el generador de números aleatorios. La uniforme en $[0, 1]$ es la materia prima de las simulaciones: de ella se obtienen las demás distribuciones. Con parámetros 1 y 1, la [[distribucion-beta]] es esa misma uniforme. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Uniforme dentro de la beta: la uniforme en [0, 1] (curva) coincide con la beta de parámetros 1 y 1 (línea punteada).]{componente="DistributionExplorer"}
+```yaml
+distribucion: uniforme
+valores:
+  a: 0
+  b: 1
+dominio: [-0.5, 1.5]
+muestras: false
+referencia:
+  distribucion: beta
+  valores:
+    a: 1
+    b: 1
+  etiqueta: Beta(1, 1)
+  visible: true
+```
+:::
 
 ## Formulario
 

@@ -84,6 +84,15 @@ donde $I_0(\kappa) = \frac{1}{2\pi}\int_0^{2\pi} e^{\kappa\cos t}\,dt$ es la fun
 
 Su **longitud resultante media**, $\rho = \mathbb{E}[\cos(\Theta - \mu)] = I_1(\kappa)/I_0(\kappa)$, mide la concentración en una escala de 0 (dispersión total) a 1 (todo en $\mu$).
 
+:::nota[Qué representa la variable]
+$\Theta$ = un ángulo o una dirección, como la orientación del viento o la hora del día de un evento.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, dirección media:** el ángulo alrededor del que se agrupan los datos. Si aumenta, la curva gira alrededor del círculo.
+- **$\kappa$, concentración:** qué tan agrupados están los ángulos, análoga a $1/\sigma^{2}$. Si aumenta, la curva se angosta alrededor de $\mu$; con $\kappa = 0$ es uniforme.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $\Theta$: ángulo aleatorio, en radianes.
 - $\mu$: dirección media.
@@ -192,7 +201,7 @@ referencia:
 
 ## Conexiones
 
-La von Mises es la análoga circular de la [[distribucion-normal]] y con concentración cero se reduce a una [[distribucion-uniforme-continua]] en el círculo. Su normalización usa la misma función de Bessel que la [[distribucion-de-rice]]. Se usa en meteorología, biología del movimiento animal, ritmos circadianos y en modelos de ángulos de torsión de proteínas.
+La von Mises es la análoga circular de la [[distribucion-normal]] y con concentración cero se reduce a una [[distribucion-uniforme-continua]] en el círculo. Su normalización usa la misma función de Bessel que la [[distribucion-de-rice]]. Se usa en meteorología, biología del movimiento animal, ritmos circadianos y en modelos de ángulos de torsión de proteínas. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

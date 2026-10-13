@@ -86,6 +86,15 @@ $$
 Si $a$ y $b$ son enteros y $U_{g,i}$, $g = 1, \dots, b$, $i = 1, \dots, a$, son uniformes en $(0, 1)$ independientes, entonces $\min_{g}\max_{i} U_{g,i}$ tiene distribución de Kumaraswamy con parámetros $a$ y $b$.
 :::
 
+:::nota[Qué es X]
+$X$ = una proporción entre 0 y 1, con una forma parecida a la beta pero con función de distribución explícita.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$a$, parámetro hacia el 1:** empuja la masa hacia valores cercanos a 1. Si aumenta, la curva se mueve hacia el 1.
+- **$b$, parámetro hacia el 0:** empuja la masa hacia valores cercanos a 0. Si aumenta, la curva se mueve hacia el 0.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: proporción entre 0 y 1.
 - $a$: parámetro que empuja la masa hacia 1.
@@ -191,7 +200,7 @@ referencia:
 
 ## Conexiones
 
-La Kumaraswamy es una alternativa a la [[distribucion-beta]] con función de distribución explícita. Con parámetros enteros se construye con máximos y mínimos de la [[distribucion-uniforme-continua]], y con $b = 1$ es el estadístico de orden más alto, una beta. Se usa en hidrología y en modelos de aprendizaje automático que necesitan simular proporciones con reparametrizaciones simples.
+La Kumaraswamy es una alternativa a la [[distribucion-beta]] con función de distribución explícita. Con parámetros enteros se construye con máximos y mínimos de la [[distribucion-uniforme-continua]], y con $b = 1$ es el estadístico de orden más alto, una beta. Se usa en hidrología y en modelos de aprendizaje automático que necesitan simular proporciones con reparametrizaciones simples. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

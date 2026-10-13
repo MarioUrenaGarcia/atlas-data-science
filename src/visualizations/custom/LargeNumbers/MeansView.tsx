@@ -9,7 +9,7 @@ import {
 } from '../../../lib/limits/lln.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -253,9 +253,7 @@ export function MeansView({
       description={description}
       graphic="canvas"
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       <p className={styles.panelTitle}>Media acumulada de cada trayectoria</p>
       <TrajectoryCanvas
         paths={paths}

@@ -83,6 +83,15 @@ $$
 
 La suma recorre todas las formas de obtener la diferencia $k$: el segundo conteo vale $j$ y el primero $j + k$. La forma cerrada usa la función de Bessel modificada de primera especie, $I_{\nu}(z) = \sum_{m \ge 0} \frac{(z/2)^{2m + \nu}}{m!\,(m + \nu)!}$.
 
+:::nota[Qué es X]
+$X$ = la diferencia entre dos conteos de Poisson independientes, como goles a favor menos goles en contra.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu_1$, media del primer conteo:** el promedio del conteo que suma. Si aumenta, la distribución se corre a la derecha y se ensancha.
+- **$\mu_2$, media del segundo conteo:** el promedio del conteo que resta. Si aumenta, la distribución se corre a la izquierda y se ensancha.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: diferencia entre los dos conteos.
 - $N_1$, $N_2$: conteos de Poisson independientes.
@@ -210,7 +219,7 @@ muestras: false
 
 ## Conexiones
 
-La Skellam es la diferencia de dos conteos de [[distribucion-de-poisson|Poisson]] independientes. Así como la suma de signos de la [[distribucion-de-rademacher]] describe una caminata aleatoria en tiempos fijos, la Skellam describe la posición de una caminata que da pasos hacia arriba y hacia abajo en tiempos de Poisson. Se usa en modelos de resultados deportivos, en el análisis de cambios de precio de activos en tiempo continuo y en la comparación de conteos de fotones.
+La Skellam es la diferencia de dos conteos de [[distribucion-de-poisson|Poisson]] independientes. Así como la suma de signos de la [[distribucion-de-rademacher]] describe una caminata aleatoria en tiempos fijos, la Skellam describe la posición de una caminata que da pasos hacia arriba y hacia abajo en tiempos de Poisson. Se usa en modelos de resultados deportivos, en el análisis de cambios de precio de activos en tiempo continuo y en la comparación de conteos de fotones. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 
