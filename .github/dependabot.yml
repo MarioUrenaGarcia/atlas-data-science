@@ -5,11 +5,6 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
-    ignore:
-      # Node type definitions must match the runtime major pinned in .nvmrc;
-      # newer majors would type-check APIs that the runtime lacks.
-      - dependency-name: '@types/node'
-        update-types: ['version-update:semver-major']
     groups:
       desarrollo:
         dependency-type: development
