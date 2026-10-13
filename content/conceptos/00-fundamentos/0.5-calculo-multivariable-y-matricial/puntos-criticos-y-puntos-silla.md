@@ -93,6 +93,13 @@ campos: [min-y-silla]
 - **Condición necesaria:** todo extremo local interior de una función diferenciable es un punto crítico; el recíproco es falso.
 - **Extremos en la frontera:** en un dominio cerrado, el máximo y el mínimo pueden estar en la frontera, donde el gradiente no tiene que anularse; ahí se usan [[multiplicadores-de-lagrange]].
 - **Funciones convexas:** si $f$ es convexa, todo punto crítico es un mínimo global.
+
+:::figura[El tazón $x^2 + y^2$ es convexo: tiene un solo punto crítico, el origen, y es su mínimo global.]{componente="SurfaceViz"}
+```yaml
+modo: criticos
+campos: [paraboloide]
+```
+:::
 - **Sillas en dimensión alta:** con $n$ variables una silla tiene valores propios de ambos signos; en problemas grandes esto es mucho más frecuente que tenerlos todos del mismo signo.
 
 :::figura[En sen x cos y los puntos críticos forman un patrón regular: máximos de valor 1 y mínimos de valor -1 alternados, con sillas entre ellos sobre las líneas donde la función vale 0.]{componente="SurfaceViz"}
@@ -108,6 +115,13 @@ campos: [ondas]
 - **Clasificar solo con $f_{xx}$.** $f_{xx} > 0$ dice que el corte en $x$ curva hacia arriba, pero si $D < 0$ hay otra dirección que curva hacia abajo.
 - **Confundir local con global.** Un mínimo local puede no ser el menor valor de la función, como en el ejemplo.
 - **Aplicar la prueba con $D = 0$.** $x^4 + y^4$ y $x^4 - y^4$ tienen hessiana nula en el origen; la primera tiene ahí un mínimo y la segunda una silla.
+
+:::figura[La silla de mono $x^3 - 3xy^2$: en el origen el gradiente y la hessiana son cero, así que $D = 0$ y la prueba no decide. La superficie sube y baja tres veces alrededor del punto, que no es extremo.]{componente="SurfaceViz"}
+```yaml
+modo: criticos
+campos: [silla-mono]
+```
+:::
 
 :::figura[La silla x² - y²: un único punto crítico, en el origen, con gradiente cero y valores propios 2 y -2. No es máximo ni mínimo: sube hacia los lados y baja hacia el frente.]{componente="SurfaceViz"}
 ```yaml

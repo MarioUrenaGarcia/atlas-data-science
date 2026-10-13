@@ -101,6 +101,17 @@ casos:
 
 - **Linealidad:** $\iint (af + bg)\,dA = a\iint f\,dA + b\iint g\,dA$.
 - **Aditividad:** si $R$ se divide en dos regiones sin traslape, la integral es la suma de las integrales sobre cada parte.
+
+:::figura[$x^2 + y^2$ sobre dos rectángulos contiguos: $[0, 1] \times [0, 1]$ da $\tfrac{2}{3}$ y $[1, 2] \times [0, 1]$ da $\tfrac{8}{3}$. Su suma, $\tfrac{10}{3}$, es la integral sobre $[0, 2] \times [0, 1]$.]{componente="SurfaceViz"}
+```yaml
+modo: integral-doble
+casos:
+  - campo: paraboloide
+    region: [[0, 1], [0, 1]]
+  - campo: paraboloide
+    region: [[1, 2], [0, 1]]
+```
+:::
 - **Área y volumen:** $\iint_R 1\,dA$ es el área de $R$; $\iiint_B 1\,dV$ es el volumen de $B$.
 - **Funciones separables:** si $f(x, y) = g(x)h(y)$ en un rectángulo, $\iint_R f\,dA = \int_a^b g\,dx \cdot \int_c^d h\,dy$.
 - **Probabilidad:** si $f$ es una densidad conjunta, $P((X, Y) \in R) = \iint_R f\,dA$ y la integral sobre todo el plano vale 1.

@@ -87,7 +87,22 @@ campos: [eliptico]
 - **No se cruzan:** dos curvas de nivel distintas no comparten puntos, porque en cada punto $f$ tiene un solo valor.
 - **Separación y pendiente:** con niveles igualmente espaciados, curvas juntas indican cambio rápido y curvas separadas indican una zona casi plana.
 - **Perpendicularidad:** el gradiente en un punto es perpendicular a la curva de nivel que pasa por él.
+
+:::figura[En el tazón $x^2 + 3y^2$, en $(-1, 1)$, el gradiente $(-2, 6)$ cruza la elipse de nivel en ángulo recto, igual que las demás flechas del campo.]{componente="SurfaceViz"}
+```yaml
+modo: gradiente
+campos: [eliptico]
+punto: [-1, 1]
+```
+:::
 - **Extremos y sillas:** alrededor de un mínimo o un máximo local las curvas son óvalos que se encogen hacia el punto; en un punto silla la curva de su nivel se cruza consigo misma.
+
+:::figura[La función de Himmelblau: alrededor de sus cuatro mínimos y de su máximo las curvas son óvalos que se cierran, y en sus cuatro sillas las curvas del nivel crítico se cruzan.]{componente="SurfaceViz"}
+```yaml
+modo: criticos
+campos: [himmelblau]
+```
+:::
 - **Contornos de densidades:** en una normal bivariada las curvas de nivel son elipses cuyos ejes son los vectores propios de la matriz de covarianza.
 
 :::figura[Caso de un punto silla: en x² - y² las curvas de nivel positivas se abren hacia los lados, las negativas hacia arriba y abajo, y la curva de nivel 0 son las dos diagonales y = x y y = -x, que se cruzan en el origen.]{componente="SurfaceViz"}
