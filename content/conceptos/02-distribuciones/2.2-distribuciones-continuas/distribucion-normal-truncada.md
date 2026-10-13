@@ -95,6 +95,17 @@ $$
 con $\alpha = (a - \mu)/\sigma$ y $\beta = (b - \mu)/\sigma$.
 :::
 
+:::nota[Qué es X]
+$X$ = una medición normal que solo puede caer dentro de un intervalo $[a, b]$.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, media original:** el centro de la normal antes de truncar. Si aumenta, la masa se desplaza dentro del intervalo hacia $b$.
+- **$\sigma$, desviación original:** la dispersión de la normal antes de truncar. Si aumenta, la curva se aplana dentro del intervalo.
+- **$a$, límite inferior:** el menor valor permitido. Si aumenta, el intervalo se acorta por la izquierda y la densidad sube.
+- **$b$, límite superior:** el mayor valor permitido. Si aumenta, el intervalo se alarga por la derecha y la densidad baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $\mu$, $\sigma$: media y desviación de la normal original, no de la truncada.
 - $a$, $b$: límites del intervalo permitido.
@@ -218,7 +229,7 @@ valores:
 
 ## Conexiones
 
-La normal truncada es una [[distribucion-normal]] condicionada a un intervalo. Con un solo corte en la media es la seminormal, relacionada con el valor absoluto de una normal. Aparece en los modelos de selección muestral, en el modelo probit como variable latente y en la estadística bayesiana cuando un parámetro tiene restricciones de signo.
+La normal truncada es una [[distribucion-normal]] condicionada a un intervalo. Con un solo corte en la media es la seminormal, relacionada con el valor absoluto de una normal. Aparece en los modelos de selección muestral, en el modelo probit como variable latente y en la estadística bayesiana cuando un parámetro tiene restricciones de signo. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

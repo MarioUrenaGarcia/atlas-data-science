@@ -126,7 +126,7 @@ conteos:
 - **Relación con chi cuadrada:** $\phi^2 = \chi^2/n$.
 - **El máximo depende de las marginales:** si los totales de filas y columnas no son iguales, phi no puede llegar a 1 aunque la asociación sea la más fuerte posible.
 
-:::figura[Máximo restringido por las marginales: en una prueba de detección, todos los negativos verdaderos dan negativo, pero hay más positivos verdaderos que resultados positivos. Aunque ninguna celda contradice la asociación más fuerte posible, phi es solo 0.5.]{componente="AssociationViz"}
+:::figura[Máximo restringido por las marginales: en una prueba de detección, todas las personas sanas dan negativo, pero hay más enfermos (50) que resultados positivos (20). Aunque ninguna celda contradice la asociación más fuerte posible, phi es solo 0.5.]{componente="AssociationViz"}
 ```yaml
 modo: contingencia
 enfoque: phi

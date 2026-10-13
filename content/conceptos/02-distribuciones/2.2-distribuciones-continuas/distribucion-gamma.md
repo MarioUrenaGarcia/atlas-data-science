@@ -33,15 +33,21 @@ visualizacion:
         alpha: 2
         beta: 2
       casos:
-        - nombre: 'Forma 1'
-          descripcion: 'Con α = 1 la gamma es una exponencial: densidad máxima en cero.'
-          valores: {alpha: 1, beta: 1}
         - nombre: 'Lluvia mensual'
           descripcion: 'α = 2 y β = 2: valores positivos con moda en 0.5, media en 1 y cola larga a la derecha.'
           valores: {alpha: 2, beta: 2}
         - nombre: 'Nueve reparaciones'
           descripcion: 'Tiempo total de 9 reparaciones de media 1/3 cada una: α = 9, β = 3, ya casi simétrica.'
           valores: {alpha: 9, beta: 3}
+        - nombre: 'Primer evento'
+          descripcion: 'α = 1 y θ = 2 (β = 0.5): se reduce a la exponencial; esperar al primer evento.'
+          valores: {alpha: 1, beta: 0.5}
+        - nombre: 'Segundo cliente'
+          descripcion: 'α = 2 y θ = 2 (β = 0.5): sesgo a la derecha; esperar al segundo cliente de una fila.'
+          valores: {alpha: 2, beta: 0.5}
+        - nombre: 'Reclamos del trimestre'
+          descripcion: 'α = 5 y θ = 1 (β = 1): más simétrica; reclamos de seguro acumulados en un trimestre o lluvia de una temporada.'
+          valores: {alpha: 5, beta: 1}
       ejemplo:
         titulo: 'Mes muy lluvioso'
         contexto: 'La precipitación mensual, en cientos de milímetros, sigue una gamma con forma 2 y tasa 2.'
@@ -83,6 +89,15 @@ donde $\Gamma(\alpha) = \int_{0}^{\infty} t^{\alpha - 1}e^{-t}\,dt$ es la funci�
 :::
 
 Otra parametrización usa la escala $\theta = 1/\beta$: $f(x) = \frac{1}{\Gamma(\alpha)\theta^{\alpha}} x^{\alpha - 1}e^{-x/\theta}$. Conviene revisar cuál usa cada texto o programa.
+
+:::nota[Qué es X]
+$X$ = el tiempo de espera hasta que ocurre el evento número $\alpha$, o más en general una cantidad positiva con sesgo a la derecha.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\alpha$, forma:** a qué evento se espera: el primero ($\alpha = 1$), el segundo ($\alpha = 2$), el que sea. Si aumenta, la curva se vuelve más acampanada y simétrica, y la espera crece.
+- **$\beta$, tasa:** cuántos eventos ocurren por unidad de tiempo; su inverso $\theta = 1/\beta$ es la escala, el tiempo promedio entre eventos. Si aumenta, la curva se comprime hacia el cero sin cambiar de forma; si en cambio sube la escala $\theta$, se estira a la derecha.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $X$: cantidad positiva.
@@ -128,6 +143,31 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, el tercer cliente. El mostrador recibe 0.5 clientes por minuto, de modo que la escala es $\theta = 1/0.5 = 2$ minutos. La espera hasta el tercer cliente es la suma de tres esperas exponenciales: $X \sim \operatorname{Gamma}(3, 0.5)$, con media $\alpha/\beta = 6$ minutos.
+
+1. Con forma entera, $P(X \le x) = 1 - e^{-\beta x}\sum_{j=0}^{\alpha - 1} (\beta x)^{j}/j!$.
+2. Con $\beta x = 0.5 \cdot 8 = 4$: $e^{-4}(1 + 4 + 8) = 13e^{-4} \approx 0.2381$.
+3. $P(X \le 8) \approx 1 - 0.2381 = 0.7619$.
+
+:::figura[El tercer cliente: el área a la izquierda de 8 vale 0.7619. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: gamma
+valores:
+  alpha: 3
+  beta: 0.5
+ejemplo:
+  titulo: 'El tercer cliente'
+  contexto: 'Un mostrador recibe 0.5 clientes por minuto, así que θ = 2 minutos. Ahora se espera al tercer cliente.'
+  pregunta: '¿Qué probabilidad hay de que el tercer cliente llegue antes de 8 minutos?'
+  valores: {alpha: 3, beta: 0.5}
+  region: izquierda
+  desde: 8
+region: izquierda
+desde: 8
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y varianza:** $\mathbb{E}[X] = \alpha/\beta$ y $\operatorname{Var}(X) = \alpha/\beta^{2}$.
@@ -137,22 +177,28 @@ muestras: false
 - **Escala:** si $X \sim \operatorname{Gamma}(\alpha, \beta)$ y $c > 0$, $cX \sim \operatorname{Gamma}(\alpha, \beta/c)$.
 - **Forma límite:** para $\alpha$ grande, $X \approx \mathcal{N}(\alpha/\beta, \alpha/\beta^{2})$.
 
-:::figura[Tres casos con contexto (forma 1, lluvia mensual, nueve reparaciones): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (lluvia mensual, nueve reparaciones, primer evento, segundo cliente, reclamos del trimestre): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: gamma
 valores:
   alpha: 2
   beta: 2
 casos:
-  - nombre: 'Forma 1'
-    descripcion: 'Con α = 1 la gamma es una exponencial: densidad máxima en cero.'
-    valores: {alpha: 1, beta: 1}
   - nombre: 'Lluvia mensual'
     descripcion: 'α = 2 y β = 2: valores positivos con moda en 0.5, media en 1 y cola larga a la derecha.'
     valores: {alpha: 2, beta: 2}
   - nombre: 'Nueve reparaciones'
     descripcion: 'Tiempo total de 9 reparaciones de media 1/3 cada una: α = 9, β = 3, ya casi simétrica.'
     valores: {alpha: 9, beta: 3}
+  - nombre: 'Primer evento'
+    descripcion: 'α = 1 y θ = 2 (β = 0.5): se reduce a la exponencial; esperar al primer evento.'
+    valores: {alpha: 1, beta: 0.5}
+  - nombre: 'Segundo cliente'
+    descripcion: 'α = 2 y θ = 2 (β = 0.5): sesgo a la derecha; esperar al segundo cliente de una fila.'
+    valores: {alpha: 2, beta: 0.5}
+  - nombre: 'Reclamos del trimestre'
+    descripcion: 'α = 5 y θ = 1 (β = 1): más simétrica; reclamos de seguro acumulados en un trimestre o lluvia de una temporada.'
+    valores: {alpha: 5, beta: 1}
 ```
 :::
 
@@ -223,7 +269,40 @@ referencia:
 
 ## Conexiones
 
-La gamma generaliza la [[distribucion-exponencial]] y, con forma entera, coincide con la [[distribucion-de-erlang]]. Su normalización es la [[funcion-gamma]]. La [[distribucion-chi-cuadrada]] es una gamma con tasa 1/2, y el cociente $X/(X + Y)$ de dos gammas independientes con la misma tasa sigue una [[distribucion-beta]]. El inverso de una gamma da la [[distribucion-gamma-inversa]]. Cuando la tasa de una [[distribucion-de-poisson]] es gamma, el conteo resultante es una [[distribucion-binomial-negativa]].
+La gamma generaliza la [[distribucion-exponencial]] y, con forma entera, coincide con la [[distribucion-de-erlang]]. Su normalización es la [[funcion-gamma]]. La [[distribucion-chi-cuadrada]] es una gamma con tasa 1/2, y el cociente $X/(X + Y)$ de dos gammas independientes con la misma tasa sigue una [[distribucion-beta]]. El inverso de una gamma da la [[distribucion-gamma-inversa]]. Cuando la tasa de una [[distribucion-de-poisson]] es gamma, el conteo resultante es una [[distribucion-binomial-negativa]]. Las figuras siguientes superponen los dos casos particulares: forma 1 con la exponencial y tasa 1/2 (escala 2) con la chi-cuadrada de $2\alpha$ grados. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Exponencial dentro de la gamma: con forma 1 la gamma (curva) es la exponencial con λ = β (línea punteada). Al subir la forma, las dos curvas se separan.]{componente="DistributionExplorer"}
+```yaml
+distribucion: gamma
+valores:
+  alpha: 1
+  beta: 0.5
+muestras: false
+referencia:
+  distribucion: exponencial
+  enlace:
+    lambda: {de: [beta]}
+  etiqueta: Exponencial con λ = β
+  visible: true
+```
+:::
+
+:::figura[Chi-cuadrada dentro de la gamma: la gamma con tasa 1/2 (curva) coincide con la chi-cuadrada de k = 2α grados (línea punteada); con α = 3 son 6 grados.]{componente="DistributionExplorer"}
+```yaml
+distribucion: gamma
+valores:
+  alpha: 3
+  beta: 0.5
+fijos: [beta]
+muestras: false
+referencia:
+  distribucion: chi-cuadrada
+  enlace:
+    k: {de: [alpha], factor: 2}
+  etiqueta: Chi-cuadrada con k = 2α
+  visible: true
+```
+:::
 
 ## Formulario
 

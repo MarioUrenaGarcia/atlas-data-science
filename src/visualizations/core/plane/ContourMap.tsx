@@ -1,6 +1,6 @@
 import { useMemo, type ReactNode } from 'react';
 import { contourSegments, type Point2 } from '../../../lib/multivariable/index.ts';
-import { DATA_COLORS } from '../../core/colors.ts';
+import { DATA_COLORS } from '../colors.ts';
 import { EqualPlane, type MapScales } from './EqualPlane.tsx';
 import { fieldRange, relative, type FieldRange } from './levels.ts';
 

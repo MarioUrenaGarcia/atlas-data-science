@@ -87,6 +87,16 @@ $$
 Si $X_1, \dots, X_n$ son $\operatorname{Pareto}(1, \alpha)$ independientes, entonces $\max_i X_i / n^{1/\alpha}$ converge en distribución a la Fréchet con índice $\alpha$, escala 1 y localización 0.
 :::
 
+:::nota[Qué es X]
+$X$ = el máximo de muchas observaciones con cola pesada, como la mayor pérdida de un año.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\alpha$, índice de cola:** qué tan pesada es la cola derecha. Si aumenta, la cola se adelgaza y los máximos extremos se vuelven menos probables.
+- **$s$, escala:** el tamaño típico de los máximos. Si aumenta, la curva se estira a la derecha.
+- **$m$, localización:** el valor mínimo posible. Si aumenta, toda la curva se desliza a la derecha.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: valor máximo.
 - $\alpha$: índice de cola.
@@ -205,7 +215,7 @@ referencia:
 
 ## Conexiones
 
-La Fréchet es el límite del máximo de variables de cola pesada, como la [[distribucion-de-pareto]], y comparte familia con la [[distribucion-de-gumbel]] y la [[distribucion-de-weibull]]; su inverso es una Weibull. Es la distribución de referencia para extremos en seguros, finanzas y desastres naturales con colas pesadas.
+La Fréchet es el límite del máximo de variables de cola pesada, como la [[distribucion-de-pareto]], y comparte familia con la [[distribucion-de-gumbel]] y la [[distribucion-de-weibull]]; su inverso es una Weibull. Es la distribución de referencia para extremos en seguros, finanzas y desastres naturales con colas pesadas. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

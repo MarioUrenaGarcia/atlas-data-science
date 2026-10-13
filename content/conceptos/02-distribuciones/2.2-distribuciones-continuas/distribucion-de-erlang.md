@@ -88,6 +88,15 @@ $$
 P(T \le t) = 1 - \sum_{j=0}^{k-1} e^{-\lambda t}\frac{(\lambda t)^{j}}{j!}.
 $$
 
+:::nota[Qué representa la variable]
+$T$ = el tiempo hasta la llegada número $k$ cuando las llegadas ocurren a una tasa constante.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$k$, número de llegadas:** cuántas esperas exponenciales se suman. Si aumenta, la curva se vuelve más simétrica y la espera crece.
+- **$\lambda$, tasa:** cuántas llegadas ocurren por unidad de tiempo. Si aumenta, las esperas se acortan y la curva se comprime hacia el cero.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $T$: tiempo hasta la llegada número $k$.
 - $E_i$: espera entre la llegada $i - 1$ y la $i$.
@@ -214,7 +223,7 @@ referencia:
 
 ## Conexiones
 
-La Erlang es la [[distribucion-gamma]] con forma entera y la suma de esperas de la [[distribucion-exponencial]]. Su función de distribución se escribe con la [[distribucion-de-poisson]], que cuenta las llegadas en un intervalo. La [[propiedad-de-perdida-de-memoria]] de cada etapa es la razón de que los tramos sean independientes. Con tasa $1/2$ y forma $k/2$, la gamma correspondiente es la [[distribucion-chi-cuadrada]].
+La Erlang es la [[distribucion-gamma]] con forma entera y la suma de esperas de la [[distribucion-exponencial]]. Su función de distribución se escribe con la [[distribucion-de-poisson]], que cuenta las llegadas en un intervalo. La [[propiedad-de-perdida-de-memoria]] de cada etapa es la razón de que los tramos sean independientes. Con tasa $1/2$ y forma $k/2$, la gamma correspondiente es la [[distribucion-chi-cuadrada]]. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

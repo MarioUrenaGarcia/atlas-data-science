@@ -3,7 +3,7 @@ import { formatNumber } from '../../../lib/format/number.ts';
 import { LLN_POPULATIONS } from '../../../lib/limits/lln.ts';
 import { interquartileRange, mean } from '../../../lib/stats/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -212,11 +212,9 @@ export function FailureView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`\\bar{X}_{${n}} = \\frac{1}{${n}}\\sum_{i=1}^{${n}} X_i,\\qquad ${settings.latex}`}
-        />
-      </p>
+      <FormulaLine
+        tex={`\\bar{X}_{${n}} = \\frac{1}{${n}}\\sum_{i=1}^{${n}} X_i,\\qquad ${settings.latex}`}
+      />
       <p className={styles.panelTitle}>Media de cada muestra de tamaño {n}</p>
       <DensityHistogram
         start={bins.start}

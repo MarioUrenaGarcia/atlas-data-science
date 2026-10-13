@@ -85,6 +85,15 @@ f(q) = \sum_{j=0}^{\infty} e^{-\lambda/2}\frac{(\lambda/2)^{j}}{j!}\, f_{\chi^{2
 $$
 :::
 
+:::nota[Qué representa la variable]
+$Q$ = la suma de cuadrados de $k$ normales con varianza 1 y medias distintas de cero, como un estadístico ji cuadrada cuando la hipótesis nula es falsa.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$k$, grados de libertad:** cuántos cuadrados se suman. Si aumenta, la distribución se corre a la derecha y se vuelve más simétrica.
+- **$\lambda$, no centralidad:** la suma de los cuadrados de las medias, el tamaño del efecto. Si aumenta, la distribución se desplaza a la derecha y se ensancha; la potencia de la prueba aumenta.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $Q$: suma de cuadrados.
 - $Z_i$: normales estándar independientes.
@@ -198,7 +207,7 @@ muestras: false
 
 ## Conexiones
 
-La chi-cuadrada no central generaliza la [[distribucion-chi-cuadrada]] y se escribe como mezcla de chi-cuadradas con pesos de la [[distribucion-de-poisson]]. El cuadrado de una [[distribucion-de-rice]] reescalada es una no central con dos grados. El cociente de una no central entre una central da la F no central, usada para la potencia del análisis de varianza, y su análogo para medias es la [[distribucion-t-no-central]].
+La chi-cuadrada no central generaliza la [[distribucion-chi-cuadrada]] y se escribe como mezcla de chi-cuadradas con pesos de la [[distribucion-de-poisson]]. El cuadrado de una [[distribucion-de-rice]] reescalada es una no central con dos grados. El cociente de una no central entre una central da la F no central, usada para la potencia del análisis de varianza, y su análogo para medias es la [[distribucion-t-no-central]]. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

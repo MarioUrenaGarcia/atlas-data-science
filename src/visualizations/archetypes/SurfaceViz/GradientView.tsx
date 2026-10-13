@@ -5,8 +5,8 @@ import { Latex } from '../../core/Latex.tsx';
 import { Arrow } from '../../core/svg/Arrow.tsx';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import { ContourMap } from './ContourMap.tsx';
-import { fieldRange, num } from './levels.ts';
+import { ContourMap } from '../../core/plane/ContourMap.tsx';
+import { fieldRange, num } from '../../core/plane/levels.ts';
 import styles from './SurfaceViz.module.css';
 import { fieldName, useFieldChoice } from './useFieldChoice.ts';
 

@@ -164,7 +164,18 @@ export function CorrelationView(props: CorrelationViewProps) {
         : `r_s = r(\\operatorname{rango}(x), \\operatorname{rango}(y)) = ${g(spearman(xs, ys))}\\quad\\text{frente a } r = ${g(pearson(xs, ys))}`;
   } else if (measure === 'kendall') {
     const total = (n * (n - 1)) / 2;
-    header = `\\tau = \\frac{C - D}{\\binom{n}{2}} \\approx \\frac{${concordant} - ${discordant}}{${total}}${step >= total ? ` \\Rightarrow \\tau_b = ${g(kendallTau(xs, ys))}` : `\\quad(${step} \\text{ de } ${total} \\text{ pares})`}`;
+    // Pairs tied in only one variable enter the tau-b denominator.
+    const tiesX = pairs.filter((p) => xs[p.i] === xs[p.j] && ys[p.i] !== ys[p.j]).length;
+    const tiesY = pairs.filter((p) => ys[p.i] === ys[p.j] && xs[p.i] !== xs[p.j]).length;
+    const c = concordant;
+    const d = discordant;
+    if (step < total) {
+      header = `C = ${c},\\ D = ${d}\\quad(${step} \\text{ de } ${total} \\text{ pares})`;
+    } else if (tiesX + tiesY === 0) {
+      header = `\\tau = \\frac{C - D}{\\binom{n}{2}} = \\frac{${c} - ${d}}{${total}} = ${g(kendallTau(xs, ys))}`;
+    } else {
+      header = `\\tau_b = \\frac{C - D}{\\sqrt{(C + D + T_x)(C + D + T_y)}} = \\frac{${c} - ${d}}{\\sqrt{(${c + d} + ${tiesX})(${c + d} + ${tiesY})}} = ${g(kendallTau(xs, ys))}`;
+    }
   } else if (dcor) {
     header = `\\operatorname{dCor} = \\sqrt{\\frac{\\operatorname{dCov}^2}{\\sqrt{\\operatorname{dVar}_x\\,\\operatorname{dVar}_y}}} = \\sqrt{\\frac{${g(dcor.dCov2)}}{\\sqrt{${g(dcor.dVarX)} \\cdot ${g(dcor.dVarY)}}}} = ${g(dcor.dCor)}\\quad(r = ${g(pearson(xs, ys))})`;
   }

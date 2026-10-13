@@ -95,7 +95,7 @@ La barra del centro tiene mucho más transporte público y bicicleta que la de l
 Con los conteos de la encuesta (centro: 20 en auto, 45 en transporte público, 15 en bicicleta; periferia: 50, 30 y 5):
 
 1. Totales: centro 80, periferia 85; auto 70, transporte público 75, bicicleta 20; total 165.
-2. Porcentajes por fila en el centro: $20/80 = 25$ %, $45/80 = 56.2$ %, $15/80 = 18.8$ %.
+2. Porcentajes por fila en el centro: $20/80 = 25$ %, $45/80 = 56.25$ %, $15/80 = 18.75$ %.
 3. En la periferia: $50/85 = 58.8$ %, $30/85 = 35.3$ %, $5/85 = 5.9$ %.
 4. Conteo esperado de autos en el centro bajo independencia: $E_{11} = 80 \cdot 70/165 \approx 33.9$. Se observaron 20, muchos menos.
 5. Conclusión descriptiva: en el centro predomina el transporte público y en la periferia el auto.

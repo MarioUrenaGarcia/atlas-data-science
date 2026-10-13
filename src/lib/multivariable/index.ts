@@ -178,6 +178,20 @@ const LIST: Field2[] = [
     ],
   ),
   field(
+    'himmelblau',
+    '(x^2 + y - 11)^2 + (x + y^2 - 7)^2',
+    (x, y) => (x * x + y - 11) ** 2 + (x + y * y - 7) ** 2,
+    (x, y) => [4 * x * (x * x + y - 11) + 2 * (x + y * y - 7), 2 * (x * x + y - 11) + 4 * y * (x + y * y - 7)],
+    (x, y) => [
+      [12 * x * x + 4 * y - 42, 4 * x + 4 * y],
+      [4 * x + 4 * y, 4 * x + 12 * y * y - 26],
+    ],
+    [
+      [-5, 5],
+      [-5, 5],
+    ],
+  ),
+  field(
     'ondas',
     '\\operatorname{sen} x \\cos y',
     (x, y) => Math.sin(x) * Math.cos(y),
@@ -304,6 +318,11 @@ export function eigenSym2(h: Sym2): { values: [number, number]; vectors: [Point2
   return { values: [l1, l2], vectors: [v1, [-v1[1], v1[0]]] };
 }
 
+/** Points closer than this fraction of the window width are the same critical point. */
+const MERGE_FRACTION = 1e-3;
+/** Eigenvalues below this are treated as zero when classifying: genuine curvatures here are of order 1. */
+const CURVATURE_TOLERANCE = 1e-4;
+
 export type CriticalKind = 'mínimo' | 'máximo' | 'silla' | 'degenerado';
 
 export function classifyCritical(h: Sym2, tolerance = 1e-9): CriticalKind {
@@ -344,8 +363,15 @@ export function criticalPoints(
         if (!Number.isFinite(x) || !Number.isFinite(y)) break;
       }
       if (!converged || x < x0 || x > x1 || y < y0 || y > y1) continue;
-      if (found.some(({ point }) => Math.hypot(point[0] - x, point[1] - y) < 1e-6)) continue;
-      found.push({ point: [x, y], kind: classifyCritical(fieldValue.hess(x, y)) });
+      // Newton converges slowly to degenerate points and stops at slightly
+      // different places from each seed; nearby results are one point, and
+      // the one with the smallest gradient represents it.
+      const merge = MERGE_FRACTION * (x1 - x0);
+      const gradient = Math.hypot(...fieldValue.grad(x, y));
+      const twin = found.findIndex(({ point }) => Math.hypot(point[0] - x, point[1] - y) < merge);
+      const entry = { point: [x, y] as Point2, kind: classifyCritical(fieldValue.hess(x, y), CURVATURE_TOLERANCE) };
+      if (twin < 0) found.push(entry);
+      else if (gradient < Math.hypot(...fieldValue.grad(...(found[twin] as { point: Point2 }).point))) found[twin] = entry;
     }
   }
   return found.sort((p, q) => p.point[0] - q.point[0] || p.point[1] - q.point[1]);

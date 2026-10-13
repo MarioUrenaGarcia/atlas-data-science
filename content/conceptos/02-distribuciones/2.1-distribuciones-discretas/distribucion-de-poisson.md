@@ -39,9 +39,15 @@ visualizacion:
         - nombre: 'Accidentes al mes'
           descripcion: 'λ = 2.5: sesgo moderado a la derecha; la media 2.5 no es un valor posible.'
           valores: {lambda: 2.5}
-        - nombre: 'Llamadas por hora'
-          descripcion: 'λ = 15: casi simétrica, como una campana con desviación 3.9.'
-          valores: {lambda: 15}
+        - nombre: 'Meteoritos'
+          descripcion: 'λ = 1: muy sesgada; eventos raros, como meteoritos que caen en una región en un año. Cero y uno son igual de probables.'
+          valores: {lambda: 1}
+        - nombre: 'Clientes en cafetería'
+          descripcion: 'λ = 4: sesgo moderado; clientes que llegan a una cafetería cada 10 minutos.'
+          valores: {lambda: 4}
+        - nombre: 'Mesa de ayuda'
+          descripcion: 'λ = 10: casi simétrica; solicitudes por hora en una mesa de ayuda con mucho trabajo.'
+          valores: {lambda: 10}
       ejemplo:
         titulo: 'Mes con muchos accidentes'
         contexto: 'Un tramo de carretera registra en promedio 2.5 accidentes por mes.'
@@ -82,6 +88,14 @@ $$
 :::
 
 Es el modelo adecuado para el número de eventos en un intervalo de tiempo, longitud, área o volumen cuando: los eventos ocurren de uno en uno, los conteos en intervalos disjuntos son independientes y la tasa promedio es constante en el intervalo. Las probabilidades suman uno por la serie de Taylor $e^{\lambda} = \sum_{k \ge 0} \lambda^{k}/k!$.
+
+:::nota[Qué es X]
+$X$ = el número de eventos dentro de un intervalo fijo de tiempo o de espacio: 0, 1, 2, ...
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\lambda$, tasa promedio:** cuántos eventos ocurren en promedio en el intervalo, por hora, por día o por cada 10 minutos. Si aumenta, la distribución se corre a la derecha y se vuelve más simétrica, parecida a una campana.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $X$: número de eventos en el intervalo.
@@ -133,6 +147,30 @@ unidad: accidentes en un mes
 ```
 :::
 
+Segundo ejemplo, hora pico en soporte. Una mesa de ayuda recibe en promedio 4 solicitudes por hora, de modo que el número de solicitudes en una hora es $X \sim \operatorname{Poisson}(4)$.
+
+1. Conviene usar el complemento: $P(X \ge 6) = 1 - P(X \le 5)$.
+2. Los términos $e^{-4}4^{k}/k!$ para $k = 0, \dots, 5$ valen 0.0183, 0.0733, 0.1465, 0.1954, 0.1954 y 0.1563, que suman 0.7851.
+3. $P(X \ge 6) = 1 - 0.7851 = 0.2149$: aproximadamente una hora de cada cinco es hora pico.
+
+:::figura[Hora pico en soporte: la región X ≥ 6 suma 0.2149. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: poisson
+valores:
+  lambda: 4
+ejemplo:
+  titulo: 'Hora pico en soporte'
+  contexto: 'Una mesa de ayuda recibe en promedio 4 solicitudes por hora.'
+  pregunta: '¿Qué probabilidad hay de recibir al menos 6 en una hora?'
+  valores: {lambda: 4}
+  region: derecha
+  desde: 6
+region: derecha
+desde: 6
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media igual a varianza:** $\mathbb{E}[X] = \operatorname{Var}(X) = \lambda$; la desviación estándar es $\sqrt{\lambda}$.
@@ -142,7 +180,7 @@ unidad: accidentes en un mes
 - **Adelgazamiento:** si cada evento se conserva con probabilidad $q$, independientemente, los eventos conservados forman una $\operatorname{Poisson}(q\lambda)$.
 - **Límite de la binomial:** si $n \to \infty$ y $p \to 0$ con $np = \lambda$, $\operatorname{Bin}(n, p) \to \operatorname{Poisson}(\lambda)$.
 
-:::figura[Tres casos con contexto (eventos raros, accidentes al mes, llamadas por hora): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (eventos raros, accidentes al mes, meteoritos, clientes en cafetería, mesa de ayuda): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: poisson
 valores:
@@ -154,9 +192,15 @@ casos:
   - nombre: 'Accidentes al mes'
     descripcion: 'λ = 2.5: sesgo moderado a la derecha; la media 2.5 no es un valor posible.'
     valores: {lambda: 2.5}
-  - nombre: 'Llamadas por hora'
-    descripcion: 'λ = 15: casi simétrica, como una campana con desviación 3.9.'
-    valores: {lambda: 15}
+  - nombre: 'Meteoritos'
+    descripcion: 'λ = 1: muy sesgada; eventos raros, como meteoritos que caen en una región en un año. Cero y uno son igual de probables.'
+    valores: {lambda: 1}
+  - nombre: 'Clientes en cafetería'
+    descripcion: 'λ = 4: sesgo moderado; clientes que llegan a una cafetería cada 10 minutos.'
+    valores: {lambda: 4}
+  - nombre: 'Mesa de ayuda'
+    descripcion: 'λ = 10: casi simétrica; solicitudes por hora en una mesa de ayuda con mucho trabajo.'
+    valores: {lambda: 10}
 ```
 :::
 
@@ -224,7 +268,24 @@ unidad: visitas al médico en un año
 
 ## Conexiones
 
-La Poisson es el límite de la [[distribucion-binomial]] cuando hay muchos ensayos con probabilidad pequeña, y su normalización es la [[serie-de-taylor-y-de-maclaurin|serie de Taylor]] de la [[funcion-exponencial-y-logaritmo-natural|exponencial]]. La diferencia de dos conteos de Poisson independientes da la [[distribucion-de-skellam]], y los datos con ceros de más se modelan con la [[distribucion-de-poisson-inflada-en-ceros]]. Cuando la varianza supera a la media, la [[distribucion-binomial-negativa]] es la alternativa habitual. Los tiempos entre llegadas de un proceso de Poisson siguen una distribución exponencial.
+La Poisson es el límite de la [[distribucion-binomial]] cuando hay muchos ensayos con probabilidad pequeña, y su normalización es la [[serie-de-taylor-y-de-maclaurin|serie de Taylor]] de la [[funcion-exponencial-y-logaritmo-natural|exponencial]]. La diferencia de dos conteos de Poisson independientes da la [[distribucion-de-skellam]], y los datos con ceros de más se modelan con la [[distribucion-de-poisson-inflada-en-ceros]]. Cuando la varianza supera a la media, la [[distribucion-binomial-negativa]] es la alternativa habitual. Los tiempos entre llegadas de un proceso de Poisson siguen una distribución exponencial. Por el [[teorema-central-del-limite]], el promedio de $n$ conteos de Poisson con tasa $\lambda$ es aproximadamente normal con media $\lambda$ y varianza $\lambda/n$. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Poisson y binomial: la Poisson con λ = 2.5 (barras) frente a la binomial con n = 50 y p = λ/50 (línea punteada). Al mover λ, p cambia con ella y las dos casi coinciden.]{componente="DistributionExplorer"}
+```yaml
+distribucion: poisson
+valores:
+  lambda: 2.5
+muestras: false
+referencia:
+  distribucion: binomial
+  valores:
+    n: 50
+  enlace:
+    p: {de: [lambda], factor: 0.02}
+  etiqueta: Binomial con n = 50 y p = λ/50
+  visible: true
+```
+:::
 
 ## Formulario
 

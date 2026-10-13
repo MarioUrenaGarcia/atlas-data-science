@@ -31,6 +31,8 @@ interface DistributionChartProps {
 }
 
 const CURVE_POINTS = 320;
+/** Radius of the markers of a discrete reference distribution. */
+const REFERENCE_MARKER = 3.5;
 const HISTOGRAM_BINS = 40;
 /** Densities that diverge (beta with a < 1) are clipped so the rest stays readable. */
 const MAX_DENSITY = 4;
@@ -68,15 +70,27 @@ export function DistributionChart({
     return points;
   }, [lo, hi, distribution, view]);
 
+  // A discrete reference has mass only at integers; sampling it on the
+  // continuous grid would miss almost every atom.
+  const discreteReference = reference?.distribution.kind === 'discrete' && view === 'densidad';
   const referenceCurve = useMemo<XY[] | null>(() => {
     if (!reference) return null;
+    if (discreteReference) {
+      const support = reference.distribution.support;
+      const first = Math.ceil(Math.max(lo, support[0]));
+      const last = Math.floor(Math.min(hi, support[1]));
+      return Array.from({ length: Math.max(0, last - first + 1) }, (_, index) => {
+        const k = first + index;
+        return { x: k, y: density(reference.distribution, k) };
+      });
+    }
     return Array.from({ length: CURVE_POINTS + 1 }, (_, i) => {
       const x = lo + ((hi - lo) * i) / CURVE_POINTS;
       const y =
         view === 'densidad' ? density(reference.distribution, x) : reference.distribution.cdf(x);
       return { x, y: Number.isFinite(y) ? Math.min(y, MAX_DENSITY) : MAX_DENSITY };
     });
-  }, [lo, hi, reference, view]);
+  }, [lo, hi, reference, view, discreteReference]);
 
   const histogram = useMemo<Bar[]>(() => {
     if (!showSamples || samples.length === 0 || view !== 'densidad') return [];
@@ -261,6 +275,21 @@ export function DistributionChart({
                 width={1.5}
                 dashed
               />
+            )}
+            {referenceCurve && discreteReference && (
+              <g aria-hidden="true">
+                {referenceCurve.map((point) => (
+                  <circle
+                    key={point.x}
+                    cx={x(point.x)}
+                    cy={y(point.y)}
+                    r={REFERENCE_MARKER}
+                    fill="var(--color-surface)"
+                    stroke={DATA_COLORS.muted}
+                    strokeWidth={1.5}
+                  />
+                ))}
+              </g>
             )}
 
             {Number.isFinite(quantile) && quantile >= lo && quantile <= hi && (

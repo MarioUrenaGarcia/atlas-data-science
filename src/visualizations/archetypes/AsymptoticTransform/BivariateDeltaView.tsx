@@ -9,7 +9,7 @@ import {
 } from '../../../lib/limits/delta.ts';
 import { standardDeviation } from '../../../lib/stats/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { Arrow } from '../../core/svg/Arrow.tsx';
 import { Axis } from '../../core/svg/Axis.tsx';
@@ -206,11 +206,9 @@ export function BivariateDeltaView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`${g.latex},\\qquad g(\\bar{X}_{${n}}, \\bar{Y}_{${n}}) \\approx \\mathcal{N}\\Big(g(\\boldsymbol{\\mu}),\\ \\frac{\\nabla g^\\top \\boldsymbol{\\Sigma}\\, \\nabla g}{n}\\Big) = \\mathcal{N}\\big(${formatNumber(center, 3)},\\ ${formatNumber(deltaSd, 3)}^2\\big)`}
-        />
-      </p>
+      <FormulaLine
+        tex={`${g.latex},\\qquad g(\\bar{X}_{${n}}, \\bar{Y}_{${n}}) \\approx \\mathcal{N}\\Big(g(\\boldsymbol{\\mu}),\\ \\frac{\\nabla g^\\top \\boldsymbol{\\Sigma}\\, \\nabla g}{n}\\Big) = \\mathcal{N}\\big(${formatNumber(center, 3)},\\ ${formatNumber(deltaSd, 3)}^2\\big)`}
+      />
       <div className={styles.pair}>
         <div>
           <p className={styles.panelTitle}>Pares de medias alrededor de μ</p>

@@ -8,7 +8,7 @@ import {
 } from '../../../lib/limits/delta.ts';
 import { mean, standardDeviation } from '../../../lib/stats/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { FunctionPlot } from '../../core/svg/FunctionPlot.tsx';
 import { useParameters } from '../../core/useParameters.ts';
@@ -235,9 +235,7 @@ export function DeltaView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex tex={header} />
-      </p>
+      <FormulaLine tex={header} />
       <p className={styles.panelTitle}>La curva g cerca de μ y su recta tangente</p>
       <FunctionPlot
         xDomain={[xLo, xHi]}

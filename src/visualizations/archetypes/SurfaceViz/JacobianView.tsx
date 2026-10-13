@@ -5,8 +5,8 @@ import { Latex } from '../../core/Latex.tsx';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
-import { EqualPlane } from './EqualPlane.tsx';
-import { num } from './levels.ts';
+import { EqualPlane } from '../../core/plane/EqualPlane.tsx';
+import { num } from '../../core/plane/levels.ts';
 import styles from './SurfaceViz.module.css';
 
 const GRID_LINES = 8;

@@ -34,12 +34,18 @@ visualizacion:
         - nombre: 'Fiebre tras vacuna'
           descripcion: 'p = 0.12: la barra del 1 es baja; el evento ocurre en uno de cada ocho casos aproximadamente.'
           valores: {p: 0.12}
-        - nombre: 'Moneda justa'
-          descripcion: 'p = 0.5: dos barras iguales y la varianza máxima, 0.25.'
-          valores: {p: 0.5}
         - nombre: 'Tiro libre'
           descripcion: 'p = 0.75: la barra del 1 domina; una jugadora encesta tres de cada cuatro tiros.'
           valores: {p: 0.75}
+        - nombre: 'Prueba A/B'
+          descripcion: 'p = 0.5: asignar a cada usuario al grupo A o al B al azar; los dos resultados pesan igual.'
+          valores: {p: 0.5}
+        - nombre: 'Clic en un anuncio'
+          descripcion: 'p = 0.1: éxito raro; un visitante hace clic en uno de cada diez casos y la barra del 1 es baja.'
+          valores: {p: 0.1}
+        - nombre: 'Máquina confiable'
+          descripcion: 'p = 0.9: éxito casi seguro; una máquina arranca bien nueve de cada diez veces.'
+          valores: {p: 0.9}
       ejemplo:
         titulo: 'Fiebre tras la vacuna'
         contexto: 'El 12 % de los pacientes presenta fiebre leve después de una vacuna.'
@@ -82,6 +88,14 @@ De forma compacta, $P(X = k) = p^{k}(1 - p)^{1 - k}$ para $k \in \{0, 1\}$.
 :::
 
 Si $A$ es un evento con $P(A) = p$, su indicadora $\mathbf{1}\{A\}$, que vale 1 cuando ocurre $A$ y 0 cuando no, tiene distribución $\operatorname{Bernoulli}(p)$. Un **ensayo de Bernoulli** es un experimento cuyo resultado se registra de esta manera.
+
+:::nota[Qué es X]
+$X$ = el resultado de un solo intento: 1 si sale bien (éxito) y 0 si sale mal (fracaso).
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$p$, probabilidad de éxito:** la probabilidad de que ese único intento salga bien. Si aumenta, la barra del 1 crece y la del 0 baja exactamente lo mismo, porque las dos suman 1.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $X$: resultado codificado, 1 para éxito y 0 para fracaso.
@@ -134,6 +148,30 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, clic en un anuncio. Un anuncio tiene una tasa de clics del 10 % y para cada visitante se anota $X = 1$ si hace clic y $X = 0$ si no, de modo que $X \sim \operatorname{Bernoulli}(0.1)$.
+
+1. La pregunta es $P(X \ge 1)$, que para una Bernoulli es lo mismo que $P(X = 1)$.
+2. $P(X = 1) = p = 0.1$.
+3. Media $0.1$ y varianza $0.1 \cdot 0.9 = 0.09$: en mil visitantes se esperan unos 100 clics.
+
+:::figura[Clic en un anuncio: la región X ≥ 1 sombrea solo la barra del 1, que vale 0.1. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.1
+ejemplo:
+  titulo: 'Clic en un anuncio'
+  contexto: 'Un anuncio tiene una tasa de clics del 10 %.'
+  pregunta: '¿Qué probabilidad hay de que un visitante haga clic?'
+  valores: {p: 0.1}
+  region: derecha
+  desde: 1
+region: derecha
+desde: 1
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y momentos:** como $X^k = X$ para todo $k \ge 1$, $\mathbb{E}[X^k] = p$; en particular $\mathbb{E}[X] = p$.
@@ -142,7 +180,7 @@ muestras: false
 - **Suma de ensayos:** la suma de $n$ variables $\operatorname{Bernoulli}(p)$ independientes es $\operatorname{Bin}(n, p)$.
 - **Producto:** si $X$ y $Y$ son Bernoulli independientes con parámetros $p$ y $q$, entonces $XY \sim \operatorname{Bernoulli}(pq)$, porque $XY = 1$ solo cuando ambas valen 1.
 
-:::figura[Tres casos con contexto (fiebre tras vacuna, moneda justa, tiro libre): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (fiebre tras vacuna, tiro libre, prueba A/B, clic en un anuncio, máquina confiable): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: bernoulli
 valores:
@@ -151,12 +189,18 @@ casos:
   - nombre: 'Fiebre tras vacuna'
     descripcion: 'p = 0.12: la barra del 1 es baja; el evento ocurre en uno de cada ocho casos aproximadamente.'
     valores: {p: 0.12}
-  - nombre: 'Moneda justa'
-    descripcion: 'p = 0.5: dos barras iguales y la varianza máxima, 0.25.'
-    valores: {p: 0.5}
   - nombre: 'Tiro libre'
     descripcion: 'p = 0.75: la barra del 1 domina; una jugadora encesta tres de cada cuatro tiros.'
     valores: {p: 0.75}
+  - nombre: 'Prueba A/B'
+    descripcion: 'p = 0.5: asignar a cada usuario al grupo A o al B al azar; los dos resultados pesan igual.'
+    valores: {p: 0.5}
+  - nombre: 'Clic en un anuncio'
+    descripcion: 'p = 0.1: éxito raro; un visitante hace clic en uno de cada diez casos y la barra del 1 es baja.'
+    valores: {p: 0.1}
+  - nombre: 'Máquina confiable'
+    descripcion: 'p = 0.9: éxito casi seguro; una máquina arranca bien nueve de cada diez veces.'
+    valores: {p: 0.9}
 ```
 :::
 
@@ -220,7 +264,24 @@ valores:
 
 ## Conexiones
 
-Repetir ensayos de Bernoulli independientes y contar los éxitos da la [[distribucion-binomial]]; contar los ensayos hasta el primer éxito da la [[distribucion-geometrica]], y hasta el éxito número $r$, la [[distribucion-binomial-negativa]]. Con más de dos resultados el modelo se generaliza a la [[distribucion-categorica]]. Codificar los dos resultados como $-1$ y $+1$ con probabilidad 1/2 da la [[distribucion-de-rademacher]]. Con $p = 1/2$, la Bernoulli es la [[distribucion-uniforme-discreta]] sobre $\{0, 1\}$.
+Repetir ensayos de Bernoulli independientes y contar los éxitos da la [[distribucion-binomial]]; contar los ensayos hasta el primer éxito da la [[distribucion-geometrica]], y hasta el éxito número $r$, la [[distribucion-binomial-negativa]]. Con más de dos resultados el modelo se generaliza a la [[distribucion-categorica]]. Codificar los dos resultados como $-1$ y $+1$ con probabilidad 1/2 da la [[distribucion-de-rademacher]]. Con $p = 1/2$, la Bernoulli es la [[distribucion-uniforme-discreta]] sobre $\{0, 1\}$. A la inversa, una binomial con $n = 1$ es una Bernoulli, como muestra la figura siguiente. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Bernoulli y binomial: la Bernoulli con p = 0.3 (barras) coincide con la binomial con n = 1 y la misma p (línea punteada). Al mover p, la binomial lo sigue.]{componente="DistributionExplorer"}
+```yaml
+distribucion: bernoulli
+valores:
+  p: 0.3
+muestras: false
+referencia:
+  distribucion: binomial
+  valores:
+    n: 1
+  enlace:
+    p: {de: [p]}
+  etiqueta: Binomial con n = 1 y la misma p
+  visible: true
+```
+:::
 
 ## Formulario
 

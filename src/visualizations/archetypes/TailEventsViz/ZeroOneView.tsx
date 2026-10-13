@@ -3,7 +3,7 @@ import { formatNumber } from '../../../lib/format/number.ts';
 import { oscillation, randomSignSeries } from '../../../lib/limits/tail.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -144,11 +144,9 @@ export function ZeroOneView({ title, exponent, horizon, seed: initialSeed }: Zer
       description={description}
       graphic="canvas"
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`S_n = \\sum_{i=1}^{n} \\frac{\\varepsilon_i}{i^{${formatNumber(a, 2)}}},\\quad P\\Big(\\lim_{n\\to\\infty} S_n \\text{ existe}\\Big) = ${converges ? 1 : 0}`}
-        />
-      </p>
+      <FormulaLine
+        tex={`S_n = \\sum_{i=1}^{n} \\frac{\\varepsilon_i}{i^{${formatNumber(a, 2)}}},\\quad P\\Big(\\lim_{n\\to\\infty} S_n \\text{ existe}\\Big) = ${converges ? 1 : 0}`}
+      />
       <p className={styles.panelTitle}>Sumas parciales de {PATHS} series con signos al azar</p>
       <TrajectoryCanvas
         paths={paths}

@@ -4,7 +4,7 @@ import { VECTOR_POPULATIONS, type VectorPopulationId } from '../../../lib/limits
 import { quadraticForm } from '../../../lib/limits/delta.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { DATA_COLORS } from '../../core/colors.ts';
-import { Latex } from '../../core/Latex.tsx';
+import { FormulaLine } from '../../core/FormulaLine.tsx';
 import type { ParameterDefinition } from '../../core/parameters.ts';
 import { useParameters } from '../../core/useParameters.ts';
 import { usePlayback } from '../../core/usePlayback.ts';
@@ -218,11 +218,9 @@ export function MultivariateView({
       ]}
       description={description}
     >
-      <p className={styles.formula}>
-        <Latex
-          tex={`${definition.latex},\\qquad \\sqrt{${n}}\\,(\\bar{\\mathbf{X}}_{${n}} - \\boldsymbol{\\mu}) \\approx \\mathcal{N}_2\\!\\left(\\mathbf{0},\\ \\begin{pmatrix} ${f(sigma[0][0])} & ${f(sigma[0][1])} \\\\ ${f(sigma[1][0])} & ${f(sigma[1][1])} \\end{pmatrix}\\right)`}
-        />
-      </p>
+      <FormulaLine
+        tex={`${definition.latex},\\qquad \\sqrt{${n}}\\,(\\bar{\\mathbf{X}}_{${n}} - \\boldsymbol{\\mu}) \\approx \\mathcal{N}_2\\!\\left(\\mathbf{0},\\ \\begin{pmatrix} ${f(sigma[0][0])} & ${f(sigma[0][1])} \\\\ ${f(sigma[1][0])} & ${f(sigma[1][1])} \\end{pmatrix}\\right)`}
+      />
       <div className={styles.pair}>
         <div>
           <p className={styles.panelTitle}>Una observación: X - μ</p>

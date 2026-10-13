@@ -36,12 +36,18 @@ visualizacion:
         - nombre: 'Llamadas a soporte'
           descripcion: 'Una llamada cada 2 minutos en promedio: la densidad es máxima en cero y la mitad de las esperas dura menos de 1.4 minutos.'
           valores: {lambda: 0.5}
-        - nombre: 'Caja rápida'
-          descripcion: 'Llegan 2 clientes por minuto: las esperas se acortan y la curva se comprime contra el cero.'
-          valores: {lambda: 2}
         - nombre: 'Falla de un circuito'
           descripcion: 'Una falla cada 5 mil horas en promedio: la curva es baja y la cola, muy larga.'
           valores: {lambda: 0.2}
+        - nombre: 'Terremotos raros'
+          descripcion: 'λ = 0.5 (escala 2): caída lenta, como el tiempo entre terremotos fuertes medido en décadas.'
+          valores: {lambda: 0.5}
+        - nombre: 'Caída estándar'
+          descripcion: 'λ = 1 (escala 1): la exponencial estándar; la espera media es una unidad.'
+          valores: {lambda: 1}
+        - nombre: 'Foco barato'
+          descripcion: 'λ = 2 (escala 0.5): caída rápida, como el tiempo hasta que se funde un foco de mala calidad.'
+          valores: {lambda: 2}
       ejemplo:
         titulo: 'Vida de un circuito'
         contexto: 'La vida de un circuito es exponencial con media de 2 mil horas, es decir, tasa 0.5 por mil horas.'
@@ -86,6 +92,14 @@ y $f(x) = 0$ para $x < 0$. Su función de distribución es $F(x) = 1 - e^{-\lamb
 
 Algunos textos la parametrizan con la media $\beta = 1/\lambda$, escribiendo $f(x) = \frac{1}{\beta} e^{-x/\beta}$. Ambas formas describen la misma distribución.
 
+:::nota[Qué es X]
+$X$ = el tiempo de espera hasta el siguiente evento de un proceso de Poisson: el próximo cliente, la próxima llamada o la próxima falla.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\lambda$, tasa:** cuántos eventos ocurren por unidad de tiempo; la espera promedio es $1/\lambda$, que también se llama escala. Si aumenta, la curva cae más rápido y las esperas se acortan.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: tiempo de espera hasta el evento.
 - $\lambda$: tasa, número esperado de eventos por unidad de tiempo.
@@ -128,6 +142,30 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, el próximo cliente. Un mostrador recibe en promedio 0.5 clientes por minuto, así que la espera hasta el próximo es $X \sim \operatorname{Exp}(0.5)$, con media de 2 minutos.
+
+1. La pregunta es $P(X \le 3) = F(3) = 1 - e^{-0.5 \cdot 3}$.
+2. $e^{-1.5} \approx 0.2231$, de modo que $P(X \le 3) \approx 0.7769$.
+3. Es el complemento de la probabilidad de esperar más de 3 minutos, 0.2231.
+
+:::figura[El próximo cliente: el área a la izquierda de 3 vale 0.7769. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: exponencial
+valores:
+  lambda: 0.5
+ejemplo:
+  titulo: 'El próximo cliente'
+  contexto: 'Un mostrador recibe en promedio 0.5 clientes por minuto.'
+  pregunta: '¿Qué probabilidad hay de que el próximo cliente llegue antes de 3 minutos?'
+  valores: {lambda: 0.5}
+  region: izquierda
+  desde: 3
+region: izquierda
+desde: 3
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Media y varianza:** $\mathbb{E}[X] = 1/\lambda$ y $\operatorname{Var}(X) = 1/\lambda^{2}$; la desviación estándar es igual a la media.
@@ -138,7 +176,7 @@ muestras: false
 - **Escala:** si $X \sim \operatorname{Exp}(1)$, entonces $X/\lambda \sim \operatorname{Exp}(\lambda)$.
 - **Relación con la uniforme:** si $U \sim U(0, 1)$, $-\log U/\lambda \sim \operatorname{Exp}(\lambda)$.
 
-:::figura[Tres casos con contexto (llamadas a soporte, caja rápida, falla de un circuito): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (llamadas a soporte, falla de un circuito, terremotos raros, caída estándar, foco barato): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: exponencial
 valores:
@@ -147,12 +185,18 @@ casos:
   - nombre: 'Llamadas a soporte'
     descripcion: 'Una llamada cada 2 minutos en promedio: la densidad es máxima en cero y la mitad de las esperas dura menos de 1.4 minutos.'
     valores: {lambda: 0.5}
-  - nombre: 'Caja rápida'
-    descripcion: 'Llegan 2 clientes por minuto: las esperas se acortan y la curva se comprime contra el cero.'
-    valores: {lambda: 2}
   - nombre: 'Falla de un circuito'
     descripcion: 'Una falla cada 5 mil horas en promedio: la curva es baja y la cola, muy larga.'
     valores: {lambda: 0.2}
+  - nombre: 'Terremotos raros'
+    descripcion: 'λ = 0.5 (escala 2): caída lenta, como el tiempo entre terremotos fuertes medido en décadas.'
+    valores: {lambda: 0.5}
+  - nombre: 'Caída estándar'
+    descripcion: 'λ = 1 (escala 1): la exponencial estándar; la espera media es una unidad.'
+    valores: {lambda: 1}
+  - nombre: 'Foco barato'
+    descripcion: 'λ = 2 (escala 0.5): caída rápida, como el tiempo hasta que se funde un foco de mala calidad.'
+    valores: {lambda: 2}
 ```
 :::
 
@@ -204,7 +248,41 @@ referencia:
 
 ## Conexiones
 
-La exponencial es la espera entre llegadas de un proceso cuyo conteo es de [[distribucion-de-poisson|Poisson]], y es la versión continua de la [[distribucion-geometrica]]. Su [[propiedad-de-perdida-de-memoria]] la distingue de las demás. Sumar exponenciales independientes da la [[distribucion-de-erlang]] y, en general, la [[distribucion-gamma]]; elevarla a una potencia da la [[distribucion-de-weibull]], y la diferencia de dos exponenciales da la [[distribucion-de-laplace]]. Se simula a partir de la [[distribucion-uniforme-continua]] con $-\log U/\lambda$.
+La exponencial es la espera entre llegadas de un proceso cuyo conteo es de [[distribucion-de-poisson|Poisson]], y es la versión continua de la [[distribucion-geometrica]]. Su [[propiedad-de-perdida-de-memoria]] la distingue de las demás. Sumar exponenciales independientes da la [[distribucion-de-erlang]] y, en general, la [[distribucion-gamma]]; elevarla a una potencia da la [[distribucion-de-weibull]], y la diferencia de dos exponenciales da la [[distribucion-de-laplace]]. Se simula a partir de la [[distribucion-uniforme-continua]] con $-\log U/\lambda$. En las figuras siguientes coincide con la gamma de forma 1 y con la Weibull de forma 1 para cualquier tasa. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
+
+:::figura[Exponencial dentro de la gamma: la exponencial con tasa λ (curva) coincide con la gamma de forma 1 y la misma tasa (línea punteada) para cualquier λ.]{componente="DistributionExplorer"}
+```yaml
+distribucion: exponencial
+valores:
+  lambda: 0.5
+muestras: false
+referencia:
+  distribucion: gamma
+  valores:
+    alpha: 1
+  enlace:
+    beta: {de: [lambda]}
+  etiqueta: Gamma de forma 1 y tasa λ
+  visible: true
+```
+:::
+
+:::figura[Weibull y exponencial: la exponencial con tasa λ (curva) coincide con la Weibull de forma 1 y escala 1/λ (línea punteada): riesgo constante.]{componente="DistributionExplorer"}
+```yaml
+distribucion: exponencial
+valores:
+  lambda: 0.5
+muestras: false
+referencia:
+  distribucion: weibull
+  valores:
+    k: 1
+  enlace:
+    lambda: {de: [lambda], potencias: [-1]}
+  etiqueta: Weibull de forma 1 y escala 1/λ
+  visible: true
+```
+:::
 
 ## Formulario
 

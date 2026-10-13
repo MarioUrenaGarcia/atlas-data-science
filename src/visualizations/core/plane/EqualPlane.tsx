@@ -1,8 +1,8 @@
 import { scaleLinear, type ScaleLinear } from 'd3-scale';
 import { useId, type ReactNode } from 'react';
 import type { Point2 } from '../../../lib/multivariable/index.ts';
-import { Axis } from '../../core/svg/Axis.tsx';
-import { ChartSvg } from '../../core/svg/ChartSvg.tsx';
+import { Axis } from '../svg/Axis.tsx';
+import { ChartSvg } from '../svg/ChartSvg.tsx';
 
 const MIN_HEIGHT = 240;
 const MAX_HEIGHT = 440;

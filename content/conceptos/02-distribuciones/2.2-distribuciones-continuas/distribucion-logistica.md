@@ -87,6 +87,15 @@ $$
 
 **Construcción:** si $U \sim U(0, 1)$, entonces $\mu + s\log\frac{U}{1 - U}$ tiene distribución logística; es decir, el logaritmo de los momios de una probabilidad uniforme es logístico.
 
+:::nota[Qué es X]
+$X$ = un valor con forma de campana y colas algo más pesadas que la normal, como el logaritmo de los momios de un evento.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, localización:** el centro: media, mediana y moda. Si aumenta, la curva se desliza a la derecha.
+- **$s$, escala:** la dispersión; la desviación estándar es $s\pi/\sqrt{3}$. Si aumenta, la curva se ensancha y baja.
+:::
+
 :::nota[Qué significa cada símbolo]
 - $X$: variable logística.
 - $\mu$: localización, que es media, mediana y moda.
@@ -215,7 +224,7 @@ referencia:
 
 ## Conexiones
 
-La función de distribución logística es la [[funcion-sigmoide-y-funcion-softplus|función sigmoide]], y la distribución se obtiene transformando la [[distribucion-uniforme-continua]] con el logaritmo de los momios. Es pariente de la [[distribucion-de-laplace]], con colas parecidas y centro suave, y surge como diferencia de dos variables de la [[distribucion-de-gumbel]]. Es la base de la regresión logística y de los modelos de elección discreta.
+La función de distribución logística es la [[funcion-sigmoide-y-funcion-softplus|función sigmoide]], y la distribución se obtiene transformando la [[distribucion-uniforme-continua]] con el logaritmo de los momios. Es pariente de la [[distribucion-de-laplace]], con colas parecidas y centro suave, y surge como diferencia de dos variables de la [[distribucion-de-gumbel]]. Es la base de la regresión logística y de los modelos de elección discreta. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
 
 ## Formulario
 

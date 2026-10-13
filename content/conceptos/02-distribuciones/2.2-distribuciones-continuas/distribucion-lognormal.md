@@ -37,12 +37,18 @@ visualizacion:
         - nombre: 'Precio de vivienda'
           descripcion: 'μ = 0.5 y σ = 0.6 (millones de pesos): mediana 1.65, media 1.97 y cola derecha visible, porque los factores del precio se multiplican.'
           valores: {mu: 0.5, sigma: 0.6}
-        - nombre: 'Tamaño de granos'
-          descripcion: 'μ = 0.7 y σ = 0.2: con poca dispersión logarítmica la lognormal es casi simétrica, parecida a una normal.'
-          valores: {mu: 0.7, sigma: 0.2}
         - nombre: 'Ingresos'
           descripcion: 'μ = 1 y σ = 1: la cola derecha es muy larga y la media supera a la mediana en un 65 %.'
           valores: {mu: 1, sigma: 1}
+        - nombre: 'Presión arterial'
+          descripcion: 'μ = 0 y σ = 0.25: poco sesgo; medidas biológicas como la presión arterial, casi simétricas.'
+          valores: {mu: 0, sigma: 0.25}
+        - nombre: 'Tiempo de reparación'
+          descripcion: 'μ = 0 y σ = 0.5: sesgo moderado; horas que tarda un mecánico en reparar una máquina.'
+          valores: {mu: 0, sigma: 0.5}
+        - nombre: 'Ingresos de un país'
+          descripcion: 'μ = 0 y σ = 1: cola muy pesada; ingresos o precios de acciones a largo plazo.'
+          valores: {mu: 0, sigma: 1}
       ejemplo:
         titulo: 'Viviendas caras'
         contexto: 'El precio de las viviendas de una ciudad, en millones de pesos, sigue una lognormal con μ = 0.5 y σ = 0.6.'
@@ -84,6 +90,15 @@ $$
 :::
 
 Su función de distribución se obtiene de la normal: $F(x) = \Phi\!\left(\frac{\log x - \mu}{\sigma}\right)$.
+
+:::nota[Qué es X]
+$X$ = un valor positivo cuyo logaritmo es normal, como un ingreso, un precio o un tiempo de reparación.
+:::
+
+:::nota[Qué hace cada parámetro]
+- **$\mu$, centro del logaritmo:** la media de $\log X$; el valor $e^{\mu}$ es la mediana de $X$ y hace de escala. Si aumenta, toda la curva se mueve y se estira a la derecha.
+- **$\sigma$, dispersión del logaritmo:** la desviación estándar de $\log X$. Si aumenta, aumenta el sesgo a la derecha y la cola se vuelve más pesada.
+:::
 
 :::nota[Qué significa cada símbolo]
 - $X$: cantidad positiva.
@@ -129,6 +144,32 @@ muestras: false
 ```
 :::
 
+Segundo ejemplo, reparaciones largas. El tiempo de reparación de una máquina, en horas, es $X$ lognormal con $\mu = 0$ y $\sigma = 0.5$: la mediana es $e^{0} = 1$ hora y la media $e^{0.125} \approx 1.13$ horas.
+
+1. Se pasa a la escala logarítmica: $P(X > 2) = P(\log X > \log 2)$, con $\log X \sim \mathcal{N}(0, 0.5^{2})$.
+2. Se estandariza: $z = (\log 2 - 0)/0.5 = 0.693/0.5 \approx 1.386$.
+3. $P(X > 2) = 1 - \Phi(1.386) \approx 0.0828$: una reparación de cada doce dura más del doble de la mediana.
+
+:::figura[Reparaciones largas: el área a la derecha de 2 horas vale 0.0828. El botón carga el ejemplo.]{componente="DistributionExplorer"}
+```yaml
+distribucion: lognormal
+valores:
+  mu: 0
+  sigma: 0.5
+dominio: [0, 10]
+ejemplo:
+  titulo: 'Reparaciones largas'
+  contexto: 'El tiempo de reparación de una máquina, en horas, sigue una lognormal con μ = 0 y σ = 0.5.'
+  pregunta: '¿Qué probabilidad hay de que una reparación tarde más de 2 horas?'
+  valores: {mu: 0, sigma: 0.5}
+  region: derecha
+  desde: 2
+region: derecha
+desde: 2
+muestras: false
+```
+:::
+
 ## Propiedades
 
 - **Mediana y moda:** $\operatorname{mediana} = e^{\mu}$ y $\operatorname{moda} = e^{\mu - \sigma^{2}}$.
@@ -138,7 +179,7 @@ muestras: false
 - **Potencias:** $X^{a} \sim \operatorname{LogN}(a\mu, a^{2}\sigma^{2})$; en particular $1/X \sim \operatorname{LogN}(-\mu, \sigma^{2})$.
 - **Origen multiplicativo:** el producto de muchos factores positivos independientes es aproximadamente lognormal, por el teorema central del límite aplicado a los logaritmos.
 
-:::figura[Tres casos con contexto (precio de vivienda, tamaño de granos, ingresos): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
+:::figura[Casos con contexto (precio de vivienda, ingresos, presión arterial, tiempo de reparación, ingresos de un país): cada botón carga los parámetros y una frase explica por qué la forma es así.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: lognormal
 valores:
@@ -149,12 +190,18 @@ casos:
   - nombre: 'Precio de vivienda'
     descripcion: 'μ = 0.5 y σ = 0.6 (millones de pesos): mediana 1.65, media 1.97 y cola derecha visible, porque los factores del precio se multiplican.'
     valores: {mu: 0.5, sigma: 0.6}
-  - nombre: 'Tamaño de granos'
-    descripcion: 'μ = 0.7 y σ = 0.2: con poca dispersión logarítmica la lognormal es casi simétrica, parecida a una normal.'
-    valores: {mu: 0.7, sigma: 0.2}
   - nombre: 'Ingresos'
     descripcion: 'μ = 1 y σ = 1: la cola derecha es muy larga y la media supera a la mediana en un 65 %.'
     valores: {mu: 1, sigma: 1}
+  - nombre: 'Presión arterial'
+    descripcion: 'μ = 0 y σ = 0.25: poco sesgo; medidas biológicas como la presión arterial, casi simétricas.'
+    valores: {mu: 0, sigma: 0.25}
+  - nombre: 'Tiempo de reparación'
+    descripcion: 'μ = 0 y σ = 0.5: sesgo moderado; horas que tarda un mecánico en reparar una máquina.'
+    valores: {mu: 0, sigma: 0.5}
+  - nombre: 'Ingresos de un país'
+    descripcion: 'μ = 0 y σ = 1: cola muy pesada; ingresos o precios de acciones a largo plazo.'
+    valores: {mu: 0, sigma: 1}
 ```
 :::
 
@@ -206,7 +253,7 @@ muestras: false
 
 ## Conexiones
 
-La lognormal es la [[funcion-exponencial-y-logaritmo-natural|exponencial]] de una [[distribucion-normal]]. Compite con la [[distribucion-gamma]] y la [[distribucion-de-weibull]] para modelar cantidades positivas asimétricas, y con la [[distribucion-de-pareto]] para ingresos y tamaños, aunque su cola es más ligera que la de una ley de potencia. En finanzas, los precios de activos se modelan como lognormales porque sus rendimientos logarítmicos se suman.
+La lognormal es la [[funcion-exponencial-y-logaritmo-natural|exponencial]] de una [[distribucion-normal]]. Compite con la [[distribucion-gamma]] y la [[distribucion-de-weibull]] para modelar cantidades positivas asimétricas, y con la [[distribucion-de-pareto]] para ingresos y tamaños, aunque su cola es más ligera que la de una ley de potencia. En finanzas, los precios de activos se modelan como lognormales porque sus rendimientos logarítmicos se suman. Si $X$ es lognormal, $\log X$ es normal; aparece cuando muchos factores se multiplican en lugar de sumarse. El [[mapa-de-relaciones-entre-distribuciones]] reúne estas conexiones con las demás distribuciones y explica cómo leer sus gráficas.
 
 ## Formulario
 
