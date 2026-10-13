@@ -131,8 +131,30 @@ Independencia para dos valores distintos: si $c_1\mathbf{v}_1 + c_2\mathbf{v}_2 
 - **Aceptar $\mathbf{v} = \mathbf{0}$ como vector propio.** Siempre cumple $\mathbf{A}\mathbf{0} = \lambda\mathbf{0}$; por eso se excluye.
 - **Creer que el vector propio es único.** Cualquier múltiplo no nulo también lo es; se suele normalizar.
 - **Calcular los valores propios de la forma escalonada.** Las operaciones de fila cambian los valores propios.
+
+:::figura[$\begin{pmatrix} 2 & 1 \\ 4 & 5 \end{pmatrix}$ tiene valores propios 1 y 6. Su forma escalonada $\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$ tiene 2 y 3, y direcciones propias distintas: las operaciones de fila cambian la transformación.]{componente="MatrixTransform"}
+```yaml
+modo: transformacion
+propios: true
+circulo: true
+matrices:
+  - nombre: A
+    matriz: [[2, 1], [4, 5]]
+  - nombre: Forma escalonada
+    matriz: [[2, 1], [0, 3]]
+```
+:::
 - **Suponer que toda matriz real tiene valores propios reales.** Las rotaciones son el contraejemplo.
 - **Pensar que valor propio 0 es imposible.** Es posible y significa que la matriz aplasta esa dirección.
+
+:::figura[$\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$ tiene valores propios 0 y 5: la dirección $(2, -1)$ se aplasta en el origen y la dirección $(1, 2)$ se estira por 5.]{componente="MatrixTransform"}
+```yaml
+modo: propios
+matrices:
+  - nombre: Singular
+    matriz: [[1, 2], [2, 4]]
+```
+:::
 
 ## Conexiones
 

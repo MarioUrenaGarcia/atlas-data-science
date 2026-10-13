@@ -101,7 +101,25 @@ vista: producto
 - **Producto asociativo:** $(\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})$.
 - **Distributivo:** $\mathbf{A}(\mathbf{B} + \mathbf{C}) = \mathbf{A}\mathbf{B} + \mathbf{A}\mathbf{C}$ y $(\mathbf{A} + \mathbf{B})\mathbf{C} = \mathbf{A}\mathbf{C} + \mathbf{B}\mathbf{C}$.
 - **No conmutativo:** en general $\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}$, aun cuando ambos productos existan.
+
+:::figura[$\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 3 & 1 \end{pmatrix} = \begin{pmatrix} 7 & 2 \\ 3 & 1 \end{pmatrix}$, mientras que en el otro orden el producto es $\begin{pmatrix} 1 & 2 \\ 3 & 7 \end{pmatrix}$.]{componente="MatrixGrid"}
+```yaml
+modo: operaciones
+a: [[1, 2], [0, 1]]
+b: [[1, 0], [3, 1]]
+vista: producto
+```
+:::
 - **Sin cancelación:** $\mathbf{A}\mathbf{B} = 0$ no implica $\mathbf{A} = 0$ o $\mathbf{B} = 0$; por ejemplo $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = 0$.
+
+:::figura[El producto de $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ y $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ es la matriz cero: cada fila de la primera encuentra ceros en la columna correspondiente de la segunda, aunque ninguna de las dos sea cero.]{componente="MatrixGrid"}
+```yaml
+modo: operaciones
+a: [[1, 0], [0, 0]]
+b: [[0, 0], [0, 1]]
+vista: producto
+```
+:::
 - **Columnas del producto:** la columna $j$ de $\mathbf{A}\mathbf{B}$ es $\mathbf{A}$ por la columna $j$ de $\mathbf{B}$, una combinación lineal de las columnas de $\mathbf{A}$.
 - **Costo:** multiplicar una matriz de $m \times p$ por una de $p \times n$ requiere $mnp$ multiplicaciones.
 

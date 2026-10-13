@@ -106,6 +106,16 @@ matrices:
 - **Radio espectral 1:** ningún valor propio supera 1 en valor absoluto.
 - **Convergencia:** la velocidad con que $\boldsymbol{\mu}^\top \mathbf{P}^t$ se acerca a $\boldsymbol{\pi}^\top$ depende del segundo valor propio más grande en valor absoluto.
 - **Doblemente estocásticas:** tienen como distribución estacionaria la uniforme.
+
+:::figura[Una matriz cuyas filas y columnas suman 1: desde cualquier estado inicial la distribución converge a la uniforme, un tercio en cada estado.]{componente="MarkovChainViz"}
+```yaml
+estados: [Norte, Centro, Sur]
+matriz:
+  - [0.5, 0.3, 0.2]
+  - [0.2, 0.5, 0.3]
+  - [0.3, 0.2, 0.5]
+```
+:::
 - **Matrices de permutación:** son doblemente estocásticas; por el teorema de Birkhoff, toda doblemente estocástica es promedio ponderado de permutaciones.
 
 :::demostracion
@@ -117,6 +127,15 @@ $|\lambda| \le 1$: si $\mathbf{P}\mathbf{v} = \lambda\mathbf{v}$ y $|v_k|$ es la
 - **Confundir la convención de filas y columnas.** Algunos textos usan columnas que suman 1 y multiplican $\mathbf{P}\mathbf{x}$; con filas se multiplica $\boldsymbol{\pi}^\top \mathbf{P}$.
 - **Buscar la estacionaria como vector propio derecho.** El vector propio derecho de 1 es $\mathbf{1}$; la estacionaria es el vector propio izquierdo, es decir, de $\mathbf{P}^\top$.
 - **Suponer que siempre hay convergencia.** Una cadena periódica, como $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, oscila sin converger.
+
+:::figura[La cadena periódica $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$: la ficha salta de un estado al otro en cada paso y la distribución alterna sin converger, aunque la uniforme sea estacionaria.]{componente="MarkovChainViz"}
+```yaml
+estados: [A, B]
+matriz:
+  - [0, 1]
+  - [1, 0]
+```
+:::
 - **Olvidar normalizar.** El vector propio debe escalarse para que sus entradas sumen 1.
 
 ## Conexiones

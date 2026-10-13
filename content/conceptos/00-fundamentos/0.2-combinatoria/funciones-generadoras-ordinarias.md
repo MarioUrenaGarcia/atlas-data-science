@@ -106,6 +106,15 @@ objetivo: 10
 
 - **Tratar $x$ como un número.** En conteo, $x$ es una marca; la serie no necesita converger para ser útil.
 - **Confundir producto de series con producto de coeficientes.** El coeficiente de $x^n$ en $A(x)B(x)$ es una convolución, no $a_n b_n$.
+
+:::figura[Franqueo de 12 con estampillas de 2 y de 3: el coeficiente de $x^{12}$ en $\frac{1}{1 - x^2}\cdot\frac{1}{1 - x^3}$ suma todas las parejas de exponentes que completan 12, y da 3 formas: seis de 2, tres de 2 con dos de 3, o cuatro de 3.]{componente="GeneratingFunctionViz"}
+```yaml
+modo: ordinaria
+partes: [2, 3]
+nombre: estampilla
+objetivo: 12
+```
+:::
 - **Usar funciones ordinarias con objetos etiquetados.** Cuando los objetos son distinguibles y se reparten posiciones, conviene la versión exponencial.
 
 ## Conexiones

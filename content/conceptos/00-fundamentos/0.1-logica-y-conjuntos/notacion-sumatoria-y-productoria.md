@@ -104,6 +104,14 @@ nombre: Goles
 - **Logaritmo de un producto:** $\log \prod_{i} a_i = \sum_{i} \log a_i$ para $a_i > 0$.
 - Fórmulas cerradas: $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$, $\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$, $\sum_{i=1}^{n} (2i - 1) = n^2$.
 
+:::figura[La fórmula cerrada $\sum_{i=1}^{10} i = \frac{10 \cdot 11}{2} = 55$ comprobada término a término: las sumas parciales crecen como $n(n+1)/2$.]{componente="SequenceSeries"}
+```yaml
+modo: sumatoria
+expresion: naturales
+n: 10
+```
+:::
+
 :::figura[Una productoria telescópica: casi todos los factores se cancelan y el producto de $n$ términos vale $n + 1$. El factorial, en cambio, no tiene cancelaciones y crece mucho más rápido.]{componente="SequenceSeries"}
 ```yaml
 modo: sumatoria
@@ -118,6 +126,14 @@ n: 8
 - **Sacar de la suma algo que depende del índice.** $\sum_{i} i\,a_i \neq i \sum_{i} a_i$.
 - **Distribuir la sumatoria sobre un producto.** $\sum a_i b_i \neq \left(\sum a_i\right)\left(\sum b_i\right)$ en general.
 - **Contar mal los términos.** $\sum_{i=3}^{10}$ tiene 8 términos, no 7.
+
+:::figura[Los términos de $\sum_{i=3}^{10} i$, reindexados como $x_j = j + 2$ con $j = 1, \dots, 8$: son $10 - 3 + 1 = 8$ barras, no 7, y suman 52.]{componente="SequenceSeries"}
+```yaml
+modo: datos
+valores: [3, 4, 5, 6, 7, 8, 9, 10]
+nombre: "Términos de i = 3 a 10"
+```
+:::
 - **Olvidar que la suma vacía vale 0 y el producto vacío vale 1.** Por eso $0! = 1$.
 
 ## Conexiones

@@ -94,6 +94,15 @@ p: 3
 
 - **Axiomas de métrica:** $d(\mathbf{a}, \mathbf{b}) \ge 0$; $d(\mathbf{a}, \mathbf{b}) = 0 \iff \mathbf{a} = \mathbf{b}$; $d(\mathbf{a}, \mathbf{b}) = d(\mathbf{b}, \mathbf{a})$; $d(\mathbf{a}, \mathbf{c}) \le d(\mathbf{a}, \mathbf{b}) + d(\mathbf{b}, \mathbf{c})$.
 - **Orden:** $d_\infty \le d_2 \le d_1$ para cualquier par de puntos.
+
+:::figura[Entre $(0, 0)$ y $(3, 4)$ la distancia de Chebyshev es 4, la euclidiana 5 y la de Manhattan 7: el orden $d_\infty \le d_2 \le d_1$ se ve en las tres curvas que pasan por el segundo punto.]{componente="VectorPlane"}
+```yaml
+modo: distancias
+a: [0, 0]
+b: [3, 4]
+p: 2
+```
+:::
 - **Invariancia por traslación:** $d(\mathbf{a} + \mathbf{t}, \mathbf{b} + \mathbf{t}) = d(\mathbf{a}, \mathbf{b})$.
 - **Rotaciones:** solo la distancia euclidiana no cambia al girar los ejes; Manhattan y Chebyshev dependen de la orientación de la cuadrícula.
 - **Escala:** todas cambian si una variable se mide en otras unidades, por eso en datos se suelen estandarizar las variables antes de medir distancias.

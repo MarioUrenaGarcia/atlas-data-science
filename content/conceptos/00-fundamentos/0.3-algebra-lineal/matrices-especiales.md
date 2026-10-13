@@ -124,6 +124,16 @@ Las ortogonales conservan longitudes: $\lVert \mathbf{Q}\mathbf{x} \rVert^2 = (\
 ## Errores comunes
 
 - **Llamar ortogonal a una matriz con columnas solo perpendiculares.** Las columnas deben tener además longitud 1.
+
+:::figura[Las columnas de $\begin{pmatrix} 1.2 & -1.6 \\ 1.6 & 1.2 \end{pmatrix}$ son perpendiculares pero miden 2: la matriz gira y además duplica, así que el círculo unitario se convierte en uno de radio 2 y no es ortogonal.]{componente="MatrixTransform"}
+```yaml
+modo: transformacion
+circulo: true
+matrices:
+  - nombre: Columnas perpendiculares de longitud 2
+    matriz: [[1.2, -1.6], [1.6, 1.2]]
+```
+:::
 - **Suponer que el producto de simétricas es simétrico.** $(AB)^\top = BA$, que en general no es $AB$.
 - **Invertir una triangular invirtiendo cada entrada.** Eso solo vale para las diagonales.
 - **Confundir antisimétrica con "no simétrica".** Antisimétrica es una condición precisa, $\mathbf{A}^\top = -\mathbf{A}$.

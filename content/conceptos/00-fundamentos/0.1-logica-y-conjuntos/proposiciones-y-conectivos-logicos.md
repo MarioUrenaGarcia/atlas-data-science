@@ -105,6 +105,13 @@ inicial:
 - **Doble negación:** $\lnot \lnot p \equiv p$.
 - **Condicional como disyunción:** $p \rightarrow q \equiv \lnot p \lor q$.
 - **Contrapositiva:** $p \rightarrow q \equiv \lnot q \rightarrow \lnot p$.
+
+:::figura[La tabla de $(p \rightarrow q) \leftrightarrow (\lnot q \rightarrow \lnot p)$: el condicional y su contrapositiva coinciden en las cuatro filas, así que la última columna es siempre V.]{componente="LogicViz"}
+```yaml
+modo: tabla
+formula: contrapositiva
+```
+:::
 - **Bicondicional:** $p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p)$.
 - **Conmutatividad y asociatividad** de $\land$ y $\lor$: el orden y el agrupamiento no cambian el valor.
 - Con $\lnot$ y $\land$ (o con $\lnot$ y $\lor$) se puede expresar cualquier otro conectivo binario.
@@ -143,6 +150,18 @@ consultas:
 
 - **Confundir el condicional con su recíproco.** De $p \rightarrow q$ no se deduce $q \rightarrow p$: que la cancha esté mojada no implica que haya llovido (pudo regarse).
 - **Pensar que un condicional con antecedente falso es falso.** Si $p$ es F, $p \rightarrow q$ es V; la regla no se pone a prueba.
+
+:::figura[Antecedente falso en "si hoy es domingo, la biblioteca está cerrada". En las dos últimas filas $p$ es falsa, un martes cualquiera, y la columna $p \rightarrow q$ vale V tanto con la biblioteca cerrada como abierta: ese día la regla no se pone a prueba.]{componente="LogicViz"}
+```yaml
+modo: conectivos
+enunciados:
+  p: Hoy es domingo
+  q: La biblioteca está cerrada
+inicial:
+  p: false
+  q: false
+```
+:::
 - **Leer "o" siempre como exclusivo.** En matemáticas, "o" es inclusivo salvo que se diga lo contrario; $p \lor q$ es verdadera cuando ambas lo son.
 - **Tratar preguntas u órdenes como proposiciones.** Solo los enunciados que pueden ser verdaderos o falsos lo son.
 - **Creer que el condicional expresa causalidad.** $p \rightarrow q$ solo afirma que no ocurre "$p$ verdadera y $q$ falsa"; no dice que $p$ cause $q$.

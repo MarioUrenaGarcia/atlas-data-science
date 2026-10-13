@@ -103,6 +103,13 @@ ecuaciones: [[1, 1, 5], [8, 5, 34]]
 
 - **Tres casos:** un sistema lineal tiene una, ninguna o infinitas soluciones.
 - **Sistemas homogéneos:** siempre tienen la solución $\mathbf{x} = \mathbf{0}$; sus soluciones forman el espacio nulo.
+
+:::figura[$x + 2y = 0$ y $3x + 6y = 0$ son la misma recta por el origen: el sistema homogéneo tiene la solución $(0, 0)$ y, como las ecuaciones son dependientes, también todos los puntos de esa recta.]{componente="VectorPlane"}
+```yaml
+modo: sistema
+ecuaciones: [[1, 2, 0], [3, 6, 0]]
+```
+:::
 - **Estructura de las soluciones:** si $\mathbf{x}_p$ resuelve $\mathbf{A}\mathbf{x} = \mathbf{b}$, todas las soluciones son $\mathbf{x}_p + \mathbf{n}$ con $\mathbf{n} \in N(\mathbf{A})$.
 - **Matriz cuadrada:** si $\det \mathbf{A} \neq 0$, la única solución es $\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$.
 - **Operaciones equivalentes:** intercambiar ecuaciones, multiplicar una por un número no nulo o sumarle un múltiplo de otra no cambia las soluciones.

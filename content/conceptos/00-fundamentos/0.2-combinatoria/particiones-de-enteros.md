@@ -94,6 +94,13 @@ objetivo: 8
 
 - **Primeros valores:** $p(1), \dots, p(10) = 1, 2, 3, 5, 7, 11, 15, 22, 30, 42$.
 - **Conjugación:** el número de particiones de $n$ con a lo más $k$ partes es igual al de particiones de $n$ con partes de tamaño a lo más $k$.
+
+:::figura[Las 15 particiones de 7 como diagramas de Ferrers. Leer un diagrama por columnas en lugar de por filas da la partición conjugada: a lo más $k$ partes se convierte en partes de tamaño a lo más $k$.]{componente="IntegerPartitionsViz"}
+```yaml
+vista: ferrers
+n: 7
+```
+:::
 - **Teorema de Euler:** el número de particiones de $n$ en partes distintas es igual al número de particiones en partes impares; en funciones generadoras, $\prod_k (1 + x^k) = \prod_k \frac{1}{1 - x^{2k-1}}$.
 - **Crecimiento:** $p(n) \sim \frac{1}{4n\sqrt{3}}\exp\left(\pi\sqrt{2n/3}\right)$ (Hardy y Ramanujan).
 - **Particiones con partes restringidas:** se obtienen quitando factores de la función generadora.
@@ -108,6 +115,23 @@ n: 8
 ## Errores comunes
 
 - **Contar el orden.** $3 + 1$ y $1 + 3$ son la misma partición; las sumas ordenadas se llaman composiciones y hay $2^{n-1}$.
+
+:::figura[Las composiciones de 5: entre las 5 unidades hay 4 huecos y en cada uno se corta o no, así que hay $2^4 = 16$ sumas ordenadas, contra $p(5) = 7$ particiones.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Composiciones de 5
+    casillas:
+      - etiqueta: hueco 1
+        opciones: 2
+      - etiqueta: hueco 2
+        opciones: 2
+      - etiqueta: hueco 3
+        opciones: 2
+      - etiqueta: hueco 4
+        opciones: 2
+```
+:::
 - **Confundirlas con particiones de conjuntos.** Las particiones de $\{1, 2, 3\}$ son 5, y las del número 3 son 3.
 - **Olvidar la partición trivial.** El propio $n$ es una partición de sí mismo, con una sola parte.
 
