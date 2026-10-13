@@ -227,7 +227,7 @@ semilla: 7
 
 ## Conexiones
 
-La Zipf es una [[distribucion-categorica]] cuyas probabilidades siguen una ley de potencia en el rango; con $s = 0$ se reduce a la [[distribucion-uniforme-discreta]]. Su normalización es una suma armónica, y la versión infinita requiere la convergencia de una [[series-y-convergencia-de-series|serie]] $p$. Es la contraparte discreta de la distribución de Pareto y aparece en el análisis de redes con distribuciones de grado de cola pesada. Junto con la [[distribucion-logaritmica]], se usa para describir abundancias muy desiguales. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
+La Zipf es una [[distribucion-categorica]] cuyas probabilidades siguen una ley de potencia en el rango; con $s = 0$ se reduce a la [[distribucion-uniforme-discreta]]. Su normalización es una suma armónica, y la versión infinita requiere la convergencia de una [[series-y-convergencia-de-series|serie]] $p$. Es la contraparte discreta de la distribución de Pareto y aparece en el análisis de redes con distribuciones de grado de cola pesada. Junto con la [[distribucion-logaritmica]], se usa para describir abundancias muy desiguales. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones. Su cola de ley de potencia es la versión discreta de la [[distribucion-de-pareto]].
 
 ## Formulario
 
