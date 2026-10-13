@@ -102,7 +102,23 @@ estrategia: azar
 
 - **Pensar que el principio dice cuál caja.** Solo garantiza que existe; no la identifica.
 - **Usarlo con $n \le m$.** Con tantos objetos como cajas, es posible que no haya repeticiones.
+
+:::figura[10 objetos en 10 cajas: el reparto más parejo deja exactamente uno en cada caja, así que el principio no garantiza ninguna repetición.]{componente="PigeonholeViz"}
+```yaml
+objetos: 10
+cajas: 10
+estrategia: repartir
+```
+:::
 - **Olvidar el techo.** Con 25 objetos y 12 cajas, alguna tiene al menos $\lceil 25/12 \rceil = 3$, no 2.
+
+:::figura[El mismo caso con 19 objetos en 9 cajas: aun repartiendo lo más parejo posible, una caja recibe $\lceil 19/9 \rceil = 3$ objetos, no $\lfloor 19/9 \rfloor = 2$.]{componente="PigeonholeViz"}
+```yaml
+objetos: 19
+cajas: 9
+estrategia: repartir
+```
+:::
 - **Confundir garantía con probabilidad.** Con 23 personas no está garantizado que dos compartan cumpleaños, pero la probabilidad supera 1/2.
 
 ## Conexiones

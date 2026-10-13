@@ -127,6 +127,15 @@ Inversa del producto: $(\mathbf{A}\mathbf{B})(\mathbf{B}^{-1}\mathbf{A}^{-1}) = 
 ## Errores comunes
 
 - **Escribir $(\mathbf{A}\mathbf{B})^{-1} = \mathbf{A}^{-1}\mathbf{B}^{-1}$.** El orden se invierte.
+
+:::figura[Con la cizalla $\mathbf{A} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ y el estiramiento $\mathbf{B} = \operatorname{diag}(2, 1)$, $\mathbf{A}\mathbf{B} = \begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix}$ y su inversa es $\begin{pmatrix} 0.5 & -0.5 \\ 0 & 1 \end{pmatrix} = \mathbf{B}^{-1}\mathbf{A}^{-1}$. El orden $\mathbf{A}^{-1}\mathbf{B}^{-1}$ daría $\begin{pmatrix} 0.5 & -1 \\ 0 & 1 \end{pmatrix}$, que no deshace el producto.]{componente="MatrixTransform"}
+```yaml
+modo: inversa
+pares:
+  - nombre: AB
+    primera: [[2, 1], [0, 1]]
+```
+:::
 - **Calcular la inversa para resolver un sistema.** En la práctica se resuelve $\mathbf{A}\mathbf{x} = \mathbf{b}$ por eliminación o factorización; formar $\mathbf{A}^{-1}$ es más caro y menos preciso.
 - **Hablar de la inversa de una matriz no cuadrada.** Solo las cuadradas pueden tener inversa; las rectangulares tienen, a lo más, inversas por un lado o la pseudoinversa.
 - **Dividir entre una matriz.** No existe $\mathbf{B}/\mathbf{A}$; se multiplica por $\mathbf{A}^{-1}$ del lado correcto.

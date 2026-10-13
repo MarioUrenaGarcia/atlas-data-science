@@ -99,8 +99,23 @@ n: 5
 ## Errores comunes
 
 - **Olvidar la restricción.** Sin la condición de no bajar del suelo, el conteo es $\binom{2n}{n}$, no $C_n$.
+
+:::figura[Sin la condición de no bajar del suelo, los caminos con 4 subidas y 4 bajadas son todos los caminos de una cuadrícula de $4 \times 4$: $\binom{8}{4} = 70$, cinco veces los $C_4 = 14$.]{componente="PascalTriangle"}
+```yaml
+modo: caminos
+derecha: 4
+arriba: 4
+```
+:::
 - **Confundir el tamaño del polígono.** $C_n$ cuenta triangulaciones de un polígono de $n + 2$ lados, no de $n$.
 - **Aplicar la fórmula con $n$ desplazado.** $C_4 = 14$ corresponde a 4 pares de paréntesis, es decir, palabras de longitud 8.
+
+:::figura[$C_4 = 14$ en forma de paréntesis: son las palabras de longitud 8 con 4 pares bien balanceados, no de longitud 4.]{componente="CatalanViz"}
+```yaml
+vista: parentesis
+n: 4
+```
+:::
 
 ## Conexiones
 

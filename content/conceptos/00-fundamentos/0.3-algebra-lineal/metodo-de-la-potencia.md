@@ -107,6 +107,16 @@ matrices:
 - **Deflación:** una vez hallado $\lambda_1$, se puede restar su contribución para buscar el siguiente.
 - **Cadenas de Markov:** con una matriz estocástica, iterar la distribución es el método de la potencia con valor propio dominante 1.
 
+:::figura[$\begin{pmatrix} 0.9 & 0.5 \\ 0.1 & 0.5 \end{pmatrix}$, con columnas que suman 1, tiene valores propios 1 y 0.4. Los iterados se alinean con $(5, 1)$, que normalizado es la distribución estacionaria $(0.833, 0.167)$.]{componente="MatrixTransform"}
+```yaml
+modo: potencia
+anguloInicial: 120
+matrices:
+  - nombre: Transiciones por columnas
+    matriz: [[0.9, 0.5], [0.1, 0.5]]
+```
+:::
+
 :::figura[Caso de convergencia lenta: con valores propios 2.12 y 1.68 la razón es 0.79 y los iterados tardan muchos pasos en alinearse.]{componente="MatrixTransform"}
 ```yaml
 modo: potencia
@@ -127,6 +137,16 @@ Si $\mathbf{x}_0 = \sum c_i\mathbf{v}_i$ con $c_1 \neq 0$, entonces $\mathbf{A}^
 - **Empezar con un vector sin componente dominante.** Si $\mathbf{x}_0$ es perpendicular a $\mathbf{v}_1$ en una matriz simétrica, en aritmética exacta nunca converge a él; en la práctica el redondeo suele rescatarlo, pero lentamente.
 - **Declarar convergencia porque la flecha se estabiliza en longitud.** Hay que vigilar la dirección y el cambio del cociente de Rayleigh.
 - **Esperar convergencia con valores propios complejos dominantes.** El iterado gira indefinidamente.
+
+:::figura[$\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$ gira 45 grados y estira por $\sqrt{2}$: sus valores propios $1 \pm i$ tienen el mismo módulo y el iterado normalizado da vueltas sin detenerse.]{componente="MatrixTransform"}
+```yaml
+modo: potencia
+anguloInicial: 0
+matrices:
+  - nombre: Giro de 45 grados
+    matriz: [[1, -1], [1, 1]]
+```
+:::
 
 ## Conexiones
 

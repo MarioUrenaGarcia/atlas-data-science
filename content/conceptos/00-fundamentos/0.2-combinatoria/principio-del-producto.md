@@ -122,6 +122,25 @@ escenarios:
 
 - **Palabras de longitud $k$:** con $n$ símbolos y repetición hay $n^k$ palabras.
 - **Subconjuntos:** un conjunto de $n$ elementos tiene $2^n$ subconjuntos, uno por cada serie de $n$ decisiones de sí o no.
+
+:::figura[Los subconjuntos de $\{1, 2, 3, 4, 5\}$: cada elemento decide si entra o no, cinco decisiones de 2 opciones, $2^5 = 32$ subconjuntos.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Subconjuntos de {1, ..., 5}
+    casillas:
+      - etiqueta: ¿1?
+        opciones: 2
+      - etiqueta: ¿2?
+        opciones: 2
+      - etiqueta: ¿3?
+        opciones: 2
+      - etiqueta: ¿4?
+        opciones: 2
+      - etiqueta: ¿5?
+        opciones: 2
+```
+:::
 - **Funciones:** hay $|B|^{|A|}$ funciones de $A$ en $B$, porque cada elemento de $A$ elige su imagen de forma independiente.
 - **Combinación con la suma:** en problemas con casos se multiplica dentro de cada caso y se suman los casos.
 
@@ -133,6 +152,28 @@ Para dos etapas: los resultados son los pares $(x, y)$ con $x$ entre las $n_1$ o
 
 - **Multiplicar cuando el número de opciones depende de elecciones previas.** Si el postre gratis solo aplica con pescado, las ramas no tienen el mismo tamaño y hay que separar en casos.
 - **Contar resultados que no son distintos.** Elegir "primero Ana y luego Beto" y "primero Beto y luego Ana" da el mismo equipo si el orden no importa; el producto cuenta ambos.
+
+:::figura[Equipos de 2 entre 6 personas: "primero uno y luego otro" da $6 \cdot 5 = 30$, pero Ana con Beto y Beto con Ana son el mismo equipo; al dividir entre 2 quedan 15.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Con orden
+    casillas:
+      - etiqueta: primero
+        opciones: 6
+      - etiqueta: segundo
+        opciones: 5
+  - nombre: Sin orden
+    casillas:
+      - etiqueta: primero
+        opciones: 6
+      - etiqueta: segundo
+        opciones: 5
+    divisor:
+      valor: 2
+      texto: "2 órdenes del mismo equipo"
+```
+:::
 - **Confundir con la suma.** Si se elige un solo platillo de entre dos listas, se suman las opciones; si se elige uno de cada lista, se multiplican.
 
 ## Conexiones

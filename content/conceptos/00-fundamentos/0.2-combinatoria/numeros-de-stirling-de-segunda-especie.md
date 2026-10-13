@@ -97,6 +97,14 @@ k: 3
 ## Propiedades
 
 - **Casos simples:** $S(n, 1) = S(n, n) = 1$, $S(n, 2) = 2^{n-1} - 1$, $S(n, n-1) = \binom{n}{2}$.
+
+:::figura[$S(5, 2) = 2^4 - 1 = 15$: al fijar el bloque del elemento 5, cada uno de los otros 4 decide si lo acompaña, y se excluye el caso en que todos lo acompañan y el segundo bloque queda vacío.]{componente="SetPartitionsViz"}
+```yaml
+modo: stirling
+n: 5
+k: 2
+```
+:::
 - **Funciones suprayectivas:** el número de funciones suprayectivas de un conjunto de $n$ elementos en uno de $k$ es $k!\,S(n, k)$.
 - **Potencias en factoriales descendentes:** $x^n = \sum_{k} S(n, k)\,x(x-1)\cdots(x-k+1)$.
 - **Números de Bell:** $\sum_{k=0}^{n} S(n, k) = B_n$.
@@ -105,6 +113,14 @@ k: 3
 ## Errores comunes
 
 - **Olvidar que los bloques no tienen etiqueta.** Si los grupos tienen nombre, hay que multiplicar por $k!$.
+
+:::figura[Con 4 bloques de 5 elementos hay $S(5, 4) = \binom{5}{2} = 10$ particiones: basta elegir la pareja que comparte bloque. Si los 4 bloques tuvieran nombre, serían $4! \cdot 10 = 240$ funciones suprayectivas.]{componente="SetPartitionsViz"}
+```yaml
+modo: stirling
+n: 5
+k: 4
+```
+:::
 - **Permitir bloques vacíos.** $S(n, k)$ exige los $k$ bloques no vacíos; con bloques posiblemente vacíos y etiquetados habría $k^n$ asignaciones.
 - **Confundirlos con los de primera especie.** Los números de Stirling de primera especie cuentan permutaciones con $k$ ciclos, no particiones.
 - **Confundirlos con la aproximación de Stirling.** Llevan el mismo apellido, pero la aproximación de $n!$ es otro resultado.

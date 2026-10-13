@@ -93,6 +93,14 @@ k: 2
 - **Palo de hockey:** la suma de las entradas de una diagonal, desde el borde hasta cierta fila, es la entrada que queda debajo y a un lado del final.
 - **Fibonacci:** las sumas de las diagonales poco inclinadas dan los números de Fibonacci.
 - **Paridad:** $\binom{n}{k}$ es impar si y solo si cada bit de $k$ es menor o igual que el bit correspondiente de $n$ (teorema de Lucas), lo que produce el patrón de Sierpinski.
+
+:::figura[Las primeras 16 filas coloreadas según la paridad de cada entrada: los números impares forman el triángulo de Sierpinski, con huecos triangulares de números pares.]{componente="PascalTriangle"}
+```yaml
+modo: triangulo
+filas: 16
+modulo: 2
+```
+:::
 - **Potencias de 11:** las filas 0 a 4 leídas como números dan $11^0, \dots, 11^4$.
 
 ## Errores comunes

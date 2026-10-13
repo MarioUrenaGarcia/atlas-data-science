@@ -126,12 +126,50 @@ escenarios:
 
 - **Fijar un elemento** elimina la simetría de rotación: las permutaciones circulares de $n$ objetos corresponden a las permutaciones lineales de los otros $n - 1$ a partir de él.
 - **Collares y pulseras:** si además se permite voltear, el conteo se divide entre $2n$ en lugar de $n$.
+
+:::figura[Cuatro cuentas de colores distintos en un collar: los 24 órdenes en fila forman 6 acomodos salvo giros y, al activar los reflejos, 3 collares, cada uno con $2 \cdot 4 = 8$ órdenes.]{componente="CombinatoricsBoard"}
+```yaml
+modo: circular
+personas: [roja, azul, verde, negra]
+```
+:::
 - **Objetos repetidos:** cuando hay objetos idénticos, las clases dejan de tener todas el mismo tamaño y la fórmula $n!/n$ ya no es válida; se requiere contar órbitas con más cuidado.
 - Es un ejemplo del principio general: si cada objeto se contó exactamente $m$ veces, se divide entre $m$.
 
 ## Errores comunes
 
 - **Aplicar $(n-1)!$ cuando las sillas están numeradas.** Si cada lugar tiene un nombre, los giros sí producen acomodos distintos y hay $n!$.
+
+:::figura[Cinco personas en una mesa redonda. Si las sillas tienen número, cada persona elige silla y hay $5! = 120$ acomodos; si no lo tienen, se fija a una persona y los demás se ordenan a partir de ella: $4! = 24$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Sillas numeradas
+    casillas:
+      - etiqueta: silla 1
+        opciones: 5
+      - etiqueta: silla 2
+        opciones: 4
+      - etiqueta: silla 3
+        opciones: 3
+      - etiqueta: silla 4
+        opciones: 2
+      - etiqueta: silla 5
+        opciones: 1
+  - nombre: Sillas sin número
+    casillas:
+      - etiqueta: fija
+        opciones: 1
+      - etiqueta: a su derecha
+        opciones: 4
+      - etiqueta: siguiente
+        opciones: 3
+      - etiqueta: siguiente
+        opciones: 2
+      - etiqueta: última
+        opciones: 1
+```
+:::
 - **Dividir entre 2 sin justificación.** Solo corresponde si el reflejo realmente se considera el mismo acomodo, como en un collar; en una mesa con izquierda y derecha distinguibles, no.
 - **Usar la fórmula con objetos idénticos.** Con cuentas repetidas, algunos acomodos coinciden con sus propios giros y el cociente deja de ser exacto.
 

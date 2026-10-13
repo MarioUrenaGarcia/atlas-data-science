@@ -113,7 +113,24 @@ Para el caso general, si $f(a_0) = D$ para algún $a_0$, entonces $a_0 \in D$ si
 ## Errores comunes
 
 - **Pensar que basta agregar $d$ a la lista.** La lista nueva tiene otra diagonal y el argumento produce otra sucesión ausente.
+
+:::figura[Agregar la sucesión que faltaba no repara la lista. Aquí la primera fila es 1011, la sucesión diagonal de una lista anterior; la diagonal de la lista nueva es 1001 y al cambiar cada dígito se obtiene 0110, que tampoco aparece.]{componente="CantorDiagonal"}
+```yaml
+lista:
+  - [1, 0, 1, 1]
+  - [0, 0, 0, 0]
+  - [1, 1, 0, 1]
+  - [0, 1, 0, 1]
+```
+:::
 - **Creer que el argumento demuestra que la lista es mala.** Demuestra que toda lista falla, porque la construcción no depende de cuál sea.
+
+:::figura[Otra lista cualquiera, de 8 filas elegidas al azar: la construcción es la misma y la sucesión diagonal invertida vuelve a quedar fuera. Al cambiar la semilla se obtiene otra lista y el resultado no cambia.]{componente="CantorDiagonal"}
+```yaml
+filas: 8
+semilla: 21
+```
+:::
 - **Aplicarlo a los decimales sin cuidar la doble representación.** Sin evitar 0 y 9, el número construido podría coincidir con uno de la lista escrito de otra forma.
 - **Concluir que $\mathbb{Q}$ es no numerable con el mismo argumento.** El número construido no tiene por qué ser racional.
 

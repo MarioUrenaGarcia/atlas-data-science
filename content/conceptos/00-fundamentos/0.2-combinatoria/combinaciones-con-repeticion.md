@@ -90,6 +90,14 @@ k: 10
 ## Propiedades
 
 - **Soluciones positivas:** el número de soluciones de $x_1 + \dots + x_n = k$ con $x_i \ge 1$ es $\binom{k - 1}{n - 1}$.
+
+:::figura[Soluciones de $y_1 + y_2 + y_3 = 8$ con $y_i \ge 1$: se da primero una unidad a cada variable y quedan 5 por repartir sin restricción, de $\binom{5 + 2}{2} = 21$ maneras, igual a $\binom{8 - 1}{3 - 1}$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: estrellas-y-barras
+tipos: [y₁, y₂, y₃]
+k: 5
+```
+:::
 - **Relación con combinaciones:** $\binom{n + k - 1}{k}$ es el número de subconjuntos de tamaño $k$ de un conjunto de $n + k - 1$ elementos.
 - **Monomios:** el número de monomios de grado $k$ en $n$ variables es $\binom{n + k - 1}{k}$.
 - **Desigualdades:** las soluciones de $x_1 + \dots + x_n \le k$ se cuentan agregando una variable de holgura: $\binom{n + k}{n}$.
@@ -99,7 +107,44 @@ k: 10
 - **Usar $n^k$.** Eso cuenta sucesiones ordenadas; en un multiconjunto el orden no importa.
 - **Usar $\binom{n}{k}$.** Eso prohíbe repetir tipos; aquí pueden repetirse.
 - **Poner $n$ barras en lugar de $n - 1$.** Para separar $n$ grupos se necesitan $n - 1$ divisiones.
+
+:::figura[Tres plumones de 4 colores: para separar 4 grupos bastan 3 barras, y las 3 estrellas y 3 barras ocupan 6 lugares, con $\binom{6}{3} = 20$ acomodos. Con 4 barras habría un grupo de más.]{componente="CombinatoricsBoard"}
+```yaml
+modo: estrellas-y-barras
+tipos: [rojo, verde, azul, negro]
+k: 3
+```
+:::
 - **Aplicarlo a objetos distinguibles.** Si las becas tienen nombre, cada una elige escuela por separado y hay $3^{10}$ repartos.
+
+:::figura[Si cada una de las 10 becas tiene nombre, cada beca elige escuela por separado: $3^{10} = 59049$ repartos, muchos más que los 66 de las becas idénticas.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Becas con nombre
+    casillas:
+      - etiqueta: beca 1
+        opciones: 3
+      - etiqueta: beca 2
+        opciones: 3
+      - etiqueta: beca 3
+        opciones: 3
+      - etiqueta: beca 4
+        opciones: 3
+      - etiqueta: beca 5
+        opciones: 3
+      - etiqueta: beca 6
+        opciones: 3
+      - etiqueta: beca 7
+        opciones: 3
+      - etiqueta: beca 8
+        opciones: 3
+      - etiqueta: beca 9
+        opciones: 3
+      - etiqueta: beca 10
+        opciones: 3
+```
+:::
 
 ## Conexiones
 

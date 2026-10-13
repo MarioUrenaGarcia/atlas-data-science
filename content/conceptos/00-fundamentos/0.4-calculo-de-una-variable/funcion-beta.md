@@ -91,6 +91,14 @@ b: 3
 - **Simetría:** $B(a, b) = B(b, a)$.
 - **Recurrencia:** $B(a + 1, b) = \frac{a}{a + b}\,B(a, b)$.
 - **Casos simples:** $B(1, 1) = 1$, $B(a, 1) = \frac{1}{a}$ y $B\big(\tfrac{1}{2}, \tfrac{1}{2}\big) = \pi$.
+
+:::figura[Con $a = b = 1$ el integrando es la constante 1 en $[0, 1]$ y el área es $B(1, 1) = 1$.]{componente="CalculusViz"}
+```yaml
+modo: beta
+a: 1
+b: 1
+```
+:::
 - **Distribución beta:** $p(t) = \frac{t^{a-1}(1 - t)^{b-1}}{B(a, b)}$ en $[0, 1]$, con media $\frac{a}{a + b}$.
 - **Coeficientes binomiales:** $\binom{n}{k} = \frac{1}{(n + 1)\,B(n - k + 1,\ k + 1)}$.
 
@@ -111,6 +119,14 @@ Simetría: con la sustitución $s = 1 - t$, $\int_0^1 t^{a-1}(1 - t)^{b-1}dt = \
 - **Olvidar restar 1 en los exponentes.** $B(2, 3)$ integra $t^{1}(1 - t)^{2}$, no $t^2(1 - t)^3$.
 - **Confundir la función beta con la distribución beta.** La función es un número; la distribución es una densidad normalizada por ese número.
 - **Creer que con $a < 1$ el área es infinita.** La curva no está acotada cerca de 0, pero su área es finita mientras $a > 0$.
+
+:::figura[Con $a = 0.5$ y $b = 2$ la curva se dispara cerca de 0, pero el área es finita: $B(0.5, 2) = \frac{\Gamma(0.5)\Gamma(2)}{\Gamma(2.5)} = \frac{4}{3}$.]{componente="CalculusViz"}
+```yaml
+modo: beta
+a: 0.5
+b: 2
+```
+:::
 - **Calcular con factoriales en valores no enteros.** Para $a$ o $b$ no enteros se usa la función gamma.
 
 ## Conexiones

@@ -95,6 +95,17 @@ intervalo: [-0.7071, 0.7071]
 ## Propiedades
 
 - **Impar:** $\operatorname{erf}(-x) = -\operatorname{erf}(x)$.
+
+:::figura[La función error desde $-3$ hasta 3: el área acumulada es negativa a la izquierda de 0 y positiva a la derecha, con la misma forma reflejada, y se aplana en $-1$ y en 1.]{componente="CalculusViz"}
+```yaml
+modo: acumulada
+funcion: gauss
+desde: -3
+hasta: 3
+escala: 1.1284
+nombre: erf
+```
+:::
 - **Límites:** $\operatorname{erf}(0) = 0$ y $\lim_{x \to \infty}\operatorname{erf}(x) = 1$, por la integral de Gauss.
 - **Derivada:** $\operatorname{erf}'(x) = \frac{2}{\sqrt{\pi}}e^{-x^2}$.
 - **Serie:** $\operatorname{erf}(x) = \frac{2}{\sqrt{\pi}}\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{n!\,(2n + 1)}$, útil para $x$ pequeño.

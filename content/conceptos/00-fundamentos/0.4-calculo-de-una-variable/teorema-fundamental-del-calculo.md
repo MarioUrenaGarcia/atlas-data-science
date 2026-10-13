@@ -99,6 +99,15 @@ nombre: V
 - **Antiderivadas básicas:** $\int x^n dx = \frac{x^{n+1}}{n + 1} + C$ ($n \neq -1$), $\int \frac{dx}{x} = \log|x| + C$, $\int e^x dx = e^x + C$, $\int \cos x\,dx = \operatorname{sen} x + C$.
 - **Límite superior variable:** $\frac{d}{dx}\int_a^{g(x)} f(t)\,dt = f(g(x))\,g'(x)$.
 - **Cambio neto:** $\int_a^b G'(x)\,dx = G(b) - G(a)$: integrar un ritmo de cambio da el cambio total.
+
+:::figura[El área acumulada bajo $e^x$ desde 0 hasta 2 es $e^2 - e^0 \approx 6.389$, el cambio neto de su antiderivada $e^x$ entre los dos extremos.]{componente="CalculusViz"}
+```yaml
+modo: acumulada
+funcion: exponencial
+desde: 0
+hasta: 2
+```
+:::
 - **Funciones de distribución:** si $p$ es una densidad, $F(x) = \int_{-\infty}^{x} p(t)\,dt$ es la distribución acumulada y $F' = p$.
 - **No toda integral tiene fórmula cerrada:** $\int e^{-x^2}dx$ no se expresa con funciones elementales; define la función error.
 
@@ -110,6 +119,15 @@ Primera parte: $\frac{F(x + h) - F(x)}{h} = \frac{1}{h}\int_x^{x+h} f(t)\,dt$, q
 
 - **Olvidar la constante en la integral indefinida.** $\int 2x\,dx = x^2 + C$; en la definida la constante se cancela.
 - **Aplicarlo con discontinuidades.** $\int_{-1}^{1}\frac{dx}{x^2}$ no es $\big[-\frac{1}{x}\big]_{-1}^{1} = -2$; la función no es continua en 0 y la integral diverge.
+
+:::figura[El área acumulada bajo $1/x^2$ desde 0.1 ya vale 9 al llegar a 1; al acercar el inicio a 0 crece sin cota. La función no es continua en 0 y el teorema no se puede aplicar en $[-1, 1]$.]{componente="CalculusViz"}
+```yaml
+modo: acumulada
+funcion: inverso-cuadrado
+desde: 0.1
+hasta: 1
+```
+:::
 - **Confundir la variable muda con el límite.** En $\int_a^x f(t)\,dt$ el resultado depende de $x$, no de $t$.
 - **Creer que toda función continua tiene antiderivada elemental.** Existe la antiderivada, pero puede no tener fórmula con funciones conocidas.
 

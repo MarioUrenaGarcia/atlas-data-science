@@ -96,15 +96,73 @@ n: 6
 
 - **Producto de binomiales:** $\binom{n}{k_1, \dots, k_r} = \binom{n}{k_1}\binom{n - k_1}{k_2}\cdots\binom{k_r}{k_r}$.
 - **Dos grupos:** $\binom{n}{k, n-k} = \binom{n}{k}$.
+
+:::figura[Con dos tipos de letra el multinomial es un binomial: los anagramas de AAABB son $\binom{5}{3, 2} = \binom{5}{2} = 10$, uno por cada elección de los 2 lugares de la B.]{componente="CombinatoricsBoard"}
+```yaml
+modo: anagramas
+palabra: AAABB
+```
+:::
 - **Suma total:** la suma de todos los coeficientes con $n$ y $r$ fijos es $r^n$.
+
+:::figura[La suma de todos los coeficientes con $n = 4$ y $r = 3$: cada uno de los 4 objetos elige uno de los 3 grupos por separado, así que hay $3^4 = 81$ repartos, agrupados según los tamaños de los grupos.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Cada objeto elige grupo
+    casillas:
+      - etiqueta: objeto 1
+        opciones: 3
+      - etiqueta: objeto 2
+        opciones: 3
+      - etiqueta: objeto 3
+        opciones: 3
+      - etiqueta: objeto 4
+        opciones: 3
+```
+:::
 - **Número de términos:** $(x_1 + \dots + x_r)^n$ tiene $\binom{n + r - 1}{r - 1}$ términos distintos, contados con estrellas y barras.
 - **Recursión tipo Pascal:** $\binom{n}{k_1, \dots, k_r} = \sum_{i} \binom{n-1}{k_1, \dots, k_i - 1, \dots, k_r}$.
 
 ## Errores comunes
 
 - **Olvidar que los grupos están etiquetados.** Si los grupos no tienen nombre y tienen el mismo tamaño, hay que dividir entre el número de formas de permutar los grupos iguales.
+
+:::figura[Seis personas en tres equipos de dos. Con nombres Rojo, Azul y Verde hay $\binom{6}{2, 2, 2} = 15 \cdot 6 \cdot 1 = 90$ repartos; sin nombres, cada reparto se repitió $3! = 6$ veces y quedan 15.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Equipos con nombre
+    casillas:
+      - etiqueta: pareja Roja
+        opciones: 15
+      - etiqueta: pareja Azul
+        opciones: 6
+      - etiqueta: pareja Verde
+        opciones: 1
+  - nombre: Equipos sin nombre
+    casillas:
+      - etiqueta: primera pareja
+        opciones: 15
+      - etiqueta: segunda pareja
+        opciones: 6
+      - etiqueta: tercera pareja
+        opciones: 1
+    divisor:
+      valor: 6
+      texto: "3! órdenes de los equipos"
+```
+:::
 - **Usar exponentes que no suman $n$.** El coeficiente solo está definido cuando $k_1 + \dots + k_r = n$.
 - **Confundir el número de términos con la suma de coeficientes.** Con $n = 4$ y $r = 3$ hay 15 términos, pero sus coeficientes suman 81.
+
+:::figura[Los términos de $(x_1 + x_2 + x_3)^4$ son las formas de repartir el exponente 4 entre tres variables: estrellas y barras dan $\binom{6}{2} = 15$ términos, mientras que sus coeficientes suman 81.]{componente="CombinatoricsBoard"}
+```yaml
+modo: estrellas-y-barras
+tipos: [x₁, x₂, x₃]
+k: 4
+```
+:::
 
 ## Conexiones
 

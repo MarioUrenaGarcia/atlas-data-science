@@ -100,6 +100,16 @@ matrices:
 ## Propiedades
 
 - **Multiplicativo:** $\det(\mathbf{A}\mathbf{B}) = \det \mathbf{A} \cdot \det \mathbf{B}$; aplicar dos transformaciones multiplica sus factores de área.
+
+:::figura[Una cizalla con determinante 1 seguida de un estiramiento vertical con determinante 3: el cuadrado unitario conserva su área en el primer paso y la triplica en el segundo, así que la composición tiene determinante $1 \cdot 3 = 3$.]{componente="MatrixTransform"}
+```yaml
+modo: composicion
+pares:
+  - nombre: Cizalla y estiramiento
+    primera: [[1, 1], [0, 1]]
+    segunda: [[1, 0], [0, 3]]
+```
+:::
 - **Inversa:** $\mathbf{A}$ es invertible si y solo si $\det \mathbf{A} \neq 0$, y entonces $\det \mathbf{A}^{-1} = 1/\det \mathbf{A}$.
 - **Transpuesta:** $\det \mathbf{A}^\top = \det \mathbf{A}$.
 - **Operaciones de fila:** intercambiar dos filas cambia el signo; multiplicar una fila por $c$ multiplica el determinante por $c$; sumar a una fila un múltiplo de otra no lo cambia.
@@ -128,6 +138,16 @@ matrices:
 ## Errores comunes
 
 - **Pensar que el determinante mide el tamaño de las entradas.** Una matriz con entradas grandes puede tener determinante cero, y una con entradas pequeñas uno grande.
+
+:::figura[$\begin{pmatrix} 6 & 3 \\ 4 & 2 \end{pmatrix}$ tiene entradas grandes y determinante $12 - 12 = 0$: sus columnas son paralelas y el plano entero se aplasta sobre una recta.]{componente="MatrixTransform"}
+```yaml
+modo: transformacion
+circulo: true
+matrices:
+  - nombre: Entradas grandes, determinante 0
+    matriz: [[6, 3], [4, 2]]
+```
+:::
 - **Escribir $\det(\mathbf{A} + \mathbf{B}) = \det \mathbf{A} + \det \mathbf{B}$.** El determinante no es lineal en la matriz entera.
 - **Usar un determinante pequeño como prueba de casi singularidad.** $\det(0.1\,\mathbf{I}_{10}) = 10^{-10}$ y la matriz está perfectamente condicionada; para eso se usa el número de condición.
 - **Hablar del determinante de una matriz no cuadrada.** Solo existe para matrices cuadradas.

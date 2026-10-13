@@ -105,9 +105,30 @@ n: 4
 ## Errores comunes
 
 - **Olvidar el vacío o el conjunto completo.** Ambos son subconjuntos.
+
+:::figura[Los 4 subconjuntos de $\{x, y\}$: además de $\{x\}$ y $\{y\}$ están $\varnothing$ y el propio $\{x, y\}$, que completan $2^2 = 4$.]{componente="SetStructures"}
+```yaml
+modo: potencia
+elementos: [x, y]
+```
+:::
 - **Confundir $\varnothing$ con $\{\varnothing\}$.** $\mathcal{P}(\varnothing) = \{\varnothing\}$ tiene un elemento.
 - **Escribir $a \in \mathcal{P}(S)$ en lugar de $\{a\} \in \mathcal{P}(S)$.** Los elementos del conjunto potencia son subconjuntos, no elementos de $S$.
+
+:::figura[El conjunto potencia de $\{a\}$ tiene dos elementos, $\varnothing$ y $\{a\}$. El elemento $a$ no es uno de ellos: lo que pertenece a $\mathcal{P}(S)$ es el subconjunto $\{a\}$.]{componente="SetStructures"}
+```yaml
+modo: potencia
+elementos: [a]
+```
+:::
 - **Pensar que el crecimiento es moderado.** Duplicar con cada elemento produce crecimiento exponencial.
+
+:::figura[El número de subconjuntos $2^n$ en escala logarítmica: con 20 elementos ya hay más de un millón de subconjuntos, aunque crece más despacio que $n!$ y $n^n$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: crecimiento
+nMax: 20
+```
+:::
 
 ## Conexiones
 

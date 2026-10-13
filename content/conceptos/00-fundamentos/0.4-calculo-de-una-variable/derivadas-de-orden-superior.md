@@ -112,7 +112,24 @@ Aproximación cuadrática: sea $p(h) = f(a) + f'(a)h + \tfrac{1}{2}f''(a)h^2$. E
 ## Errores comunes
 
 - **Creer que $f'' = 0$ implica inflexión.** $x^4$ tiene $f''(0) = 0$ y no cambia de concavidad.
+
+:::figura[$x^4$ y su segunda derivada $12x^2$: en 0 la segunda derivada vale cero, pero es positiva a ambos lados, así que la curva sigue siendo convexa y no hay punto de inflexión. El punto crítico 0 queda sin clasificar por $f''$, aunque el signo de $f'$ muestra que es un mínimo.]{componente="CalculusViz"}
+```yaml
+modo: derivadas
+funciones: [potencia-cuatro]
+orden: 2
+criticos: true
+```
+:::
 - **Confundir cóncava hacia abajo con decreciente.** $\sqrt{x}$ crece y es cóncava hacia abajo.
+
+:::figura[$\sqrt{x}$ crece en todo su dominio, con primera derivada positiva, y aun así su segunda derivada es negativa: crece cada vez más despacio, que es lo que significa ser cóncava hacia abajo.]{componente="CalculusViz"}
+```yaml
+modo: derivadas
+funciones: [raiz]
+orden: 2
+```
+:::
 - **Usar el criterio de la segunda derivada cuando es cero.** Si $f''(c) = 0$ el criterio no decide; hay que estudiar el signo de $f'$ alrededor.
 - **Escribir $f^2$ por $f''$.** $f^{(2)}$ es la segunda derivada; $f^2$ es el cuadrado de la función.
 

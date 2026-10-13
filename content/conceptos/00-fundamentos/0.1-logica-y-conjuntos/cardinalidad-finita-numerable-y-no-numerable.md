@@ -99,9 +99,22 @@ ejemplos:
 
 - Todo subconjunto de un conjunto numerable es numerable.
 - $\mathbb{N} \times \mathbb{N}$ es numerable, y también lo es $\mathbb{Q}$.
+
+:::figura[Los racionales positivos acomodados en una tabla por numerador y denominador se recorren en zigzag por diagonales; saltando las fracciones repetidas, cada racional recibe un número natural.]{componente="CountableSets"}
+```yaml
+vista: racionales
+```
+:::
 - La unión numerable de conjuntos numerables es numerable.
 - $\mathbb{R}$, el intervalo $(0, 1)$ y el conjunto de sucesiones binarias infinitas son no numerables, y los tres tienen la misma cardinalidad.
 - **Teorema de Cantor:** $|A| < |\mathcal{P}(A)|$ para todo conjunto $A$, así que no existe un infinito máximo.
+
+:::figura[Cada sucesión binaria es un subconjunto de $\mathbb{N}$: el dígito $n$ vale 1 si $n$ pertenece. La diagonal invertida es un subconjunto que ninguna lista de subconjuntos contiene, así que $\mathcal{P}(\mathbb{N})$ no se puede listar.]{componente="CantorDiagonal"}
+```yaml
+filas: 5
+semilla: 4
+```
+:::
 - **Teorema de Cantor, Schröder y Bernstein:** si $|A| \le |B|$ y $|B| \le |A|$, entonces $|A| = |B|$.
 - Un conjunto es infinito si y solo si tiene la misma cardinalidad que algún subconjunto propio suyo.
 

@@ -83,6 +83,13 @@ casos: [x-exponencial]
 ## Propiedades
 
 - **Casos típicos:** $\int x^n e^{x}dx$, $\int x^n\cos x\,dx$, $\int \log x\,dx$, $\int x^n \log x\,dx$.
+
+:::figura[$\int x\cos x\,dx$ con $u = x$ y $dv = \cos x\,dx$: el producto $uv = x\operatorname{sen} x$ y el área de $v\,du = \operatorname{sen} x\,dx$ completan el área buscada.]{componente="CalculusViz"}
+```yaml
+modo: partes
+casos: [x-coseno]
+```
+:::
 - **Aplicación repetida:** en $\int x^2 e^x dx$ se aplica dos veces hasta que desaparece la potencia.
 - **Integrales cíclicas:** en $\int e^x\cos x\,dx$ la integral original reaparece y se despeja: vale $\tfrac{1}{2}e^x(\cos x + \operatorname{sen} x) + C$.
 - **Función gamma:** integrar por partes $\int_0^\infty t^{x}e^{-t}dt$ da $\Gamma(x + 1) = x\,\Gamma(x)$.

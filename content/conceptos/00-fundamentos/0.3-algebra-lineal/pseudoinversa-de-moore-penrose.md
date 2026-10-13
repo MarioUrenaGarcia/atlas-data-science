@@ -110,6 +110,15 @@ Con $\mathbf{c} = \mathbf{U}^\top\mathbf{b}$ y $\mathbf{y} = \mathbf{V}^\top\mat
 
 - **Usar $(\mathbf{A}^\top \mathbf{A})^{-1}\mathbf{A}^\top$ cuando las columnas son dependientes.** $\mathbf{A}^\top \mathbf{A}$ es singular; la pseudoinversa sí existe.
 - **Pensar que $\mathbf{A}^{+}\mathbf{A} = \mathbf{I}$.** Solo si las columnas de $\mathbf{A}$ son independientes; en general es una proyección.
+
+:::figura[$\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$ tiene rango 1 y pseudoinversa $\frac{1}{4}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$: $\mathbf{A}^{+}\mathbf{A}$ proyecta sobre la recta $y = x$ en lugar de devolver cada punto a su lugar.]{componente="MatrixTransform"}
+```yaml
+modo: pseudoinversa
+matrices:
+  - nombre: Rango 1 diagonal
+    matriz: [[1, 1], [1, 1]]
+```
+:::
 - **Invertir valores singulares diminutos sin cuidado.** Un $\sigma_i$ de $10^{-12}$ producido por redondeo convierte ruido en respuestas enormes.
 - **Creer que da la solución exacta.** Da la mejor aproximación; si $\mathbf{b}$ no está en el espacio columna, $\mathbf{A}\mathbf{x}^{+} \neq \mathbf{b}$.
 

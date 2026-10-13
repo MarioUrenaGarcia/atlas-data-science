@@ -95,6 +95,15 @@ matrices:
 
 - **Costo:** factorizar cuesta del orden de $\tfrac{2}{3}n^3$ operaciones; cada sistema adicional, solo $2n^2$.
 - **Determinante:** $\det \mathbf{A} = \det \mathbf{U} = \prod_i u_{ii}$ si no hay intercambios; con $\mathbf{P}\mathbf{A} = \mathbf{L}\mathbf{U}$ se multiplica por $\det \mathbf{P} = \pm 1$.
+
+:::figura[$\begin{pmatrix} 2 & 1 \\ 6 & 5 \end{pmatrix}$ se factoriza con el multiplicador 3: $\mathbf{U} = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}$ y el determinante es $2 \cdot 2 = 4$, igual a $10 - 6$.]{componente="MatrixSteps"}
+```yaml
+modo: lu
+matrices:
+  - nombre: Determinante 4
+    matriz: [[2, 1], [6, 5]]
+```
+:::
 - **Unicidad:** si $\mathbf{A}$ es invertible y tiene factorización LU con unos en la diagonal de $\mathbf{L}$, esta es única.
 - **Variante LDU:** $\mathbf{A} = \mathbf{L}\mathbf{D}\mathbf{U}'$ con $\mathbf{D}$ diagonal (los pivotes) y $\mathbf{U}'$ con unos en la diagonal.
 - **Matrices simétricas definidas positivas:** la factorización se simplifica a $\mathbf{A} = \mathbf{L}\mathbf{L}^\top$, la de Cholesky.
@@ -115,6 +124,15 @@ Cada reemplazo $R_i \leftarrow R_i - \ell_{ik}R_k$ equivale a multiplicar por la
 ## Errores comunes
 
 - **Suponer que toda matriz invertible tiene LU sin intercambios.** $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ es invertible y no la tiene.
+
+:::figura[La matriz de permutación $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ es invertible, pero su primer pivote es 0: la eliminación necesita intercambiar filas antes de empezar.]{componente="MatrixSteps"}
+```yaml
+modo: lu
+matrices:
+  - nombre: Permutación
+    matriz: [[0, 1], [1, 0]]
+```
+:::
 - **Poner los multiplicadores con el signo de la operación.** Si la operación es $R_i \leftarrow R_i - 2R_k$, en $\mathbf{L}$ se guarda $+2$.
 - **Recalcular la factorización para cada lado derecho.** La ventaja de LU es factorizar una vez y reutilizar.
 - **Ignorar el pivoteo en cálculo numérico.** Aunque no haya pivotes nulos, pivotes pequeños amplifican errores de redondeo.
