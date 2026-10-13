@@ -126,6 +126,13 @@ conjunto: 4
 - **Leer una correlación alta como relación lineal.** $r = 0.816$ aparece en los cuatro conjuntos, y solo en uno la relación es lineal con ruido.
 - **Ignorar los residuos.** Un gráfico de residuos con patrón (curva, un punto aislado) indica que el modelo no es adecuado, aunque el ajuste reporte un $R^2$ aceptable.
 
+:::figura[Ignorar los residuos: en el conjunto II la recta reporta r = 0.816, pero el gráfico de residuos inferior dibuja una U invertida, señal inequívoca de que la relación es curva y la recta no es el modelo adecuado.]{componente="AnscombeQuartet"}
+```yaml
+vista: conjunto
+conjunto: 2
+```
+:::
+
 ## Conexiones
 
 El cuarteto se construye sobre el [[diagrama-de-dispersion]] y el [[coeficiente-de-correlacion-de-pearson]], y muestra los límites de la [[covarianza-muestral]] como resumen. El [[datasaurus-dozen]] lleva la misma idea a doce conjuntos con formas arbitrarias. Los conjuntos III y IV ilustran por qué la [[correlacion-de-spearman]], basada en rangos, y los métodos robustos son menos sensibles a un solo punto.
