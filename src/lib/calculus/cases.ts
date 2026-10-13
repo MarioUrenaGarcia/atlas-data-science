@@ -122,6 +122,11 @@ export interface QuotientCase {
   dg: RealFunction;
   point: number;
   limit: number;
+  /**
+   * Set when the quotient is not 0/0 at the point: the value the quotient of
+   * derivatives tends to, which then differs from the true limit.
+   */
+  misuse?: number;
   domain: [number, number];
 }
 
@@ -185,6 +190,19 @@ export const QUOTIENT_CASES: Readonly<Record<string, QuotientCase>> = {
     point: 2,
     limit: 12,
     domain: [0.5, 3.5],
+  },
+  'coseno-sin-indeterminacion': {
+    id: 'coseno-sin-indeterminacion',
+    latex: '\\dfrac{\\cos x}{x + 1}',
+    derivativesLatex: '\\dfrac{-\\operatorname{sen} x}{1}',
+    f: Math.cos,
+    g: (x) => x + 1,
+    df: (x) => -Math.sin(x),
+    dg: () => 1,
+    point: 0,
+    limit: 1,
+    misuse: 0,
+    domain: [-0.8, 2],
   },
 };
 
@@ -360,6 +378,15 @@ export const IMPROPER_CASES: Readonly<Record<string, ImproperCase>> = {
     latex: '\\int_0^{1} \\frac{dx}{x}',
     f: (x) => 1 / x,
     F: Math.log,
+    kind: 'singular',
+    a: 1,
+    value: Infinity,
+  },
+  'inverso-cuadrado-singular': {
+    id: 'inverso-cuadrado-singular',
+    latex: '\\int_0^{1} \\frac{dx}{x^2}',
+    f: (x) => 1 / (x * x),
+    F: (x) => -1 / x,
     kind: 'singular',
     a: 1,
     value: Infinity,
