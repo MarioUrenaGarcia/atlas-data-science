@@ -11,6 +11,9 @@ orden: 13
 nivel: avanzado
 prerrequisitos:
   - tcl-de-lindeberg-levy
+relaciones:
+  - tipo: relacionado
+    id: momentos
 etiquetas:
   - teorema central del límite
   - velocidad de convergencia

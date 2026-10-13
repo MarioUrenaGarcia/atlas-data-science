@@ -11,6 +11,9 @@ orden: 10
 nivel: avanzado
 prerrequisitos:
   - tcl-de-lindeberg-levy
+relaciones:
+  - tipo: relacionado
+    id: momentos
 etiquetas:
   - teorema central del límite
   - sumandos no idénticos
