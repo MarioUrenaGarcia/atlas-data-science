@@ -68,7 +68,7 @@ Tres prisioneros, A, B y C, saben que dos serán ejecutados y uno indultado, ele
 
 El razonamiento de A es incorrecto. El guardia siempre podía nombrar a alguien distinto de A, así que su respuesta no dice nada sobre A: su probabilidad sigue siendo 1/3. Lo que sí cambió es la de C. Antes de la respuesta, B y C compartían 2/3; ahora que B quedó descartado, C tiene 2/3.
 
-Es el mismo problema que el de Monty Hall, publicado décadas antes por Martin Gardner. El punto central es que la probabilidad condicional depende de cómo se generó la información (aquí, de la regla del guardia), no solo de cuál fue la respuesta.
+Es el mismo problema que el de Monty Hall, publicado por Martin Gardner en 1959, más de quince años antes. El punto central es que la probabilidad condicional depende de cómo se generó la información (aquí, de la regla del guardia), no solo de cuál fue la respuesta.
 
 ## Definición
 
