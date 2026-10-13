@@ -117,8 +117,45 @@ consultas:
 ## Propiedades
 
 - Las $2^k$ regiones son disjuntas y su unión es $U$: forman una partición del universo (algunas pueden estar vacías).
+
+:::figura[Con $A = \{1, 2, 3, 4\}$, $B = \{3, 4, 5, 6\}$ y $C = \{4, 7, 8\}$ hay 8 regiones: cada número del universo cae exactamente en una, y las regiones "solo $A$ y $C$" y "solo $B$ y $C$" quedan vacías.]{componente="VennSets"}
+```yaml
+modo: regiones
+universo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+conjuntos:
+  - etiqueta: A
+    elementos: [1, 2, 3, 4]
+  - etiqueta: B
+    elementos: [3, 4, 5, 6]
+  - etiqueta: C
+    elementos: [4, 7, 8]
+```
+:::
 - Cualquier expresión con unión, intersección y complemento de los $A_i$ es la unión de ciertas regiones, así que hay $2^{2^k}$ conjuntos distintos que se pueden formar.
 - Dos expresiones son iguales para todos los conjuntos si y solo si seleccionan las mismas regiones.
+
+:::figura[$(A \cup B) \cap C$ y $(A \cap C) \cup (B \cap C)$ sombrean las mismas tres regiones, así que son iguales para cualesquiera conjuntos; $A \cup (B \cap C)$ sombrea otras y no es igual a $(A \cup B) \cap C$.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [A, B, C]
+conteos:
+  A: 4
+  B: 3
+  C: 5
+  AB: 2
+  AC: 2
+  BC: 1
+  ABC: 1
+  ninguno: 6
+consultas:
+  - nombre: "(A ∪ B) ∩ C"
+    regiones: [AC, BC, ABC]
+  - nombre: "(A ∩ C) ∪ (B ∩ C)"
+    regiones: [AC, BC, ABC]
+  - nombre: "A ∪ (B ∩ C)"
+    regiones: [A, AB, AC, BC, ABC]
+```
+:::
 - Llenar las regiones desde la intersección de todos hacia afuera evita contar dos veces.
 
 ## Errores comunes

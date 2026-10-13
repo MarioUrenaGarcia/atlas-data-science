@@ -169,6 +169,21 @@ Si $f$ es inyectiva, los $|A|$ elementos tienen imágenes distintas, así que $f
 ## Errores comunes
 
 - **Confundir inyectiva con "ser función".** Ser función prohíbe que una entrada tenga dos salidas; ser inyectiva prohíbe que dos entradas compartan salida.
+
+:::figura[Dos fallas distintas. Si una entrada tiene dos flechas, la regla no es función; si dos entradas comparten salida, sí es función, pero no inyectiva.]{componente="FunctionMapping"}
+```yaml
+modo: funcion
+ejemplos:
+  - nombre: Una entrada con dos salidas
+    dominio: [a, b]
+    codominio: ['1', '2', '3']
+    flechas: [[0, 0], [0, 1], [1, 2]]
+  - nombre: Dos entradas con la misma salida
+    dominio: [a, b, c]
+    codominio: ['1', '2', '3']
+    flechas: [[0, 0], [1, 0], [2, 2]]
+```
+:::
 - **Olvidar el codominio al hablar de suprayectividad.** $x \mapsto x^2$ es suprayectiva sobre $[0, \infty)$ y no lo es sobre $\mathbb{R}$.
 - **Comprobar la inyectividad con unos cuantos valores.** Se necesita un argumento para todo par; un solo par que choca basta para negarla.
 - **Aplicar "inyectiva si y solo si suprayectiva" a conjuntos infinitos.** $n \mapsto 2n$ es inyectiva de $\mathbb{N}$ en $\mathbb{N}$ y no es suprayectiva.

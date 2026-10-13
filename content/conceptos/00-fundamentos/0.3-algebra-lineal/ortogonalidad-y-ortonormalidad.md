@@ -98,6 +98,15 @@ punto: [2, 1]
 
 - **Independencia:** un conjunto ortogonal de vectores no nulos es linealmente independiente.
 - **Teorema de Pitágoras:** si $\mathbf{u} \perp \mathbf{v}$, entonces $\lVert \mathbf{u} + \mathbf{v} \rVert^2 = \lVert \mathbf{u} \rVert^2 + \lVert \mathbf{v} \rVert^2$.
+
+:::figura[$\mathbf{u} = (3, 0)$ y $\mathbf{v} = (0, 4)$ son perpendiculares y su suma $(3, 4)$ mide 5: $3^2 + 4^2 = 5^2$, el teorema de Pitágoras con vectores.]{componente="VectorPlane"}
+```yaml
+modo: operaciones
+u: [3, 0]
+v: [0, 4]
+escalar: 1
+```
+:::
 - **Normalizar:** si $\mathbf{v} \neq \mathbf{0}$, el vector $\mathbf{v}/\lVert \mathbf{v} \rVert$ tiene norma 1 y la misma dirección.
 - **Matrices ortogonales:** si las columnas de $\mathbf{Q}$ son ortonormales, $\mathbf{Q}^\top \mathbf{Q} = \mathbf{I}$.
 - **Complemento ortogonal:** los vectores ortogonales a todo un subespacio $W$ forman otro subespacio, $W^\perp$, y $\dim W + \dim W^\perp = n$.
@@ -118,6 +127,15 @@ Independencia: si $\sum c_i\mathbf{q}_i = \mathbf{0}$, el producto punto con $\m
 
 - **Confundir ortogonal con ortonormal.** Ortogonal solo pide ángulos rectos; ortonormal pide además longitud 1.
 - **Calcular coordenadas con productos punto en una base que no es ortonormal.** En una base cualquiera hay que resolver un sistema; el atajo solo vale con bases ortonormales.
+
+:::figura[En la base $(1, 0)$, $(1, 1)$ el punto $(3, 2)$ tiene coordenadas $(1, 2)$, porque $1\,(1, 0) + 2\,(1, 1) = (3, 2)$. Los productos punto con los vectores de la base darían 3 y 5, que no son sus coordenadas.]{componente="VectorPlane"}
+```yaml
+modo: cambio-base
+b1: [1, 0]
+b2: [1, 1]
+punto: [3, 2]
+```
+:::
 - **Pensar que el vector cero no es ortogonal a nada.** Es ortogonal a todos los vectores, por eso se excluye al hablar de conjuntos ortogonales independientes.
 - **Llamar "matriz ortogonal" a una con columnas solo ortogonales.** Las columnas deben ser ortonormales.
 

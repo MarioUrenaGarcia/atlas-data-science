@@ -108,6 +108,20 @@ unidad: grados
 - $\varnothing \subseteq A$ y $A \subseteq A$ para todo conjunto $A$.
 - **Doble contención:** $A = B$ si y solo si $A \subseteq B$ y $B \subseteq A$. Es la forma habitual de demostrar igualdades.
 - La contención es transitiva: si $A \subseteq B$ y $B \subseteq C$, entonces $A \subseteq C$.
+
+:::figura[Tres conjuntos anidados, $A = \{1, 2\}$, $B = \{1, 2, 3, 4\}$ y $C = \{1, \dots, 7\}$. Las regiones de $A$ fuera de $B$ y de $B$ fuera de $C$ están vacías, así que tampoco hay elementos de $A$ fuera de $C$.]{componente="VennSets"}
+```yaml
+modo: regiones
+universo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+conjuntos:
+  - etiqueta: A
+    elementos: [1, 2]
+  - etiqueta: B
+    elementos: [1, 2, 3, 4]
+  - etiqueta: C
+    elementos: [1, 2, 3, 4, 5, 6, 7]
+```
+:::
 - Distinguir $\in$ de $\subseteq$: $2 \in \{1, 2\}$ pero $\{2\} \subseteq \{1, 2\}$.
 
 :::demostracion
@@ -132,6 +146,14 @@ operaciones: [diferencia, interseccion, union]
 
 - **Confundir un elemento con el conjunto que lo contiene.** $a$ y $\{a\}$ son objetos distintos; $\{\varnothing\}$ tiene un elemento y $\varnothing$ tiene cero.
 - **Escribir $\{x : P(x)\}$ sin universo.** Sin especificar de dónde se toma $x$ la descripción puede ser ambigua o incluso contradictoria.
+
+:::figura[La misma descripción, $\{x : x \text{ es par}\}$, sobre el universo $\{-6, \dots, 6\}$: ahora incluye a 0 y a los pares negativos, que no aparecían al tomar el universo $\{1, \dots, 20\}$.]{componente="SetStructures"}
+```yaml
+modo: notacion
+universo: [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
+predicado: par
+```
+:::
 - **Pensar que listar dos veces un elemento aumenta la cardinalidad.** $|\{1, 1, 2\}| = 2$.
 - **Usar $\subset$ y $\subseteq$ como si significaran lo mismo en todos los textos.** Aquí $\subseteq$ permite la igualdad; cuando se quiere contención estricta conviene decirlo explícitamente.
 

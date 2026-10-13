@@ -110,6 +110,14 @@ Propiedad cíclica: $\operatorname{tr}(\mathbf{A}\mathbf{B}) = \sum_i (\mathbf{A
 ## Errores comunes
 
 - **Escribir $\operatorname{tr}(\mathbf{A}\mathbf{B}) = \operatorname{tr}\mathbf{A}\,\operatorname{tr}\mathbf{B}$.** La traza no es multiplicativa; $\operatorname{tr}(\mathbf{I}_2 \mathbf{I}_2) = 2 \neq 4$.
+
+:::figura[Con $\mathbf{A} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ y $\mathbf{B} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $\operatorname{tr}\mathbf{A}\,\operatorname{tr}\mathbf{B} = 5 \cdot 0 = 0$, pero $\operatorname{tr}(\mathbf{A}\mathbf{B}) = 2 + 3 = 5$.]{componente="MatrixGrid"}
+```yaml
+modo: traza
+a: [[1, 2], [3, 4]]
+b: [[0, 1], [1, 0]]
+```
+:::
 - **Reordenar libremente los factores.** Solo se permiten permutaciones cíclicas: $\operatorname{tr}(\mathbf{A}\mathbf{B}\mathbf{C}) \neq \operatorname{tr}(\mathbf{A}\mathbf{C}\mathbf{B})$ en general.
 - **Hablar de la traza de una matriz no cuadrada.** Solo está definida para matrices cuadradas, aunque $\mathbf{A}\mathbf{B}$ y $\mathbf{B}\mathbf{A}$ puedan serlo con $\mathbf{A}$ y $\mathbf{B}$ rectangulares.
 - **Confundir traza con determinante.** La traza suma los valores propios; el determinante los multiplica.

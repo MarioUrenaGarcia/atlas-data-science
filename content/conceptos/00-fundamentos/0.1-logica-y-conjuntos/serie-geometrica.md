@@ -90,6 +90,14 @@ primero: 100
 
 - $1 + r + r^2 + \dots = \frac{1}{1 - r}$ para $|r| < 1$; empezando en $k = 1$, $\sum_{k=1}^{\infty} r^k = \frac{r}{1 - r}$.
 - El error al truncar después de $n$ términos es $\frac{a r^n}{1 - r}$: disminuye geométricamente.
+
+:::figura[Con razón 0.9 el error al truncar, $0.9^n/0.1$, baja despacio: tras 20 términos todavía es 1.22 de un total de 10, mientras que con razón 0.5 el error sería menor que $10^{-5}$.]{componente="SequenceSeries"}
+```yaml
+modo: geometrica
+razon: 0.9
+primero: 1
+```
+:::
 - **Derivando término a término:** $\sum_{k=1}^{\infty} k r^{k-1} = \frac{1}{(1 - r)^2}$ para $|r| < 1$.
 - Todo decimal periódico es una serie geométrica: $0.\overline{3} = \frac{3}{10} \cdot \frac{1}{1 - 1/10} = \frac{1}{3}$.
 - Es la base del criterio de la razón: una serie cuyos términos decrecen al menos como una geométrica con $|r| < 1$ converge.
@@ -101,6 +109,14 @@ Para $r \neq 1$, $S_n - r S_n = a - a r^n$, de donde $S_n = a\frac{1 - r^n}{1 - 
 ## Errores comunes
 
 - **Aplicar $\frac{a}{1 - r}$ con $|r| \ge 1$.** Con $r = 2$ daría $-a$, un resultado sin sentido para una suma de términos positivos.
+
+:::figura[Con razón 1.1 los segmentos crecen en lugar de achicarse y las sumas parciales aumentan sin cota: la fórmula daría $1/(1 - 1.1) = -10$, un número sin sentido.]{componente="SequenceSeries"}
+```yaml
+modo: geometrica
+razon: 1.1
+primero: 1
+```
+:::
 - **Confundir el índice inicial.** $\sum_{k=1}^{\infty} r^k$ no empieza en 1 sino en $r$.
 - **Usar como $a$ un término que no es el primero.** En $\frac{a}{1 - r}$, $a$ es el primer término que se suma.
 - **Pensar que con $r$ negativo la serie diverge.** Con $r = -0.5$ converge a $\frac{a}{1.5}$.

@@ -93,7 +93,7 @@ Un equipo reparte una carga de trabajo entre dos turnos, $x$ y $y$, con costo $\
 2. KKT con $g = 2 - x - y \le 0$: $\nabla f + \mu\,\nabla g = (x, y) + \mu(-1, -1) = \mathbf{0}$, así que $x = y = \mu$.
 3. La restricción activa da $x + y = 2$, de donde $x = y = 1$ y $\mu = 1 \ge 0$.
 4. Costo óptimo: $\tfrac{1}{2}(1 + 1) = 1$. El multiplicador indica que exigir una unidad más de carga elevaría el costo en aproximadamente 1.
-5. Gradiente proyectado con $\eta = 0.5$ desde $(-2, 3)$: la primera proyección lleva a $(-1.5, 3.5)$, sobre la recta, y los pasos siguientes se deslizan hacia $(1, 1)$, reduciendo la distancia a la mitad en cada paso.
+5. Gradiente proyectado con $\eta = 0.5$ desde $(-2, 3)$: como ese punto no es factible, primero se proyecta a $(-1.5, 3.5)$, sobre la recta, y después los pasos de gradiente proyectado se deslizan hacia $(1, 1)$, reduciendo la distancia a la mitad en cada paso.
 
 :::figura[El reparto del ejemplo: el descenso proyectado sobre ½(x² + y²) se pega a la recta x + y = 2 y se desliza hasta (1, 1), donde el gradiente (1, 1) es perpendicular a la restricción.]{componente="OptimizerRace"}
 ```yaml

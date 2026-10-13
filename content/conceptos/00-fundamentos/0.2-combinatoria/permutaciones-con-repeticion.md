@@ -127,6 +127,13 @@ escenarios:
 ## Propiedades
 
 - **Dos tipos:** con $k$ objetos de un tipo y $n - k$ de otro, la fórmula da $\frac{n!}{k!(n-k)!} = \binom{n}{k}$, el coeficiente binomial.
+
+:::figura[AABBBB tiene dos tipos de letra: sus $\frac{6!}{2!\,4!} = 15$ anagramas son las $\binom{6}{2}$ formas de elegir los lugares de las dos A.]{componente="CombinatoricsBoard"}
+```yaml
+modo: anagramas
+palabra: AABBBB
+```
+:::
 - **Elección por etapas:** $\frac{n!}{k_1!\cdots k_r!} = \binom{n}{k_1}\binom{n - k_1}{k_2}\cdots\binom{k_r}{k_r}$.
 - **Coeficiente multinomial:** la misma cantidad es el coeficiente de $x_1^{k_1}\cdots x_r^{k_r}$ en $(x_1 + \dots + x_r)^n$.
 - Si todos los $k_i$ valen 1, se recupera $n!$.
@@ -134,8 +141,56 @@ escenarios:
 ## Errores comunes
 
 - **Dividir entre el número de letras repetidas en lugar de sus factoriales.** Para PAPAYA no se divide entre $3 \cdot 2 = 6$, sino entre $3! \cdot 2! = 12$.
+
+:::figura[PAPAYA con las dos divisiones. Entre $3 \cdot 2 = 6$ quedan 120, el doble de lo real; entre $3! \cdot 2! = 12$ quedan los 60 anagramas, porque las tres A se pueden ordenar de 6 maneras y las dos P de 2.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Dividir entre 3 · 2
+    casillas:
+      - etiqueta: "1"
+        opciones: 6
+      - etiqueta: "2"
+        opciones: 5
+      - etiqueta: "3"
+        opciones: 4
+      - etiqueta: "4"
+        opciones: 3
+      - etiqueta: "5"
+        opciones: 2
+      - etiqueta: "6"
+        opciones: 1
+    divisor:
+      valor: 6
+      texto: "3 · 2, incorrecto"
+  - nombre: Dividir entre 3! · 2!
+    casillas:
+      - etiqueta: "1"
+        opciones: 6
+      - etiqueta: "2"
+        opciones: 5
+      - etiqueta: "3"
+        opciones: 4
+      - etiqueta: "4"
+        opciones: 3
+      - etiqueta: "5"
+        opciones: 2
+      - etiqueta: "6"
+        opciones: 1
+    divisor:
+      valor: 12
+      texto: "3! · 2! órdenes entre letras iguales"
+```
+:::
 - **Dividir cuando las clases no tienen el mismo tamaño.** El truco de contar de más y dividir exige que cada objeto se haya contado el mismo número de veces.
 - **Confundir con permutaciones con reemplazo.** Las palabras de longitud 4 con letras A y B, repitiendo libremente, son $2^4 = 16$; las permutaciones de AABB son solo 6.
+
+:::figura[Los 6 anagramas de AABB usan exactamente dos A y dos B; las palabras de longitud 4 con A y B repetibles son $2^4 = 16$, porque incluyen AAAA, ABBB y las demás.]{componente="CombinatoricsBoard"}
+```yaml
+modo: anagramas
+palabra: AABB
+```
+:::
 
 ## Conexiones
 

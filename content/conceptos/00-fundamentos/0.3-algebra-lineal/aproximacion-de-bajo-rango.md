@@ -112,6 +112,13 @@ Idea para la norma espectral: si $\operatorname{rango}(\mathbf{B}) \le k$, el es
 - **Aplicar la compresión a datos sin centrar al hacer componentes principales.** Sin centrar, la primera capa suele capturar solo la media.
 - **Esperar que cualquier imagen se comprima bien.** Bordes nítidos y texturas aleatorias tienen valores singulares que decaen lentamente.
 
+:::figura[Un tablero de ajedrez tiene bordes nítidos en todas partes: sus valores singulares no se concentran en las primeras capas y las aproximaciones de rango bajo dejan manchas grises en lugar de casillas.]{componente="MatrixGrid"}
+```yaml
+modo: bajo-rango
+imagen: tablero
+```
+:::
+
 ## Conexiones
 
 La aproximación truncada usa directamente la [[descomposicion-en-valores-singulares]] y reduce el [[rango-de-una-matriz|rango]]. Su error se mide con las [[normas-matriciales]]. En ciencia de datos sustenta el análisis de componentes principales, los sistemas de recomendación por factorización de matrices y la eliminación de ruido.

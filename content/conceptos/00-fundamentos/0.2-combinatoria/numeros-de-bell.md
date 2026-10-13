@@ -93,6 +93,13 @@ n: 5
 ## Errores comunes
 
 - **Contar particiones de un entero.** Las particiones de $\{1, 2, 3, 4\}$ son 15, mientras que las del número 4 son solo 5, porque en estas últimas los elementos no se distinguen.
+
+:::figura[Las particiones del número 4 son solo 5: $4$, $3 + 1$, $2 + 2$, $2 + 1 + 1$ y $1 + 1 + 1 + 1$. Las del conjunto $\{1, 2, 3, 4\}$ son 15, porque ahí importa qué elementos van juntos.]{componente="IntegerPartitionsViz"}
+```yaml
+vista: ferrers
+n: 4
+```
+:::
 - **Distinguir los bloques.** Si los grupos tuvieran nombre, el conteo sería diferente y más grande.
 - **Olvidar la partición en un solo bloque o en bloques unitarios.** Ambas son particiones válidas y se cuentan.
 

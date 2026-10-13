@@ -103,6 +103,15 @@ etapas:
 ## Propiedades
 
 - **No conmutativo:** $A \times B \neq B \times A$ salvo que $A = B$ o alguno sea vacío, aunque siempre $|A \times B| = |B \times A|$.
+
+:::figura[$A \times B$ con $A = \{1, 2\}$ y $B = \{x, y, z\}$: sus 6 pares empiezan con un número, como $(1, x)$. Los 6 pares de $B \times A$ empiezan con una letra, como $(x, 1)$, así que los conjuntos son distintos aunque tengan el mismo tamaño.]{componente="SetStructures"}
+```yaml
+modo: producto
+a: ['1', '2']
+b: [x, y, z]
+nombres: [A, B]
+```
+:::
 - **Distributivo respecto a unión e intersección:** $A \times (B \cup C) = (A \times B) \cup (A \times C)$ y $A \times (B \cap C) = (A \times B) \cap (A \times C)$.
 - **Vacío:** $A \times \varnothing = \varnothing$.
 - **Cardinalidad:** $|A_1 \times \dots \times A_n| = |A_1| \cdots |A_n|$; esta es la regla del producto del conteo.

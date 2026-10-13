@@ -101,6 +101,15 @@ dominio: [12, 15, 18, 21]
 ## Propiedades
 
 - **Negación:** $\lnot \forall x\, P(x) \equiv \exists x\, \lnot P(x)$ y $\lnot \exists x\, P(x) \equiv \forall x\, \lnot P(x)$.
+
+:::figura[Negación de un universal en $\{1, \dots, 12\}$: "todo $x$ es un cuadrado perfecto" es falsa, y su negación equivale a "existe un $x$ que no es cuadrado"; basta el testigo $x = 2$.]{componente="LogicViz"}
+```yaml
+modo: cuantificadores
+predicado: cuadrado
+inicio: 1
+tamano: 12
+```
+:::
 - **Distribución:** $\forall x\, (P(x) \land Q(x)) \equiv \forall x\, P(x) \land \forall x\, Q(x)$ y $\exists x\, (P(x) \lor Q(x)) \equiv \exists x\, P(x) \lor \exists x\, Q(x)$. Las otras dos combinaciones no son equivalencias en general.
 - **Orden de cuantificadores distintos:** $\exists y\, \forall x\, R(x, y)$ implica $\forall x\, \exists y\, R(x, y)$, pero no al revés.
 - **Dominio vacío:** si $D = \varnothing$, $\forall x\, P(x)$ es verdadera y $\exists x\, P(x)$ es falsa.
@@ -112,6 +121,16 @@ Si $\lnot \forall x\, P(x)$ es verdadera, no todo elemento cumple $P$, así que 
 ## Errores comunes
 
 - **Probar un "para todo" con ejemplos.** Muchos casos favorables no demuestran la afirmación universal; un solo contraejemplo la refuta.
+
+:::figura[$\forall x\,(x < 50)$ en $\{1, \dots, 60\}$: los primeros 49 casos la cumplen, pero $x = 50$ es un contraejemplo y la afirmación universal es falsa.]{componente="LogicViz"}
+```yaml
+modo: cuantificadores
+predicado: menor-que
+k: 50
+inicio: 1
+tamano: 60
+```
+:::
 - **Negar mal.** La negación de "todos los días llueve" es "algún día no llueve", no "ningún día llueve".
 - **Intercambiar cuantificadores.** "Todo estudiante tiene un tutor" ($\forall x\, \exists y$) no significa "hay un tutor de todos los estudiantes" ($\exists y\, \forall x$).
 - **Olvidar el dominio.** "$\exists x:\ x^2 = 2$" es falsa en los racionales y verdadera en los reales.

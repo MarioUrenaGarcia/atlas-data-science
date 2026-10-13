@@ -102,6 +102,15 @@ matrices:
 - **Invariancia:** matrices semejantes tienen el mismo polinomio característico.
 - **Raíces complejas conjugadas:** si $\mathbf{A}$ es real, las raíces complejas aparecen en pares $\alpha \pm \beta i$.
 - **Triangulares:** $p_A(\lambda) = \prod_i (a_{ii} - \lambda)$.
+
+:::figura[$\begin{pmatrix} 2 & 3 \\ 0 & 5 \end{pmatrix}$ es triangular: su polinomio es $(2 - \lambda)(5 - \lambda)$ y sus raíces son las entradas de la diagonal, sin importar el 3.]{componente="MatrixTransform"}
+```yaml
+modo: caracteristico
+matrices:
+  - nombre: Triangular
+    matriz: [[2, 3], [0, 5]]
+```
+:::
 - **Teorema de Cayley-Hamilton:** toda matriz anula su polinomio característico, $p_A(\mathbf{A}) = 0$.
 - **Multiplicidades:** la multiplicidad geométrica de un valor propio, $\dim N(\mathbf{A} - \lambda \mathbf{I})$, está entre 1 y la algebraica.
 

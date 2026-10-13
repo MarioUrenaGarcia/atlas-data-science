@@ -99,6 +99,15 @@ matrices:
 - **Homogeneidad:** $q(c\,\mathbf{x}) = c^2 q(\mathbf{x})$.
 - **Forma de las curvas en el plano:** elipses si $\lambda_1\lambda_2 > 0$, hipérbolas si $\lambda_1\lambda_2 < 0$, rectas paralelas si uno es cero.
 - **Semiejes:** la curva $q = c$ con $\lambda_i > 0$ tiene semiejes $\sqrt{c/\lambda_i}$ en las direcciones propias.
+
+:::figura[$q = 4x^2 + y^2$: la curva $q = 4$ tiene semieje $\sqrt{4/4} = 1$ en la dirección de $x$, la del valor propio 4, y semieje $\sqrt{4/1} = 2$ en la de $y$, la del valor propio 1.]{componente="MatrixTransform"}
+```yaml
+modo: forma-cuadratica
+matrices:
+  - nombre: Valores propios 4 y 1
+    matriz: [[4, 0], [0, 1]]
+```
+:::
 - **Extremos en la esfera:** el máximo y mínimo de $q$ con $\lVert \mathbf{x} \rVert = 1$ son $\lambda_{\max}$ y $\lambda_{\min}$.
 - **Gradiente:** $\nabla q(\mathbf{x}) = 2\mathbf{S}\mathbf{x}$, perpendicular a las curvas de nivel.
 - **Completar cuadrados:** la reducción a suma de cuadrados también puede hacerse completando cuadrados, que es la factorización $\mathbf{S} = LDL^\top$.
@@ -126,6 +135,15 @@ Con $\mathbf{x} = \mathbf{Q}\mathbf{y}$: $q(\mathbf{x}) = \mathbf{y}^\top \mathb
 - **Leer los semiejes como $\lambda_i$.** Son $\sqrt{c/\lambda_i}$: el valor propio grande da el eje corto.
 - **Confundir forma cuadrática con función cuadrática.** $x^2 + 3x + 1$ tiene términos de grado 1 y 0; no es forma cuadrática.
 - **Usar los ejes $x$ y $y$ para clasificar.** Con término cruzado, los coeficientes de $x^2$ y $y^2$ pueden ser positivos y la forma ser indefinida.
+
+:::figura[$2x^2 + 6xy + 2y^2$ tiene coeficientes positivos en $x^2$ y $y^2$, pero su matriz tiene valores propios 5 y $-1$: las curvas de nivel son hipérbolas y la forma es indefinida.]{componente="MatrixTransform"}
+```yaml
+modo: forma-cuadratica
+matrices:
+  - nombre: Diagonal positiva, indefinida
+    matriz: [[2, 3], [3, 2]]
+```
+:::
 
 ## Conexiones
 

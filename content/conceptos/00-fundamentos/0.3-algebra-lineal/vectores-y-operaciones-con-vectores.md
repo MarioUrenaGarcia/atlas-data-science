@@ -118,8 +118,26 @@ Cada propiedad se reduce a la propiedad correspondiente de los números reales, 
 
 - **Sumar vectores de distinto tamaño.** $(1, 2) + (1, 2, 3)$ no está definido; completar con ceros cambia el significado de los datos.
 - **Pensar que la longitud de la suma es la suma de las longitudes.** Solo ocurre cuando los vectores apuntan en la misma dirección; en general $\lVert \mathbf{u} + \mathbf{v} \rVert \le \lVert \mathbf{u} \rVert + \lVert \mathbf{v} \rVert$.
+
+:::figura[$\mathbf{u} = (4, 0)$ y $\mathbf{v} = (-2, 3)$ miden 4 y 3.61, pero su suma $(2, 3)$ mide 3.61: los lados del triángulo cumplen $\lVert \mathbf{u} + \mathbf{v} \rVert \le \lVert \mathbf{u} \rVert + \lVert \mathbf{v} \rVert$ con holgura.]{componente="VectorPlane"}
+```yaml
+modo: operaciones
+u: [4, 0]
+v: [-2, 3]
+escalar: 1
+```
+:::
 - **Confundir punto y flecha.** El vector $(3, 1)$ es el mismo si se dibuja desde el origen o desde otro punto; lo que lo define es su desplazamiento, no su lugar de inicio.
 - **Leer $\mathbf{u} - \mathbf{v}$ como la flecha de $\mathbf{u}$ a $\mathbf{v}$.** Es la flecha que va de la punta de $\mathbf{v}$ a la punta de $\mathbf{u}$.
+
+:::figura[Con $\mathbf{u} = (4, 1)$ y $\mathbf{v} = (1, 3)$, $\mathbf{u} - \mathbf{v} = (3, -2)$: sumada a $\mathbf{v}$ llega a $\mathbf{u}$, así que va de la punta de $\mathbf{v}$ a la de $\mathbf{u}$. La flecha de $\mathbf{u}$ a $\mathbf{v}$ es $\mathbf{v} - \mathbf{u} = (-3, 2)$.]{componente="VectorPlane"}
+```yaml
+modo: operaciones
+u: [4, 1]
+v: [1, 3]
+escalar: 1
+```
+:::
 
 ## Conexiones
 

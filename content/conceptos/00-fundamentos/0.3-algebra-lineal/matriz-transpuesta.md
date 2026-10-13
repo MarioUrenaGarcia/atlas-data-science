@@ -115,7 +115,21 @@ Producto: $((\mathbf{A}\mathbf{B})^\top)_{ij} = (\mathbf{A}\mathbf{B})_{ji} = \s
 - **Escribir $(\mathbf{A}\mathbf{B})^\top = \mathbf{A}^\top \mathbf{B}^\top$.** El orden se invierte; si los tamaños no son cuadrados, el producto sin invertir ni siquiera existe.
 - **Confundir transpuesta con inversa.** Solo coinciden para matrices ortogonales.
 - **Transponer "girando" la matriz.** No es una rotación de 90 grados: es un reflejo sobre la diagonal.
+
+:::figura[La transpuesta de $\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$ deja fija la diagonal 1, 5, 9 y refleja lo demás: la primera fila pasa a ser 1, 4, 7. Un giro de 90 grados movería también la diagonal.]{componente="MatrixGrid"}
+```yaml
+modo: transpuesta
+a: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+```
+:::
 - **Olvidar que cambia el tamaño.** Una matriz de $3 \times 2$ tiene transpuesta de $2 \times 3$.
+
+:::figura[Una matriz de $3 \times 2$ se transpone en una de $2 \times 3$: cada columna de tres entradas se convierte en una fila.]{componente="MatrixGrid"}
+```yaml
+modo: transpuesta
+a: [[1, 2], [3, 4], [5, 6]]
+```
+:::
 
 ## Conexiones
 

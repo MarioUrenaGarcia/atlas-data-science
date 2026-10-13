@@ -109,6 +109,16 @@ matrices:
 - **Pivoteo parcial:** en aritmética de punto flotante se elige como pivote la entrada de mayor valor absoluto de la columna, para no dividir entre números pequeños.
 - **Determinante:** es el producto de los pivotes, con signo negativo por cada intercambio de filas.
 - **Inversa:** reducir $[\mathbf{A} \mid \mathbf{I}]$ hasta $[\mathbf{I} \mid \mathbf{A}^{-1}]$ calcula la inversa.
+
+:::figura[$[\mathbf{A} \mid \mathbf{I}]$ con $\mathbf{A} = \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}$ se reduce hasta $[\mathbf{I} \mid \mathbf{A}^{-1}]$, con $\mathbf{A}^{-1} = \begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$ en las dos últimas columnas.]{componente="MatrixSteps"}
+```yaml
+modo: gauss
+reducida: true
+matrices:
+  - nombre: "[A | I]"
+    matriz: [[2, 1, 1, 0], [5, 3, 0, 1]]
+```
+:::
 - **Registro de multiplicadores:** guardar los factores usados produce la factorización $\mathbf{A} = LU$.
 
 :::figura[Caso de un pivote nulo: la matriz empieza con un cero en la esquina, así que el primer paso intercambia filas antes de eliminar.]{componente="MatrixSteps"}
@@ -131,6 +141,16 @@ Las operaciones de fila no cambian las soluciones: cada una se deshace con otra 
 - **Usar como pivote una entrada cero.** Hay que intercambiar filas; y en cálculo numérico, evitar también pivotes muy pequeños.
 - **Multiplicar una fila por cero.** No es una operación válida porque destruye información.
 - **Leer una fila de ceros como "sin solución".** Una fila $0 = 0$ indica redundancia; solo $0 = c$ con $c \neq 0$ indica incompatibilidad.
+
+:::figura[La segunda ecuación es el doble de la primera y se convierte en $0 = 0$: el sistema no se vuelve incompatible, solo pierde una ecuación y queda con infinitas soluciones.]{componente="MatrixSteps"}
+```yaml
+modo: gauss
+aumentada: true
+matrices:
+  - nombre: Ecuación repetida
+    matriz: [[1, 1, 2, 4], [2, 2, 4, 8], [1, -1, 0, 0]]
+```
+:::
 
 ## Conexiones
 

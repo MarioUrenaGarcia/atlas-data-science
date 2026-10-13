@@ -161,7 +161,36 @@ consultas:
 ## Errores comunes
 
 - **Sumar cardinalidades para obtener la unión.** $|A \cup B| = |A| + |B|$ solo si $A$ y $B$ son disjuntos.
+
+:::figura[$A = \{1, \dots, 6\}$ y $B = \{4, \dots, 9\}$: $|A| + |B| = 12$, pero $|A \cup B| = 9$, porque los 3 elementos de $A \cap B$ se cuentan dos veces al sumar.]{componente="VennSets"}
+```yaml
+modo: inclusion-exclusion
+universo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+conjuntos:
+  - etiqueta: A
+    elementos: [1, 2, 3, 4, 5, 6]
+  - etiqueta: B
+    elementos: [4, 5, 6, 7, 8, 9]
+```
+:::
 - **Confundir $A \setminus B$ con $B \setminus A$.** El orden importa.
+
+:::figura[Con 7 elementos solo en $A$, 3 solo en $B$ y 2 en ambos, $A \setminus B$ tiene 7 elementos y $B \setminus A$ tiene 3: son regiones distintas del diagrama.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [A, B]
+conteos:
+  A: 7
+  B: 3
+  AB: 2
+  ninguno: 4
+consultas:
+  - nombre: "A \\ B"
+    regiones: [A]
+  - nombre: "B \\ A"
+    regiones: [B]
+```
+:::
 - **Calcular un complemento sin universo.** El complemento de los números pares no es lo mismo en $\{1, \dots, 10\}$ que en $\mathbb{Z}$.
 - **Creer que la diferencia simétrica es la unión.** Excluye la parte común.
 

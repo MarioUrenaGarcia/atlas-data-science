@@ -128,6 +128,15 @@ Las operaciones de fila no cambian el rango de columnas: si $\mathbf{E}$ es una 
 ## Errores comunes
 
 - **Contar filas no nulas antes de escalonar.** Una matriz sin filas de ceros puede tener rango bajo; hay que escalonar primero.
+
+:::figura[Ninguna fila de $\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 1 \end{pmatrix}$ es cero, pero la segunda es el doble de la primera: al escalonar aparece una fila nula y el rango es 2, no 3.]{componente="MatrixSteps"}
+```yaml
+modo: rango
+matrices:
+  - nombre: Sin filas nulas, rango 2
+    matriz: [[1, 2, 3], [2, 4, 6], [1, 1, 1]]
+```
+:::
 - **Suponer que el rango es el número de columnas.** Solo si las columnas son independientes.
 - **Confiar en el rango numérico sin tolerancia.** Con datos reales, una columna casi dependiente produce un pivote diminuto; en la práctica se cuentan valores singulares mayores que un umbral.
 - **Pensar que las columnas pivote de la forma escalonada son una base del espacio columna de $\mathbf{A}$.** La base está formada por las columnas de la matriz original en esas posiciones.

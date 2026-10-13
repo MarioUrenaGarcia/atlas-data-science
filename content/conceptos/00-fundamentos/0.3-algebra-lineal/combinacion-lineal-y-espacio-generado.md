@@ -119,7 +119,25 @@ Si $\mathbf{x} = \sum c_i\mathbf{v}_i$ y $\mathbf{y} = \sum d_i\mathbf{v}_i$, en
 ## Errores comunes
 
 - **Pensar que dos vectores siempre generan el plano.** Si uno es múltiplo del otro, solo generan una recta.
+
+:::figura[$(2, 1)$ y $(-4, -2)$ son paralelos: todas sus combinaciones caen sobre la recta $y = x/2$ y el resto del plano queda fuera del espacio generado.]{componente="VectorPlane"}
+```yaml
+modo: combinacion
+v1: [2, 1]
+v2: [-4, -2]
+coeficientes: [1, 1]
+```
+:::
 - **Restringir los coeficientes a positivos.** Con coeficientes no negativos se obtiene un cono, no el espacio generado; los coeficientes pueden ser cualesquiera reales.
+
+:::figura[Con coeficientes $-1$ y $2$, la combinación de $(2, 1)$ y $(-1, 1)$ da $(-4, 1)$, fuera del ángulo entre los dos vectores. Los coeficientes negativos son los que completan el plano.]{componente="VectorPlane"}
+```yaml
+modo: combinacion
+v1: [2, 1]
+v2: [-1, 1]
+coeficientes: [-1, 2]
+```
+:::
 - **Creer que el espacio generado puede no pasar por el origen.** Con todos los coeficientes en cero siempre se obtiene $\mathbf{0}$.
 - **Confundir "está en el espacio generado" con "es uno de los vectores".** $(7, 4)$ no es ninguno de los dos vectores del ejemplo y sí está en lo que generan.
 

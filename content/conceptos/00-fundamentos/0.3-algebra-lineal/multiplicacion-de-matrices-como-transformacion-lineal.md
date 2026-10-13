@@ -136,6 +136,17 @@ Matriz de $T$: todo $\mathbf{x}$ es $x_1\mathbf{e}_1 + \dots + x_n\mathbf{e}_n$.
 - **Llamar lineal a $f(x) = 2x + 3$.** En álgebra lineal no lo es, porque no fija el origen; es afín.
 - **Componer en el orden de lectura.** "Primero $\mathbf{A}$, luego $\mathbf{B}$" es $\mathbf{B}\mathbf{A}\mathbf{x}$, no $\mathbf{A}\mathbf{B}\mathbf{x}$.
 - **Olvidar que las columnas son las imágenes de la base.** Leer las filas como imágenes da la transformación transpuesta.
+
+:::figura[$\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$ manda $\mathbf{e}_2$ a $(2, 1)$, su segunda columna. Leer las filas como imágenes da la transpuesta $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$, que inclina la cuadrícula hacia el otro lado.]{componente="MatrixTransform"}
+```yaml
+modo: transformacion
+matrices:
+  - nombre: A
+    matriz: [[1, 2], [0, 1]]
+  - nombre: Aᵀ
+    matriz: [[1, 0], [2, 1]]
+```
+:::
 - **Creer que toda transformación lineal conserva ángulos o longitudes.** Solo las ortogonales lo hacen; la cizalla cambia ángulos.
 
 ## Conexiones
