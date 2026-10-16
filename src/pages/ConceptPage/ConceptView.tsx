@@ -14,7 +14,8 @@ import { LevelBadge } from '../../components/ui/LevelBadge.tsx';
 import { moduleColor } from '../../components/ui/moduleColor.ts';
 import { Tag } from '../../components/ui/Tag.tsx';
 import { BIBLIOGRAPHY } from '../../content/bibliography.ts';
-import { useAtlas, useModuleContent } from '../../content/loader.ts';
+import { conceptContentUrl } from '../../content/conceptContent.ts';
+import { useAtlas, useConceptContent } from '../../content/loader.ts';
 import type { ConceptNode } from '../../content/types.ts';
 import { MINUTES_BY_LEVEL } from '../../lib/format/time.ts';
 import styles from './ConceptPage.module.css';
@@ -22,8 +23,7 @@ import { SummaryText } from '../../components/ui/SummaryText.tsx';
 
 export function ConceptView({ concept }: { concept: ConceptNode }) {
   const atlas = useAtlas();
-  const contents = useModuleContent(concept.modulo);
-  const content = contents[concept.id];
+  const content = useConceptContent(concept.id, conceptContentUrl(concept.id));
   const module = atlas.moduleByNumber.get(concept.modulo);
   const submodule = atlas.submoduleByKey.get(concept.submodulo);
   const color = moduleColor(concept.modulo);
