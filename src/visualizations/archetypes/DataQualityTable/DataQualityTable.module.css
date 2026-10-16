@@ -1,0 +1,82 @@
+.formula {
+  margin: 0;
+  min-height: 2.6em;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.chartLabel {
+  fill: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.table caption {
+  text-align: left;
+  color: var(--color-text-muted);
+  padding-bottom: var(--space-1);
+}
+
+.table th,
+.table td {
+  padding: 3px 8px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.missing {
+  color: var(--data-2);
+  font-style: italic;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.cardActive {
+  border-color: var(--data-5);
+  box-shadow: 0 0 0 1px var(--data-5);
+}
+
+.card h4 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.card dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-2);
+}
+
+.card dt {
+  color: var(--color-text-muted);
+}
+
+.card dd {
+  margin: 0;
+  text-align: right;
+  font-family: var(--font-mono);
+}

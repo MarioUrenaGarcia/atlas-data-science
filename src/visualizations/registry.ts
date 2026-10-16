@@ -1,4 +1,5 @@
-import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
+import type { ComponentType, LazyExoticComponent } from 'react';
+import { lazyWithRecovery } from '../app/staleDeploy.ts';
 import type { VisualizationProps } from './types.ts';
 
 type VisualizationModule = { default: ComponentType<VisualizationProps> };
@@ -16,7 +17,7 @@ const loaders = import.meta.glob<VisualizationModule>(['./archetypes/*/*.tsx', '
 export const VISUALIZATIONS: Readonly<Record<string, LazyVisualization>> = Object.fromEntries(
   Object.entries(loaders).flatMap(([path, loader]) => {
     const [, folder, file] = /\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\.tsx$/.exec(path) ?? [];
-    return folder && folder === file ? [[folder, lazy(loader)]] : [];
+    return folder && folder === file ? [[folder, lazyWithRecovery(loader)]] : [];
   }),
 );
 

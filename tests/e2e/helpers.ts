@@ -6,6 +6,7 @@ interface GraphNode {
   id: string;
   titulo: string;
   modulo: number;
+  submodulo: string;
   prerrequisitos: string[];
   componente: string;
 }

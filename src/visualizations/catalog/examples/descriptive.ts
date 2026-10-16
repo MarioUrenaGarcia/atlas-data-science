@@ -656,4 +656,102 @@ export const DESCRIPTIVE_EXAMPLES: CatalogExample[] = [
     title: 'Percepción',
     params: { grafico: 'percepcion', a: 40, b: 80 },
   },
+  {
+    component: 'FeatureTransformViz',
+    title: 'Logaritmo',
+    params: {
+      modo: 'transformacion',
+      muestra: {
+        nombre: 'Ingresos',
+        forma: 'sesgo-derecha',
+        parametro: 2,
+        centro: 20,
+        escala: 8,
+        n: 300,
+      },
+      eje: { variable: 'Ingreso', unidad: 'miles de pesos' },
+      funcion: 'log',
+    },
+  },
+  {
+    component: 'FeatureTransformViz',
+    title: 'Box-Cox',
+    params: {
+      modo: 'box-cox',
+      muestra: {
+        nombre: 'Tiempos',
+        forma: 'sesgo-derecha',
+        parametro: 3,
+        centro: 12,
+        escala: 4,
+        n: 250,
+      },
+      eje: { variable: 'Tiempo de reparación', unidad: 'h' },
+    },
+  },
+  {
+    component: 'FeatureTransformViz',
+    title: 'Yeo-Johnson',
+    params: {
+      modo: 'yeo-johnson',
+      muestra: {
+        nombre: 'Rendimientos',
+        forma: 'sesgo-izquierda',
+        parametro: 3,
+        centro: 2,
+        escala: 3,
+        n: 250,
+      },
+      eje: { variable: 'Rendimiento', unidad: '%' },
+    },
+  },
+  {
+    component: 'FeatureTransformViz',
+    title: 'Atípicos por RIQ',
+    params: {
+      modo: 'atipicos-riq',
+      muestra: {
+        nombre: 'Glucosa',
+        forma: 'colas-pesadas',
+        parametro: 3,
+        centro: 95,
+        escala: 8,
+        n: 80,
+      },
+      eje: { variable: 'Glucosa', unidad: 'mg/dL' },
+    },
+  },
+  {
+    component: 'FeatureTransformViz',
+    title: 'Atípicos por z',
+    params: {
+      modo: 'atipicos-z',
+      muestra: { nombre: 'Pesos', forma: 'normal', centro: 500, escala: 5, n: 30 },
+      eje: { variable: 'Peso', unidad: 'g' },
+      extremos: [540, 545, 550, 548],
+    },
+  },
+  { component: 'DataQualityTable', title: 'Perfilado', params: { modo: 'perfilado' } },
+  { component: 'DataQualityTable', title: 'Matriz de faltantes', params: { modo: 'faltantes' } },
+  {
+    component: 'DataQualityTable',
+    title: 'Mecanismo',
+    params: { modo: 'mecanismo', mecanismo: 'mnar' },
+  },
+  { component: 'EdaWorkflow', title: 'Recorrido', params: { modo: 'recorrido' } },
+  {
+    component: 'EdaWorkflow',
+    title: 'Univariado',
+    params: { modo: 'univariado', variable: 'precio' },
+  },
+  {
+    component: 'EdaWorkflow',
+    title: 'Bivariado',
+    params: { modo: 'bivariado', par: 'zona-habitaciones' },
+  },
+  {
+    component: 'EdaWorkflow',
+    title: 'Multivariado',
+    params: { modo: 'multivariado', vista: 'correlaciones' },
+  },
 ];

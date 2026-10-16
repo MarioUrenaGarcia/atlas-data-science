@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { strings } from '../../app/strings.ts';
 import type { AtlasData } from '../../content/loader.ts';
 import type { ConceptNode, MapLayoutData } from '../../content/types.ts';
+import { moduleLinks, moduleRing, type ModuleBubble } from '../../lib/graph/moduleRing.ts';
 import type { ConceptStatus } from '../../store/progress.ts';
 import { useResponsiveSize } from '../../visualizations/core/useResponsiveSize.ts';
 import { Button } from '../ui/Button.tsx';
@@ -39,6 +40,32 @@ const MAX_HEIGHT = 760;
 const LABEL_ZOOM = 1.7;
 const HIT_SLOP_PX = 6;
 const FADED_ALPHA = 0.12;
+const FIT_PADDING = 24;
+const MODULE_LABEL_GAP = 8;
+const MODULE_LABEL_LINE = 17;
+const MODULE_LABEL_LINES = 3;
+const MODULE_SIDE_ROOM = 40;
+
+type Box = { minX: number; minY: number; maxX: number; maxY: number };
+
+type Hovered = { id?: string; module?: number; x: number; y: number };
+
+/** Splits a title into lines that fit `maxWidth` with the current canvas font. */
+function wrapText(context: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
+  const lines: string[] = [];
+  let line = '';
+  for (const word of text.split(' ')) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (line && context.measureText(candidate).width > maxWidth) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
 
 function nodeRadius(node: ConceptNode): number {
   return 3 + Math.sqrt(node.descendientes) * 0.9;
@@ -60,7 +87,7 @@ export function KnowledgeMap({
   const transformRef = useRef<ZoomTransform>(zoomIdentity);
   const zoomRef = useRef<ZoomBehavior<HTMLCanvasElement, unknown> | null>(null);
   const frame = useRef<number | null>(null);
-  const [hovered, setHovered] = useState<{ id: string; x: number; y: number } | null>(null);
+  const [hovered, setHovered] = useState<Hovered | null>(null);
   const colors = useThemeColors();
   const height = Math.max(MIN_HEIGHT, Math.min(MAX_HEIGHT, size.width * HEIGHT_RATIO));
 
@@ -95,6 +122,42 @@ export function KnowledgeMap({
     );
   }, [placed]);
 
+  // Module view: one bubble per module sized by its visible concepts, linked by
+  // the number of prerequisites that cross from one module to another.
+  const visibleNodes = useMemo(() => atlas.nodes.filter(isVisible), [atlas.nodes, isVisible]);
+  const bubbles = useMemo(
+    () =>
+      moduleRing(
+        atlas.modules.map((module) => ({
+          numero: module.numero,
+          count: visibleNodes.filter((node) => node.modulo === module.numero).length,
+        })),
+      ),
+    [atlas.modules, visibleNodes],
+  );
+  const links = useMemo(() => {
+    const visibleIds = new Set(visibleNodes.map((node) => node.id));
+    return moduleLinks(visibleNodes, (id) =>
+      visibleIds.has(id) ? atlas.byId.get(id)?.modulo : undefined,
+    );
+  }, [visibleNodes, atlas.byId]);
+  const bubbleByNumber = useMemo(
+    () => new Map(bubbles.map((bubble) => [bubble.numero, bubble])),
+    [bubbles],
+  );
+  const maxLinkWeight = useMemo(() => Math.max(1, ...links.map((link) => link.weight)), [links]);
+  const bubbleBounds = useMemo<Box>(() => {
+    if (bubbles.length === 0) return { minX: -100, minY: -100, maxX: 100, maxY: 100 };
+    // Titles are drawn under each bubble, so the box leaves room for them.
+    const labelRoom = MODULE_LABEL_GAP + MODULE_LABEL_LINES * MODULE_LABEL_LINE;
+    return {
+      minX: Math.min(...bubbles.map((bubble) => bubble.x - bubble.r - MODULE_SIDE_ROOM)),
+      maxX: Math.max(...bubbles.map((bubble) => bubble.x + bubble.r + MODULE_SIDE_ROOM)),
+      minY: Math.min(...bubbles.map((bubble) => bubble.y - bubble.r)),
+      maxY: Math.max(...bubbles.map((bubble) => bubble.y + bubble.r + labelRoom)),
+    };
+  }, [bubbles]);
+
   const focusId = hovered?.id ?? selected;
   const highlight = useMemo(() => {
     if (!focusId) return null;
@@ -115,28 +178,73 @@ export function KnowledgeMap({
     context.setTransform(ratio * k, 0, 0, ratio * k, ratio * x, ratio * y);
 
     if (view === 'modulos') {
-      for (const module of layout.modules) {
-        if (module.count === 0) continue;
-        const color = colors.modules[module.numero] ?? colors.accent;
-        context.globalAlpha = 0.18;
-        context.fillStyle = color;
+      const active = hovered?.module ?? null;
+      const linked = (a: number, b: number) =>
+        links.some(
+          (link) =>
+            (link.source === a && link.target === b) || (link.source === b && link.target === a),
+        );
+      context.lineCap = 'round';
+      for (const link of links) {
+        const source = bubbleByNumber.get(link.source);
+        const target = bubbleByNumber.get(link.target);
+        if (!source || !target) continue;
+        const touches = active !== null && (link.source === active || link.target === active);
+        context.globalAlpha = active === null ? 0.35 : touches ? 0.85 : 0.08;
+        context.strokeStyle = touches
+          ? (colors.modules[link.source] ?? colors.accent)
+          : colors.border;
+        context.lineWidth = 1.5 + 9 * Math.sqrt(link.weight / maxLinkWeight);
         context.beginPath();
-        context.arc(module.x, module.y, module.radius, 0, 2 * Math.PI);
-        context.fill();
+        context.moveTo(source.x, source.y);
+        context.lineTo(target.x, target.y);
+        context.stroke();
+      }
+      for (const bubble of bubbles) {
+        const color = colors.modules[bubble.numero] ?? colors.accent;
+        const isActive = active === bubble.numero;
+        const faded = active !== null && !isActive && !linked(active, bubble.numero);
         context.globalAlpha = 1;
-        context.lineWidth = 2 / k;
+        context.fillStyle = colors.surface;
+        context.beginPath();
+        context.arc(bubble.x, bubble.y, bubble.r, 0, 2 * Math.PI);
+        context.fill();
+        context.globalAlpha = faded ? 0.08 : isActive ? 0.4 : 0.22;
+        context.fillStyle = color;
+        context.fill();
+        context.globalAlpha = faded ? 0.35 : 1;
+        context.lineWidth = isActive ? 4 : 2.5;
         context.strokeStyle = color;
         context.stroke();
-        const title = atlas.moduleByNumber.get(module.numero)?.titulo ?? '';
-        context.fillStyle = colors.text;
+
         context.textAlign = 'center';
         context.textBaseline = 'middle';
-        context.font = `600 ${15 / k}px Inter, sans-serif`;
-        context.fillText(title, module.x, module.y - 9 / k);
-        context.font = `${12 / k}px Inter, sans-serif`;
+        context.fillStyle = colors.text;
+        context.font = `700 ${Math.max(16, bubble.r * 0.42)}px Inter, sans-serif`;
+        context.fillText(String(bubble.numero), bubble.x, bubble.y - bubble.r * 0.12);
+        context.font = `${Math.max(11, bubble.r * 0.15)}px Inter, sans-serif`;
         context.fillStyle = colors.textMuted;
-        context.fillText(strings.modules.conceptCount(module.count), module.x, module.y + 10 / k);
+        context.fillText(
+          strings.modules.conceptCount(bubble.count),
+          bubble.x,
+          bubble.y + bubble.r * 0.32,
+        );
+
+        const title = atlas.moduleByNumber.get(bubble.numero)?.titulo ?? '';
+        context.font = '600 14px Inter, sans-serif';
+        context.textBaseline = 'top';
+        context.fillStyle = colors.text;
+        context.strokeStyle = colors.background;
+        context.lineWidth = 4;
+        context.lineJoin = 'round';
+        const lines = wrapText(context, title, Math.max(150, bubble.r * 2.2));
+        lines.slice(0, MODULE_LABEL_LINES).forEach((line, index) => {
+          const y = bubble.y + bubble.r + MODULE_LABEL_GAP + index * MODULE_LABEL_LINE;
+          context.strokeText(line, bubble.x, y);
+          context.fillText(line, bubble.x, y);
+        });
       }
+      context.globalAlpha = 1;
       return;
     }
 
@@ -225,7 +333,11 @@ export function KnowledgeMap({
   }, [
     size.width,
     view,
-    layout.modules,
+    hovered,
+    links,
+    bubbles,
+    bubbleByNumber,
+    maxLinkWeight,
     colors,
     atlas.moduleByNumber,
     highlight,
@@ -237,27 +349,35 @@ export function KnowledgeMap({
     selected,
   ]);
 
+  // The queued frame always runs the latest draw: when several renders happen
+  // before the next frame (for example, the first measurement of the width),
+  // a frame bound to an older closure would paint with stale dimensions.
+  const drawRef = useRef(draw);
   const requestDraw = useCallback(() => {
-    if (frame.current === null) frame.current = requestAnimationFrame(draw);
-  }, [draw]);
+    if (frame.current === null) frame.current = requestAnimationFrame(() => drawRef.current());
+  }, []);
 
   useEffect(() => {
+    drawRef.current = draw;
     requestDraw();
-  }, [requestDraw]);
+  }, [draw, requestDraw]);
 
+  // The pending id must be cleared on cleanup: a stale id would make
+  // requestDraw believe a frame is still queued and the map would stop drawing.
   useEffect(
     () => () => {
       if (frame.current !== null) cancelAnimationFrame(frame.current);
+      frame.current = null;
     },
     [],
   );
 
   const fitTo = useCallback(
-    (box: { minX: number; minY: number; maxX: number; maxY: number }) => {
+    (box: Box) => {
       const canvas = canvasRef.current;
       const behavior = zoomRef.current;
       if (!canvas || !behavior || size.width === 0) return;
-      const padding = 24;
+      const padding = FIT_PADDING;
       const scale = Math.min(
         (size.width - 2 * padding) / Math.max(1, box.maxX - box.minX),
         (height - 2 * padding) / Math.max(1, box.maxY - box.minY),
@@ -288,25 +408,31 @@ export function KnowledgeMap({
     };
   }, [requestDraw]);
 
-  // Fit the whole map once the canvas has a size.
-  const fitted = useRef(false);
+  // Both views use different coordinates, so the frame is fitted again when
+  // the canvas first gets a size, when the view changes and when a module is
+  // opened from the module view. Filter changes keep the user's framing.
+  const viewBounds = view === 'modulos' ? bubbleBounds : bounds;
+  const fittedKey = useRef<string | null>(null);
   useEffect(() => {
-    if (fitted.current || size.width === 0) return;
-    fitted.current = true;
-    fitTo(bounds);
-  }, [size.width, bounds, fitTo]);
-
-  useEffect(() => {
-    if (focusModule === null) return;
-    const module = layout.modules.find((candidate) => candidate.numero === focusModule);
-    if (!module || module.count === 0) return;
-    fitTo({
-      minX: module.x - module.radius,
-      maxX: module.x + module.radius,
-      minY: module.y - module.radius,
-      maxY: module.y + module.radius,
-    });
-  }, [focusModule, layout.modules, fitTo]);
+    if (size.width === 0) return;
+    const key = `${view}:${focusModule ?? ''}`;
+    if (fittedKey.current === key) return;
+    fittedKey.current = key;
+    const module =
+      view === 'conceptos' && focusModule !== null
+        ? layout.modules.find((candidate) => candidate.numero === focusModule)
+        : undefined;
+    if (module && module.count > 0) {
+      fitTo({
+        minX: module.x - module.radius,
+        maxX: module.x + module.radius,
+        minY: module.y - module.radius,
+        maxY: module.y + module.radius,
+      });
+    } else {
+      fitTo(viewBounds);
+    }
+  }, [size.width, view, focusModule, layout.modules, viewBounds, fitTo]);
 
   const locate = (clientX: number, clientY: number) => {
     const canvas = canvasRef.current;
@@ -316,17 +442,21 @@ export function KnowledgeMap({
     return { x, y, screenX: clientX - rect.left, screenY: clientY - rect.top };
   };
 
-  const hitModule = (x: number, y: number) =>
-    layout.modules.find(
-      (module) => module.count > 0 && Math.hypot(module.x - x, module.y - y) <= module.radius,
-    );
+  const hitModule = (x: number, y: number): ModuleBubble | undefined =>
+    bubbles.find((bubble) => Math.hypot(bubble.x - x, bubble.y - y) <= bubble.r);
 
   const onPointerMove = (event: React.PointerEvent<HTMLCanvasElement>) => {
     if (event.pointerType === 'touch') return;
     const point = locate(event.clientX, event.clientY);
     if (!point) return;
     if (view === 'modulos') {
-      event.currentTarget.style.cursor = hitModule(point.x, point.y) ? 'pointer' : 'grab';
+      const module = hitModule(point.x, point.y);
+      event.currentTarget.style.cursor = module ? 'pointer' : 'grab';
+      setHovered((previous) => {
+        if (!module) return null;
+        if (previous?.module === module.numero) return previous;
+        return { module: module.numero, x: point.screenX, y: point.screenY };
+      });
       return;
     }
     const k = transformRef.current.k;
@@ -367,7 +497,10 @@ export function KnowledgeMap({
   };
 
   const ratio = typeof window === 'undefined' ? 1 : window.devicePixelRatio || 1;
-  const hoveredNode = hovered ? atlas.byId.get(hovered.id) : undefined;
+  const hoveredNode = hovered?.id ? atlas.byId.get(hovered.id) : undefined;
+  const hoveredModule =
+    hovered?.module !== undefined ? atlas.moduleByNumber.get(hovered.module) : undefined;
+  const tooltip = hoveredNode?.titulo ?? hoveredModule?.titulo;
 
   return (
     <div className={styles.wrapper}>
@@ -384,13 +517,13 @@ export function KnowledgeMap({
           onPointerLeave={() => setHovered(null)}
           onClick={onClick}
         />
-        {hoveredNode && hovered && (
+        {tooltip && hovered && (
           <div
             className={styles.tooltip}
             style={{ left: hovered.x, top: hovered.y }}
             aria-hidden="true"
           >
-            {hoveredNode.titulo}
+            {tooltip}
           </div>
         )}
         <div className={styles.zoomControls}>
@@ -417,7 +550,7 @@ export function KnowledgeMap({
             iconOnly
             aria-label={strings.map.resetView}
             title={strings.map.resetView}
-            onClick={() => fitTo(bounds)}
+            onClick={() => fitTo(viewBounds)}
           >
             <Maximize size={16} aria-hidden="true" />
           </Button>
