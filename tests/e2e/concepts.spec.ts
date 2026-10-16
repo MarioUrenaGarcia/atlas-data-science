@@ -32,6 +32,12 @@ for (const [component, id] of byComponent) {
       .scrollIntoViewIfNeeded()
       .catch(() => undefined);
     await page.waitForTimeout(1000);
+    // The scroll above only makes the lazy figures render. Where it ends depends
+    // on layout timing, and a control left under the fixed header overlaps the
+    // header buttons, which target-size reports as an obscured target. Back at
+    // the top nothing sits under the header, so the audit sees a stable layout.
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(200);
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();

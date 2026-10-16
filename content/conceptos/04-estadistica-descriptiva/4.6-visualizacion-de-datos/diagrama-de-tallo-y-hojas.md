@@ -131,7 +131,7 @@ eje:
 
 ## Conexiones
 
-El diagrama de tallo y hojas es un [[histograma]] de lado que conserva los valores, propuesto por Tukey como herramienta de análisis exploratorio de datos. Con las hojas ordenadas se leen directamente la [[mediana]] y los [[cuantiles-cuartiles-deciles-y-percentiles|cuartiles]].
+El diagrama de tallo y hojas es un [[histograma]] de lado que conserva los valores, propuesto por Tukey como herramienta de [[analisis-exploratorio-de-datos|análisis exploratorio de datos]]. Con las hojas ordenadas se leen directamente la [[mediana]] y los [[cuantiles-cuartiles-deciles-y-percentiles|cuartiles]].
 
 ## Formulario
 

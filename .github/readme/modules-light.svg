@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="466" viewBox="0 0 1200 466" role="img" aria-label="Los 18 módulos del Atlas">
+<title>Los 18 módulos del Atlas</title>
+<rect width="1200" height="466" rx="18" fill="#fbfbfa"/>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.00s" dur="0.5s" fill="freeze"/>
+<rect x="24" y="24" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="24" y="24" width="6" height="58" rx="3" fill="#3072c1"/>
+<circle cx="62" cy="53" r="17" fill="#3072c1" fill-opacity="0.16" stroke="#3072c1" stroke-width="2"/>
+<text x="62" y="58" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">0</text>
+<text x="92" y="59" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Fundamentos matemáticos</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.12s" dur="0.5s" fill="freeze"/>
+<rect x="406" y="24" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="406" y="24" width="6" height="58" rx="3" fill="#b54a46"/>
+<circle cx="444" cy="53" r="17" fill="#b54a46" fill-opacity="0.16" stroke="#b54a46" stroke-width="2"/>
+<text x="444" y="58" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">1</text>
+<text x="474" y="59" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Probabilidad</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.24s" dur="0.5s" fill="freeze"/>
+<rect x="788" y="24" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="788" y="24" width="6" height="58" rx="3" fill="#308639"/>
+<circle cx="826" cy="53" r="17" fill="#308639" fill-opacity="0.16" stroke="#308639" stroke-width="2"/>
+<text x="826" y="58" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">2</text>
+<text x="856" y="59" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Distribuciones de probabilidad</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.36s" dur="0.5s" fill="freeze"/>
+<rect x="24" y="96" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="24" y="96" width="6" height="58" rx="3" fill="#8559b2"/>
+<circle cx="62" cy="125" r="17" fill="#8559b2" fill-opacity="0.16" stroke="#8559b2" stroke-width="2"/>
+<text x="62" y="130" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">3</text>
+<text x="92" y="131" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Teoremas límite y convergencia</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.48s" dur="0.5s" fill="freeze"/>
+<rect x="406" y="96" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="406" y="96" width="6" height="58" rx="3" fill="#a06200"/>
+<circle cx="444" cy="125" r="17" fill="#a06200" fill-opacity="0.16" stroke="#a06200" stroke-width="2"/>
+<text x="444" y="130" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">4</text>
+<text x="474" y="131" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Estadística descriptiva</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.60s" dur="0.5s" fill="freeze"/>
+<rect x="788" y="96" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="788" y="96" width="6" height="58" rx="3" fill="#008892"/>
+<circle cx="826" cy="125" r="17" fill="#008892" fill-opacity="0.16" stroke="#008892" stroke-width="2"/>
+<text x="826" y="130" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">5</text>
+<text x="856" y="131" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Muestreo y diseño de experimentos</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.72s" dur="0.5s" fill="freeze"/>
+<rect x="24" y="168" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="24" y="168" width="6" height="58" rx="3" fill="#ab4a7d"/>
+<circle cx="62" cy="197" r="17" fill="#ab4a7d" fill-opacity="0.16" stroke="#ab4a7d" stroke-width="2"/>
+<text x="62" y="202" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">6</text>
+<text x="92" y="203" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Inferencia estadística</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.84s" dur="0.5s" fill="freeze"/>
+<rect x="406" y="168" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="406" y="168" width="6" height="58" rx="3" fill="#787700"/>
+<circle cx="444" cy="197" r="17" fill="#787700" fill-opacity="0.16" stroke="#787700" stroke-width="2"/>
+<text x="444" y="202" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">7</text>
+<text x="474" y="203" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Estadística bayesiana</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.96s" dur="0.5s" fill="freeze"/>
+<rect x="788" y="168" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="788" y="168" width="6" height="58" rx="3" fill="#5b67c2"/>
+<circle cx="826" cy="197" r="17" fill="#5b67c2" fill-opacity="0.16" stroke="#5b67c2" stroke-width="2"/>
+<text x="826" y="202" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">8</text>
+<text x="856" y="203" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Modelos de regresión</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.08s" dur="0.5s" fill="freeze"/>
+<rect x="24" y="240" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="24" y="240" width="6" height="58" rx="3" fill="#b2511e"/>
+<circle cx="62" cy="269" r="17" fill="#b2511e" fill-opacity="0.16" stroke="#b2511e" stroke-width="2"/>
+<text x="62" y="274" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">9</text>
+<text x="92" y="275" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Análisis multivariado</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.20s" dur="0.5s" fill="freeze"/>
+<rect x="406" y="240" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="406" y="240" width="6" height="58" rx="3" fill="#008a65"/>
+<circle cx="444" cy="269" r="17" fill="#008a65" fill-opacity="0.16" stroke="#008a65" stroke-width="2"/>
+<text x="444" y="274" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">10</text>
+<text x="474" y="275" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Procesos estocásticos</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.32s" dur="0.5s" fill="freeze"/>
+<rect x="788" y="240" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="788" y="240" width="6" height="58" rx="3" fill="#99519e"/>
+<circle cx="826" cy="269" r="17" fill="#99519e" fill-opacity="0.16" stroke="#99519e" stroke-width="2"/>
+<text x="826" y="274" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">11</text>
+<text x="856" y="275" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Series temporales</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.44s" dur="0.5s" fill="freeze"/>
+<rect x="24" y="312" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="24" y="312" width="6" height="58" rx="3" fill="#916b00"/>
+<circle cx="62" cy="341" r="17" fill="#916b00" fill-opacity="0.16" stroke="#916b00" stroke-width="2"/>
+<text x="62" y="346" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">12</text>
+<text x="92" y="347" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Proceso y preparación de datos</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.56s" dur="0.5s" fill="freeze"/>
+<rect x="406" y="312" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="406" y="312" width="6" height="58" rx="3" fill="#007eb3"/>
+<circle cx="444" cy="341" r="17" fill="#007eb3" fill-opacity="0.16" stroke="#007eb3" stroke-width="2"/>
+<text x="444" y="346" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">13</text>
+<text x="474" y="347" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Aprendizaje automático</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.68s" dur="0.5s" fill="freeze"/>
+<rect x="788" y="312" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="788" y="312" width="6" height="58" rx="3" fill="#b24866"/>
+<circle cx="826" cy="341" r="17" fill="#b24866" fill-opacity="0.16" stroke="#b24866" stroke-width="2"/>
+<text x="826" y="346" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">14</text>
+<text x="856" y="347" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Aprendizaje profundo</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.80s" dur="0.5s" fill="freeze"/>
+<rect x="24" y="384" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="24" y="384" width="6" height="58" rx="3" fill="#558113"/>
+<circle cx="62" cy="413" r="17" fill="#558113" fill-opacity="0.16" stroke="#558113" stroke-width="2"/>
+<text x="62" y="418" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">15</text>
+<text x="92" y="419" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Aprendizaje por refuerzo</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.92s" dur="0.5s" fill="freeze"/>
+<rect x="406" y="384" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="406" y="384" width="6" height="58" rx="3" fill="#7260bd"/>
+<circle cx="444" cy="413" r="17" fill="#7260bd" fill-opacity="0.16" stroke="#7260bd" stroke-width="2"/>
+<text x="444" y="418" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">16</text>
+<text x="474" y="419" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Inferencia causal</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="2.04s" dur="0.5s" fill="freeze"/>
+<rect x="788" y="384" width="368" height="58" rx="12" fill="#ffffff" stroke="#deded9"/>
+<rect x="788" y="384" width="6" height="58" rx="3" fill="#ab5900"/>
+<circle cx="826" cy="413" r="17" fill="#ab5900" fill-opacity="0.16" stroke="#ab5900" stroke-width="2"/>
+<text x="826" y="418" text-anchor="middle" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1c1d1f">17</text>
+<text x="856" y="419" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#1c1d1f">Temas especializados</text></g>
+
+</svg>
