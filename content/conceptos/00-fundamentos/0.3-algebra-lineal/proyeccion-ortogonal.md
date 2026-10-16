@@ -117,6 +117,14 @@ Punto más cercano: para $\mathbf{w} \in W$, $\mathbf{b} - \mathbf{w} = (\mathbf
 ## Errores comunes
 
 - **Olvidar dividir entre $\mathbf{a} \cdot \mathbf{a}$.** Si $\mathbf{a}$ no es unitario, $(\mathbf{a} \cdot \mathbf{b})\,\mathbf{a}$ no es la proyección.
+
+:::figura[Con $\mathbf{a} = (3, 0)$ y $\mathbf{b} = (2, 2)$, la proyección es $\frac{6}{9}(3, 0) = (2, 0)$. Sin dividir entre $\mathbf{a} \cdot \mathbf{a} = 9$ se obtendría $(18, 0)$, nueve veces más larga.]{componente="VectorPlane"}
+```yaml
+modo: proyeccion
+a: [3, 0]
+b: [2, 2]
+```
+:::
 - **Sumar proyecciones sobre vectores no ortogonales.** La fórmula $\sum (\mathbf{b} \cdot \mathbf{q}_i)\mathbf{q}_i$ solo vale con una base ortonormal de $W$.
 - **Proyectar sobre una recta que no pasa por el origen con la misma fórmula.** Primero hay que trasladar.
 - **Confundir la proyección con el coeficiente.** El coeficiente $\mathbf{a} \cdot \mathbf{b} / \mathbf{a} \cdot \mathbf{a}$ es un número; la proyección es un vector.

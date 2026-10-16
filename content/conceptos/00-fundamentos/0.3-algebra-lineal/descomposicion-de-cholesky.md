@@ -110,6 +110,15 @@ matrices:
 - **Costo:** del orden de $\tfrac{1}{3}n^3$ operaciones, la mitad que la factorización LU.
 - **Estabilidad:** no requiere pivoteo para matrices definidas positivas.
 - **Determinante:** $\det \mathbf{A} = \prod_i \ell_{ii}^2$, y $\log\det \mathbf{A} = 2\sum_i \log\ell_{ii}$, útil para evaluar densidades normales.
+
+:::figura[$\begin{pmatrix} 16 & 4 \\ 4 & 10 \end{pmatrix}$ se factoriza con $\ell_{11} = 4$, $\ell_{21} = 1$ y $\ell_{22} = 3$. El determinante es $(4 \cdot 3)^2 = 144$, igual a $16 \cdot 10 - 4 \cdot 4$.]{componente="MatrixSteps"}
+```yaml
+modo: cholesky
+matrices:
+  - nombre: Determinante 144
+    matriz: [[16, 4], [4, 10]]
+```
+:::
 - **Sistemas:** $\mathbf{A}\mathbf{x} = \mathbf{b}$ se resuelve con $\mathbf{L}\mathbf{y} = \mathbf{b}$ y luego $\mathbf{L}^\top\mathbf{x} = \mathbf{y}$.
 - **Relación con QR:** si $\mathbf{A} = \mathbf{B}^\top \mathbf{B}$ y $\mathbf{B} = \mathbf{Q}\mathbf{R}$, entonces $\mathbf{L} = \mathbf{R}^\top$.
 
@@ -121,7 +130,28 @@ Entrada diagonal: igualando la entrada $(j, j)$ de $\mathbf{A} = \mathbf{L}\math
 
 - **Aplicarla a matrices que no son simétricas.** La factorización supone $\mathbf{A} = \mathbf{A}^\top$.
 - **Aplicarla a matrices semidefinidas.** Con un valor propio cero aparece $\sqrt{0}$ y la división siguiente falla; se usan variantes con pivoteo o se suma $\epsilon \mathbf{I}$.
+
+:::figura[$\begin{pmatrix} 4 & 2 \\ 2 & 1 \end{pmatrix}$ es semidefinida: $\ell_{11} = 2$, $\ell_{21} = 1$ y $\ell_{22} = \sqrt{1 - 1} = 0$. Con un cero en la diagonal de $\mathbf{L}$, cualquier columna siguiente tendría que dividir entre él.]{componente="MatrixSteps"}
+```yaml
+modo: cholesky
+matrices:
+  - nombre: Semidefinida
+    matriz: [[4, 2], [2, 1]]
+```
+:::
 - **Confundir $\mathbf{L}$ con $\mathbf{L}^\top$ al simular.** Se multiplica $\mathbf{x} = \mathbf{L}\mathbf{z}$; con $\mathbf{L}^\top\mathbf{z}$ la covarianza sería $\mathbf{L}^\top \mathbf{L}$, que en general es otra.
+
+:::figura[$\mathbf{L} = \begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}$ y $\mathbf{L}^\top$ deforman el círculo en elipses distintas: $\mathbf{L}\mathbf{L}^\top = \begin{pmatrix} 4 & 2 \\ 2 & 2 \end{pmatrix}$ es la covarianza buscada, pero $\mathbf{L}^\top\mathbf{L} = \begin{pmatrix} 5 & 1 \\ 1 & 1 \end{pmatrix}$ es otra.]{componente="MatrixTransform"}
+```yaml
+modo: transformacion
+circulo: true
+matrices:
+  - nombre: L
+    matriz: [[2, 0], [1, 1]]
+  - nombre: Lᵀ
+    matriz: [[2, 1], [0, 1]]
+```
+:::
 - **Tomar raíces de las entradas de $\mathbf{A}$ directamente.** Hay que descontar primero lo explicado por las columnas anteriores.
 
 ## Conexiones

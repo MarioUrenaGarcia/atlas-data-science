@@ -90,7 +90,25 @@ b: -3
 ## Propiedades
 
 - **Sumas de filas:** con $a = b = 1$, $\sum_k \binom{n}{k} = 2^n$; con $a = 1$, $b = -1$, $\sum_k (-1)^k\binom{n}{k} = 0$.
+
+:::figura[$(1 - 1)^6 = 0$ desarrollado: los términos $1, -6, 15, -20, 15, -6, 1$ se cancelan, porque hay tantos subconjuntos de tamaño par como de tamaño impar.]{componente="PascalTriangle"}
+```yaml
+modo: binomio
+n: 6
+a: 1
+b: -1
+```
+:::
 - **Aproximación:** $(1 + x)^n \approx 1 + nx$ para $x$ pequeño, y más precisamente $1 + nx + \binom{n}{2}x^2$.
+
+:::figura[$(1 + 0.05)^8 = 1.47746$: los términos valen $1$, $0.4$, $0.07$, $0.007$, ... y caen rápido, así que $1 + 8 \cdot 0.05 = 1.4$ ya es buena aproximación y con el término cuadrático se llega a 1.47.]{componente="PascalTriangle"}
+```yaml
+modo: binomio
+n: 8
+a: 1
+b: 0.05
+```
+:::
 - **Binomio generalizado:** para cualquier real $\alpha$ y $|x| < 1$, $(1 + x)^{\alpha} = \sum_{k \ge 0} \binom{\alpha}{k}x^k$, con $\binom{\alpha}{k} = \frac{\alpha(\alpha - 1)\cdots(\alpha - k + 1)}{k!}$.
 - **Probabilidad:** con $a = 1 - p$ y $b = p$, los términos $\binom{n}{k}p^k(1-p)^{n-k}$ son las probabilidades binomiales y suman 1.
 - **Conmutatividad necesaria:** para matrices que no conmutan, $(A + B)^2 = A^2 + AB + BA + B^2 \neq A^2 + 2AB + B^2$.

@@ -94,7 +94,25 @@ regla: izquierda
 
 - **Errores de cada regla:** para $f$ suave, izquierda y derecha tienen error de orden $1/n$; punto medio y trapecio, de orden $1/n^2$.
 - **Monotonía:** si $f$ es creciente, la suma por la izquierda subestima y la de la derecha sobreestima.
+
+:::figura[$x^2$ es creciente en $[0, 2]$: con la regla derecha cada rectángulo toma la altura del extremo más alto y la suma sobreestima el área exacta $8/3$.]{componente="CalculusViz"}
+```yaml
+modo: riemann
+funcion: cuadrada
+intervalo: [0, 2]
+regla: derecha
+```
+:::
 - **Convexidad:** si $f$ es convexa, el trapecio sobreestima y el punto medio subestima.
+
+:::figura[$e^x$ es convexa en $[0, 2]$: los trapecios quedan por encima de la curva y su suma sobreestima el área exacta $e^2 - 1 \approx 6.389$.]{componente="CalculusViz"}
+```yaml
+modo: riemann
+funcion: exponencial
+intervalo: [0, 2]
+regla: trapecio
+```
+:::
 - **Área con signo:** los rectángulos bajo el eje contribuyen con signo negativo.
 - **Promedio:** $\frac{1}{b - a}S_n$ es el promedio de $f$ en los puntos elegidos; en el límite da el valor promedio de $f$ en $[a, b]$.
 - **Regla de Simpson:** una combinación del punto medio y el trapecio, $\tfrac{2}{3}M_n + \tfrac{1}{3}T_n$, tiene error de orden $1/n^4$.
@@ -117,6 +135,15 @@ Monotonía: si $f$ es creciente, en cada pieza $f(x_{i-1}) \le f(x) \le f(x_i)$.
 - **Olvidar multiplicar por $\Delta x$.** La suma de alturas sola no es un área.
 - **Usar $n + 1$ rectángulos.** Con $n$ piezas hay $n + 1$ extremos pero solo $n$ rectángulos.
 - **Tratar las áreas bajo el eje como positivas.** En la suma de Riemann cuentan con signo.
+
+:::figura[$\operatorname{sen} x$ en $[0, 2\pi]$ con puntos medios: los rectángulos de la segunda mitad quedan bajo el eje y restan, así que la suma se acerca a 0, no a 4.]{componente="CalculusViz"}
+```yaml
+modo: riemann
+funcion: seno
+intervalo: [0, 6.2832]
+regla: punto-medio
+```
+:::
 - **Confiar en pocas piezas con funciones que oscilan.** Una partición gruesa puede no ver las oscilaciones y dar un resultado engañoso.
 
 ## Conexiones

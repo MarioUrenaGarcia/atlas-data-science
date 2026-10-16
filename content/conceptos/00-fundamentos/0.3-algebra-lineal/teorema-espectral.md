@@ -126,6 +126,15 @@ Ortogonalidad: si $\mathbf{A}\mathbf{u} = \lambda\mathbf{u}$ y $\mathbf{A}\mathb
 - **Aplicarlo a matrices no simétricas.** Una matriz no simétrica puede tener valores propios complejos o vectores propios no perpendiculares.
 - **Olvidar normalizar los vectores propios.** $\mathbf{Q}$ debe tener columnas unitarias para que $\mathbf{Q}^{-1} = \mathbf{Q}^\top$.
 - **Pensar que los valores propios de una simétrica son positivos.** Son reales, pero pueden ser negativos o cero; positivos solo si la matriz es definida positiva.
+
+:::figura[$\begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix}$ es simétrica con valores propios 2 y $-2$: las direcciones propias $(1, 1)$ y $(1, -1)$ son perpendiculares, y la segunda se invierte además de estirarse.]{componente="MatrixTransform"}
+```yaml
+modo: espectral
+matrices:
+  - nombre: Valores 2 y -2
+    matriz: [[0, 2], [2, 0]]
+```
+:::
 - **Creer que con valores propios repetidos no hay base ortonormal.** La hay; solo deja de ser única dentro del espacio propio repetido.
 
 ## Conexiones

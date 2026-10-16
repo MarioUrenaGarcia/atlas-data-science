@@ -110,8 +110,32 @@ valores: [1, 2, 0, 0]
 ## Errores comunes
 
 - **Mover la gráfica en la dirección del signo.** $f(x - 3)$ se desplaza a la derecha, no a la izquierda.
+
+:::figura[$(x - 3)^2$: con $h = 3$ la parábola se desplaza 3 unidades a la derecha, porque el vértice queda donde $x - 3 = 0$, es decir, en $x = 3$.]{componente="CalculusViz"}
+```yaml
+modo: transformaciones
+funciones: [cuadrada]
+valores: [1, 1, 3, 0]
+```
+:::
 - **Confundir $f(2x)$ con $2f(x)$.** La primera comprime en horizontal; la segunda estira en vertical.
+
+:::figura[$2\operatorname{sen} x$ tiene el mismo periodo que $\operatorname{sen} x$ y amplitud 2: estira en vertical. La figura de las propiedades, con $\operatorname{sen}(2x)$, conserva la amplitud y reduce el periodo a la mitad.]{componente="CalculusViz"}
+```yaml
+modo: transformaciones
+funciones: [seno]
+valores: [2, 1, 0, 0]
+```
+:::
 - **Olvidar el dominio.** $\sqrt{x - 2}$ solo existe para $x \ge 2$; la traslación también mueve el dominio.
+
+:::figura[$\sqrt{x - 2}$ es la raíz trasladada 2 unidades a la derecha: su gráfica empieza en $x = 2$ y no existe a la izquierda.]{componente="CalculusViz"}
+```yaml
+modo: transformaciones
+funciones: [raiz]
+valores: [1, 1, 2, 0]
+```
+:::
 - **Leer una gráfica sin escalas.** Dos gráficas con la misma forma pueden representar magnitudes muy distintas.
 
 ## Conexiones

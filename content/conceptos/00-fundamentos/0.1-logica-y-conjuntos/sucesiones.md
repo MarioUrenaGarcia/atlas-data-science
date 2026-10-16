@@ -106,6 +106,15 @@ terminos: 150
 - **Convergencia monótona:** toda sucesión monótona creciente y acotada superiormente converge a su supremo.
 - Límites básicos: $1/n \to 0$, $r^n \to 0$ si $|r| < 1$, $n^{1/n} \to 1$ y $(1 + 1/n)^n \to e$.
 
+:::figura[$n^{1/n}$ sube hasta $3^{1/3} \approx 1.44$ y después baja hacia 1; con $\varepsilon = 0.05$ queda dentro de la banda a partir de $n = 93$.]{componente="SequenceSeries"}
+```yaml
+modo: sucesion
+sucesion: raiz-enesima
+epsilon: 0.05
+terminos: 100
+```
+:::
+
 :::demostracion
 Para la unicidad, si $a_n \to L$ y $a_n \to L'$ con $L \neq L'$, tomamos $\varepsilon = |L - L'|/2$. Para $n$ suficientemente grande, $|L - L'| \le |L - a_n| + |a_n - L'| < 2\varepsilon = |L - L'|$, una contradicción.
 :::
@@ -113,6 +122,15 @@ Para la unicidad, si $a_n \to L$ y $a_n \to L'$ con $L \neq L'$, tomamos $\varep
 ## Errores comunes
 
 - **Pensar que la sucesión debe alcanzar el límite.** $1/n$ nunca vale 0 y converge a 0.
+
+:::figura[$1/n$ entra a la banda de ancho 0.05 alrededor de 0 desde $n = 21$ y no sale, aunque ningún término vale 0.]{componente="SequenceSeries"}
+```yaml
+modo: sucesion
+sucesion: inverso
+epsilon: 0.05
+terminos: 60
+```
+:::
 - **Confundir acotada con convergente.** Una sucesión puede oscilar indefinidamente dentro de un intervalo.
 - **Cambiar el orden de los cuantificadores.** $N$ depende de $\varepsilon$; no se exige un $N$ que sirva para todos los $\varepsilon$.
 - **Concluir la convergencia por los primeros términos.** Una sucesión puede parecer estable durante mil términos y después crecer.

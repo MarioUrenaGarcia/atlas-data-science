@@ -120,6 +120,14 @@ Relación con la distancia: si $\lVert \mathbf{u} \rVert = \lVert \mathbf{v} \rV
 - **Aplicarla al vector cero.** Una noticia sin ninguna de las palabras contadas no tiene dirección y la similitud no está definida.
 - **Interpretar 0 como "opuestos".** Similitud 0 significa que los vectores son perpendiculares; opuestos es $-1$.
 
+:::figura[$(2, 3)$ y $(-3, 2)$ forman un ángulo recto: su producto punto es $-6 + 6 = 0$ y su similitud coseno es 0. Los opuestos, con similitud $-1$, apuntan en sentidos contrarios sobre la misma recta.]{componente="VectorPlane"}
+```yaml
+modo: producto-punto
+u: [2, 3]
+v: [-3, 2]
+```
+:::
+
 ## Conexiones
 
 La similitud coseno es el [[producto-punto]] de dos vectores divididos entre sus [[normas-vectoriales|normas]], y se contrasta con las [[distancias]], que sí dependen del tamaño. Similitud cero equivale a [[ortogonalidad-y-ortonormalidad|ortogonalidad]]. En estadística, la correlación es la similitud coseno de datos centrados, y en recuperación de información se usa para ordenar documentos por parecido a una consulta.

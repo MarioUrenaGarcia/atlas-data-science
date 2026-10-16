@@ -587,6 +587,26 @@ export function specValues(
   );
 }
 
+/**
+ * Parameter values for a comparison curve: defaults overridden by the given
+ * values without clamping, because a reference is not a slider and may sit
+ * outside the slider ranges (a normal of mean 55 next to a binomial).
+ */
+export function referenceValues(
+  spec: DistributionSpec,
+  overrides: Record<string, unknown> = {},
+): Record<string, number> {
+  return Object.fromEntries(
+    spec.parameters.map((parameter) => {
+      const raw = overrides[parameter.key];
+      return [
+        parameter.key,
+        typeof raw === 'number' && Number.isFinite(raw) ? raw : parameter.default,
+      ];
+    }),
+  );
+}
+
 /** Width of the automatic plotting window when slider ranges are widened. */
 const WIDE_DOMAIN: [number, number] = [-1e6, 1e6];
 const SLIDER_STEPS = 200;

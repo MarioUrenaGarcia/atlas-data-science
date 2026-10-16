@@ -93,6 +93,18 @@ conjuntos:
 - **Subespacios de $\mathbb{R}^3$:** el origen (dimensión 0), las rectas por el origen (1), los planos por el origen (2) y $\mathbb{R}^3$ (3).
 - **Espacio generado:** $\operatorname{gen}\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$ es siempre un subespacio.
 - **Soluciones homogéneas:** el conjunto de soluciones de $\mathbf{A}\mathbf{x} = \mathbf{0}$ es un subespacio; el de $\mathbf{A}\mathbf{x} = \mathbf{b}$ con $\mathbf{b} \neq \mathbf{0}$ no lo es.
+
+:::figura[Las soluciones de $x - y = 0$ forman una recta por el origen, un subespacio; las de $x - y = 2$ forman una recta paralela que no contiene a $(0, 0)$ y no lo es.]{componente="VectorPlane"}
+```yaml
+modo: sistema
+ecuaciones: [[1, -1, 0], [2, -2, 0]]
+alternativas:
+  - nombre: Homogéneo
+    ecuaciones: [[1, -1, 0], [2, -2, 0]]
+  - nombre: Con lado derecho 2
+    ecuaciones: [[1, -1, 2], [2, -2, 4]]
+```
+:::
 - **Intersección:** la intersección de dos subespacios es un subespacio.
 - **Unión:** la unión de dos subespacios casi nunca lo es; solo cuando uno contiene al otro.
 - **Dimensión:** si $W \subseteq V$, entonces $\dim W \le \dim V$, con igualdad solo si $W = V$ (en dimensión finita).

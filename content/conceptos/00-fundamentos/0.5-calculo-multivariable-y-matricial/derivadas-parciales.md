@@ -106,6 +106,14 @@ punto: [0, 0]
 - **Derivar la otra variable como si cambiara.** En $f(x, y) = xy$, $\dfrac{\partial f}{\partial x} = y$, porque $y$ es una constante al derivar respecto a $x$; no es $y + x\dfrac{dy}{dx}$.
 - **Confundir $\partial$ con $d$.** $\dfrac{df}{dx}$ supone que solo hay una variable; $\dfrac{\partial f}{\partial x}$ indica que hay otras y que se mantienen fijas.
 - **Creer que dos parciales describen todo el cambio.** Miden solo las dos direcciones de los ejes; para una dirección oblicua hace falta la [[derivada-direccional]].
+
+:::figura[En $xy$, en $(1, 2)$, las parciales son 2 y 1, pero la pendiente máxima es $\sqrt{2^2 + 1^2} \approx 2.236$, en la dirección oblicua $(2, 1)/\sqrt{5}$: la onda de la derivada direccional pasa por valores que ninguna de las dos parciales muestra.]{componente="SurfaceViz"}
+```yaml
+modo: direccional
+campos: [producto]
+punto: [1, 2]
+```
+:::
 - **Equivocar el orden en las cruzadas.** La notación $f_{xy}$ deriva primero respecto a $x$; con funciones suaves el orden no importa, pero sin continuidad de las segundas parciales puede importar.
 
 :::figura[En xy, en el punto (1, 2), la pendiente en x es y = 2 y la pendiente en y es x = 1: cada parcial toma como constante la otra coordenada.]{componente="SurfaceViz"}

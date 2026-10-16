@@ -101,6 +101,14 @@ p: 3
 - **Orden entre normas:** $\lVert \mathbf{x} \rVert_\infty \le \lVert \mathbf{x} \rVert_2 \le \lVert \mathbf{x} \rVert_1$; en general, $\lVert \mathbf{x} \rVert_p$ decrece al aumentar $p$.
 - **Equivalencia:** en $\mathbb{R}^n$, $\lVert \mathbf{x} \rVert_1 \le \sqrt{n}\,\lVert \mathbf{x} \rVert_2$ y $\lVert \mathbf{x} \rVert_2 \le \sqrt{n}\,\lVert \mathbf{x} \rVert_\infty$.
 - **Límite:** $\lim_{p \to \infty} \lVert \mathbf{x} \rVert_p = \lVert \mathbf{x} \rVert_\infty$.
+
+:::figura[Con $p = 10$ la bola ya casi es el cuadrado de $L^\infty$: $\lVert (3, -2) \rVert_{10} = (3^{10} + 2^{10})^{1/10} \approx 3.005$, muy cerca de $\max(3, 2) = 3$.]{componente="VectorPlane"}
+```yaml
+modo: normas
+punto: [3, -2]
+p: 10
+```
+:::
 - **Norma 2 y producto punto:** $\lVert \mathbf{x} \rVert_2^2 = \mathbf{x} \cdot \mathbf{x}$; es la única norma $L^p$ que proviene de un producto interno.
 - **Forma de la bola:** la bola $L^1$ tiene esquinas sobre los ejes; por eso penalizar con $L^1$ tiende a producir soluciones con componentes exactamente cero.
 

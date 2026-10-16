@@ -199,4 +199,34 @@ export const DISTRIBUTION_EXAMPLES: CatalogExample[] = [
     title: 'Mapa de relaciones entre distribuciones',
     params: { relacion: 'binomial-poisson' },
   },
+  { component: 'MultivariateExplorer', title: 'Normal bivariada', params: { modo: 'normal' } },
+  {
+    component: 'MultivariateExplorer',
+    title: 'Normal como transformación lineal',
+    params: { modo: 'construccion' },
+  },
+  { component: 'MultivariateExplorer', title: 'Elipse de confianza', params: { modo: 'elipse' } },
+  {
+    component: 'MultivariateExplorer',
+    title: 'Marginal y condicional',
+    params: { modo: 'condicional' },
+  },
+  {
+    component: 'MultivariateExplorer',
+    title: 'Distancia de Mahalanobis',
+    params: { modo: 'mahalanobis' },
+  },
+  { component: 'MultivariateExplorer', title: 't multivariada', params: { modo: 't' } },
+  {
+    component: 'MultivariateExplorer',
+    title: 'Dirichlet en el símplex',
+    params: { modo: 'dirichlet' },
+  },
+  { component: 'MultivariateExplorer', title: 'Wishart', params: { modo: 'wishart' } },
+  { component: 'MultivariateExplorer', title: 'LKJ', params: { modo: 'lkj' } },
+  {
+    component: 'MultivariateExplorer',
+    title: 'Wishart inversa',
+    params: { modo: 'wishart', inversa: true },
+  },
 ];

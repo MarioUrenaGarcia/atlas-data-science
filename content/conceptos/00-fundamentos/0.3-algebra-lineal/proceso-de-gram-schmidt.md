@@ -94,6 +94,14 @@ b: [1, 2]
 
 - **Mismo espacio en cada paso:** los primeros $j$ vectores $\mathbf{q}$ generan lo mismo que los primeros $j$ vectores $\mathbf{v}$.
 - **Depende del orden:** cambiar el orden de los $\mathbf{v}_j$ da otra base ortonormal.
+
+:::figura[Los mismos vectores de la vista principal en orden inverso, primero $(1, 3)$ y luego $(2, 1)$: el primer vector de la base apunta ahora hacia $(1, 3)$ y se obtiene otra base ortonormal del plano.]{componente="VectorPlane"}
+```yaml
+modo: gram-schmidt
+v1: [1, 3]
+v2: [2, 1]
+```
+:::
 - **Factorización QR:** si $\mathbf{v}_j$ son las columnas de $\mathbf{A}$, entonces $\mathbf{A} = \mathbf{Q}\mathbf{R}$ con $r_{ij} = \mathbf{v}_j \cdot \mathbf{q}_i$ y $r_{jj} = \lVert \mathbf{w}_j \rVert$.
 - **Detección de dependencia:** $\mathbf{w}_j = \mathbf{0}$ exactamente cuando $\mathbf{v}_j$ está en el espacio generado por los anteriores.
 - **Versión modificada:** restar las proyecciones una por una sobre el vector ya corregido (Gram-Schmidt modificado) es más estable en punto flotante.
@@ -107,7 +115,23 @@ Ortogonalidad por inducción: si $\mathbf{q}_1, \dots, \mathbf{q}_{j-1}$ son ort
 
 - **Proyectar sobre los $\mathbf{v}_i$ originales.** Hay que proyectar sobre los $\mathbf{q}_i$ ya ortonormales; con los originales el resultado no es perpendicular.
 - **Olvidar normalizar.** Sin dividir entre la longitud se obtiene una base ortogonal, no ortonormal, y la fórmula de proyección $(\mathbf{v} \cdot \mathbf{q})\mathbf{q}$ deja de valer.
+
+:::figura[Con $\mathbf{v}_1 = (4, 0)$ y $\mathbf{v}_2 = (2, 3)$, el residuo $\mathbf{w}_2 = (0, 3)$ es perpendicular pero mide 3: hay que dividir entre 4 y entre 3 para que la base sea ortonormal.]{componente="VectorPlane"}
+```yaml
+modo: gram-schmidt
+v1: [4, 0]
+v2: [2, 3]
+```
+:::
 - **Aplicarlo a vectores dependientes sin revisar.** Un $\mathbf{w}_j$ casi cero indica dependencia, y dividir entre él produce basura numérica.
+
+:::figura[$(2, 1)$ y $(4, 2.1)$ son casi paralelos: el residuo $\mathbf{w}_2 = (-0.04, 0.08)$ mide apenas 0.089 y normalizarlo amplifica cualquier error de redondeo.]{componente="VectorPlane"}
+```yaml
+modo: gram-schmidt
+v1: [2, 1]
+v2: [4, 2.1]
+```
+:::
 - **Creer que la base ortonormal es única.** Depende del orden y hay infinitas bases ortonormales de un mismo espacio.
 
 ## Conexiones

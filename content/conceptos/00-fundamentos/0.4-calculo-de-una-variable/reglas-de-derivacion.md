@@ -115,6 +115,14 @@ Regla del producto: $\frac{f(x + h)g(x + h) - f(x)g(x)}{h} = \frac{f(x + h) - f(
 ## Errores comunes
 
 - **Derivar un producto como producto de derivadas.** $(x \cdot x)' = 2x$, no $1 \cdot 1 = 1$.
+
+:::figura[$x \cdot x = x^2$ y su derivada $2x$: en $x = 3$ la pendiente es 6, no $1 \cdot 1 = 1$ como daría multiplicar las derivadas de los factores.]{componente="CalculusViz"}
+```yaml
+modo: derivadas
+funciones: [cuadrada]
+orden: 1
+```
+:::
 - **Invertir el orden en el cociente.** El numerador es $f'g - fg'$; al revés cambia el signo.
 - **Aplicar la regla de la potencia a $e^x$.** $e^x$ no es una potencia de $x$: su derivada es $e^x$, no $x e^{x-1}$.
 - **Olvidar que la constante se deriva a cero.** $(x^2 + 5)' = 2x$.
