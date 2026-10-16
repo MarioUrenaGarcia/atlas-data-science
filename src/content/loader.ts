@@ -4,6 +4,7 @@ import modulesUrl from '../generated/modules.json?url';
 import notationUrl from '../generated/notation.json?url';
 import routesUrl from '../generated/routes.json?url';
 import searchUrl from '../generated/search-index.json?url';
+import { recoverStaleDeploy, StaleDeployError } from '../app/staleDeploy.ts';
 import { buildGraph, type PrerequisiteGraph } from '../lib/graph/index.ts';
 import type {
   ConceptContent,
@@ -75,10 +76,15 @@ export function clearFailedResources(): void {
   }
 }
 
+// Data files carry a content hash in their name, so a 404 means the tab was
+// opened before a deploy that replaced them.
 async function fetchJson<T>(url: string): Promise<T> {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`HTTP ${response.status} al cargar ${url}`);
-  return (await response.json()) as T;
+  return recoverStaleDeploy(async () => {
+    const response = await fetch(url);
+    if (response.status === 404) throw new StaleDeployError(`HTTP 404 al cargar ${url}`);
+    if (!response.ok) throw new Error(`HTTP ${response.status} al cargar ${url}`);
+    return (await response.json()) as T;
+  });
 }
 
 export interface AtlasData {
