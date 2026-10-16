@@ -11,6 +11,10 @@ orden: 3
 nivel: intermedio
 prerrequisitos:
   - convergencia-en-probabilidad
+  - funcion-de-distribucion-acumulada
+relaciones:
+  - tipo: relacionado
+    id: funcion-caracteristica
 etiquetas:
   - convergencia
   - función de distribución

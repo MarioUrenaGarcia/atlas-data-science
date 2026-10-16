@@ -12,6 +12,9 @@ orden: 4
 nivel: basico
 prerrequisitos:
   - varianza-muestral
+relaciones:
+  - tipo: relacionado
+    id: distribucion-normal
 etiquetas:
   - dispersión
   - desviación estándar
