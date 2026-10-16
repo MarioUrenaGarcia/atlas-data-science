@@ -33,7 +33,7 @@ export const parametersSchema = z.discriminatedUnion('modo', [
   z
     .object({
       modo: z.literal('logsumexp'),
-      valores: z.array(z.number().min(-1000).max(1000)).min(2).max(6),
+      valores: z.array(z.number().min(-2000).max(2000)).min(2).max(6),
     })
     .strict(),
   z
