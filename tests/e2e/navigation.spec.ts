@@ -84,12 +84,12 @@ test('las flechas laterales recorren el Atlas en orden de estudio', async ({ pag
   const errors = trackErrors(page);
   await page.goto(`/concepto/${current.id}`);
   await page.mouse.wheel(0, 3000);
-  const arrow = page.getByRole('link', { name: `Concepto siguiente: ${next.titulo}` });
+  const arrow = page.getByRole('link', { name: `Siguiente en el Atlas: ${next.titulo}` });
   await expect(arrow).toBeInViewport();
   await arrow.click();
   await expect(page).toHaveURL(new RegExp(`/concepto/${next.id}$`));
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(next.titulo);
-  await page.getByRole('link', { name: `Concepto anterior: ${current.titulo}` }).click();
+  await page.getByRole('link', { name: `Anterior en el Atlas: ${current.titulo}` }).click();
   await expect(page).toHaveURL(new RegExp(`/concepto/${current.id}$`));
   expect(errors).toEqual([]);
 });

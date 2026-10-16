@@ -25,8 +25,9 @@ const GAP = 36;
 /**
  * Places one bubble per non empty module on a circle, in module order. Bubble
  * area grows with the number of concepts, and the ring radius is the smallest
- * one that keeps every pair of neighbors apart by at least GAP, so bubbles
- * never overlap whatever the number of modules.
+ * one that keeps adjacent bubbles on the ring at least GAP apart. Bubbles that
+ * are not adjacent are farther apart on a regular polygon, so no pair overlaps,
+ * although their separation is not bounded by GAP.
  */
 export function moduleRing(groups: readonly ModuleGroupInput[]): ModuleBubble[] {
   const present = groups.filter((group) => group.count > 0);

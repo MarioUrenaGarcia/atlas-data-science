@@ -266,6 +266,6 @@
     <animate attributeName="fill-opacity" values="1;0.75;1" dur="6s" repeatCount="indefinite"/></text>
   <text x="64" y="324" font-size="19" fill="#adb3b9">Cada concepto de la carrera, explicado con una</text>
   <text x="64" y="350" font-size="19" fill="#adb3b9">visualización que se mueve y se puede manipular.</text>
-  <text x="64" y="396" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-size="13" fill="#959ca3" xml:space="preserve">18 módulos  /  más de 1600 conceptos  /  mapa, rutas y roadmap</text>
+  <text x="64" y="396" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-size="13" fill="#959ca3" xml:space="preserve">18 módulos  /  temario de más de 1600 conceptos  /  mapa y roadmap</text>
 </g>
 </svg>

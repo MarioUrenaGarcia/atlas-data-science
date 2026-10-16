@@ -56,7 +56,6 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
 
   return (
     <article className={styles.page} style={{ ['--module-color' as string]: color }}>
-      <ConceptSideNav previous={globalPrevious} next={globalNext} />
       <header className={styles.header}>
         <Breadcrumbs
           label={strings.concept.breadcrumbLabel}
@@ -233,6 +232,10 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
           </nav>
         </div>
       </div>
+      {/* Last in the article so keyboard focus reaches the title and the
+          content first. Wide screens fix the arrows to the sides with CSS;
+          narrow ones show them as a bar at the end of the article. */}
+      <ConceptSideNav previous={globalPrevious} next={globalNext} />
     </article>
   );
 }
