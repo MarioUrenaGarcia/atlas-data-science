@@ -107,6 +107,14 @@ objetivo: [0.5, 0.2]
 
 - **Permitir multiplicadores negativos.** Con la convención $g_i \le 0$ y $\nabla f + \sum \mu_i \nabla g_i = \mathbf{0}$, un $\mu_i < 0$ indica que la restricción no debería estar activa.
 - **Activar todas las restricciones.** Las inactivas tienen multiplicador cero; tratarlas como igualdades lleva a soluciones que no son óptimas o ni siquiera factibles.
+
+:::figura[Con el objetivo en $(0.3, 0.3)$, dentro del triángulo, la solución es el propio objetivo: ninguna restricción está activa y los tres multiplicadores valen 0. Forzarlas como igualdades llevaría a un vértice, que no es óptimo.]{componente="SurfaceViz"}
+```yaml
+modo: kkt
+casos: [triangulo]
+objetivo: [0.3, 0.3]
+```
+:::
 - **Olvidar la condición de regularidad.** En puntos donde los gradientes activos son dependientes, el óptimo puede no cumplir las KKT.
 - **Usarlas como suficientes sin convexidad.** En problemas no convexos un punto KKT puede ser un máximo o una silla.
 

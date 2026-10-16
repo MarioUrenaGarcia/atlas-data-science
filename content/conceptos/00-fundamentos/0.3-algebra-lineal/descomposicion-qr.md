@@ -106,6 +106,15 @@ conjuntos:
 
 - **Mínimos cuadrados:** la solución de $\min \lVert \mathbf{A}\mathbf{x} - \mathbf{b} \rVert$ cumple $\mathbf{R}\mathbf{x} = \mathbf{Q}^\top\mathbf{b}$, que se resuelve por sustitución hacia atrás.
 - **Proyección:** $\mathbf{Q}\mathbf{Q}^\top$ es la matriz de proyección sobre el espacio columna de $\mathbf{A}$.
+
+:::figura[El plano generado por las columnas $(3, 4, 0)$ y $(2, 1, 2)$ de las parcelas y el vector $(1, 2, 3)$: $\mathbf{Q}\mathbf{Q}^\top\mathbf{b}$ es su sombra perpendicular sobre ese plano.]{componente="Space3D"}
+```yaml
+modo: proyeccion
+a1: [3, 4, 0]
+a2: [2, 1, 2]
+b: [1, 2, 3]
+```
+:::
 - **Determinante:** si $\mathbf{A}$ es cuadrada, $|\det \mathbf{A}| = \prod_i r_{ii}$.
 - **Estabilidad:** calculada con reflexiones de Householder, la factorización es numéricamente estable.
 - **Relación con Cholesky:** $\mathbf{A}^\top \mathbf{A} = \mathbf{R}^\top \mathbf{Q}^\top \mathbf{Q}\mathbf{R} = \mathbf{R}^\top \mathbf{R}$, así que $\mathbf{R}^\top$ es el factor de Cholesky de $\mathbf{A}^\top \mathbf{A}$.

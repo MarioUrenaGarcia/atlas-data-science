@@ -99,6 +99,14 @@ epsilon: 0.01
 - El supremo, si existe, es único.
 - Si $S$ tiene máximo, el máximo es el supremo.
 - $\inf S = -\sup(-S)$, donde $-S = \{-x : x \in S\}$.
+
+:::figura[El conjunto de valores de $(-1)^n/n$: su supremo es $1/2$, que se alcanza en $n = 2$, y su ínfimo es $-1$, en $n = 1$; los demás puntos se acumulan alrededor de 0.]{componente="SequenceSeries"}
+```yaml
+modo: supremo
+conjunto: alternante
+epsilon: 0.02
+```
+:::
 - Si $A \subseteq B$, entonces $\sup A \le \sup B$ e $\inf A \ge \inf B$.
 - **Convergencia monótona:** una sucesión creciente y acotada converge a $\sup_n a_n$.
 - En $\mathbb{Q}$ el axioma falla: $\{x \in \mathbb{Q} : x^2 < 2\}$ está acotado pero no tiene supremo racional.
@@ -111,6 +119,14 @@ Para la unicidad, si $s$ y $s'$ son ambos menores cotas superiores, entonces $s 
 ## Errores comunes
 
 - **Confundir supremo con máximo.** El supremo puede no pertenecer al conjunto; el máximo siempre pertenece.
+
+:::figura[$\{1 - 1/n\}$ tiene supremo 1, pero ningún elemento vale 1: para cada $\varepsilon = 0.01$ hay elementos por encima de $1 - \varepsilon$, y ninguno es el mayor.]{componente="SequenceSeries"}
+```yaml
+modo: supremo
+conjunto: uno-menos-inverso
+epsilon: 0.01
+```
+:::
 - **Tomar cualquier cota superior como supremo.** 2 es cota de $\{1 - 1/n\}$, pero no la menor.
 - **Pensar que el supremo es el último elemento.** En un conjunto infinito puede no haber último elemento.
 - **Creer que todo conjunto acotado de racionales tiene supremo racional.** La completitud es una propiedad de $\mathbb{R}$.

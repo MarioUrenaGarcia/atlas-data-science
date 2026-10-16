@@ -60,9 +60,16 @@ export function LHopitalView({ title, cases }: LHopitalViewProps) {
   const x = c.point + h;
   const ratio = c.f(x) / c.g(x);
   const slopeRatio = c.df(x) / c.dg(x);
+  const misused = c.misuse !== undefined;
+  const a = formatNumber(c.point, 2);
   const description =
-    `Cerca de a = ${formatNumber(c.point, 2)}, con x = a + ${formatNumber(h, 4)}: f(x)/g(x) = ${formatNumber(ratio, 4)} y f'(x)/g'(x) = ${formatNumber(slopeRatio, 4)}. ` +
-    `Ambos tienden a ${formatNumber(c.limit, 3)}.`;
+    `Cerca de a = ${a}, con x = a + ${formatNumber(h, 4)}: f(x)/g(x) = ${formatNumber(ratio, 4)} y f'(x)/g'(x) = ${formatNumber(slopeRatio, 4)}. ` +
+    (misused
+      ? `No es 0/0: f(a) = ${formatNumber(c.f(c.point), 3)} y g(a) = ${formatNumber(c.g(c.point), 3)}, el cociente tiende a ${formatNumber(c.limit, 3)} y el de derivadas a ${formatNumber(c.misuse ?? 0, 3)}.`
+      : `Ambos tienden a ${formatNumber(c.limit, 3)}.`);
+  const header = misused
+    ? `\\lim_{x \\to ${a}} ${c.latex} = \\frac{${formatNumber(c.f(c.point), 3)}}{${formatNumber(c.g(c.point), 3)}} = ${formatNumber(c.limit, 3)} \\neq \\lim_{x \\to ${a}} ${c.derivativesLatex} = ${formatNumber(c.misuse ?? 0, 3)},\\qquad x = ${formatNumber(x, 4)}:\\ ${formatNumber(ratio, 4)}\\ \\text{frente a}\\ ${formatNumber(slopeRatio, 4)}`
+    : `\\lim_{x \\to ${a}} ${c.latex} = \\lim_{x \\to ${a}} ${c.derivativesLatex} = ${formatNumber(c.limit, 3)},\\qquad x = ${formatNumber(x, 4)}:\\ ${formatNumber(ratio, 4)} \\approx ${formatNumber(slopeRatio, 4)}`;
 
   return (
     <VizFrame
@@ -94,9 +101,7 @@ export function LHopitalView({ title, cases }: LHopitalViewProps) {
       description={description}
     >
       <p className={styles.formula}>
-        <Latex
-          tex={`\\lim_{x \\to ${formatNumber(c.point, 2)}} ${c.latex} = \\lim_{x \\to ${formatNumber(c.point, 2)}} ${c.derivativesLatex} = ${formatNumber(c.limit, 3)},\\qquad x = ${formatNumber(x, 4)}:\\ ${formatNumber(ratio, 4)} \\approx ${formatNumber(slopeRatio, 4)}`}
-        />
+        <Latex tex={header} />
       </p>
       <div className={styles.pair}>
         <div>
@@ -117,7 +122,7 @@ export function LHopitalView({ title, cases }: LHopitalViewProps) {
                 <circle cx={s.x(x)} cy={s.y(c.g(x))} r={DOT_RADIUS} fill={DATA_COLORS.secondary} />
                 <circle
                   cx={s.x(c.point)}
-                  cy={s.y(0)}
+                  cy={s.y(misused ? c.f(c.point) : 0)}
                   r={DOT_RADIUS}
                   fill="var(--color-surface)"
                   stroke={DATA_COLORS.text}

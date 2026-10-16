@@ -12,6 +12,92 @@ export interface CatalogExample {
 }
 
 export const CATALOG_EXAMPLES: CatalogExample[] = [
+  {
+    component: 'MomentFunctionViz',
+    title: 'Función generadora de momentos',
+    params: { modo: 'fgm', distribucion: 'exponencial', t: 0.6 },
+  },
+  {
+    component: 'MomentFunctionViz',
+    title: 'Cumulantes',
+    params: { modo: 'cumulantes', distribucion: 'poisson', parametros: { lambda: 3 } },
+  },
+  {
+    component: 'MomentFunctionViz',
+    title: 'Función característica',
+    params: { modo: 'caracteristica', valores: [0, 1, 2], probabilidades: [0.25, 0.5, 0.25] },
+  },
+  {
+    component: 'MomentFunctionViz',
+    title: 'Función generadora de probabilidad',
+    params: { modo: 'fgp', distribucion: 'binomial', parametros: { n: 4, p: 0.4 } },
+  },
+  {
+    component: 'TransformationViz',
+    title: 'Método de la CDF',
+    params: { modo: 'cdf', distribucion: 'normal', transformacion: 'cuadrado', y: 1 },
+  },
+  {
+    component: 'TransformationViz',
+    title: 'Jacobiano',
+    params: { modo: 'jacobiano', distribucion: 'uniforme', transformacion: 'logaritmo-negativo' },
+  },
+  {
+    component: 'TransformationViz',
+    title: 'Transformada integral',
+    params: { modo: 'integral-probabilidad', distribucion: 'exponencial' },
+  },
+  {
+    component: 'TransformationViz',
+    title: 'Transformada inversa',
+    params: { modo: 'transformada-inversa', distribucion: 'exponencial' },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'Variable como función',
+    params: { modo: 'mapeo', experimento: 'dos-dados', variable: 'suma' },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'Distribución acumulada',
+    params: { modo: 'acumulada', distribucion: 'exponencial', x: 1 },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'Esperanza',
+    params: { modo: 'esperanza', experimento: 'dado', variable: 'ganancia-apuesta' },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'Varianza',
+    params: { modo: 'varianza', experimento: 'dado', variable: 'valor', a: 2, b: 1 },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'LOTUS',
+    params: { modo: 'lotus', experimento: 'dado', variable: 'valor', funcion: 'cuadrado' },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'Forma',
+    params: { modo: 'forma', distribucion: 'gamma', parametros: { alpha: 2 }, orden: 3 },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'Linealidad',
+    params: { modo: 'linealidad', experimento: 'dos-dados', variable: 'suma', segunda: 'maximo' },
+  },
+  {
+    component: 'RandomVariableLab',
+    title: 'Distribución mixta',
+    params: {
+      modo: 'mixta',
+      distribucion: 'uniforme',
+      parametros: { a: 0, b: 2 },
+      atomos: [{ x: 0, p: 0.4 }],
+      x: 1,
+    },
+  },
   { component: 'GamblersFallacy', title: 'Falacia del jugador', params: {} },
   { component: 'BertrandParadox', title: 'Paradoja de Bertrand', params: {} },
   { component: 'TwoEnvelopes', title: 'Dos sobres', params: {} },

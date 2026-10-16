@@ -104,6 +104,14 @@ Producto mixto: el bloque $(i, k)$ de $(\mathbf{A} \otimes \mathbf{B})(\mathbf{C
 
 - **Confundirlo con el producto usual.** $\mathbf{A} \otimes \mathbf{B}$ existe para cualquier par de tamaños y produce una matriz más grande.
 - **Suponer que conmuta.** El orden decide qué matriz se repite en bloques.
+
+:::figura[$\mathbf{A} \otimes \mathbf{I}$ con $\mathbf{A} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ tiene bloques diagonales, cada uno igual a una entrada de $\mathbf{A}$ por $\mathbf{I}$; en $\mathbf{I} \otimes \mathbf{A}$ los bloques son copias de $\mathbf{A}$. Las dos matrices de $4 \times 4$ son distintas.]{componente="MatrixGrid"}
+```yaml
+modo: kronecker
+a: [[2, 1], [1, 2]]
+b: [[1, 0], [0, 1]]
+```
+:::
 - **Formarlo explícitamente cuando no hace falta.** Para matrices grandes conviene usar las propiedades de producto mixto e inversa en lugar de construir la matriz completa.
 - **Olvidar las potencias en el determinante.** El exponente de $\det \mathbf{A}$ es el tamaño de $\mathbf{B}$, y al revés.
 

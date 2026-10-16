@@ -93,7 +93,24 @@ h: 0.9
 
 - **Derivable implica continua:** si $f'(a)$ existe, $f$ es continua en $a$.
 - **Signo y monotonía:** si $f' > 0$ en un intervalo, $f$ es creciente ahí; si $f' < 0$, decreciente.
+
+:::figura[$f$ y $f'$ juntas: donde la curva de $f'$ está sobre el eje, $f$ sube; donde está bajo el eje, $f$ baja, y los cambios de sentido ocurren donde $f' = 0$.]{componente="CalculusViz"}
+```yaml
+modo: derivadas
+funciones: [cubica-recorrido]
+orden: 1
+```
+:::
 - **Aproximación lineal:** $f(a + h) \approx f(a) + f'(a)\,h$ para $h$ pequeño, con error de orden $h^2$ si $f''$ existe.
+
+:::figura[Cerca de $x = 1$ la secante de $\operatorname{sen} x$ con $h = 0.3$ ya casi coincide con la tangente de pendiente $\cos 1 \approx 0.54$: la recta $\operatorname{sen} 1 + 0.54\,h$ aproxima bien la función para $h$ pequeño.]{componente="CalculusViz"}
+```yaml
+modo: secante
+funcion: seno
+x0: 1
+h: 0.3
+```
+:::
 - **Derivadas laterales:** en una esquina las secantes por la izquierda y por la derecha tienden a pendientes distintas y la derivada no existe.
 - **Unidades:** $f'$ tiene unidades de salida entre unidades de entrada, por ejemplo metros por segundo.
 - **Diferencias finitas:** $\frac{f(a + h) - f(a - h)}{2h}$ aproxima $f'(a)$ con error de orden $h^2$, mejor que la diferencia hacia adelante.

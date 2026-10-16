@@ -96,6 +96,14 @@ nombresGrupos: [mujeres, hombres]
 - **Absorción:** $k\binom{n}{k} = n\binom{n-1}{k-1}$; se prueba contando comités con presidente de dos maneras.
 - **Palo de hockey:** $\sum_{i=k}^{n} \binom{i}{k} = \binom{n+1}{k+1}$.
 - **Suma alternada:** $\sum_{k=0}^{n} (-1)^k \binom{n}{k} = 0$ para $n \ge 1$: hay tantos subconjuntos de tamaño par como de tamaño impar.
+
+:::figura[La fila 6 del triángulo suma $2^6 = 64$: cada subconjunto de 6 elementos se cuenta una vez en la columna de su tamaño. Con signos alternados, los 32 de tamaño par y los 32 de tamaño impar se cancelan.]{componente="PascalTriangle"}
+```yaml
+modo: identidades
+identidad: suma-de-fila
+n: 6
+```
+:::
 - **Suma ponderada:** $\sum_{k} k\binom{n}{k} = n\,2^{n-1}$.
 
 ## Errores comunes
@@ -103,6 +111,15 @@ nombresGrupos: [mujeres, hombres]
 - **Olvidar la convención de ceros.** Al sumar de $j = 0$ a $r$ en Vandermonde, los términos con $j > m$ o $r - j > p$ valen 0, como $\binom{3}{4} = 0$. Se pueden omitir, pero la fórmula no cambia por ello: el rango sigue siendo de $0$ a $r$.
 - **Tratar los casos como no disjuntos.** En una demostración por casos hay que verificar que cada objeto cae en exactamente un caso.
 - **Confundir la regla de Pascal con $\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k+1}$.** Los índices inferiores de la suma son $k - 1$ y $k$.
+
+:::figura[La regla de Pascal con $n = 7$ y $k = 4$: $\binom{7}{4} = 35$ es la suma de $\binom{6}{3} = 20$ y $\binom{6}{4} = 15$, las dos entradas inmediatamente arriba, con índices $k - 1$ y $k$.]{componente="PascalTriangle"}
+```yaml
+modo: identidades
+identidad: pascal
+n: 7
+k: 4
+```
+:::
 
 ## Conexiones
 

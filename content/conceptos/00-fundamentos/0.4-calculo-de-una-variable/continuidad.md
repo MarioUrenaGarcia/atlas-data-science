@@ -109,6 +109,13 @@ Valor intermedio (idea): sea $c$ el supremo de los $x \in [a, b]$ con $f(x) < y$
 
 - **Revisar solo que la función esté definida.** Un valor definido que no coincide con el límite sigue siendo discontinuidad.
 - **Concluir que $1/x$ no es una función continua.** Tiene una discontinuidad infinita en 0, pero 0 no pertenece a su dominio: en cada punto de $\mathbb{R} \setminus \{0\}$ es continua, así que es continua en todo su dominio. Las dos afirmaciones son ciertas a la vez y no se contradicen.
+
+:::figura[$1/x$ cerca de 0: los dos lados se van a $-\infty$ y $+\infty$, pero el punto 0 no está en el dominio. En cualquier otro punto la gráfica no se rompe.]{componente="CalculusViz"}
+```yaml
+modo: limite
+casos: [infinito]
+```
+:::
 - **Aplicar el valor intermedio sin continuidad.** Una función de salto puede pasar de negativa a positiva sin anularse.
 - **Confundir continuidad con derivabilidad.** Las esquinas son continuas y no derivables.
 

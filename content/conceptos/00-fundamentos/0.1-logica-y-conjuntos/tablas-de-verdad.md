@@ -94,6 +94,14 @@ La última columna es siempre V: el razonamiento es válido. La única fila dond
 
 - Una fórmula con $k$ variables tiene una tabla de $2^k$ filas; el tamaño crece exponencialmente, por lo que el método es práctico solo para pocas variables.
 - $\varphi$ es tautología si y solo si $\lnot \varphi$ es contradicción.
+
+:::figura[$p \lor \lnot p$ es verdadera en todas las filas y $p \land \lnot p$ es falsa en todas: una es la negación de la otra, y una tautología negada es una contradicción.]{componente="LogicViz"}
+```yaml
+modo: tabla
+formula: tercero-excluido
+formulas: [tercero-excluido, contradiccion]
+```
+:::
 - Toda tabla de verdad corresponde a alguna fórmula: basta tomar la disyunción de las conjunciones que describen cada fila verdadera (forma normal disyuntiva).
 - Hay $2^{2^k}$ tablas distintas con $k$ variables, es decir, $2^{2^k}$ funciones booleanas diferentes.
 

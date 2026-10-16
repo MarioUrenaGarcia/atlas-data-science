@@ -124,12 +124,40 @@ bloques:
 - Si $\{A_i\}$ es una partición de $S$ y $B \subseteq S$, entonces $\{A_i \cap B\}$ sin los bloques vacíos es una partición de $B$, y $|B| = \sum_i |A_i \cap B|$.
 - Las regiones no vacías de un diagrama de Venn forman una partición del universo.
 - El número de particiones de un conjunto de $n$ elementos es el número de Bell $B_n$: $B_1 = 1$, $B_2 = 2$, $B_3 = 5$, $B_4 = 15$.
+
+:::figura[Las 15 particiones de un conjunto de 4 elementos, de la que tiene un solo bloque a la que tiene cuatro bloques de un elemento.]{componente="SetPartitionsViz"}
+```yaml
+modo: bell
+n: 4
+```
+:::
 - En probabilidad, si los $A_i$ forman una partición del espacio muestral, $P(B) = \sum_i P(B \cap A_i)$.
 
 ## Errores comunes
 
 - **Aceptar bloques que se traslapan.** Categorías como "estudiante" y "trabajador" pueden compartir personas, y sumar sus conteos da más que el total.
 - **Olvidar una categoría residual.** Una clasificación que deja elementos sin bloque no es partición; con frecuencia se agrega un bloque "otros".
+
+:::figura[Una encuesta laboral de 250 personas clasificada en empleo formal, informal y desempleo solo suma 185; el bloque "otros", con estudiantes y jubilados, completa la partición.]{componente="SetStructures"}
+```yaml
+modo: reparto
+universo: Encuestados
+bloques:
+  - nombre: Empleo formal
+    n: 120
+  - nombre: Empleo informal
+    n: 45
+  - nombre: Desempleo
+    n: 20
+  - nombre: Otros
+    n: 65
+    partes:
+      - nombre: Estudiantes
+        n: 40
+      - nombre: Jubilados
+        n: 25
+```
+:::
 - **Contar el bloque vacío.** Por definición los bloques son no vacíos.
 - **Confundir una partición con un subconjunto del conjunto potencia cualquiera.** Una familia de subconjuntos no es partición si no cumple las tres condiciones.
 

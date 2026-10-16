@@ -99,6 +99,14 @@ punto: [0.5, 0.25]
 
 - **Una variable:** con $x = g(u)$ creciente, la fórmula se reduce a la sustitución $\int f(x)\,dx = \int f(g(u))\,g'(u)\,du$.
 - **Transformaciones lineales:** si $T(\mathbf{u}) = \mathbf{A}\mathbf{u}$, el factor es constante: $\lvert \det \mathbf{A} \rvert$.
+
+:::figura[Para el mapa lineal $(2u + v,\ u + v)$ el cuadrito se convierte en el mismo paralelogramo en cualquier lugar de la ventana: el factor de área es $\lvert \det \mathbf{A} \rvert = 1$ en todos los puntos.]{componente="SurfaceViz"}
+```yaml
+modo: jacobiana
+mapas: [lineal]
+punto: [0.2, 0.7]
+```
+:::
 - **Composición:** el factor de $T_2 \circ T_1$ es el producto de los factores, porque $\det(\mathbf{J}_{T_2}\mathbf{J}_{T_1}) = \det \mathbf{J}_{T_2} \det \mathbf{J}_{T_1}$.
 - **Inversa:** $\det \mathbf{J}_{T^{-1}}(T(\mathbf{u})) = 1/\det \mathbf{J}_T(\mathbf{u})$.
 - **Coordenadas usuales:** polares, $r$; cilíndricas, $r$; esféricas, $\rho^2\operatorname{sen}\varphi$.

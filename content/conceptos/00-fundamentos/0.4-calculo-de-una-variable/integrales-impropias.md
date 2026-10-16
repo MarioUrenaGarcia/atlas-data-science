@@ -86,6 +86,13 @@ casos: [exponencial]
 ## Propiedades
 
 - **Criterio de las potencias en el infinito:** $\int_1^{\infty}\frac{dx}{x^p}$ converge si y solo si $p > 1$, y vale $\frac{1}{p - 1}$.
+
+:::figura[$\int_1^\infty dx/x^2$ con $p = 2$: el área desde 1 hasta $b$ es $1 - 1/b$, que se acerca a $\frac{1}{p - 1} = 1$ conforme $b$ crece.]{componente="CalculusViz"}
+```yaml
+modo: impropia
+casos: [inverso-cuadrado]
+```
+:::
 - **Criterio de las potencias en cero:** $\int_0^1 \frac{dx}{x^p}$ converge si y solo si $p < 1$, y vale $\frac{1}{1 - p}$.
 - **Comparación:** si $0 \le f \le g$ y $\int g$ converge, $\int f$ converge; si $\int f$ diverge, $\int g$ diverge.
 - **Convergencia absoluta:** si $\int |f|$ converge, $\int f$ converge.
@@ -106,8 +113,22 @@ Criterio en el infinito: para $p \neq 1$, $\int_1^{b}x^{-p}dx = \frac{b^{1-p} - 
 ## Errores comunes
 
 - **Ignorar una singularidad dentro del intervalo.** $\int_{-1}^{1}\frac{dx}{x^2}$ no es $-2$: el integrando explota en 0 y la integral diverge.
+
+:::figura[La mitad derecha de $\int_{-1}^{1} dx/x^2$: el área entre $\varepsilon$ y 1 vale $1/\varepsilon - 1$ y crece sin cota al acercar $\varepsilon$ a 0. Como una parte diverge, toda la integral diverge, y el $-2$ de la antiderivada no tiene sentido.]{componente="CalculusViz"}
+```yaml
+modo: impropia
+casos: [inverso-cuadrado-singular]
+```
+:::
 - **Usar límites simétricos para decidir.** $\int_{-\infty}^{\infty}x\,dx$ diverge aunque $\lim_{b \to \infty}\int_{-b}^{b}x\,dx = 0$.
 - **Pensar que si $f(x) \to 0$ la integral converge.** $\frac{1}{x} \to 0$ y su integral diverge.
+
+:::figura[$1/x$ tiende a 0, pero el área desde 1 hasta $b$ es $\log b$, que sigue creciendo sin cota: la altura baja demasiado despacio.]{componente="CalculusViz"}
+```yaml
+modo: impropia
+casos: [reciproca]
+```
+:::
 - **Confundir "no acotada" con "área infinita".** $\frac{1}{\sqrt{x}}$ no está acotada cerca de 0 y su área es 2.
 
 ## Conexiones

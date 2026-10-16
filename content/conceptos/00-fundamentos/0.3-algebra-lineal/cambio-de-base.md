@@ -107,6 +107,15 @@ matrices:
 - **Base ortonormal:** si $\mathbf{P}$ es ortogonal, $\mathbf{P}^{-1} = \mathbf{P}^\top$ y las coordenadas nuevas son productos punto.
 - **Invariantes de la semejanza:** $\mathbf{A}$ y $\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$ tienen el mismo determinante, traza, rango, polinomio característico y valores propios.
 - **Base de vectores propios:** si $\mathbf{P}$ tiene como columnas vectores propios de $\mathbf{A}$, entonces $\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$ es diagonal.
+
+:::figura[$\mathbf{A} = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ tiene direcciones propias $(1, 1)$ con valor 5 y $(1, -2)$ con valor 2. En la base formada por ellas, $\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$ es la matriz diagonal con 5 y 2.]{componente="MatrixTransform"}
+```yaml
+modo: diagonalizacion
+matrices:
+  - nombre: A
+    matriz: [[4, 1], [2, 3]]
+```
+:::
 - **Longitudes:** en una base que no es ortonormal, la norma de un vector no se calcula con la fórmula usual sobre sus coordenadas.
 
 :::demostracion
@@ -117,6 +126,15 @@ Matriz en la base nueva: dado $[\mathbf{x}]_B$, se pasa a coordenadas usuales co
 
 - **Usar $\mathbf{P}$ en la dirección equivocada.** $\mathbf{P}$ convierte coordenadas nuevas en usuales; para obtener las nuevas se usa $\mathbf{P}^{-1}$.
 - **Pensar que el vector cambia.** Cambian sus coordenadas, no el vector.
+
+:::figura[El mismo punto tiene coordenadas usuales $(5, 5)$ y coordenadas $(1, 2)$ en la base $(3, 1)$, $(1, 2)$, porque $1\,(3, 1) + 2\,(1, 2) = (5, 5)$. La flecha no se mueve; solo cambia la cuadrícula con que se mide.]{componente="VectorPlane"}
+```yaml
+modo: cambio-base
+b1: [3, 1]
+b2: [1, 2]
+punto: [5, 5]
+```
+:::
 - **Calcular longitudes con coordenadas de una base no ortonormal.** $\lVert (2, 1) \rVert$ en coordenadas de cámara no es la longitud real del vector $(1, 4)$.
 - **Confundir semejanza con igualdad.** $\mathbf{A}$ y $\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$ representan la misma transformación en bases distintas, pero son matrices distintas.
 

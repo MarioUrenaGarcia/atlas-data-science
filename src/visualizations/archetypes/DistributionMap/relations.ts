@@ -278,7 +278,7 @@ export const RELATIONS: readonly Relation[] = [
     to: 'normal',
     kind: 'limite',
     title: 'Poisson y normal',
-    text: 'Con λ grande la Poisson se parece a la normal con media λ y varianza λ. La curva punteada sigue a λ: con λ = 1 la diferencia es enorme y con λ = 30 casi desaparece.',
+    text: 'Con λ grande la Poisson se parece a la normal con media λ y varianza λ. La curva punteada sigue a λ: con λ = 1 la diferencia es enorme y con λ = 25 casi desaparece.',
     view: explorer({
       distribucion: 'poisson',
       valores: { lambda: 4 },

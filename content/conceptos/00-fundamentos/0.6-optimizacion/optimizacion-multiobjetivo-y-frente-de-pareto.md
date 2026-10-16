@@ -74,7 +74,7 @@ Se minimizan $f_1(\mathbf{x}) = \lVert \mathbf{x} - \mathbf{a} \rVert^2$ y $f_2(
 1. Objetivo: $0.5\,\lVert \mathbf{x} - \mathbf{a} \rVert^2 + 0.5\,\lVert \mathbf{x} - \mathbf{b} \rVert^2$.
 2. Gradiente igual a cero: $\mathbf{x} - \mathbf{a} + \mathbf{x} - \mathbf{b} = \mathbf{0}$, de donde $\mathbf{x} = w\,\mathbf{a} + (1 - w)\,\mathbf{b} = (1, 0.5)$.
 3. Objetivos: $f_1 = 1 + 0.25 = 1.25$ y $f_2 = 1 + 0.25 = 1.25$.
-4. Dominancia: el punto $(1, 1)$ tiene $f_1 = 2$ y $f_2 = 1$; ni lo domina $(1, 0.5)$ en $f_2$ ni lo contrario en ambos. En cambio $(1, 1.5)$, con $f_1 = 3.25$ y $f_2 = 1.25$, está dominado por $(1, 0.5)$.
+4. Dominancia: el punto $(1, 1)$ tiene $f_1 = 2$ y $f_2 = 1$. No domina a $(1, 0.5)$, porque tiene mayor $f_1$, ni es dominado por él, porque tiene menor $f_2$. Pero sí lo domina $(1.2, 0.6)$, su proyección sobre el segmento, con $f_1 = 1.8$ y $f_2 = 0.8$. Del mismo modo, $(1, 1.5)$, con $f_1 = 3.25$ y $f_2 = 1.25$, está dominado por $(1, 0.5)$.
 5. Cada $w$ da otro punto del segmento: con $w = 0.2$, $\mathbf{x} = (1.6, 0.8)$, $f_1 = 3.2$ y $f_2 = 0.2$.
 
 :::figura[Con peso w = 0.5 la suma ponderada elige (1, 0.5), el punto medio del segmento, con f₁ = f₂ = 1.25; la figura abre en pausa sobre ese peso.]{componente="OptimizerRace"}

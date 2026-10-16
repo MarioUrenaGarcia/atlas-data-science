@@ -99,10 +99,24 @@ largo: 12
 - **Eventos raros:** si $p$ es muy pequeño, se requieren del orden de $1/p$ muestras solo para ver algunos aciertos; en esos casos se usan muestreo por importancia o esquemas de conteo por etapas.
 - **Independencia de la dimensión:** la tasa $1/\sqrt{N}$ no depende de la complejidad de $U$, lo que hace útil el método cuando la enumeración es imposible.
 
+:::figura[Otro conjunto que no se enumera a mano: subconjuntos de $\{1, \dots, 20\}$ con suma a lo más 100. Son 455862 de $2^{20}$, una fracción de 0.435, y la estimación converge al mismo ritmo $1/\sqrt{N}$ que en las cadenas binarias.]{componente="MonteCarloCounting"}
+```yaml
+problema: subconjuntos-suma
+limite: 100
+```
+:::
+
 ## Errores comunes
 
 - **Muestrear de forma no uniforme.** Si las muestras no son uniformes en $U$, la fracción observada no estima $|A|/|U|$.
 - **Confiar en pocas muestras cuando $p$ es pequeño.** Con 100 muestras y $p = 0.002$, lo más probable es no ver ningún acierto y estimar 0.
+
+:::figura[Con suma máxima 15 solo 137 de los $2^{20}$ subconjuntos cumplen, $p = 0.00013$: durante cientos de muestras no hay ningún acierto y la estimación vale 0; el primer acierto, hacia las 1000 muestras, la lleva a cerca de 1000, siete veces el valor real.]{componente="MonteCarloCounting"}
+```yaml
+problema: subconjuntos-suma
+limite: 15
+```
+:::
 - **Esperar convergencia rápida.** Pasar de 1000 a 10000 muestras solo reduce el error a cerca de un tercio.
 - **Olvidar reportar la incertidumbre.** Una estimación sin intervalo no indica qué tan confiable es.
 

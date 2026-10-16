@@ -116,16 +116,67 @@ escenarios:
 ## Propiedades
 
 - **Simetría:** $\binom{n}{k} = \binom{n}{n-k}$.
+
+:::figura[Elegir 4 de 6 objetos equivale a dejar fuera 2: cada selección de 4 deja un complemento de 2, y hay $\binom{6}{4} = \binom{6}{2} = 15$ de cada una.]{componente="CombinatoricsBoard"}
+```yaml
+modo: combinaciones
+objetos: [A, B, C, D, E, F]
+k: 4
+```
+:::
 - **Casos extremos:** $\binom{n}{0} = \binom{n}{n} = 1$ y $\binom{n}{1} = n$.
 - **Suma de todos los tamaños:** $\sum_{k=0}^{n} \binom{n}{k} = 2^n$, el número total de subconjuntos.
 - **Cálculo práctico:** $\binom{n}{k} = \frac{n(n-1)\cdots(n-k+1)}{k!}$, que evita calcular factoriales enormes.
 - **Selección en dos grupos:** elegir $a$ de un grupo de $m$ y $b$ de otro de $p$ da $\binom{m}{a}\binom{p}{b}$ maneras.
 
+:::figura[Una brigada con 2 de 5 enfermeras y 1 de 4 médicos: las elecciones en cada grupo son independientes y se multiplican, $\binom{5}{2}\binom{4}{1} = 10 \cdot 4 = 40$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Brigada
+    casillas:
+      - etiqueta: 2 de 5 enfermeras
+        opciones: 10
+      - etiqueta: 1 de 4 médicos
+        opciones: 4
+```
+:::
+
 ## Errores comunes
 
 - **Usar combinaciones cuando el orden importa.** Un podio con oro, plata y bronce requiere variaciones.
+
+:::figura[Un podio de 3 entre 5 nadadoras: cada selección de 3 aparece en $3! = 6$ órdenes, así que hay $5 \cdot 4 \cdot 3 = 60$ podios, contra solo $\binom{5}{3} = 10$ grupos.]{componente="CombinatoricsBoard"}
+```yaml
+modo: ordenaciones
+objetos: [Ana, Beto, Caro, Dani, Eli]
+k: 3
+```
+:::
 - **Olvidar dividir entre $k!$.** Contar comisiones como $5 \cdot 4 \cdot 3$ cuenta cada comisión seis veces.
 - **Contar dos veces al elegir en etapas sin orden.** "Elegir un jugador y luego otro" para formar una pareja dentro de un equipo de $m$ produce cada pareja dos veces; hay que dividir entre 2 o usar $\binom{m}{2}$ directamente.
+
+:::figura[Una pareja de un equipo de 8: "uno y luego otro" da $8 \cdot 7 = 56$ resultados, pero cada pareja aparece dos veces; al dividir entre 2 quedan $\binom{8}{2} = 28$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Uno y luego otro
+    casillas:
+      - etiqueta: primero
+        opciones: 8
+      - etiqueta: segundo
+        opciones: 7
+  - nombre: Parejas sin orden
+    casillas:
+      - etiqueta: primero
+        opciones: 8
+      - etiqueta: segundo
+        opciones: 7
+    divisor:
+      valor: 2
+      texto: "2 órdenes de la misma pareja"
+```
+:::
 
 ## Conexiones
 

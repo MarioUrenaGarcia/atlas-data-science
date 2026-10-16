@@ -92,6 +92,15 @@ punto: [5, 1]
 - **Unicidad de coordenadas:** en una base, cada vector tiene exactamente un juego de coordenadas.
 - **Invariancia del tamaño:** todas las bases de un espacio tienen el mismo número de vectores.
 - **Criterios rápidos en dimensión $n$:** $n$ vectores independientes ya son base; $n$ vectores que generan ya son base.
+
+:::figura[En $\mathbb{R}^2$ basta con dos vectores que no sean paralelos, como $(2, 1)$ y $(1, 3)$: son independientes y, por ser dos en dimensión 2, generan todo el plano. Cada punto se alcanza con un único par de coeficientes.]{componente="VectorPlane"}
+```yaml
+modo: combinacion
+v1: [2, 1]
+v2: [1, 3]
+coeficientes: [1, 1]
+```
+:::
 - **Límites:** en un espacio de dimensión $n$, un conjunto independiente tiene a lo más $n$ vectores y un conjunto generador tiene al menos $n$.
 - **Completar y recortar:** todo conjunto independiente se puede completar hasta una base, y todo conjunto generador se puede recortar hasta una base.
 - **Ejemplos de dimensión:** $\dim \mathbb{R}^n = n$, $\dim \mathcal{P}_d = d + 1$ para polinomios de grado a lo más $d$, y las matrices de $m \times n$ tienen dimensión $mn$.
@@ -117,6 +126,15 @@ Idea de la invariancia: si un espacio está generado por $m$ vectores, cualquier
 - **Creer que la base es única.** Un espacio no trivial tiene infinitas bases; lo único fijo es cuántos vectores tienen.
 - **Pensar que la dimensión cuenta los elementos del espacio.** $\mathbb{R}^2$ tiene infinitos vectores y dimensión 2.
 - **Olvidar alguna de las dos condiciones.** Un conjunto independiente que no genera, o uno que genera pero es dependiente, no es base.
+
+:::figura[Tres vectores de $\mathbb{R}^3$ no siempre son base: $(2, 3, 2) = (2, 1, 0) + 2\,(0, 1, 1)$, así que los tres son dependientes y solo generan un plano.]{componente="Space3D"}
+```yaml
+modo: generado
+conjuntos:
+  - nombre: Tres dependientes
+    vectores: [[2, 1, 0], [0, 1, 1], [2, 3, 2]]
+```
+:::
 
 ## Conexiones
 

@@ -103,6 +103,15 @@ matrices:
 - **Simétricas:** siempre son diagonalizables, y además con $\mathbf{P}$ ortogonal.
 - **Estabilidad de un sistema $\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k$:** si todos los $|\lambda_i| < 1$, $\mathbf{x}_k \to \mathbf{0}$.
 
+:::figura[$\begin{pmatrix} 0.5 & 0.2 \\ 0.1 & 0.4 \end{pmatrix}$ tiene valores propios 0.6 y 0.3, ambos menores que 1: en la base propia cada coordenada se multiplica por ellos en cada paso y todo estado tiende a $\mathbf{0}$.]{componente="MatrixTransform"}
+```yaml
+modo: diagonalizacion
+matrices:
+  - nombre: Sistema estable
+    matriz: [[0.5, 0.2], [0.1, 0.4]]
+```
+:::
+
 :::figura[Caso no diagonalizable: la cizalla con valor propio doble 2 solo conserva la dirección horizontal, marcada con la recta punteada. Una sola dirección no forma una base del plano.]{componente="MatrixTransform"}
 ```yaml
 modo: transformacion
@@ -122,6 +131,19 @@ Si $\mathbf{A}\mathbf{v}_i = \lambda_i\mathbf{v}_i$ para las columnas de $\mathb
 
 - **Suponer que toda matriz es diagonalizable.** Las cizallas y otras matrices con valores propios repetidos pueden no serlo.
 - **Confundir diagonalizable con invertible.** $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ es diagonal pero no invertible; la cizalla es invertible pero no diagonalizable.
+
+:::figura[Las dos propiedades son independientes. $\operatorname{diag}(1, 0)$ es diagonal y aplasta el plano sobre el eje $x$, así que no es invertible; la cizalla conserva el área y es invertible, pero solo tiene una dirección propia.]{componente="MatrixTransform"}
+```yaml
+modo: transformacion
+circulo: true
+propios: true
+matrices:
+  - nombre: Diagonal, no invertible
+    matriz: [[1, 0], [0, 0]]
+  - nombre: Invertible, no diagonalizable
+    matriz: [[1, 1], [0, 1]]
+```
+:::
 - **Poner los vectores propios como filas de $\mathbf{P}$.** Van como columnas.
 - **Olvidar el orden:** los valores propios de $\mathbf{D}$ deben corresponder, en la misma posición, a los vectores propios de $\mathbf{P}$.
 

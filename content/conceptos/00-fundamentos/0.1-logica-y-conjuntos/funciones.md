@@ -115,14 +115,51 @@ ejemplos:
 
 - $|f(A)| \le |A|$ y $f(A) \subseteq B$.
 - $f(C_1 \cup C_2) = f(C_1) \cup f(C_2)$, pero solo $f(C_1 \cap C_2) \subseteq f(C_1) \cap f(C_2)$.
+
+:::figura[La imagen no respeta la intersección. Con $C_1 = \{a\}$ y $C_2 = \{c\}$, $C_1 \cap C_2 = \varnothing$ tiene imagen vacía, pero $f(C_1) \cap f(C_2) = \{1\}$ porque $a$ y $c$ comparten salida.]{componente="FunctionMapping"}
+```yaml
+modo: funcion
+ejemplos:
+  - nombre: Imagen de una intersección
+    dominio: [a, b, c]
+    codominio: ['1', '2']
+    flechas: [[0, 0], [1, 1], [2, 0]]
+```
+:::
 - La preimagen respeta todas las operaciones: $f^{-1}(D_1 \cup D_2) = f^{-1}(D_1) \cup f^{-1}(D_2)$, $f^{-1}(D_1 \cap D_2) = f^{-1}(D_1) \cap f^{-1}(D_2)$ y $f^{-1}(D^c) = (f^{-1}(D))^c$.
 - Si $A$ y $B$ son finitos, hay $|B|^{|A|}$ funciones de $A$ en $B$.
+
+:::figura[Las funciones de $\{a, b, c\}$ en $\{0, 1\}$: cada uno de los 3 elementos elige su salida entre 2, así que hay $2^3 = 8$ funciones.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Funciones de {a, b, c} en {0, 1}
+    casillas:
+      - etiqueta: f(a)
+        opciones: 2
+      - etiqueta: f(b)
+        opciones: 2
+      - etiqueta: f(c)
+        opciones: 2
+```
+:::
 - Las preimágenes de los elementos de la imagen forman una partición del dominio.
 
 ## Errores comunes
 
 - **Confundir codominio con imagen.** El codominio es donde podrían caer los valores; la imagen es donde caen.
 - **Pensar que dos entradas con la misma salida violan la definición.** Lo prohibido es una entrada con dos salidas.
+
+:::figura[Una función constante: la tienda abre todos los días hábiles. Cinco entradas comparten la misma salida y la regla sigue siendo función, porque cada día tiene exactamente una salida.]{componente="FunctionMapping"}
+```yaml
+modo: funcion
+ejemplos:
+  - nombre: Estado de la tienda
+    dominio: [lun, mar, mié, jue, vie]
+    codominio: [abierta, cerrada]
+    flechas: [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]]
+```
+:::
 - **Creer que una función necesita fórmula.** Una tabla o un diagrama de flechas definen funciones igual de válidas.
 - **Leer $f^{-1}(D)$ como si existiera una función inversa.** La preimagen de un conjunto existe siempre, aunque $f$ no sea invertible.
 

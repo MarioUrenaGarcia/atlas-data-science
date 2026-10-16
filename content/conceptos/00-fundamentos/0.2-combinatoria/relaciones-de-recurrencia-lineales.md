@@ -138,8 +138,28 @@ a1: 2
 
 - **Olvidar las condiciones iniciales.** La ecuación característica da la forma de la solución, pero $A$ y $B$ dependen de $a_0$ y $a_1$.
 - **Usar $Ar^n + Br^n$ con una raíz doble.** Eso solo tiene una constante efectiva; hay que usar $(A + Bn)r^n$.
+
+:::figura[$a_n = 4a_{n-1} - 4a_{n-2}$ con $a_0 = 1$ y $a_1 = 3$: la raíz doble es 2 y la solución es $(1 + 0.5n)\,2^n$. Con $A\,2^n$ solo no se pueden cumplir las dos condiciones iniciales.]{componente="RecurrenceViz"}
+```yaml
+c1: 4
+c2: -4
+a0: 1
+a1: 3
+terminos: 12
+```
+:::
 - **Confundir el signo de la ecuación característica.** Para $a_n = 5a_{n-1} - 6a_{n-2}$ la ecuación es $r^2 - 5r + 6 = 0$, no $r^2 + 5r - 6 = 0$.
 - **Pensar que las raíces negativas o complejas no tienen sentido.** Producen oscilaciones, y los valores de la sucesión siguen siendo reales.
+
+:::figura[$a_n = -a_{n-1} + 2a_{n-2}$ con $a_0 = 1$ y $a_1 = 0$: las raíces son 1 y $-2$, la solución es $\frac{2}{3} + \frac{1}{3}(-2)^n$ y la sucesión $1, 0, 2, -2, 6, -10, \dots$ alterna de signo con amplitud que se duplica, siempre con valores enteros.]{componente="RecurrenceViz"}
+```yaml
+c1: -1
+c2: 2
+a0: 1
+a1: 0
+terminos: 12
+```
+:::
 
 ## Conexiones
 

@@ -91,6 +91,14 @@ campos: [gaussiana]
 - **Formas cuadráticas:** $f(\mathbf{x}) = \mathbf{x}^\top \mathbf{A}\mathbf{x}$ da un tazón si $\mathbf{A}$ es definida positiva y una silla si tiene valores propios de ambos signos.
 - **Operaciones:** sumas, productos, cocientes (donde el denominador no se anula) y composiciones de funciones de varias variables son funciones de varias variables.
 - **Cortes:** fijar todas las variables menos una da una función de una variable, por ejemplo $x \mapsto f(x, y_0)$; esos cortes son la base de las derivadas parciales.
+
+:::figura[Cortes del tazón $x^2 + y^2$ en $(1, 1)$: al fijar $y = 1$ queda la parábola $x^2 + 1$, y al fijar $x = 1$ queda $1 + y^2$. Cada corte es una función de una sola variable.]{componente="SurfaceViz"}
+```yaml
+modo: parciales
+campos: [paraboloide]
+punto: [1, 1]
+```
+:::
 - **Conjuntos de nivel:** $\{\mathbf{x} : f(\mathbf{x}) = c\}$ resume la función sin necesidad de una dimensión extra.
 
 :::figura[Tres formas básicas de superficie: el plano 2x - y + 1, inclinado igual en todas partes; el tazón x² + y², con un mínimo; y la silla x² - y², que sube en una dirección y baja en la otra.]{componente="SurfaceViz"}

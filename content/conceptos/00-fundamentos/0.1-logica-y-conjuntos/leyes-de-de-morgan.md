@@ -120,6 +120,19 @@ consultas:
 ## Propiedades
 
 - Las leyes son duales: al intercambiar $\cup$ con $\cap$ y $\varnothing$ con $U$ una se transforma en la otra.
+
+:::figura[La segunda ley con $A = \{1, \dots, 5\}$ y $B = \{4, \dots, 7\}$ en $\{1, \dots, 10\}$: $(A \cap B)^c$ y $A^c \cup B^c$ contienen los mismos 8 elementos, todos menos 4 y 5.]{componente="VennSets"}
+```yaml
+modo: de-morgan
+universo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+conjuntos:
+  - etiqueta: A
+    elementos: [1, 2, 3, 4, 5]
+  - etiqueta: B
+    elementos: [4, 5, 6, 7]
+ley: interseccion
+```
+:::
 - Permiten expresar la unión con intersección y complemento: $A \cup B = (A^c \cap B^c)^c$.
 - En probabilidad dan $P(A \cup B) = 1 - P(A^c \cap B^c)$, útil cuando la probabilidad de que no ocurra ninguno es más fácil de calcular.
 - Negar un cuantificador sigue el mismo patrón: $\lnot \forall x\, P(x) \equiv \exists x\, \lnot P(x)$.
@@ -133,6 +146,26 @@ Usamos doble contención con la ley lógica: $x \in (A \cup B)^c$ equivale a $\l
 - **Distribuir el complemento sin cambiar la operación.** $(A \cup B)^c \neq A^c \cup B^c$ en general.
 - **Negar una "o" dejándola como "o".** "No es cierto que llueva o nieve" significa que no llueve y no nieva, no que "no llueve o no nieva": esta última frase es cierta en un día de lluvia sin nieve, y la original no.
 - **Filtrar datos con condiciones negadas mal agrupadas.** Excluir registros "con edad faltante o ingreso faltante" deja los que tienen ambos datos, no los que tienen al menos uno.
+
+:::figura[200 registros, con edad faltante ($E$) o ingreso faltante ($I$). Excluir "$E$ o $I$" deja los 175 de $(E \cup I)^c = E^c \cap I^c$, con ambos datos; los registros con al menos un dato son 195, el complemento de $E \cap I$.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [E, I]
+universo: Registros
+conteos:
+  E: 12
+  I: 8
+  EI: 5
+  ninguno: 175
+consultas:
+  - nombre: "E ∪ I, a excluir"
+    regiones: [E, I, EI]
+  - nombre: "Eᶜ ∩ Iᶜ, ambos datos"
+    regiones: [ninguno]
+  - nombre: "Eᶜ ∪ Iᶜ, al menos un dato"
+    regiones: [E, I, ninguno]
+```
+:::
 - **Olvidar el universo.** Los complementos se toman respecto del mismo $U$ en ambos lados.
 
 :::figura[El error de distribuir el complemento sin cambiar la operación. $(A \cup B)^c$ contiene solo los 7 elementos que no están en ningún conjunto, mientras que $A^c \cup B^c$ contiene 17: todos los que faltan en al menos uno de los dos.]{componente="VennSets"}

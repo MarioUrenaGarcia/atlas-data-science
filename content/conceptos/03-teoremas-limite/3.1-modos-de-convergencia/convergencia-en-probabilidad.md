@@ -10,7 +10,7 @@ submodulo: '3.1'
 orden: 1
 nivel: intermedio
 prerrequisitos:
-  - sucesiones
+  - variable-aleatoria
 etiquetas:
   - convergencia
   - variables aleatorias

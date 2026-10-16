@@ -103,6 +103,28 @@ bloques:
 - **Regla de Pascal:** $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$.
 - **Suma de una fila:** $\sum_{k} \binom{n}{k} = 2^n$.
 - **Unimodalidad:** para $n$ fijo, $\binom{n}{k}$ crece hasta $k = \lfloor n/2 \rfloor$ y luego decrece.
+
+:::figura[Los 64 subconjuntos de un conjunto de 6 elementos repartidos por tamaño: $1, 6, 15, 20, 15, 6, 1$. Los bloques crecen hasta $k = 3$ y luego decrecen en espejo, y juntos suman $2^6$.]{componente="SetStructures"}
+```yaml
+modo: reparto
+universo: Subconjuntos de {1, ..., 6}
+bloques:
+  - nombre: k = 0
+    n: 1
+  - nombre: k = 1
+    n: 6
+  - nombre: k = 2
+    n: 15
+  - nombre: k = 3
+    n: 20
+  - nombre: k = 4
+    n: 15
+  - nombre: k = 5
+    n: 6
+  - nombre: k = 6
+    n: 1
+```
+:::
 - **Cota útil:** $\left(\frac{n}{k}\right)^k \le \binom{n}{k} \le \left(\frac{en}{k}\right)^k$.
 - **Teorema del binomio:** $\binom{n}{k}$ es el coeficiente de $a^{n-k}b^{k}$ en $(a + b)^n$.
 
@@ -111,6 +133,32 @@ bloques:
 - **Confundir $\binom{n}{k}$ con $\frac{n}{k}$.** La notación no es una fracción.
 - **Calcular factoriales completos.** $\binom{100}{3}$ se obtiene como $\frac{100 \cdot 99 \cdot 98}{6} = 161700$ sin calcular $100!$.
 - **Usarlo cuando el orden importa.** El coeficiente binomial cuenta selecciones sin orden.
+
+:::figura[De 7 vecinos, una comisión de 3 sin cargos se elige de $7 \cdot 6 \cdot 5 / 3! = 35$ maneras; si los tres ocupan presidencia, secretaría y tesorería, el orden importa y son $7 \cdot 6 \cdot 5 = 210$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: casillas
+escenarios:
+  - nombre: Comisión sin cargos
+    casillas:
+      - etiqueta: primero
+        opciones: 7
+      - etiqueta: segundo
+        opciones: 6
+      - etiqueta: tercero
+        opciones: 5
+    divisor:
+      valor: 6
+      texto: "3! órdenes de la misma comisión"
+  - nombre: Con cargos
+    casillas:
+      - etiqueta: presidencia
+        opciones: 7
+      - etiqueta: secretaría
+        opciones: 6
+      - etiqueta: tesorería
+        opciones: 5
+```
+:::
 - **Aplicarlo con $k > n$ como si tuviera sentido.** No hay subconjuntos de 5 elementos en un conjunto de 3, y por convención el valor es 0.
 
 ## Conexiones

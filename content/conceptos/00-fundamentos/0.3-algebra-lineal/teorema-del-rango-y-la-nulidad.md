@@ -97,6 +97,16 @@ matrices:
 ## Propiedades
 
 - **Más incógnitas que ecuaciones:** si $n > m$, entonces $\operatorname{rango} \le m < n$ y la nulidad es positiva: $\mathbf{A}\mathbf{x} = \mathbf{0}$ tiene soluciones no triviales.
+
+:::figura[$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}$ tiene 3 columnas y rango 2: queda una columna libre, nulidad 1, y $\mathbf{A}\mathbf{x} = \mathbf{0}$ tiene la recta de soluciones generada por $(1, -2, 1)$.]{componente="MatrixSteps"}
+```yaml
+modo: rango
+reducida: true
+matrices:
+  - nombre: 2 por 3
+    matriz: [[1, 2, 3], [4, 5, 6]]
+```
+:::
 - **Inyectividad:** $\mathbf{x} \mapsto \mathbf{A}\mathbf{x}$ es inyectiva si y solo si la nulidad es 0, es decir, si el rango es $n$.
 - **Suprayectividad:** es suprayectiva si y solo si el rango es $m$.
 - **Matrices cuadradas:** para $n \times n$, inyectiva, suprayectiva e invertible son equivalentes.

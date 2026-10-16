@@ -106,7 +106,7 @@ Un jugador con 10 dólares apuesta 1 dólar al rojo en la ruleta americana ($p =
 
 1. $q/p = (20/38)/(18/38) = 10/9 \approx 1.111$.
 2. $P_{10} = \dfrac{1 - (10/9)^{10}}{1 - (10/9)^{20}} = \dfrac{1 - 2.868}{1 - 8.225} \approx 0.259$.
-3. Con un juego justo sería 0.5. La desventaja de 2.6 puntos por ronda reduce casi a la mitad sus posibilidades.
+3. Con un juego justo sería 0.5. Una probabilidad de ganar 2.6 puntos porcentuales por debajo de 1/2 (una pérdida esperada de 2/38, cerca de 5.3 %, por apuesta) reduce casi a la mitad sus posibilidades.
 4. Si apostara 10 dólares de una vez, ganaría con probabilidad $18/38 \approx 0.474$: con desventaja, conviene apostar fuerte y pocas veces.
 
 :::figura[Una desventaja pequeña por ronda (p = 0.47) con capital 10 y meta 20: la mayoría de las partidas termina en la ruina, y la probabilidad exacta de llegar a la meta es 0.23.]{componente="GamblersRuin"}

@@ -127,8 +127,34 @@ consultas:
 ## Errores comunes
 
 - **Detenerse en las intersecciones de dos.** Con tres conjuntos, olvidar sumar la triple intersección deja sin contar a los elementos comunes.
+
+:::figura[Tres conjuntos con una triple intersección grande, $\{1, 2, 3\}$. Al sumar los tres conjuntos esos elementos se cuentan 3 veces y al restar las tres intersecciones de dos se descuentan 3: quedan en 0, y solo el término de la triple intersección los recupera.]{componente="VennSets"}
+```yaml
+modo: inclusion-exclusion
+universo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+conjuntos:
+  - etiqueta: A
+    elementos: [1, 2, 3, 4, 5, 6]
+  - etiqueta: B
+    elementos: [1, 2, 3, 4, 7, 8]
+  - etiqueta: C
+    elementos: [1, 2, 3, 9, 10]
+```
+:::
 - **Equivocar los signos.** Los términos con un número impar de conjuntos se suman y los de número par se restan.
 - **Calcular mal las intersecciones de divisibilidad.** Los múltiplos de 4 y de 6 a la vez son los múltiplos de 12, no de 24.
+
+:::figura[Múltiplos de 4 y de 6 entre 1 y 24: los comunes son 12 y 24, los múltiplos de 12. Los de 24 serían solo uno, así que la unión tiene $6 + 4 - 2 = 8$ elementos.]{componente="VennSets"}
+```yaml
+modo: inclusion-exclusion
+universo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+conjuntos:
+  - etiqueta: A
+    elementos: [4, 8, 12, 16, 20, 24]
+  - etiqueta: B
+    elementos: [6, 12, 18, 24]
+```
+:::
 
 ## Conexiones
 

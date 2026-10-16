@@ -113,7 +113,38 @@ Para dos conjuntos disjuntos $A$ y $B$ con $|A| = m$ y $|B| = n$, se numeran los
 ## Errores comunes
 
 - **Sumar casos que se traslapan.** Contar "estudiantes que hablan inglés" más "estudiantes que hablan francés" da más personas de las que hay si alguien habla ambos idiomas.
+
+:::figura[En un grupo de 30, 23 hablan inglés y 12 francés: sumar da 35, más que el grupo, porque los 5 que hablan ambos se cuentan dos veces. Los que hablan alguno son 30.]{componente="VennSets"}
+```yaml
+modo: conteos
+etiquetas: [I, F]
+universo: Estudiantes
+conteos:
+  I: 18
+  F: 7
+  IF: 5
+  ninguno: 0
+consultas:
+  - nombre: Inglés
+    regiones: [I, IF]
+  - nombre: Francés
+    regiones: [F, IF]
+  - nombre: Inglés o francés
+    regiones: [I, F, IF]
+```
+:::
 - **Sumar cuando corresponde multiplicar.** Si se eligen una actividad de raqueta y además una acuática, las elecciones se combinan y el conteo usa el principio del producto.
+
+:::figura[Elegir una actividad de raqueta y además una acuática: cada una de las 3 de raqueta se combina con cada una de las 2 acuáticas y hay $3 \cdot 2 = 6$ planes, no $3 + 2 = 5$.]{componente="CombinatoricsBoard"}
+```yaml
+modo: arbol
+etapas:
+  - nombre: raqueta
+    opciones: [tenis, bádminton, frontón]
+  - nombre: acuática
+    opciones: [natación, waterpolo]
+```
+:::
 - **Olvidar un caso.** La separación en casos debe cubrir todas las posibilidades; si falta una, el total queda corto.
 
 ## Conexiones

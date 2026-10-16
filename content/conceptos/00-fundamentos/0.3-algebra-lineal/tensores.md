@@ -89,6 +89,13 @@ forma: [3, 4, 4]
 ## Propiedades
 
 - **Número de fibras y rebanadas:** un tensor de $I \times J \times K$ tiene $JK$ fibras del modo 1 y $I$ rebanadas con el primer índice fijo.
+
+:::figura[Un tensor de $4 \times 2 \times 3$ tiene 24 entradas: 4 rebanadas de $2 \times 3$ al fijar el primer índice y $2 \cdot 3 = 6$ fibras del modo 1, cada una con 4 entradas.]{componente="MatrixGrid"}
+```yaml
+modo: tensor
+forma: [4, 2, 3]
+```
+:::
 - **Producto por una matriz en un modo:** $\mathcal{Y} = \mathcal{X} \times_1 \mathbf{U}$ multiplica todas las fibras del modo 1 por $\mathbf{U}$; en forma desplegada, $\mathbf{Y}_{(1)} = \mathbf{U}\mathbf{X}_{(1)}$.
 - **Tensor de rango 1:** $\mathcal{X} = \mathbf{a} \circ \mathbf{b} \circ \mathbf{c}$ con $x_{ijk} = a_ib_jc_k$, la generalización de $\mathbf{u}\mathbf{v}^\top$.
 - **Relación con Kronecker:** el despliegue de un tensor de rango 1 es $\mathbf{a}(\mathbf{c} \otimes \mathbf{b})^\top$.

@@ -91,6 +91,13 @@ n: 6
 - La inducción es equivalente al **principio del buen orden**: todo subconjunto no vacío de $\mathbb{N}$ tiene un elemento mínimo.
 - La inducción fuerte y la usual demuestran exactamente los mismos resultados.
 - Sirve para demostrar identidades ($\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$), desigualdades ($2^n > n$), propiedades de divisibilidad ($3 \mid n^3 - n$) y la corrección de algoritmos recursivos.
+
+:::figura[La identidad $1 + 2 + \dots + n = \frac{n(n+1)}{2}$ como escalera: dos copias forman un rectángulo de $n \times (n + 1)$, y al pasar de $n$ a $n + 1$ se agrega una columna de $n + 1$ cuadros.]{componente="InductionViz"}
+```yaml
+vista: escalera
+n: 8
+```
+:::
 - Las definiciones recursivas, como $0! = 1$ y $(n + 1)! = (n + 1)\,n!$, se analizan naturalmente por inducción.
 
 :::demostracion

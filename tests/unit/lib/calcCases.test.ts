@@ -27,7 +27,16 @@ describe('limit cases', () => {
 });
 
 describe('quotient cases', () => {
-  for (const c of Object.values(QUOTIENT_CASES)) {
+  for (const c of Object.values(QUOTIENT_CASES).filter((q) => q.misuse !== undefined)) {
+    it(`${c.id}: is not 0/0 and the quotient of derivatives misses the limit`, () => {
+      expect(Math.abs(c.f(c.point)) + Math.abs(c.g(c.point))).toBeGreaterThan(0.1);
+      const x = c.point + 1e-5;
+      expect(c.f(x) / c.g(x)).toBeCloseTo(c.limit, 3);
+      expect(c.df(x) / c.dg(x)).toBeCloseTo(c.misuse ?? Number.NaN, 3);
+      expect(c.misuse).not.toBeCloseTo(c.limit, 3);
+    });
+  }
+  for (const c of Object.values(QUOTIENT_CASES).filter((q) => q.misuse === undefined)) {
     it(`${c.id}: is 0/0 and both quotients tend to the limit`, () => {
       expect(c.f(c.point)).toBeCloseTo(0, 10);
       expect(c.g(c.point)).toBeCloseTo(0, 10);
