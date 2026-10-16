@@ -12,6 +12,7 @@ orden: 24
 nivel: avanzado
 prerrequisitos:
   - teorema-central-del-limite
+  - funcion-generadora-de-momentos
 etiquetas:
   - eventos raros
   - función de tasa
