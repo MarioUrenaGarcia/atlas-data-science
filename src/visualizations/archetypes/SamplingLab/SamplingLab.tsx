@@ -20,6 +20,8 @@ export default function SamplingLab({ params, conceptId, title }: VisualizationP
           title={title}
           population={config.poblacion}
           nMax={config.nMaximo ?? DEFAULT_N_MAX}
+          mu={config.media ?? 50}
+          sigma={config.desviacion ?? 10}
           seed={seed}
         />
       );

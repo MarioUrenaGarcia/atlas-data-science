@@ -10,6 +10,8 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       poblacion: z.enum(POPULATIONS),
       /** Largest sample size of the sweep. */
       nMaximo: z.number().int().min(10).max(400).optional(),
+      media: z.number().positive().optional(),
+      desviacion: z.number().positive().optional(),
       semilla: z.number().int().nonnegative().optional(),
     })
     .strict(),

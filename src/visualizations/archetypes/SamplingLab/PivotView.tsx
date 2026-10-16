@@ -21,6 +21,7 @@ const MAX_SAMPLES = 3000;
 const T_LIMIT = 6;
 const BINS = 48;
 const CURVE_POINTS = 160;
+const LOGNORMAL_MEAN_RATIO = 2;
 
 interface Simulation {
   values: number[];
@@ -78,6 +79,7 @@ export function PivotView({
         max: 100,
         step: 5,
         default: mu0,
+        shownWhen: { key: 'poblacion', values: ['normal', 'exponencial', 'uniforme'] },
       },
       {
         type: 'number',
@@ -97,9 +99,9 @@ export function PivotView({
   const n = Number(parameters.values.n);
   const mu = Number(parameters.values.mu);
   const sigma = Number(parameters.values.sigma);
-  // Lognormal populations need a positive mean.
+  // A lognormal needs a positive mean; fixing it at twice sigma keeps its shape constant.
   const population = useMemo(
-    () => makePopulation(id, id === 'lognormal' ? Math.max(mu, sigma) : mu, sigma),
+    () => makePopulation(id, id === 'lognormal' ? LOGNORMAL_MEAN_RATIO * sigma : mu, sigma),
     [id, mu, sigma],
   );
   const trueMean = population.mean;

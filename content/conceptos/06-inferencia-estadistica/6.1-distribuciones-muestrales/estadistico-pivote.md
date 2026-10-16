@@ -79,7 +79,7 @@ Experimentos sugeridos:
 
 1. Cambiar la media a 80 y la desviación a 30: el histograma de $T$ no cambia. Esa es la propiedad pivotal.
 2. Con $n = 5$, comparar las colas con la normal: la t es más pesada, y cerca de 5 % de los valores cae fuera de $\pm 2.78$.
-3. Cambiar la población a lognormal con $n = 5$: el histograma se vuelve asimétrico y la proporción fuera deja de ser 5 %; $T$ solo es pivote exacto con poblaciones normales.
+3. Cambiar la población a lognormal con $n = 5$ (en ese caso la media se fija en el doble de la desviación, para conservar la forma): el histograma se vuelve asimétrico y la proporción fuera deja de ser 5 %; $T$ solo es pivote exacto con poblaciones normales.
 
 ## Ejemplo
 

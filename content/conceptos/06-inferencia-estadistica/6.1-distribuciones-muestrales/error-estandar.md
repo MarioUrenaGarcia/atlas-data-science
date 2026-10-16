@@ -72,13 +72,13 @@ Si se muestrea sin reemplazo de una población finita de $N$ unidades, se multip
 
 ## Cómo usar la visualización
 
-Para cada tamaño de muestra, de 1 a 200, se extraen 400 muestras de una población exponencial con media 50 y desviación 10 y se calcula la desviación estándar de sus 400 medias. Los puntos aparecen uno por uno sobre la curva $\sigma/\sqrt{n}$; el encabezado compara el valor observado con el teórico.
+Para 24 tamaños de muestra entre 1 y 200 se extraen 400 muestras de una población exponencial desplazada, con media 50 y desviación 10, y se calcula la desviación estándar de sus 400 medias. Los puntos aparecen uno por uno sobre la curva $\sigma/\sqrt{n}$; el encabezado compara el valor observado con el teórico.
 
 El selector **Forma de la población** cambia la forma sin cambiar la media ni la desviación.
 
 Experimentos sugeridos:
 
-1. Comparar los puntos de $n = 4$ y $n = 16$: el error pasa de cerca de 5 a cerca de 2.5.
+1. Comparar los puntos de $n = 4$ y $n = 25$: el error pasa de cerca de 5 a cerca de 2.
 2. Cambiar la forma de la población: los puntos siguen sobre la misma curva, porque el error estándar de la media solo depende de $\sigma$ y de $n$.
 3. Observar que a partir de $n = 100$ la curva casi se aplana: más datos ayudan cada vez menos.
 
@@ -92,11 +92,13 @@ Colesterol con $\sigma = 30$ mg/dL.
 4. Si $\sigma$ no se conoce y una muestra de 36 pacientes da $s = 27$, el error estándar estimado es $27/6 = 4.5$ mg/dL.
 5. En una población de $N = 200$ pacientes, con $n = 36$ sin reemplazo, la corrección vale $\sqrt{164/199} \approx 0.908$ y el error baja a $5 \cdot 0.908 \approx 4.54$.
 
-:::figura[El error estándar de la media de pacientes con una población normal: los puntos para n de 1 a 100 siguen la curva sigma entre raíz de n.]{componente="SamplingLab"}
+:::figura[El colesterol del ejemplo: población normal con media 200 y desviación 30 mg/dL. En n = 9 el error estándar es 10 mg/dL y en n = 25 es 6; los puntos siguen la curva sigma entre raíz de n.]{componente="SamplingLab"}
 ```yaml
 modo: error-estandar
 poblacion: normal
 nMaximo: 100
+media: 200
+desviacion: 30
 ```
 :::
 
