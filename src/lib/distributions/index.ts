@@ -4,3 +4,4 @@ export * from './special.ts';
 export * from './types.ts';
 export * from './discreteFamilies.ts';
 export * from './continuousFamilies.ts';
+export * from './multivariate.ts';

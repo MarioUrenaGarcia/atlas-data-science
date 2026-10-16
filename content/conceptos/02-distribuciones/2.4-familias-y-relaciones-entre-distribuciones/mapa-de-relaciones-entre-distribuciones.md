@@ -261,11 +261,11 @@ referencia:
 ```
 :::
 
-:::figura[Límite de la Poisson hacia la normal: la curva punteada es la normal con media λ y varianza λ y sigue al control; con λ = 30 casi coincide con las barras.]{componente="DistributionExplorer"}
+:::figura[Límite de la Poisson hacia la normal: la curva punteada es la normal con media λ y varianza λ y sigue al control; con λ = 25 casi coincide con las barras.]{componente="DistributionExplorer"}
 ```yaml
 distribucion: poisson
 valores:
-  lambda: 30
+  lambda: 25
 muestras: false
 referencia:
   distribucion: normal

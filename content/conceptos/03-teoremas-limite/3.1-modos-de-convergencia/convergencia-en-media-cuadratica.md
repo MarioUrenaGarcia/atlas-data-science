@@ -12,6 +12,7 @@ orden: 4
 nivel: intermedio
 prerrequisitos:
   - convergencia-en-probabilidad
+  - esperanza-matematica
 etiquetas:
   - convergencia
   - error cuadrático medio
