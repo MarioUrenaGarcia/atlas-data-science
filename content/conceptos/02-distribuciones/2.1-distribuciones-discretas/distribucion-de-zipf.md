@@ -12,7 +12,6 @@ orden: 11
 nivel: intermedio
 prerrequisitos:
   - distribucion-categorica
-  - series-y-convergencia-de-series
 relaciones:
   - tipo: relacionado
     id: distribucion-uniforme-discreta

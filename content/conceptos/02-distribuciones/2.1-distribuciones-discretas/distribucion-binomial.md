@@ -13,6 +13,7 @@ nivel: basico
 prerrequisitos:
   - distribucion-de-bernoulli
   - coeficiente-binomial
+  - independencia-de-eventos
 relaciones:
   - tipo: relacionado
     id: teorema-del-binomio
