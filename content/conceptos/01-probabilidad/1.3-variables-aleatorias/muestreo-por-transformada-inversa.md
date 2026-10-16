@@ -37,7 +37,6 @@ referencias:
   - clave: ross-probabilidad
     capitulo: '10.2'
   - clave: wasserman
-    capitulo: '24.2'
 publicado: true
 ---
 
