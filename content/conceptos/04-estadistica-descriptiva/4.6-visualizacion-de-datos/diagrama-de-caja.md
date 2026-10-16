@@ -185,7 +185,7 @@ eje:
 
 ## Conexiones
 
-El diagrama de caja dibuja el [[resumen-de-cinco-numeros]] con las vallas basadas en el [[rango-intercuartilico]]. El [[diagrama-de-violin]] añade la forma completa de la distribución, y los [[graficos-de-enjambre-y-de-franjas]] muestran todos los puntos. Las vallas de Tukey son la base de la detección de valores atípicos por rango intercuartílico.
+El diagrama de caja dibuja el [[resumen-de-cinco-numeros]] con las vallas basadas en el [[rango-intercuartilico]]. El [[diagrama-de-violin]] añade la forma completa de la distribución, y los [[graficos-de-enjambre-y-de-franjas]] muestran todos los puntos. Las vallas de Tukey son la base de la [[deteccion-de-valores-atipicos-por-rango-intercuartilico|detección de valores atípicos por rango intercuartílico]].
 
 ## Formulario
 
