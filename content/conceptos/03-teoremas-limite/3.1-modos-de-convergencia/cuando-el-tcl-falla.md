@@ -149,7 +149,7 @@ n: 500
 
 ## Conexiones
 
-Marca el límite del [[teorema-central-del-limite]] y de la [[ley-debil-de-los-grandes-numeros]], que requieren varianza o media finitas. El [[teorema-de-berry-esseen]] tampoco aplica, porque el tercer momento es infinito. La [[convergencia-en-distribucion]] sigue siendo la noción correcta, pero hacia leyes estables. En estadística, la [[teoria-de-grandes-desviaciones]] y los métodos robustos ofrecen alternativas cuando las colas son pesadas. Las [[distribuciones-estables]] son los únicos límites posibles de sumas normalizadas cuando la varianza es infinita, y la [[distribucion-de-pareto]] es el ejemplo típico de colas que las producen.
+Marca el límite del [[teorema-central-del-limite]] y de la [[ley-debil-de-los-grandes-numeros]], que requieren varianza o media finitas. El [[teorema-de-berry-esseen]] tampoco aplica, porque el tercer momento es infinito. La [[convergencia-en-distribucion]] sigue siendo la noción correcta, pero hacia leyes estables. En estadística, la [[teoria-de-grandes-desviaciones]] y los métodos robustos ofrecen alternativas cuando las colas son pesadas. Las [[distribuciones-estables]] son los únicos límites posibles de sumas normalizadas cuando la varianza es infinita, y la [[distribucion-de-pareto]] es el ejemplo típico de colas que las producen. Las [[distribuciones-de-colas-pesadas]] reúnen los ejemplos en que la varianza es infinita.
 
 ## Formulario
 

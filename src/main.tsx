@@ -12,6 +12,9 @@ import './styles/prose.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App.tsx';
+import { installStaleDeployRecovery } from './app/staleDeploy.ts';
+
+installStaleDeployRecovery();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
