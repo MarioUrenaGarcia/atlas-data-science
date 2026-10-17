@@ -33,4 +33,20 @@ export const INFERENCE_EXAMPLES: CatalogExample[] = [
     params: { modo: 'consistencia', problema: 'media-normal', estimadores: ['media', 'primero'] },
   },
   { component: 'EstimatorLab', title: 'Compromiso', params: { modo: 'compromiso' } },
+  { component: 'SufficiencyLab', title: 'Suficiencia', params: { modo: 'suficiencia', n: 4 } },
+  {
+    component: 'SufficiencyLab',
+    title: 'Factorización',
+    params: {
+      modo: 'factorizacion',
+      muestras: [
+        [1, 2, 3],
+        [0, 2, 4],
+        [2, 3, 4],
+      ],
+    },
+  },
+  { component: 'SufficiencyLab', title: 'Rao-Blackwell', params: { modo: 'rao-blackwell' } },
+  { component: 'SufficiencyLab', title: 'Completitud', params: { modo: 'completitud' } },
+  { component: 'SufficiencyLab', title: 'Ancilar y Basu', params: { modo: 'ancilar' } },
 ];
