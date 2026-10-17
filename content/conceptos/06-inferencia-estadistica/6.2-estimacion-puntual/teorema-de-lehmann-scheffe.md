@@ -104,16 +104,16 @@ n: 8
 ## Errores comunes
 
 - **Aplicarlo sin completitud.** Con un suficiente que no es completo, una función insesgada de él no tiene por qué ser óptima.
-- **Confundir UMVUE con mínimo error cuadrático medio.** El máximo sin corregir, sesgado, puede tener menor error cuadrático medio que el UMVUE para el extremo de la uniforme.
+- **Confundir UMVUE con mínimo error cuadrático medio.** Un estimador sesgado puede tener menor error cuadrático medio. En la varianza normal, el UMVUE es $S^2$, con divisor $n - 1$, pero el divisor $n + 1$ tiene menor error cuadrático medio. En la uniforme, $\frac{n+2}{n+1}X_{(n)}$, sesgado, tiene error cuadrático medio $\theta^2/(n+1)^2$, menor que el $\theta^2/(n(n+2))$ del UMVUE; el máximo sin corregir, en cambio, tiene uno mayor, $2\theta^2/((n+1)(n+2))$.
 - **Creer que el UMVUE siempre es razonable.** Hay casos en que el UMVUE toma valores fuera del espacio de parámetros.
 
-:::figura[Sesgado contra UMVUE: el máximo sin corregir y el máximo corregido, con n = 5.]{componente="EstimatorLab"}
+:::figura[Sesgado contra UMVUE en la varianza normal con muestras de 10 y varianza 3: el divisor n + 1 tiene menor error cuadrático medio que el UMVUE con divisor n - 1.]{componente="EstimatorLab"}
 ```yaml
 modo: comparar
-problema: maximo-uniforme
-estimadores: [maximo, maximo-corregido]
-n: 5
-theta: 4
+problema: varianza-normal
+estimadores: [s2, n1]
+n: 10
+theta: 3
 ```
 :::
 
@@ -137,6 +137,22 @@ $$
 $$
 
 - $X_{(n)}$: máximo de la muestra; $n$: tamaño; $\theta$: extremo superior.
+:::
+
+:::formula[Densidad y media del máximo]
+$$
+f_{X_{(n)}}(x) = \frac{n x^{n-1}}{\theta^n},\ \ 0 < x < \theta,\qquad \mathbb{E}[X_{(n)}] = \frac{n}{n + 1}\theta
+$$
+
+- $X_{(n)}$: máximo de $n$ uniformes en $(0, \theta)$; con $n = 5$, densidad $5x^4/\theta^5$ y media $5\theta/6$.
+:::
+
+:::formula[Errores cuadráticos medios en la uniforme]
+$$
+\operatorname{ECM}(X_{(n)}) = \frac{2\theta^2}{(n + 1)(n + 2)},\qquad \operatorname{ECM}\Big(\frac{n + 2}{n + 1}X_{(n)}\Big) = \frac{\theta^2}{(n + 1)^2}
+$$
+
+- $\operatorname{ECM}$: error cuadrático medio; el primero es el máximo sin corregir, el segundo un múltiplo sesgado con menor error que el UMVUE.
 :::
 
 :::formula[Varianza de dos veces la media]

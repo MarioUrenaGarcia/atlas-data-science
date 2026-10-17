@@ -62,7 +62,7 @@ Por la ley de la varianza total, $\operatorname{Var}(\tilde{\theta}) = \operator
 
 ## Cómo usar la visualización
 
-Para muestras de Poisson se calculan el estimador burdo $\mathbf{1}\{X_1 = 0\}$ y el mejorado $((n - 1)/n)^T$. Sus histogramas se acumulan en gris y en color; la línea negra es el valor verdadero $e^{-\lambda}$. El panel compara medias y varianzas y da la reducción de varianza.
+Para muestras de Poisson se calculan el estimador burdo $\mathbf{1}\{X_1 = 0\}$ y el mejorado $((n - 1)/n)^T$. Sus histogramas se acumulan en gris y en color; la línea vertical marca el valor verdadero $e^{-\lambda}$. El panel compara medias y varianzas y da la reducción de varianza.
 
 Controles: tasa $\lambda$ y tamaño de muestra $n$.
 
@@ -106,11 +106,11 @@ n: 10
 
 ## Errores comunes
 
-- **Condicionar en un estadístico no suficiente.** Entonces $\mathbb{E}[\tilde{\theta} \mid T]$ depende de $\theta$ y no es un estimador.
+- **Condicionar en un estadístico no suficiente.** Entonces $\mathbb{E}[\tilde{\theta} \mid T]$ en general depende de $\theta$ y no es un estimador.
 - **Pensar que el resultado es automáticamente óptimo.** Sin completitud, distintos estimadores iniciales pueden dar distintos resultados.
 - **Olvidar que la mejora requiere un estimador inicial.** El teorema mejora; no inventa estimadores.
 
-:::figura[Muestras pequeñas, n = 3: incluso así la varianza baja varias veces.]{componente="SufficiencyLab"}
+:::figura[Muestras de 3: el estimador mejorado sigue siendo insesgado y varía menos, pero es el mejor posible solo porque el total es además completo, por el teorema de Lehmann-Scheffé.]{componente="SufficiencyLab"}
 ```yaml
 modo: rao-blackwell
 lambda: 1.5

@@ -60,7 +60,7 @@ entonces $T$ es suficiente mínimo.
 
 ## Cómo usar la visualización
 
-Las 16 secuencias de 4 ensayos se agrupan por el estadístico elegido. Con "éxitos y primer resultado" cada grupo de igual número de éxitos se parte en dos, y dentro de cada mitad la probabilidad condicional sigue sin depender de $p$: es suficiente, pero esa partición extra no se necesitaba.
+Las 16 secuencias de 4 ensayos se agrupan por el estadístico elegido. Con "éxitos y primer resultado" cada grupo con entre 1 y $n - 1$ éxitos se parte en dos (los grupos con 0 y con $n$ éxitos no se parten, porque el primer resultado ya está determinado), y dentro de cada mitad la probabilidad condicional sigue sin depender de $p$: es suficiente, pero esa partición extra no se necesitaba.
 
 Experimentos sugeridos:
 

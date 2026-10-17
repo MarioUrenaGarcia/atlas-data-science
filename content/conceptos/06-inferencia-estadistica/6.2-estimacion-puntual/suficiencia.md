@@ -65,7 +65,7 @@ $$
 
 ## Cómo usar la visualización
 
-Se muestran las 16 secuencias posibles de 4 ensayos, agrupadas según el estadístico elegido. A la izquierda de cada secuencia, su probabilidad (relativa a la más probable) y, en color, su probabilidad dentro de su grupo. Al reproducir, $p$ recorre de 0.1 a 0.9.
+Se muestran las 16 secuencias posibles de 4 ensayos, agrupadas según el estadístico elegido. A la izquierda van las etiquetas de cada grupo; a la derecha de cada secuencia, dos barras: su probabilidad (relativa a la más probable) y, en color, su probabilidad dentro de su grupo. Al reproducir, $p$ recorre de 0.1 a 0.9.
 
 Controles: **Número de ensayos** y **Estadístico que agrupa las secuencias**.
 
@@ -86,7 +86,7 @@ Cuatro piezas con resultado bien (0), defecto (1), bien (0), defecto (1); $T = 2
 :::figura[El estadístico insuficiente del ejemplo: agrupar solo por el primer resultado deja probabilidades condicionales que cambian con p.]{componente="SufficiencyLab"}
 ```yaml
 modo: suficiencia
-n: 3
+n: 4
 particion: primero
 ```
 :::
@@ -95,7 +95,7 @@ particion: primero
 
 - **No es único:** cualquier función biyectiva de un estadístico suficiente también lo es, y la muestra completa siempre es suficiente.
 - **Criterio práctico:** el teorema de factorización de Fisher-Neyman permite reconocerlo sin calcular condicionales.
-- **Inferencias equivalentes:** la verosimilitud depende de los datos solo a través de $T$, así que cualquier método basado en la verosimilitud usa solo $T$.
+- **Inferencias equivalentes:** salvo un factor $h(\mathbf{x})$ que no depende de $\theta$, la verosimilitud depende de los datos solo a través de $T$, así que cualquier método basado en la verosimilitud usa solo $T$.
 
 :::figura[Una partición más fina que el total: el número de éxitos junto con el primer resultado también es suficiente, pero no reduce tanto como el total solo.]{componente="SufficiencyLab"}
 ```yaml
@@ -111,7 +111,7 @@ particion: suma-y-primero
 - **Pensar que siempre existe uno de dimensión pequeña.** Para la distribución de Cauchy no hay ninguno más simple que la muestra ordenada.
 - **Confundir suficiencia con insesgadez.** Son propiedades distintas: una trata de información, la otra del promedio de un estimador.
 
-:::figura[La muestra completa como estadístico: siempre es suficiente, pero no comprime nada.]{componente="SufficiencyLab"}
+:::figura[Cuando no existe un suficiente más simple, como en la Cauchy, hay que conservar la muestra completa: siempre es suficiente, pero no comprime nada, como se ve aquí con 3 ensayos de Bernoulli.]{componente="SufficiencyLab"}
 ```yaml
 modo: suficiencia
 n: 3

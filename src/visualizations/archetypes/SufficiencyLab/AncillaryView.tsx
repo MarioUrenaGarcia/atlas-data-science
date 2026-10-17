@@ -16,6 +16,7 @@ import styles from './SufficiencyLab.module.css';
 const SAMPLES_PER_SECOND = 20;
 const MAX_SAMPLES = 1500;
 const MU_MAX = 10;
+const SIGMA_MAX = 3;
 
 interface Sim {
   pairs: { m: number; r: number }[];
@@ -24,16 +25,18 @@ interface Sim {
 interface AncillaryViewProps {
   title: string;
   n: number;
+  sigma: number;
   seed: SeedState;
 }
 
 /**
- * Normal samples with unknown mean mu and known sigma = 1. The sample range
- * is ancillary: its distribution does not move when mu changes. The sample
+ * Normal samples with unknown mean mu and known sigma. The sample range
+ * is ancillary for mu: its distribution does not move when mu changes, but it
+ * scales with sigma, so it is not ancillary for a scale parameter. The sample
  * mean is complete and sufficient, so by Basu's theorem the two are
  * independent; the cloud of (mean, range) pairs has no structure.
  */
-export function AncillaryView({ title, n: n0, seed }: AncillaryViewProps) {
+export function AncillaryView({ title, n: n0, sigma: s0, seed }: AncillaryViewProps) {
   const definitions = useMemo<ParameterDefinition[]>(
     () => [
       {
@@ -57,21 +60,33 @@ export function AncillaryView({ title, n: n0, seed }: AncillaryViewProps) {
         step: 1,
         default: n0,
       },
+      {
+        type: 'number',
+        key: 'sigma',
+        label: 'Desviación de la población',
+        symbol: 'σ',
+        min: 0.5,
+        max: SIGMA_MAX,
+        step: 0.5,
+        default: s0,
+        digits: 1,
+      },
     ],
-    [n0],
+    [n0, s0],
   );
   const parameters = useParameters(definitions);
   const mu = Number(parameters.values.mu);
   const n = Number(parameters.values.n);
+  const sigma = Number(parameters.values.sigma);
   const [run, setRun] = useState(0);
-  const runKey = `${mu}|${n}|${run}`;
+  const runKey = `${mu}|${n}|${sigma}|${run}`;
   const random = useRandomSource(seed.seed, runKey);
   const [sim, update] = useResettableState<Sim>(`${runKey}|${seed.seed}`, () => ({ pairs: [] }));
   const draw = (count: number) => {
     const g = random();
     const pairs: { m: number; r: number }[] = [];
     for (let k = 0; k < count; k += 1) {
-      const s = Array.from({ length: n }, () => g.normal(mu, 1));
+      const s = Array.from({ length: n }, () => g.normal(mu, sigma));
       pairs.push({ m: mean(s), r: Math.max(...s) - Math.min(...s) });
     }
     update((prev) => ({ pairs: [...prev.pairs, ...pairs].slice(0, MAX_SAMPLES) }));
@@ -94,10 +109,10 @@ export function AncillaryView({ title, n: n0, seed }: AncillaryViewProps) {
   const meanRange = ranges.length ? mean(ranges) : Number.NaN;
   const header = `R = X_{(n)} - X_{(1)}\\ \\text{(ancilar)},\\quad \\bar{X}\\ \\text{(suficiente y completo)},\\quad \\operatorname{corr}(\\bar{X}, R) \\approx ${formatNumber(corr, 3)}`;
   const description =
-    `Muestras normales de tamaño ${n} con media ${formatNumber(mu, 1)} y desviación 1. ${sim.pairs.length} pares de media y rango; ` +
-    `rango medio ${formatNumber(meanRange, 3)}, que no depende de la media, y correlación entre media y rango ${formatNumber(corr, 3)}.`;
-  const rMax = 2 * Math.sqrt(2 * Math.log(Math.max(n, 2))) + 3;
-  const mSpan = 4 / Math.sqrt(n);
+    `Muestras normales de tamaño ${n} con media ${formatNumber(mu, 1)} y desviación ${formatNumber(sigma, 1)}. ${sim.pairs.length} pares de media y rango; ` +
+    `rango medio ${formatNumber(meanRange, 3)}, que no depende de la media pero sí crece con la desviación, y correlación entre media y rango ${formatNumber(corr, 3)}.`;
+  const rMax = (2 * Math.sqrt(2 * Math.log(Math.max(n, 2))) + 3) * Math.max(sigma, s0);
+  const mSpan = (4 * SIGMA_MAX) / Math.sqrt(n);
 
   return (
     <VizFrame

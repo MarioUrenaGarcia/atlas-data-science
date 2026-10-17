@@ -35,7 +35,7 @@ publicado: true
 
 Una báscula tiene un error de calibración desconocido $\mu$: todo lo que pesa sale desplazado $\mu$ gramos. Si se pesa cinco veces el mismo objeto, el promedio de las cinco lecturas sirve para estimar el peso más el desplazamiento. En cambio, la diferencia entre la lectura más alta y la más baja, el rango, no cambia por el desplazamiento: si todas las lecturas se mueven $\mu$ gramos, su rango sigue igual.
 
-Un estadístico cuya distribución no depende del parámetro se llama **ancilar**. Por sí solo no dice nada sobre $\mu$. Sin embargo, no es inútil: un rango grande indica que las lecturas fueron dispersas en esta ocasión y que el promedio es menos confiable. Por eso se dice que los ancilares informan sobre la precisión, no sobre el valor.
+Un estadístico cuya distribución no depende del parámetro se llama **ancilar**. Por sí solo no dice nada sobre $\mu$. En este modelo, con la desviación de la báscula conocida, tampoco cambia la precisión del promedio: el promedio es suficiente y completo, y por el teorema de Basu el rango es independiente de él. Los ancilares sí informan sobre la precisión cuando el estadístico suficiente no es completo. En una uniforme en $(\theta, \theta + 1)$, un rango cercano a 1 deja a $\theta$ casi determinado, porque el mínimo y el máximo quedan pegados a los extremos, mientras que un rango pequeño deja mucha incertidumbre.
 
 ## Definición
 
@@ -57,13 +57,14 @@ Familias de localización: si $X_i = \mu + Z_i$ con $Z_i$ de distribución fija,
 
 ## Cómo usar la visualización
 
-Cada muestra normal de tamaño 5, con media $\mu$ y desviación 1, aporta un punto con su media en el eje horizontal y su rango en el vertical. El control **Media de la población** desplaza $\mu$.
+Cada muestra normal de tamaño 5, con media $\mu$ y desviación 1, aporta un punto con su media en el eje horizontal y su rango en el vertical. El control **Media de la población** desplaza $\mu$ y el control **Desviación de la población** cambia la escala $\sigma$.
 
 Experimentos sugeridos:
 
 1. Mover $\mu$ de $-5$ a $5$: la nube se desplaza de lado, pero su altura no cambia; el rango medio sigue cerca de 2.33.
 2. Cambiar $n$ a 20: el rango sube (hay más datos para alejarse) pero sigue sin depender de $\mu$.
 3. Observar que la correlación entre media y rango es cercana a cero.
+4. Subir la desviación a 2: el rango medio se duplica; el rango no es ancilar para un parámetro de escala.
 
 ## Ejemplo
 
@@ -96,14 +97,15 @@ n: 2
 
 ## Errores comunes
 
-- **Creer que un ancilar es inútil.** Indica la precisión de la estimación en la muestra concreta.
+- **Creer que un ancilar siempre es inútil, o que siempre informa sobre la precisión.** Si el suficiente es completo, como la media normal con desviación conocida, el ancilar es independiente de él y no cambia la precisión. Si no es completo, como en la uniforme en $(\theta, \theta + 1)$, el ancilar indica qué tan precisa es la estimación en la muestra concreta.
 - **Pensar que ancilar es lo contrario de suficiente.** Un estadístico puede no ser ni una cosa ni la otra.
 - **Suponer que la varianza muestral es ancilar para todo.** Es ancilar para un parámetro de localización, no para uno de escala.
 
-:::figura[Muestras de 30 lecturas: la nube se aplana y se vuelve más estrecha, pero su altura sigue sin depender de la media.]{componente="SufficiencyLab"}
+:::figura[Desviación 2.5 en lugar de 1: el rango medio se multiplica por 2.5, así que el rango es ancilar para la media pero no para la escala.]{componente="SufficiencyLab"}
 ```yaml
 modo: ancilar
-n: 30
+n: 5
+sigma: 2.5
 ```
 :::
 

@@ -3,6 +3,9 @@ import { z } from 'zod';
 export const PARTITIONS = ['suma', 'suma-y-primero', 'completa', 'primero'] as const;
 export type PartitionId = (typeof PARTITIONS)[number];
 
+export const FACTORIZATION_MODELS = ['normal', 'poisson', 'uniforme'] as const;
+export type FactorizationModel = (typeof FACTORIZATION_MODELS)[number];
+
 export const parametersSchema = z.discriminatedUnion('modo', [
   z
     .object({
@@ -17,6 +20,8 @@ export const parametersSchema = z.discriminatedUnion('modo', [
       /** Samples whose likelihood curves are compared. */
       muestras: z.array(z.array(z.number()).min(2).max(12)).min(2).max(4),
       sigma: z.number().positive().optional(),
+      /** Model whose likelihood is factored; sigma applies only to the normal one. */
+      modelo: z.enum(FACTORIZATION_MODELS).optional(),
     })
     .strict(),
   z
@@ -38,6 +43,7 @@ export const parametersSchema = z.discriminatedUnion('modo', [
     .object({
       modo: z.literal('ancilar'),
       n: z.number().int().min(2).max(30).optional(),
+      sigma: z.number().min(0.5).max(3).optional(),
       semilla: z.number().int().nonnegative().optional(),
     })
     .strict(),

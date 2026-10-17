@@ -19,7 +19,12 @@ export default function SufficiencyLab({ params, conceptId, title }: Visualizati
       );
     case 'factorizacion':
       return (
-        <FactorizationView title={title} samples={config.muestras} sigma={config.sigma ?? 1} />
+        <FactorizationView
+          title={title}
+          samples={config.muestras}
+          sigma={config.sigma ?? 1}
+          model={config.modelo ?? 'normal'}
+        />
       );
     case 'rao-blackwell':
       return (
@@ -33,6 +38,8 @@ export default function SufficiencyLab({ params, conceptId, title }: Visualizati
     case 'completitud':
       return <CompletenessView title={title} g={config.g ?? [1, -1, 1, -1]} />;
     case 'ancilar':
-      return <AncillaryView title={title} n={config.n ?? 5} seed={seed} />;
+      return (
+        <AncillaryView title={title} n={config.n ?? 5} sigma={config.sigma ?? 1} seed={seed} />
+      );
   }
 }

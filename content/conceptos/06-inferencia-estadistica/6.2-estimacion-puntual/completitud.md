@@ -67,7 +67,7 @@ Experimentos sugeridos:
 
 1. Con $g = (1, -1, 1, -1)$ la curva cruza el cero, pero no es cero en todos lados.
 2. Intentar ajustar los cuatro valores para que la curva quede plana en cero: solo se logra con los cuatro en cero.
-3. Probar $g = (0, 1, -1, 0)$: la esperanza es $3p(1-p)^2 - 3p^2(1-p) = 3p(1-p)(1-2p)$, cero solo en $p = 0.5$.
+3. Probar $g = (0, 1, -1, 0)$: la esperanza es $3p(1-p)^2 - 3p^2(1-p) = 3p(1-p)(1-2p)$, que dentro de $(0, 1)$ solo se anula en $p = 0.5$ (también vale cero en los extremos 0 y 1).
 
 ## Ejemplo
 
@@ -78,7 +78,7 @@ $T \sim \operatorname{Binomial}(3, p)$ y $g = (1, -1, 1, -1)$, es decir, $g(k) =
 3. Se anula en un solo punto, no en todos: $g$ no es un contraejemplo a la completitud.
 4. Consecuencia: $\hat{p} = T/3$ es el único estimador insesgado de $p$ que es función de $T$.
 
-:::figura[Una función con valores mixtos, g = (0, 1, -1, 0): su esperanza se anula solo en p = 0.5.]{componente="SufficiencyLab"}
+:::figura[Una función con valores mixtos, g = (0, 1, -1, 0): dentro de (0, 1) su esperanza se anula solo en p = 0.5.]{componente="SufficiencyLab"}
 ```yaml
 modo: completitud
 g: [0, 1, -1, 0]
@@ -104,10 +104,10 @@ g: [1, -1, 1, -1, 1]
 - **Creer que basta con que la esperanza se anule en algunos valores del parámetro.** La condición exige que se anule para todos.
 - **Pensar que toda familia es completa.** Por ejemplo, para la uniforme en $(\theta, \theta + 1)$ el par (mínimo, máximo) es suficiente mínimo pero no completo, porque el rango tiene esperanza constante.
 
-:::figura[La función cero: su esperanza es cero para todo p, el único caso permitido por la completitud.]{componente="SufficiencyLab"}
+:::figura[Con 4 ensayos, g = (1, 0, 0, 0, -1): su esperanza, (1 - p) a la cuarta menos p a la cuarta, se anula en p = 0.5 y en ningún otro valor, así que no contradice la completitud.]{componente="SufficiencyLab"}
 ```yaml
 modo: completitud
-g: [0, 0, 0, 0]
+g: [1, 0, 0, 0, -1]
 ```
 :::
 

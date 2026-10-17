@@ -11,41 +11,104 @@ import { usePlayback } from '../../core/usePlayback.ts';
 import { useReducedMotion } from '../../core/useReducedMotion.ts';
 import { useResettableState } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
+import type { FactorizationModel } from './schema.ts';
 import styles from './SufficiencyLab.module.css';
 
 const SWEEP = 40;
 const STEPS_PER_SECOND = 8;
-const CURVE_POINTS = 160;
+const CURVE_POINTS = 240;
+
+interface ModelSpec {
+  symbol: string;
+  texSymbol: string;
+  statisticName: string;
+  /** Value of the sufficient statistic, which also locates the maximum. */
+  statistic: (s: readonly number[]) => number;
+  maximizer: (s: readonly number[]) => number;
+  /** Log-likelihood up to the factor h(x), which cancels in relative curves. */
+  logLikelihood: (s: readonly number[], theta: number) => number;
+  domain: (all: readonly number[], stats: readonly number[]) => [number, number];
+  header: string;
+}
+
+function spec(model: FactorizationModel, sigma: number): ModelSpec {
+  switch (model) {
+    case 'normal':
+      return {
+        symbol: 'μ',
+        texSymbol: '\\mu',
+        statisticName: 'media',
+        statistic: (s) => mean(s),
+        maximizer: (s) => mean(s),
+        logLikelihood: (s, mu) => normalLogLikelihood(s, mu, sigma),
+        domain: (all, stats) => [
+          Math.min(...all, ...stats) - 2 * sigma,
+          Math.max(...all, ...stats) + 2 * sigma,
+        ],
+        header:
+          'L(\\mu) = \\underbrace{\\exp\\!\\Big(-\\tfrac{n(\\bar{x} - \\mu)^2}{2\\sigma^2}\\Big)}_{g(\\bar{x},\\,\\mu)} \\cdot \\underbrace{\\exp\\!\\Big(-\\tfrac{\\sum (x_i - \\bar{x})^2}{2\\sigma^2}\\Big)}_{h(\\mathbf{x})}',
+      };
+    case 'poisson':
+      return {
+        symbol: 'λ',
+        texSymbol: '\\lambda',
+        statisticName: 'total',
+        statistic: (s) => sum(s),
+        maximizer: (s) => mean(s),
+        logLikelihood: (s, l) => (sum(s) === 0 ? 0 : sum(s) * Math.log(l)) - s.length * l,
+        domain: (all) => [0.01, 2.5 * Math.max(1, mean(all)) + 2],
+        header:
+          'L(\\lambda) = \\underbrace{e^{-n\\lambda}\\lambda^{\\sum x_i}}_{g(\\sum x_i,\\,\\lambda)} \\cdot \\underbrace{\\frac{1}{\\prod x_i!}}_{h(\\mathbf{x})}',
+      };
+    case 'uniforme':
+      return {
+        symbol: 'θ',
+        texSymbol: '\\theta',
+        statisticName: 'máximo',
+        statistic: (s) => Math.max(...s),
+        maximizer: (s) => Math.max(...s),
+        logLikelihood: (s, t) =>
+          t >= Math.max(...s) ? -s.length * Math.log(t) : Number.NEGATIVE_INFINITY,
+        domain: (all) => [0, 2 * Math.max(...all)],
+        header:
+          'L(\\theta) = \\underbrace{\\theta^{-n}\\,\\mathbf{1}\\{x_{(n)} \\le \\theta\\}}_{g(x_{(n)},\\,\\theta)} \\cdot \\underbrace{\\mathbf{1}\\{x_{(1)} \\ge 0\\}}_{h(\\mathbf{x})}',
+      };
+  }
+}
+
+const MODEL_TEXT: Record<FactorizationModel, string> = {
+  normal: 'normal con desviación conocida',
+  poisson: 'de Poisson',
+  uniforme: 'uniforme en (0, θ)',
+};
 
 interface FactorizationViewProps {
   title: string;
   samples: number[][];
   sigma: number;
+  model: FactorizationModel;
 }
 
 /**
- * Normal likelihood of mu for several samples with known sigma. By the
- * factorization theorem it depends on the data only through the sample
- * mean: samples with the same mean, however different, give curves that
- * coincide once each is scaled to its maximum.
+ * Likelihood of several samples, each scaled to its maximum. By the
+ * factorization theorem it depends on the data only through the sufficient
+ * statistic: samples that share it, however different, give coinciding
+ * curves, and samples that differ in it give different curves.
  */
-export function FactorizationView({ title, samples, sigma }: FactorizationViewProps) {
-  const means = samples.map((s) => mean(s));
-  const all = samples.flat();
-  const lo = Math.min(...all, ...means) - 2 * sigma;
-  const hi = Math.max(...all, ...means) + 2 * sigma;
+export function FactorizationView({ title, samples, sigma, model }: FactorizationViewProps) {
+  const m = useMemo(() => spec(model, sigma), [model, sigma]);
+  const stats = samples.map((s) => m.statistic(s));
+  const [lo, hi] = m.domain(samples.flat(), stats);
   const curves = useMemo(
     () =>
       samples.map((s) => {
-        const xs = Array.from(
-          { length: CURVE_POINTS + 1 },
-          (_, i) => lo + ((hi - lo) * i) / CURVE_POINTS,
-        );
-        const ll = xs.map((mu) => normalLogLikelihood(s, mu, sigma));
-        const top = Math.max(...ll);
-        return xs.map((mu, i) => ({ mu, l: Math.exp((ll[i] ?? top) - top) }));
+        const top = m.logLikelihood(s, m.maximizer(s));
+        return Array.from({ length: CURVE_POINTS + 1 }, (_, i) => {
+          const t = lo + ((hi - lo) * i) / CURVE_POINTS;
+          return { t, l: Math.exp(m.logLikelihood(s, t) - top) };
+        });
       }),
-    [samples, sigma, lo, hi],
+    [samples, m, lo, hi],
   );
   const reducedMotion = useReducedMotion();
   const [run, setRun] = useState(0);
@@ -58,30 +121,30 @@ export function FactorizationView({ title, samples, sigma }: FactorizationViewPr
     rate: STEPS_PER_SECOND,
     done: step >= SWEEP,
   });
-  const mu = lo + ((hi - lo) * step) / SWEEP;
-  const relative = samples.map((s, i) =>
-    Math.exp(normalLogLikelihood(s, mu, sigma) - normalLogLikelihood(s, means[i] ?? mu, sigma)),
+  const theta = lo + ((hi - lo) * step) / SWEEP;
+  const relative = samples.map((s) =>
+    Math.exp(m.logLikelihood(s, theta) - m.logLikelihood(s, m.maximizer(s))),
   );
-  const header = `L(\\mu) = \\underbrace{\\exp\\!\\Big(-\\tfrac{n(\\bar{x} - \\mu)^2}{2\\sigma^2}\\Big)}_{g(\\bar{x},\\,\\mu)} \\cdot \\underbrace{\\exp\\!\\Big(-\\tfrac{\\sum (x_i - \\bar{x})^2}{2\\sigma^2}\\Big)}_{h(\\mathbf{x})},\\quad \\mu = ${formatNumber(mu, 2)}`;
+  const header = `${m.header},\\quad ${m.texSymbol} = ${formatNumber(theta, 2)}`;
   const description =
-    `Verosimilitud normal de mu con sigma igual a ${formatNumber(sigma, 2)} para ${samples.length} muestras. ` +
+    `Verosimilitud ${MODEL_TEXT[model]} para ${samples.length} muestras. ` +
     samples
       .map(
         (s, i) =>
-          `Muestra ${i + 1}: media ${formatNumber(means[i] ?? 0, 2)}, suma de cuadrados respecto a su media ${formatNumber(sum(s.map((x) => (x - (means[i] ?? 0)) ** 2)), 2)}`,
+          `Muestra ${i + 1} (${s.join(', ')}): ${m.statisticName} ${formatNumber(stats[i] ?? 0, 2)}`,
       )
       .join('; ') +
-    '. Las muestras con la misma media dan la misma curva relativa.';
+    `. Las muestras con el mismo ${m.statisticName} dan la misma curva relativa.`;
 
   return (
     <VizFrame
       title={title}
       playback={playback}
       readouts={[
-        { label: 'μ', value: formatNumber(mu, 2) },
+        { label: m.symbol, value: formatNumber(theta, 2) },
         ...samples.map((_, i) => ({
-          label: `Muestra ${i + 1}: media; L relativa`,
-          value: `${formatNumber(means[i] ?? 0, 2)}; ${formatNumber(relative[i] ?? 0, 3)}`,
+          label: `Muestra ${i + 1}: ${m.statisticName}; L relativa`,
+          value: `${formatNumber(stats[i] ?? 0, 2)}; ${formatNumber(relative[i] ?? 0, 3)}`,
           color: seriesColor(i),
         })),
       ]}
@@ -123,13 +186,13 @@ export function FactorizationView({ title, samples, sigma }: FactorizationViewPr
                 orientation="bottom"
                 position={box.inner.top + box.inner.height}
                 ticks={8}
-                label="μ"
+                label={m.symbol}
               />
               <g aria-hidden="true">
                 {curves.map((c, i) => (
                   <polyline
                     key={i}
-                    points={c.map((p) => `${x(p.mu)},${y(p.l)}`).join(' ')}
+                    points={c.map((p) => `${x(p.t)},${y(p.l)}`).join(' ')}
                     fill="none"
                     stroke={seriesColor(i)}
                     strokeWidth={i === 0 ? 5 : 2.5}
@@ -149,8 +212,8 @@ export function FactorizationView({ title, samples, sigma }: FactorizationViewPr
                   )),
                 )}
                 <line
-                  x1={x(mu)}
-                  x2={x(mu)}
+                  x1={x(theta)}
+                  x2={x(theta)}
                   y1={box.inner.top}
                   y2={box.inner.top + box.inner.height}
                   stroke={DATA_COLORS.highlight}

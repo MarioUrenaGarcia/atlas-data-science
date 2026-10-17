@@ -33,7 +33,7 @@ publicado: true
 
 ## Intuición
 
-La media de una muestra normal (con varianza conocida) captura toda la información sobre $\mu$, y lo hace de forma completa. El rango no contiene ninguna información sobre $\mu$. Si el rango tuviera alguna relación con la media, saber el rango ayudaría a predecir la media, y con ella a $\mu$, lo que contradice que el rango no tenga información. El teorema de Basu convierte esta intuición en un resultado exacto: un estadístico suficiente completo y uno ancilar son **independientes**.
+La media de una muestra normal (con varianza conocida) captura toda la información sobre $\mu$, y lo hace de forma completa. El rango no contiene ninguna información sobre $\mu$. Podría pensarse que esto basta para que el rango sea independiente de la media, pero no es así: en una uniforme en $(\theta, \theta + 1)$ el rango también es ancilar y, sin embargo, está relacionado con el par (mínimo, máximo), que es suficiente. Lo que descarta la dependencia es la completitud: la probabilidad condicional de cualquier evento del rango dada la media, menos su probabilidad sin condicionar, es una función de la media con esperanza cero para todo $\mu$, y la completitud obliga a que sea cero. El teorema de Basu convierte esta intuición en un resultado exacto: un estadístico suficiente completo y uno ancilar son **independientes**.
 
 Su gran utilidad es práctica: permite probar independencias sin calcular ninguna distribución conjunta. La independencia de la media y la varianza muestrales en poblaciones normales, que requiere cálculos laboriosos por otras vías, sale en una línea.
 
@@ -58,7 +58,7 @@ Aplicación: con $X_i \sim \mathcal{N}(\mu, \sigma^2)$ y $\sigma$ fija, $\bar{X}
 
 ## Cómo usar la visualización
 
-Muestras normales de tamaño 8 con desviación 1: cada punto es el par (media, rango). La media es suficiente y completa para $\mu$; el rango es ancilar. La nube no muestra relación: la correlación es cercana a cero y la forma vertical es la misma a cualquier altura de la media.
+Muestras normales de tamaño 8 con desviación 1: cada punto es el par (media, rango). La media es suficiente y completa para $\mu$; el rango es ancilar. La nube no muestra relación: la correlación es cercana a cero y la distribución vertical de los puntos es la misma en cualquier posición horizontal.
 
 Experimentos sugeridos:
 
@@ -86,7 +86,7 @@ n: 3
 
 - **Prueba independencias sin cálculos de distribuciones conjuntas.**
 - **Requiere completitud:** con un suficiente que no es completo, puede haber dependencia con un ancilar.
-- **Recíproco parcial:** no todo par de estadísticos independientes proviene de esta situación.
+- **Recíproco:** si $T$ es suficiente y acotadamente completo, todo estadístico independiente de $T$ es ancilar.
 
 :::figura[Dependencia cuando no se cumplen las hipótesis: en una población exponencial, media y varianza muestrales están correlacionadas, porque la varianza no es ancilar para la media.]{componente="SamplingLab"}
 ```yaml

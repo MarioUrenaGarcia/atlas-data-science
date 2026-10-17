@@ -79,11 +79,11 @@ Muestra de Poisson $x_1, \dots, x_n$ con parámetro $\lambda$:
 3. Por el teorema, $T = \sum X_i$ es suficiente para $\lambda$.
 4. Las muestras $(2, 0, 4)$ y $(1, 3, 2)$ tienen el mismo total 6: sus verosimilitudes son proporcionales, $e^{-3\lambda}\lambda^6$ por constantes distintas ($1/48$ y $1/12$).
 
-:::figura[Dos muestras normales con la misma media pero distinta dispersión: sus verosimilitudes relativas para mu coinciden.]{componente="SufficiencyLab"}
+:::figura[Las muestras de Poisson del ejemplo, (2, 0, 4) y (1, 3, 2), con total 6, dan la misma verosimilitud relativa para lambda; la muestra (3, 3, 1), con total 7, da otra curva.]{componente="SufficiencyLab"}
 ```yaml
 modo: factorizacion
-muestras: [[10, 12, 14, 16], [7, 13, 13, 19]]
-sigma: 3
+modelo: poisson
+muestras: [[2, 0, 4], [1, 3, 2], [3, 3, 1]]
 ```
 :::
 
@@ -91,7 +91,7 @@ sigma: 3
 
 - **Si y solo si:** la factorización caracteriza la suficiencia; no es solo una condición suficiente.
 - **Lectura directa de la verosimilitud:** como función de $\theta$, $L(\theta) \propto g(T(\mathbf{x}), \theta)$.
-- **Familias exponenciales:** si $f_\theta(x) = h(x)\exp\{\eta(\theta)S(x) - A(\theta)\}$, entonces $\sum S(X_i)$ es suficiente.
+- **Familias exponenciales:** si $f_\theta(x) = h(x)\exp\{\eta(\theta)S(x) - A(\theta)\}$, donde $h(x)$ no depende de $\theta$, $\eta(\theta)$ es el parámetro natural, $S(x)$ es una función de los datos y $A(\theta)$ es la constante de normalización en escala logarítmica, entonces $\sum S(X_i)$ es suficiente, porque el producto de las densidades es $\prod h(x_i)\cdot\exp\{\eta(\theta)\sum S(x_i) - nA(\theta)\}$.
 
 :::figura[Mismo total, distinto orden: muestras normales cuyos datos son permutaciones o reacomodos con igual media producen la misma curva.]{componente="SufficiencyLab"}
 ```yaml
@@ -107,17 +107,17 @@ sigma: 2
 - **Olvidar el soporte.** En una uniforme $(0, \theta)$ la densidad incluye la indicadora $\mathbf{1}\{\max x_i \le \theta\}$, que hace suficiente al máximo; omitirla lleva a conclusiones erróneas.
 - **Concluir que un estadístico no es suficiente porque no se encontró una factorización.** Hay que probar que no existe, o usar la definición.
 
-:::figura[Medias distintas: con la desviación fija, si la media cambia la curva se desplaza, aunque la dispersión de los datos sea igual.]{componente="SufficiencyLab"}
+:::figura[Uniforme en (0, theta): las tres muestras suman 6.5, pero la verosimilitud depende del máximo por la indicadora del soporte; las dos con máximo 3.5 coinciden y la de máximo 2.5 no.]{componente="SufficiencyLab"}
 ```yaml
 modo: factorizacion
-muestras: [[1, 3, 5], [4, 6, 8]]
-sigma: 2
+modelo: uniforme
+muestras: [[1, 2, 3.5], [2.5, 0.5, 3.5], [2.5, 2.5, 1.5]]
 ```
 :::
 
 ## Conexiones
 
-El teorema da un criterio práctico para la [[suficiencia]] y conduce a la [[suficiencia-minima]]. Muestra que la verosimilitud depende de los datos solo a través del estadístico suficiente, la base del [[teorema-de-rao-blackwell]]. Usa la descomposición de sumas de cuadrados del [[teorema-de-cochran]].
+El teorema da un criterio práctico para la [[suficiencia]] y conduce a la [[suficiencia-minima]]. Muestra que la verosimilitud depende de los datos solo a través del estadístico suficiente, la base del [[teorema-de-rao-blackwell]]. La descomposición de sumas de cuadrados del caso normal es una identidad algebraica; la misma descomposición aparece, con sus distribuciones, en el [[teorema-de-cochran]].
 
 ## Formulario
 
@@ -143,4 +143,28 @@ f_\lambda(\mathbf{x}) = e^{-n\lambda}\lambda^{\sum x_i}\cdot\frac{1}{\prod x_i!}
 $$
 
 - $\lambda$: tasa; $\sum x_i$: suficiente para $\lambda$.
+:::
+
+:::formula[Familia exponencial]
+$$
+f_\theta(x) = h(x)\exp\{\eta(\theta)S(x) - A(\theta)\}\ \Longrightarrow\ \sum_{i=1}^{n} S(X_i)\ \text{es suficiente}
+$$
+
+- $h(x)$: factor sin $\theta$; $\eta(\theta)$: parámetro natural; $S(x)$: estadístico de una observación; $A(\theta)$: logaritmo de la constante de normalización.
+:::
+
+:::formula[Uniforme en (0, theta)]
+$$
+f_\theta(\mathbf{x}) = \theta^{-n}\,\mathbf{1}\{x_{(n)} \le \theta\}\,\mathbf{1}\{x_{(1)} \ge 0\}
+$$
+
+- $x_{(n)}$: máximo, suficiente para $\theta$; $x_{(1)}$: mínimo; $\mathbf{1}\{\cdot\}$: indicadora; $n$: tamaño.
+:::
+
+:::formula[Descomposición de sumas de cuadrados]
+$$
+\sum_{i=1}^{n}(x_i - \mu)^2 = \sum_{i=1}^{n}(x_i - \bar{x})^2 + n(\bar{x} - \mu)^2
+$$
+
+- $x_i$: datos; $\bar{x}$: media muestral; $\mu$: media de la población; $n$: tamaño.
 :::
