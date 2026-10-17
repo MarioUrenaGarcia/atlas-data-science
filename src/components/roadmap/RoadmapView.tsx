@@ -1,5 +1,6 @@
 import { List, Network } from 'lucide-react';
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
+import { lazyWithRecovery } from '../../app/staleDeploy.ts';
 import { strings } from '../../app/strings.ts';
 import type { AtlasData } from '../../content/loader.ts';
 import { studyMinutes } from '../../lib/format/time.ts';
@@ -10,7 +11,7 @@ import { SegmentedControl } from '../ui/SegmentedControl.tsx';
 import { RoadmapList } from './RoadmapList.tsx';
 import styles from './RoadmapView.module.css';
 
-const RoadmapDiagram = lazy(() => import('./RoadmapDiagram.tsx'));
+const RoadmapDiagram = lazyWithRecovery(() => import('./RoadmapDiagram.tsx'));
 
 interface RoadmapViewProps {
   atlas: AtlasData;

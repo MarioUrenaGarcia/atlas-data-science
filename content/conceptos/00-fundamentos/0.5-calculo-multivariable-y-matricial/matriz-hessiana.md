@@ -98,6 +98,14 @@ punto: [1, 1]
 - **Formas cuadráticas:** para $f(\mathbf{x}) = \tfrac{1}{2}\mathbf{x}^\top \mathbf{A}\mathbf{x}$ con $\mathbf{A}$ simétrica, $\mathbf{H}_f = \mathbf{A}$ en todas partes.
 - **Condicionamiento:** el cociente $\lambda_{\max}/\lambda_{\min}$ mide qué tan alargado es el valle y controla la velocidad del descenso por gradiente.
 
+:::figura[En $x^2 + 3y^2$ la hessiana es $\operatorname{diag}(2, 6)$ en todas partes: la curvatura en $y$ es 3 veces la de $x$, y las elipses de nivel son 1.73 veces más largas en $x$ que en $y$.]{componente="SurfaceViz"}
+```yaml
+modo: hessiana
+campos: [eliptico]
+punto: [0, 0]
+```
+:::
+
 :::figura[Caso de la silla x² - y² en el origen: la hessiana tiene valores propios 2 y -2, y la curvatura uᵀHu = 2 cos 2θ cambia de signo al girar la línea: positiva a lo largo de x, negativa a lo largo de y y nula en las diagonales.]{componente="SurfaceViz"}
 ```yaml
 modo: hessiana

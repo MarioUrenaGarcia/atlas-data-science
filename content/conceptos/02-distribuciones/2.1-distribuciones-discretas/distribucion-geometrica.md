@@ -233,7 +233,7 @@ muestras: false
 
 ## Conexiones
 
-La geométrica es la espera hasta el primer éxito en ensayos de [[distribucion-de-bernoulli|Bernoulli]], y sus probabilidades forman una [[serie-geometrica]] que suma 1. Esperar hasta el éxito número $r$ lleva a la [[distribucion-binomial-negativa]], que es la suma de $r$ geométricas independientes. Mientras la [[distribucion-binomial]] fija los ensayos y cuenta éxitos, la geométrica fija los éxitos y cuenta ensayos. Si la probabilidad de éxito se elige al azar antes de cada espera, se obtienen mezclas como la [[distribucion-logaritmica]]. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
+La geométrica es la espera hasta el primer éxito en ensayos de [[distribucion-de-bernoulli|Bernoulli]], y sus probabilidades forman una [[serie-geometrica]] que suma 1. Esperar hasta el éxito número $r$ lleva a la [[distribucion-binomial-negativa]], que es la suma de $r$ geométricas independientes. Mientras la [[distribucion-binomial]] fija los ensayos y cuenta éxitos, la geométrica fija los éxitos y cuenta ensayos. Si la probabilidad de éxito se elige al azar antes de cada espera, se obtienen mezclas como la [[distribucion-logaritmica]]. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones. Su versión continua es la [[distribucion-exponencial]], también sin memoria.
 
 ## Formulario
 

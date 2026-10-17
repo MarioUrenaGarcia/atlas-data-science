@@ -12,6 +12,9 @@ orden: 11
 nivel: basico
 prerrequisitos:
   - desviacion-estandar-muestral
+relaciones:
+  - tipo: relacionado
+    id: normal-estandar-y-puntuacion-z
 etiquetas:
   - posición relativa
   - estandarización

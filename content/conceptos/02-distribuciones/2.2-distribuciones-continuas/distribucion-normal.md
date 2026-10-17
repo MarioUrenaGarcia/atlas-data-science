@@ -264,6 +264,9 @@ distribucion: normal
 valores:
   mu: 0
   sigma: 1
+rangos:
+  mu: [-8, 8]
+  sigma: [0.2, 3]
 dominio: [-8, 9]
 casos:
   - nombre: 'Normal estándar'

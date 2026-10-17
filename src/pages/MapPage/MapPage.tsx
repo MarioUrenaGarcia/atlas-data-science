@@ -78,7 +78,11 @@ export default function MapPage() {
           label={strings.map.title}
           value={view}
           options={VIEW_OPTIONS}
-          onChange={setView}
+          onChange={(next) => {
+            setView(next);
+            setSelected(null);
+            setFocusModule(null);
+          }}
         />
         <label className={styles.select}>
           <span>{strings.map.level}</span>
@@ -173,7 +177,9 @@ export default function MapPage() {
             </div>
             <h2 className={styles.panelTitle}>{selectedNode.titulo}</h2>
             <LevelBadge level={selectedNode.nivel} />
-            <p className={styles.panelSummary}><SummaryText text={selectedNode.resumen} /></p>
+            <p className={styles.panelSummary}>
+              <SummaryText text={selectedNode.resumen} />
+            </p>
             <p className={styles.panelMeta}>{strings.map.dependents(selectedNode.descendientes)}</p>
             <div className={styles.panelActions}>
               <ButtonLink to={`/concepto/${selectedNode.id}`} variant="primary" size="small">

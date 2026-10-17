@@ -11,6 +11,7 @@ orden: 9
 nivel: intermedio
 prerrequisitos:
   - teorema-central-del-limite
+  - funcion-caracteristica
 etiquetas:
   - teorema central del límite
   - función característica

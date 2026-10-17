@@ -11,6 +11,10 @@ orden: 3
 nivel: intermedio
 prerrequisitos:
   - convergencia-en-probabilidad
+  - funcion-de-distribucion-acumulada
+relaciones:
+  - tipo: relacionado
+    id: funcion-caracteristica
 etiquetas:
   - convergencia
   - función de distribución
@@ -158,7 +162,7 @@ sucesion: signo-alternante
 
 ## Conexiones
 
-Es implicada por la [[convergencia-en-probabilidad]] y es el modo del [[teorema-central-del-limite]], del [[tcl-multivariado]] y del [[metodo-delta]]. El [[teorema-de-slutsky]] y el [[teorema-del-mapeo-continuo]] permiten combinarla y transformarla. El [[teorema-de-berry-esseen]] mide qué tan rápido converge la distribución de una media estandarizada, y el [[teorema-de-donsker]] la extiende a trayectorias completas. Las relaciones con los demás modos están en [[relaciones-entre-modos-de-convergencia]]. El ejemplo de las llamadas es la aproximación de la binomial por la [[distribucion-de-poisson]]. La [[distribucion-t-de-student]] converge en distribución a la normal cuando crecen sus grados de libertad.
+Es implicada por la [[convergencia-en-probabilidad]] y es el modo del [[teorema-central-del-limite]], del [[tcl-multivariado]] y del [[metodo-delta]]. El [[teorema-de-slutsky]] y el [[teorema-del-mapeo-continuo]] permiten combinarla y transformarla. El [[teorema-de-berry-esseen]] mide qué tan rápido converge la distribución de una media estandarizada, y el [[teorema-de-donsker]] la extiende a trayectorias completas. Las relaciones con los demás modos están en [[relaciones-entre-modos-de-convergencia]]. El ejemplo de las llamadas es la aproximación de la binomial por la [[distribucion-de-poisson]]. La [[distribucion-t-de-student]] converge en distribución a la normal cuando crecen sus grados de libertad. La [[aproximacion-de-poisson-a-la-binomial]] es un ejemplo clásico: la binomial con $np$ fijo converge en distribución a la Poisson.
 
 ## Formulario
 

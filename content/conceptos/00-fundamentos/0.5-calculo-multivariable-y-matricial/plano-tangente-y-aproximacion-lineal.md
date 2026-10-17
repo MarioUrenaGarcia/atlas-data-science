@@ -93,6 +93,14 @@ punto: [0.5, 0.5]
 - **Error de segundo orden:** si $f$ tiene segundas derivadas continuas, $f(\mathbf{x}) - L(\mathbf{x}) \approx \tfrac{1}{2}(\mathbf{x} - \mathbf{a})^\top \mathbf{H}(\mathbf{a})(\mathbf{x} - \mathbf{a})$, proporcional al cuadrado de la distancia.
 - **Diferencial total:** $df = f_x\,dx + f_y\,dy$ estima el cambio de $f$ ante pequeños cambios $dx$ y $dy$.
 - **Plano horizontal:** si $\nabla f(\mathbf{a}) = \mathbf{0}$, el plano tangente es horizontal; ocurre en extremos y en sillas.
+
+:::figura[En el mínimo del tazón $x^2 + y^2$, en el origen, el gradiente es cero y el plano tangente es el plano horizontal $z = 0$: la superficie lo toca y queda por encima en todas las direcciones.]{componente="SurfaceViz"}
+```yaml
+modo: tangente
+campos: [paraboloide]
+punto: [0, 0]
+```
+:::
 - **Diferenciable implica continua:** si $f$ es diferenciable en $\mathbf{a}$, es continua ahí.
 - **Propagación de errores:** si $x$ y $y$ se miden con errores pequeños, el error de $f$ es aproximadamente $f_x\,\Delta x + f_y\,\Delta y$.
 

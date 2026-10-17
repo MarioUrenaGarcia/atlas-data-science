@@ -87,6 +87,13 @@ n: 10
 ## Propiedades
 
 - **Error relativo:** $\frac{n!}{\text{Stirling}} - 1 \approx \frac{1}{12n}$, así que el error cae como $1/n$.
+
+:::figura[Con $n = 40$ el error relativo de Stirling es cerca de $1/(12 \cdot 40) \approx 0.2\,\%$, aunque $40!$ tiene 48 cifras: lo que se achica es la proporción, no la diferencia.]{componente="CalculusViz"}
+```yaml
+modo: stirling
+n: 40
+```
+:::
 - **Cotas:** para todo $n \ge 1$, $\sqrt{2\pi n}(n/e)^n\,e^{1/(12n+1)} < n! < \sqrt{2\pi n}(n/e)^n\,e^{1/(12n)}$.
 - **Forma logarítmica simple:** $\log n! \approx n\log n - n$, suficiente cuando solo importa el orden de magnitud.
 - **Coeficiente binomial central:** $\binom{2n}{n} \sim \frac{4^{n}}{\sqrt{\pi n}}$.
@@ -109,6 +116,13 @@ Idea de la parte principal: $\log n! = \sum_{k=1}^{n}\log k$ está entre $\int_1
 - **Olvidar el factor $\sqrt{2\pi n}$.** Sin él, $(n/e)^n$ subestima $n!$ por un factor que crece con $n$.
 - **Usar la forma simple para probabilidades.** $n\log n - n$ ignora términos que no se cancelan en cocientes y puede dar probabilidades con error grande.
 - **Aplicarla con $n$ pequeño esperando exactitud.** Para $n = 1$ el error es de 8 %.
+
+:::figura[Con $n = 1$ la fórmula da $\sqrt{2\pi}/e \approx 0.922$ en lugar de $1! = 1$: un error de 8 %, que baja a menos de 1 % desde $n = 9$.]{componente="CalculusViz"}
+```yaml
+modo: stirling
+n: 1
+```
+:::
 
 ## Conexiones
 

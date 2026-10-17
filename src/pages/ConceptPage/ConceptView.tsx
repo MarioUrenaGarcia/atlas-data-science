@@ -4,6 +4,7 @@ import { strings } from '../../app/strings.ts';
 import { useDocumentTitle } from '../../app/useDocumentTitle.ts';
 import { ConceptBody } from '../../components/concept/ConceptBody.tsx';
 import { ConceptLinkList } from '../../components/concept/ConceptLinkList.tsx';
+import { ConceptSideNav } from '../../components/concept/ConceptSideNav.tsx';
 import { ProgressControls } from '../../components/concept/ProgressControls.tsx';
 import { TableOfContents } from '../../components/concept/TableOfContents.tsx';
 import { VisualizationSlot } from '../../components/concept/VisualizationSlot.tsx';
@@ -47,8 +48,15 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
       ? atlas.byId.get(siblings[index + 1] ?? '')
       : undefined;
 
+  // The side arrows follow the global study order, so they keep going across
+  // submodule and module boundaries where the bottom pager stops.
+  const position = atlas.position.get(concept.id) ?? -1;
+  const globalPrevious = position > 0 ? atlas.nodes[position - 1] : undefined;
+  const globalNext = position >= 0 ? atlas.nodes[position + 1] : undefined;
+
   return (
     <article className={styles.page} style={{ ['--module-color' as string]: color }}>
+      <ConceptSideNav previous={globalPrevious} next={globalNext} />
       <header className={styles.header}>
         <Breadcrumbs
           label={strings.concept.breadcrumbLabel}
@@ -86,7 +94,9 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
         </ul>
       </header>
 
-      <p className={styles.summary}><SummaryText text={concept.resumen} /></p>
+      <p className={styles.summary}>
+        <SummaryText text={concept.resumen} />
+      </p>
 
       {content?.formulaHtml && (
         <div
