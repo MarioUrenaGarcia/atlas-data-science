@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run content:validate && node scripts/build-content.ts --production && tsc -b --noEmit && vite build && node scripts/copy-404.ts",
+    "build": "npm run content:validate && node scripts/build-content.ts --production && tsc -b --noEmit && vite build && node scripts/write-static-pages.ts",
     "preview": "vite preview",
     "content:build": "node scripts/build-content.ts",
     "content:validate": "node scripts/validate-content.ts",

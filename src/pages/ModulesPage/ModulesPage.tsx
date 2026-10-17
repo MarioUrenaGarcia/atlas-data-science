@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { strings } from '../../app/strings.ts';
+import { useDocumentTitle } from '../../app/useDocumentTitle.ts';
 import { moduleColor } from '../../components/ui/moduleColor.ts';
 import { PageHeader } from '../../components/ui/PageHeader.tsx';
 import { ProgressBar } from '../../components/ui/ProgressBar.tsx';
@@ -10,6 +11,7 @@ import styles from './ModulesPage.module.css';
 export default function ModulesPage() {
   const atlas = useAtlas();
   const statuses = useProgress((state) => state.conceptos);
+  useDocumentTitle(strings.modules.title);
   return (
     <>
       <PageHeader title={strings.modules.title} intro={strings.modules.intro} />
