@@ -275,7 +275,7 @@ referencia:
 
 ## Conexiones
 
-La beta-binomial es una mezcla de la [[distribucion-binomial]] sobre su probabilidad de éxito, y su normalización usa la [[funcion-beta]]. Así como la [[distribucion-binomial-negativa]] es una Poisson con tasa variable, la beta-binomial es una binomial con probabilidad variable: ambas modelan sobredispersión. Con más de dos categorías se generaliza a la Dirichlet-multinomial, mezcla de la [[distribucion-multinomial]]. En estadística bayesiana aparece como distribución predictiva del modelo beta-binomial conjugado. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
+La beta-binomial es una mezcla de la [[distribucion-binomial]] sobre su probabilidad de éxito, y su normalización usa la [[funcion-beta]]. Así como la [[distribucion-binomial-negativa]] es una Poisson con tasa variable, la beta-binomial es una binomial con probabilidad variable: ambas modelan sobredispersión. Con más de dos categorías se generaliza a la Dirichlet-multinomial, mezcla de la [[distribucion-multinomial]]. En estadística bayesiana aparece como distribución predictiva del modelo beta-binomial conjugado. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones. La probabilidad común sigue una [[distribucion-beta]], que es la conjugada de la binomial.
 
 ## Formulario
 

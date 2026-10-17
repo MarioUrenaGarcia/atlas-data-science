@@ -108,6 +108,16 @@ inicio: [0, 0]
 - **Ceros exactos:** en el lasso, el coeficiente $j$ es cero en la solución si $|\partial g/\partial x_j| \le \lambda$ en ella.
 - **Penalización suficiente:** si $\lambda \ge \lVert \nabla g(\mathbf{0}) \rVert_\infty$, la solución es $\mathbf{0}$.
 - **Casos particulares:** con $h = 0$ es el descenso de gradiente; con $h$ la indicadora de un conjunto, el gradiente proyectado.
+
+:::figura[Con $\lambda = 0$ el umbral suave no hace nada y el método es el descenso de gradiente: converge al mínimo sin penalización $(2, 0.3)$, sin ningún coeficiente en cero.]{componente="OptimizerRace"}
+```yaml
+modo: proximal
+matriz: [[2, 0.5], [0.5, 1]]
+centro: [2, 0.3]
+lambda: 0
+inicio: [-0.5, 1.5]
+```
+:::
 - **Aceleración:** FISTA agrega un término de inercia y mejora la rapidez de $1/k$ a $1/k^2$.
 
 :::figura[Con λ = 4.5, mayor que el máximo de |∇g(0)| = 4.15, la solución es (0, 0): el umbral suave anula ambos coeficientes en el primer paso y el punto ya no se mueve.]{componente="OptimizerRace"}

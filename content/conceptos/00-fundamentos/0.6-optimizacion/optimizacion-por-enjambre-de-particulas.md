@@ -104,6 +104,15 @@ semilla: 9
 
 - **Usar inercia mayor o igual que 1.** Las velocidades no se amortiguan, las partículas siguen volando y el enjambre no converge.
 - **Interpretar la mejor posición global como el mínimo garantizado.** Es solo el mejor punto visitado.
+
+:::figura[Rastrigin con semilla 2: el enjambre se reúne en $(0.995, 0)$, un mínimo local con $f = 0.995$, y lo reporta como su mejor posición aunque el mínimo global es $(0, 0)$.]{componente="OptimizerRace"}
+```yaml
+modo: poblacion
+metodo: enjambre
+funciones: [rastrigin]
+semilla: 2
+```
+:::
 - **Olvidar los límites del dominio.** Sin acotar las posiciones, las partículas con mucha velocidad salen de la región de interés.
 - **Usar el mismo aleatorio para todas las coordenadas.** Las implementaciones estándar sortean $r_1$ y $r_2$ por coordenada; con uno solo, el enjambre explora menos direcciones.
 
