@@ -4,6 +4,12 @@ import type { ConceptNode } from '../../content/types.ts';
 import { editDistance, normalizeText } from '../../lib/format/text.ts';
 import { INDEX_OPTIONS, type SearchDocument } from '../../lib/search/config.ts';
 import { expandQuery } from '../../lib/search/synonyms.ts';
+import {
+  rankScore,
+  titleCoverage,
+  titleWeights,
+  type TitleWeights,
+} from '../../lib/search/titleCoverage.ts';
 
 export interface SearchEngine {
   index: MiniSearch<SearchDocument>;
@@ -16,6 +22,16 @@ export interface SearchHit {
 }
 
 let enginePromise: Promise<SearchEngine> | null = null;
+const weightsByAtlas = new WeakMap<AtlasData, TitleWeights>();
+
+function weightsFor(atlas: AtlasData): TitleWeights {
+  let weights = weightsByAtlas.get(atlas);
+  if (!weights) {
+    weights = titleWeights(atlas.nodes.map((node) => node.titulo));
+    weightsByAtlas.set(atlas, weights);
+  }
+  return weights;
+}
 
 export function loadSearchEngine(): Promise<SearchEngine> {
   enginePromise ??= loadSearchData()
@@ -32,18 +48,22 @@ export function loadSearchEngine(): Promise<SearchEngine> {
 
 /**
  * Searches every synonym variant of the query and keeps the best score per
- * concept. When requiring all terms finds nothing, it retries accepting any
- * term so that long or partially wrong queries still return something useful.
+ * concept, corrected by how much of the concept title the matched terms cover.
+ * When requiring all terms finds nothing, it retries accepting any term so
+ * that long or partially wrong queries still return something useful.
  */
 export function runSearch(engine: SearchEngine, atlas: AtlasData, query: string): SearchHit[] {
   const variants = expandQuery(query, engine.synonyms);
   if (variants.length === 0) return [];
+  const weights = weightsFor(atlas);
   const collect = (combineWith: 'AND' | 'OR') => {
     const scores = new Map<string, number>();
     for (const variant of variants) {
       for (const result of engine.index.search(variant, { combineWith })) {
         const id = String(result.id);
-        scores.set(id, Math.max(scores.get(id) ?? 0, result.score));
+        const title = atlas.byId.get(id)?.titulo ?? '';
+        const score = rankScore(result.score, titleCoverage(title, result.terms, weights));
+        scores.set(id, Math.max(scores.get(id) ?? 0, score));
       }
     }
     return scores;
