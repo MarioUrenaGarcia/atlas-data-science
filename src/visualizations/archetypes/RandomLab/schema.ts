@@ -26,6 +26,8 @@ const preset = z
     nombre: z.string().min(1).max(40),
     descripcion: z.string().min(1).max(320),
     valores: values,
+    /** In the pares mode, turns the slice of triples on or off along with the numeric values. */
+    ternas: z.boolean().optional(),
   })
   .strict();
 

@@ -37,9 +37,11 @@ visualizacion:
       - nombre: 'Ternas del Mersenne Twister'
         descripcion: 'Rebanada de ternas con el valor del medio fijo: los puntos llenan el cuadrado sin planos visibles.'
         valores: {n: 600, semilla: 1}
+        ternas: true
       - nombre: 'Pares consecutivos'
         descripcion: 'Con la rebanada apagada, mil pares llenan el cuadrado de manera pareja.'
         valores: {n: 1000, semilla: 5489}
+        ternas: false
       - nombre: 'Semilla de referencia'
         descripcion: 'Semilla 5489, la de la implementación original: su primer valor entero es 3499211612.'
         valores: {n: 600, semilla: 5489}
@@ -118,7 +120,7 @@ valores:
 - **Estados de arranque:** con semillas cercanas a cero o con muchos ceros en el estado, las primeras salidas pueden tardar en mezclarse; la inicialización recomendada evita ese problema.
 - **Pruebas:** pasa las baterías estándar salvo algunas pruebas de complejidad lineal, que detectan su estructura binaria.
 
-:::figura[Casos con contexto (ternas, pares, semilla de referencia): cada botón carga el número de puntos y la semilla.]{componente="RandomLab"}
+:::figura[Casos con contexto (ternas, pares, semilla de referencia): cada botón carga el número de puntos, la semilla y, en los dos primeros, enciende o apaga la rebanada.]{componente="RandomLab"}
 ```yaml
 modo: pares
 generador: mt
@@ -129,9 +131,11 @@ casos:
   - nombre: 'Ternas del Mersenne Twister'
     descripcion: 'Sin planos en la rebanada.'
     valores: {n: 600, semilla: 1}
+    ternas: true
   - nombre: 'Pares consecutivos'
     descripcion: 'Cuadrado lleno de manera pareja.'
     valores: {n: 1000, semilla: 5489}
+    ternas: false
   - nombre: 'Semilla de referencia'
     descripcion: 'Primer entero 3499211612.'
     valores: {n: 600, semilla: 5489}

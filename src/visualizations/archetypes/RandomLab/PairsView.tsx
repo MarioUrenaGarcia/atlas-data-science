@@ -101,7 +101,11 @@ export function PairsView({ config, title }: PairsViewProps) {
     >
       <CasePanel
         cases={config.casos ?? []}
-        onLoad={(preset) => loadPreset(preset, definitions, parameters.set)}
+        onLoad={(preset) => {
+          loadPreset(preset, definitions, parameters.set);
+          const own = config.casos?.find((item) => item.nombre === preset.nombre);
+          if (own?.ternas !== undefined) parameters.set('ternas', own.ternas);
+        }}
       />
       <FormulaLine
         tex={

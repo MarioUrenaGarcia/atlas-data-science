@@ -36,7 +36,7 @@ visualizacion:
         descripcion: 'Con 8 capas los escalones son anchos: cerca del 73 % de los intentos cae en el núcleo y se acepta sin calcular la exponencial.'
         valores: {capas: 8}
       - nombre: 'Más capas'
-        descripcion: 'Con 32 capas los escalones abrazan la curva y casi todos los intentos se aceptan directamente.'
+        descripcion: 'Con 32 capas los escalones abrazan la curva y cerca del 91 % de los intentos se acepta directamente.'
         valores: {capas: 32}
       - nombre: 'Mínimo de capas'
         descripcion: 'Con 4 capas los bordes son grandes y una buena parte de los intentos requiere evaluar la densidad.'
@@ -125,7 +125,7 @@ casos:
     descripcion: '8 capas: 73 % en el núcleo.'
     valores: {capas: 8}
   - nombre: 'Más capas'
-    descripcion: '32 capas: casi todo en el núcleo.'
+    descripcion: '32 capas: 91 % en el núcleo.'
     valores: {capas: 32}
   - nombre: 'Mínimo de capas'
     descripcion: '4 capas: muchos bordes.'

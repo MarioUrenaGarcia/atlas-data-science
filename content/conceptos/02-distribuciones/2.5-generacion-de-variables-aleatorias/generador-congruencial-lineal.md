@@ -78,7 +78,7 @@ $x_n$ = el estado del generador en el paso $n$, un entero entre 0 y $m - 1$; $u_
 :::nota[Qué hace cada parámetro]
 - **$m$, módulo:** el número de estados posibles. Si aumenta, el periodo máximo crece y los valores se vuelven más finos.
 - **$a$, multiplicador:** cuánto se estira el estado en cada paso. Si se elige mal, el ciclo se acorta o cae en un punto fijo.
-- **$c$, incremento:** un desplazamiento constante. Si vale cero, el generador nunca alcanza el estado cero ni el periodo completo.
+- **$c$, incremento:** un desplazamiento constante. Si vale cero, el estado cero es un punto fijo y el periodo es a lo más $m - 1$; con $\gcd(a, m) = 1$ (máximo común divisor igual a uno) y semilla distinta de cero, el generador nunca llega al cero.
 - **$x_0$, semilla:** el estado inicial. Con periodo completo solo cambia el punto de entrada al ciclo.
 :::
 
