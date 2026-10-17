@@ -26,7 +26,7 @@ export function ConceptSideNav({ previous, next }: ConceptSideNavProps) {
         >
           <ChevronLeft size={24} aria-hidden="true" />
           <span className={styles.label} aria-hidden="true">
-            <span className={styles.kicker}>{strings.concept.previous}</span>
+            <span className={styles.kicker}>{strings.concept.previousInAtlas}</span>
             <span className={styles.title}>{previous.titulo}</span>
           </span>
         </Link>
@@ -38,7 +38,7 @@ export function ConceptSideNav({ previous, next }: ConceptSideNavProps) {
           aria-label={strings.concept.nextConcept(next.titulo)}
         >
           <span className={styles.label} aria-hidden="true">
-            <span className={styles.kicker}>{strings.concept.next}</span>
+            <span className={styles.kicker}>{strings.concept.nextInAtlas}</span>
             <span className={styles.title}>{next.titulo}</span>
           </span>
           <ChevronRight size={24} aria-hidden="true" />
