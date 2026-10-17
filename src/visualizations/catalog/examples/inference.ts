@@ -16,4 +16,21 @@ export const INFERENCE_EXAMPLES: CatalogExample[] = [
     title: 'Pivote t',
     params: { modo: 'pivote', poblacion: 'normal', n: 5 },
   },
+  {
+    component: 'EstimatorLab',
+    title: 'Diana',
+    params: { modo: 'diana', sesgo: 0.6, dispersion: 0.5 },
+  },
+  { component: 'EstimatorLab', title: 'Cuatro dianas', params: { modo: 'diana', cuatro: true } },
+  {
+    component: 'EstimatorLab',
+    title: 'Comparar estimadores',
+    params: { modo: 'comparar', problema: 'maximo-uniforme', n: 8 },
+  },
+  {
+    component: 'EstimatorLab',
+    title: 'Consistencia',
+    params: { modo: 'consistencia', problema: 'media-normal', estimadores: ['media', 'primero'] },
+  },
+  { component: 'EstimatorLab', title: 'Compromiso', params: { modo: 'compromiso' } },
 ];
