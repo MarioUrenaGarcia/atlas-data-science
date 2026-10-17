@@ -50,13 +50,13 @@ No todo estimador lo cumple. Usar solo el primer dato de la muestra para estimar
 ## Definición
 
 :::definicion[Consistencia]
-Una sucesión de estimadores $\hat{\theta}_n = t_n(X_1, \dots, X_n)$ es **consistente** para $\theta$ si converge en probabilidad a $\theta$:
+Una sucesión de estimadores $\hat{\theta}_n = t_n(X_1, \dots, X_n)$ es **consistente** para $\theta$ si converge en probabilidad a $\theta$, lo que se escribe $\hat{\theta}_n \xrightarrow{P} \theta$:
 $$
 \lim_{n \to \infty} P_\theta\big(|\hat{\theta}_n - \theta| > \varepsilon\big) = 0\quad \text{para todo } \varepsilon > 0 \text{ y todo } \theta.
 $$
 :::
 
-Condición suficiente: si $\operatorname{ECM}(\hat{\theta}_n) \to 0$, es decir, si el sesgo y la varianza tienden a cero, el estimador es consistente, porque por la desigualdad de Markov
+Condición suficiente: si $\operatorname{ECM}(\hat{\theta}_n) \to 0$, es decir, si el sesgo y la varianza tienden a cero, el estimador es consistente, porque la desigualdad de Markov aplicada a $(\hat{\theta}_n - \theta)^2$ (el mismo argumento que produce la desigualdad de Chebyshev) da
 $$
 P\big(|\hat{\theta}_n - \theta| > \varepsilon\big) \le \frac{\operatorname{ECM}(\hat{\theta}_n)}{\varepsilon^2}.
 $$
