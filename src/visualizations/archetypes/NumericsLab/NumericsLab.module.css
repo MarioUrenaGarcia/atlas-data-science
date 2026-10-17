@@ -1,0 +1,93 @@
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.panelTitle {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.bits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  margin: var(--space-2) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.bit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35em;
+  height: 1.8em;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.bitSign {
+  background: color-mix(in srgb, var(--data-4) 30%, var(--color-surface));
+}
+
+.bitExponent {
+  background: color-mix(in srgb, var(--data-2) 30%, var(--color-surface));
+}
+
+.bitFraction {
+  background: color-mix(in srgb, var(--data-1) 22%, var(--color-surface));
+}
+
+.bitDone {
+  outline: 2px solid var(--data-5);
+  outline-offset: -2px;
+}
+
+.graph {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+
+.node {
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-2);
+  background: var(--color-surface);
+  font-size: var(--text-sm);
+}
+
+.nodeActive {
+  border-color: var(--data-5);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--data-5) 45%, transparent);
+}
+
+.nodeHead {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-1);
+  font-weight: 600;
+}
+
+.nodeRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.nodeValue {
+  color: var(--color-text);
+}
