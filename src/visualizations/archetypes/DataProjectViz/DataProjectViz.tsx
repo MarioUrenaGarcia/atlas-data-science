@@ -66,8 +66,8 @@ export default function DataProjectViz({ params, conceptId, title }: Visualizati
       return (
         <EquityView
           title={title}
-          threshold={config.umbral ?? 0.5}
-          rates={config.tasas ?? [0.3, 0.15]}
+          threshold={config.umbral ?? 0.7}
+          rates={config.tasas ?? [0.7, 0.6]}
           perGroup={config.porGrupo ?? false}
           seed={defaultSeed(conceptId, config.semilla)}
         />

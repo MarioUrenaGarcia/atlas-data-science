@@ -77,8 +77,8 @@ export const parametersSchema = z.discriminatedUnion('modo', [
     .object({
       modo: z.literal('equidad'),
       umbral: z.number().min(0.05).max(0.95).optional(),
-      /** Base rates of the outcome in groups A and B. */
-      tasas: z.tuple([z.number().min(0.05).max(0.8), z.number().min(0.05).max(0.8)]).optional(),
+      /** Share of applicants who would repay (the positive class) in groups A and B. */
+      tasas: z.tuple([z.number().min(0.05).max(0.95), z.number().min(0.05).max(0.95)]).optional(),
       porGrupo: z.boolean().optional(),
       semilla: z.number().int().nonnegative().optional(),
     })

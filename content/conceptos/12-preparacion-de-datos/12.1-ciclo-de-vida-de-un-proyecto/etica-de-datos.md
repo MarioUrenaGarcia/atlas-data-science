@@ -51,20 +51,23 @@ La **ética de datos** es el conjunto de principios y prácticas que evitan dañ
 - **Transparencia y rendición de cuentas:** poder explicar y revisar cómo se tomó una decisión.
 :::
 
-Dos medidas concretas: una tabla tiene **k-anonimato** si cada combinación de cuasiidentificadores aparece al menos $k$ veces, y un clasificador cumple **igualdad de oportunidades** si su tasa de falsos negativos es la misma en todos los grupos:
+Dos medidas concretas: una tabla tiene **k-anonimato** si cada combinación de cuasiidentificadores aparece al menos $k$ veces, y un clasificador cumple **igualdad de oportunidades** si, entre las personas que merecen el resultado favorable (la clase positiva, por ejemplo "pagaría el crédito"), la proporción que lo recibe es la misma en todos los grupos:
 
 $$
-k = \min_{j} |C_j|, \qquad \mathrm{TFN}_g = \frac{FN_g}{VP_g + FN_g}, \qquad \mathrm{TFP}_g = \frac{FP_g}{FP_g + VN_g}.
+k = \min_{j} |C_j|, \qquad \mathrm{TVP}_g = \frac{VP_g}{VP_g + FN_g} = 1 - \mathrm{TFN}_g, \qquad \mathrm{TFP}_g = \frac{FP_g}{FP_g + VN_g}.
 $$
+
+Con la clase positiva definida como el resultado favorable, un falso negativo es una persona que merecía el beneficio y no lo recibió: es el error que daña directamente al grupo.
 
 :::nota[Qué significa cada símbolo]
 - $C_j$: clase de equivalencia $j$, es decir, el conjunto de registros que comparten los mismos valores de los cuasiidentificadores.
 - $|C_j|$: número de registros en esa clase.
 - $k$: tamaño de la clase más pequeña; $k = 1$ significa que al menos una persona es única.
 - $g$: grupo de personas, por ejemplo A y B.
-- $VP_g, FP_g, FN_g, VN_g$: conteos de la matriz de confusión dentro del grupo $g$.
-- $\mathrm{TFN}_g$: tasa de falsos negativos del grupo $g$.
-- $\mathrm{TFP}_g$: tasa de falsos positivos del grupo $g$.
+- $VP_g, FP_g, FN_g, VN_g$: conteos de la matriz de confusión dentro del grupo $g$, con la clase positiva igual al resultado favorable.
+- $\mathrm{TVP}_g$: tasa de verdaderos positivos del grupo $g$, la proporción de quienes merecen el beneficio y lo reciben.
+- $\mathrm{TFN}_g$: tasa de falsos negativos, la proporción de quienes lo merecen y no lo reciben.
+- $\mathrm{TFP}_g$: tasa de falsos positivos, la proporción de quienes no lo merecen y lo reciben.
 :::
 
 ## Cómo usar la visualización
@@ -80,10 +83,11 @@ Los controles generalizan las columnas: conservar menos dígitos del código pos
 1. Con los valores exactos, las ocho combinaciones son distintas: $k = 1$ y los 8 registros son únicos.
 2. Se generaliza el código postal a 3 dígitos y la edad a décadas: las clases son (067, 30 a 39, F), (067, 50 a 59, M), (031, 40 a 49, F) y (031, 20 a 29, M), con 2 registros cada una. Ahora $k = 2$.
 
-**Equidad.** Un modelo de crédito se aplica a dos grupos de 200 personas. En A hay 60 personas que no pagarían y en B, 30. El modelo rechaza a 70 en A ($VP = 54$, $FP = 16$) y a 40 en B ($VP = 18$, $FP = 22$).
+**Equidad.** Un modelo aprueba créditos en dos grupos de 200 solicitantes; la clase positiva es "pagaría" y la acción es aprobar. En A, 140 personas pagarían y 60 no; en B, 170 pagarían y 30 no. El modelo aprueba en A a 126 buenos pagadores y a 16 morosos, y en B a 102 buenos pagadores y a 6 morosos.
 
-1. $\mathrm{TFP}_A = 16/140 = 0.114$ y $\mathrm{TFP}_B = 22/170 = 0.129$: los rechazos injustificados son parecidos.
-2. $\mathrm{TFN}_A = 6/60 = 0.10$ y $\mathrm{TFN}_B = 12/30 = 0.40$: en B el modelo deja pasar a 4 de cada 10 personas que no pagarán, así que es mucho menos útil para ese grupo y viola la igualdad de oportunidades.
+1. Buenos pagadores rechazados: $FN_A = 140 - 126 = 14$ y $FN_B = 170 - 102 = 68$, así que $\mathrm{TFN}_A = 14/140 = 0.10$ y $\mathrm{TFN}_B = 68/170 = 0.40$.
+2. Tasas de verdaderos positivos: $\mathrm{TVP}_A = 0.90$ y $\mathrm{TVP}_B = 0.60$. Cuatro de cada diez buenos pagadores de B son rechazados, contra uno de cada diez en A: el modelo viola la igualdad de oportunidades, y el daño lo sufren las personas de B.
+3. Morosos aprobados: $\mathrm{TFP}_A = 16/60 = 0.27$ y $\mathrm{TFP}_B = 6/30 = 0.20$. Este error afecta sobre todo al prestamista, no al grupo.
 
 :::figura[Generalización: con el código postal reducido a 3 dígitos y grupos de edad de 10 años, la mayoría de los recuadros reúne a varias personas y el k de anonimato sube.]{componente="DataProjectViz"}
 ```yaml
@@ -108,13 +112,13 @@ registros: 40
 ```
 :::
 
-- **Las tasas de error por grupo no pueden igualarse todas a la vez** cuando los grupos tienen distinta proporción de positivos y el modelo no es perfecto: igualar los falsos negativos suele separar los falsos positivos o la proporción de rechazados.
+- **Las tasas de error por grupo no pueden igualarse todas a la vez** cuando los grupos tienen distinta proporción de positivos y el modelo no es perfecto: igualar los buenos pagadores rechazados suele separar los morosos aprobados o la proporción de aprobados.
 
-:::figura[Equidad con un umbral común: el modelo separa peor las clases en el grupo B, cuyas tasas de falsos negativos y de falsos positivos difieren de las del grupo A.]{componente="DataProjectViz"}
+:::figura[Equidad con un umbral común: el modelo separa peor a buenos y malos pagadores en el grupo B, y la proporción de buenos pagadores rechazados en B difiere de la de A.]{componente="DataProjectViz"}
 ```yaml
 modo: equidad
-umbral: 0.5
-tasas: [0.3, 0.15]
+umbral: 0.7
+tasas: [0.7, 0.6]
 ```
 :::
 
@@ -122,13 +126,14 @@ tasas: [0.3, 0.15]
 
 - **Creer que quitar el nombre anonimiza.** Los cuasiidentificadores (código postal, fecha de nacimiento, sexo) permiten reidentificar por cruce con otras fuentes.
 - **Evaluar la equidad solo con la exactitud global.** Un modelo puede tener la misma exactitud en dos grupos y repartir sus errores de forma muy distinta entre falsos positivos y falsos negativos.
+- **Definir la clase positiva sin pensar en quién sufre cada error.** Si el positivo es "no pagaría" y la acción es rechazar, el falso negativo es un moroso aprobado, que perjudica al prestamista; el error que perjudica al solicitante es el buen pagador rechazado.
 - **Corregir la desigualdad sin decir qué se iguala.** Usar umbrales distintos por grupo puede igualar una tasa a costa de otra; la elección debe hacerse explícita y justificarse según el daño que causa cada error.
 
-:::figura[Error de corregir sin decir qué se iguala: con un umbral distinto para el grupo B se puede acercar su tasa de falsos negativos a la de A, pero cambian sus falsos positivos y su proporción de rechazados.]{componente="DataProjectViz"}
+:::figura[Error de corregir sin decir qué se iguala: con un umbral distinto para el grupo B se puede acercar su proporción de buenos pagadores rechazados a la de A, pero cambian sus morosos aprobados y su proporción de aprobados.]{componente="DataProjectViz"}
 ```yaml
 modo: equidad
-umbral: 0.5
-tasas: [0.3, 0.15]
+umbral: 0.7
+tasas: [0.7, 0.6]
 porGrupo: true
 ```
 :::
@@ -151,19 +156,20 @@ $$
 
 :::formula[Tasas de error por grupo]
 $$
-\mathrm{TFN}_g = \frac{FN_g}{VP_g + FN_g}, \qquad \mathrm{TFP}_g = \frac{FP_g}{FP_g + VN_g}
+\mathrm{TVP}_g = \frac{VP_g}{VP_g + FN_g} = 1 - \mathrm{TFN}_g, \qquad \mathrm{TFP}_g = \frac{FP_g}{FP_g + VN_g}
 $$
 
 - $g$: grupo.
-- $VP_g, FP_g, FN_g, VN_g$: conteos de la matriz de confusión del grupo.
-- $\mathrm{TFN}_g$: proporción de positivos reales que el modelo no detecta.
-- $\mathrm{TFP}_g$: proporción de negativos reales que el modelo marca.
+- $VP_g, FP_g, FN_g, VN_g$: conteos de la matriz de confusión del grupo, con la clase positiva igual al resultado favorable.
+- $\mathrm{TVP}_g$: proporción de quienes merecen el beneficio y lo reciben.
+- $\mathrm{TFN}_g$: proporción de quienes merecen el beneficio y no lo reciben.
+- $\mathrm{TFP}_g$: proporción de quienes no lo merecen y lo reciben.
 :::
 
 :::formula[Igualdad de oportunidades]
 $$
-\mathrm{TFN}_A = \mathrm{TFN}_B
+\mathrm{TVP}_A = \mathrm{TVP}_B
 $$
 
-- $\mathrm{TFN}_A$, $\mathrm{TFN}_B$: tasas de falsos negativos de los grupos A y B.
+- $\mathrm{TVP}_A$, $\mathrm{TVP}_B$: tasas de verdaderos positivos de los grupos A y B para el resultado favorable.
 :::

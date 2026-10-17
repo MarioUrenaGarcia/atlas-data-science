@@ -31,9 +31,11 @@ interface EquityViewProps {
 }
 
 /**
- * A risk score applied to two groups. With one shared threshold the false
- * positive and false negative rates differ between groups; separate
- * thresholds can equalize one rate at the price of others.
+ * A credit score (estimated probability of repaying) applied to two groups;
+ * applicants at or above the threshold are approved. The positive class is
+ * "would repay", so a false negative is a good payer who is rejected. With
+ * one shared threshold the true positive rates differ between groups;
+ * separate thresholds can equalize them at the price of other rates.
  */
 export function EquityView(props: EquityViewProps) {
   const definitions: ParameterDefinition[] = [
@@ -98,12 +100,13 @@ export function EquityView(props: EquityViewProps) {
   const [ra, rb] = rates;
   const p = (v: number | undefined) =>
     v === undefined || Number.isNaN(v) ? '...' : formatNumber(v, 3);
-  const header = `TFP_A = ${p(ra?.falsePositiveRate)},\\ TFP_B = ${p(rb?.falsePositiveRate)};\\quad TFN_A = ${p(ra?.falseNegativeRate)},\\ TFN_B = ${p(rb?.falseNegativeRate)}`;
+  const tpr = (r: typeof ra) => (r ? 1 - r.falseNegativeRate : Number.NaN);
+  const header = `TVP_A = ${p(tpr(ra))},\\ TVP_B = ${p(tpr(rb))};\\quad TFP_A = ${p(ra?.falsePositiveRate)},\\ TFP_B = ${p(rb?.falsePositiveRate)}`;
   const description =
-    `Dos grupos de ${GROUP_SIZE} personas con tasas de positivos ${formatNumber(props.rates[0], 2)} y ${formatNumber(props.rates[1], 2)}. ` +
+    `Dos grupos de ${GROUP_SIZE} solicitantes; proporción que pagaría: ${formatNumber(props.rates[0], 2)} y ${formatNumber(props.rates[1], 2)}. ` +
     `Umbrales ${formatNumber(uA, 2)} y ${formatNumber(uB, 2)}. ` +
-    `Tasa de falsos positivos: A ${p(ra?.falsePositiveRate)}, B ${p(rb?.falsePositiveRate)}. ` +
-    `Tasa de falsos negativos: A ${p(ra?.falseNegativeRate)}, B ${p(rb?.falseNegativeRate)}.`;
+    `Morosos aprobados: A ${p(ra?.falsePositiveRate)}, B ${p(rb?.falsePositiveRate)}. ` +
+    `Buenos pagadores rechazados: A ${p(ra?.falseNegativeRate)}, B ${p(rb?.falseNegativeRate)}.`;
 
   return (
     <VizFrame
@@ -113,38 +116,38 @@ export function EquityView(props: EquityViewProps) {
       parameters={parameters}
       readouts={[
         {
-          label: 'Falsos positivos, grupo A',
+          label: 'Morosos aprobados (TFP), grupo A',
           value: p(ra?.falsePositiveRate),
           color: DATA_COLORS.primary,
         },
         {
-          label: 'Falsos positivos, grupo B',
+          label: 'Morosos aprobados (TFP), grupo B',
           value: p(rb?.falsePositiveRate),
           color: DATA_COLORS.secondary,
         },
         {
-          label: 'Falsos negativos, grupo A',
+          label: 'Buenos pagadores rechazados (TFN), grupo A',
           value: p(ra?.falseNegativeRate),
           color: DATA_COLORS.primary,
         },
         {
-          label: 'Falsos negativos, grupo B',
+          label: 'Buenos pagadores rechazados (TFN), grupo B',
           value: p(rb?.falseNegativeRate),
           color: DATA_COLORS.secondary,
         },
-        { label: 'Marcados en A y en B', value: `${p(ra?.flaggedRate)} y ${p(rb?.flaggedRate)}` },
+        { label: 'Aprobados en A y en B', value: `${p(ra?.flaggedRate)} y ${p(rb?.flaggedRate)}` },
       ]}
       legend={[
-        { label: 'No pagaría (positivo real)', color: DATA_COLORS.negative, shape: 'circle' },
-        { label: 'Pagaría (negativo real)', color: DATA_COLORS.neutral, shape: 'circle' },
+        { label: 'Pagaría (positivo real)', color: DATA_COLORS.positive, shape: 'circle' },
+        { label: 'No pagaría (negativo real)', color: DATA_COLORS.negative, shape: 'circle' },
         { label: 'Umbral', color: DATA_COLORS.highlight, shape: 'line' },
       ]}
       description={description}
     >
       <FormulaLine tex={header} />
       <p className={styles.stage}>
-        Cada punto es una persona colocada según su puntaje de riesgo. A la derecha del umbral se le
-        niega el crédito.
+        Cada punto es un solicitante colocado según su probabilidad estimada de pagar. A la derecha
+        del umbral se aprueba el crédito.
       </p>
       <ChartSvg
         label={description}
@@ -166,7 +169,7 @@ export function EquityView(props: EquityViewProps) {
                 orientation="bottom"
                 position={top + height}
                 ticks={10}
-                label="Puntaje de riesgo"
+                label="Probabilidad estimada de pagar"
               />
               <g aria-hidden="true">
                 {visible.map((g, gi) => {
@@ -199,8 +202,8 @@ export function EquityView(props: EquityViewProps) {
                             cx={x(c.score)}
                             cy={y0 + jitter}
                             r={DOT_RADIUS}
-                            fill={c.positive ? DATA_COLORS.negative : DATA_COLORS.neutral}
-                            fillOpacity={c.positive ? 0.9 : 0.5}
+                            fill={c.positive ? DATA_COLORS.positive : DATA_COLORS.negative}
+                            fillOpacity={c.positive ? 0.5 : 0.9}
                           />
                         );
                       })}
