@@ -1,0 +1,38 @@
+.caption {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.label {
+  fill: var(--color-text);
+  font-size: 12px;
+  font-family: var(--font-sans);
+}
+
+.labelMuted {
+  fill: var(--color-text-muted);
+  font-size: 11px;
+  font-family: var(--font-sans);
+}
+
+.weight {
+  fill: var(--color-text);
+  font-size: 13px;
+  font-weight: 650;
+  font-family: var(--font-mono);
+}
+
+.cell {
+  fill: var(--color-text);
+  font-size: 13px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.target {
+  fill: var(--color-text-muted);
+  font-size: 10px;
+  font-family: var(--font-sans);
+}
