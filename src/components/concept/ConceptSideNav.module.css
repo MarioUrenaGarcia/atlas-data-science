@@ -118,11 +118,20 @@
     min-width: 0;
   }
 
+  .kicker,
   .title {
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  /* Whatever the browser scrolls into view (the control that receives keyboard
+     focus, an anchor) stops above the bar instead of behind it. The value is
+     the bar height (48 px links, two paddings, the border and the safe area)
+     plus a small gap. */
+  :global(html):has(.nav) {
+    scroll-padding-bottom: calc(48px + 3 * var(--space-2) + 1px + env(safe-area-inset-bottom, 0px));
   }
 }
 
