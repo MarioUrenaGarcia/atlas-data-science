@@ -1,0 +1,62 @@
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.panelTitle {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.table th {
+  font-family: inherit;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.codes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin: var(--space-2) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.code {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-surface);
+}
+
+.group {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-surface);
+}
+
+.groupActive {
+  border-color: var(--data-5);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--data-5) 45%, transparent);
+}
