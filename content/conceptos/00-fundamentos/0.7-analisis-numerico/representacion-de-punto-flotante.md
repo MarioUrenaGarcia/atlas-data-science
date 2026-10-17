@@ -92,7 +92,7 @@ formato: float64
 - **Error relativo acotado:** todo número dentro del rango se guarda con error relativo menor o igual que $\varepsilon/2$.
 - **Separación proporcional al tamaño:** la distancia entre números consecutivos con exponente $e$ es $2^{e - p}$; se duplica cada vez que el exponente sube en uno.
 
-:::figura[1000 en precisión simple: su exponente es 9 y la distancia al siguiente número representable es $2^{9 - 23} \approx 6.1 \times 10^{-5}$, unas 500 veces mayor que cerca de 0.1.]{componente="NumericsLab"}
+:::figura[1000 en precisión simple: su exponente es 9 y la distancia al siguiente número representable es $2^{9 - 23} \approx 6.1 \times 10^{-5}$, unas 8000 veces mayor que cerca de 0.1, donde la separación es $2^{-27} \approx 7.5 \times 10^{-9}$.]{componente="NumericsLab"}
 ```yaml
 modo: flotante
 valor: 1000

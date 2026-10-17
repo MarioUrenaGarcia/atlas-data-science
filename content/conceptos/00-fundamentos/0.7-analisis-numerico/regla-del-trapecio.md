@@ -108,7 +108,7 @@ reglas: [trapecio]
 
 ## Errores comunes
 
-- **Esperar orden 2 con funciones no suaves.** Con $\sqrt{x}$ en $[0, 1]$ la derivada es infinita en 0 y el error baja más lento: $-0.0031$ con 16 subintervalos, y Simpson apenas mejora a $-0.0013$.
+- **Esperar orden 2 con funciones no suaves.** Con $\sqrt{x}$ en $[0, 1]$ la derivada es infinita en 0 y el error baja más lento: $0.0031$ con 16 subintervalos, positivo porque la función es cóncava, y Simpson apenas mejora a $0.0013$.
 
 :::figura[$\sqrt{x}$ en $[0, 1]$ con el trapecio y Simpson: las dos rectas del panel derecho tienen pendiente cercana a $-1.5$ y casi se tocan, porque la singularidad de la derivada en 0 domina el error de ambas reglas.]{componente="NumericsLab"}
 ```yaml
