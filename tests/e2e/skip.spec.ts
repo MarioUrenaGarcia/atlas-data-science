@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { generatedConcepts, trackErrors } from './helpers.ts';
+import { generatedConcepts, trackErrors, waitForVisualizations } from './helpers.ts';
 
 /** Concepts examined per module while looking for an animation with a final state. */
 const CANDIDATES_PER_MODULE = 15;
@@ -18,6 +18,7 @@ for (const [module, ids] of byModule) {
     const errors = trackErrors(page);
     for (const id of ids.slice(0, CANDIDATES_PER_MODULE)) {
       await page.goto(`/concepto/${id}`);
+      await waitForVisualizations(page);
       const frame = page.locator('[aria-label^="Visualización interactiva"]').first();
       await expect(frame).toBeVisible();
       const skip = frame.getByRole('button', { name: 'Saltar al final' });
