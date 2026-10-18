@@ -83,7 +83,9 @@ test('las flechas laterales recorren el Atlas en orden de estudio', async ({ pag
   if (!current || !next) return;
   const errors = trackErrors(page);
   await page.goto(`/concepto/${current.id}`);
-  await page.mouse.wheel(0, 3000);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(current.titulo);
+  // Scrolled into the body, the arrows (or the bar on narrow screens) stay in view.
+  await page.evaluate(() => window.scrollBy(0, 3000));
   const arrow = page.getByRole('link', { name: `Siguiente en el Atlas: ${next.titulo}` });
   await expect(arrow).toBeInViewport();
   await arrow.click();
@@ -113,4 +115,21 @@ test('el mapa dibuja los conceptos y la vista por módulos abre un módulo', asy
   await page.getByRole('radio', { name: 'Por módulos' }).click();
   await expect.poll(painted).toBeGreaterThan(0);
   expect(errors).toEqual([]);
+});
+
+test('en pantallas angostas la barra de navegación no tapa nada al cargar la ficha', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(!isMobile, 'En escritorio las flechas van en los márgenes.');
+  const concept = generatedConcepts().find((node) => node.componente === 'DistributionExplorer');
+  test.skip(!concept, 'No hay una ficha con DistributionExplorer.');
+  if (!concept) return;
+  await page.goto(`/concepto/${concept.id}`);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(concept.titulo);
+  const bar = page.getByRole('navigation', { name: 'Concepto anterior y siguiente en el Atlas' });
+  // On arrival the bar waits at the end of the article instead of covering the visualization.
+  await expect(bar).not.toBeInViewport();
+  await page.evaluate(() => window.scrollBy(0, window.innerHeight * 2));
+  await expect(bar).toBeInViewport();
 });
