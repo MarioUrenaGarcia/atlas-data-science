@@ -1,5 +1,5 @@
 import { scaleLinear, type ScaleLinear } from 'd3-scale';
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import { DATA_COLORS } from '../core/colors.ts';
 import { Axis } from '../core/svg/Axis.tsx';
 import { ChartSvg } from '../core/svg/ChartSvg.tsx';
@@ -124,6 +124,7 @@ export function ScatterFrame({
   label: string;
   children: (s: ScatterScales) => ReactNode;
 }) {
+  const clipId = useId().replace(/:/g, '');
   return (
     <ChartSvg
       label={label}
@@ -151,7 +152,14 @@ export function ScatterFrame({
               label={yLabel}
             />
             <Axis scale={x} orientation="bottom" position={top + height} ticks={6} label={xLabel} />
-            {children({ x, y, left, right: left + width, top, bottom: top + height })}
+            <defs>
+              <clipPath id={`${clipId}-plot`}>
+                <rect x={left} y={top} width={width} height={height} />
+              </clipPath>
+            </defs>
+            <g clipPath={`url(#${clipId}-plot)`}>
+              {children({ x, y, left, right: left + width, top, bottom: top + height })}
+            </g>
           </g>
         );
       }}
