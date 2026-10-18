@@ -12,6 +12,7 @@ orden: 1
 nivel: basico
 prerrequisitos:
   - notacion-sumatoria-y-productoria
+  - funcion-de-masa-de-probabilidad
 relaciones:
   - tipo: contrasta
     id: distribucion-categorica

@@ -1,0 +1,88 @@
+.sets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+
+.set {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  min-width: 0;
+}
+
+.setNew {
+  border-color: var(--data-5);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--data-5) 45%, transparent);
+}
+
+.setAtom {
+  border-color: var(--data-1);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--data-1) 45%, transparent);
+}
+
+.cells {
+  display: flex;
+  gap: 2px;
+  flex: none;
+}
+
+.cell {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+}
+
+.cellOn {
+  background: var(--data-1);
+  border-color: var(--data-1);
+}
+
+.setName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.table th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.sum {
+  background: color-mix(in srgb, var(--data-5) 18%, transparent);
+  font-weight: 600;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
