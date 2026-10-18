@@ -58,3 +58,21 @@ test('la página de resultados conserva la consulta en la URL', async ({ page })
   await expect(page).toHaveURL(/\/buscar\?q=probabilidad/);
   await expect(main.getByText(/resultado/).first()).toBeVisible();
 });
+
+test('una consulta mal escrita muestra primero el concepto que nombra', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, 'Atajo de teclado de escritorio.');
+  test.skip(
+    !generatedConcepts().some((concept) => concept.id === 'distribucion-de-poisson'),
+    'La ficha de la distribución de Poisson no está publicada.',
+  );
+  await page.goto('/');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await page.keyboard.press('Control+k');
+  const dialog = page.getByRole('dialog', { name: 'Búsqueda de conceptos' });
+  await dialog.getByRole('searchbox').fill('poison');
+  await expect(dialog.getByRole('link').first()).toContainText('Distribución de Poisson');
+  await expect(dialog.getByRole('link').first()).not.toContainText('inflada');
+});

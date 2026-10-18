@@ -1,6 +1,7 @@
 import { CornerDownRight } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { strings } from '../../app/strings.ts';
+import { useDocumentTitle } from '../../app/useDocumentTitle.ts';
 import { ConceptListItem } from '../../components/concept/ConceptListItem.tsx';
 import { Breadcrumbs } from '../../components/ui/Breadcrumbs.tsx';
 import { LevelBadge } from '../../components/ui/LevelBadge.tsx';
@@ -14,6 +15,7 @@ export default function ModulePage() {
   const { numero } = useParams();
   const atlas = useAtlas();
   const module = atlas.moduleByNumber.get(Number(numero));
+  useDocumentTitle(module ? module.titulo : strings.notFound.title);
   if (!module) return <NotFoundPage message={strings.modules.notFound} />;
   const color = moduleColor(module.numero);
   // Submodules without published concepts are left out rather than shown empty.
