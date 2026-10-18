@@ -70,3 +70,47 @@ test('una ficha, su ruta y su módulo cargan sin errores', async ({ page }) => {
   await expect(page.getByRole('main').getByRole('link', { name: concept.titulo })).toBeVisible();
   expect(errors).toEqual([]);
 });
+
+test('las flechas laterales recorren el Atlas en orden de estudio', async ({ page }) => {
+  const concepts = generatedConcepts();
+  // The last concept of the first submodule checks that the arrows cross boundaries.
+  const index = concepts.findIndex(
+    (node, position) => position > 0 && concepts[position - 1]?.submodulo !== node.submodulo,
+  );
+  test.skip(index < 1, 'Hace falta más de un submódulo con fichas.');
+  const current = concepts[index - 1];
+  const next = concepts[index];
+  if (!current || !next) return;
+  const errors = trackErrors(page);
+  await page.goto(`/concepto/${current.id}`);
+  await page.mouse.wheel(0, 3000);
+  const arrow = page.getByRole('link', { name: `Concepto siguiente: ${next.titulo}` });
+  await expect(arrow).toBeInViewport();
+  await arrow.click();
+  await expect(page).toHaveURL(new RegExp(`/concepto/${next.id}$`));
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(next.titulo);
+  await page.getByRole('link', { name: `Concepto anterior: ${current.titulo}` }).click();
+  await expect(page).toHaveURL(new RegExp(`/concepto/${current.id}$`));
+  expect(errors).toEqual([]);
+});
+
+test('el mapa dibuja los conceptos y la vista por módulos abre un módulo', async ({ page }) => {
+  test.skip(generatedConcepts().length === 0, 'Todavía no hay fichas generadas.');
+  const errors = trackErrors(page);
+  await page.goto('/mapa');
+  const canvas = page.getByRole('img', { name: 'Mapa interactivo de conceptos' });
+  const painted = () =>
+    canvas.evaluate((element) => {
+      const target = element as HTMLCanvasElement;
+      const context = target.getContext('2d');
+      if (!context) return 0;
+      const data = context.getImageData(0, 0, target.width, target.height).data;
+      let count = 0;
+      for (let index = 3; index < data.length; index += 4) if (data[index]) count += 1;
+      return count;
+    });
+  await expect.poll(painted).toBeGreaterThan(0);
+  await page.getByRole('radio', { name: 'Por módulos' }).click();
+  await expect.poll(painted).toBeGreaterThan(0);
+  expect(errors).toEqual([]);
+});

@@ -1,0 +1,113 @@
+.nav {
+  display: contents;
+}
+
+.arrow {
+  position: fixed;
+  top: 50%;
+  z-index: calc(var(--z-header) - 1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 44px;
+  height: 64px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  transform: translateY(-50%);
+  opacity: 0.82;
+  transition:
+    opacity var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.previous {
+  left: 0;
+  border-left: none;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.next {
+  right: 0;
+  border-right: none;
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.arrow:hover,
+.arrow:focus-visible {
+  opacity: 1;
+  color: var(--module-color, var(--color-accent));
+  border-color: var(--module-color, var(--color-accent));
+}
+
+/* The destination title stays hidden until the arrow is hovered or focused,
+   so the arrows take little room next to the text. */
+.label {
+  display: none;
+  flex-direction: column;
+  max-width: 220px;
+  line-height: 1.3;
+}
+
+.next .label {
+  text-align: right;
+}
+
+.arrow:hover .label,
+.arrow:focus-visible .label {
+  display: flex;
+}
+
+.kicker {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+}
+
+.title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* On touch screens there is no hover and the text spans the whole width, so
+   the arrows become small round buttons in the lower corners. */
+@media (max-width: 760px) {
+  .arrow {
+    top: auto;
+    bottom: var(--space-4);
+    height: 48px;
+    min-width: 48px;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    transform: none;
+  }
+
+  .previous {
+    left: var(--space-3);
+  }
+
+  .next {
+    right: var(--space-3);
+  }
+
+  .arrow:hover .label,
+  .arrow:focus-visible .label {
+    display: none;
+  }
+}
+
+@media print {
+  .arrow {
+    display: none;
+  }
+}
