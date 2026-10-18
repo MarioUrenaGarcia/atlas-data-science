@@ -25,7 +25,13 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   {
     component: 'InequalityBound',
     title: 'Concentración',
-    params: { modo: 'concentracion', p: 0.3, umbral: 0.1, n: 300, cotas: ['chernoff', 'hoeffding', 'chebyshev'] },
+    params: {
+      modo: 'concentracion',
+      p: 0.3,
+      umbral: 0.1,
+      n: 300,
+      cotas: ['chernoff', 'hoeffding', 'chebyshev'],
+    },
   },
   {
     component: 'InequalityBound',

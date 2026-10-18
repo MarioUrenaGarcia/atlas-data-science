@@ -13,6 +13,11 @@ nivel: intermedio
 prerrequisitos:
   - convergencia-en-probabilidad
   - esperanza-matematica
+relaciones:
+  - tipo: relacionado
+    id: desigualdad-de-markov
+  - tipo: relacionado
+    id: desigualdad-de-chebyshev
 etiquetas:
   - convergencia
   - error cuadrático medio

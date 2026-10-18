@@ -12,6 +12,9 @@ nivel: avanzado
 prerrequisitos:
   - convergencia-casi-segura
   - ley-debil-de-los-grandes-numeros
+relaciones:
+  - tipo: relacionado
+    id: desigualdad-de-hoeffding
 etiquetas:
   - grandes números
   - convergencia casi segura
