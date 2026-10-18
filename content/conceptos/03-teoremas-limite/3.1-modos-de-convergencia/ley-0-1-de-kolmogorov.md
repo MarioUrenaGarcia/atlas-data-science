@@ -11,6 +11,7 @@ orden: 20
 nivel: avanzado
 prerrequisitos:
   - lemas-de-borel-cantelli
+  - independencia-de-variables-aleatorias
 etiquetas:
   - eventos de cola
   - independencia

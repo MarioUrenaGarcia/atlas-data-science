@@ -17,6 +17,21 @@ describe('linkedValues', () => {
     expect(values.alpha).toBe(3);
   });
 
+  it('incluye factores de la forma 1 - p', () => {
+    const values = linkedValues(
+      {
+        sigma: {
+          de: ['n', 'p'],
+          potencias: [0.5, 0.5],
+          complementos: ['p'],
+          potenciasComplemento: [0.5],
+        },
+      },
+      { n: 40, p: 0.5 },
+    );
+    expect(values.sigma).toBeCloseTo(Math.sqrt(10), 12);
+  });
+
   it('returns nothing without links', () => {
     expect(linkedValues(undefined, { n: 3 })).toEqual({});
   });

@@ -121,6 +121,15 @@ inicio: [3, 1.5]
 - **Usar una dirección que no es de descenso.** Si $\nabla f^\top \mathbf{d} \ge 0$, el retroceso nunca encuentra un paso aceptable.
 - **Empezar siempre con un paso diminuto.** El retroceso solo acorta; si $\alpha_0$ ya es muy pequeño, se acepta de inmediato un paso ineficiente.
 
+:::figura[Con $\alpha_0 = 0.01$ la primera prueba ya cumple Armijo y se acepta: $f$ baja solo de 15.75 a 13.52. El paso exacto en esa dirección, $\alpha^* = 0.104$, la llevaría hasta 3.63.]{componente="OptimizerRace"}
+```yaml
+modo: busqueda-lineal
+funciones: [cuadratica]
+inicio: [3, 1.5]
+alfa0: 0.01
+```
+:::
+
 :::figura[Con c₁ = 0.9 la recta de Armijo casi coincide con la tangente: se rechazan 0.3, 0.15, 0.075 y 0.0375, y solo se acepta α = 0.0188, un paso cinco veces más corto que el óptimo.]{componente="OptimizerRace"}
 ```yaml
 modo: busqueda-lineal
