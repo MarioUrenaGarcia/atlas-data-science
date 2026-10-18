@@ -9,6 +9,7 @@ interface GraphNode {
   submodulo: string;
   prerrequisitos: string[];
   componente: string;
+  contenido: string;
 }
 
 /** Concepts in the generated content, read from disk so tests adapt as content grows. */
@@ -24,8 +25,8 @@ export function figureComponents(): Map<string, string> {
   const result = new Map<string, string>();
   if (!existsSync(folder)) return result;
   // Syllabus order keeps the chosen page stable as content grows.
-  for (const { id } of generatedConcepts()) {
-    const file = join(folder, `${id}.json`);
+  for (const { id, contenido } of generatedConcepts()) {
+    const file = join(folder, contenido);
     if (!existsSync(file)) continue;
     const concept = JSON.parse(readFileSync(file, 'utf8')) as {
       figuras?: { componente: string }[];

@@ -48,3 +48,23 @@ test('sin fallos de carga la navegación no recarga la página', async ({ page, 
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Mapa del conocimiento');
   expect(documents).toHaveLength(1);
 });
+
+// Concept bodies are JSON files named after a hash of their content, so a tab
+// opened before a deploy asks for a name the new deploy no longer serves.
+test('recarga una sola vez cuando falta el contenido de una ficha', async ({ page }) => {
+  await page.route(/\/contenido\/[^/]+\.json$/, (route) =>
+    route.fulfill({ status: 404, body: 'Not found' }),
+  );
+  const documents: string[] = [];
+  page.on('request', (request) => {
+    if (request.resourceType() === 'document') documents.push(new URL(request.url()).pathname);
+  });
+
+  await page.goto('/glosario');
+  await page.locator('main a[href*="/concepto/"]').first().click();
+
+  await expect(page.getByRole('alert')).toBeVisible();
+  await page.waitForTimeout(1500);
+  expect(documents).toHaveLength(2);
+  expect(documents[1]).toMatch(/\/concepto\//);
+});

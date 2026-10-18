@@ -5,6 +5,7 @@ import notationUrl from '../generated/notation.json?url';
 import routesUrl from '../generated/routes.json?url';
 import searchUrl from '../generated/search-index.json?url';
 import { recoverStaleDeploy, StaleDeployError } from '../app/staleDeploy.ts';
+import { CONCEPT_FILES_FOLDER } from './files.ts';
 import { buildGraph, type PrerequisiteGraph } from '../lib/graph/index.ts';
 import type {
   ConceptContent,
@@ -128,12 +129,17 @@ export function preloadAtlas(): void {
 }
 
 /**
- * Content of one concept. The URL comes from conceptContentUrl, which lives in
- * its own module so that the map of every concept file stays out of the
- * initial bundle and is loaded only with the concept page.
+ * Body of one concept. Each concept has its own file, named in the graph after
+ * a hash of its content, so a page downloads only its body and needs no map of
+ * every file. A missing file is either a stale tab, which reloads, or a real
+ * failure, which reaches the error boundary instead of an empty page.
  */
-export function useConceptContent(id: string, url: string | undefined): ConceptContent | undefined {
-  return read(`concept-${id}`, async () => (url ? fetchJson<ConceptContent>(url) : undefined));
+export function useConceptContent(concept: ConceptNode): ConceptContent {
+  return read(`concept:${concept.contenido}`, () =>
+    fetchJson<ConceptContent>(
+      `${import.meta.env.BASE_URL}${CONCEPT_FILES_FOLDER}/${concept.contenido}`,
+    ),
+  );
 }
 
 export function useRoutesData(): RoutesData {

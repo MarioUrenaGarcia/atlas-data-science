@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { compileContent, type CompileResult } from '../../../scripts/content/compile.ts';
 import { loadContent, type RawContent } from '../../../scripts/content/load.ts';
 import type { VisualizationCatalog } from '../../../scripts/content/visualizations.ts';
+import type { ConceptContent } from '../../../src/content/types.ts';
 import { INDEX_OPTIONS } from '../../../src/lib/search/config.ts';
 import { expandQuery } from '../../../src/lib/search/synonyms.ts';
 
@@ -27,6 +28,11 @@ function load(): RawContent {
 
 function compile(raw: RawContent, production = true): CompileResult {
   return compileContent(raw, { production, strict: false, visualizations: catalog });
+}
+
+function conceptContent(result: CompileResult, id: string): ConceptContent | undefined {
+  const file = result.output?.conceptFiles.find((candidate) => candidate.id === id);
+  return file ? (JSON.parse(file.json) as ConceptContent) : undefined;
 }
 
 function errors(result: CompileResult): string[] {
@@ -68,7 +74,7 @@ describe('compileContent with valid content', () => {
   });
 
   it('renders sections, directives, links and formulas', () => {
-    const content = result.output?.moduleContents[0]?.concepts['concepto-gamma'];
+    const content = conceptContent(result, 'concepto-gamma');
     expect(content?.sections.map((section) => section.id)).toEqual([
       'intuicion',
       'definicion',
@@ -88,12 +94,12 @@ describe('compileContent with valid content', () => {
     expect(html).toContain('<aside class="directive directive-definicion">');
     expect(html).toContain('data-concept="concepto-alfa"');
     expect(html).toContain('href="/concepto/concepto-beta"');
-    const alfa = result.output?.moduleContents[0]?.concepts['concepto-alfa'];
+    const alfa = conceptContent(result, 'concepto-alfa');
     expect(alfa?.formulaHtml).toContain('katex-display');
   });
 
   it('uses custom link labels', () => {
-    const beta = result.output?.moduleContents[0]?.concepts['concepto-beta'];
+    const beta = conceptContent(result, 'concepto-beta');
     const connections = beta?.sections.find((section) => section.id === 'conexiones');
     expect(connections?.html).toContain('>el concepto alfa</a>');
   });
@@ -273,7 +279,7 @@ describe('compileContent with invalid content', () => {
     file.body = file.body.replace('## Ejemplo\n', `## Ejemplo\n\n${figure}\n`);
     const valid = compile(raw);
     expect(errors(valid)).toEqual([]);
-    const content = valid.output?.moduleContents[0]?.concepts['concepto-alfa'];
+    const content = conceptContent(valid, 'concepto-alfa');
     expect(content?.figuras).toEqual([{ componente: 'FixtureViz', parametros: { tamano: 5 } }]);
     const example = content?.sections.find((section) => section.titulo === 'Ejemplo');
     expect(example?.html).toContain(
@@ -307,6 +313,47 @@ describe('compileContent with invalid content', () => {
     file.body = file.body.replace('## Ejemplo\n', `## Ejemplo\n\n${nested}\n`);
     expect(errors(compile(raw))).toContain(
       'una figura debe estar al nivel principal de su sección',
+    );
+  });
+});
+
+describe('compileContent concept files', () => {
+  it('writes one file per concept named after its id and a content hash', () => {
+    const result = compile(load());
+    const files = result.output?.conceptFiles ?? [];
+    expect(files.map((file) => file.id).sort()).toEqual([
+      'concepto-alfa',
+      'concepto-beta',
+      'concepto-gamma',
+    ]);
+    for (const file of files) {
+      expect(file.fileName).toMatch(new RegExp(`^${file.id}\\.[0-9a-f]{10}\\.json$`));
+      const node = result.output?.graph.nodes.find((candidate) => candidate.id === file.id);
+      expect(node?.contenido).toBe(file.fileName);
+    }
+  });
+
+  it('changes the file name only for the concept whose content changed', () => {
+    const before = compile(load()).output?.conceptFiles ?? [];
+    const raw = load();
+    const file = conceptFile(raw, 'concepto-alfa');
+    file.body = file.body.replace('## Ejemplo\n', '## Ejemplo\n\nUn valor adicional de 0.25.\n');
+    const after = compile(raw).output?.conceptFiles ?? [];
+    const name = (files: typeof before, id: string) =>
+      files.find((candidate) => candidate.id === id)?.fileName;
+    expect(name(after, 'concepto-alfa')).not.toBe(name(before, 'concepto-alfa'));
+    expect(name(after, 'concepto-beta')).toBe(name(before, 'concepto-beta'));
+  });
+
+  it('rejects a concept whose generated file exceeds the size limit', () => {
+    const raw = load();
+    const file = conceptFile(raw, 'concepto-alfa');
+    const filler = 'Un valor de 0.5 por unidad medida. '.repeat(20000);
+    file.body = file.body.replace('## Ejemplo\n', `## Ejemplo\n\n${filler}\n`);
+    const result = compile(raw);
+    expect(result.output).toBeNull();
+    expect(errors(result).some((message) => message.startsWith('la ficha generada pesa'))).toBe(
+      true,
     );
   });
 });

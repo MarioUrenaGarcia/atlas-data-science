@@ -26,6 +26,11 @@ export interface ConceptNode {
   /** Number of concepts that transitively depend on this one. */
   descendientes: number;
   componente: string;
+  /**
+   * File name of the concept body under the content folder. It embeds a hash
+   * of the content, so a deploy never serves a stale body under the same name.
+   */
+  contenido: string;
   /** True for drafts, which only exist in development builds. */
   borrador: boolean;
 }
@@ -48,11 +53,6 @@ export interface ConceptContent {
   figuras: { componente: string; parametros: Record<string, unknown> }[];
   visualizacion: { componente: string; parametros: Record<string, unknown> };
   referencias: { clave: BibliographyKey; capitulo?: string }[];
-}
-
-export interface ModuleContentFile {
-  modulo: number;
-  concepts: Record<string, ConceptContent>;
 }
 
 export interface SubmoduleInfo {

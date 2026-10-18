@@ -14,7 +14,6 @@ import { LevelBadge } from '../../components/ui/LevelBadge.tsx';
 import { moduleColor } from '../../components/ui/moduleColor.ts';
 import { Tag } from '../../components/ui/Tag.tsx';
 import { BIBLIOGRAPHY } from '../../content/bibliography.ts';
-import { conceptContentUrl } from '../../content/conceptContent.ts';
 import { useAtlas, useConceptContent } from '../../content/loader.ts';
 import type { ConceptNode } from '../../content/types.ts';
 import { MINUTES_BY_LEVEL } from '../../lib/format/time.ts';
@@ -23,7 +22,7 @@ import { SummaryText } from '../../components/ui/SummaryText.tsx';
 
 export function ConceptView({ concept }: { concept: ConceptNode }) {
   const atlas = useAtlas();
-  const content = useConceptContent(concept.id, conceptContentUrl(concept.id));
+  const content = useConceptContent(concept);
   const module = atlas.moduleByNumber.get(concept.modulo);
   const submodule = atlas.submoduleByKey.get(concept.submodulo);
   const color = moduleColor(concept.modulo);
@@ -97,7 +96,7 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
         <SummaryText text={concept.resumen} />
       </p>
 
-      {content?.formulaHtml && (
+      {content.formulaHtml && (
         <div
           className={styles.formula}
           role="figure"
@@ -107,43 +106,37 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
         />
       )}
 
-      {content && (
-        <section className={styles.visualization} aria-labelledby="titulo-visualizacion">
-          {/* Hidden heading so the panel titles inside the visualization keep a valid outline. */}
-          <h2 id="titulo-visualizacion" className="visually-hidden">
-            {strings.concept.visualization}
-          </h2>
-          <VisualizationSlot
-            component={content.visualizacion.componente}
-            params={content.visualizacion.parametros}
-            conceptId={concept.id}
-            title={concept.titulo}
-          />
-        </section>
-      )}
+      <section className={styles.visualization} aria-labelledby="titulo-visualizacion">
+        {/* Hidden heading so the panel titles inside the visualization keep a valid outline. */}
+        <h2 id="titulo-visualizacion" className="visually-hidden">
+          {strings.concept.visualization}
+        </h2>
+        <VisualizationSlot
+          component={content.visualizacion.componente}
+          params={content.visualizacion.parametros}
+          conceptId={concept.id}
+          title={concept.titulo}
+        />
+      </section>
 
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
-          {content && (
-            <TableOfContents
-              label={strings.concept.contents}
-              items={content.sections.map((section) => ({
-                id: section.id,
-                titulo: section.titulo,
-              }))}
-            />
-          )}
+          <TableOfContents
+            label={strings.concept.contents}
+            items={content.sections.map((section) => ({
+              id: section.id,
+              titulo: section.titulo,
+            }))}
+          />
         </aside>
 
         <div className={styles.main}>
-          {content && (
-            <ConceptBody
-              sections={content.sections}
-              figures={content.figuras ?? []}
-              conceptId={concept.id}
-              conceptTitle={concept.titulo}
-            />
-          )}
+          <ConceptBody
+            sections={content.sections}
+            figures={content.figuras}
+            conceptId={concept.id}
+            conceptTitle={concept.titulo}
+          />
 
           <div className={styles.panels}>
             <section className={styles.panel} aria-labelledby="panel-prerrequisitos">
@@ -181,7 +174,7 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
               </section>
             )}
 
-            {content && content.referencias.length > 0 && (
+            {content.referencias.length > 0 && (
               <section className={styles.panel} aria-labelledby="panel-referencias">
                 <h2 id="panel-referencias" className={styles.panelTitle}>
                   {strings.concept.references}
