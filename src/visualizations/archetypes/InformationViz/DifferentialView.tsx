@@ -10,13 +10,15 @@ import { bitsTex } from './units.ts';
 
 export type DifferentialFamily = 'uniforme' | 'normal' | 'exponencial';
 
-const STEPS = 24;
 const STEPS_PER_SECOND = 3;
-/** Range swept by the animation for the scale parameter of each family. */
-const SWEEP: Readonly<Record<DifferentialFamily, [number, number]>> = {
-  uniforme: [0.25, 4],
-  normal: [0.15, 2],
-  exponencial: [0.5, 4],
+/**
+ * Range and number of steps swept for the scale parameter of each family. The
+ * steps are chosen so round values (a = 1, sigma = 0.5 and 1, lambda = 2) are nodes.
+ */
+const SWEEP: Readonly<Record<DifferentialFamily, { lo: number; hi: number; steps: number }>> = {
+  uniforme: { lo: 0.25, hi: 4, steps: 15 },
+  normal: { lo: 0.1, hi: 2, steps: 19 },
+  exponencial: { lo: 0.5, hi: 4, steps: 14 },
 };
 const X_RANGE: Readonly<Record<DifferentialFamily, [number, number]>> = {
   uniforme: [-0.5, 4.5],
@@ -57,17 +59,17 @@ const PARAMETER_NAME: Readonly<Record<DifferentialFamily, string>> = {
  * header follows the closed form.
  */
 export function DifferentialView({ title, family, parameter }: DifferentialViewProps) {
-  const [lo, hi] = SWEEP[family];
+  const { lo, hi, steps } = SWEEP[family];
   const start = parameter ?? lo;
-  const first = Math.round(((Math.min(hi, Math.max(lo, start)) - lo) / (hi - lo)) * STEPS);
+  const first = Math.round(((Math.min(hi, Math.max(lo, start)) - lo) / (hi - lo)) * steps);
   const [step, setStep] = useState(first);
   const playback = usePlayback({
-    step: () => setStep((value) => Math.min(STEPS, value + 1)),
+    step: () => setStep((value) => Math.min(steps, value + 1)),
     reset: () => setStep(0),
     rate: STEPS_PER_SECOND,
-    done: step >= STEPS,
+    done: step >= steps,
   });
-  const s = lo + ((hi - lo) * step) / STEPS;
+  const s = lo + ((hi - lo) * step) / steps;
   const density = useMemo(() => DENSITY[family](s), [family, s]);
   const h = DIFFERENTIAL_ENTROPY[family](s);
   const peak =

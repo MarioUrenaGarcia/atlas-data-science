@@ -44,7 +44,7 @@ publicado: true
 
 Para comparar una distribución $p$ con otra $q$ se puede mirar, en cada valor $x$, el cociente $t = p(x)/q(x)$. Si las distribuciones coinciden, todos los cocientes valen 1. Cuanto más se alejan de 1, más se distinguen las distribuciones en ese punto. Una divergencia f convierte cada cociente en un costo con una función $f$ que vale cero en 1 y crece al alejarse, y promedia esos costos con los pesos de $q$.
 
-La elección de $f$ decide qué se castiga. La de Kullback-Leibler, $t \log t$, castiga mucho los cocientes grandes, los lugares donde $q$ subestima a $p$. La chi cuadrada, $(t - 1)^2$, los castiga todavía más. La variación total, $\tfrac{1}{2}|t - 1|$, es lineal y tolerante. Hellinger queda en medio. Como $f$ es convexa, todas cumplen lo que se espera de una divergencia: son no negativas y valen cero solo si $p = q$.
+La elección de $f$ decide qué se castiga. La de Kullback-Leibler, $t \log t$, castiga mucho los cocientes grandes, los lugares donde $q$ subestima a $p$. La chi cuadrada, $(t - 1)^2$, los castiga todavía más. La variación total, $\tfrac{1}{2}|t - 1|$, es lineal y tolerante. Hellinger queda en medio. Como $f$ es convexa, todas son no negativas, y como además es estrictamente convexa en $t = 1$, valen cero solo si $p = q$.
 
 ## Definición
 

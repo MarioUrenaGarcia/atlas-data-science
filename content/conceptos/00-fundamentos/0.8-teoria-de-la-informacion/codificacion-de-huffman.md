@@ -118,7 +118,7 @@ etiquetas: [a, b]
 :::
 
 - **Unir los símbolos más probables.** El algoritmo une siempre los dos de menor peso; unir los grandes produce palabras largas para los símbolos frecuentes.
-- **Olvidar que el código depende de las probabilidades.** Un código diseñado para una distribución y usado con otra gasta, en promedio, la entropía cruzada más hasta un bit.
+- **Olvidar que el código depende de las probabilidades.** Un código diseñado para una distribución $q$ y usado con datos de otra $p$ pierde eficiencia: con longitudes $\lceil -\log_2 q(x) \rceil$ el gasto medio queda entre $H(p, q)$ y $H(p, q) + 1$, y un código de Huffman para $q$ puede gastar todavía más.
 - **Confundir longitud media con longitud máxima.** Huffman minimiza el promedio ponderado; algunas palabras raras pueden ser muy largas.
 
 ## Conexiones

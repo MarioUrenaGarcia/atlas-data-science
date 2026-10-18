@@ -138,7 +138,7 @@ columnas: [lee 1, lee 2, lee 3]
 :::
 
 - **Invariancia:** no cambia si se aplican funciones biyectivas a $X$ o a $Y$.
-- **Información de sí misma:** $I(X; X) = H(X)$; por eso la entropía también se llama autoinformación.
+- **Información de una variable consigo misma:** $I(X; X) = H(X)$: observar $X$ revela toda su incertidumbre.
 
 ## Errores comunes
 

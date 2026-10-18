@@ -68,7 +68,7 @@ $$
 
 Se extraen observaciones de la distribución verdadera $p$, una por cuadro, hasta 400. La curva de un color es la perplejidad acumulada del modelo $q$ y la otra, la de la propia $p$, que hace de modelo ideal. Las líneas punteadas son los límites $2^{H(p, q)}$ y $2^{H(p)}$. La semilla cambia la secuencia de observaciones.
 
-Con las primeras observaciones las curvas oscilan; después se asientan. Con la semilla 7, tras 400 observaciones el modelo marca 3.481 y la distribución verdadera 3.441, cerca de los límites 3.424 y 3.347. La curva del modelo queda siempre por encima: con cuatro valores posibles, el modelo duda en promedio entre unas 3.4 opciones.
+Con las primeras observaciones las curvas oscilan; después se asientan. Con la semilla 7, tras 400 observaciones el modelo marca 3.481 y la distribución verdadera 3.441, cerca de los límites 3.424 y 3.347. A partir de unas 110 observaciones la curva del modelo queda por encima de la verdadera, como debe ocurrir en el límite: con cuatro valores posibles, el modelo duda en promedio entre unas 3.4 opciones.
 
 ## Ejemplo
 
@@ -95,7 +95,7 @@ semilla: 7
 - **Rango:** $\mathrm{PP} \ge 1$, con igualdad solo si el modelo asignó probabilidad 1 a cada observación.
 - **Modelo uniforme:** un modelo que da probabilidad $1/k$ a cada uno de $k$ valores tiene perplejidad exactamente $k$ sobre cualquier dato.
 
-:::figura[Datos con probabilidades (0.5, 0.25, 0.15, 0.1) y un modelo uniforme: su perplejidad es 4 desde la primera observación y no se mueve, mientras la de la distribución verdadera se asienta cerca de 3.35.]{componente="InformationViz"}
+:::figura[Datos con probabilidades (0.5, 0.25, 0.15, 0.1) y un modelo uniforme: su perplejidad es 4 desde la primera observación y no se mueve, mientras la de la distribución verdadera marca 3.441 tras 400 observaciones, en camino a su límite de 3.347.]{componente="InformationViz"}
 ```yaml
 modo: perplejidad
 p: [0.5, 0.25, 0.15, 0.1]
@@ -114,6 +114,16 @@ semilla: 7
 - **Medirla en los datos de entrenamiento.** Un modelo que memoriza tiene perplejidad baja en lo que ya vio y alta en datos nuevos; se evalúa siempre en datos de prueba.
 - **Leerla como porcentaje de error.** Una perplejidad de 20 no significa equivocarse 20 % de las veces, sino dudar como entre 20 opciones equiprobables.
 - **Confiar en pocas observaciones.** Con pocos datos la perplejidad empírica oscila; con la semilla 7 y el modelo de la visualización principal vale 3.219 tras 50 observaciones y 3.481 tras 400.
+
+:::figura[Semilla 3: tras 20 observaciones el modelo marca 3.355 y la distribución verdadera 3.395, como si el modelo fuera mejor; tras 400 el orden se corrige, 3.514 contra 3.493.]{componente="InformationViz"}
+```yaml
+modo: perplejidad
+p: [0.5, 0.25, 0.15, 0.1]
+q: [0.4, 0.3, 0.2, 0.1]
+semilla: 3
+```
+:::
+
 
 ## Conexiones
 

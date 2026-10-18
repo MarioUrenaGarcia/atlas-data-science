@@ -10,7 +10,7 @@ import { VizFrame } from '../../core/VizFrame.tsx';
 const X_RANGE: [number, number] = [-6, 6];
 const GRID_POINTS = 200;
 /** Coarser search than the default: enough to show which mode the reverse fit picks. */
-const SEARCH = { muSteps: 48, sigmaSteps: 40 };
+const SEARCH = { muSteps: 48, sigmaSteps: 120 };
 const MAX_SEPARATION = 5;
 const SEPARATION_STEP = 0.25;
 const STEPS_PER_SECOND = 3;

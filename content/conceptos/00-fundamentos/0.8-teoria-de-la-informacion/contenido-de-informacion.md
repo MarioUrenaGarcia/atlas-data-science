@@ -4,7 +4,6 @@ titulo: Contenido de información (sorpresa)
 titulo_en: Information content (surprisal)
 alias:
   - sorpresa
-  - autoinformación
   - información propia
   - surprisal
 modulo: 0
@@ -113,7 +112,7 @@ eventos:
   - nombre: seis
     p: 0.1667
   - nombre: cara y seis
-    p: 0.0833
+    p: 0.08333
 ```
 :::
 

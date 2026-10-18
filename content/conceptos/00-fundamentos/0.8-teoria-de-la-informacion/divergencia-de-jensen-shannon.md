@@ -81,7 +81,7 @@ Un sensor de temperatura registra lecturas bajas, medias o altas. En invierno su
 
 En cambio, $D_{\mathrm{KL}}(p \,\|\, q)$ es infinita, porque $q$ da probabilidad cero a las lecturas bajas que $p$ produce.
 
-:::figura[Invierno contra verano: la divergencia de Jensen-Shannon vale 0.8 bits mientras las dos divergencias de Kullback-Leibler marcan infinito; la animación las vuelve finitas en cuanto los soportes se traslapan.]{componente="InformationViz"}
+:::figura[Invierno contra verano: la divergencia de Jensen-Shannon vale 0.8 bits mientras las dos divergencias de Kullback-Leibler marcan infinito; al mover q hacia p, KL(p‖q) se vuelve finita desde el primer paso, pero KL(q‖p) sigue infinita hasta el final, porque q conserva masa en las lecturas altas.]{componente="InformationViz"}
 ```yaml
 modo: divergencia
 p: [0.8, 0.2, 0]
@@ -114,8 +114,19 @@ etiquetas: [a, b, c]
 
 - **Usar la divergencia en sí como distancia.** $\mathrm{JS}$ no cumple el triángulo; la métrica es su raíz cuadrada.
 - **Esperar que distinga soportes disjuntos según su lejanía.** Con soportes disjuntos vale 1 bit sin importar si los valores están juntos o separados; para eso se usa la [[distancia-de-wasserstein-y-transporte-optimo]].
+
+:::figura[Toda la masa en el valor a contra toda en el valor vecino b: la divergencia ya vale 1 bit, el máximo, igual que si los valores estuvieran en extremos opuestos.]{componente="InformationViz"}
+```yaml
+modo: divergencia
+p: [1, 0, 0, 0, 0]
+q: [0, 1, 0, 0, 0]
+enfoque: jensen-shannon
+etiquetas: [a, b, c, d, e]
+```
+:::
+
 - **Comparar valores en bits con valores en nats.** El máximo es 1 en bits y $0.693$ en nats.
-- **Pensar que es el promedio de las dos divergencias de Kullback-Leibler entre $p$ y $q$.** Esa cantidad es la divergencia de Jeffreys, que puede ser infinita; la de Jensen-Shannon compara cada una con la mezcla.
+- **Pensar que es el promedio de las dos divergencias de Kullback-Leibler entre $p$ y $q$.** Su suma es la divergencia de Jeffreys, que puede ser infinita; la de Jensen-Shannon compara cada una con la mezcla.
 
 ## Conexiones
 

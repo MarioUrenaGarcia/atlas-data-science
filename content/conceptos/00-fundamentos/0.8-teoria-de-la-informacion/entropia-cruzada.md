@@ -76,7 +76,7 @@ Para una muestra $x_1, \dots, x_n$ y un modelo $q$, la entropía cruzada empíri
 
 En cada región hay dos barras: la primera es $p$, la distribución real de los pedidos, y la segunda es $q$, el modelo; la leyenda indica sus colores. El encabezado escribe $H(p, q)$ y su descomposición en $H(p)$ más la divergencia KL. La reproducción mueve $q$ en línea recta hacia $p$.
 
-Al inicio, con el modelo uniforme, $H(p, q) = 1.585$ bits, que son $1.353$ de entropía real más $0.232$ de divergencia. Al avanzar, la parte de divergencia se encoge y $H(p, q)$ baja hasta $H(p) = 1.353$, que no cambia en toda la animación. Las lecturas muestran también $H(q, p)$ para comparar.
+Al inicio, con el modelo uniforme, $H(p, q) = 1.585$ bits, que son $1.353$ de entropía real más $0.232$ de divergencia. Al avanzar, la parte de divergencia se encoge y $H(p, q)$ baja hasta $H(p) = 1.353$, que no cambia en toda la animación. Las lecturas muestran también la divergencia en el otro sentido, $D_{\mathrm{KL}}(q \,\|\, p)$, y la de Jensen-Shannon.
 
 ## Ejemplo
 

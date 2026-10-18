@@ -133,6 +133,19 @@ columnas: [encendido, apagado]
 
 - **Sumar las entropías marginales para obtener la conjunta.** La suma solo es correcta con variables independientes; en general la sobrestima por la información mutua.
 - **Calcular la conjunta a partir de las marginales.** Dos tablas con las mismas marginales pueden tener entropías conjuntas distintas; la conjunta necesita la tabla completa, como muestra la visualización principal, cuyas marginales no cambian durante la animación.
+
+:::figura[Dos variables con marginales de volado justo, como en la tabla independiente, pero con 0.3 en la diagonal: la entropía conjunta baja de 2 a 1.971 bits aunque ninguna marginal cambie.]{componente="InformationViz"}
+```yaml
+modo: conjunta
+tabla:
+  - [0.3, 0.2]
+  - [0.2, 0.3]
+enfoque: conjunta
+filas: [x1, x2]
+columnas: [y1, y2]
+```
+:::
+
 - **Pensar que $H(X, Y)$ puede ser menor que $H(X)$.** Observar el par nunca da menos información que observar una de sus partes.
 
 ## Conexiones

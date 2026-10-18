@@ -76,7 +76,7 @@ Cuando $\mathcal{Q}$ es la familia normal, $q_{\text{dir}}$ es la normal con la 
 
 La curva gruesa es $p$, una mezcla en partes iguales de dos normales con desviación 0.6 y medias en $\pm d/2$. La curva continua delgada es la normal que minimiza $D_{\mathrm{KL}}(p \,\|\, q)$ y la punteada, la que minimiza $D_{\mathrm{KL}}(q \,\|\, p)$, buscada en una rejilla. La reproducción aumenta la separación $d$ de 0 a 5.
 
-Con $d = 0$ las tres curvas coinciden. Hasta $d = 3.25$ las dos aproximaciones siguen centradas en cero, la inversa más angosta (1.5 contra 1.732). Entre 3.25 y 3.5 la inversa salta a una sola joroba, en $\mu = -1.75$ con $\sigma = 0.6$, mientras la directa sigue ensanchándose sobre el valle.
+Con $d = 0$ las tres curvas coinciden. Hasta $d = 3.25$ las dos aproximaciones siguen centradas en cero, la inversa más angosta (1.525 contra 1.732). Entre 3.25 y 3.5 la inversa salta a una sola joroba, en $\mu = -1.75$ con $\sigma = 0.625$, mientras la directa sigue ensanchándose sobre el valle.
 
 ## Ejemplo
 

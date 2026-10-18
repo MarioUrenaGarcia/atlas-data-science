@@ -112,9 +112,18 @@ semilla: 11
 
 ## Errores comunes
 
-- **Elegir el modelo con menor error de ajuste.** El error de los residuos siempre baja al aumentar el grado; con la semilla 11, el grado 8 los describe con menos bits que el grado 3, pero su total es 7.1 bits mayor.
+- **Elegir el modelo con menor error de ajuste.** El error de los residuos siempre baja al aumentar el grado; con la semilla 11, el grado 8 los describe con menos bits que el grado 3, pero su total es 7.0 bits mayor.
 - **Olvidar que las longitudes solo se comparan dentro de la misma convención.** Los bits de los residuos incluyen una constante que depende de la precisión de los datos; es la misma para todos los grados y se cancela al comparar, pero no tiene sentido como cantidad absoluta.
-- **Pensar que MDL garantiza encontrar el modelo verdadero con pocos datos.** Con pocos puntos o mucho ruido el término de complejidad domina y MDL puede preferir un modelo más simple que el que generó los datos.
+- **Pensar que MDL garantiza encontrar el modelo verdadero con pocos datos.** Con pocos puntos el ruido puede inclinar la balanza hacia un modelo más simple o más complejo que el que generó los datos.
+
+:::figura[Semilla 5 con ruido 0.15: el grado 4 totaliza 13.0 bits y el grado 3, el verdadero, 13.2; con 30 puntos la diferencia es tan pequeña que MDL elige un grado de más.]{componente="InformationViz"}
+```yaml
+modo: mdl
+ruido: 0.15
+semilla: 5
+```
+:::
+
 - **Confundir la longitud de descripción con el tamaño del archivo de un programa.** Es una longitud de código idealizada, $-\log_2$ de una probabilidad, no una cuenta de caracteres.
 
 ## Conexiones

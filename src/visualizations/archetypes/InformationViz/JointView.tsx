@@ -38,7 +38,7 @@ export function JointView({ title, table, focus, rows, columns }: JointViewProps
   const total = table.flat().reduce((a, b) => a + b, 0) || 1;
   const target = table.map((row) => row.map((v) => v / total));
   const { px, py } = marginals(target);
-  const [step, setStep] = useState(STEPS);
+  const [step, setStep] = useState(0);
   const playback = usePlayback({
     step: () => setStep((value) => Math.min(STEPS, value + 1)),
     reset: () => setStep(0),

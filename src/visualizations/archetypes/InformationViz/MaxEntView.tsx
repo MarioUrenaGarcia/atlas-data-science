@@ -13,6 +13,7 @@ const MEAN_FROM = 1.5;
 const MEAN_TO = 5.5;
 const MEAN_STEP = 0.1;
 const STEPS_PER_SECOND = 5;
+const ROUNDING_FLOOR = 1e-9;
 const Y_MAX = 0.8;
 
 interface MaxEntViewProps {
@@ -40,7 +41,10 @@ export function MaxEntView({ title, mean }: MaxEntViewProps) {
     done: step >= total,
   });
   const target = MEAN_FROM + step * MEAN_STEP;
-  const { p, lambda } = maxEntropyWithMean(FACES, target);
+  const solved = maxEntropyWithMean(FACES, target);
+  const p = solved.p;
+  // Bisection leaves rounding noise near 1e-17 at the symmetric mean 3.5.
+  const lambda = Math.abs(solved.lambda) < ROUNDING_FLOOR ? 0 : solved.lambda;
   const h = entropy(p);
   const description =
     `Media exigida ${formatNumber(target, 2)}: la distribución de máxima entropía es ` +

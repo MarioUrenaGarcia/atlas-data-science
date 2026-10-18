@@ -119,6 +119,17 @@ etiquetas: [cara, cruz]
 ## Errores comunes
 
 - **Tratarla como una distancia.** No es simétrica y no cumple el triángulo; decir que $q$ está "a 0.3 bits" de $p$ sin indicar el sentido es ambiguo.
+
+:::figura[p = (0.6, 0.3, 0.1) contra q = (0.2, 0.3, 0.5): los términos 0.951, 0 y $-0.232$ suman 0.719 bits, mientras la divergencia en el otro sentido marca 0.844; la misma pareja tiene dos valores.]{componente="InformationViz"}
+```yaml
+modo: divergencia
+p: [0.6, 0.3, 0.1]
+q: [0.2, 0.3, 0.5]
+enfoque: kl
+etiquetas: [x1, x2, x3]
+```
+:::
+
 - **Pensar que cada término es no negativo.** Los términos donde $q(x) > p(x)$ son negativos; solo la suma es no negativa.
 - **Ignorar el soporte.** Si $q$ da probabilidad cero a un valor posible bajo $p$, la divergencia es infinita, por pequeño que sea $p(x)$.
 - **Confundir el papel de los argumentos al estimar.** Minimizar $D_{\mathrm{KL}}(p \,\|\, q)$ en el modelo $q$ (máxima verosimilitud) produce ajustes distintos que minimizar $D_{\mathrm{KL}}(q \,\|\, p)$ (inferencia variacional); la diferencia se estudia en la [[asimetria-de-la-divergencia-kl]].

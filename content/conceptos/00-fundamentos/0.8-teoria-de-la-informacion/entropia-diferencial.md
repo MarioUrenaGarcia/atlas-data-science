@@ -66,9 +66,9 @@ $$
 
 ## Cómo usar la visualización
 
-La curva es la densidad de una normal centrada y el área sombreada bajo ella siempre vale 1. La línea punteada marca la altura 1. La reproducción aumenta la desviación $\sigma$ de 0.15 a 2 y el encabezado evalúa la fórmula cerrada en cada paso.
+La curva es la densidad de una normal centrada y el área sombreada bajo ella siempre vale 1. La línea punteada marca la altura 1. La reproducción aumenta la desviación $\sigma$ de 0.1 a 2 en pasos de 0.1 y el encabezado evalúa la fórmula cerrada en cada paso.
 
-Al inicio, con $\sigma = 0.15$, la densidad alcanza 2.66 de altura y $h = -0.690$ bits, un valor negativo. La entropía cruza cero cuando $\sigma$ pasa por $0.242$, la desviación con la que el pico de la normal mide 1.65, y termina en $3.047$ bits con $\sigma = 2$. Cada vez que $\sigma$ se duplica, $h$ sube exactamente 1 bit.
+Al inicio, con $\sigma = 0.1$, la densidad alcanza 3.99 de altura y $h = -1.275$ bits, un valor negativo. La entropía cruza cero cuando $\sigma$ pasa por $0.242$, la desviación con la que el pico de la normal mide 1.65, y termina en $3.047$ bits con $\sigma = 2$. Cada vez que $\sigma$ se duplica, $h$ sube exactamente 1 bit.
 
 ## Ejemplo
 
@@ -93,7 +93,7 @@ parametro: 0.5
 - **Traslación:** $h(X + c) = h(X)$.
 - **Escala:** $h(aX) = h(X) + \log_2 |a|$ para $a \ne 0$; en varias dimensiones, $h(\mathbf{A}\mathbf{X}) = h(\mathbf{X}) + \log_2 |\det \mathbf{A}|$.
 
-:::figura[Uniforme en $[0, a]$ con $a$ de 0.25 a 4: la entropía diferencial es $\log_2 a$, pasa de $-2$ a 2 bits, vale cero con $a = 1$ y sube un bit cada vez que el intervalo se duplica.]{componente="InformationViz"}
+:::figura[Uniforme en $[0, a]$ con $a$ de 0.25 a 4: la entropía diferencial es $\log_2 a$, pasa de $-2$ a 2 bits en pasos de 0.25, vale cero con $a = 1$ y sube un bit cada vez que el intervalo se duplica.]{componente="InformationViz"}
 ```yaml
 modo: diferencial
 familia: uniforme
@@ -102,7 +102,7 @@ parametro: 0.25
 :::
 
 - **Máximo con varianza fija:** entre todas las densidades con varianza $\sigma^2$, la normal tiene la mayor entropía diferencial, $\tfrac{1}{2}\log_2(2\pi e\,\sigma^2)$.
-- **Discretización:** si $X^\Delta$ es $X$ redondeada a una rejilla de paso $\Delta$, $H(X^\Delta) + \log_2 \Delta \to h(X)$ cuando $\Delta \to 0$. Para la normal estándar con $\Delta = 0.1$, $H(X^\Delta) = 5.369$ y $h - \log_2 0.1 = 5.369$.
+- **Discretización:** si $X^\Delta$ es $X$ redondeada a una rejilla de paso $\Delta$, $H(X^\Delta) + \log_2 \Delta \to h(X)$ cuando $\Delta \to 0$. Para la normal estándar con $\Delta = 0.1$, $H(X^\Delta) = 5.370$ y $h - \log_2 0.1 = 5.369$.
 - **Divergencia:** $D_{\mathrm{KL}}(f \,\|\, g) = \int f \log \frac{f}{g}$ sigue siendo no negativa e invariante ante cambios de escala, a diferencia de $h$.
 
 ## Errores comunes

@@ -73,7 +73,7 @@ La forma se obtiene con multiplicadores de Lagrange: la derivada del lagrangiano
 
 Las barras son la distribución de máxima entropía sobre las caras 1 a 6 de un dado cuya media se fija, con su probabilidad escrita encima. El encabezado muestra la forma exponencial, el multiplicador $\lambda$ que cumple la restricción y la entropía. La reproducción mueve la media exigida de 1.5 a 5.5 en pasos de 0.1.
 
-Con media 1.5 la distribución cae de forma geométrica desde el uno (0.664, 0.224, 0.076, ...) y la entropía es 1.375 bits. En la media 3.5 las barras se igualan, $\lambda = 0$ y la entropía alcanza su máximo de 2.585 bits. Después la inclinación se invierte de forma simétrica.
+Con media 1.5 la distribución cae de forma geométrica desde el uno (0.664, 0.224, 0.075, ...) y la entropía es 1.375 bits. En la media 3.5 las barras se igualan, $\lambda = 0$ y la entropía alcanza su máximo de 2.585 bits. Después la inclinación se invierte de forma simétrica.
 
 ## Ejemplo
 
