@@ -40,7 +40,6 @@ referencias:
   - clave: blitzstein-hwang
     capitulo: '3.6'
   - clave: ross-probabilidad
-    capitulo: '4.9'
 publicado: true
 ---
 

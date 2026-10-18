@@ -2,8 +2,10 @@ import { DESCRIPTIVE_EXAMPLES } from './examples/descriptive.ts';
 import { DISTRIBUTION_EXAMPLES } from './examples/distributions.ts';
 import { MULTIVARIABLE_EXAMPLES } from './examples/multivariable.ts';
 import { OPTIMIZATION_EXAMPLES } from './examples/optimization.ts';
+import { NUMERICS_EXAMPLES } from './examples/numerics.ts';
 import { LIMIT_EXAMPLES } from './examples/limits.ts';
 import { SAMPLING_EXAMPLES } from './examples/sampling.ts';
+import { INFERENCE_EXAMPLES } from './examples/inference.ts';
 
 /** Sample configurations shown in the development catalog, one or more per visualization. */
 export interface CatalogExample {
@@ -13,6 +15,140 @@ export interface CatalogExample {
 }
 
 export const CATALOG_EXAMPLES: CatalogExample[] = [
+  {
+    component: 'OrderStatsViz',
+    title: 'Estadísticos de orden',
+    params: { modo: 'orden', distribucion: 'uniforme', parametros: { a: 0, b: 1 }, n: 5, k: 2 },
+  },
+  {
+    component: 'OrderStatsViz',
+    title: 'Máximo y mínimo',
+    params: { modo: 'extremos', distribucion: 'exponencial', n: 5 },
+  },
+  {
+    component: 'ExchangeableViz',
+    title: 'Urna de Pólya',
+    params: { modo: 'polya', a: 1, b: 1, n: 80 },
+  },
+  {
+    component: 'ExchangeableViz',
+    title: 'De Finetti',
+    params: { modo: 'de-finetti', a: 2, b: 3, n: 8 },
+  },
+  {
+    component: 'CopulaViz',
+    title: 'Cópula',
+    params: {
+      modo: 'copula',
+      familia: 'clayton',
+      familias: ['independiente', 'gaussiana', 'clayton', 'gumbel', 'frank'],
+      tau: 0.5,
+    },
+  },
+  {
+    component: 'CopulaViz',
+    title: 'Teorema de Sklar',
+    params: {
+      modo: 'sklar',
+      familia: 'gaussiana',
+      tau: 0.5,
+      margenX: 'exponencial',
+      margenY: 'normal',
+    },
+  },
+  {
+    component: 'CopulaViz',
+    title: 'Dependencia de colas',
+    params: {
+      modo: 'colas',
+      familia: 'gumbel',
+      familias: ['gaussiana', 'gumbel', 'clayton'],
+      tau: 0.5,
+      muestras: 3000,
+      q: 0.9,
+    },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Distribución conjunta',
+    params: {
+      modo: 'conjunta',
+      experimento: 'dos-dados',
+      variable: 'maximo',
+      segunda: 'minimo',
+      x: 4,
+      y: 2,
+    },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Marginales',
+    params: { modo: 'marginales', modelo: 'suma-xy' },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Condicional',
+    params: {
+      modo: 'condicional',
+      experimento: 'dos-dados',
+      variable: 'primero',
+      segunda: 'suma',
+      x: 3,
+    },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Esperanza condicional',
+    params: { modo: 'esperanza-condicional', modelo: 'uniforme-triangulo', x: 0.5 },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Varianza total',
+    params: {
+      modo: 'varianza-total',
+      experimento: 'dos-dados',
+      variable: 'maximo',
+      segunda: 'suma',
+    },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Independencia',
+    params: {
+      modo: 'independencia',
+      valoresX: [-1, 0, 1],
+      valoresY: [0, 1],
+      probabilidades: [
+        [0, 1],
+        [1, 0],
+        [0, 1],
+      ],
+    },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Covarianza',
+    params: {
+      modo: 'covarianza',
+      modelo: 'normal-bivariada',
+      parametros: { rho: 0.6 },
+      editable: true,
+    },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Suma',
+    params: { modo: 'suma', modelo: 'exponenciales-independientes', s: 2 },
+  },
+  {
+    component: 'JointDistribution2D',
+    title: 'Matriz de covarianza',
+    params: {
+      modo: 'matriz-covarianza',
+      modelo: 'normal-bivariada',
+      parametros: { sigmaX: 2, sigmaY: 1, rho: 0.5 },
+    },
+  },
   {
     component: 'MomentFunctionViz',
     title: 'Función generadora de momentos',
@@ -1156,6 +1292,8 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   ...DISTRIBUTION_EXAMPLES,
   ...MULTIVARIABLE_EXAMPLES,
   ...OPTIMIZATION_EXAMPLES,
+  ...NUMERICS_EXAMPLES,
   ...LIMIT_EXAMPLES,
   ...SAMPLING_EXAMPLES,
+  ...INFERENCE_EXAMPLES,
 ];

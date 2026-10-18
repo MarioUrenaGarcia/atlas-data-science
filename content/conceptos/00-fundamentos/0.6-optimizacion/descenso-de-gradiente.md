@@ -115,6 +115,16 @@ tasa: 0.5
 - **Pensar que gradiente cero significa mínimo.** El método se detiene en cualquier punto con gradiente cero, incluidos los puntos silla.
 - **Olvidar el signo.** Sumar el gradiente hace subir la función.
 - **Usar la misma tasa para cualquier problema.** La tasa adecuada depende de la curvatura; la que funciona en un problema puede divergir en otro.
+
+:::figura[$\eta = 0.25$ en $\tfrac{1}{2}(x^2 + 10y^2)$: en la dirección $y$ el factor es $1 - 0.25 \cdot 10 = -1.5$, así que $y$ cambia de signo y crece de 1.5 a $-25.6$ en siete pasos, aunque en $x$ el método avanza bien.]{componente="OptimizerRace"}
+```yaml
+modo: carrera
+funciones: [cuadratica]
+metodos: [gradiente]
+inicio: [3, 1.5]
+tasa: 0.25
+```
+:::
 - **Creer que la dirección opuesta al gradiente apunta al mínimo.** Solo ocurre con contornos circulares; en general apunta hacia la parte más empinada cercana.
 
 :::figura[En la silla x² - y², empezando sobre el eje x en (2, 0), el gradiente nunca tiene componente en y: el descenso converge al punto silla (0, 0), aunque la función no tiene mínimo.]{componente="OptimizerRace"}
