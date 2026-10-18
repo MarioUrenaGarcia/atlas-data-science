@@ -1,6 +1,11 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { figureComponents, generatedConcepts, trackErrors } from './helpers.ts';
+import {
+  figureComponents,
+  generatedConcepts,
+  trackErrors,
+  waitForVisualizations,
+} from './helpers.ts';
 
 const concepts = generatedConcepts();
 
@@ -25,13 +30,10 @@ for (const [component, id] of figureComponents()) {
 for (const [component, id] of byComponent) {
   test(`sin violaciones de accesibilidad en la visualización ${component}`, async ({ page }) => {
     await page.goto(`/concepto/${id}`);
-    await expect(page.locator('figure').first()).toBeVisible();
-    await page
-      .locator('figure[aria-label^="Figura"]')
-      .last()
-      .scrollIntoViewIfNeeded()
-      .catch(() => undefined);
-    await page.waitForTimeout(1000);
+    // The audit starts once every figure has mounted. The page stays at the
+    // top: scrolling could leave a control under the fixed header, where it
+    // overlaps the header buttons and target-size reports it as obscured.
+    await waitForVisualizations(page);
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();

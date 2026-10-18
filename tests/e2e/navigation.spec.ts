@@ -70,3 +70,66 @@ test('una ficha, su ruta y su módulo cargan sin errores', async ({ page }) => {
   await expect(page.getByRole('main').getByRole('link', { name: concept.titulo })).toBeVisible();
   expect(errors).toEqual([]);
 });
+
+test('las flechas laterales recorren el Atlas en orden de estudio', async ({ page }) => {
+  const concepts = generatedConcepts();
+  // The last concept of the first submodule checks that the arrows cross boundaries.
+  const index = concepts.findIndex(
+    (node, position) => position > 0 && concepts[position - 1]?.submodulo !== node.submodulo,
+  );
+  test.skip(index < 1, 'Hace falta más de un submódulo con fichas.');
+  const current = concepts[index - 1];
+  const next = concepts[index];
+  if (!current || !next) return;
+  const errors = trackErrors(page);
+  await page.goto(`/concepto/${current.id}`);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(current.titulo);
+  // Scrolled into the body, the arrows (or the bar on narrow screens) stay in view.
+  await page.evaluate(() => window.scrollBy(0, 3000));
+  const arrow = page.getByRole('link', { name: `Siguiente en el Atlas: ${next.titulo}` });
+  await expect(arrow).toBeInViewport();
+  await arrow.click();
+  await expect(page).toHaveURL(new RegExp(`/concepto/${next.id}$`));
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(next.titulo);
+  await page.getByRole('link', { name: `Anterior en el Atlas: ${current.titulo}` }).click();
+  await expect(page).toHaveURL(new RegExp(`/concepto/${current.id}$`));
+  expect(errors).toEqual([]);
+});
+
+test('el mapa dibuja los conceptos y la vista por módulos abre un módulo', async ({ page }) => {
+  test.skip(generatedConcepts().length === 0, 'Todavía no hay fichas generadas.');
+  const errors = trackErrors(page);
+  await page.goto('/mapa');
+  const canvas = page.getByRole('img', { name: 'Mapa interactivo de conceptos' });
+  const painted = () =>
+    canvas.evaluate((element) => {
+      const target = element as HTMLCanvasElement;
+      const context = target.getContext('2d');
+      if (!context) return 0;
+      const data = context.getImageData(0, 0, target.width, target.height).data;
+      let count = 0;
+      for (let index = 3; index < data.length; index += 4) if (data[index]) count += 1;
+      return count;
+    });
+  await expect.poll(painted).toBeGreaterThan(0);
+  await page.getByRole('radio', { name: 'Por módulos' }).click();
+  await expect.poll(painted).toBeGreaterThan(0);
+  expect(errors).toEqual([]);
+});
+
+test('en pantallas angostas la barra de navegación no tapa nada al cargar la ficha', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(!isMobile, 'En escritorio las flechas van en los márgenes.');
+  const concept = generatedConcepts().find((node) => node.componente === 'DistributionExplorer');
+  test.skip(!concept, 'No hay una ficha con DistributionExplorer.');
+  if (!concept) return;
+  await page.goto(`/concepto/${concept.id}`);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(concept.titulo);
+  const bar = page.getByRole('navigation', { name: 'Concepto anterior y siguiente en el Atlas' });
+  // On arrival the bar waits at the end of the article instead of covering the visualization.
+  await expect(bar).not.toBeInViewport();
+  await page.evaluate(() => window.scrollBy(0, window.innerHeight * 2));
+  await expect(bar).toBeInViewport();
+});

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="300" viewBox="0 0 580 300" role="img" aria-label="Trayectoria de descenso de gradiente sobre curvas de nivel">
+<title>Trayectoria de descenso de gradiente sobre curvas de nivel</title>
+<rect width="580" height="300" rx="18" fill="#121416"/>
+<ellipse cx="350" cy="150" rx="34" ry="15" transform="rotate(-24 350 150)" fill="none" stroke="#82baff" stroke-opacity="0.61" stroke-width="1.5"/>
+<ellipse cx="350" cy="150" rx="68" ry="30" transform="rotate(-24 350 150)" fill="none" stroke="#82baff" stroke-opacity="0.54" stroke-width="1.5"/>
+<ellipse cx="350" cy="150" rx="102" ry="45" transform="rotate(-24 350 150)" fill="none" stroke="#82baff" stroke-opacity="0.47" stroke-width="1.5"/>
+<ellipse cx="350" cy="150" rx="136" ry="60" transform="rotate(-24 350 150)" fill="none" stroke="#82baff" stroke-opacity="0.40" stroke-width="1.5"/>
+<ellipse cx="350" cy="150" rx="170" ry="75" transform="rotate(-24 350 150)" fill="none" stroke="#82baff" stroke-opacity="0.33" stroke-width="1.5"/>
+<ellipse cx="350" cy="150" rx="204" ry="90" transform="rotate(-24 350 150)" fill="none" stroke="#82baff" stroke-opacity="0.26" stroke-width="1.5"/>
+<ellipse cx="350" cy="150" rx="238" ry="105" transform="rotate(-24 350 150)" fill="none" stroke="#82baff" stroke-opacity="0.19" stroke-width="1.5"/>
+<path d="M168 196 L243.5 220 L266.5 172.6 L300.4 181.5 L311.6 161 L326.9 164.2 L332.4 155.3 L339.2 156.4 L341.9 152.6 L345 152.9 L346.3 151.2 L347.7 151.3 L348.3 150.6 L348.9 150.6 L349.2 150.3 L349.5 150.3" fill="none" stroke="#e8e9ea" stroke-width="2" stroke-linejoin="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100">
+<animate attributeName="stroke-dashoffset" dur="8s" repeatCount="indefinite" keyTimes="0;0.7;0.92;1" values="100;0;0;100"/></path><circle r="7" fill="#fb9890" stroke="#121416" stroke-width="2">
+<animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;1;1;0" keyTimes="0;0.7;0.92;1" calcMode="linear" path="M168 196 L243.5 220 L266.5 172.6 L300.4 181.5 L311.6 161 L326.9 164.2 L332.4 155.3 L339.2 156.4 L341.9 152.6 L345 152.9 L346.3 151.2 L347.7 151.3 L348.3 150.6 L348.9 150.6 L349.2 150.3 L349.5 150.3"/></circle><circle cx="350" cy="150" r="5" fill="#6fcf97"><animate attributeName="r" values="4;8;4" dur="2s" repeatCount="indefinite"/></circle>
+<g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif"><text x="40" y="34" font-size="16" font-weight="700" fill="#e8e9ea">Descenso de gradiente</text>
+<text x="40" y="276" font-size="13" fill="#adb3b9">Cada paso baja en la dirección de mayor pendiente</text></g>
+</svg>

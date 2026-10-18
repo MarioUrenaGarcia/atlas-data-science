@@ -12,6 +12,10 @@ const link = z
     de: z.array(z.string()).min(1),
     potencias: z.array(z.number()).optional(),
     factor: z.number().optional(),
+    /** Main parameters that enter as (1 - value), such as 1 - p in sqrt(n p (1 - p)). */
+    complementos: z.array(z.string()).optional(),
+    /** Powers of the complements, one per entry; 1 when omitted. */
+    potenciasComplemento: z.array(z.number()).optional(),
   })
   .strict();
 

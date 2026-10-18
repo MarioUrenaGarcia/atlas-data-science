@@ -1,0 +1,147 @@
+.nav {
+  display: contents;
+}
+
+.arrow {
+  position: fixed;
+  top: 50%;
+  z-index: calc(var(--z-header) - 1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 44px;
+  height: 64px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  transform: translateY(-50%);
+  opacity: 0.82;
+  transition:
+    opacity var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.previous {
+  left: 0;
+  border-left: none;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.next {
+  right: 0;
+  border-right: none;
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.arrow:hover,
+.arrow:focus-visible {
+  opacity: 1;
+  color: var(--module-color, var(--color-accent));
+  border-color: var(--module-color, var(--color-accent));
+}
+
+/* The destination title stays hidden until the arrow is hovered or focused,
+   so the arrows take little room next to the text. */
+.label {
+  display: none;
+  flex-direction: column;
+  max-width: 220px;
+  line-height: 1.3;
+}
+
+.next .label {
+  text-align: right;
+}
+
+.arrow:hover .label,
+.arrow:focus-visible .label {
+  display: flex;
+}
+
+.kicker {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+}
+
+.title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Below 1280 px the side margins are narrower than an arrow, so fixed side
+   arrows would cover the edge of the text and of the visualization controls.
+   The links become a bar at the end of the article. Once the reader has
+   scrolled past the first viewport the bar sticks to the bottom of the
+   viewport; on arrival it stays in place, so it never covers the main
+   visualization. It always settles before the footer, so nothing stays hidden
+   for good, and the bottom padding keeps the links clear of the home indicator
+   of phones. */
+@media (max-width: 1279px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+    padding: var(--space-2) 0 calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .arrow {
+    position: static;
+    min-width: 0;
+    max-width: calc(50% - var(--space-1));
+    height: 48px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+  }
+
+  .next {
+    margin-left: auto;
+  }
+
+  .label {
+    display: flex;
+    min-width: 0;
+  }
+
+  .kicker,
+  .title {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* Whatever the browser scrolls into view (the control that receives keyboard
+     focus, an anchor) stops above the bar instead of behind it. The value is
+     the bar height (48 px links, two paddings, the border and the safe area)
+     plus a small gap. */
+  .floating {
+    position: sticky;
+    bottom: 0;
+    z-index: calc(var(--z-header) - 1);
+  }
+
+  :global(html):has(.floating) {
+    scroll-padding-bottom: calc(48px + 3 * var(--space-2) + 1px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media print {
+  .arrow {
+    display: none;
+  }
+}

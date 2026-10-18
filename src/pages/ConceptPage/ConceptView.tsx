@@ -4,6 +4,7 @@ import { strings } from '../../app/strings.ts';
 import { useDocumentTitle } from '../../app/useDocumentTitle.ts';
 import { ConceptBody } from '../../components/concept/ConceptBody.tsx';
 import { ConceptLinkList } from '../../components/concept/ConceptLinkList.tsx';
+import { ConceptSideNav } from '../../components/concept/ConceptSideNav.tsx';
 import { ProgressControls } from '../../components/concept/ProgressControls.tsx';
 import { TableOfContents } from '../../components/concept/TableOfContents.tsx';
 import { VisualizationSlot } from '../../components/concept/VisualizationSlot.tsx';
@@ -13,7 +14,8 @@ import { LevelBadge } from '../../components/ui/LevelBadge.tsx';
 import { moduleColor } from '../../components/ui/moduleColor.ts';
 import { Tag } from '../../components/ui/Tag.tsx';
 import { BIBLIOGRAPHY } from '../../content/bibliography.ts';
-import { useAtlas, useModuleContent } from '../../content/loader.ts';
+import { conceptContentUrl } from '../../content/conceptContent.ts';
+import { useAtlas, useConceptContent } from '../../content/loader.ts';
 import type { ConceptNode } from '../../content/types.ts';
 import { MINUTES_BY_LEVEL } from '../../lib/format/time.ts';
 import styles from './ConceptPage.module.css';
@@ -21,8 +23,7 @@ import { SummaryText } from '../../components/ui/SummaryText.tsx';
 
 export function ConceptView({ concept }: { concept: ConceptNode }) {
   const atlas = useAtlas();
-  const contents = useModuleContent(concept.modulo);
-  const content = contents[concept.id];
+  const content = useConceptContent(concept.id, conceptContentUrl(concept.id));
   const module = atlas.moduleByNumber.get(concept.modulo);
   const submodule = atlas.submoduleByKey.get(concept.submodulo);
   const color = moduleColor(concept.modulo);
@@ -46,6 +47,12 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
     index >= 0 && index < siblings.length - 1
       ? atlas.byId.get(siblings[index + 1] ?? '')
       : undefined;
+
+  // The side arrows follow the global study order, so they keep going across
+  // submodule and module boundaries where the bottom pager stops.
+  const position = atlas.position.get(concept.id) ?? -1;
+  const globalPrevious = position > 0 ? atlas.nodes[position - 1] : undefined;
+  const globalNext = position >= 0 ? atlas.nodes[position + 1] : undefined;
 
   return (
     <article className={styles.page} style={{ ['--module-color' as string]: color }}>
@@ -86,7 +93,9 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
         </ul>
       </header>
 
-      <p className={styles.summary}><SummaryText text={concept.resumen} /></p>
+      <p className={styles.summary}>
+        <SummaryText text={concept.resumen} />
+      </p>
 
       {content?.formulaHtml && (
         <div
@@ -223,6 +232,10 @@ export function ConceptView({ concept }: { concept: ConceptNode }) {
           </nav>
         </div>
       </div>
+      {/* Last in the article so keyboard focus reaches the title and the
+          content first. Wide screens fix the arrows to the sides with CSS;
+          narrow ones show them as a bar at the end of the article. */}
+      <ConceptSideNav previous={globalPrevious} next={globalNext} />
     </article>
   );
 }

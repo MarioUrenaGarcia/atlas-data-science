@@ -34,14 +34,18 @@ function writeJson(path: string, value: unknown) {
 
 export function writeOutput(output: CompiledContent, target = GENERATED_ROOT): void {
   rmSync(target, { recursive: true, force: true });
-  mkdirSync(join(target, 'modules'), { recursive: true });
+  mkdirSync(join(target, 'concepts'), { recursive: true });
   writeJson(join(target, 'graph.json'), output.graph);
   writeJson(join(target, 'modules.json'), output.modules);
   writeJson(join(target, 'routes.json'), output.routes);
   writeJson(join(target, 'notation.json'), output.notation);
   writeJson(join(target, 'search-index.json'), output.search);
   writeJson(join(target, 'map-layout.json'), output.mapLayout);
+  // One file per concept: a concept page downloads only its own content
+  // instead of the whole module, which reaches several megabytes.
   for (const moduleContent of output.moduleContents) {
-    writeJson(join(target, 'modules', `module-${moduleContent.modulo}.json`), moduleContent);
+    for (const [id, content] of Object.entries(moduleContent.concepts)) {
+      writeJson(join(target, 'concepts', `${id}.json`), content);
+    }
   }
 }

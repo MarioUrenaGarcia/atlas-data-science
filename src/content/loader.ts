@@ -4,13 +4,13 @@ import modulesUrl from '../generated/modules.json?url';
 import notationUrl from '../generated/notation.json?url';
 import routesUrl from '../generated/routes.json?url';
 import searchUrl from '../generated/search-index.json?url';
+import { recoverStaleDeploy, StaleDeployError } from '../app/staleDeploy.ts';
 import { buildGraph, type PrerequisiteGraph } from '../lib/graph/index.ts';
 import type {
   ConceptContent,
   ConceptNode,
   GraphData,
   MapLayoutData,
-  ModuleContentFile,
   ModuleInfo,
   ModulesData,
   NotationData,
@@ -24,12 +24,6 @@ import type {
  * as JavaScript: the browser parses JSON much faster than an equivalent
  * object literal, and every file is loaded only by the pages that need it.
  */
-
-const moduleContentUrls = import.meta.glob<string>('../generated/modules/module-*.json', {
-  query: '?url',
-  import: 'default',
-  eager: true,
-});
 
 type Entry<T> =
   | { status: 'pending'; promise: Promise<void> }
@@ -75,10 +69,15 @@ export function clearFailedResources(): void {
   }
 }
 
+// Data files carry a content hash in their name, so a 404 means the tab was
+// opened before a deploy that replaced them.
 async function fetchJson<T>(url: string): Promise<T> {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`HTTP ${response.status} al cargar ${url}`);
-  return (await response.json()) as T;
+  return recoverStaleDeploy(async () => {
+    const response = await fetch(url);
+    if (response.status === 404) throw new StaleDeployError(`HTTP 404 al cargar ${url}`);
+    if (!response.ok) throw new Error(`HTTP ${response.status} al cargar ${url}`);
+    return (await response.json()) as T;
+  });
 }
 
 export interface AtlasData {
@@ -128,13 +127,13 @@ export function preloadAtlas(): void {
   load('atlas', loadAtlas);
 }
 
-export function useModuleContent(moduleNumber: number): Record<string, ConceptContent> {
-  return read(`module-${moduleNumber}`, async () => {
-    const url = moduleContentUrls[`../generated/modules/module-${moduleNumber}.json`];
-    if (!url) return {};
-    const file = await fetchJson<ModuleContentFile>(url);
-    return file.concepts;
-  });
+/**
+ * Content of one concept. The URL comes from conceptContentUrl, which lives in
+ * its own module so that the map of every concept file stays out of the
+ * initial bundle and is loaded only with the concept page.
+ */
+export function useConceptContent(id: string, url: string | undefined): ConceptContent | undefined {
+  return read(`concept-${id}`, async () => (url ? fetchJson<ConceptContent>(url) : undefined));
 }
 
 export function useRoutesData(): RoutesData {

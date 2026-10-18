@@ -34,7 +34,6 @@ referencias:
   - clave: blitzstein-hwang
     capitulo: '5.3'
   - clave: wasserman
-    capitulo: '2.5'
 publicado: true
 ---
 

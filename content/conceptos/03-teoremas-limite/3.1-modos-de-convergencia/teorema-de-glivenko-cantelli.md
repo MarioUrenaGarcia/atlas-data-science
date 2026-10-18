@@ -11,6 +11,7 @@ orden: 22
 nivel: intermedio
 prerrequisitos:
   - ley-fuerte-de-los-grandes-numeros
+  - distribucion-empirica
 etiquetas:
   - distribución empírica
   - convergencia uniforme
