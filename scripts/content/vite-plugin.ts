@@ -45,9 +45,23 @@ export function conceptFilesPlugin(): Plugin {
       });
     },
     generateBundle() {
-      if (!existsSync(source)) return;
+      // The graph decides what ships: only the files it references are emitted,
+      // and a graph generated in development mode, which includes drafts, stops
+      // the build instead of publishing unfinished concepts.
+      const graphFile = join(GENERATED_ROOT, 'graph.json');
+      if (!existsSync(graphFile)) return;
+      const { nodes } = JSON.parse(readFileSync(graphFile, 'utf8')) as {
+        nodes: { id: string; contenido: string; borrador: boolean }[];
+      };
+      const drafts = nodes.filter((node) => node.borrador).map((node) => node.id);
+      if (drafts.length > 0) {
+        this.error(
+          `src/generated contiene fichas en borrador (${drafts.slice(0, 5).join(', ')}); genere el contenido con build-content --production antes de vite build`,
+        );
+      }
+      const referenced = new Set(nodes.map((node) => node.contenido));
       for (const name of readdirSync(source)) {
-        if (!CONCEPT_FILE_NAME.test(name)) continue;
+        if (!CONCEPT_FILE_NAME.test(name) || !referenced.has(name)) continue;
         this.emitFile({
           type: 'asset',
           fileName: `${CONCEPT_FILES_FOLDER}/${name}`,
