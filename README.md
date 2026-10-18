@@ -63,7 +63,7 @@ Todas las visualizaciones comparten los mismos controles: reproducir, pausar, av
 
 ## Qué contiene
 
-El temario recorre una carrera completa de ciencia de datos en 18 módulos y más de 1600 conceptos, cada uno con su propia ficha.
+El temario completo abarca una carrera de ciencia de datos en 18 módulos y más de 1600 conceptos. Las fichas se publican submódulo por submódulo, y cada concepto publicado tiene la suya.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/readme/modules-dark.svg">

@@ -132,6 +132,19 @@ tasa: 0.5
 ## Errores comunes
 
 - **Proyectar solo al final.** Optimizar sin restricciones y proyectar el resultado no da el óptimo cuando el objetivo no es redondo.
+
+:::figura[$\tfrac{1}{2}(x^2 + 10y^2)$ con $x + 2y \ge 2$: proyectar el mínimo libre $(0, 0)$ sobre la recta da $(0.4, 0.8)$, pero el gradiente proyectado llega a $(1.43, 0.29)$, donde la elipse de nivel es tangente a la recta.]{componente="OptimizerRace"}
+```yaml
+modo: restricciones
+funciones: [cuadratica]
+restricciones:
+  - a: [-1, -2]
+    c: -2
+    etiqueta: 'x + 2y \ge 2'
+inicio: [-2, -1]
+tasa: 0.15
+```
+:::
 - **Suponer que siempre hay una sola restricción activa.** El óptimo puede estar en un vértice donde varias se activan a la vez.
 - **Usar una penalización pequeña y creer que se cumplen las restricciones.** Con $\rho$ finito la solución viola un poco las restricciones.
 - **Proyectar sobre un conjunto no convexo.** La proyección puede no ser única y el método pierde sus garantías.

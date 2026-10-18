@@ -77,32 +77,66 @@
   color: var(--color-text);
 }
 
-/* On touch screens there is no hover and the text spans the whole width, so
-   the arrows become small round buttons in the lower corners. */
-@media (max-width: 760px) {
-  .arrow {
-    top: auto;
-    bottom: var(--space-4);
-    height: 48px;
-    min-width: 48px;
-    justify-content: center;
-    padding: 0;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
-    transform: none;
+/* Below 1280 px the side margins are narrower than an arrow, so fixed side
+   arrows would cover the edge of the text and of the visualization controls.
+   The links become a bar at the end of the article. Once the reader has
+   scrolled past the first viewport the bar sticks to the bottom of the
+   viewport; on arrival it stays in place, so it never covers the main
+   visualization. It always settles before the footer, so nothing stays hidden
+   for good, and the bottom padding keeps the links clear of the home indicator
+   of phones. */
+@media (max-width: 1279px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+    padding: var(--space-2) 0 calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
   }
 
-  .previous {
-    left: var(--space-3);
+  .arrow {
+    position: static;
+    min-width: 0;
+    max-width: calc(50% - var(--space-1));
+    height: 48px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
   }
 
   .next {
-    right: var(--space-3);
+    margin-left: auto;
   }
 
-  .arrow:hover .label,
-  .arrow:focus-visible .label {
-    display: none;
+  .label {
+    display: flex;
+    min-width: 0;
+  }
+
+  .kicker,
+  .title {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* Whatever the browser scrolls into view (the control that receives keyboard
+     focus, an anchor) stops above the bar instead of behind it. The value is
+     the bar height (48 px links, two paddings, the border and the safe area)
+     plus a small gap. */
+  .floating {
+    position: sticky;
+    bottom: 0;
+    z-index: calc(var(--z-header) - 1);
+  }
+
+  :global(html):has(.floating) {
+    scroll-padding-bottom: calc(48px + 3 * var(--space-2) + 1px + env(safe-area-inset-bottom, 0px));
   }
 }
 

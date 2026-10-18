@@ -108,6 +108,16 @@ semilla: 2
 
 - **Mutación demasiado pequeña.** La población se vuelve homogénea en pocas generaciones y converge prematuramente a un mínimo local.
 - **Mutación demasiado grande.** Los hijos dejan de parecerse a los padres y el método se vuelve una búsqueda al azar.
+
+:::figura[Rastrigin con mutación del 30 % del ancho: los hijos caen casi en cualquier parte del cuadrado, el promedio de la población se queda cerca de 28 y tras 40 generaciones el mejor individuo apenas llega a $f = 1.85$, contra 0.088 con mutación del 4 %.]{componente="OptimizerRace"}
+```yaml
+modo: poblacion
+metodo: genetico
+funciones: [rastrigin]
+semilla: 2
+mutacion: 0.3
+```
+:::
 - **Interpretar la analogía biológica como garantía.** La evolución no optimiza una función fija; el algoritmo es una heurística sin garantía de encontrar el óptimo.
 - **Comparar con pocas evaluaciones.** Un algoritmo genético con 30 individuos y 40 generaciones usa unas 1200 evaluaciones; la comparación justa con otro método es con el mismo presupuesto.
 

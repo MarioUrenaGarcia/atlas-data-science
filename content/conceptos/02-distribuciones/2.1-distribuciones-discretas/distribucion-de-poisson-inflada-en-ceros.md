@@ -243,7 +243,7 @@ comparar: false
 
 ## Conexiones
 
-La ZIP es una mezcla de un cero seguro, elegido con una [[distribucion-de-bernoulli]], y una [[distribucion-de-poisson]], a la que generaliza. Como la [[distribucion-binomial-negativa]], sirve para conteos sobredispersos, pero concentra el exceso en el cero; existe también una binomial negativa inflada en ceros que combina ambos fenómenos. Es un ejemplo de mezcla de distribuciones con dos componentes. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones.
+La ZIP es una mezcla de un cero seguro, elegido con una [[distribucion-de-bernoulli]], y una [[distribucion-de-poisson]], a la que generaliza. Como la [[distribucion-binomial-negativa]], sirve para conteos sobredispersos, pero concentra el exceso en el cero; existe también una binomial negativa inflada en ceros que combina ambos fenómenos. Es un ejemplo de mezcla de distribuciones con dos componentes. El [[mapa-de-relaciones-entre-distribuciones]] la sitúa entre las demás distribuciones. Es un caso de las [[mezclas-de-distribuciones]]: un cero seguro mezclado con una Poisson.
 
 ## Formulario
 
