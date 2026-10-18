@@ -76,6 +76,7 @@ umbral: 6
 - $\mathbb{E}[X]$: media de $X$.
 - $\mathbf{1}\{X \ge a\}$: indicadora del evento $X \ge a$.
 - $g$: función creciente y no negativa.
+- $\mu$: media de $X$; $k$: orden de un momento; $t$: parámetro real de $e^{tx}$.
 - $T$: tiempo de respuesta del ejemplo, en segundos.
 :::
 
@@ -95,6 +96,26 @@ El tiempo de respuesta $T$ de un servidor tiene media de 0.2 segundos y no se sa
 
 La garantía es débil pero no supone nada sobre la forma de la distribución.
 
+:::figura[Una distribución compatible con el ejemplo del servidor: si $T$ fuera exponencial con media 0.2, $P(T \ge 1) = e^{-5} \approx 0.0067$, muy por debajo de la garantía 0.2 de Markov, que tiene que valer para cualquier distribución con esa media. La deslizadera permite revisar los umbrales 1 y 4 del ejemplo.]{componente="InequalityBound"}
+```yaml
+modo: cola
+cota: markov
+distribucion: exponencial
+parametros:
+  lambda: 5
+umbral: 1
+nombre: Tiempo de respuesta
+```
+:::
+
+## Propiedades
+
+- **Igualdad:** se alcanza con la variable que vale $a$ con probabilidad $\mathbb{E}[X]/a$ y 0 el resto del tiempo; por eso la cota no se puede mejorar usando solo la media.
+- **Funciones crecientes:** si $g \ge 0$ es creciente, $P(X \ge a) \le \mathbb{E}[g(X)]/g(a)$. Con $g(x) = x^2$ aplicada a $|X - \mu|$ se obtiene la desigualdad de Chebyshev y con $g(x) = e^{tx}$ la cota de Chernoff.
+- **Momentos altos:** $P(|X| \ge a) \le \mathbb{E}|X|^k / a^k$, más fuerte para $a$ grande si el momento de orden $k$ existe.
+- **Sin signo no hay cota:** si $X$ puede ser negativa, la media no controla la cola.
+- **Colas pesadas:** la cota queda más cerca de la probabilidad exacta cuando la cola de la distribución es pesada, porque entonces la distribución se parece más a la del caso de igualdad.
+
 :::figura[Una cola pesada: con la distribución de Pareto de índice 1.5 y media 3, en $a = 6$ la cota 0.5 es unas 7 veces la probabilidad exacta, 0.068. Con la exponencial de media 1 y el mismo umbral, la cota es unas 67 veces la probabilidad exacta.]{componente="InequalityBound"}
 ```yaml
 modo: cola
@@ -106,13 +127,6 @@ parametros:
 umbral: 6
 ```
 :::
-
-## Propiedades
-
-- **Igualdad:** se alcanza con la variable que vale $a$ con probabilidad $\mathbb{E}[X]/a$ y 0 el resto del tiempo; por eso la cota no se puede mejorar usando solo la media.
-- **Funciones crecientes:** si $g \ge 0$ es creciente, $P(X \ge a) \le \mathbb{E}[g(X)]/g(a)$. Con $g(x) = x^2$ se obtiene la desigualdad de Chebyshev y con $g(x) = e^{tx}$ la cota de Chernoff.
-- **Momentos altos:** $P(|X| \ge a) \le \mathbb{E}|X|^k / a^k$, más fuerte para $a$ grande si el momento de orden $k$ existe.
-- **Sin signo no hay cota:** si $X$ puede ser negativa, la media no controla la cola.
 
 :::figura[Una variable con muy poca dispersión: la gamma con forma 8 y media 8 concentra su masa cerca de la media, y para $a = 16$ la cota $8/16 = 0.5$ está lejísimos de la probabilidad exacta.]{componente="InequalityBound"}
 ```yaml
@@ -155,7 +169,10 @@ $$
 P(X \ge a) \le \frac{\mathbb{E}[X]}{a}
 $$
 
-- $X \ge 0$, $a > 0$.
+- $X$: variable aleatoria no negativa, $X \ge 0$.
+- $a$: umbral positivo, $a > 0$.
+- $P(X \ge a)$: probabilidad de que $X$ alcance o supere el umbral.
+- $\mathbb{E}[X]$: esperanza o media de $X$.
 :::
 
 :::formula[Versión con una función creciente]
@@ -163,7 +180,8 @@ $$
 P(X \ge a) \le \frac{\mathbb{E}[g(X)]}{g(a)}
 $$
 
-- $g$ creciente y no negativa, con $g(a) > 0$.
+- $g$: función creciente y no negativa, con $g(a) > 0$.
+- $\mathbb{E}[g(X)]$: esperanza de la variable transformada $g(X)$.
 :::
 
 :::formula[Momentos de orden k]
@@ -171,5 +189,6 @@ $$
 P(|X| \ge a) \le \frac{\mathbb{E}|X|^k}{a^k}
 $$
 
-- $k > 0$ con $\mathbb{E}|X|^k$ finito.
+- $|X|$: valor absoluto de $X$, que aquí puede tomar cualquier signo.
+- $k > 0$: orden del momento; $\mathbb{E}|X|^k$: momento absoluto de orden $k$, que debe ser finito.
 :::

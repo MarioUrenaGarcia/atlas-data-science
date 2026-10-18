@@ -71,7 +71,9 @@ exponente: 1.5
 - $\|X\|_p = (\mathbb{E}|X|^p)^{1/p}$: norma $L^p$ de $X$.
 - $a$, $b$: números no negativos de la desigualdad de Young.
 - $\rho$: correlación del par normal.
-- $Z$: normal estándar; $\Gamma$: función gamma.
+- $Z$: normal estándar; $\Gamma$: función gamma; $r$, $s$: órdenes de momentos.
+- $X_1, \dots, X_k$: varios factores con exponentes $p_1, \dots, p_k$.
+- $\sup|Y|$: el menor número que $|Y|$ no supera con probabilidad 1.
 :::
 
 ## Cómo usar la visualización
@@ -115,7 +117,7 @@ exponente: 2
 
 ## Errores comunes
 
-- **Elegir exponentes que no son conjugados.** Si $1/p + 1/q \ne 1$, la desigualdad puede fallar.
+- **Elegir exponentes con $1/p + 1/q > 1$.** Entonces la desigualdad puede fallar: con $p = q = 1$ diría $\mathbb{E}|XY| \le \mathbb{E}|X|\,\mathbb{E}|Y|$, y con $Y = X$ normal estándar el lado izquierdo vale 1 y el derecho $2/\pi \approx 0.64$. Si $1/p + 1/q < 1$ la cota sigue siendo válida en un espacio de probabilidad, por el orden de las normas, pero es más holgada que con exponentes conjugados.
 - **Creer que la cota es la misma para todo $p$.** Todas son válidas, pero su calidad depende de cómo se reparten los momentos.
 - **Olvidar los valores absolutos.** La desigualdad acota $\mathbb{E}|XY|$; para $\mathbb{E}[XY]$ se usa que $|\mathbb{E}[XY]| \le \mathbb{E}|XY|$.
 
@@ -135,10 +137,12 @@ La desigualdad de Hölder generaliza la [[desigualdad-de-cauchy-schwarz]] y se e
 
 :::formula[Desigualdad de Hölder]
 $$
-\mathbb{E}|XY| \le \big(\mathbb{E}|X|^p\big)^{1/p}\,\big(\mathbb{E}|Y|^q\big)^{1/q}
+\mathbb{E}|XY| \le \|X\|_p\, \|Y\|_q, \qquad \|X\|_p = \big(\mathbb{E}|X|^p\big)^{1/p}
 $$
 
-- $p, q > 1$ con $1/p + 1/q = 1$.
+- $X$, $Y$: variables aleatorias; $\mathbb{E}$: esperanza.
+- $p, q > 1$: exponentes conjugados, con $1/p + 1/q = 1$, es decir $q = p/(p - 1)$.
+- $\|X\|_p$: norma $L^p$ de $X$, que requiere $\mathbb{E}|X|^p$ finito; igual para $\|Y\|_q$.
 :::
 
 :::formula[Desigualdad de Young]
@@ -146,7 +150,31 @@ $$
 ab \le \frac{a^p}{p} + \frac{b^q}{q}
 $$
 
-- $a, b \ge 0$; base de la prueba.
+- $a, b \ge 0$: números reales; $p$, $q$: exponentes conjugados. Es la base de la prueba.
+:::
+
+:::formula[Desigualdad de Minkowski]
+$$
+\|X + Y\|_p \le \|X\|_p + \|Y\|_p
+$$
+
+- $p \ge 1$: desigualdad triangular de la norma $L^p$, que se deduce de Hölder.
+:::
+
+:::formula[Varios factores]
+$$
+\mathbb{E}|X_1 \cdots X_k| \le \prod_{i=1}^{k} \|X_i\|_{p_i}, \qquad \sum_{i=1}^{k} \frac{1}{p_i} = 1
+$$
+
+- $X_1, \dots, X_k$: $k$ variables; $p_i > 1$: exponente asignado a $X_i$.
+:::
+
+:::formula[Caso extremo]
+$$
+\mathbb{E}|XY| \le \mathbb{E}|X| \cdot \sup|Y|
+$$
+
+- Corresponde a $p = 1$ y $q = \infty$; $\sup|Y|$: cota de $|Y|$ que vale con probabilidad 1.
 :::
 
 :::formula[Orden de las normas]
@@ -154,7 +182,7 @@ $$
 \big(\mathbb{E}|X|^r\big)^{1/r} \le \big(\mathbb{E}|X|^s\big)^{1/s}, \qquad 0 < r \le s
 $$
 
-- Desigualdad de Lyapunov.
+- $r$, $s$: órdenes de los momentos. Es la desigualdad de Lyapunov.
 :::
 
 :::formula[Momentos absolutos de la normal]
@@ -162,5 +190,5 @@ $$
 \mathbb{E}|Z|^r = \frac{2^{r/2}\,\Gamma\big(\frac{r+1}{2}\big)}{\sqrt{\pi}}
 $$
 
-- $Z$ normal estándar, $r > 0$.
+- $Z$: normal estándar; $r > 0$: orden del momento; $\Gamma$: función gamma.
 :::

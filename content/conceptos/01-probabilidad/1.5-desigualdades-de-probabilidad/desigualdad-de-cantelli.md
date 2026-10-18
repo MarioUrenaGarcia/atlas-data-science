@@ -88,15 +88,13 @@ Un servicio de entregas tiene un tiempo $D$ con media de 30 minutos y desviació
 3. Chebyshev usado para una sola cola daría $1/4 = 0.25$.
 4. Para garantizar a lo más un 5 % de retrasos hace falta $1/(1 + k^2) \le 0.05$, es decir $k \ge \sqrt{19} \approx 4.36$: prometer $30 + 4.36 \cdot 6 \approx 56$ minutos.
 
-:::figura[Un tiempo de entrega con distribución gamma de forma 3: la cola a 2 desviaciones estándar sobre la media tiene probabilidad cercana a 0.04, debajo de la cota 0.2.]{componente="InequalityBound"}
+:::figura[El ejemplo de las entregas en unidades estandarizadas, $(D - 30)/6$: la promesa de 42 minutos queda en $k = 2$. Si $D$ fuera normal, la probabilidad de retraso sería 0.023; la garantía de Cantelli para cualquier distribución con esa media y esa varianza es 0.2. En el extremo de la deslizadera, $k = 4$, la cota vale $1/17 \approx 0.059$; para bajar a 0.05 hace falta $k = 4.36$, un poco más allá.]{componente="InequalityBound"}
 ```yaml
 modo: cola
 cota: cantelli
-distribucion: gamma
-parametros:
-  alpha: 3
-  beta: 1
+distribucion: normal
 umbral: 2
+nombre: Tiempo de entrega estandarizado
 ```
 :::
 
@@ -104,7 +102,7 @@ umbral: 2
 
 - **Óptima:** la igualdad se alcanza con una variable de dos valores, $\mu + t$ con probabilidad $\sigma^2/(\sigma^2 + t^2)$ y otro valor por debajo de la media.
 - **Mejora a Chebyshev en una cola:** $1/(1 + k^2) < 1/k^2$ para todo $k$, y la diferencia importa sobre todo con $k$ pequeño.
-- **Mediana y media:** con $t = \sigma$ se obtiene que $|\text{mediana} - \mu| \le \sigma$.
+- **Mediana y media:** para todo $t > \sigma$ la cota es menor que 1/2, así que la mediana no puede estar a más de $t$ de la media; como vale para todo $t > \sigma$, se obtiene $|\text{mediana} - \mu| \le \sigma$.
 - **Ambas colas:** sumar las cotas de Cantelli para las dos colas da $2/(1 + k^2)$, que es peor que Chebyshev para $k > 1$.
 
 :::figura[Una igualdad exacta: la Bernoulli con $p = 0.2$ tiene media 0.2 y desviación estándar 0.4, y el valor 1 está a 2 desviaciones sobre la media. Su probabilidad, 0.2, coincide con la cota $1/(1 + 4)$.]{componente="InequalityBound"}
@@ -146,7 +144,9 @@ $$
 P(X - \mu \ge t) \le \frac{\sigma^2}{\sigma^2 + t^2}
 $$
 
-- $t > 0$; también para la cola izquierda $X - \mu \le -t$.
+- $X$: variable aleatoria con media $\mu$ y varianza finita $\sigma^2$.
+- $t > 0$: distancia sobre la media en las unidades de $X$.
+- La misma cota vale para la cola izquierda, $P(X - \mu \le -t)$.
 :::
 
 :::formula[En desviaciones estándar]
@@ -154,7 +154,15 @@ $$
 P(X - \mu \ge k\sigma) \le \frac{1}{1 + k^2}
 $$
 
-- $k > 0$.
+- $\sigma$: desviación estándar; $k = t/\sigma > 0$: la distancia medida en desviaciones estándar.
+:::
+
+:::formula[Las dos colas sumadas]
+$$
+P(|X - \mu| \ge k\sigma) \le \frac{2}{1 + k^2}
+$$
+
+- Suma de las cotas de cada cola; para $k > 1$ es peor que la cota $1/k^2$ de Chebyshev.
 :::
 
 :::formula[Media y mediana]
@@ -162,5 +170,6 @@ $$
 |\text{mediana} - \mu| \le \sigma
 $$
 
-- Consecuencia de aplicar la cota con $k = 1$ en cada lado.
+- La mediana es un valor que deja al menos la mitad de la probabilidad de cada lado.
+- Se obtiene porque, para todo $t > \sigma$, cada cola tiene probabilidad menor que 1/2.
 :::

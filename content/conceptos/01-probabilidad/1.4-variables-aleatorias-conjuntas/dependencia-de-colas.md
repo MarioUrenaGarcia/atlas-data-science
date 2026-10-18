@@ -84,7 +84,7 @@ q: 0.9
 
 A la izquierda, los pares simulados de la cópula gaussiana con tau 0.5; las esquinas sombreadas son los pares en los que ambas coordenadas superan $q$ (arriba) o quedan debajo de $1 - q$ (abajo). A la derecha, las fracciones condicionales estimadas para cada umbral entre 0.5 y 0.98, junto con los límites teóricos punteados. El encabezado da la fracción de la esquina superior para el umbral elegido.
 
-Con la gaussiana, las dos curvas bajan conforme $q$ se acerca a 1, aunque despacio: su límite es 0, pero en $q = 0.98$ todavía valen alrededor de 0.3. Al cambiar a Gumbel, la curva superior se estabiliza alrededor de 0.59; con Clayton, la inferior lo hace alrededor de 0.71. La deslizadera de $q$ mueve las esquinas y la línea vertical.
+Con la gaussiana, las dos curvas bajan conforme $q$ se acerca a 1, aunque despacio: su límite es 0, pero en $q = 0.98$ la probabilidad exacta todavía vale alrededor de 0.3, y las curvas simuladas marcan cerca de 0.24. Al cambiar a Gumbel, la curva superior se estabiliza alrededor de 0.59; con Clayton, la inferior lo hace alrededor de 0.71. La deslizadera de $q$ mueve las esquinas y la línea vertical.
 
 ## Ejemplo
 
@@ -93,7 +93,7 @@ Para la cópula de Gumbel con $\theta = 2$ (tau de Kendall 0.5):
 1. $\lambda_U = 2 - 2^{1/2} \approx 0.586$.
 2. Interpretación: cuando una variable supera un percentil muy alto, la otra lo supera con probabilidad cercana a 0.59.
 3. Con independencia esa probabilidad sería $1 - q$, que tiende a 0; con la gaussiana del mismo tau también tiende a 0, aunque más despacio.
-4. En $q = 0.95$ la probabilidad condicional exacta es $\big(1 - 2q + C(q, q)\big)/(1 - q) \approx 0.60$. Con 4000 pares hay unos 200 con $U > 0.95$, y la fracción simulada varía alrededor de 0.60 por el ruido de muestreo: con tan pocos pares, valores entre 0.53 y 0.67 son comunes.
+4. En $q = 0.95$ la probabilidad condicional exacta es $\big(1 - 2q + C(q, q)\big)/(1 - q) \approx 0.60$. Con 4000 pares hay unos 200 con $U > 0.95$, y la fracción simulada varía alrededor de 0.60 por el ruido de muestreo: con tan pocos pares la desviación estándar de la fracción es cerca de 0.035, y valores entre 0.53 y 0.68 son comunes. La semilla inicial de la figura da 140 de 206 pares, alrededor de 0.68, en el borde alto de ese rango; otra semilla da otro valor cercano a 0.60.
 
 :::figura[El ejemplo con la cópula de Gumbel y umbral 0.95: la esquina superior derecha retiene una fracción de los pares con $U > 0.95$ cercana a la exacta, 0.60, con la variación propia de unos 200 pares.]{componente="CopulaViz"}
 ```yaml

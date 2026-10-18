@@ -235,8 +235,9 @@ export function ConcentrationView({ title, config }: ConcentrationViewProps) {
       </ChartSvg>
       <p className={styles.caption}>
         En escala logarítmica una caída exponencial es una recta. La cota de Chebyshev baja como 1/n
-        y se queda muy por encima; las cotas exponenciales siguen la pendiente de la probabilidad
-        exacta.
+        y se queda muy por encima. La de Chernoff baja con la misma pendiente que la probabilidad
+        exacta; las de Hoeffding y Bernstein pueden ser más planas, y entonces su distancia a la
+        exacta crece con n.
       </p>
     </VizFrame>
   );

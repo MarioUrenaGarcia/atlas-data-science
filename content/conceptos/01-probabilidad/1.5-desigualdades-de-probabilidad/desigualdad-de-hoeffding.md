@@ -58,7 +58,7 @@ Si todas toman valores en $[a, b]$, la cota es $\exp\big(-2nt^2/(b - a)^2\big)$,
 
 La pieza clave es el lema de Hoeffding: si $a \le X \le b$ y $\mathbb{E}[X] = 0$, entonces $\mathbb{E}[e^{sX}] \le e^{s^2 (b - a)^2/8}$. Con él se aplica el método de Chernoff y se optimiza $s$.
 
-:::figura[Con $p = 0.2$ y una desviación de 0.1 la cota de Hoeffding, $e^{-2n \cdot 0.01}$, es una recta en escala logarítmica, paralela a la probabilidad exacta y siempre por encima de ella.]{componente="InequalityBound"}
+:::figura[Con $p = 0.2$ y una desviación de 0.1 la cota de Hoeffding, $e^{-2n \cdot 0.01}$, es una recta en escala logarítmica, siempre por encima de la probabilidad exacta y más plana que ella: la exacta cae con pendiente $D(0.3 \,\|\, 0.2) \approx 0.028$ por ensayo y la cota con $2t^2 = 0.02$. La distancia crece con $n$: la cota es unas 12 veces la exacta en $n = 100$ y unas 100 veces en $n = 300$.]{componente="InequalityBound"}
 ```yaml
 modo: concentracion
 p: 0.2
@@ -74,6 +74,7 @@ cotas: [hoeffding]
 - $\bar{X}_n$: promedio; $\mu$: su media.
 - $t$: desviación; $s$: parámetro del método de Chernoff.
 - $\varepsilon$: error tolerado; $\delta$: probabilidad de fallar.
+- $\exp(x) = e^x$; $\mathbb{E}$: esperanza; $\log$: logaritmo natural; $m$: número de promedios controlados a la vez.
 :::
 
 ## Cómo usar la visualización
@@ -91,12 +92,12 @@ Las deslizaderas cambian $p$, $t$ y $n$. La cota de Hoeffding no depende de $p$:
 3. $n \ge 2050$ personas, sin suponer nada sobre la proporción verdadera.
 4. Con Chebyshev habría que tomar $n \ge 0.25/(0.05 \cdot 0.0009) \approx 5556$.
 
-:::figura[El ejemplo de la encuesta: con una desviación de 0.03, la cota de Hoeffding para una cola llega a 0.025 cerca de los 2050 encuestados, y la probabilidad exacta es todavía menor.]{componente="InequalityBound"}
+:::figura[El ejemplo de la encuesta: con una desviación de 0.03, la cota de Hoeffding para una cola, la mitad de la cota de dos colas, baja a 0.025 en $n = 2050$ y vale 0.023 en el extremo derecho, $n = 2100$. La probabilidad exacta con $p = 0.5$ es todavía menor, y la cota de Chebyshev sigue muy arriba.]{componente="InequalityBound"}
 ```yaml
 modo: concentracion
 p: 0.5
 umbral: 0.03
-n: 2000
+n: 2100
 cotas: [hoeffding, chebyshev]
 ```
 :::
@@ -142,10 +143,21 @@ La desigualdad de Hoeffding es la [[cota-de-chernoff]] especializada a variables
 
 :::formula[Desigualdad de Hoeffding]
 $$
-P\big(\bar{X}_n - \mu \ge t\big) \le \exp\!\left(-\frac{2nt^2}{(b - a)^2}\right)
+P\big(\bar{X}_n - \mu \ge t\big) \le \exp\!\left(-\frac{2 n^2 t^2}{\sum_{i=1}^{n} (b_i - a_i)^2}\right)
 $$
 
-- $X_i$ independientes en $[a, b]$.
+- $X_1, \dots, X_n$: variables independientes con $a_i \le X_i \le b_i$; $n$: número de variables.
+- $\bar{X}_n$: su promedio; $\mu = \mathbb{E}[\bar{X}_n]$: la media del promedio, con $\mathbb{E}$ la esperanza.
+- $t > 0$: desviación sobre la media; $\exp(x) = e^x$.
+:::
+
+:::formula[Rango común]
+$$
+P\big(\bar{X}_n - \mu \ge t\big) \le \exp\!\left(-\frac{2nt^2}{(b - a)^2}\right), \qquad P\big(|\bar{X}_n - \mu| \ge t\big) \le 2\exp\!\left(-\frac{2nt^2}{(b - a)^2}\right)
+$$
+
+- $a$, $b$: extremos comunes del intervalo de todas las $X_i$.
+- La segunda forma cubre las dos colas y lleva el factor 2.
 :::
 
 :::formula[Lema de Hoeffding]
@@ -153,7 +165,7 @@ $$
 \mathbb{E}\big[e^{sX}\big] \le e^{s^2 (b - a)^2 / 8}
 $$
 
-- $a \le X \le b$ y $\mathbb{E}[X] = 0$.
+- $X$: variable con $a \le X \le b$ y $\mathbb{E}[X] = 0$; $s$: número real, el parámetro del método de Chernoff.
 :::
 
 :::formula[Tamaño de muestra]
@@ -161,5 +173,6 @@ $$
 n \ge \frac{(b - a)^2}{2\varepsilon^2} \log\frac{2}{\delta}
 $$
 
+- $\varepsilon > 0$: error tolerado; $\delta$: probabilidad máxima de que el error lo supere; $\log$: logaritmo natural.
 - Garantiza $P(|\bar{X}_n - \mu| \ge \varepsilon) \le \delta$.
 :::

@@ -53,10 +53,10 @@ Si $\mathbb{E}[X^2]$ y $\mathbb{E}[Y^2]$ son finitos, entonces
 $$
 \big|\mathbb{E}[XY]\big| \le \mathbb{E}|XY| \le \sqrt{\mathbb{E}[X^2]\,\mathbb{E}[Y^2]}.
 $$
-Hay igualdad en la cota exterior si y solo si $Y = cX$ o $X = cY$ con probabilidad 1 para alguna constante $c$.
+Entre $|\mathbb{E}[XY]|$ y la raíz hay igualdad si y solo si $Y = cX$ o $X = cY$ con probabilidad 1 para alguna constante $c$. En la cota $\mathbb{E}|XY| \le \sqrt{\mathbb{E}[X^2]\,\mathbb{E}[Y^2]}$ basta con que $|Y| = c|X|$ o $|X| = c|Y|$: por ejemplo, $Y = |X|$ da igualdad ahí sin ser múltiplo de $X$.
 :::
 
-La prueba usa que $\mathbb{E}[(X - sY)^2] \ge 0$ para todo $s$: es un polinomio de grado 2 en $s$ sin raíces reales dobles salvo en el caso de igualdad, y su discriminante debe ser no positivo.
+La prueba supone $\mathbb{E}[Y^2] > 0$; si $\mathbb{E}[Y^2] = 0$, entonces $Y = 0$ con probabilidad 1 y los dos lados valen 0. La función $s \mapsto \mathbb{E}[(X - sY)^2] = \mathbb{E}[X^2] - 2s\,\mathbb{E}[XY] + s^2\,\mathbb{E}[Y^2]$ es un polinomio de grado 2 que nunca es negativo, así que no cambia de signo y su discriminante es menor o igual que 0: $4(\mathbb{E}[XY])^2 - 4\,\mathbb{E}[X^2]\,\mathbb{E}[Y^2] \le 0$. Tiene una raíz doble solo en el caso de igualdad, cuando $X = sY$ con probabilidad 1.
 
 :::figura[Con correlación 0.9, $|\mathbb{E}[XY]| = 0.9$ y $\mathbb{E}|XY| \approx 0.92$ están cerca de la cota 1, porque la relación es casi lineal.]{componente="InequalityBound"}
 ```yaml
@@ -70,6 +70,8 @@ rho: 0.9
 - $\mathbb{E}[XY]$: esperanza del producto; $\mathbb{E}|XY|$: esperanza de su valor absoluto.
 - $\mathbb{E}[X^2]$, $\mathbb{E}[Y^2]$: segundos momentos.
 - $s$, $c$: constantes reales.
+- $\mathbf{1}_A$: indicadora del evento $A$, que vale 1 si ocurre y 0 si no; $P(A)$: su probabilidad.
+- $\operatorname{Cov}(X, Y)$: covarianza; $a$, $b$: coeficientes de una relación lineal.
 - $\mu_X$, $\mu_Y$: medias; $\sigma_X$, $\sigma_Y$: desviaciones estándar; $\rho$: correlación.
 :::
 
@@ -77,7 +79,7 @@ rho: 0.9
 
 $X$ y $Y$ son normales estándar con correlación $\rho$, así que $\mathbb{E}[X^2] = \mathbb{E}[Y^2] = 1$ y la cota de Cauchy y Schwarz es 1. La gráfica muestra $|\mathbb{E}[XY]| = |\rho|$ y $\mathbb{E}|XY|$ como funciones de $\rho$, siempre debajo de la línea de la cota. El encabezado escribe la cadena de desigualdades con los valores actuales.
 
-La deslizadera cambia $\rho$ y el botón de reproducción la recorre de $-0.99$ a 0.99. Las dos curvas solo tocan la cota en los extremos, cuando $Y = X$ o $Y = -X$.
+La deslizadera cambia $\rho$ y el botón de reproducción la recorre de $-0.99$ a 0.99. En los extremos del control, $\pm 0.99$, las dos curvas se acercan mucho a la cota sin tocarla; solo la tocarían con $\rho = \pm 1$, cuando $Y = X$ o $Y = -X$.
 
 ## Ejemplo
 
@@ -87,10 +89,10 @@ Dos variables tienen varianzas 4 y 9, y se reporta una covarianza de 7.
 2. Una covarianza de 7 es imposible: el reporte contiene un error.
 3. La correlación implícita sería $7/6 \approx 1.17 > 1$, otra manera de ver lo mismo.
 
-:::figura[Con correlación $-0.7$, $\mathbb{E}[XY] = -0.7$: el valor absoluto de la esperanza del producto, 0.7, queda debajo de la cota 1.]{componente="InequalityBound"}
+:::figura[El ejemplo en variables estandarizadas, $(X - \mu_X)/2$ y $(Y - \mu_Y)/3$: la esperanza de su producto es $\operatorname{Cov}(X, Y)/6$, la correlación, y nunca rebasa la cota 1. La covarianza reportada exigiría $7/6 \approx 1.17$; incluso con correlación 0.99 la covarianza sería $0.99 \cdot 6 = 5.94$.]{componente="InequalityBound"}
 ```yaml
 modo: holder
-rho: -0.7
+rho: 0.99
 ```
 :::
 
@@ -102,10 +104,10 @@ rho: -0.7
 - **Generalización:** es el caso $p = q = 2$ de la desigualdad de Hölder.
 - **Probabilidades:** con $Y = \mathbf{1}_A$ se obtiene $\big(\mathbb{E}[X\mathbf{1}_A]\big)^2 \le \mathbb{E}[X^2]\,P(A)$, útil para acotar la contribución de un evento a una media.
 
-:::figura[Casi en el caso de igualdad: con correlación 0.99 las dos curvas están pegadas a la cota en el extremo derecho.]{componente="InequalityBound"}
+:::figura[Casi en el caso de igualdad con dependencia negativa: con correlación $-0.99$, $\mathbb{E}[XY] = -0.99$ y las dos curvas están pegadas a la cota en el extremo izquierdo, sin tocarla.]{componente="InequalityBound"}
 ```yaml
 modo: holder
-rho: 0.99
+rho: -0.99
 ```
 :::
 
@@ -130,18 +132,31 @@ La desigualdad de Cauchy y Schwarz traslada al mundo de las variables aleatorias
 
 :::formula[Desigualdad de Cauchy y Schwarz]
 $$
-\big|\mathbb{E}[XY]\big| \le \sqrt{\mathbb{E}[X^2]\,\mathbb{E}[Y^2]}
+\big|\mathbb{E}[XY]\big| \le \mathbb{E}|XY| \le \sqrt{\mathbb{E}[X^2]\,\mathbb{E}[Y^2]}
 $$
 
-- Igualdad si y solo si una variable es múltiplo de la otra.
+- $X$, $Y$: variables aleatorias con segundos momentos $\mathbb{E}[X^2]$ y $\mathbb{E}[Y^2]$ finitos; $\mathbb{E}$: esperanza.
+- $\mathbb{E}[XY]$: esperanza del producto; $\mathbb{E}|XY|$: esperanza de su valor absoluto.
+- Igualdad entre el primer término y la raíz si y solo si $Y = cX$ o $X = cY$ con probabilidad 1; en la segunda desigualdad basta $|Y| = c|X|$ o $|X| = c|Y|$, con $c$ constante.
 :::
 
 :::formula[Covarianza acotada]
 $$
-|\operatorname{Cov}(X, Y)| \le \sigma_X \sigma_Y
+|\operatorname{Cov}(X, Y)| \le \sigma_X \sigma_Y, \qquad -1 \le \rho \le 1
 $$
 
-- Aplicada a $X - \mu_X$ y $Y - \mu_Y$.
+- $\operatorname{Cov}(X, Y)$: covarianza; $\sigma_X$, $\sigma_Y$: desviaciones estándar.
+- $\rho = \operatorname{Cov}(X, Y)/(\sigma_X \sigma_Y)$: correlación.
+- Se obtiene aplicando la desigualdad a $X - \mu_X$ y $Y - \mu_Y$, con $\mu_X$, $\mu_Y$ las medias.
+:::
+
+:::formula[Contribución de un evento]
+$$
+\big(\mathbb{E}[X\mathbf{1}_A]\big)^2 \le \mathbb{E}[X^2]\,P(A)
+$$
+
+- $\mathbf{1}_A$: indicadora del evento $A$; $P(A)$: su probabilidad.
+- Es el caso $Y = \mathbf{1}_A$, porque $\mathbb{E}[\mathbf{1}_A^2] = P(A)$.
 :::
 
 :::formula[Normales estándar correlacionadas]
@@ -149,5 +164,6 @@ $$
 \mathbb{E}|XY| = \frac{2}{\pi}\Big(\sqrt{1 - \rho^2} + \rho \arcsin \rho\Big)
 $$
 
-- $\rho$: correlación del par normal.
+- $X$, $Y$: normales estándar con correlación $\rho$, de modo que $\mathbb{E}[XY] = \rho$.
+- $\arcsin$: función inversa del seno; con $\rho = 0$ vale $2/\pi \approx 0.64$.
 :::

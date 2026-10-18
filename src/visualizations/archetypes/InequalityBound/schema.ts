@@ -32,7 +32,7 @@ export const parametersSchema = z
     umbral: z.number().optional(),
     /** Success probability of each trial and number of trials in the concentration mode. */
     p: z.number().gt(0).lt(1).optional(),
-    n: z.number().int().min(1).max(2000).optional(),
+    n: z.number().int().min(1).max(2500).optional(),
     /** Bounds drawn in the concentration mode, the first one highlighted. */
     cotas: z.array(z.enum(SUM_BOUNDS)).min(1).optional(),
     /** Function and finite distribution of the Jensen mode. */

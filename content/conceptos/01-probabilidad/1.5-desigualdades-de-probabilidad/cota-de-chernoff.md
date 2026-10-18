@@ -82,11 +82,13 @@ cotas: [chernoff, hoeffding]
 - $t$ (en la versión de Bernoulli): desviación del promedio sobre $p$.
 - $D(a \,\|\, p)$: entropía relativa entre Bernoulli($a$) y Bernoulli($p$).
 - $S$: número de caras del ejemplo.
+- $\inf_{t > 0}$: el menor valor, o ínfimo, sobre todos los $t$ positivos.
+- $\mathbb{E}$: esperanza; $\log$: logaritmo natural.
 :::
 
 ## Cómo usar la visualización
 
-El eje vertical está en escala logarítmica: una caída exponencial se ve como una recta. Para el promedio de $n$ ensayos con $p = 0.3$, la curva negra es la probabilidad exacta de superar $0.4$; las otras son las cotas de Chernoff, Hoeffding y Chebyshev. La de Chebyshev baja como $1/n$ y se queda muy arriba; las exponenciales bajan con la pendiente de la exacta. El encabezado da los valores en el $n$ actual.
+El eje vertical está en escala logarítmica: una caída exponencial se ve como una recta. Para el promedio de $n$ ensayos con $p = 0.3$, la curva marcada en la leyenda como probabilidad exacta es la de superar $0.4$; las otras son las cotas de Chernoff, Hoeffding y Chebyshev. La de Chebyshev baja como $1/n$ y se queda muy arriba. La de Chernoff baja con la misma pendiente que la exacta, $D(0.4 \,\|\, 0.3) \approx 0.0226$ por ensayo; la de Hoeffding es una recta más plana, con pendiente $2t^2 = 0.02$, así que su distancia a la exacta crece con $n$. El encabezado da los valores en el $n$ actual.
 
 Las deslizaderas cambian $p$, la desviación $t$ y $n$; el botón de reproducción aumenta $n$ desde 1.
 
@@ -153,21 +155,42 @@ $$
 P(X \ge a) \le \inf_{t > 0} e^{-ta}\, M_X(t)
 $$
 
-- $M_X$: función generadora de momentos.
+- $X$: variable aleatoria; $a$: umbral real.
+- $t > 0$: parámetro libre; $\inf_{t > 0}$: el menor valor de la expresión sobre todos los $t$ positivos.
+- $M_X(t) = \mathbb{E}[e^{tX}]$: función generadora de momentos, con $\mathbb{E}$ la esperanza.
 :::
 
-:::formula[Promedio de Bernoulli]
+:::formula[Sumas de independientes]
+$$
+M_{X_1 + \dots + X_n}(t) = \prod_{i=1}^{n} M_{X_i}(t)
+$$
+
+- $X_1, \dots, X_n$: variables independientes; $n$: número de sumandos.
+:::
+
+:::formula[Promedio de Bernoulli, cola derecha]
 $$
 P(\bar{X}_n \ge p + t) \le e^{-n\, D(p + t \,\|\, p)}
 $$
 
-- $n$ ensayos independientes con probabilidad $p$.
+- $\bar{X}_n$: promedio de $n$ ensayos de Bernoulli independientes con probabilidad de éxito $p$.
+- $t$: desviación sobre $p$, con $0 < t < 1 - p$.
+- $D$: entropía relativa de Bernoulli, definida abajo.
+:::
+
+:::formula[Promedio de Bernoulli, cola izquierda]
+$$
+P(\bar{X}_n \le p - t) \le e^{-n\, D(p - t \,\|\, p)}
+$$
+
+- $0 < t < p$; se obtiene aplicando la cota a $-\bar{X}_n$.
 :::
 
 :::formula[Entropía relativa de Bernoulli]
 $$
-D(a \,\|\, p) = a \log\frac{a}{p} + (1 - a) \log\frac{1 - a}{1 - p}
+D(a \,\|\, p) = a \log\frac{a}{p} + (1 - a) \log\frac{1 - a}{1 - p} \ \ge\ 2(a - p)^2
 $$
 
-- Siempre $D(a \,\|\, p) \ge 2(a - p)^2$.
+- $a$, $p$: probabilidades de éxito de dos distribuciones de Bernoulli; $\log$: logaritmo natural.
+- La cota $2(a - p)^2$ es la que usa Hoeffding, por eso Chernoff nunca es peor.
 :::

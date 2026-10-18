@@ -71,6 +71,8 @@ cotas: [bernstein, hoeffding]
 - $c$: cota de $|X_i - \mu|$.
 - $\bar{X}_n$: promedio; $t$: desviación.
 - $p$: probabilidad de defecto del ejemplo.
+- $\exp(x) = e^x$; $\mathbb{E}$: esperanza; $k$: orden de un momento.
+- $\ll$, $\gg$: mucho menor y mucho mayor que.
 :::
 
 ## Cómo usar la visualización
@@ -86,9 +88,9 @@ Piezas defectuosas con $p = 0.01$; se revisan $n = 2000$ y se pregunta por una p
 1. Hoeffding: $e^{-2 \cdot 2000 \cdot 0.0001} = e^{-0.4} \approx 0.67$.
 2. Bernstein, con $\sigma^2 = 0.0099$ y $c = 0.99$: el exponente es $\dfrac{2000 \cdot 0.0001}{0.0198 + 0.0066} = \dfrac{0.2}{0.0264} \approx 7.58$.
 3. Cota de Bernstein: $e^{-7.58} \approx 0.0005$.
-4. La probabilidad exacta es del orden de $10^{-4}$: Bernstein captura el orden de magnitud y Hoeffding no.
+4. La probabilidad exacta, con la binomial, es $P(\text{Bin}(2000, 0.01) \ge 40) \approx 4.8 \times 10^{-5}$. La cota de Bernstein es unas 10 veces mayor; la de Hoeffding, más de 10000 veces mayor.
 
-:::figura[El ejemplo de las piezas: con $p = 0.01$ y desviación 0.01, en $n = 2000$ la cota de Bernstein es cercana a 0.0005, la de Hoeffding 0.67.]{componente="InequalityBound"}
+:::figura[El ejemplo de las piezas: con $p = 0.01$ y desviación 0.01, en $n = 2000$ la cota de Bernstein es cercana a 0.0005 y la de Hoeffding 0.67, mientras que la probabilidad exacta es $4.8 \times 10^{-5}$.]{componente="InequalityBound"}
 ```yaml
 modo: concentracion
 p: 0.01
@@ -142,7 +144,10 @@ $$
 P\big(\bar{X}_n - \mu \ge t\big) \le \exp\!\left(-\frac{n t^2}{2\sigma^2 + \frac{2}{3} c\, t}\right)
 $$
 
-- $|X_i - \mu| \le c$, varianza $\sigma^2$.
+- $X_1, \dots, X_n$: variables independientes con media $\mu$ y varianza $\sigma^2$; $n$: número de variables.
+- $\bar{X}_n$: su promedio; $t > 0$: desviación sobre la media.
+- $c$: cota de las desviaciones, $|X_i - \mu| \le c$; $\exp(x) = e^x$.
+- Para las dos colas la cota se multiplica por 2.
 :::
 
 :::formula[Régimen gaussiano]
@@ -150,7 +155,16 @@ $$
 P\big(\bar{X}_n - \mu \ge t\big) \lesssim e^{-n t^2 / (2\sigma^2)}, \qquad t \ll \sigma^2 / c
 $$
 
-- Cola de una normal con varianza $\sigma^2/n$.
+- $\lesssim$: aproximadamente menor o igual; $\ll$: mucho menor que.
+- Es la cola de una normal con varianza $\sigma^2/n$.
+:::
+
+:::formula[Régimen exponencial]
+$$
+P\big(\bar{X}_n - \mu \ge t\big) \lesssim e^{-3 n t / (2c)}, \qquad t \gg \sigma^2 / c
+$$
+
+- $\gg$: mucho mayor que. La cota decae solo de forma exponencial en $t$, más despacio que una cola gaussiana.
 :::
 
 :::formula[Condición de momentos]
@@ -158,5 +172,5 @@ $$
 \mathbb{E}|X_i - \mu|^k \le \sigma^2 c^{k-2}, \qquad k \ge 2
 $$
 
-- Se cumple si $|X_i - \mu| \le c$.
+- $\mathbb{E}$: esperanza; $k$: orden del momento. Se cumple si $|X_i - \mu| \le c$.
 :::

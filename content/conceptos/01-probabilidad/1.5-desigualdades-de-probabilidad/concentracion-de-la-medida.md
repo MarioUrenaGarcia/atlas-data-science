@@ -136,7 +136,9 @@ $$
 P\big(|f(\mathbf{X}) - \mathbb{E} f(\mathbf{X})| \ge t\big) \le 2e^{-t^2/(2L^2)}
 $$
 
-- $\mathbf{X} \sim \mathcal{N}(\mathbf{0}, \mathbf{I}_d)$; $f$ de Lipschitz con constante $L$.
+- $\mathbf{X} \sim \mathcal{N}(\mathbf{0}, \mathbf{I}_d)$: vector de $d$ coordenadas normales estándar independientes; $\mathbf{0}$: vector de ceros; $\mathbf{I}_d$: matriz identidad de tamaño $d$.
+- $f : \mathbb{R}^d \to \mathbb{R}$: función de Lipschitz con constante $L$; $\mathbb{E} f(\mathbf{X})$: su media.
+- $t > 0$: desviación respecto a la media. La cota no depende de $d$.
 :::
 
 :::formula[Condición de Lipschitz]
@@ -144,7 +146,8 @@ $$
 |f(\mathbf{x}) - f(\mathbf{y})| \le L\, \lVert \mathbf{x} - \mathbf{y} \rVert
 $$
 
-- Para todos $\mathbf{x}$, $\mathbf{y}$.
+- $\mathbf{x}$, $\mathbf{y}$: dos puntos cualesquiera de $\mathbb{R}^d$; $\lVert \cdot \rVert$: norma euclidiana.
+- $L$: constante de Lipschitz, el mayor cambio de $f$ por unidad de distancia.
 :::
 
 :::formula[Norma de un vector gaussiano]
@@ -152,5 +155,15 @@ $$
 \mathbb{E}\lVert \mathbf{X} \rVert^2 = d, \qquad \lVert \mathbf{X} \rVert \approx \sqrt{d} \pm O(1)
 $$
 
-- Fluctuaciones de orden 1 en cualquier dimensión.
+- $d$: dimensión; $O(1)$: una cantidad acotada que no crece con $d$.
+- Las fluctuaciones absolutas de la norma son de orden 1; las relativas, de orden $1/\sqrt{d}$.
+:::
+
+:::formula[Varianza del cuadrado de la norma]
+$$
+\operatorname{Var}\big(\lVert \mathbf{X} \rVert^2\big) = 2d
+$$
+
+- $\lVert \mathbf{X} \rVert^2 = X_1^2 + \dots + X_d^2$ es una ji cuadrada con $d$ grados de libertad; $\operatorname{Var}$: varianza.
+- Sus fluctuaciones crecen como $\sqrt{2d}$, porque $\lVert \mathbf{x} \rVert^2$ no es de Lipschitz.
 :::

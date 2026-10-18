@@ -95,12 +95,13 @@ Una empacadora llena paquetes con peso $W$ de media 500 gramos y desviación est
 2. Al menos el 88.9 % de los paquetes pesa entre 485 y 515 gramos.
 3. Si se supiera que $W$ es normal, la probabilidad sería 0.0027. La diferencia es el precio de no conocer la distribución.
 
-:::figura[La distribución de Laplace, de colas más pesadas que la normal: a 3 desviaciones estándar queda fuera una probabilidad de 0.014, cinco veces la de la normal y aún muy por debajo de la cota 0.111.]{componente="InequalityBound"}
+:::figura[El ejemplo de la empacadora en unidades estandarizadas, $(W - 500)/5$: si el peso fuera normal, la probabilidad de desviarse 15 gramos o más, es decir $k = 3$, sería 0.0027, mientras que la garantía de Chebyshev para cualquier distribución es $1/9 \approx 0.111$.]{componente="InequalityBound"}
 ```yaml
 modo: cola
 cota: chebyshev
-distribucion: laplace
+distribucion: normal
 umbral: 3
+nombre: Peso estandarizado
 ```
 :::
 
@@ -110,6 +111,16 @@ umbral: 3
 - **Es óptima:** para cada $k \ge 1$ existe una distribución que alcanza la igualdad: vale $\mu \pm k\sigma$ con probabilidad $1/(2k^2)$ cada uno y $\mu$ el resto del tiempo.
 - **Versión de una cola:** la desigualdad de Cantelli mejora la cota para una sola cola a $1/(1 + k^2)$.
 - **Con momentos más altos:** $P(|X - \mu| \ge t) \le \mathbb{E}|X - \mu|^r / t^r$, más fuerte en las colas lejanas si el momento existe.
+- **Colas pesadas:** cuanto más pesadas son las colas, más se acerca la probabilidad exacta a la cota, aunque para distribuciones usuales sigue lejos de ella.
+
+:::figura[La distribución de Laplace, de colas más pesadas que la normal: a 3 desviaciones estándar queda fuera una probabilidad de 0.014, cinco veces la de la normal y aún muy por debajo de la cota 0.111.]{componente="InequalityBound"}
+```yaml
+modo: cola
+cota: chebyshev
+distribucion: laplace
+umbral: 3
+```
+:::
 
 :::figura[Un caso de igualdad: la variable de Rademacher vale $-1$ o 1 con probabilidad 1/2, y con $k = 1$ toda su masa está a exactamente una desviación estándar, así que la probabilidad y la cota valen 1.]{componente="InequalityBound"}
 ```yaml
@@ -146,7 +157,10 @@ $$
 P\big(|X - \mu| \ge k\sigma\big) \le \frac{1}{k^2}
 $$
 
-- $\mu$, $\sigma$: media y desviación estándar; $k > 0$.
+- $X$: variable aleatoria con varianza finita.
+- $\mu = \mathbb{E}[X]$: media; $\sigma$: desviación estándar, la raíz de la varianza $\sigma^2$.
+- $k > 0$: distancia a la media medida en desviaciones estándar; la cota informa solo con $k > 1$.
+- $|X - \mu|$: distancia entre $X$ y su media.
 :::
 
 :::formula[Forma con la distancia]
@@ -154,7 +168,8 @@ $$
 P(|X - \mu| \ge t) \le \frac{\sigma^2}{t^2}
 $$
 
-- $t > 0$ en las unidades de $X$.
+- $t > 0$: distancia a la media en las unidades de $X$, igual a $k\sigma$.
+- $\sigma^2$: varianza de $X$.
 :::
 
 :::formula[Promedio de n observaciones]
@@ -162,5 +177,23 @@ $$
 P\big(|\bar{X}_n - \mu| \ge \varepsilon\big) \le \frac{\sigma^2}{n\varepsilon^2}
 $$
 
-- Observaciones independientes con varianza $\sigma^2$.
+- $\bar{X}_n = (X_1 + \dots + X_n)/n$: promedio de $n$ observaciones independientes con media $\mu$ y varianza $\sigma^2$.
+- $n$: número de observaciones; $\varepsilon > 0$: tolerancia.
+:::
+
+:::formula[Momentos de orden r]
+$$
+P(|X - \mu| \ge t) \le \frac{\mathbb{E}|X - \mu|^r}{t^r}
+$$
+
+- $r > 0$: orden del momento; $\mathbb{E}|X - \mu|^r$: momento absoluto centrado de orden $r$, que debe ser finito.
+- Con $r = 2$ se recupera la desigualdad de Chebyshev.
+:::
+
+:::formula[Distribución que alcanza la igualdad]
+$$
+P(X = \mu - k\sigma) = P(X = \mu + k\sigma) = \frac{1}{2k^2}, \qquad P(X = \mu) = 1 - \frac{1}{k^2}
+$$
+
+- $k \ge 1$: con esta distribución, $P(|X - \mu| \ge k\sigma) = 1/k^2$ exactamente, y su desviación estándar es $\sigma$.
 :::

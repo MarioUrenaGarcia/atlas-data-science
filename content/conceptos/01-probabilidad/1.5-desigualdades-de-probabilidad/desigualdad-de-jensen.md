@@ -71,6 +71,8 @@ valores: [1, 2, 4, 8]
 - $\mathbb{E}[g(X)]$: media de la función; $g(\mathbb{E}[X])$: función de la media.
 - $m$: pendiente de una recta de apoyo de $g$ en $\mu$.
 - $R$: factor de crecimiento de una inversión en un año.
+- $\operatorname{Var}(X)$: varianza; $M_X(t) = \mathbb{E}[e^{tX}]$: función generadora de momentos, con $t$ real.
+- $r$, $s$: órdenes de momentos, con $0 < r < s$.
 :::
 
 ## Cómo usar la visualización
@@ -129,7 +131,7 @@ valores: [-2, -1, 1, 3]
 
 ## Conexiones
 
-La desigualdad de Jensen compara la [[ley-del-estadistico-inconsciente]] con evaluar la función en la media, y depende de las [[funciones-convexas-y-concavas]]. Con $g(x) = x^2$ explica que la [[varianza]] sea no negativa, y con el logaritmo da la [[desigualdad-entre-medias]]. Es la herramienta que prueba que la [[funcion-generadora-de-momentos]] crece como $e^{t\mu}$ al menos, y que la [[desigualdad-de-holder]] y la [[desigualdad-de-cauchy-schwarz]] ordenan los momentos.
+La desigualdad de Jensen compara la [[ley-del-estadistico-inconsciente]] con evaluar la función en la media, y depende de las [[funciones-convexas-y-concavas]]. Con $g(x) = x^2$ explica que la [[varianza]] sea no negativa, y con el logaritmo da la [[desigualdad-entre-medias]]. Es la herramienta que prueba que la [[funcion-generadora-de-momentos]] crece como $e^{t\mu}$ al menos, y la que da el orden de los momentos de Lyapunov, $(\mathbb{E}|X|^r)^{1/r} \le (\mathbb{E}|X|^s)^{1/s}$ para $r < s$. La [[desigualdad-de-holder]] y la [[desigualdad-de-cauchy-schwarz]] acotan, en cambio, la esperanza de un producto.
 
 ## Formulario
 
@@ -138,6 +140,8 @@ $$
 g \text{ convexa} \ \Rightarrow\ \mathbb{E}[g(X)] \ge g\big(\mathbb{E}[X]\big)
 $$
 
+- $X$: variable aleatoria con $\mathbb{E}|X|$ finito; $\mathbb{E}$: esperanza.
+- $g$: función convexa en un intervalo que contiene los valores de $X$, con $\mathbb{E}|g(X)|$ finito.
 - Con $g$ cóncava la desigualdad se invierte.
 :::
 
@@ -146,7 +150,8 @@ $$
 g(x) \ge g(\mu) + m\,(x - \mu)
 $$
 
-- $m$: pendiente de una recta que toca a $g$ en $\mu$ y queda debajo.
+- $\mu = \mathbb{E}[X]$: media de $X$; $x$: cualquier punto del intervalo.
+- $m$: pendiente de una recta que toca a $g$ en $\mu$ y queda debajo de su gráfica.
 :::
 
 :::formula[Caso cuadrático]
@@ -154,7 +159,7 @@ $$
 \mathbb{E}[X^2] - (\mathbb{E}[X])^2 = \operatorname{Var}(X) \ge 0
 $$
 
-- La brecha de Jensen para $g(x) = x^2$.
+- $\operatorname{Var}(X)$: varianza de $X$, que es la brecha de Jensen para $g(x) = x^2$.
 :::
 
 :::formula[Logaritmo]
@@ -162,5 +167,22 @@ $$
 \mathbb{E}[\log X] \le \log \mathbb{E}[X]
 $$
 
-- $X > 0$; da la desigualdad entre la media geométrica y la aritmética.
+- $X > 0$; $\log$: logaritmo natural, cóncavo.
+- Da la desigualdad entre la media geométrica y la aritmética.
+:::
+
+:::formula[Función generadora de momentos]
+$$
+M_X(t) = \mathbb{E}\big[e^{tX}\big] \ge e^{t\,\mathbb{E}[X]}
+$$
+
+- $t$: número real donde $M_X(t)$ es finita; $e^{tx}$ es convexa en $x$.
+:::
+
+:::formula[Orden de los momentos]
+$$
+\big(\mathbb{E}|X|^r\big)^{1/r} \le \big(\mathbb{E}|X|^s\big)^{1/s}, \qquad 0 < r < s
+$$
+
+- $r$, $s$: órdenes de los momentos; se obtiene con la función convexa $y \mapsto y^{s/r}$ aplicada a $|X|^r$.
 :::

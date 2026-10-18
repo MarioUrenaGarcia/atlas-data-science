@@ -73,6 +73,8 @@ umbral: 3
 - $c_i$: cambio máximo de $f$ al modificar solo la variable $i$.
 - $t$: desviación respecto a la media.
 - $m$: número de bolas y de cajas del ejemplo.
+- $x_i$, $x_i'$: dos valores posibles de la variable $i$.
+- $\mathbb{E}[f]$: media de $f(X_1, \dots, X_n)$; $\exp(x) = e^x$.
 :::
 
 ## Cómo usar la visualización
@@ -101,7 +103,7 @@ umbral: 10
 ## Propiedades
 
 - **Generaliza a Hoeffding:** con $f = \sum_i X_i$ y $X_i \in [a_i, b_i]$, $c_i = b_i - a_i$ y se recupera la desigualdad de Hoeffding para la suma.
-- **Escala:** si cada $c_i$ es del orden de $1/n$, como en un promedio, la desviación típica de $f$ es del orden de $1/\sqrt{n}$.
+- **Escala:** si cada $c_i$ es del orden de $1/n$, como en un promedio, la desviación típica de $f$ es a lo más del orden de $1/\sqrt{n}$.
 - **Estabilidad de algoritmos:** si cambiar un dato del entrenamiento cambia poco el error de un modelo, ese error se concentra alrededor de su media.
 - **No usa la varianza:** en problemas donde la varianza es mucho menor que $\sum c_i^2$, otras desigualdades dan cotas más finas.
 
@@ -138,15 +140,19 @@ $$
 P\big(f - \mathbb{E}[f] \ge t\big) \le \exp\!\left(-\frac{2t^2}{\sum_{i=1}^{n} c_i^2}\right)
 $$
 
-- $c_i$: cambio máximo de $f$ al modificar la variable $i$.
+- $X_1, \dots, X_n$: variables independientes; $n$: número de variables.
+- $f = f(X_1, \dots, X_n)$: función con diferencias acotadas; $\mathbb{E}[f]$: su media.
+- $t > 0$: desviación sobre la media; $\exp(x) = e^x$.
+- $c_i$: cambio máximo de $f$ al modificar solo la variable $i$. La misma cota vale para $P(f - \mathbb{E}[f] \le -t)$.
 :::
 
 :::formula[Diferencias acotadas]
 $$
-\big|f(\dots, x_i, \dots) - f(\dots, x_i', \dots)\big| \le c_i
+\big|f(x_1, \dots, x_i, \dots, x_n) - f(x_1, \dots, x_i', \dots, x_n)\big| \le c_i
 $$
 
-- Para todos los valores de las demás variables.
+- $x_i$, $x_i'$: dos valores cualesquiera de la variable $i$.
+- Debe cumplirse para todos los valores de las demás variables.
 :::
 
 :::formula[Cajas vacías]
@@ -154,5 +160,6 @@ $$
 \mathbb{E}[f] = m\left(1 - \frac{1}{m}\right)^{m}, \qquad P\big(f - \mathbb{E}[f] \ge t\big) \le e^{-2t^2/m}
 $$
 
-- $m$ bolas en $m$ cajas; $c_i = 1$.
+- $m$: número de bolas, lanzadas al azar e independientes, y de cajas; $f$: número de cajas vacías.
+- $(1 - 1/m)^m$: probabilidad de que una caja dada quede vacía; cada bola cambia $f$ en a lo más 1, así que $c_i = 1$.
 :::
