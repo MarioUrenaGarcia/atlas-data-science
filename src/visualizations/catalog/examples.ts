@@ -6,6 +6,7 @@ import { NUMERICS_EXAMPLES } from './examples/numerics.ts';
 import { INFORMATION_EXAMPLES } from './examples/information.ts';
 import { MEASURE_EXAMPLES } from './examples/measure.ts';
 import { LIMIT_EXAMPLES } from './examples/limits.ts';
+import { SAMPLING_EXAMPLES } from './examples/sampling.ts';
 import { INFERENCE_EXAMPLES } from './examples/inference.ts';
 
 /** Sample configurations shown in the development catalog, one or more per visualization. */
@@ -1343,5 +1344,6 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   ...INFORMATION_EXAMPLES,
   ...MEASURE_EXAMPLES,
   ...LIMIT_EXAMPLES,
+  ...SAMPLING_EXAMPLES,
   ...INFERENCE_EXAMPLES,
 ];
