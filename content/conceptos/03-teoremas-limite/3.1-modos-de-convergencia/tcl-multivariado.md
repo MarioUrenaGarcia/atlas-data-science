@@ -12,6 +12,7 @@ nivel: intermedio
 prerrequisitos:
   - tcl-de-lindeberg-levy
   - distribucion-normal-multivariada
+  - matriz-de-covarianza
 etiquetas:
   - teorema central del límite
   - vectores aleatorios

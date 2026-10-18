@@ -12,6 +12,9 @@ nivel: avanzado
 prerrequisitos:
   - metodo-delta
   - tcl-multivariado
+relaciones:
+  - tipo: relacionado
+    id: matriz-de-covarianza
 etiquetas:
   - normalidad asintótica
   - gradiente

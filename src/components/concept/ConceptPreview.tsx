@@ -48,7 +48,9 @@ export function ConceptPreview({ anchor }: { anchor: PreviewAnchor }) {
         <span className={styles.title}>{concept.titulo}</span>
         <LevelBadge level={concept.nivel} />
       </div>
-      <p className={styles.summary}><SummaryText text={concept.resumen} /></p>
+      <p className={styles.summary}>
+        <SummaryText text={concept.resumen} />
+      </p>
     </div>,
     document.body,
   );

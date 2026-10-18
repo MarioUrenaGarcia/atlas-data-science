@@ -38,9 +38,7 @@ visualizacion:
     x: 1
 referencias:
   - clave: ross-probabilidad
-    capitulo: '5.6'
-  - clave: degroot
-    capitulo: '5.7'
+    capitulo: '5.5'
 publicado: true
 ---
 
