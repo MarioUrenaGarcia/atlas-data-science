@@ -137,6 +137,8 @@ export const strings = {
     noResults: (query: string) => `Sin resultados para "${query}".`,
     suggestions: 'Conceptos con nombre parecido',
     resultsTitle: 'Resultados de búsqueda',
+    description:
+      'Búsqueda de conceptos del Atlas por nombre en español o en inglés, alias y etiquetas, tolerante a errores de escritura y a la falta de acentos.',
     resultCount: (count: number) => (count === 1 ? '1 resultado' : `${count} resultados`),
     goToConcept: 'Abrir ficha',
     goToRoadmap: 'Ver ruta',

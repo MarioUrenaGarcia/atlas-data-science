@@ -55,12 +55,11 @@ export function withMeta(html: string, title: string, description: string, extra
   if (!TITLE.test(html) || !DESCRIPTION.test(html)) {
     throw new Error('index.html no tiene <title> o <meta name="description">.');
   }
-  return html
-    .replace(TITLE, `<title>${escapeHtml(title)}</title>`)
-    .replace(
-      DESCRIPTION,
-      `<meta name="description" content="${escapeHtml(plain(description))}" />${extraHead}`,
-    );
+  // Replacement functions, not strings: a string replacement would expand
+  // patterns such as $& or $' if a title or a summary ever contained them.
+  const titleTag = `<title>${escapeHtml(title)}</title>`;
+  const descriptionTag = `<meta name="description" content="${escapeHtml(plain(description))}" />${extraHead}`;
+  return html.replace(TITLE, () => titleTag).replace(DESCRIPTION, () => descriptionTag);
 }
 
 export function staticPages(indexHtml: string, data: StaticPageData): StaticPage[] {
@@ -76,7 +75,7 @@ export function staticPages(indexHtml: string, data: StaticPageData): StaticPage
     page('modulos', strings.modules.title, strings.modules.intro),
     page('mapa', strings.map.title, strings.map.intro),
     page('rutas', strings.routes.title, strings.routes.intro),
-    page('buscar', strings.search.resultsTitle, strings.home.intro),
+    page('buscar', strings.search.resultsTitle, strings.search.description),
     page('glosario', strings.glossary.title, strings.glossary.intro),
     page('notacion', strings.notation.title, strings.notation.intro),
     page('progreso', strings.progress.title, strings.progress.intro),

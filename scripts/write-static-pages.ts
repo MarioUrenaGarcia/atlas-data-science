@@ -24,12 +24,21 @@ const data: StaticPageData = {
 };
 
 const pages = staticPages(indexHtml, data);
+const allPaths = new Set(pages.map((page) => page.path));
 for (const page of pages) {
   // GitHub Pages serves /concepto/x from concepto/x.html with status 200; a
   // folder with index.html would first redirect to /concepto/x/.
   const target = join(distDir, `${page.path}.html`);
   mkdirSync(dirname(target), { recursive: true });
   writeFileSync(target, page.html, 'utf8');
+  // A route that is also the folder of other routes (rutas and rutas/<id>) gets
+  // an index.html too, in case the server resolves it as a folder first and
+  // redirects to the address with a trailing slash.
+  const isFolder = [...allPaths].some((path) => path.startsWith(`${page.path}/`));
+  if (isFolder) {
+    mkdirSync(join(distDir, page.path), { recursive: true });
+    writeFileSync(join(distDir, page.path, 'index.html'), page.html, 'utf8');
+  }
 }
 writeFileSync(join(distDir, '404.html'), notFoundPage(indexHtml), 'utf8');
 console.log(`${pages.length} páginas estáticas y dist/404.html creados.`);
