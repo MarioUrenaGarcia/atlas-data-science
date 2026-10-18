@@ -76,7 +76,7 @@ $$
 
 ## Cómo usar la visualización
 
-El histograma muestra los datos transformados con el valor actual de $\lambda$, junto con la curva normal de la misma media y desviación. Debajo, la curva de log-verosimilitud perfil indica qué tan bien queda la normal para cada $\lambda$, con una línea en su máximo, $\hat{\lambda}$. Al reproducir, $\lambda$ recorre todo el rango; al terminar, vuelve al valor del control, que parte del $\lambda$ estimado. Las lecturas comparan la asimetría original con la transformada.
+El histograma muestra los datos transformados con el valor actual de $\lambda$, junto con la curva normal de la misma media y desviación. Al lado, o debajo en pantallas angostas, la curva de log-verosimilitud perfil indica qué tan bien queda la normal para cada $\lambda$, con una línea en su máximo, $\hat{\lambda}$. Al reproducir, $\lambda$ recorre todo el rango; al terminar, vuelve al valor del control, que parte del $\lambda$ estimado. Las lecturas comparan la asimetría original con la transformada.
 
 Experimentos sugeridos: mover $\lambda$ a 1 y ver que el histograma conserva la forma de los datos originales, solo desplazado; moverlo a 0 (logaritmo) y comparar la asimetría con la del $\lambda$ óptimo; probar $\lambda = -1$ y observar que la cola se invierte.
 

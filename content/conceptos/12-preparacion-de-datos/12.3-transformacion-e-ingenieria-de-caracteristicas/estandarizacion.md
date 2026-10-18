@@ -115,7 +115,7 @@ atipico: true
 - **Estandarizar con estadísticos de todos los datos.** La media y la desviación deben calcularse con el entrenamiento para no filtrar información de la prueba.
 - **Estandarizar variables indicadoras sin pensarlo.** Una columna 0/1 estandarizada pierde su interpretación directa; muchos prefieren dejarlas en 0 y 1.
 
-:::figura[Error de confundir estandarizar con normalizar la distribución: una transformación lineal de los tiempos, como Box-Cox con lambda igual a 1, cambia la escala pero deja intacta la forma, y la asimetría transformada es igual a la original.]{componente="FeatureTransformViz"}
+:::figura[Error de confundir estandarizar con normalizar la distribución: como cualquier transformación lineal, Box-Cox con lambda igual a 1 solo desplaza los tiempos y deja intacta la forma, y la asimetría transformada es igual a la original.]{componente="FeatureTransformViz"}
 ```yaml
 modo: box-cox
 lambda: 1

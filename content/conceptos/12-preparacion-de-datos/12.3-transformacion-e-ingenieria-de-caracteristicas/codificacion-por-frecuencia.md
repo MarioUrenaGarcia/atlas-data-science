@@ -97,11 +97,10 @@ caso: colonias
 - **Suponer que la frecuencia describe a la categoría.** Dos marcas igual de comunes pueden ser opuestas en todo lo demás; el código solo dice qué tan común es cada una.
 - **Olvidar las categorías nuevas.** En producción aparecen categorías que no estaban en el entrenamiento; se les asigna un código definido de antemano.
 
-:::figura[Error de suponer que la frecuencia describe a la categoría: las marcas D y E tienen 14 anuncios cada una y reciben el mismo código, aunque los precios de reventa típicos de una y otra difieren en unos 80 mil pesos.]{componente="FeatureEngineeringViz"}
+:::figura[Error de suponer que la frecuencia describe a la categoría: las sucursales Norte y Sur tienen 25 ventas cada una y reciben el mismo código, aunque el ticket típico de Norte es el doble que el de Sur.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: frecuencia
-caso: marcas
-semilla: 3
+caso: sucursales
 ```
 :::
 

@@ -55,6 +55,19 @@ export const CATEGORY_CASES: Record<TargetCaseId, CategoryCase> = {
       { name: 'Marca H', size: 2, mean: 280 },
     ],
   },
+  sucursales: {
+    column: 'Sucursal',
+    target: 'Ticket promedio',
+    unit: 'pesos',
+    noise: 30,
+    categories: [
+      { name: 'Centro', size: 40, mean: 150 },
+      { name: 'Norte', size: 25, mean: 240 },
+      { name: 'Sur', size: 25, mean: 120 },
+      { name: 'Oriente', size: 12, mean: 180 },
+      { name: 'Poniente', size: 6, mean: 160 },
+    ],
+  },
 };
 
 export interface CategoryRows {

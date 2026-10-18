@@ -6,7 +6,7 @@ export const NORM_CASES = ['textos', 'dietas'] as const;
 export const BIN_METHODS = ['anchura', 'frecuencia'] as const;
 export const ONEHOT_CASES = ['ciudades', 'pagos'] as const;
 export const ORDINAL_CASES = ['tallas', 'colores', 'satisfaccion'] as const;
-export const TARGET_CASES = ['colonias', 'marcas'] as const;
+export const TARGET_CASES = ['colonias', 'marcas', 'sucursales'] as const;
 export const HASH_CASES = ['municipios', 'navegadores'] as const;
 export const DATE_CASES = ['viajes', 'compras'] as const;
 

@@ -108,7 +108,7 @@ cubetas: 64
 
 - **Con signo, las colisiones son insesgadas en promedio.** Si dos categorías comparten columna con signos opuestos, su suma no infla la columna; el producto punto entre vectores se conserva en valor esperado.
 
-:::figura[Navegadores con hashing con signo en 8 columnas: en dos de las columnas con colisión, las categorías llevan signos opuestos y sus contribuciones se cancelan en lugar de sumarse.]{componente="FeatureEngineeringViz"}
+:::figura[Navegadores con hashing con signo en 8 columnas: en dos de las columnas con colisión hay categorías con signos opuestos, de modo que sus contribuciones se cancelan en parte en lugar de sumarse todas.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: hashing
 caso: navegadores

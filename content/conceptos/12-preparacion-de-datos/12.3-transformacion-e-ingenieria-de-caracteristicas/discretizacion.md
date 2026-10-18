@@ -87,7 +87,7 @@ intervalos: 5
 - **Igual anchura respeta las distancias, igual frecuencia respeta los rangos.** La primera es fácil de interpretar; la segunda reparte los datos de forma pareja y es más resistente a los extremos.
 - **La discretización pierde información dentro de cada intervalo.** Cuantos menos intervalos, más grande la pérdida.
 
-:::figura[Con diez intervalos de igual anchura, varios intervalos de la cola quedan casi vacíos y sus categorías tienen muy pocos datos.]{componente="FeatureEngineeringViz"}
+:::figura[Con diez intervalos de igual anchura, dos intervalos de la cola quedan vacíos y otros reciben muy pocos datos.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: discretizacion
 metodo: anchura

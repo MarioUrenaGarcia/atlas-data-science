@@ -93,7 +93,7 @@ n: 20
 ## Propiedades
 
 - **Mínimos cuadrados sigue sirviendo.** El ajuste es una regresión lineal sobre las columnas $1, x, \dots, x^d$.
-- **El error de entrenamiento nunca aumenta con el grado.** Cada grado agrega columnas que el modelo puede usar o ignorar.
+- **Con mínimos cuadrados, el error de entrenamiento nunca aumenta con el grado.** Cada grado agrega columnas que el modelo puede usar o ignorar. La visualización añade una penalización mínima para que el ajuste exista aun con más coeficientes que datos, y con ella el error de entrenamiento puede subir unas centésimas entre grados consecutivos.
 - **El error de prueba tiene forma de U.** Primero baja al capturar la curvatura y luego sube cuando el polinomio sigue el ruido.
 
 :::figura[Con 10 días de entrenamiento y grado 10, la curva pasa casi por cada punto y oscila entre ellos: el error de entrenamiento es casi cero y el de prueba se dispara.]{componente="FeatureEngineeringViz"}

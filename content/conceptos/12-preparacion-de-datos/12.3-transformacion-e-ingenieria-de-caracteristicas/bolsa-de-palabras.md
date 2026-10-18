@@ -107,7 +107,7 @@ sinVacias: true
 ## Errores comunes
 
 - **Construir el vocabulario con los datos de prueba.** Las palabras de la prueba no deben definir columnas del modelo; el vocabulario se fija con el entrenamiento.
-- **Tratar las palabras vacías como información.** Artículos y preposiciones dominan los conteos y aportan coincidencias que nada dicen del contenido; se eliminan o se pesan con tf-idf. Quitarlas no resuelve todo: en el ejemplo, las dos reseñas se parecen todavía más sin ellas, aunque digan cosas opuestas.
+- **Tratar las palabras vacías como información.** Artículos y preposiciones dominan los conteos y aportan coincidencias que nada dicen del contenido; se eliminan o se pesan con tf-idf. Quitarlas no resuelve todo: en el ejemplo, las dos reseñas se parecen todavía más sin ellas, aunque una elogie la rapidez del servicio y la otra se queje de su lentitud.
 - **Esperar que distinga negaciones.** "Es bueno" y "no es bueno" difieren en una sola palabra; la bolsa los considera casi iguales.
 
 :::figura[Error de esperar que distinga negaciones: "el servicio es bueno" y "el servicio no es bueno" quedan con vectores casi iguales.]{componente="TextFeaturesViz"}

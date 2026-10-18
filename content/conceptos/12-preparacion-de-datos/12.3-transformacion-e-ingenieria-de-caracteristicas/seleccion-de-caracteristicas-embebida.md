@@ -110,8 +110,8 @@ semilla: 42
 ## Errores comunes
 
 - **Aplicar el lasso sin estandarizar.** La penalización castiga igual a todos los coeficientes; si una variable se mide en miles, su coeficiente es pequeño y la multa casi no la afecta.
-- **Leer el orden de entrada como importancia causal.** Entre variables correlacionadas, la que entra primero depende de detalles de la muestra.
-- **Elegir lambda con el error de entrenamiento.** El error de entrenamiento siempre baja con lambda; la penalización se elige con datos de validación.
+- **Leer el orden de entrada o el signo de los coeficientes como efectos causales.** Entre variables correlacionadas, la que entra primero y el signo con que termina dependen de detalles de la muestra.
+- **Elegir lambda con el error de entrenamiento.** El error de entrenamiento siempre baja al reducir lambda; la penalización se elige con datos de validación.
 
 :::figura[Error de leer los coeficientes como efectos causales: con esta muestra, la medición por satélite entra casi al final del recorrido y termina con coeficiente negativo, aunque mide lo mismo que la lluvia, cuyo efecto es positivo.]{componente="FeatureSelectionViz"}
 ```yaml
