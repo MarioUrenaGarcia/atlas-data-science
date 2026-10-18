@@ -83,6 +83,10 @@ k: 5
 - $F(x)^{k-1}$: probabilidad de que $k - 1$ observaciones dadas queden debajo de $x$.
 - $\binom{n}{j}$: número de maneras de elegir las $j$ observaciones que quedan debajo.
 - $U_{(k)}$: estadístico de orden de una muestra uniforme entre 0 y 1.
+- $\operatorname{Beta}(a, b)$: distribución beta con parámetros $a$ y $b$.
+- $\mathbb{E}$: esperanza; $F^{-1}$: función cuantil de $F$.
+- $\lceil np \rceil$: menor entero mayor o igual que $np$.
+- $\lambda$: tasa de una exponencial.
 :::
 
 ## Cómo usar la visualización
@@ -134,15 +138,15 @@ k: 1
 - **Tratar los valores ordenados como independientes.** Si $X_{(1)}$ es grande, todos los demás también lo son.
 - **Esperar que la mediana muestral sea exactamente la mediana poblacional.** Es una variable aleatoria con su propia dispersión, que disminuye con $n$.
 
-:::figura[La mediana de 20 uniformes, estadístico de orden 10: está cerca de 0.5 pero varía de muestra en muestra, con una desviación estándar de alrededor de 0.11.]{componente="OrderStatsViz"}
+:::figura[La mediana de 21 uniformes, estadístico de orden 11: está cerca de 0.5 pero varía de muestra en muestra, con una desviación estándar de alrededor de 0.10.]{componente="OrderStatsViz"}
 ```yaml
 modo: orden
 distribucion: uniforme
 parametros:
   a: 0
   b: 1
-n: 20
-k: 10
+n: 21
+k: 11
 ```
 :::
 
@@ -157,7 +161,10 @@ $$
 f_{X_{(k)}}(x) = \frac{n!}{(k-1)!\,(n-k)!}\, F(x)^{k-1}\,\big(1 - F(x)\big)^{n-k} f(x)
 $$
 
-- $k - 1$ observaciones debajo, una en $x$ y $n - k$ arriba.
+- $X_{(k)}$: $k$-ésimo menor de $n$ observaciones independientes.
+- $F$, $f$: función de distribución y densidad de cada observación.
+- $F(x)^{k-1}$: $k - 1$ observaciones debajo de $x$; $(1 - F(x))^{n-k}$: $n - k$ arriba; $f(x)$: una en $x$.
+- $\frac{n!}{(k-1)!\,(n-k)!}$: maneras de asignar esos papeles a las $n$ observaciones.
 :::
 
 :::formula[Función de distribución]
@@ -165,7 +172,8 @@ $$
 P(X_{(k)} \le x) = \sum_{j=k}^{n} \binom{n}{j} F(x)^{j}\, \big(1 - F(x)\big)^{n-j}
 $$
 
-- Al menos $k$ de las $n$ observaciones quedan en o debajo de $x$.
+- $j$: número de observaciones en o debajo de $x$, que debe ser al menos $k$.
+- $\binom{n}{j}$: maneras de elegir cuáles son.
 :::
 
 :::formula[Caso uniforme]
@@ -173,5 +181,23 @@ $$
 U_{(k)} \sim \operatorname{Beta}(k,\ n - k + 1), \qquad \mathbb{E}[U_{(k)}] = \frac{k}{n + 1}
 $$
 
-- Observaciones uniformes entre 0 y 1.
+- $U_{(k)}$: estadístico de orden $k$ de $n$ uniformes entre 0 y 1.
+- $\operatorname{Beta}(k, n - k + 1)$: distribución beta con esos parámetros.
+:::
+
+:::formula[Reducción al caso uniforme]
+$$
+X_{(k)} \overset{d}{=} F^{-1}\big(U_{(k)}\big)
+$$
+
+- $F^{-1}$: función cuantil de la distribución de las observaciones.
+- $\overset{d}{=}$: igualdad en distribución.
+:::
+
+:::formula[Mínimo de exponenciales]
+$$
+X_{(1)} \sim \operatorname{Exp}(n\lambda)
+$$
+
+- $n$ exponenciales independientes con tasa $\lambda$; el mínimo tiene media $1/(n\lambda)$.
 :::

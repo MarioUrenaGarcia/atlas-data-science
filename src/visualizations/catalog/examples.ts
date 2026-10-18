@@ -13,6 +13,46 @@ export interface CatalogExample {
 
 export const CATALOG_EXAMPLES: CatalogExample[] = [
   {
+    component: 'InequalityBound',
+    title: 'Markov',
+    params: { modo: 'cola', cota: 'markov', distribucion: 'exponencial', umbral: 3 },
+  },
+  {
+    component: 'InequalityBound',
+    title: 'Chebyshev',
+    params: { modo: 'cola', cota: 'chebyshev', distribucion: 'normal', umbral: 2 },
+  },
+  {
+    component: 'InequalityBound',
+    title: 'Concentración',
+    params: { modo: 'concentracion', p: 0.3, umbral: 0.1, n: 300, cotas: ['chernoff', 'hoeffding', 'chebyshev'] },
+  },
+  {
+    component: 'InequalityBound',
+    title: 'Jensen',
+    params: { modo: 'jensen', funcion: 'cuadrado', valores: [1, 2, 3, 4, 5, 6] },
+  },
+  {
+    component: 'InequalityBound',
+    title: 'Hölder',
+    params: { modo: 'holder', rho: 0.5, exponente: 3 },
+  },
+  {
+    component: 'InequalityBound',
+    title: 'Cota de la unión',
+    params: { modo: 'union', personas: 23 },
+  },
+  {
+    component: 'InequalityBound',
+    title: 'McDiarmid',
+    params: { modo: 'mcdiarmid', bolas: 50, umbral: 5 },
+  },
+  {
+    component: 'InequalityBound',
+    title: 'Concentración de la medida',
+    params: { modo: 'medida', dimension: 100, umbral: 2 },
+  },
+  {
     component: 'OrderStatsViz',
     title: 'Estadísticos de orden',
     params: { modo: 'orden', distribucion: 'uniforme', parametros: { a: 0, b: 1 }, n: 5, k: 2 },

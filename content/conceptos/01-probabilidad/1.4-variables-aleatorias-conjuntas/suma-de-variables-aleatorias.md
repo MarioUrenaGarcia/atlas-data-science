@@ -65,7 +65,7 @@ $$
 
 Cuando $X$ y $Y$ son independientes, $p(x, s - x) = p_X(x)\,p_Y(s - x)$ y la fórmula se convierte en la convolución de las marginales.
 
-:::figura[Dos tiempos de espera exponenciales independientes con media 1: la diagonal $x + y = 2$ cruza la densidad conjunta, y la densidad de la suma en $s = 2$ es $2e^{-2} \approx 0.271$.]{componente="JointDistribution2D"}
+:::figura[Dos tiempos de espera exponenciales independientes con media 1: la diagonal $x + y = 2$ cruza la densidad conjunta, y la densidad de la suma en $s = 2$ es $2e^{-2} \approx 0.271$. La figura evalúa la densidad sobre una rejilla, por lo que el encabezado muestra valores ligeramente redondeados, como 1.98 y 0.274.]{componente="JointDistribution2D"}
 ```yaml
 modo: suma
 modelo: exponenciales-independientes
@@ -76,9 +76,9 @@ s: 2
 :::nota[Qué significa cada símbolo]
 - $X$, $Y$: sumandos; $S = X + Y$: la suma.
 - $p(x, y)$, $f(x, y)$: masa o densidad conjunta.
-- $p_S$, $f_S$: masa o densidad de la suma.
+- $p_S$, $f_S$: masa o densidad de la suma; $s$: valor posible de la suma.
 - $p(x,\ s - x)$: probabilidad del par de la diagonal que empieza en $x$.
-- $\operatorname{Cov}(X, Y)$: covarianza; $\rho$: correlación.
+- $\mathbb{E}$: esperanza; $\operatorname{Var}$: varianza; $\operatorname{Cov}(X, Y)$: covarianza entre los sumandos.
 - $M$, $T$: clientes de la mañana y de la tarde del ejemplo.
 :::
 
@@ -119,7 +119,7 @@ s: 2
 - **Varianza:** $\operatorname{Var}(X + Y) = \operatorname{Var}(X) + \operatorname{Var}(Y) + 2\operatorname{Cov}(X, Y)$; se reduce a la suma de varianzas bajo independencia.
 - **Muchos sumandos:** $\operatorname{Var}\big(\sum_i X_i\big) = \sum_i \operatorname{Var}(X_i) + 2\sum_{i < j} \operatorname{Cov}(X_i, X_j)$.
 - **Familias cerradas:** la suma de normales independientes es normal, la de Poisson independientes es Poisson y la de binomiales independientes con la misma $p$ es binomial.
-- **La conjunta importa:** dos pares con las mismas marginales pueden dar sumas con distribuciones distintas.
+- **La conjunta importa:** la distribución de la suma depende de la conjunta completa. Dos pares con las mismas marginales pueden dar sumas distintas y, al revés, pares con conjuntas distintas pueden dar la misma suma: el mayor y el menor de dos dados tienen otra conjunta que los dados originales, pero su suma es idéntica.
 
 :::figura[El mayor más el menor de dos dados: son variables dependientes, pero su suma es exactamente la suma de los dos dados, y su distribución es la misma que la de la figura principal.]{componente="JointDistribution2D"}
 ```yaml
@@ -158,7 +158,9 @@ $$
 p_S(s) = \sum_x p(x,\ s - x)
 $$
 
-- Suma sobre la diagonal $x + y = s$.
+- $S = X + Y$: suma de los sumandos $X$ y $Y$; $s$: valor posible de la suma.
+- $p(x, y)$: masa conjunta; $p_S$: masa de la suma.
+- La suma recorre los valores $x$ de $X$, es decir, la diagonal $x + y = s$.
 :::
 
 :::formula[Suma continua]
@@ -166,7 +168,8 @@ $$
 f_S(s) = \int_{-\infty}^{\infty} f(x,\ s - x)\,dx
 $$
 
-- Integral de la densidad conjunta sobre la recta $x + y = s$.
+- $f(x, y)$: densidad conjunta; $f_S$: densidad de la suma.
+- La integral recorre la recta $x + y = s$.
 :::
 
 :::formula[Media y varianza]
@@ -174,5 +177,15 @@ $$
 \mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y], \qquad \operatorname{Var}(X + Y) = \operatorname{Var}(X) + \operatorname{Var}(Y) + 2\operatorname{Cov}(X, Y)
 $$
 
-- La media no necesita independencia; la varianza usa la covarianza.
+- $\mathbb{E}$: esperanza; $\operatorname{Var}$: varianza; $\operatorname{Cov}(X, Y)$: covarianza.
+- La media no necesita independencia; si $X$ y $Y$ son independientes la covarianza es 0.
+:::
+
+:::formula[Varianza de muchos sumandos]
+$$
+\operatorname{Var}\Big(\sum_{i=1}^{n} X_i\Big) = \sum_{i=1}^{n} \operatorname{Var}(X_i) + 2\sum_{i < j} \operatorname{Cov}(X_i, X_j)
+$$
+
+- $X_1, \dots, X_n$: sumandos; $n$: número de sumandos.
+- $\sum_{i < j}$: suma sobre todos los pares distintos de índices.
 :::

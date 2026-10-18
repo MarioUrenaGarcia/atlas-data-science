@@ -34,6 +34,7 @@ visualizacion:
     a: 1
     b: 1
     n: 80
+    secuencias: 150
 referencias:
   - clave: gelman-bda
     capitulo: '5.2'
@@ -121,7 +122,7 @@ n: 80
 ## Errores comunes
 
 - **Confundir intercambiable con independiente.** En la urna de Pólya, observar muchas rojas cambia la predicción de la siguiente extracción.
-- **Creer que intercambiable significa que el orden no aporta información temporal.** La intercambiabilidad es un supuesto sobre la distribución; si hay tendencias en el tiempo, no se cumple.
+- **Suponer intercambiabilidad cuando hay tendencias o estructura temporal.** Si las observaciones cambian con el tiempo, por ejemplo por desgaste de un equipo o aprendizaje de un paciente, el orden sí aporta información y el supuesto no se cumple.
 - **Suponer que la proporción converge al mismo valor en todas las repeticiones.** En una sucesión intercambiable la proporción límite es aleatoria.
 
 :::figura[Una urna que empieza con 1 bola del primer color y 3 del segundo: las proporciones límite se cargan hacia valores bajos, y cada urna se estabiliza en un valor distinto.]{componente="ExchangeableViz"}
@@ -144,7 +145,9 @@ $$
 (X_1, \dots, X_n) \overset{d}{=} (X_{\pi(1)}, \dots, X_{\pi(n)})
 $$
 
-- Para toda permutación $\pi$.
+- $X_1, \dots, X_n$: variables aleatorias.
+- $\pi$: cualquier permutación de los índices $1, \dots, n$.
+- $\overset{d}{=}$: igualdad en distribución conjunta.
 :::
 
 :::formula[Secuencias binarias]
@@ -152,7 +155,9 @@ $$
 P(X_1 = x_1, \dots, X_n = x_n) = q_n\Big(\sum_{i=1}^{n} x_i\Big)
 $$
 
-- $q_n$: función que solo depende del número de unos.
+- $x_1, \dots, x_n$: una secuencia de ceros y unos.
+- $\sum_i x_i$: número de unos de la secuencia.
+- $q_n$: función que da la probabilidad de cada secuencia según su número de unos.
 :::
 
 :::formula[Urna de Pólya]
@@ -161,4 +166,15 @@ P(X_{m+1} = 1 \mid k \text{ unos en } m) = \frac{a + k}{a + b + m}
 $$
 
 - $a$, $b$: bolas iniciales de cada color.
+- $m$: extracciones realizadas; $k$: cuántas fueron del primer color.
+- $X_{m+1} = 1$: la siguiente extracción es del primer color.
+:::
+
+:::formula[Probabilidad de una secuencia de la urna]
+$$
+P(x_1, \dots, x_n) = \frac{a^{(k)}\, b^{(n-k)}}{(a + b)^{(n)}}, \qquad c^{(j)} = c(c+1)\cdots(c+j-1)
+$$
+
+- $k$: número de unos de la secuencia, de longitud $n$.
+- $c^{(j)}$: producto creciente de $j$ factores que empieza en $c$; vale 1 si $j = 0$.
 :::

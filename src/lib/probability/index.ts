@@ -2,6 +2,7 @@ export * from './conditional.ts';
 export * from './copula.ts';
 export * from './exchangeable.ts';
 export * from './geometric.ts';
+export * from './inequalities.ts';
 export * from './joint.ts';
 export * from './order.ts';
 export * from './puzzles.ts';

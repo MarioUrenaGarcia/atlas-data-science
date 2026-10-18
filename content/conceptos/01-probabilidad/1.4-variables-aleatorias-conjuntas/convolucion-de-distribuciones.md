@@ -84,8 +84,8 @@ s: 5
 - $*$: operación de convolución.
 - $S = X + Y$: la suma.
 - $s - x$: valor que debe tomar $Y$ para que la suma sea $s$ cuando $X = x$.
-- $\lambda$: tasa de las exponenciales; $\mu$: media de una normal; $\sigma^2$: su varianza.
-- $M_X$: función generadora de momentos.
+- $\lambda$: tasa de las exponenciales; $\mathcal{N}(\mu, \sigma^2)$: distribución normal con media $\mu$ y varianza $\sigma^2$.
+- $M_X(t) = \mathbb{E}[e^{tX}]$: función generadora de momentos de $X$, con $\mathbb{E}$ la esperanza y $t$ su argumento.
 :::
 
 ## Cómo usar la visualización
@@ -102,7 +102,7 @@ Dos llamadas independientes duran $X$ y $Y$ minutos, exponenciales con tasa $\la
 2. Es una gamma con forma 2 y tasa 2. En $s = 1$: $f_S(1) = 4e^{-2} \approx 0.541$.
 3. $P(S \le 1) = 1 - e^{-2}(1 + 2) \approx 1 - 0.406 = 0.594$.
 
-:::figura[El ejemplo de las llamadas: la densidad conjunta $4e^{-2(x + y)}$ es constante sobre cada diagonal, y la densidad de la suma en $s = 1$ es cerca de 0.541.]{componente="JointDistribution2D"}
+:::figura[El ejemplo de las llamadas: la densidad conjunta $4e^{-2(x + y)}$ es constante sobre cada diagonal, y la densidad de la suma en $s = 1$ es cerca de 0.541. La figura evalúa la densidad sobre una rejilla, por lo que el encabezado muestra valores ligeramente redondeados, como 0.99 y 0.547.]{componente="JointDistribution2D"}
 ```yaml
 modo: suma
 modelo: exponenciales-independientes
@@ -157,7 +157,9 @@ $$
 (p_X * p_Y)(s) = \sum_x p_X(x)\, p_Y(s - x)
 $$
 
-- $X$ y $Y$ independientes.
+- $X$, $Y$: variables independientes con masas $p_X$ y $p_Y$; $*$: convolución.
+- $s$: valor de la suma $S = X + Y$; la suma recorre los valores $x$ de $X$.
+- $s - x$: valor que debe tomar $Y$ para que la suma sea $s$.
 :::
 
 :::formula[Convolución continua]
@@ -165,7 +167,7 @@ $$
 (f_X * f_Y)(s) = \int_{-\infty}^{\infty} f_X(x)\, f_Y(s - x)\,dx
 $$
 
-- Densidad de $X + Y$ para independientes.
+- $f_X$, $f_Y$: densidades de $X$ y $Y$ independientes; el resultado es la densidad de $X + Y$ en $s$.
 :::
 
 :::formula[Exponenciales con la misma tasa]
@@ -173,7 +175,8 @@ $$
 f_{X+Y}(s) = \lambda^2 s\, e^{-\lambda s}, \qquad s \ge 0
 $$
 
-- Gamma con forma 2 y tasa $\lambda$.
+- $X$, $Y$: exponenciales independientes con tasa $\lambda$.
+- El resultado es una gamma con forma 2 y tasa $\lambda$.
 :::
 
 :::formula[Normales independientes]
@@ -181,5 +184,15 @@ $$
 \mathcal{N}(\mu_1, \sigma_1^2) * \mathcal{N}(\mu_2, \sigma_2^2) = \mathcal{N}(\mu_1 + \mu_2,\ \sigma_1^2 + \sigma_2^2)
 $$
 
+- $\mathcal{N}(\mu, \sigma^2)$: normal con media $\mu$ y varianza $\sigma^2$; los subíndices 1 y 2 indican cada sumando.
 - Medias y varianzas se suman.
+:::
+
+:::formula[Generadora de momentos de la suma]
+$$
+M_{X+Y}(t) = M_X(t)\, M_Y(t)
+$$
+
+- $M_X(t) = \mathbb{E}[e^{tX}]$: función generadora de momentos, con $\mathbb{E}$ la esperanza y $t$ un número real donde existe.
+- Vale para $X$ y $Y$ independientes: la convolución se vuelve producto.
 :::

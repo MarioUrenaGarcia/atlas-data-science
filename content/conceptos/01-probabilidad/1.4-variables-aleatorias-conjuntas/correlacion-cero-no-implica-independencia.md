@@ -76,7 +76,8 @@ simboloY: Y
 
 :::nota[Qué significa cada símbolo]
 - $X$, $Y$: variables aleatorias.
-- $\operatorname{Cov}(X, Y)$: covarianza.
+- $\operatorname{Cov}(X, Y)$: covarianza; $\mathbb{E}$: esperanza.
+- $f(x, y)$: densidad conjunta; $f_X$, $f_Y$: densidades marginales. Hay independencia cuando $f(x, y) = f_X(x)\, f_Y(y)$ para todo par.
 - $\rho$: correlación.
 - $|X|$: valor absoluto de $X$.
 - $P(X = 0,\ Y = 1)$: probabilidad conjunta de un par de valores.

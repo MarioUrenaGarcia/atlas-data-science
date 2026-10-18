@@ -53,8 +53,13 @@ Una **cópula** bidimensional es la función de distribución conjunta $C : [0, 
 $$
 C(u, v) = P(U \le u,\ V \le v).
 $$
-Equivalentemente, $C$ es no decreciente en cada coordenada, $C(u, 0) = C(0, v) = 0$, y $C(u, 1) = u$, $C(1, v) = v$.
+Equivalentemente, $C(u, 0) = C(0, v) = 0$, $C(u, 1) = u$, $C(1, v) = v$, y $C$ es **2-creciente**: todo rectángulo recibe masa no negativa,
+$$
+C(u_2, v_2) - C(u_1, v_2) - C(u_2, v_1) + C(u_1, v_1) \ge 0 \quad \text{para } u_1 \le u_2,\ v_1 \le v_2.
+$$
 :::
+
+Ser no decreciente en cada coordenada no basta: hay funciones con esas propiedades de borde, no decrecientes en cada variable, que asignan masa negativa a algún rectángulo.
 
 Si $X$ y $Y$ son continuas con distribuciones $F$ y $G$, la cópula de $(X, Y)$ es la distribución conjunta de $(F(X), G(Y))$, que por la transformada integral de probabilidad tiene marginales uniformes.
 
@@ -69,7 +74,9 @@ familia: independiente
 - $U$, $V$: variables uniformes entre 0 y 1, los percentiles de $X$ y $Y$.
 - $C(u, v)$: cópula, probabilidad de que $U \le u$ y $V \le v$.
 - $F$, $G$: funciones de distribución de $X$ y $Y$.
-- $\theta$: parámetro de una familia de cópulas; $\rho$: parámetro de la gaussiana.
+- $\theta$: parámetro de una familia de cópulas.
+- $u_1 \le u_2$, $v_1 \le v_2$: esquinas de un rectángulo del cuadrado unitario.
+- $g$, $h$: funciones estrictamente crecientes.
 - $\tau$: tau de Kendall, una correlación de rangos.
 - $\min(u, v)$, $\max(u + v - 1, 0)$: cotas de Fréchet y Hoeffding.
 :::
@@ -102,7 +109,7 @@ tau: 0.5
 ## Propiedades
 
 - **Cotas de Fréchet y Hoeffding:** $\max(u + v - 1,\ 0) \le C(u, v) \le \min(u, v)$; la cota superior corresponde a dependencia creciente perfecta y la inferior a decreciente perfecta.
-- **Invariancia:** si $g$ y $h$ son crecientes, $(g(X), h(Y))$ tiene la misma cópula que $(X, Y)$.
+- **Invariancia:** si $g$ y $h$ son estrictamente crecientes, $(g(X), h(Y))$ tiene la misma cópula que $(X, Y)$.
 - **Medidas de rangos:** la tau de Kendall y la correlación de Spearman dependen solo de la cópula, no de las marginales.
 - **Independencia:** $X$ y $Y$ continuas son independientes si y solo si su cópula es $C(u, v) = uv$.
 - **Familias:** la gaussiana y la de Frank son simétricas sin dependencia de colas; Clayton tiene dependencia en la cola inferior y Gumbel en la superior.
@@ -140,7 +147,18 @@ $$
 C(u, v) = P(U \le u,\ V \le v), \qquad U, V \sim \mathrm{U}(0, 1)
 $$
 
-- Distribución conjunta con marginales uniformes.
+- $C$: cópula, función de distribución conjunta del par $(U, V)$.
+- $U$, $V$: variables uniformes entre 0 y 1; $u$, $v$: números entre 0 y 1.
+- $\mathrm{U}(0, 1)$: distribución uniforme en el intervalo de 0 a 1.
+:::
+
+:::formula[Condición de 2-creciente]
+$$
+C(u_2, v_2) - C(u_1, v_2) - C(u_2, v_1) + C(u_1, v_1) \ge 0
+$$
+
+- $u_1 \le u_2$, $v_1 \le v_2$: esquinas de un rectángulo del cuadrado unitario.
+- El lado izquierdo es la probabilidad de que $(U, V)$ caiga en ese rectángulo.
 :::
 
 :::formula[Cotas de Fréchet y Hoeffding]
@@ -148,7 +166,8 @@ $$
 \max(u + v - 1,\ 0) \le C(u, v) \le \min(u, v)
 $$
 
-- Dependencia decreciente y creciente perfectas.
+- $\max(u + v - 1, 0)$: cópula de dependencia decreciente perfecta, $V = 1 - U$.
+- $\min(u, v)$: cópula de dependencia creciente perfecta, $V = U$.
 :::
 
 :::formula[Cópula de Clayton]
@@ -156,7 +175,8 @@ $$
 C_\theta(u, v) = \big(u^{-\theta} + v^{-\theta} - 1\big)^{-1/\theta}, \qquad \tau = \frac{\theta}{\theta + 2}
 $$
 
-- $\theta > 0$: fuerza de la dependencia.
+- $\theta > 0$: parámetro de la familia; a mayor $\theta$, mayor dependencia.
+- $\tau$: tau de Kendall, correlación de rangos entre $U$ y $V$.
 :::
 
 :::formula[Independencia]
@@ -164,5 +184,5 @@ $$
 C(u, v) = uv
 $$
 
-- Cópula de dos variables independientes.
+- $uv$: probabilidad de $U \le u$ y $V \le v$ cuando $U$ y $V$ son independientes.
 :::

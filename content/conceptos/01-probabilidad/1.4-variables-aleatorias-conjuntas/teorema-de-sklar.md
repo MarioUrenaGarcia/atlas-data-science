@@ -79,7 +79,7 @@ parametrosY:
 
 A la izquierda se simulan pares de una cópula gaussiana con tau de Kendall 0.5; a la derecha, los mismos pares llevados a una marginal exponencial para $X$ y normal para $Y$. El último par aparece resaltado en ambos paneles y el encabezado escribe la transformación con sus números. Los histogramas de los bordes muestran que a la izquierda las marginales son planas y a la derecha son la exponencial y la normal.
 
-El selector de familia (si hay varias) y la deslizadera de tau cambian solo la dependencia; las marginales de la derecha no cambian.
+El selector de familia y la deslizadera de tau cambian solo la dependencia; las marginales de la derecha no cambian.
 
 ## Ejemplo
 
@@ -150,7 +150,9 @@ $$
 H(x, y) = C\big(F(x),\ G(y)\big)
 $$
 
-- $C$ única si $F$ y $G$ son continuas.
+- $H$: función de distribución conjunta de $(X, Y)$; $(x, y)$: un punto del plano.
+- $F$, $G$: funciones de distribución marginales de $X$ y de $Y$.
+- $C$: cópula, distribución conjunta con marginales uniformes entre 0 y 1; es única si $F$ y $G$ son continuas.
 :::
 
 :::formula[Cópula desde la conjunta]
@@ -158,7 +160,8 @@ $$
 C(u, v) = H\big(F^{-1}(u),\ G^{-1}(v)\big)
 $$
 
-- Con marginales continuas.
+- $(u, v)$: un punto del cuadrado unitario.
+- $F^{-1}$, $G^{-1}$: funciones cuantil de las marginales, que deben ser continuas.
 :::
 
 :::formula[Construcción por simulación]
@@ -166,5 +169,6 @@ $$
 (U, V) \sim C \ \Rightarrow\ \big(F^{-1}(U),\ G^{-1}(V)\big) \sim H
 $$
 
-- Las funciones cuantil llevan cada coordenada a su escala.
+- $(U, V)$: par aleatorio con distribución $C$; $\sim$: "tiene distribución".
+- Las funciones cuantil llevan cada coordenada a la escala de su marginal sin cambiar la dependencia.
 :::

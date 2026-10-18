@@ -79,7 +79,7 @@ export function ExtremesView({ title, conceptId, config }: ExtremesViewProps) {
         {
           label: 'Último mínimo',
           value: count > 0 ? f(samples.last[0] ?? 0) : 'sin datos',
-          color: DATA_COLORS.secondary,
+          color: DATA_COLORS.primary,
         },
         {
           label: 'Último máximo',
@@ -105,7 +105,7 @@ export function ExtremesView({ title, conceptId, config }: ExtremesViewProps) {
         label={`Última muestra ordenada. ${description}`}
         color={(rank) =>
           rank === 1
-            ? DATA_COLORS.secondary
+            ? DATA_COLORS.primary
             : rank === n
               ? DATA_COLORS.highlight
               : DATA_COLORS.neutral

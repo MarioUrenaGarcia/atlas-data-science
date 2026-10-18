@@ -16,6 +16,8 @@ prerrequisitos:
 relaciones:
   - tipo: relacionado
     id: coeficiente-de-correlacion-de-pearson
+  - tipo: relacionado
+    id: desigualdad-de-cauchy-schwarz
 etiquetas:
   - correlación
   - relación lineal
@@ -141,7 +143,7 @@ probabilidades:
 
 ## Conexiones
 
-La correlación es la [[covarianza]] de las variables estandarizadas con la [[desviacion-estandar]], y su cota $|\rho| \le 1$ es la desigualdad de Cauchy y Schwarz. La [[correlacion-cero-no-implica-independencia]] explica sus límites, y la [[matriz-de-covarianza]] reúne correlaciones y escalas de varias variables. Con datos se estima mediante el [[coeficiente-de-correlacion-de-pearson]] muestral, y la [[correlacion-no-implica-causalidad]] advierte sobre su interpretación.
+La correlación es la [[covarianza]] de las variables estandarizadas con la [[desviacion-estandar]], y su cota $|\rho| \le 1$ es la [[desigualdad-de-cauchy-schwarz]]. La [[correlacion-cero-no-implica-independencia]] explica sus límites, y la [[matriz-de-covarianza]] reúne correlaciones y escalas de varias variables. Con datos se estima mediante el [[coeficiente-de-correlacion-de-pearson]] muestral, y la [[correlacion-no-implica-causalidad]] advierte sobre su interpretación.
 
 ## Formulario
 

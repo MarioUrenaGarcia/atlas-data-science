@@ -146,7 +146,8 @@ $$
 F_M(x) = F(x)^n, \qquad f_M(x) = n F(x)^{n-1} f(x)
 $$
 
-- $M = \max_i X_i$ de $n$ independientes con distribución $F$.
+- $M = \max_i X_i$: máximo de $n$ variables independientes con distribución $F$ y densidad $f$.
+- $F_M$, $f_M$: función de distribución y densidad del máximo.
 :::
 
 :::formula[Mínimo]
@@ -154,7 +155,16 @@ $$
 P(m > x) = \big(1 - F(x)\big)^n, \qquad f_m(x) = n\big(1 - F(x)\big)^{n-1} f(x)
 $$
 
-- $m = \min_i X_i$.
+- $m = \min_i X_i$: mínimo de las $n$ variables.
+- $f_m$: densidad del mínimo; $1 - F(x)$: probabilidad de que una variable supere $x$.
+:::
+
+:::formula[Distribuciones distintas]
+$$
+F_M(x) = \prod_{i=1}^{n} F_i(x), \qquad P(m > x) = \prod_{i=1}^{n} \big(1 - F_i(x)\big)
+$$
+
+- $F_i$: función de distribución de $X_i$, independientes pero no necesariamente idénticas.
 :::
 
 :::formula[Mínimo de exponenciales]
@@ -162,5 +172,13 @@ $$
 \min_i X_i \sim \operatorname{Exp}\Big(\sum_{i=1}^{n} \lambda_i\Big)
 $$
 
-- $X_i \sim \operatorname{Exp}(\lambda_i)$ independientes.
+- $X_i \sim \operatorname{Exp}(\lambda_i)$ independientes, con tasas $\lambda_i$.
+:::
+
+:::formula[Uniformes]
+$$
+\mathbb{E}[M] = \frac{n}{n + 1}, \qquad \mathbb{E}[m] = \frac{1}{n + 1}
+$$
+
+- $n$ uniformes independientes entre 0 y 1; $\mathbb{E}$: esperanza.
 :::
