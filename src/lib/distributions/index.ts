@@ -5,3 +5,4 @@ export * from './types.ts';
 export * from './discreteFamilies.ts';
 export * from './continuousFamilies.ts';
 export * from './multivariate.ts';
+export * from './families.ts';

@@ -3,6 +3,7 @@ import { DISTRIBUTION_EXAMPLES } from './examples/distributions.ts';
 import { MULTIVARIABLE_EXAMPLES } from './examples/multivariable.ts';
 import { OPTIMIZATION_EXAMPLES } from './examples/optimization.ts';
 import { LIMIT_EXAMPLES } from './examples/limits.ts';
+import { INFERENCE_EXAMPLES } from './examples/inference.ts';
 
 /** Sample configurations shown in the development catalog, one or more per visualization. */
 export interface CatalogExample {
@@ -1156,4 +1157,5 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   ...MULTIVARIABLE_EXAMPLES,
   ...OPTIMIZATION_EXAMPLES,
   ...LIMIT_EXAMPLES,
+  ...INFERENCE_EXAMPLES,
 ];
