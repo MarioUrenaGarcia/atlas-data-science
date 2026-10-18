@@ -62,7 +62,7 @@ Si $\mathcal{F}_1 \subseteq \mathcal{F}_2$ son dos sigma-álgebras sobre $\Omega
 
 Las tarjetas son los conjuntos medibles de $\Omega = \{a, b, c, d\}$ con la sigma-álgebra generada por dos conjuntos que se traslapan, $\{a, b\}$ y $\{b, c\}$. La reproducción agrega en cada ronda complementos y uniones; al terminar se marcan los átomos.
 
-La familia crece de 4 a 7, 11, 14 y 16 conjuntos: el traslape obliga a separar $\{b\}$, luego $\{a\}$, $\{c\}$ y $\{d\}$, y el resultado es el espacio medible más fino posible sobre cuatro puntos, con todos los subconjuntos.
+La familia crece de 4 a 7, 11, 14 y 16 conjuntos: el traslape obliga a separar primero $\{d\}$, en la segunda ronda, y después $\{a\}$, $\{b\}$ y $\{c\}$ juntos, en la tercera, y el resultado es el espacio medible más fino posible sobre cuatro puntos, con todos los subconjuntos.
 
 ## Ejemplo
 

@@ -42,7 +42,7 @@ El crecimiento es esencial. Sin él, una sucesión puede tener integrales que se
 ## Definición
 
 :::teorema[Teorema de convergencia monótona]
-Sea $(\Omega, \mathcal{F}, \mu)$ un espacio de medida y sean $f_1, f_2, \dots$ funciones medibles con $0 \le f_1 \le f_2 \le \cdots$ c.t.p. y $f_n \to f$ c.t.p. Entonces $f$ es medible y
+Sea $(\Omega, \mathcal{F}, \mu)$ un espacio de medida y sean $f_1, f_2, \dots$ funciones medibles con $0 \le f_1 \le f_2 \le \cdots$ c.t.p. y $f_n \to f$ c.t.p. Entonces $f$, redefinida si hace falta en un conjunto nulo, es medible y
 $$
 \lim_{n \to \infty} \int f_n\,d\mu = \int f\,d\mu,
 $$
@@ -66,7 +66,7 @@ Como $f_n \le f$, se tiene $\lim_n \int f_n \le \int f$. Para la otra desigualda
 
 ## Cómo usar la visualización
 
-A la izquierda está el término $f_n(x) = \min\{n, 1/\sqrt{x}\}$, junto con los anteriores y el límite $1/\sqrt{x}$ punteado; a la derecha, la integral de cada término. La reproducción avanza un término por paso, hasta $n = 16$.
+A la izquierda está el término $f_n(x) = \min\{n, 1/\sqrt{x}\}$, junto con los tres anteriores y el límite $1/\sqrt{x}$ punteado; a la derecha, la integral de cada término. La reproducción avanza un término por paso, hasta $n = 16$.
 
 Las funciones crecen y se pegan al límite; sus integrales, $2 - 1/n$, valen 1, 1.5, 1.667, 1.75, ..., y suben hacia 2, la integral de $1/\sqrt{x}$, aunque esta función no está acotada. Los puntos de la derecha nunca bajan, como garantiza el crecimiento.
 
@@ -80,11 +80,10 @@ Se calcula $\int_0^1 \min\{n, x^{-1/2}\}\,dx$ y su límite.
 4. Total: $\int f_n = 2 - 1/n$; con $n = 4$ vale 1.75.
 5. Por el teorema, $\int_0^1 x^{-1/2}\,dx = \lim_n (2 - 1/n) = 2$.
 
-:::figura[Aproximaciones simples de la raíz de x desde abajo: son crecientes, y sus integrales 0.375, 0.531, 0.602, 0.635, 0.651 y 0.659 suben hacia 2/3, como asegura el teorema.]{componente="MeasureLab"}
+:::figura[Los truncamientos $\min\{n, x^{-1/2}\}$ del ejemplo: las integrales 1, 1.5, 1.667, 1.75 y siguientes, iguales a $2 - 1/n$, suben hacia 2 sin bajar nunca.]{componente="MeasureLab"}
 ```yaml
-modo: simple
-funcion: raiz
-enfoque: lebesgue
+modo: sucesion
+caso: creciente
 ```
 :::
 
@@ -94,10 +93,10 @@ enfoque: lebesgue
 - **Series no negativas:** permite intercambiar suma e integral, por ejemplo $\mathbb{E}\big[\sum_n X_n\big] = \sum_n \mathbb{E}[X_n]$ si $X_n \ge 0$.
 - **Construcción de la integral:** implica que $\int f\,d\mu = \lim_n \int \varphi_n\,d\mu$ para cualquier sucesión de funciones simples que crezca hacia $f$, no solo la estándar.
 
-:::figura[Aproximaciones simples de x²: las integrales 0.1464, 0.2317, 0.2794, 0.3052, 0.3188 y 0.3259 crecen hacia 1/3 con cada refinamiento.]{componente="MeasureLab"}
+:::figura[Aproximaciones simples de la raíz de x desde abajo: son crecientes, y sus integrales 0.375, 0.531, 0.602, 0.635, 0.651 y 0.659 suben hacia 2/3, como asegura el teorema.]{componente="MeasureLab"}
 ```yaml
 modo: simple
-funcion: cuadrado
+funcion: raiz
 enfoque: lebesgue
 ```
 :::

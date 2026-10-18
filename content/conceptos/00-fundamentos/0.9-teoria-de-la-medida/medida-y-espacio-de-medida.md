@@ -74,7 +74,7 @@ Las barras se alargan: la medida pasa de 0 con $n = 1$ a 0.5, 0.667, ..., y lleg
 
 El conjunto de Cantor $C$ se obtiene quitando de $[0, 1]$ los tercios centrales abiertos una y otra vez. Sea $C_k$ lo que queda tras $k$ pasos.
 
-1. $C_k$ está formado por $2^k$ intervalos disjuntos de longitud $3^{-k}$, así que $\lambda(C_k) = 2^k 3^{-k} = (2/3)^k$.
+1. $C_k$ está formado por $2^k$ intervalos disjuntos de longitud $3^{-k}$, así que su medida de Lebesgue $\lambda$, la longitud total, es $\lambda(C_k) = 2^k 3^{-k} = (2/3)^k$.
 2. Los $C_k$ decrecen y $C = \bigcap_k C_k$.
 3. Como $\lambda(C_1) = 2/3$ es finita, la continuidad desde arriba da $\lambda(C) = \lim_k (2/3)^k = 0$.
 4. Con $k = 4$ ya se ha quitado $1 - 0.198 = 0.802$ de la longitud.

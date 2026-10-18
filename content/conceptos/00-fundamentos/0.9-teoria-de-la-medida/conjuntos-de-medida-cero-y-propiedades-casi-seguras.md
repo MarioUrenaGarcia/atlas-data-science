@@ -76,7 +76,7 @@ Se compara $f(x) = x^2$ con la función $g$ que vale 1 en cada racional de $[0, 
 2. Por lo tanto $f = g$ c.t.p. y $\int_0^1 g\,d\lambda = \int_0^1 x^2\,dx = 1/3$.
 3. En cambio, $g$ no es integrable según Riemann: en cada subintervalo toma valores cercanos a 1 en los racionales y menores en los irracionales, así que las sumas superiores e inferiores no se acercan.
 
-:::figura[f(x) = x² cambiada en 25 racionales: el área bajo la curva, 0.3333, es la misma para f y para g aunque g tenga cada vez más saltos.]{componente="MeasureLab"}
+:::figura[f(x) = x² cambiada en 25 racionales: el área bajo la curva, 0.3333, es la misma para f y para g aunque g tenga cada vez más saltos. La figura cambia solo 25 de los infinitos racionales: con finitos cambios g seguiría siendo integrable según Riemann, y el paso 3 requiere cambiarlos todos.]{componente="MeasureLab"}
 ```yaml
 modo: casi-seguro
 funcion: cuadrado

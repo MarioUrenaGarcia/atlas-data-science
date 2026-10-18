@@ -93,7 +93,7 @@ caso: continua
 
 - **Unicidad:** con factores sigma-finitos, la medida producto está determinada por los rectángulos.
 - **Área de Lebesgue:** $\lambda \otimes \lambda$ en $\mathbb{R}^2$ es la medida de Lebesgue del plano.
-- **Independencia:** dos variables aleatorias son independientes si y solo si su distribución conjunta es el producto de sus marginales; entonces $\mathbb{E}[g(X)h(Y)] = \mathbb{E}[g(X)]\,\mathbb{E}[h(Y)]$ por Fubini.
+- **Independencia:** dos variables aleatorias son independientes si y solo si su distribución conjunta es el producto de sus marginales; entonces $\mathbb{E}[g(X)h(Y)] = \mathbb{E}[g(X)]\,\mathbb{E}[h(Y)]$ por Fubini, donde $X$ y $Y$ son las variables, $g$ y $h$ funciones medibles con esperanzas finitas y $\mathbb{E}$ la esperanza.
 - **Principio de Cavalieri:** $(\mu \otimes \nu)(E) = \int_X \nu(E_x)\,d\mu(x)$, con $E_x = \{y : (x, y) \in E\}$.
 
 :::figura[Arreglo $2^{-(i+j)}$ con valores absolutos sumables: cada fila suma $2^{-i}$, cada columna $2^{-j}$ y los dos órdenes dan 1.]{componente="MeasureLab"}
@@ -106,8 +106,16 @@ caso: absoluta
 ## Errores comunes
 
 - **Intercambiar el orden sin revisar $\int |f|$.** En el arreglo de la visualización principal, cambiar el orden de suma cambia el resultado de 0 a 1.
+
+:::figura[El contraejemplo desde la esquina de 2 por 2: las filas suman 0 y las columnas 1, mientras la suma de valores absolutos de la esquina crece como 3, 5, 7 y llega a 13 con la esquina de 7 por 7.]{componente="MeasureLab"}
+```yaml
+modo: fubini
+caso: contraejemplo
+```
+:::
+
 - **Revisar solo que las integrales iteradas existan.** En el contraejemplo las dos sumas iteradas existen y son finitas, pero distintas; lo que falla es la integrabilidad absoluta.
-- **Olvidar la sigma-finitud.** Con la medida de conteo en $[0, 1]$, que no es sigma-finita, y la diagonal $\{x = y\}$, las dos integrales iteradas valen 0 y 1.
+- **Olvidar la sigma-finitud.** En $[0, 1]^2$ con la medida de Lebesgue en el primer factor y la de conteo en el segundo, que no es sigma-finita, la indicadora de la diagonal $\{x = y\}$ tiene integrales iteradas 0 (primero respecto de Lebesgue) y 1 (primero respecto del conteo).
 - **Usar Tonelli con funciones con signo.** Tonelli solo cubre funciones no negativas; con signo se necesita Fubini y su hipótesis de integrabilidad.
 
 ## Conexiones
@@ -129,6 +137,7 @@ $$
 \int f\,d(\mu\otimes\nu) = \int_X\!\int_Y f\,d\nu\,d\mu = \int_Y\!\int_X f\,d\mu\,d\nu
 $$
 
+- $X$, $Y$: espacios de cada factor; $\mu$, $\nu$: sus medidas; $f$: función medible en $X \times Y$.
 - Válido si $f \ge 0$ (Tonelli) o si $\int |f|\,d(\mu\otimes\nu) < \infty$ (Fubini).
 :::
 

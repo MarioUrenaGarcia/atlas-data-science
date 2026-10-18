@@ -91,24 +91,24 @@ densidad: onda
 
 ## Propiedades
 
-- **Regla de la cadena:** si $\rho \ll \nu \ll \mu$, entonces $\frac{d\rho}{d\mu} = \frac{d\rho}{d\nu}\,\frac{d\nu}{d\mu}$ c.t.p.
+- **Regla de la cadena:** si $\rho$ es una tercera medida sigma-finita y $\rho \ll \nu \ll \mu$, entonces $\frac{d\rho}{d\mu} = \frac{d\rho}{d\nu}\,\frac{d\nu}{d\mu}$ c.t.p.
 - **Cambio de medida:** $\int f\,d\nu = \int f\,\frac{d\nu}{d\mu}\,d\mu$ para $f$ medible no negativa.
 - **Densidades de probabilidad:** si $X$ tiene densidad $f_X$, entonces $f_X = dP_X/d\lambda$ y $P(X \in A) = \int_A f_X\,d\lambda$.
-- **Verosimilitudes:** para dos modelos $P \ll Q$, la derivada $dP/dQ$ es el cociente de verosimilitudes, y $D_{\mathrm{KL}}(P \,\|\, Q) = \int \log \frac{dP}{dQ}\,dP$.
+- **Verosimilitudes:** para dos modelos $P \ll Q$, la derivada $dP/dQ$ es el cociente de verosimilitudes, y $D_{\mathrm{KL}}(P \,\|\, Q) = \int \log \frac{dP}{dQ}\,dP$, la divergencia de Kullback-Leibler, con $\log$ el logaritmo natural.
+- **Descomposición de Lebesgue:** si $\mu$ y $\nu$ son sigma-finitas, $\nu$ se escribe como $\nu_{ac} + \nu_s$, con $\nu_{ac} \ll \mu$ y $\nu_s$ concentrada en un conjunto $\mu$-nulo.
 
-:::figura[Densidad escalonada 0.5 y 1.5: desde dos celdas, los cocientes de la mitad izquierda valen exactamente 0.5, y la derivada se reconoce sin error mientras las celdas no crucen el salto.]{componente="MeasureLab"}
+## Errores comunes
+
+- **Suponer que toda distribución tiene densidad.** Una variable que vale 0 con probabilidad 1/2 da masa a un punto de longitud cero; no es absolutamente continua respecto de Lebesgue y no tiene densidad.
+- **Esperar que la derivada esté definida en cada punto.** Es única solo c.t.p.: en la densidad escalonada, el valor en $x = 1/2$ puede ser 0.5, 1.5 o cualquier otro sin cambiar $\nu$.
+
+:::figura[Densidad escalonada 0.5 y 1.5: desde dos celdas, los cocientes de la mitad izquierda valen exactamente 0.5, y la derivada se reconoce sin error mientras las celdas no crucen el salto; el valor en x = 1/2 no influye en ningún cociente.]{componente="MeasureLab"}
 ```yaml
 modo: radon
 densidad: escalon
 ```
 :::
 
-- **Descomposición de Lebesgue:** toda medida sigma-finita $\nu$ se escribe como $\nu_{ac} + \nu_s$, con $\nu_{ac} \ll \mu$ y $\nu_s$ concentrada en un conjunto $\mu$-nulo.
-
-## Errores comunes
-
-- **Suponer que toda distribución tiene densidad.** Una variable que vale 0 con probabilidad 1/2 da masa a un punto de longitud cero; no es absolutamente continua respecto de Lebesgue y no tiene densidad.
-- **Esperar que la derivada esté definida en cada punto.** Es única solo c.t.p.: en la densidad escalonada, el valor en $x = 1/2$ puede ser 0.5, 1.5 o cualquier otro sin cambiar $\nu$.
 - **Pensar que continuidad absoluta y continuidad de la función de distribución son lo mismo.** La función de Cantor es continua, pero su distribución vive en el conjunto de Cantor, de medida cero, y no tiene densidad.
 - **Olvidar la sigma-finitud.** Con $\mu$ la medida de conteo en $[0, 1]$ y $\nu$ la de Lebesgue se cumple $\nu \ll \mu$, pero no existe densidad; la medida de conteo no es sigma-finita en un conjunto no numerable.
 

@@ -17,6 +17,12 @@ const DEFAULT_COUNT = 30;
 const ROWS = 6;
 const DOT_RADIUS = 3;
 
+/** The gap epsilon 2^-n in scientific notation, so the strict inequality stays visible for large n. */
+function slackTex(value: number): string {
+  const [mantissa, exponent] = value.toExponential(2).split('e');
+  return `${mantissa ?? '0'} \\times 10^{${Number(exponent ?? 0)}}`;
+}
+
 interface CoverViewProps {
   title: string;
   epsilon?: number;
@@ -81,7 +87,7 @@ export function CoverView({
       description={description}
     >
       <FormulaLine
-        tex={`\\sum_{k=1}^{${shown}} \\frac{\\varepsilon}{2^{k}} = \\varepsilon\\left(1 - 2^{-${shown}}\\right) = ${formatNumber(sum, 6)} < \\varepsilon = ${formatNumber(eps, 2)}`}
+        tex={`\\sum_{k=1}^{${shown}} \\frac{\\varepsilon}{2^{k}} = \\varepsilon\\left(1 - 2^{-${shown}}\\right) = ${formatNumber(eps, 2)} - ${slackTex(eps * 2 ** -shown)} < \\varepsilon`}
       />
       <ChartSvg
         label={description}

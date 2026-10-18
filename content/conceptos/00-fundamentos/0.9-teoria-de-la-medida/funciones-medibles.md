@@ -67,7 +67,7 @@ Una variable aleatoria es una función medible $X : (\Omega, \mathcal{F}, P) \to
 
 La curva es $f(x) = \tfrac{1}{2} + \tfrac{2}{5}\sin(2\pi x)$ en $[0, 1]$. La franja horizontal es un intervalo $B$ de valores y los segmentos gruesos sobre el eje horizontal son su preimagen $f^{-1}(B)$. La reproducción desliza $B$ hacia arriba; las lecturas dan cuántas piezas tiene la preimagen y su longitud.
 
-Con $B = [0.25, 0.5]$ la preimagen tiene dos piezas, $[0.5, 0.608]$ y $[0.893, 1]$, con longitud total 0.215. Al subir la franja, la preimagen cambia de forma y de número de piezas, pero siempre es una unión finita de intervalos: un conjunto medible.
+Con $B = [0.25, 0.5]$ la preimagen tiene dos piezas, $[0.5, 0.607]$ y $[0.893, 1]$, con longitud total 0.215. Al subir la franja, la preimagen cambia de forma y de número de piezas, pero siempre es una unión finita de intervalos: un conjunto medible.
 
 ## Ejemplo
 

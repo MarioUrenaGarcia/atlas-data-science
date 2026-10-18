@@ -46,7 +46,7 @@ Es el teorema más usado para derivar bajo el signo integral, calcular límites 
 ## Definición
 
 :::teorema[Teorema de convergencia dominada]
-Sea $(\Omega, \mathcal{F}, \mu)$ un espacio de medida y sean $f_n$ funciones medibles con $f_n \to f$ c.t.p. Si existe $g$ integrable, $\int g\,d\mu < \infty$, con $|f_n| \le g$ c.t.p. para todo $n$, entonces $f$ es integrable y
+Sea $(\Omega, \mathcal{F}, \mu)$ un espacio de medida y sean $f_n$ funciones medibles con $f_n \to f$ c.t.p. Si existe $g$ integrable, $\int g\,d\mu < \infty$, con $|f_n| \le g$ c.t.p. para todo $n$, entonces $f$, redefinida si hace falta en un conjunto nulo, es integrable y
 $$
 \lim_{n \to \infty} \int f_n\,d\mu = \int f\,d\mu, \qquad \text{más aún,} \quad \int |f_n - f|\,d\mu \to 0.
 $$
@@ -68,7 +68,7 @@ Las funciones $g + f_n$ y $g - f_n$ son no negativas. El lema de Fatou aplicado 
 
 ## Cómo usar la visualización
 
-A la izquierda está $f_n(x) = x^n$ con los términos anteriores, el límite puntual punteado, que vale 0 salvo en $x = 1$, y la cota $g = 1$. A la derecha, las integrales $1/(n + 1)$. La reproducción avanza hasta $n = 16$.
+A la izquierda está $f_n(x) = x^n$ con los tres términos anteriores, el límite puntual punteado, que vale 0 salvo en $x = 1$, y la cota $g = 1$. A la derecha, las integrales $1/(n + 1)$. La reproducción avanza hasta $n = 16$.
 
 Las curvas se hunden hacia el eje salvo cerca de $x = 1$, siempre bajo la cota. Las integrales valen 0.5, 0.333, 0.25, ... y con $n = 16$ ya son 0.0588: tienden a 0, la integral del límite, como predice el teorema.
 
@@ -91,8 +91,8 @@ caso: creciente
 ## Propiedades
 
 - **Convergencia en $L^1$:** la conclusión es más fuerte que la convergencia de las integrales: $\int |f_n - f| \to 0$.
-- **Derivación bajo la integral:** si $\partial_\theta h(x, \theta)$ existe y está dominada por una función integrable en $x$, entonces $\frac{d}{d\theta}\int h(x, \theta)\,dx = \int \partial_\theta h(x, \theta)\,dx$.
-- **Esperanzas:** si $X_n \to X$ c.s. y $|X_n| \le Y$ con $\mathbb{E}[Y] < \infty$, entonces $\mathbb{E}[X_n] \to \mathbb{E}[X]$.
+- **Derivación bajo la integral:** sea $h(x, \theta)$ una función de $x$ y de un parámetro $\theta$, con derivada parcial $\partial_\theta h$ respecto de $\theta$. Si $|\partial_\theta h(x, \theta)| \le G(x)$ para todo $\theta$ de un entorno, con $G$ integrable que no depende de $\theta$, entonces $\frac{d}{d\theta}\int h(x, \theta)\,dx = \int \partial_\theta h(x, \theta)\,dx$.
+- **Esperanzas:** si las variables aleatorias $X_n$ tienden c.s. a $X$ y están acotadas en valor absoluto por una variable $Y$ con $\mathbb{E}[Y] < \infty$, entonces $\mathbb{E}[X_n] \to \mathbb{E}[X]$.
 - **Convergencia en medida:** el teorema sigue valiendo si la convergencia c.t.p. se reemplaza por convergencia en medida.
 - **Necesidad de la convergencia:** la cota común no basta si la sucesión no converge; una sucesión acotada que alterna entre dos indicadoras no tiene límite que integrar.
 

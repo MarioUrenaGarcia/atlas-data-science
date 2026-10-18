@@ -338,8 +338,9 @@ export function iteratedSums(a: readonly (readonly number[])[]): {
 
 /**
  * The classic double sequence with 1 on the diagonal and -1 just above it,
- * truncated to an n by n block, plus the column that the truncation cuts off.
- * Summing rows first gives 0, summing columns first gives 1.
+ * truncated to an n by n block plus the column that the truncation cuts off.
+ * In the infinite array every row adds to 0 and the columns add to 1 in total;
+ * in this finite block the extra column holds the -1 that balances the first one.
  */
 export function counterexampleArray(n: number): number[][] {
   return Array.from({ length: n }, (_, i) =>

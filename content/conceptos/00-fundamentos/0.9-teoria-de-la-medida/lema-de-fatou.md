@@ -38,7 +38,7 @@ publicado: true
 
 Un reflector ilumina alternadamente la mitad izquierda y la mitad derecha de un escenario. En cada instante la mitad del escenario está iluminada, pero ningún punto está iluminado siempre: si se pregunta qué luz tiene garantizada cada punto a la larga, la respuesta es ninguna. La luz garantizada en el límite es menor que la luz que hay en cada instante.
 
-El lema de Fatou dice que esta pérdida es la única posibilidad. La integral del límite inferior, lo que cada punto conserva a la larga, nunca supera el límite inferior de las integrales, lo que hay en total en los mejores momentos. Puede haber desigualdad estricta cuando la masa se mueve o se concentra, pero la masa no puede aparecer de la nada en el límite.
+El lema de Fatou dice que esta pérdida es la única posibilidad. La integral del límite inferior, lo que cada punto conserva a la larga, nunca supera el límite inferior de las integrales, lo que hay en total en los peores momentos a la larga. Puede haber desigualdad estricta cuando la masa se mueve o se concentra, pero la masa no puede aparecer de la nada en el límite.
 
 No pide monotonía, ni cota, ni siquiera que la sucesión converja; solo que las funciones sean no negativas. Por esa generalidad es la herramienta para probar el teorema de convergencia dominada y para acotar integrales de límites en probabilidad.
 
@@ -56,7 +56,7 @@ El límite inferior puntual es $\liminf_n f_n(x) = \lim_{n \to \infty} \inf_{k \
 :::nota[Qué significa cada símbolo]
 - $(\Omega, \mathcal{F}, \mu)$: espacio de medida.
 - $f_n$: funciones medibles no negativas.
-- $\liminf_n f_n$: límite inferior puntual, el valor que $f_n(x)$ termina superando siempre.
+- $\liminf_n f_n$: límite inferior puntual; en cada $x$ es el mayor $c$ tal que, para todo $c' < c$, se cumple $f_n(x) > c'$ desde algún índice.
 - $\inf_{k \ge n} f_k(x)$: mínimo de la cola de la sucesión en el punto $x$.
 - $\liminf_n \int f_n\,d\mu$: límite inferior de la sucesión de integrales.
 :::

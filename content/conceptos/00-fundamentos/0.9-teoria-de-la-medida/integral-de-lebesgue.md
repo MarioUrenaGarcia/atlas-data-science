@@ -106,7 +106,7 @@ enfoque: riemann
 ```
 :::
 
-- **Esperanza:** para una variable aleatoria, $\mathbb{E}[X] = \int X\,dP = \int x\,dP_X(x)$.
+- **Esperanza:** para una variable aleatoria $X$ con probabilidad $P$, $\mathbb{E}[X] = \int X\,dP = \int x\,dP_X(x)$, donde $\mathbb{E}$ es la esperanza y $P_X$ la distribución de $X$.
 - **Desigualdad triangular:** $\big|\int f\,d\mu\big| \le \int |f|\,d\mu$.
 
 ## Errores comunes

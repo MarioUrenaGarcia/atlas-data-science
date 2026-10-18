@@ -14,6 +14,8 @@ import { VizFrame } from '../../core/VizFrame.tsx';
 /** The band moves in steps of 1/80 so that interval ends written with two decimals are nodes. */
 const STEP_SIZE = 0.0125;
 const STEPS_PER_SECOND = 6;
+/** Grid used to locate the preimage; fine enough for three correct decimals at the ends. */
+const PREIMAGE_CELLS = 20000;
 const DEFAULT_INTERVAL: [number, number] = [0.25, 0.5];
 const Y_RANGE: [number, number] = [-0.08, 1.05];
 const STRIP = 0.03;
@@ -53,6 +55,7 @@ export function PreimageView({ title, id, interval = DEFAULT_INTERVAL }: Preimag
     },
     0,
     1,
+    PREIMAGE_CELLS,
   );
   const measure = pieces.reduce((s, [l, r]) => s + (r - l), 0);
   const piecesText =
