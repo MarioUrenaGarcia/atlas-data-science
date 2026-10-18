@@ -110,13 +110,19 @@ export interface JointInformation {
   mutual: number;
 }
 
+/** Differences of entropies below this size are rounding noise. */
+const ROUNDING_FLOOR = 1e-12;
+
 /** Entropies of a joint table of probabilities p(x, y), rows indexed by x. */
 export function jointInformation(joint: Joint, base = 2): JointInformation {
   const { px, py } = marginals(joint);
   const hx = entropy(px, base);
   const hy = entropy(py, base);
   const hxy = entropy(joint.flat(), base);
-  return { hx, hy, hxy, hxGivenY: hxy - hy, hyGivenX: hxy - hx, mutual: hx + hy - hxy };
+  // Rounding leaves residues near 1e-16 for independent tables; mutual information is never negative.
+  const raw = hx + hy - hxy;
+  const mutual = raw < ROUNDING_FLOOR ? 0 : raw;
+  return { hx, hy, hxy, hxGivenY: hx - mutual, hyGivenX: hy - mutual, mutual };
 }
 
 /** Binary symmetric channel: flips its input with probability e. */

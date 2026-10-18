@@ -68,7 +68,7 @@ $$
 
 Se extraen observaciones de la distribución verdadera $p$, una por cuadro, hasta 400. La curva de un color es la perplejidad acumulada del modelo $q$ y la otra, la de la propia $p$, que hace de modelo ideal. Las líneas punteadas son los límites $2^{H(p, q)}$ y $2^{H(p)}$. La semilla cambia la secuencia de observaciones.
 
-Con las primeras observaciones las curvas oscilan; después se asientan. Con la semilla 7, tras 400 observaciones el modelo marca 3.481 y la distribución verdadera 3.441, cerca de los límites 3.424 y 3.347. A partir de unas 110 observaciones la curva del modelo queda por encima de la verdadera, como debe ocurrir en el límite: con cuatro valores posibles, el modelo duda en promedio entre unas 3.4 opciones.
+Con las primeras observaciones las curvas oscilan; después se asientan. Con la semilla 7, tras 400 observaciones el modelo marca 3.481 y la distribución verdadera 3.441, cerca de los límites 3.424 y 3.347. A partir de unas 150 observaciones la curva del modelo queda por encima de la verdadera, como debe ocurrir en el límite: con cuatro valores posibles, el modelo duda en promedio entre unas 3.4 opciones.
 
 ## Ejemplo
 
@@ -123,7 +123,6 @@ q: [0.4, 0.3, 0.2, 0.1]
 semilla: 3
 ```
 :::
-
 
 ## Conexiones
 

@@ -15,6 +15,7 @@ import { BarChart } from './BarChart.tsx';
 
 const STEPS = 20;
 const STEPS_PER_SECOND = 3;
+const ROUNDING_FLOOR = 1e-12;
 
 export type DivergenceFocus = 'cruzada' | 'kl' | 'jensen-shannon';
 
@@ -53,7 +54,11 @@ export function DivergenceView({ title, p: pRaw, q: qRaw, focus, labels }: Diver
   const klBack = klDivergence(q, p);
   const js = jsDivergence(p, q);
   const m = p.map((pi, i) => (pi + (q[i] ?? 0)) / 2);
-  const contributions = p.map((pi, i) => (pi > 0 ? pi * Math.log2(pi / (q[i] ?? 0)) : 0));
+  // Terms of equal probabilities can come out near 1e-17 after normalizing; they are exactly zero.
+  const contributions = p.map((pi, i) => {
+    const term = pi > 0 ? pi * Math.log2(pi / (q[i] ?? 0)) : 0;
+    return Math.abs(term) < ROUNDING_FLOOR ? 0 : term;
+  });
   const header =
     focus === 'cruzada'
       ? `H(p, q) = -\\sum_x p(x)\\log_2 q(x) = ${show(hpq)} = \\underbrace{${show(hp)}}_{H(p)} + \\underbrace{${show(kl)}}_{D_{\\mathrm{KL}}(p \\,\\|\\, q)}`

@@ -76,7 +76,7 @@ Cuando $\mathcal{Q}$ es la familia normal, $q_{\text{dir}}$ es la normal con la 
 
 La curva gruesa es $p$, una mezcla en partes iguales de dos normales con desviación 0.6 y medias en $\pm d/2$. La curva continua delgada es la normal que minimiza $D_{\mathrm{KL}}(p \,\|\, q)$ y la punteada, la que minimiza $D_{\mathrm{KL}}(q \,\|\, p)$, buscada en una rejilla. La reproducción aumenta la separación $d$ de 0 a 5.
 
-Con $d = 0$ las tres curvas coinciden. Hasta $d = 3.25$ las dos aproximaciones siguen centradas en cero, la inversa más angosta (1.525 contra 1.732). Entre 3.25 y 3.5 la inversa salta a una sola joroba, en $\mu = -1.75$ con $\sigma = 0.625$, mientras la directa sigue ensanchándose sobre el valle.
+Con $d = 0$ las tres curvas coinciden. Hasta $d = 3.25$ las dos aproximaciones siguen centradas en cero, la inversa más angosta (1.529 contra 1.732). Entre 3.25 y 3.5 la inversa salta a una sola joroba, en $\mu = -1.735$ con $\sigma = 0.618$, mientras la directa sigue ensanchándose sobre el valle.
 
 ## Ejemplo
 
@@ -84,9 +84,9 @@ Con $d = 4$, la densidad $p$ es $\tfrac{1}{2}\mathcal{N}(-2, 0.36) + \tfrac{1}{2
 
 1. **Directa.** La media de $p$ es 0 y su varianza es $0.36 + 2^2 = 4.36$, de modo que $q_{\text{dir}} = \mathcal{N}(0, 2.088^2)$. Su densidad en 0 es $0.191$, aunque $p(0)$ es prácticamente cero.
 2. **Inversa.** Si $q = \mathcal{N}(2, 0.36)$, la normal de una de las jorobas, en la zona donde $q$ tiene masa se cumple $p(x) \approx q(x)/2$. Entonces $D_{\mathrm{KL}}(q \,\|\, p) \approx \int q \log 2\,dx = \log 2 = 0.693$ nats.
-3. La búsqueda en la rejilla confirma $q_{\text{inv}} = \mathcal{N}(\pm 2, 0.6^2)$ con divergencia 0.692, frente a $D_{\mathrm{KL}}(p \,\|\, q_{\text{dir}}) = 0.555$.
+3. La búsqueda en la rejilla confirma $q_{\text{inv}} = \mathcal{N}(-1.995, 0.605^2)$, prácticamente la joroba de $-2$, con divergencia 0.692, frente a $D_{\mathrm{KL}}(p \,\|\, q_{\text{dir}}) = 0.555$.
 
-:::figura[Separación 4: la normal de la divergencia directa tiene media 0 y desviación 2.088 y cubre el valle vacío; la de la inversa se sienta en la joroba de $-2$ con desviación 0.6.]{componente="InformationViz"}
+:::figura[Separación 4: la normal de la divergencia directa tiene media 0 y desviación 2.088 y cubre el valle vacío; la de la inversa se sienta en la joroba de $-2$ con desviación 0.605.]{componente="InformationViz"}
 ```yaml
 modo: asimetria
 separacion: 4

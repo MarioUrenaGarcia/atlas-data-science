@@ -81,9 +81,9 @@ En una ciudad, las probabilidades de lluvia y de tráfico lento en una mañana s
 
 1. Términos de la conjunta: $0.2 \log_2 \frac{1}{0.2} = 0.464$, $0.05 \log_2 \frac{1}{0.05} = 0.216$, $0.1 \log_2 \frac{1}{0.1} = 0.332$ y $0.65 \log_2 \frac{1}{0.65} = 0.404$. Suma: $H(X, Y) = 1.417$ bits.
 2. Marginales: lluvia 0.25 y sin lluvia 0.75, de modo que $H(X) = H_b(0.25) = 0.811$; tráfico lento 0.3 y fluido 0.7, de modo que $H(Y) = H_b(0.3) = 0.881$.
-3. La suma de las marginales es $1.692$ bits y la conjunta es $1.417$: el par es 0.276 bits menos incierto de lo que sería con variables independientes.
+3. La suma de las marginales es $0.8113 + 0.8813 = 1.693$ bits y la conjunta es $1.417$: el par es 0.276 bits menos incierto de lo que sería con variables independientes.
 
-:::figura[Lluvia y tráfico: con la tabla independiente de mismas marginales, H(X, Y) vale 1.692 bits; al llegar a la tabla real baja a 1.417 bits y aparece el tramo compartido de 0.276 bits.]{componente="InformationViz"}
+:::figura[Lluvia y tráfico: con la tabla independiente de mismas marginales, H(X, Y) vale 1.693 bits; al llegar a la tabla real baja a 1.417 bits y aparece el tramo compartido de 0.276 bits.]{componente="InformationViz"}
 ```yaml
 modo: conjunta
 tabla:

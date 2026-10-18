@@ -39,6 +39,8 @@ const MU_STEPS = 80;
 const SIGMA_STEPS = 60;
 const SIGMA_UNIT = 0.05;
 const TIE_TOLERANCE = 1e-9;
+/** Subdivisions per coarse step in the local refinement of the reverse fit. */
+const REFINE = 25;
 
 /**
  * Normal that minimizes KL(p || q), the forward direction, which matches the
@@ -67,6 +69,19 @@ export function fitNormal(
       const sigma = (SIGMA_UNIT * SIGMA_STEPS * k) / sigmaSteps;
       const d = gridKL((x) => normalDensity(x, mu, sigma), p, xs);
       // The tolerance keeps the first of two mirror-image optima, so the fit does not jump between modes.
+      if (d < best.divergence - TIE_TOLERANCE) best = { mu, sigma, divergence: d };
+    }
+  }
+  // A second, finer search around the coarse optimum removes the grid bias in sigma.
+  const muStep = (hi - lo) / 2 / muSteps;
+  const sigmaStep = (SIGMA_UNIT * SIGMA_STEPS) / sigmaSteps;
+  const center = best;
+  for (let i = -REFINE; i <= REFINE; i += 1) {
+    const mu = center.mu + (muStep * i) / REFINE;
+    for (let k = -REFINE; k <= REFINE; k += 1) {
+      const sigma = center.sigma + (sigmaStep * k) / REFINE;
+      if (sigma <= 0) continue;
+      const d = gridKL((x) => normalDensity(x, mu, sigma), p, xs);
       if (d < best.divergence - TIE_TOLERANCE) best = { mu, sigma, divergence: d };
     }
   }
