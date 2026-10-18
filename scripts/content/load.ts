@@ -49,9 +49,11 @@ export function readConceptFile(root: string, file: string): RawConceptFile {
   const text = readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   const path = toPosix(relative(root, file));
   try {
-    // An empty options object disables gray-matter's cache, which would
-    // otherwise return stale data for identical strings across rebuilds.
-    const parsed = matter(text, {});
+    // Passing options disables gray-matter's cache, which would otherwise
+    // return stale data for identical strings across rebuilds. Frontmatter is
+    // parsed with the same YAML 1.2 parser as the global content files instead
+    // of gray-matter's bundled js-yaml engine.
+    const parsed = matter(text, { engines: { yaml: (source: string) => parseYaml(source) } });
     const bodyStart = text.length - parsed.content.length;
     const bodyLineOffset = text.slice(0, bodyStart).split('\n').length - 1;
     return { path, data: parsed.data, body: parsed.content, bodyLineOffset };
