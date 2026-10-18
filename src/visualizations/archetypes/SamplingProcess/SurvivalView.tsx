@@ -1,4 +1,5 @@
 import { scaleLinear } from 'd3-scale';
+import { pluralize } from '../../../lib/format/plural.ts';
 import { useMemo, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Random } from '../../../lib/random/index.ts';
@@ -85,7 +86,7 @@ export function SurvivalView({
   const header = `\\bar{r}_{\\text{sobrevivientes}} = ${pct(survivors).replace('%', '\\%')},\\quad \\bar{r}_{\\text{todos}} = ${pct(everyone).replace('%', '\\%')},\\quad \\text{sesgo} = ${pct(survivors - everyone).replace('%', '\\%')}`;
   const unitName = config.nombreUnidad.toLowerCase();
   const description =
-    `${config.nombrePeriodo} ${t + 1} de ${config.periodos}: siguen ${alive} de ${config.unidades} ${unitName}s. ` +
+    `${config.nombrePeriodo} ${t + 1} de ${config.periodos}: siguen ${alive} de ${config.unidades} ${pluralize(unitName)}. ` +
     `${config.variable} promedio de los que siguen: ${pct(survivors)}; de todos, incluidos los cerrados: ${pct(everyone)}.`;
 
   return (
@@ -96,7 +97,10 @@ export function SurvivalView({
       parameters={parameters}
       readouts={[
         { label: config.nombrePeriodo, value: `${t + 1} de ${config.periodos}` },
-        { label: `${config.nombreUnidad}s que siguen`, value: `${alive} de ${config.unidades}` },
+        {
+          label: `${pluralize(config.nombreUnidad)} que siguen`,
+          value: `${alive} de ${config.unidades}`,
+        },
         {
           label: 'Promedio de los sobrevivientes',
           value: pct(survivors),

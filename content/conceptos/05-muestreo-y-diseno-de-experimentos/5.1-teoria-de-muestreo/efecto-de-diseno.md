@@ -57,9 +57,9 @@ $$
 donde el denominador es la varianza que tendría el mismo estimador con un muestreo aleatorio simple de $n$ unidades. El **tamaño efectivo de muestra** es $n_{\text{ef}} = n / \text{deff}$.
 :::
 
-Para conglomerados de igual tamaño $m$ con correlación intraclase $\rho$,
+Para conglomerados de igual tamaño $M$ con correlación intraclase $\rho$,
 $$
-\text{deff} \approx 1 + (m - 1)\rho.
+\text{deff} \approx 1 + (M - 1)\rho.
 $$
 Para pesos desiguales con valores $w_i$, el efecto de diseño por ponderación de Kish es
 $$
@@ -71,31 +71,31 @@ donde $\mathrm{CV}(w)$ es el coeficiente de variación de los pesos (con desviac
 - $\hat{\theta}$: estimador, por ejemplo una media o una proporción.
 - $\operatorname{Var}_{\text{diseño}}$: varianza con el diseño usado; $\operatorname{Var}_{\mathrm{MAS}}$: con muestreo aleatorio simple del mismo $n$.
 - $n$: tamaño real de la muestra; $n_{\text{ef}}$: tamaño efectivo.
-- $m$: unidades por conglomerado; $\rho$: correlación intraclase.
+- $M$: unidades por conglomerado; $\rho$: correlación intraclase.
 - $w_i$: peso de la unidad $i$; $\mathrm{CV}(w)$: coeficiente de variación de los pesos.
 :::
 
 ## Cómo usar la visualización
 
-Los puntos de arriba son los 800 hogares, agrupados por manzana. Al reproducir, algunos se apagan hasta que solo quedan encendidos tantos como el tamaño efectivo: los apagados representan información repetida por la similitud dentro de las manzanas. Abajo, la gráfica muestra cómo crece el efecto de diseño con el número de hogares por manzana para varias correlaciones intraclase.
+Los puntos de arriba representan a los 800 hogares agrupados por manzana; cada punto equivale a dos hogares. Al reproducir, algunos se apagan hasta que solo quedan encendidos tantos como el tamaño efectivo: los apagados representan información repetida por la similitud dentro de las manzanas. Abajo, la gráfica muestra cómo crece el efecto de diseño con el número de hogares por manzana para varias correlaciones intraclase.
 
 Experimentos sugeridos:
 
-- Sube $m$ a 30 con $\rho = 0.1$: el efecto de diseño pasa de 1.7 a 3.9.
+- Sube $M$ a 30 con $\rho = 0.1$: el efecto de diseño pasa de 1.7 a 3.9.
 - Lleva $\rho$ a 0: no importa cuántos hogares por manzana se tomen, el efecto de diseño es 1.
-- Con $\rho = 0.3$, compara $m = 2$ y $m = 20$ y observa cuánto se reduce el tamaño efectivo.
+- Con $\rho = 0.3$, compara $M = 2$ y $M = 20$ y observa cuánto se reduce el tamaño efectivo.
 
 ## Ejemplo
 
 La encuesta de salud estima la proporción de hogares con algún integrante con diabetes.
 
-1. Con $m = 8$ hogares por manzana y $\rho = 0.1$: $\text{deff} = 1 + 7 \cdot 0.1 = 1.7$.
+1. Con $M = 8$ hogares por manzana y $\rho = 0.1$: $\text{deff} = 1 + 7 \cdot 0.1 = 1.7$.
 2. Tamaño efectivo: $n_{\text{ef}} = 800/1.7 \approx 471$.
 3. Si la proporción es $p = 0.2$, el error estándar con muestreo aleatorio simple sería $\sqrt{0.2 \cdot 0.8/800} = 0.0141$.
 4. Con el diseño real: $0.0141 \cdot \sqrt{1.7} = 0.0184$, y el margen de error al 95 % pasa de 2.8 a 3.6 puntos porcentuales.
 5. Para lograr el margen de 2.8 puntos con el mismo diseño harían falta $800 \cdot 1.7 = 1360$ entrevistas.
 
-:::figura[Efecto de diseño observado en una simulación: 4 manzanas de 24 hogares cada una contra 96 hogares sorteados uno por uno. El histograma de conglomerados es mucho más ancho.]{componente="SurveySampler"}
+:::figura[Efecto de diseño observado en una simulación: 4 manzanas de 24 hogares cada una contra 96 hogares sorteados uno por uno. El histograma de conglomerados es más ancho: el efecto de diseño observado ronda 1.5, menor que en variables continuas porque en una variable de sí o no la similitud dentro de las manzanas se atenúa.]{componente="SurveySampler"}
 ```yaml
 diseno: conglomerados
 n: 4
@@ -121,7 +121,7 @@ poblacion:
 
 - **deff > 1** en diseños con conglomerados o pesos desiguales; **deff < 1** en diseños estratificados con estratos homogéneos.
 - **Depende del estimador**: en una misma encuesta, la proporción de hogares con agua entubada (muy parecida dentro de una manzana) tiene un efecto de diseño mucho mayor que la edad promedio.
-- **Crece linealmente con el tamaño del conglomerado**, así que un $\rho$ pequeño puede producir un efecto grande si $m$ es grande.
+- **Crece linealmente con el tamaño del conglomerado**, así que un $\rho$ pequeño puede producir un efecto grande si $M$ es grande.
 - **Los pesos desiguales siempre lo aumentan** en la parte de ponderación: $\text{deff}_w \ge 1$, con igualdad solo si todos los pesos son iguales.
 
 :::figura[Propiedad con estratificación: estratificar por región un estudio de rendimiento escolar da un efecto de diseño observado menor que 1.]{componente="SurveySampler"}
@@ -203,10 +203,10 @@ $$
 
 :::formula[Efecto de diseño de conglomerados]
 $$
-\text{deff} \approx 1 + (m - 1)\rho
+\text{deff} \approx 1 + (M - 1)\rho
 $$
 
-- $m$: unidades por conglomerado; $\rho$: correlación intraclase.
+- $M$: unidades por conglomerado; $\rho$: correlación intraclase.
 :::
 
 :::formula[Efecto de diseño por ponderación de Kish]

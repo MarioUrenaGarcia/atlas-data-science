@@ -123,7 +123,7 @@ muestra:
 - **No necesita la tabla cruzada de la población**, solo sus márgenes; si la tabla cruzada se conoce, la post-estratificación por celdas es preferible.
 - **Converge rápido** en tablas sin celdas vacías: el desajuste suele bajar a una fracción mínima en cuatro o cinco iteraciones.
 
-:::figura[Propiedad de convergencia con tres variables de región por nivel socioeconómico: en pocas iteraciones el mayor desajuste de un margen baja prácticamente a cero.]{componente="SamplingWeights"}
+:::figura[Propiedad de convergencia con dos variables de tres categorías cada una, región y nivel socioeconómico (tabla de tres por tres): en pocas iteraciones el mayor desajuste de un margen baja prácticamente a cero.]{componente="SamplingWeights"}
 ```yaml
 modo: raking
 iteraciones: 5

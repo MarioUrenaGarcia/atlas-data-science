@@ -383,7 +383,9 @@ export default function SurveySampler({ params, conceptId, title }: Visualizatio
     step: () => stepUnits(1),
     stepMany: (count) => stepUnits(count),
     reset: () => setRun((value) => value + 1),
-    rate: firstDone ? Math.max(4, Math.min(30, repetitions / 12)) : Math.max(UNITS_PER_SECOND, state.sample.units.length / FIRST_SAMPLE_SECONDS),
+    rate: firstDone
+      ? Math.max(4, Math.min(30, repetitions / 12))
+      : Math.max(UNITS_PER_SECOND, state.sample.units.length / FIRST_SAMPLE_SECONDS),
     done: state.estimates.length >= repetitions,
   });
 

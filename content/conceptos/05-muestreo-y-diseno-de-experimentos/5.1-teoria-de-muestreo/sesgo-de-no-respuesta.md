@@ -155,7 +155,7 @@ poblacion:
 ```
 :::
 
-:::figura[Propiedad de la tasa alta con sesgo: casi 90 % de los estudiantes responde una encuesta sobre deudas, pero los pocos que no lo hacen deben mucho más, y la estimación queda baja.]{componente="SurveySampler"}
+:::figura[Propiedad de la tasa alta con sesgo: más de 80 % de los estudiantes responde una encuesta sobre deudas, pero los pocos que no lo hacen deben mucho más, y la estimación queda baja.]{componente="SurveySampler"}
 ```yaml
 diseno: no-respuesta
 n: 80

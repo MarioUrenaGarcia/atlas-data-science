@@ -1,4 +1,5 @@
 import { scaleLinear } from 'd3-scale';
+import { pluralize } from '../../../lib/format/plural.ts';
 import { useMemo, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { clusterDesignEffect, effectiveSampleSize } from '../../../lib/sampling/index.ts';
@@ -27,8 +28,8 @@ export function DeffView({ config, title }: { config: DeffConfig; title: string 
       {
         type: 'number',
         key: 'm',
-        label: `${config.nombreUnidad}s por ${config.nombreConglomerado.toLowerCase()}`,
-        symbol: 'm',
+        label: `${pluralize(config.nombreUnidad)} por ${config.nombreConglomerado.toLowerCase()}`,
+        symbol: 'M',
         min: 1,
         max: 60,
         step: 1,
@@ -68,10 +69,10 @@ export function DeffView({ config, title }: { config: DeffConfig; title: string 
     done: stage >= STAGES,
   });
   const shownEffective = n + ((nEff - n) * stage) / STAGES;
-  const header = `\\text{deff} = 1 + (m - 1)\\rho = 1 + (${m} - 1)\\cdot ${formatNumber(rho, 2)} = ${formatNumber(deff, 3)},\\qquad n_{\\text{ef}} = \\frac{n}{\\text{deff}} = \\frac{${n}}{${formatNumber(deff, 3)}} = ${formatNumber(nEff, 1)}`;
+  const header = `\\text{deff} = 1 + (M - 1)\\rho = 1 + (${m} - 1)\\cdot ${formatNumber(rho, 2)} = ${formatNumber(deff, 3)},\\qquad n_{\\text{ef}} = \\frac{n}{\\text{deff}} = \\frac{${n}}{${formatNumber(deff, 3)}} = ${formatNumber(nEff, 1)}`;
   const clusters = Math.ceil(n / m);
   const description =
-    `${n} ${config.nombreUnidad.toLowerCase()}s en ${clusters} ${config.nombreConglomerado.toLowerCase()}s de ${m}; con correlación intraclase ${formatNumber(rho, 2)} ` +
+    `${n} ${pluralize(config.nombreUnidad.toLowerCase())} en ${clusters} ${pluralize(config.nombreConglomerado.toLowerCase())} de ${m}; con correlación intraclase ${formatNumber(rho, 2)} ` +
     `el efecto de diseño es ${formatNumber(deff, 2)} y la muestra equivale a ${formatNumber(nEff, 0)} observaciones independientes.`;
   const dotScale = n > MAX_DOTS ? n / MAX_DOTS : 1;
   const totalDots = Math.round(n / dotScale);
@@ -83,7 +84,7 @@ export function DeffView({ config, title }: { config: DeffConfig; title: string 
       playback={playback}
       parameters={parameters}
       readouts={[
-        { label: `${config.nombreConglomerado}s en la muestra`, value: String(clusters) },
+        { label: `${pluralize(config.nombreConglomerado)} en la muestra`, value: String(clusters) },
         { label: 'Efecto de diseño', value: formatNumber(deff, 3), color: DATA_COLORS.highlight },
         { label: 'Tamaño de muestra real', value: String(n) },
         { label: 'Tamaño efectivo', value: formatNumber(nEff, 1), color: DATA_COLORS.primary },
@@ -185,7 +186,7 @@ export function DeffView({ config, title }: { config: DeffConfig; title: string 
                 orientation="bottom"
                 position={box.inner.top + box.inner.height}
                 ticks={6}
-                label={`${config.nombreUnidad}s por ${config.nombreConglomerado.toLowerCase()} (m)`}
+                label={`${pluralize(config.nombreUnidad)} por ${config.nombreConglomerado.toLowerCase()} (M)`}
               />
               {rhos.map((r, i) => {
                 const current = r === rho;

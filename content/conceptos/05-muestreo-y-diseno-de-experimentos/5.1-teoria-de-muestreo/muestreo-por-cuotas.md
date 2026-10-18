@@ -133,7 +133,7 @@ poblacion:
 ## Propiedades
 
 - **Controla la composición de la muestra** en las variables de las cuotas, igual que la estratificación.
-- **No controla la selección dentro de los grupos**: el sesgo depende de cuánto difieren los accesibles del resto, y no disminuye al aumentar $n$.
+- **No controla la selección dentro de los grupos**: el sesgo depende de cuánto difieren los accesibles del resto, y no se corrige al aumentar $n$; solo baja cuando la muestra llega a abarcar una parte grande de cada grupo.
 - **Funciona bien solo si la accesibilidad no está relacionada con la variable**, algo que no se puede verificar con la propia muestra.
 - **Es rápido y barato**, por eso se usa en estudios de mercado y en sondeos con plazos cortos.
 
@@ -163,15 +163,15 @@ poblacion:
 ```
 :::
 
-:::figura[Propiedad de independencia respecto de n: con 120 entrevistas por cuotas el histograma se angosta, pero sigue en el mismo lugar equivocado.]{componente="SurveySampler"}
+:::figura[Propiedad de independencia respecto de n: en una ciudad con 1200 personas, 120 entrevistas por cuotas dan un histograma más angosto que sigue igual de lejos de la media real.]{componente="SurveySampler"}
 ```yaml
 diseno: cuotas
 n: 120
 nMaximo: 200
 repeticiones: 300
 poblacion:
-  columnas: 24
-  filas: 12
+  columnas: 40
+  filas: 30
   estratos:
     - nombre: 18 a 34 años
       media: 6.2

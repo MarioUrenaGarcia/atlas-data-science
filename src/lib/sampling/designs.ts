@@ -122,7 +122,31 @@ export function allocate(
   sizes: readonly number[],
   sds: readonly number[],
 ): number[] {
-  return roundAllocation(idealAllocation(allocation, n, sizes, sds), n, sizes, 1);
+  // A stratum whose ideal share exceeds its size is taken whole (a census) and
+  // the remaining units are allotted again among the other strata.
+  const fixed = new Map<number, number>();
+  for (let guard = 0; guard < sizes.length; guard += 1) {
+    const open = sizes.map((_, h) => h).filter((h) => !fixed.has(h));
+    const left = n - [...fixed.values()].reduce((a, b) => a + b, 0);
+    const ideal = idealAllocation(
+      allocation,
+      left,
+      open.map((h) => sizes[h] ?? 0),
+      open.map((h) => sds[h] ?? 0),
+    );
+    const over = open.filter((h, i) => (ideal[i] ?? 0) > (sizes[h] ?? 0));
+    if (over.length === 0) {
+      const rounded = roundAllocation(
+        ideal,
+        left,
+        open.map((h) => sizes[h] ?? 0),
+        1,
+      );
+      return sizes.map((_, h) => fixed.get(h) ?? rounded[open.indexOf(h)] ?? 0);
+    }
+    for (const h of over) fixed.set(h, sizes[h] ?? 0);
+  }
+  return sizes.map((_, h) => fixed.get(h) ?? 0);
 }
 
 /** Variance of the stratified mean, Σ W_h² (1 - n_h/N_h) S_h² / n_h. */

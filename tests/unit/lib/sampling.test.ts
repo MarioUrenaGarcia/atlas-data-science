@@ -291,3 +291,14 @@ describe('survivorship', () => {
     expect(meanReturn(panel, 9, true)).toBeGreaterThan(meanReturn(panel, 9, false));
   });
 });
+
+describe('Neyman allocation with a census stratum', () => {
+  it('takes the small stratum whole and reallots the rest by Neyman', () => {
+    const a = allocate('neyman', 160, [2500, 400, 30], [0.3, 2.5, 40]);
+    expect(a[2]).toBe(30);
+    expect(a[0]! + a[1]!).toBe(130);
+    // 130 split in proportion to 750 : 1000 gives 55.7 and 74.3.
+    expect(a[0]).toBe(56);
+    expect(a[1]).toBe(74);
+  });
+});

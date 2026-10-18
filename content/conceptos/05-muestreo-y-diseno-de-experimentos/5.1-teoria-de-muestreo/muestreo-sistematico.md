@@ -203,6 +203,7 @@ $$
 k = \frac{N}{n}, \qquad \mathcal{S} = \{r,\ r + k,\ \dots,\ r + (n-1)k\}
 $$
 
+- $\mathcal{S}$: muestra sistemática, el conjunto de posiciones elegidas.
 - $N$: tamaño de la lista; $n$: tamaño de muestra.
 - $k$: intervalo; $r$: arranque aleatorio entre 1 y $k$.
 :::

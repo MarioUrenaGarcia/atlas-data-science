@@ -36,6 +36,7 @@ visualizacion:
     cupones: 3
     olas: 5
     nombreMiembro: Paciente
+    semilla: 7
 referencias:
   - clave: lohr
     capitulo: '1'
@@ -75,7 +76,7 @@ Cada punto es una persona de una red social; los azules son pacientes con la enf
 Experimentos sugeridos:
 
 - Observa que el promedio de contactos de los reclutados es mayor que el de todos los pacientes.
-- Reduce las referencias por persona a 1: la cadena avanza lento y se queda en una sola zona de la red.
+- Reduce las referencias por persona a 1: la cadena avanza más lento y en cinco olas alcanza a menos pacientes.
 - Cambia la semilla: con otras semillas, la bola de nieve llega a otro grupo de pacientes.
 
 ## Ejemplo
@@ -98,7 +99,7 @@ semillas: 1
 cupones: 2
 olas: 6
 nombreMiembro: Paciente
-semilla: 4
+semilla: 9
 ```
 :::
 
@@ -109,7 +110,7 @@ semilla: 4
 - **Depende de las semillas**: con pocas olas, la composición de la muestra refleja la de las semillas.
 - **La homofilia alarga la dependencia**: si los contactos se parecen entre sí, la muestra tarda muchas olas en salir del grupo inicial.
 
-:::figura[Propiedad de dependencia de las semillas: en una red donde los pacientes forman dos comunidades poco conectadas, cuatro olas a partir de dos semillas pueden no cruzar a la otra comunidad. Cambia la semilla para ver otra cadena.]{componente="SamplingProcess"}
+:::figura[Propiedad de dependencia de las semillas: en una red donde los pacientes forman dos comunidades poco conectadas, las dos semillas caen en la misma comunidad y en cuatro olas la cadena no cruza a la otra. Cambia la semilla para ver otra cadena.]{componente="SamplingProcess"}
 ```yaml
 modo: bola-de-nieve
 tamano: 200
@@ -119,7 +120,7 @@ semillas: 2
 cupones: 2
 olas: 4
 nombreMiembro: Paciente
-semilla: 12
+semilla: 211
 ```
 :::
 
@@ -129,17 +130,17 @@ semilla: 12
 - **Elegir semillas por comodidad**, todas del mismo centro de atención, y suponer que unas pocas olas bastan para "olvidar" ese origen.
 - **Usar bola de nieve cuando sí existe un marco.** Si hay un registro de la población, un diseño probabilístico sobre ese registro es preferible.
 
-:::figura[Error de reportar proporciones sin corregir: con muchas referencias por persona, los reclutados tienen en promedio bastantes más contactos que la población de músicos independientes que se quiere describir.]{componente="SamplingProcess"}
+:::figura[Error de reportar proporciones sin corregir: tras dos olas con tres referencias por persona, los músicos reclutados tienen en promedio alrededor de 60 % más contactos que el conjunto de músicos independientes que se quiere describir.]{componente="SamplingProcess"}
 ```yaml
 modo: bola-de-nieve
 tamano: 200
 proporcion: 0.35
 homofilia: 0.85
 semillas: 4
-cupones: 5
-olas: 4
+cupones: 3
+olas: 2
 nombreMiembro: Músico
-semilla: 7
+semilla: 5
 ```
 :::
 

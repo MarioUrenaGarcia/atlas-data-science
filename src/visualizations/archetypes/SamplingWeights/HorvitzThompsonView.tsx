@@ -1,4 +1,5 @@
 import { scaleLinear } from 'd3-scale';
+import { pluralize } from '../../../lib/format/plural.ts';
 import { useCallback, useMemo, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Random } from '../../../lib/random/index.ts';
@@ -209,7 +210,7 @@ export function HorvitzThompsonView({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pi, truth, design, n, compare, seed.seed, N]);
   const description =
-    `${DESIGN_LABELS[design]} de ${N} ${config.nombreUnidad.toLowerCase()}s con tamaño esperado ${n}. Total real ${formatNumber(truth, 1)}. ` +
+    `${DESIGN_LABELS[design]} de ${N} ${pluralize(config.nombreUnidad.toLowerCase())} con tamaño esperado ${n}. Total real ${formatNumber(truth, 1)}. ` +
     (state.totals.length > 0
       ? `Última estimación ${formatNumber(current, 1)}; promedio de ${state.totals.length} estimaciones ${formatNumber(average, 1)}.`
       : 'Aún no se extrae ninguna muestra.');

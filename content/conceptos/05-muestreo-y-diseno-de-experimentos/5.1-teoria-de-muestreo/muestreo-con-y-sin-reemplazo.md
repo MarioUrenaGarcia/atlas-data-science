@@ -83,7 +83,7 @@ Los 48 puntos son las baterías del lote; el tono indica su duración. Con el in
 
 Experimentos sugeridos:
 
-- Compara el error estándar teórico con y sin reemplazo: al apagar el interruptor baja de unos 7.1 a unos 5.1 horas.
+- Compara el error estándar teórico con y sin reemplazo: al apagar el interruptor baja de unos 8.8 a unos 6.3 horas, un 29 % menos.
 - Sube $n$ a 48 sin reemplazo: todas las muestras son el lote completo y el histograma se reduce a una sola barra.
 - Con reemplazo y $n = 48$, observa que el histograma sigue teniendo dispersión: repetir no equivale a medir todo.
 
@@ -93,7 +93,7 @@ El lote tiene $N = 48$ baterías con desviación estándar poblacional $\sigma =
 
 1. Con reemplazo: $\operatorname{Var}(\bar{y}) = 35^2/12 = 102.1$, error estándar $10.1$ horas.
 2. Sin reemplazo: el factor es $(48-12)/(48-1) = 0.766$, así que la varianza es $0.766 \cdot 102.1 = 78.2$ y el error estándar $8.8$ horas.
-3. Probabilidad de que una muestra con reemplazo no repita ninguna batería: $\frac{48 \cdot 47 \cdots 37}{48^{12}} \approx 0.23$. En más de tres de cada cuatro muestras alguna batería se mide dos veces.
+3. Probabilidad de que una muestra con reemplazo no repita ninguna batería: $\frac{48 \cdot 47 \cdots 37}{48^{12}} \approx 0.22$. En casi cuatro de cada cinco muestras alguna batería se mide dos veces.
 
 :::figura[Una muestra de 12 extracciones con reemplazo: las baterías marcadas con un número salieron más de una vez y cuentan dos veces en la media.]{componente="SurveySampler"}
 ```yaml
@@ -131,6 +131,7 @@ diseno: mas
 reemplazo: false
 n: 24
 nMaximo: 48
+semilla: 665781
 repeticiones: 400
 poblacion:
   columnas: 8

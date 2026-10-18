@@ -102,7 +102,7 @@ unidad: h
 
 ## Propiedades
 
-- **Vale 1 cuando $n = 1$ y 0 cuando $n = N$**: un censo sin errores de medición no tiene error muestral.
+- **Se anula cuando $n = N$**: un censo sin errores de medición no tiene error muestral. En la forma $\frac{N-n}{N-1}$ vale exactamente 1 cuando $n = 1$; en la forma $1 - n/N$ vale $1 - 1/N$, porque acompaña a $S^2$ en lugar de $\sigma^2$.
 - **Es despreciable si $f < 0.05$**: el factor queda por encima de $0.97$ y suele omitirse.
 - **El error estándar depende sobre todo de $n$, no de $N$**: para $N$ grande, $\operatorname{EE} \approx S/\sqrt{n}$, sin importar si la población es de cien mil o de cien millones.
 - **Aparece en la hipergeométrica**: la varianza del número de éxitos sin reemplazo es la binomial multiplicada por $\frac{N-n}{N-1}$.

@@ -156,7 +156,7 @@ poblacion:
 ```
 :::
 
-:::figura[Propiedad del número de conglomerados: el efecto de diseño crece con el tamaño de cada conglomerado y con la correlación intraclase. Mueve m y ρ para ver cuántas observaciones independientes quedan.]{componente="PrecisionPlanner"}
+:::figura[Propiedad del número de conglomerados: el efecto de diseño crece con el tamaño de cada conglomerado y con la correlación intraclase. Mueve M y ρ para ver cuántas observaciones independientes quedan.]{componente="PrecisionPlanner"}
 ```yaml
 modo: deff
 m: 12
@@ -173,7 +173,7 @@ nombreUnidad: Alumno
 - **Contar unidades en vez de conglomerados al planear.** Con 3 escuelas el estimador tiene, en esencia, 3 observaciones de la variación entre escuelas, aunque haya 36 alumnos.
 - **Confundir conglomerados con estratos.** En los estratos se observan todos los grupos y se sortea dentro; en los conglomerados se sortean grupos y se observa todo dentro.
 
-:::figura[Error de analizar como muestreo aleatorio simple: manzanas de una ciudad con consumo eléctrico muy parecido dentro de cada manzana. El error estándar real casi triplica el que daría un muestreo aleatorio simple.]{componente="SurveySampler"}
+:::figura[Error de analizar como muestreo aleatorio simple: manzanas de una ciudad con consumo eléctrico muy parecido dentro de cada manzana. El error estándar real es cuatro veces o más el que daría un muestreo aleatorio simple.]{componente="SurveySampler"}
 ```yaml
 diseno: conglomerados
 n: 4

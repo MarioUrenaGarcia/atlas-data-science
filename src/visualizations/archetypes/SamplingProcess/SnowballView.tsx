@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { pluralize } from '../../../lib/format/plural.ts';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { hiddenPopulationNetwork, snowballWaves } from '../../../lib/sampling/index.ts';
@@ -99,8 +100,8 @@ export function SnowballView({
       : `\\text{ola } ${shown - 1}:\\ ${waves[shown - 2]?.recruits.length ?? 0}\\ \\text{reclutadores} \\times \\text{hasta } ${coupons}\\ \\text{referencias} \\Rightarrow ${current?.recruits.length ?? 0}\\ \\text{nuevos};\\quad n = ${recruited.length}`;
   const name = config.nombreMiembro.toLowerCase();
   const description =
-    `Red de ${config.tamano} personas, ${members.length} de ellas ${name}s. Tras ${shown - 1} olas se reclutaron ${recruited.length}. ` +
-    `Contactos promedio con otros ${name}s: ${formatNumber(meanDegree(recruited), 2)} entre los reclutados y ${formatNumber(meanDegree(members), 2)} entre todos.`;
+    `Red de ${config.tamano} personas, ${members.length} de ellas ${pluralize(name)}. Tras ${shown - 1} olas se reclutaron ${recruited.length}. ` +
+    `Contactos promedio con otros ${pluralize(name)}: ${formatNumber(meanDegree(recruited), 2)} entre los reclutados y ${formatNumber(meanDegree(members), 2)} entre todos.`;
 
   return (
     <VizFrame
@@ -109,7 +110,7 @@ export function SnowballView({
       seed={seed}
       parameters={parameters}
       readouts={[
-        { label: `${config.nombreMiembro}s en la red`, value: String(members.length) },
+        { label: `${pluralize(config.nombreMiembro)} en la red`, value: String(members.length) },
         { label: 'Reclutados', value: String(recruited.length), color: DATA_COLORS.highlight },
         {
           label: 'Porcentaje alcanzado',
@@ -121,7 +122,7 @@ export function SnowballView({
           color: DATA_COLORS.secondary,
         },
         {
-          label: `Contactos promedio de todos los ${name}s`,
+          label: `Contactos promedio de todos los ${pluralize(name)}`,
           value: formatNumber(meanDegree(members), 2),
           color: DATA_COLORS.primary,
         },

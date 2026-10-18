@@ -129,7 +129,7 @@ poblacion:
 ## Propiedades
 
 - **Sin correlación no hay sesgo**: si la selección es independiente de $y$, la muestra, aunque no sea aleatoria, estima bien la media.
-- **El sesgo no depende de $n$**: aumentar la muestra reduce la varianza alrededor de $\bar{Y}_s$, no la distancia a $\bar{Y}$.
+- **El sesgo no se corrige aumentando $n$**: mientras la muestra sea una fracción pequeña de la población, más unidades solo reducen la varianza alrededor de $\bar{Y}_s$, no la distancia a $\bar{Y}$. El sesgo baja únicamente cuando la muestra se acerca a abarcar a toda la población.
 - **El signo depende de la dirección de la selección**: si se seleccionan más las unidades con valores bajos, el sesgo es negativo.
 - **También distorsiona relaciones entre variables**: seleccionar según un efecto común de dos variables puede crear una asociación entre ellas que no existe en la población.
 
@@ -182,7 +182,7 @@ poblacion:
 - **Creer que sortear dentro del grupo seleccionado resuelve el problema.** Elegir al azar entre quienes respondieron no cambia el hecho de que la probabilidad de responder dependía de $y$.
 - **Generalizar a otra población.** Un estudio con pacientes hospitalizados describe a los hospitalizados, no a todos los enfermos.
 
-:::figura[Error de compensar con muchos datos: con 200 hogares seleccionados del mismo modo, el histograma es angosto y sigue lejos de la media real.]{componente="SurveySampler"}
+:::figura[Error de compensar con muchos datos: en una ciudad de 1200 hogares, una muestra de 200 seleccionada del mismo modo da un histograma angosto que sigue igual de lejos de la media real.]{componente="SurveySampler"}
 ```yaml
 diseno: seleccion
 n: 200
@@ -190,8 +190,8 @@ nMaximo: 300
 sesgo: 1
 repeticiones: 300
 poblacion:
-  columnas: 24
-  filas: 14
+  columnas: 40
+  filas: 30
   estratos:
     - nombre: Ciudad
       media: 14000

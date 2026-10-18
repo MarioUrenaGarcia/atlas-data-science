@@ -106,17 +106,23 @@ Una secretaría de educación quiere estimar el promedio de horas semanales de e
 4. Una muestra aleatoria del marco estima, en promedio, 9 horas. El sesgo es $0.25\,(9 - 12) = -0.75$ horas.
 5. Aunque la muestra fuera de 5000 alumnos, el estimador seguiría centrado en 9 horas: el sesgo de marco no depende de $n$.
 
-:::figura[Marco de alumnos de escuelas públicas: se sortea solo entre los cubiertos y las estimaciones se centran por debajo de la media real de 9.75 horas.]{componente="SurveySampler"}
+:::figura[Marco de alumnos de escuelas públicas: tres de cada cuatro alumnos están en el marco y los de escuelas privadas, que estudian más horas, quedan fuera. Las estimaciones quedan por debajo de la media real porque faltan justo los alumnos que más estudian.]{componente="SurveySampler"}
 ```yaml
 diseno: marco
 n: 40
-cobertura: [1, 0]
+cobertura: [1, 1, 1, 0]
 repeticiones: 300
 poblacion:
   columnas: 20
   filas: 12
   estratos:
-    - nombre: Públicas
+    - nombre: Públicas norte
+      media: 9
+      desviacion: 2
+    - nombre: Públicas centro
+      media: 9
+      desviacion: 2
+    - nombre: Públicas sur
       media: 9
       desviacion: 2
     - nombre: Privadas
@@ -130,8 +136,6 @@ poblacion:
   nombreUnidad: Alumno
 ```
 :::
-
-Las dos franjas de la figura tienen el mismo número de filas para que se vean con claridad; en el ejemplo, el estrato privado es la cuarta parte de la población, no la mitad, pero el mecanismo del sesgo es el mismo.
 
 ## Propiedades
 
@@ -196,11 +200,12 @@ poblacion:
 - **Ignorar la sobrecobertura.** Si el padrón incluye negocios cerrados y se sustituyen por el siguiente de la lista, las probabilidades de inclusión dejan de ser las del diseño.
 - **Suponer que la subcobertura es inofensiva cuando es pequeña.** Un 5 % no cubierto produce un sesgo grande si ese 5 % es muy distinto del resto.
 
-:::figura[Error de suponer que poca subcobertura es inofensiva: solo falta la quinta parte del último estrato, pero esas viviendas tienen gastos muy distintos y el sesgo es visible.]{componente="SurveySampler"}
+:::figura[Error de suponer que poca subcobertura es inofensiva: solo falta la quinta parte del último estrato, pero esas viviendas gastan mucho más que el resto. Con 150 viviendas el histograma es angosto y queda claramente desplazado de la media real; el muestreo aleatorio simple del marco completo no lo está.]{componente="SurveySampler"}
 ```yaml
 diseno: marco
 disenos: [marco, mas]
-n: 50
+n: 150
+nMaximo: 200
 cobertura: [1, 1, 0.8]
 repeticiones: 300
 poblacion:

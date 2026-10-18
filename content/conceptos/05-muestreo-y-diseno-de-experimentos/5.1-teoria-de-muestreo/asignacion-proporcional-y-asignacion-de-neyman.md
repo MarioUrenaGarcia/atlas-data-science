@@ -93,7 +93,7 @@ Con los datos de la visualización ($n = 200$):
 2. Neyman: $N_h S_h = 1200, 1600, 1800$, suma $4600$; $n_h = 200 \cdot 1200/4600 \approx 52$, $200 \cdot 1600/4600 \approx 70$ y $200 \cdot 1800/4600 \approx 78$.
 3. Varianza proporcional: $0.5625 \cdot 0.95 \cdot \frac{0.16}{150} + 0.04 \cdot 0.95 \cdot \frac{4}{40} + 0.0025 \cdot 0.95 \cdot \frac{81}{10} = 0.0236$; error estándar $0.154$ millones.
 4. Varianza de Neyman: $0.5625 \cdot 0.983 \cdot \frac{0.16}{52} + 0.04 \cdot 0.913 \cdot \frac{4}{70} + 0.0025 \cdot 0.61 \cdot \frac{81}{78} = 0.0054$; error estándar $0.073$ millones.
-5. Con el mismo número de entrevistas, la varianza baja 77 %: para lograrlo con asignación proporcional habría que hacer más de cuatro veces más entrevistas.
+5. Con el mismo número de entrevistas, la varianza baja 77 %: para lograrlo con asignación proporcional harían falta casi cuatro veces más entrevistas (unas 750).
 
 :::figura[La asignación proporcional del ejemplo: 150 entrevistas a microempresas, 40 a pequeñas y 10 a medianas.]{componente="SamplingWeights"}
 ```yaml
@@ -171,7 +171,7 @@ estratos:
 - **Asignar en proporción a la varianza en lugar de la desviación estándar.** La regla óptima usa $S_h$, no $S_h^2$; usar la varianza exagera la muestra de los estratos más dispersos.
 - **Olvidar los pesos al estimar.** Con asignación de Neyman la muestra no refleja la composición de la población; la media simple de todas las observaciones está sesgada hacia los estratos sobremuestreados.
 
-:::figura[Error de pedir más unidades de las que hay: solo existen 30 corporativos y la regla de Neyman pediría más; el estrato se censa y el resto se reparte entre los demás.]{componente="SamplingWeights"}
+:::figura[Error de pedir más unidades de las que hay: solo existen 30 corporativos y la regla de Neyman pediría más; el estrato se censa y las 130 entrevistas restantes se reparten otra vez con la regla de Neyman entre los locales y los regionales (56 y 74).]{componente="SamplingWeights"}
 ```yaml
 modo: asignacion
 asignacion: neyman

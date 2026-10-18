@@ -96,7 +96,7 @@ Experimentos sugeridos:
 
 - Cambia a 12 manzanas con 2 viviendas cada una: el mismo total de 24 viviendas da un histograma más angosto.
 - Cambia a 2 manzanas con 12 viviendas: el efecto de diseño crece.
-- Cambia el diseño a conglomerados y compara: observar todas las viviendas de pocas manzanas es lo menos preciso para el mismo esfuerzo de visitas.
+- Cambia el diseño a conglomerados con 1 manzana completa, que también da 24 viviendas: el histograma es mucho más ancho que el de 6 manzanas con 4 viviendas cada una.
 
 ## Ejemplo
 

@@ -110,9 +110,9 @@ Experimentos sugeridos:
 
 Una nutrióloga quiere estimar el gasto semanal promedio en alimentos de los 240 hogares de una colonia. Por estudios previos se sabe que la desviación estándar del gasto es de unos 450 pesos. Toma un muestreo aleatorio simple de $n = 20$ hogares.
 
-1. Hay $\binom{240}{20} \approx 2.6 \times 10^{28}$ muestras posibles, todas igual de probables.
+1. Hay $\binom{240}{20} \approx 7.3 \times 10^{28}$ muestras posibles, todas igual de probables.
 2. Cada hogar entra con probabilidad $\pi_i = 20/240 = 0.083$.
-3. Si la muestra obtenida da $\bar{y} = 1762$ pesos.
+3. Supongamos que la muestra obtenida da $\bar{y} = 1762$ pesos: esa es la estimación del gasto promedio.
 4. El error estándar es $\sqrt{(1 - 20/240)\cdot 450^2/20} = \sqrt{0.917 \cdot 10125} \approx 96.4$ pesos.
 5. La estimación se reporta como $1762$ pesos con un error estándar cercano a 96: muestras distintas habrían dado valores típicamente a unos 100 pesos de la media real.
 
@@ -163,10 +163,11 @@ poblacion:
 ```
 :::
 
-:::figura[Propiedad de la varianza: con muestras de 80 hogares el histograma es más angosto que con 20. El error estándar teórico baja de 96 a 41 pesos.]{componente="SurveySampler"}
+:::figura[Propiedad de la varianza: con muestras de 80 hogares el histograma es más angosto que con 20. Es la misma colonia de la visualización principal: el error estándar teórico baja de unos 95 a unos 41 pesos.]{componente="SurveySampler"}
 ```yaml
 diseno: mas
 n: 80
+semilla: 914697
 nMaximo: 200
 repeticiones: 400
 poblacion:

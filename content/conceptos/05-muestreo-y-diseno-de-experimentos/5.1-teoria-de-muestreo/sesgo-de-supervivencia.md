@@ -51,21 +51,22 @@ El **sesgo de supervivencia** aparece cuando un proceso de filtrado elimina unid
 ## Definición
 
 :::definicion[Sesgo de supervivencia]
-Sean $N$ unidades observadas durante $T$ periodos, y sea $D_i \in \{0, 1\}$ la indicadora de que la unidad $i$ sobrevivió hasta el final. Si la probabilidad de sobrevivir depende del resultado $r_i$ (por ejemplo, $D_i = 1$ solo si el valor acumulado no cae por debajo de un umbral), entonces
+Sean $N$ unidades observadas durante $T$ periodos, con resultado $r_{it}$ de la unidad $i$ en el periodo $t$, y sea $D_i \in \{0, 1\}$ la indicadora de que la unidad $i$ sobrevivió hasta el final. Si la probabilidad de sobrevivir depende de los resultados (por ejemplo, $D_i = 1$ solo si el valor acumulado no cae por debajo de un umbral), el promedio de los resultados de los sobrevivientes difiere del promedio de todos los periodos efectivamente vividos por las unidades:
 $$
-\mathbb{E}[r \mid D = 1] \ne \mathbb{E}[r],
+\bar{r}_{\text{sobrevivientes}} = \frac{\sum_{i:\,D_i = 1}\sum_{t} r_{it}}{\sum_{i:\,D_i = 1} T_i} \ne \bar{r}_{\text{todos}} = \frac{\sum_{i}\sum_{t \le T_i} r_{it}}{\sum_{i} T_i},
 $$
-y el promedio de los sobrevivientes es un estimador sesgado del promedio de todas las unidades. Cuando sobrevivir es más probable con resultados altos, el sesgo es positivo.
+donde $T_i$ es el número de periodos que la unidad $i$ estuvo activa. Cuando sobrevivir es más probable con resultados altos, la diferencia es positiva.
 :::
 
 Es un caso de sesgo de selección en el que la selección ocurre con el tiempo y está determinada por la propia variable de interés. Su corrección requiere recuperar los datos de las unidades que desaparecieron, o al menos su número y el momento en que salieron, como en las bases de datos "libres de sesgo de supervivencia" que conservan los fondos y empresas extintos.
 
 :::nota[Qué significa cada símbolo]
 - $N$: número de unidades al inicio; $T$: número de periodos.
-- $r_i$: resultado de la unidad $i$, por ejemplo su rendimiento promedio por periodo.
+- $r_{it}$: resultado de la unidad $i$ en el periodo $t$, por ejemplo un rendimiento anual.
 - $D_i$: vale 1 si la unidad sigue al final del periodo de estudio y 0 si desapareció.
-- $\mathbb{E}[r \mid D = 1]$: promedio del resultado entre los sobrevivientes.
-- $\mathbb{E}[r]$: promedio del resultado entre todas las unidades.
+- $T_i$: periodos que la unidad $i$ estuvo activa; $T$ para las sobrevivientes.
+- $\bar{r}_{\text{sobrevivientes}}$: promedio de los periodos de las unidades que siguen.
+- $\bar{r}_{\text{todos}}$: promedio de todos los periodos observados, incluidos los de unidades cerradas.
 :::
 
 ## Cómo usar la visualización
@@ -86,7 +87,7 @@ Una base de datos tiene 100 fondos al inicio de una década. Al final quedan 70.
 2. Años-fondo observados: $70 \cdot 10 = 700$ de sobrevivientes y $30 \cdot 5 = 150$ de fondos cerrados.
 3. Promedio de todos los años-fondo: $\frac{700 \cdot 6 + 150 \cdot (-4)}{850} = \frac{4200 - 600}{850} = 4.2$ % anual.
 4. Sesgo de supervivencia: $6 - 4.2 = 1.8$ puntos porcentuales por año.
-5. Un inversionista que eligió un fondo al azar al inicio de la década esperaba 4.2 %, no 6 %.
+5. El 6 % describe solo a los fondos que sobrevivieron; los años en que el dinero estuvo invertido en la categoría rindieron en promedio 4.2 %.
 
 :::figura[Empresas emergentes de una incubadora: solo se observan las que siguen operando y su crecimiento promedio exagera el de todas las que empezaron.]{componente="SamplingProcess"}
 ```yaml
@@ -154,11 +155,11 @@ El sesgo de supervivencia es un [[sesgo-de-seleccion]] en el que el filtro actú
 
 :::formula[Sesgo de supervivencia]
 $$
-\operatorname{Sesgo} = \mathbb{E}[r \mid D = 1] - \mathbb{E}[r]
+\operatorname{Sesgo} = \bar{r}_{\text{sobrevivientes}} - \bar{r}_{\text{todos}}
 $$
 
-- $r$: resultado de una unidad.
-- $D = 1$: la unidad sobrevivió al periodo de estudio.
+- $\bar{r}_{\text{sobrevivientes}}$: promedio de los periodos de las unidades con $D_i = 1$.
+- $\bar{r}_{\text{todos}}$: promedio de todos los periodos observados.
 :::
 
 :::formula[Promedio de todos los periodos observados]
@@ -168,6 +169,7 @@ $$
 
 - $r_{it}$: resultado de la unidad $i$ en el periodo $t$.
 - $T_i$: periodos que la unidad $i$ estuvo activa.
+- $N$: número de unidades al inicio del estudio.
 :::
 
 :::formula[Regla de cierre de la visualización]

@@ -118,7 +118,7 @@ nombreElemento: Transacción
 ## Errores comunes
 
 - **Dar a cada elemento nuevo una probabilidad fija**, por ejemplo $1/2$, de entrar. Así los últimos elementos dominan el reservorio y los primeros casi nunca sobreviven.
-- **Elegir el número aleatorio entre 1 y $k$ en lugar de entre 1 y $t$.** Entonces todo elemento nuevo entra y el reservorio termina con los últimos $k$.
+- **Elegir el número aleatorio entre 1 y $k$ en lugar de entre 1 y $t$.** Entonces todo elemento nuevo entra y el reservorio termina dominado por los más recientes.
 - **Pensar que los primeros elementos tienen ventaja porque entran seguro.** Entran seguro, pero cada llegada posterior puede expulsarlos; las dos fuerzas se compensan exactamente.
 
 :::figura[Error de pensar que los primeros tienen ventaja: con 20 pedidos y un reservorio de 4, los primeros cuatro entran siempre, pero al final terminan guardados con la misma frecuencia que el resto.]{componente="SamplingProcess"}
@@ -142,6 +142,7 @@ $$
 P(x_t \text{ entra}) = \frac{k}{t}, \qquad t > k
 $$
 
+- $x_t$: elemento que llega en la posición $t$ del flujo.
 - $k$: tamaño del reservorio; $t$: posición del elemento.
 :::
 
@@ -159,5 +160,6 @@ $$
 P(x_i \in \text{reservorio tras } N \text{ elementos}) = \frac{k}{N}
 $$
 
+- $x_i$: cualquier elemento del flujo, sin importar su posición $i$.
 - $N$: longitud total del flujo.
 :::

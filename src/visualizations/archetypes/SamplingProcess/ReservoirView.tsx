@@ -1,4 +1,5 @@
 import { scaleLinear } from 'd3-scale';
+import { pluralize } from '../../../lib/format/plural.ts';
 import { useCallback, useState } from 'react';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Random } from '../../../lib/random/index.ts';
@@ -114,7 +115,7 @@ export function ReservoirView({
       ? `t = ${t} \\le k = ${k}:\\ \\text{entra directamente en la casilla } ${last.slot + 1}`
       : `t = ${t}:\\ j \\sim \\text{Unif}\\{1, \\dots, ${t}\\},\\ j = ${last.draw + 1} ${last.action === 'reemplazar' ? `\\le ${k} \\Rightarrow \\text{reemplaza la casilla } ${last.slot + 1}` : `> ${k} \\Rightarrow \\text{se descarta}`},\\quad \\frac{k}{t} = ${formatNumber(k / t, 3)}`;
   const description =
-    `Flujo de ${N} ${name}s y reservorio de ${k}. Vistos ${t}; en el reservorio: ${state.stream.reservoir.map((i) => i + 1).join(', ')}. ` +
+    `Flujo de ${N} ${pluralize(name)} y reservorio de ${k}. Vistos ${t}; en el reservorio: ${state.stream.reservoir.map((i) => i + 1).join(', ')}. ` +
     (state.replays > 0
       ? `Tras ${state.replays} flujos repetidos, cada ${name} quedó en la muestra cerca de ${formatNumber((k / N) * 100, 1)} % de las veces.`
       : '');
@@ -126,7 +127,7 @@ export function ReservoirView({
       seed={seed}
       parameters={parameters}
       readouts={[
-        { label: `${config.nombreElemento}s vistos`, value: `${t} de ${N}` },
+        { label: `${pluralize(config.nombreElemento)} vistos`, value: `${t} de ${N}` },
         {
           label: 'Probabilidad de conservar el último',
           value: t === 0 ? 'sin datos' : formatNumber(Math.min(1, k / t), 3),

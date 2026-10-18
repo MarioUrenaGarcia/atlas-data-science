@@ -126,25 +126,18 @@ export function PopulationGrid({
                   <circle
                     cx={x}
                     cy={y}
-                    r={selected ? radius * 1.12 : radius}
-                    fill={
-                      selected
-                        ? DATA_COLORS.highlight
-                        : binary && value === 1
-                          ? DATA_COLORS.tertiary
-                          : DATA_COLORS.primary
-                    }
+                    r={radius}
+                    fill={binary && value === 1 ? DATA_COLORS.tertiary : DATA_COLORS.primary}
                     fillOpacity={
-                      selected
-                        ? 1
-                        : binary
-                          ? value === 1
-                            ? 0.8
-                            : 0.18
-                          : MIN_OPACITY + (1 - MIN_OPACITY) * intensity * 0.85
+                      binary
+                        ? value === 1
+                          ? 0.8
+                          : 0.18
+                        : MIN_OPACITY + (1 - MIN_OPACITY) * intensity * 0.85
                     }
-                    stroke={selected ? DATA_COLORS.text : 'none'}
-                    strokeWidth={selected ? 1.5 : 0}
+                    // Selected units keep their own tone so the values that enter the sample stay visible.
+                    stroke={selected ? DATA_COLORS.highlight : 'none'}
+                    strokeWidth={selected ? Math.max(2.5, radius * 0.45) : 0}
                   />
                   {missing.has(unit) && (
                     <path
