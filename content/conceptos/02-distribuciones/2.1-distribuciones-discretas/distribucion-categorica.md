@@ -13,6 +13,8 @@ nivel: basico
 prerrequisitos:
   - distribucion-de-bernoulli
 relaciones:
+  - tipo: relacionado
+    id: variables-indicadoras
   - tipo: generaliza
     id: distribucion-de-bernoulli
   - tipo: generaliza
