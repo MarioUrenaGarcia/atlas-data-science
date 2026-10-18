@@ -67,7 +67,7 @@ $$
 
 Cada punto es una captura, en el orden en que llegó; el eje vertical usa una escala logarítmica simétrica para que quepan a la vez el 0, los valores ordinarios y los errores enormes. El color dice qué es cada valor en realidad: gris si es ordinario, azul si es un extremo verdadero y rojo si es un error. Un anillo naranja indica que la regla lo marca, y las líneas punteadas son sus límites. Las lecturas cuentan errores detectados, errores omitidos y falsas alarmas.
 
-Experimentos sugeridos: en estaturas, comparar las tres reglas; la regla z, inflada por el valor de 1680, solo marca ese error. En montos de compra, la regla de Tukey marca compras grandes legítimas y deja pasar una devolución negativa.
+Experimentos sugeridos: en estaturas, comparar las tres reglas; la regla z, inflada por el valor de 1680, solo marca ese error. Las figuras de Propiedades y Errores comunes repiten el ejercicio con temperaturas y con montos de compra; en estos últimos, la regla de Tukey marca compras grandes legítimas y deja pasar una devolución negativa.
 
 ## Ejemplo
 

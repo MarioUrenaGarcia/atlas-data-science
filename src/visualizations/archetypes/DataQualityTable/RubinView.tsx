@@ -1,7 +1,7 @@
 import { scaleLinear } from 'd3-scale';
 import { useMemo, useState } from 'react';
 import { meanWithVariance, mice } from '../../../lib/dataprep/mice.ts';
-import { normalInterval, rubinPool } from '../../../lib/dataprep/missing.ts';
+import { normalInterval, rubinInterval, rubinPool } from '../../../lib/dataprep/missing.ts';
 import { formatNumber } from '../../../lib/format/number.ts';
 import { Random } from '../../../lib/random/index.ts';
 import { DATA_COLORS, seriesColor } from '../../core/colors.ts';
@@ -38,7 +38,8 @@ interface RubinViewProps {
  * The mean income is estimated in each of m imputed tables, each with its
  * own 95 % interval. Rubin's rules pool them: the average estimate, the
  * average within variance W, the between variance B and the total
- * T = W + (1 + 1/m) B, whose interval is wider than any single one.
+ * T = W + (1 + 1/m) B, never smaller than the average within variance W;
+ * the interval uses the t quantile with Rubin's degrees of freedom.
  */
 export function RubinView(props: RubinViewProps) {
   const definitions: ParameterDefinition[] = [
@@ -98,7 +99,7 @@ export function RubinView(props: RubinViewProps) {
     estimates.map((e) => e.estimate),
     estimates.map((e) => e.variance),
   );
-  const pooledCi = normalInterval(full.qBar, full.total);
+  const pooledCi = rubinInterval(full);
   const naiveCi = normalInterval(estimates[0]?.estimate ?? 0, estimates[0]?.variance ?? 0);
   const trueMean = points.reduce((a, p) => a + p.y, 0) / points.length;
   const intervals = estimates.map((e) => normalInterval(e.estimate, e.variance));
@@ -129,6 +130,9 @@ export function RubinView(props: RubinViewProps) {
           label: 'Grados de libertad',
           value: Number.isFinite(pooled.df) ? formatNumber(pooled.df, 1) : '∞',
         },
+        ...(finished
+          ? [{ label: 'Intervalo de 95 % con t', value: `${g(pooledCi[0])} a ${g(pooledCi[1])}` }]
+          : []),
       ]}
       legend={[
         { label: 'Intervalo de cada imputación', color: DATA_COLORS.primary, shape: 'line' },

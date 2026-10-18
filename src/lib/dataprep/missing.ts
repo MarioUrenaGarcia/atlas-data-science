@@ -1,4 +1,5 @@
 import { standardNormalQuantile } from '../distributions/special.ts';
+import { studentT } from '../distributions/continuous.ts';
 import type { Random } from '../random/index.ts';
 import { mean, median, pearson, quantile, variance } from '../stats/index.ts';
 
@@ -277,4 +278,17 @@ export function tukeyFences(values: readonly number[], c = 1.5): [number, number
   const q1 = quantile(values, 0.25);
   const q3 = quantile(values, 0.75);
   return [q1 - c * (q3 - q1), q3 + c * (q3 - q1)];
+}
+
+/**
+ * Interval of Rubin's rules, Q-bar plus or minus t_{nu, (1 + level) / 2} sqrt(T),
+ * with the normal quantile when the degrees of freedom are infinite.
+ */
+export function rubinInterval(pooled: RubinPooled, level = 0.95): [number, number] {
+  const p = 0.5 + level / 2;
+  const q = Number.isFinite(pooled.df)
+    ? studentT(pooled.df).quantile(p)
+    : standardNormalQuantile(p);
+  const half = q * Math.sqrt(pooled.total);
+  return [pooled.qBar - half, pooled.qBar + half];
 }

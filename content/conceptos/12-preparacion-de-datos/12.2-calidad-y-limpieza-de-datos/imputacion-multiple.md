@@ -73,7 +73,7 @@ Para una variable continua con regresión lineal, el sorteo es $\tilde{y}_i = \t
 
 La tabla tiene tres variables: edad (completa), ingreso y gasto (con faltantes). Cada color es una cadena de imputación. A la izquierda se traza, iteración por iteración, la media de los ingresos imputados en cada cadena: todas parten de la media observada y se separan hacia valores más plausibles. A la derecha, los puntos de color son los ingresos imputados de cada cadena en la iteración actual, sobre los observados en gris. La lectura "Varianza entre cadenas" mide cuánto difieren las imputaciones.
 
-Experimentos sugeridos: reducir las iteraciones a 2 y observar que las cadenas no se estabilizan; aumentar $m$ y ver la nube de imputaciones distintas para la misma persona.
+Experimentos sugeridos: reducir las iteraciones a 2 y notar que con tan pocas no hay manera de comprobar que las cadenas ya se mezclaron, aunque en estos datos lo hacen desde la primera; aumentar $m$ y ver la nube de imputaciones distintas para la misma persona.
 
 ## Ejemplo
 
@@ -130,6 +130,16 @@ tasa: 0.5
 - **Imputar sin la variable respuesta.** Si el análisis estudia la relación entre ingreso y gasto, el modelo de imputación del ingreso debe incluir el gasto; omitirlo atenúa esa relación.
 - **Sortear solo el ruido.** Si los coeficientes se fijan en su estimación y solo se sortea $\varepsilon$, la incertidumbre de la estimación de los coeficientes se ignora y la variación entre tablas queda subestimada.
 
+:::figura[Error de promediar las tablas: con ocho cadenas, cada persona tiene ocho ingresos imputados distintos; promediarlos en una sola tabla borraría esa dispersión, que es justamente la incertidumbre.]{componente="DataQualityTable"}
+```yaml
+modo: mice
+m: 8
+iteraciones: 6
+mecanismo: MNAR
+tasa: 0.3
+```
+:::
+
 ## Conexiones
 
 MICE generaliza la [[imputacion-simple]] y la [[imputacion-por-k-vecinos-mas-cercanos]] al sortear varios valores plausibles. Cada ecuación aprovecha la [[covarianza-muestral]] entre la variable incompleta y las demás, y el ruido sorteado sigue una [[distribucion-normal]]. Los resultados de las $m$ tablas se combinan con las [[reglas-de-rubin]], y su validez depende de los [[mecanismos-de-datos-faltantes]]. Repetir el sorteo en ciclos, variable por variable, es la misma idea del muestreo de Gibbs.
@@ -144,6 +154,8 @@ $$
 - $\tilde{y}^{(t)}_{j,\text{mis}}$: imputaciones de la variable $j$ en la iteración $t$.
 - $\mathbf{y}^{(t)}_{-j}$: las demás variables con sus valores actuales.
 - $\tilde{\boldsymbol\theta}_j^{(t)}$: parámetros sorteados del modelo condicional.
+- $p(\cdot \mid \cdot)$: distribución condicional del modelo de imputación de $y_j$ dadas las demás variables y los parámetros.
+- $\sim$: "se sortea de".
 :::
 
 :::formula[Sorteo en una regresión lineal]

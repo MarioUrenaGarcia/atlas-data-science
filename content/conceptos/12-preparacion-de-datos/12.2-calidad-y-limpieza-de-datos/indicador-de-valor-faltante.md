@@ -69,15 +69,15 @@ $$
 
 ## Cómo usar la visualización
 
-La animación avanza por etapas. Primero aparece la tabla con ingresos vacíos; luego se imputan con la media; después se agrega la columna $M$; al final se ajustan dos modelos de impago, sin y con el indicador. Las barras comparan la tasa real de impago de quienes reportan y de quienes omiten el ingreso con la probabilidad promedio que cada modelo asigna a estos últimos.
+La animación avanza por etapas. Primero aparece la tabla con ingresos vacíos; luego se agrega la columna $M$, que se calcula antes de rellenar porque después ya no se sabría qué faltaba; después se imputan con la media; al final se ajustan dos modelos de impago, sin y con el indicador. Las barras comparan la tasa real de impago de quienes reportan y de quienes omiten el ingreso con la probabilidad promedio que cada modelo asigna a estos últimos.
 
-Experimentos sugeridos: poner el riesgo adicional en 0 y observar que el coeficiente del indicador se acerca a cero; subirlo a 0.4 y ver que el modelo sin indicador subestima el impago de quienes omiten el ingreso.
+Experimentos sugeridos: poner el riesgo adicional en 0 y observar que el coeficiente del indicador baja mucho y queda cerca de cero, positivo o negativo según la muestra; subirlo a 0.4 y ver que el modelo sin indicador subestima el impago de quienes omiten el ingreso.
 
 ## Ejemplo
 
 De 200 solicitantes, 160 reportan su ingreso y 24 de ellos no pagan (15 %); 40 lo omiten y 14 no pagan (35 %).
 
-1. Imputando la media sin indicador, los 40 se tratan como solicitantes de ingreso promedio, con probabilidad cercana a la de ese grupo, alrededor de 15 %.
+1. Imputando la media sin indicador, los 40 se tratan como solicitantes de ingreso promedio, con una probabilidad entre 15 % y 19 %: cercana a la de quienes reportan, porque el modelo sin indicador no los distingue y solo los empuja un poco hacia arriba al ajustar con todas las filas.
 2. Con un modelo que solo usa el indicador, $\hat\beta_0 = \operatorname{logit}(0.15) = \log(0.15/0.85) = -1.735$.
 3. $\hat\beta_0 + \hat\gamma = \operatorname{logit}(0.35) = \log(0.35/0.65) = -0.619$, así que $\hat\gamma = -0.619 - (-1.735) = 1.116$.
 4. La razón de momios es $e^{1.116} = 3.05$: omitir el ingreso triplica los momios de no pagar.
@@ -92,9 +92,9 @@ efecto: 0.25
 
 ## Propiedades
 
-- **Si la ausencia no predice el resultado, el indicador no estorba.** Su coeficiente se acerca a cero y la pérdida del modelo apenas cambia.
+- **Si la ausencia no predice el resultado, el indicador no estorba.** Su coeficiente queda cerca de cero, con un signo que depende de la muestra, y la pérdida del modelo apenas cambia.
 
-:::figura[Sin riesgo adicional, el coeficiente del indicador es cercano a cero y los dos modelos predicen casi lo mismo.]{componente="DataQualityTable"}
+:::figura[Sin riesgo adicional, el coeficiente del indicador es mucho menor que con riesgo y los dos modelos predicen casi lo mismo.]{componente="DataQualityTable"}
 ```yaml
 modo: indicador
 tasa: 0.25
@@ -119,6 +119,14 @@ efecto: 0.4
 - **Crear el indicador después de imputar.** Una vez rellenados los huecos ya no se sabe cuáles eran; el indicador se calcula antes.
 - **Olvidarlo al usar el modelo.** Si en producción el valor faltante se llena de otra forma o el indicador no se calcula, el modelo recibe datos distintos de los que vio al entrenar.
 
+:::figura[Error de crear el indicador tarde: la animación agrega la columna M antes de rellenar los huecos; con 60 % de faltantes, esa columna es la que permite al modelo recuperar el riesgo de quienes omiten el ingreso.]{componente="DataQualityTable"}
+```yaml
+modo: indicador
+tasa: 0.6
+efecto: 0.3
+```
+:::
+
 ## Conexiones
 
 El indicador es una [[funcion-indicadora-y-funcion-escalon|función indicadora]] de la matriz de faltantes descrita en los [[mecanismos-de-datos-faltantes]], y se combina con la [[imputacion-simple]] de la variable original. El modelo de la visualización usa la [[funcion-sigmoide-y-funcion-softplus|función sigmoide]], y el efecto del indicador se interpreta como en las [[pruebas-diagnosticas]], comparando dos grupos por su tasa del resultado. Para estimar parámetros de la población, la alternativa es la [[imputacion-multiple]].
@@ -138,7 +146,10 @@ $$
 P(Y_i = 1) = \sigma(\beta_0 + \beta_1 \tilde{x}_i + \gamma M_i)
 $$
 
+- $Y_i$: resultado binario de la fila $i$, por ejemplo $1$ si no paga.
 - $\tilde{x}_i$: valor imputado.
+- $M_i$: indicador de que el valor faltaba.
+- $\beta_0$: intercepto; $\beta_1$: efecto de la variable imputada.
 - $\gamma$: efecto de que el valor faltara, en escala logit.
 - $\sigma$: función logística.
 :::

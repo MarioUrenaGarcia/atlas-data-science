@@ -71,7 +71,7 @@ $$
 
 ## Cómo usar la visualización
 
-Cada imputación aparece como una línea horizontal: su punto es la estimación de la media del ingreso y la línea, su intervalo de 95 %. La línea gris punteada es la media verdadera, conocida solo porque los datos son simulados. Al terminar aparece el intervalo combinado en naranja, calculado con $T$. Las barras de la derecha comparan la varianza dentro, la parte de la varianza entre y la total; el encabezado sigue el cálculo paso a paso.
+Cada imputación aparece como una línea horizontal: su punto es la estimación de la media del ingreso y la línea, su intervalo de 95 %. La línea gris punteada es la media verdadera, conocida solo porque los datos son simulados. Al terminar aparece el intervalo combinado en naranja, calculado con $T$ y el cuantil de la distribución $t$ con $\nu$ grados de libertad. Las barras de la derecha comparan la varianza dentro, la parte de la varianza entre y la total; el encabezado sigue el cálculo paso a paso.
 
 Experimentos sugeridos: con $m = 2$, el factor $1 + 1/m = 1.5$ pesa más; con $m = 20$, la varianza entre se estima mejor y $\lambda$ se estabiliza.
 
@@ -88,7 +88,7 @@ Con $m = 3$ tablas imputadas, la media del ingreso estimada es 18.2, 18.6 y 18.0
 
 Con solo la primera tabla se habría reportado $18.2 \pm 1.96\sqrt{0.25} = [17.22,\ 19.18]$, un intervalo 24 % más angosto que ignora un tercio de la incertidumbre.
 
-:::figura[Cinco imputaciones y su combinación: el intervalo naranja, calculado con la varianza total, es más ancho que el de cualquier tabla individual.]{componente="DataQualityTable"}
+:::figura[Cinco imputaciones y su combinación: el intervalo naranja usa la varianza total y el cuantil t, y es más ancho que el que daría solo la varianza dentro promedio; no necesariamente más ancho que el de cada tabla individual.]{componente="DataQualityTable"}
 ```yaml
 modo: rubin
 m: 5
@@ -100,6 +100,7 @@ tasa: 0.3
 ## Propiedades
 
 - **$B$ refleja la información perdida.** Sin faltantes, todas las tablas son iguales, $B = 0$ y $T = \bar{W}$.
+- **$T$ nunca es menor que $\bar{W}$, pero puede ser menor que alguna $U_l$.** Si una tabla tiene una varianza dentro mayor que el promedio y $B$ es pequeña, su intervalo individual puede ser más ancho que el combinado.
 - **$\lambda$ crece con la proporción de faltantes** y con su dificultad de predecirlos a partir de las otras variables.
 
 :::figura[Con 50 % de ingresos faltantes, las estimaciones de las tablas discrepan más, la varianza entre crece y la fracción por datos faltantes sube.]{componente="DataQualityTable"}
@@ -148,7 +149,9 @@ $$
 \bar{Q} = \frac{1}{m}\sum_{l=1}^{m} \hat{Q}_l
 $$
 
-- $\hat{Q}_l$: estimación en la tabla $l$; $m$: número de tablas.
+- $\hat{Q}_l$: estimación en la tabla $l$.
+- $m$: número de tablas imputadas.
+- $\bar{Q}$: estimación combinada.
 :::
 
 :::formula[Varianzas dentro y entre]
@@ -156,8 +159,11 @@ $$
 \bar{W} = \frac{1}{m}\sum_{l=1}^{m} U_l, \qquad B = \frac{1}{m - 1}\sum_{l=1}^{m} \big(\hat{Q}_l - \bar{Q}\big)^2
 $$
 
+- $m$: número de tablas imputadas; $l$: índice de la tabla.
 - $U_l$: varianza de la estimación en la tabla $l$.
-- $\bar{W}$: varianza dentro; $B$: varianza entre.
+- $\hat{Q}_l$: estimación en la tabla $l$; $\bar{Q}$: estimación combinada.
+- $\bar{W}$: varianza dentro, promedio de las $U_l$.
+- $B$: varianza entre, dispersión de las $\hat{Q}_l$.
 :::
 
 :::formula[Varianza total]
@@ -165,7 +171,10 @@ $$
 T = \bar{W} + \left(1 + \frac{1}{m}\right) B
 $$
 
-- $T$: varianza de $\bar{Q}$; $\sqrt{T}$ es su error estándar.
+- $T$: varianza total de $\bar{Q}$; $\sqrt{T}$ es su error estándar.
+- $\bar{W}$: varianza dentro promedio.
+- $B$: varianza entre las estimaciones.
+- $m$: número de tablas imputadas; $1 + 1/m$ corrige por usar un número finito de ellas.
 :::
 
 :::formula[Grados de libertad y fracción por faltantes]
@@ -174,5 +183,7 @@ $$
 $$
 
 - $\lambda$: fracción de $T$ que se debe a los faltantes.
+- $B$, $T$: varianza entre y varianza total; $m$: número de tablas.
 - $\nu$: grados de libertad para el intervalo $\bar{Q} \pm t_{\nu,\,0.975}\sqrt{T}$.
+- $t_{\nu,\,0.975}$: cuantil 0.975 de la distribución $t$ con $\nu$ grados de libertad.
 :::

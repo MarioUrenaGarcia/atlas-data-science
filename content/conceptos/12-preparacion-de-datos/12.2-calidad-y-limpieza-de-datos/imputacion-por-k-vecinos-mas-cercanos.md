@@ -65,7 +65,7 @@ Con varias variables observadas, lo usual es la distancia euclidiana sobre varia
 
 ## Cómo usar la visualización
 
-Los puntos azules tienen edad e ingreso observados; las marcas rojas sobre el eje son personas cuyo ingreso falta. Al reproducir, cada faltante se resuelve a la vez: sus $k$ vecinos más cercanos en edad se marcan con anillos naranjas unidos por líneas, y el punto rojo aparece a la altura de su promedio. El encabezado muestra la suma de los ingresos de los vecinos. Las lecturas comparan el error contra los valores ocultos, que solo se conocen por ser datos simulados, con el error de imputar la media.
+Los puntos azules tienen edad e ingreso observados; las marcas rojas sobre el eje son personas cuyo ingreso falta. Al reproducir, los faltantes se resuelven uno a la vez: sus $k$ vecinos más cercanos en edad se marcan con anillos naranjas unidos por líneas, y el punto rojo aparece a la altura de su promedio. El encabezado muestra la suma de los ingresos de los vecinos. Las lecturas comparan el error contra los valores ocultos, que solo se conocen por ser datos simulados, con el error de imputar la media.
 
 Experimentos sugeridos: poner $k = 1$ y observar que los imputados copian a un solo vecino; subir $k$ a 20 y ver que se aplanan hacia el promedio.
 

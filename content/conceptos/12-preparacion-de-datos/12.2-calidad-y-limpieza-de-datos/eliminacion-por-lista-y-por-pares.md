@@ -100,7 +100,7 @@ tasa: 0.1
 
 - **La pérdida por lista crece con el número de variables.** Con $p = 20$ variables y $q = 0.05$, solo $0.95^{20} = 0.36$ de las filas está completa.
 
-:::figura[Con 20 % de celdas faltantes, la eliminación por lista conserva muy pocas filas de las 30.]{componente="DataQualityTable"}
+:::figura[Con 20 % de celdas faltantes en cuatro variables, la eliminación por lista conserva alrededor de la mitad de las 30 filas, como predice 0.8 elevado a 4, que es 0.41.]{componente="DataQualityTable"}
 ```yaml
 modo: eliminacion
 metodo: lista
@@ -113,7 +113,7 @@ tasa: 0.2
 
 ## Errores comunes
 
-- **Usar casos completos con faltantes MAR o MNAR.** Si faltan más los ingresos altos, las filas completas representan a un grupo de ingresos más bajos y todo lo que se calcula con ellas queda sesgado.
+- **Usar casos completos con faltantes MAR o MNAR sin revisar qué se estima.** Si faltan más los ingresos altos, la media y la varianza de las filas completas quedan sesgadas. No todo se sesga: una regresión de $Y$ sobre $X$ con casos completos sigue siendo insesgada si la probabilidad de que falte $Y$ depende solo de $X$; lo que importa es si la falta depende de la variable respuesta dado lo que entra en el modelo.
 - **Reportar un tamaño de muestra único con eliminación por pares.** Cada resultado tiene su propio $n_{jk}$; reportar el $n$ total exagera la precisión.
 - **No contar cuántas filas se pierden.** Muchos programas eliminan por lista sin avisar; conviene comparar el $n$ del modelo con el de la tabla original.
 
@@ -146,6 +146,8 @@ n_{jk} = \sum_{i=1}^{n} (1 - M_{ij})(1 - M_{ik})
 $$
 
 - $j$, $k$: par de variables.
+- $M_{ij}$, $M_{ik}$: indicadoras de faltante de la fila $i$ en las variables $j$ y $k$.
+- $n$: número de filas.
 - $n_{jk}$: filas donde ambas se observan.
 :::
 

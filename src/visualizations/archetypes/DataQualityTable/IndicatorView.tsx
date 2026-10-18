@@ -18,8 +18,8 @@ const APPLICANTS = 400;
 const PREVIEW_ROWS = 8;
 const STAGES = [
   'Datos con ingresos faltantes',
-  'Imputación por la media',
   'Columna indicadora de faltante',
+  'Imputación por la media',
   'Modelo sin indicador',
   'Modelo con indicador',
 ];
@@ -124,8 +124,8 @@ export function IndicatorView({
   const g = (v: number) => formatNumber(v, 3);
   const headers = [
     `\\text{faltan } ${missingIdx.length} \\text{ de } ${APPLICANTS} \\text{ ingresos}`,
-    `\\tilde{x}_i = \\bar{x}_{\\text{obs}} = ${formatNumber(fill, 2)} \\text{ si } x_i \\text{ falta}`,
     `M_i = \\mathbf{1}\\{x_i \\text{ falta}\\}`,
+    `\\tilde{x}_i = \\bar{x}_{\\text{obs}} = ${formatNumber(fill, 2)} \\text{ si } x_i \\text{ falta}`,
     `P(\\text{impago}) = \\sigma(\\beta_0 + \\beta_1 \\tilde{x}_i),\\quad \\text{pérdida log} = ${g(models.without.logLoss)}`,
     `P(\\text{impago}) = \\sigma(\\beta_0 + \\beta_1 \\tilde{x}_i + \\gamma M_i),\\quad \\hat{\\gamma} = ${formatNumber(indicatorCoef, 2)},\\ \\text{pérdida log} = ${g(models.withIndicator.logLoss)}`,
   ];
@@ -177,7 +177,7 @@ export function IndicatorView({
               <tr>
                 <th scope="col">Solicitud</th>
                 <th scope="col">Ingreso</th>
-                {stage >= 2 && <th scope="col">Faltante (M)</th>}
+                {stage >= 1 && <th scope="col">Faltante (M)</th>}
                 <th scope="col">Impago</th>
               </tr>
             </thead>
@@ -186,15 +186,15 @@ export function IndicatorView({
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td
-                    className={`${styles.mono} ${a.missing ? (stage >= 1 ? styles.ok : styles.empty) : ''}`}
+                    className={`${styles.mono} ${a.missing ? (stage >= 2 ? styles.ok : styles.empty) : ''}`}
                   >
                     {a.missing
-                      ? stage >= 1
+                      ? stage >= 2
                         ? formatNumber(fill, 1)
                         : 'vacío'
                       : formatNumber(a.income, 1)}
                   </td>
-                  {stage >= 2 && (
+                  {stage >= 1 && (
                     <td className={`${styles.mono} ${a.missing ? styles.active : ''}`}>
                       {a.missing ? 1 : 0}
                     </td>
@@ -215,6 +215,7 @@ export function IndicatorView({
           values={bars}
           highlight={1}
           axisLabel="Tasa o probabilidad de impago"
+          labelWidth={160}
           decimals={3}
           domain={[0, 1]}
           label={description}

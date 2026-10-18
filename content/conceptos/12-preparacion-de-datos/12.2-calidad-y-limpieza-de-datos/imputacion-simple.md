@@ -98,7 +98,7 @@ tasa: 0.3
 ## Propiedades
 
 - **Conserva la media (si $c$ es la media), no la varianza.** La varianza se reduce por el factor $(n_{\text{obs}} - 1)/(n - 1)$.
-- **Atenúa las covarianzas.** Los imputados no varían junto con las otras variables, así que la correlación con ellas se acerca a cero en proporción a los faltantes.
+- **Atenúa las covarianzas.** Los imputados no varían junto con las otras variables. Con faltantes MCAR, la covarianza se multiplica aproximadamente por $(n_{\text{obs}} - 1)/(n - 1)$ y la desviación estándar por la raíz de ese factor, así que la correlación queda multiplicada por $\sqrt{(n_{\text{obs}} - 1)/(n - 1)}$.
 
 :::figura[En el diagrama de dispersión, los ingresos imputados forman una línea horizontal y la correlación con la edad baja respecto de la observada.]{componente="DataQualityTable"}
 ```yaml
@@ -166,5 +166,8 @@ $$
 \bar{y}_{\text{obs}} = \frac{1}{n_{\text{obs}}}\sum_{i:\,M_i = 0} y_i
 $$
 
-- La suma recorre solo las filas con valor observado.
+- $\bar{y}_{\text{obs}}$: media de los valores observados.
+- $n_{\text{obs}}$: número de valores observados.
+- $y_i$: valor de la fila $i$.
+- $M_i$: indicadora de faltante; la suma recorre solo las filas con $M_i = 0$.
 :::

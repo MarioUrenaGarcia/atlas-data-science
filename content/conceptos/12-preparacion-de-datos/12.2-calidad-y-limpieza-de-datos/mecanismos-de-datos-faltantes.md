@@ -25,7 +25,7 @@ etiquetas:
 resumen: >
   El mecanismo de faltantes describe de qué depende que un valor falte: de nada (MCAR), de otras variables
   observadas (MAR) o del propio valor no observado (MNAR). De él depende qué análisis da resultados sin sesgo.
-formula: 'P(M \mid Y_{\text{obs}}, Y_{\text{mis}}) = P(M \mid Y_{\text{obs}})'
+formula: 'P(\mathbf{M} \mid \mathbf{Y}_{\text{obs}}, \mathbf{Y}_{\text{mis}}) = P(\mathbf{M} \mid \mathbf{Y}_{\text{obs}})'
 visualizacion:
   componente: DataQualityTable
   parametros:
@@ -79,7 +79,7 @@ donde $z_i$ es la edad estandarizada (MAR) o el propio ingreso estandarizado (MN
 
 Cada punto azul es una persona con edad e ingreso observados. Cuando el ingreso falta, solo queda una marca roja sobre el eje en su edad; el círculo rojo vacío muestra el ingreso oculto, que en datos reales nunca se conoce. La línea punteada azul es la media de los ingresos observados y la gris, la media verdadera. Las barras comparan la proporción de faltantes entre edades bajas y altas, y entre ingresos bajos y altos.
 
-Experimentos sugeridos: con MCAR, las cuatro barras son parecidas y las dos medias coinciden. Con MAR, las barras de edad difieren. Con MNAR, la diferencia aparece en las barras de ingreso, que en la práctica no se pueden calcular. Subir la fuerza agranda el sesgo de la media observada.
+Experimentos sugeridos: con MCAR, las cuatro barras son parecidas y las dos medias coinciden. Con MAR difieren las dos parejas de barras, más las de edad; con MNAR también difieren las dos, más las de ingreso. Como edad e ingreso están correlacionados, cualquier dependencia de una se refleja en la otra, así que las barras no bastan para distinguir MAR de MNAR; además, las de ingreso no se pueden calcular con datos reales. Subir la fuerza agranda el sesgo de la media observada.
 
 ## Ejemplo
 
@@ -89,7 +89,7 @@ Seis personas tienen ingresos de 10, 14, 18, 22, 26 y 30 mil pesos; la media es 
 2. **MNAR:** no responden los dos ingresos más altos, 26 y 30. La media observada es $(10 + 14 + 18 + 22)/4 = 16$: un sesgo de $-4$.
 3. **MAR:** no responden las dos personas de mayor edad. Si son las de 26 y 30, la media observada también es 16, pero la edad está registrada: entre personas de la misma edad, faltar ya no depende del ingreso, y un modelo de ingreso según la edad corrige el sesgo.
 
-:::figura[MNAR con fuerza 2: faltan sobre todo los ingresos altos, la media observada queda por debajo de la verdadera y las barras de edad apenas lo delatan.]{componente="DataQualityTable"}
+:::figura[MNAR con fuerza 2: faltan sobre todo los ingresos altos y la media observada queda por debajo de la verdadera. Las barras de edad también difieren, por la correlación entre edad e ingreso, pero menos que las de ingreso, que en datos reales serían invisibles.]{componente="DataQualityTable"}
 ```yaml
 modo: mecanismos
 mecanismo: MNAR
@@ -100,7 +100,7 @@ fuerza: 2
 
 ## Propiedades
 
-- **Bajo MCAR, los casos completos son una muestra al azar** y cualquier estadístico calculado con ellos es insesgado, aunque menos preciso.
+- **Bajo MCAR, los casos completos son una muestra al azar**: los estadísticos que serían insesgados con la muestra completa siguen siéndolo con los casos completos, aunque son menos precisos.
 
 :::figura[MCAR: los faltantes se reparten igual en todas las edades e ingresos y la media observada coincide con la verdadera, salvo por variación aleatoria.]{componente="DataQualityTable"}
 ```yaml
@@ -157,7 +157,9 @@ $$
 P(\mathbf{M} \mid \mathbf{Y}_{\text{obs}}, \mathbf{Y}_{\text{mis}}) = P(\mathbf{M} \mid \mathbf{Y}_{\text{obs}})
 $$
 
-- La probabilidad de faltar depende solo de lo observado.
+- $\mathbf{M}$: indicadoras de faltantes.
+- $\mathbf{Y}_{\text{obs}}$, $\mathbf{Y}_{\text{mis}}$: datos observados y faltantes.
+- La probabilidad de faltar depende solo de $\mathbf{Y}_{\text{obs}}$.
 :::
 
 :::formula[Modelo logístico de faltantes]
@@ -176,6 +178,8 @@ $$
 \text{sesgo} = \bar{y}_{\text{obs}} - \bar{y}
 $$
 
-- $\bar{y}_{\text{obs}}$: media de los valores observados.
+- $\bar{y}_{\text{obs}} = \frac{1}{n_{\text{obs}}}\sum_{i:\,M_i = 0} y_i$: media de los valores observados.
+- $n_{\text{obs}}$: número de valores observados.
+- $y_i$: valor de la fila $i$; $M_i$: indicadora de que falta.
 - $\bar{y}$: media de todos los valores, incluidos los ocultos.
 :::

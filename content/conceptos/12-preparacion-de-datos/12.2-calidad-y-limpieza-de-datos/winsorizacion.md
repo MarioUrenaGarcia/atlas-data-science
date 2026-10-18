@@ -123,7 +123,8 @@ w_i = \min\big(\max(x_i,\ q_p),\ q_{1-p}\big)
 $$
 
 - $x_i$: valor original.
-- $q_p$, $q_{1-p}$: piso y techo, cuantiles de la variable.
+- $p$: proporción de cada cola que se acota.
+- $q_p$, $q_{1-p}$: piso y techo, cuantiles de orden $p$ y $1 - p$ de la variable.
 - $w_i$: valor acotado.
 :::
 

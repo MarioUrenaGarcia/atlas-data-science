@@ -18,6 +18,8 @@ interface HBarsProps {
   domain?: [number, number];
   /** Color of each bar; the highlighted bar keeps the highlight color. */
   colors?: readonly string[];
+  /** Space reserved for the labels on the left, in pixels. */
+  labelWidth?: number;
 }
 
 /** Horizontal bars with the value printed at the end of each bar. */
@@ -31,6 +33,7 @@ export function HBars({
   progress = 1,
   domain,
   colors,
+  labelWidth = 84,
 }: HBarsProps) {
   const low = domain?.[0] ?? Math.min(0, ...values);
   const high = domain?.[1] ?? Math.max(0, ...values);
@@ -40,7 +43,7 @@ export function HBars({
       aspect={0.5}
       minHeight={180}
       maxHeight={300}
-      margins={{ top: 8, right: 56, bottom: 42, left: 84 }}
+      margins={{ top: 8, right: 56, bottom: 42, left: labelWidth }}
     >
       {(box) => {
         const base = scaleLinear().domain([low, high === low ? low + 1 : high]);

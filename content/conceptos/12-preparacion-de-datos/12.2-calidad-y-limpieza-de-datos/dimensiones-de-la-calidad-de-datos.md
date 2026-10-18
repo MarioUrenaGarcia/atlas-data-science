@@ -69,7 +69,7 @@ donde la unidad son las celdas para completitud, validez y exactitud, y las fila
 
 La tabla se audita una dimensión a la vez. En cada paso, las celdas o filas que fallan la dimensión actual se marcan con un borde naranja y quedan sombreadas en rojo; la lista debajo de la tabla explica cada problema. El encabezado muestra el cálculo del puntaje de la dimensión actual y las barras acumulan los puntajes de las dimensiones ya revisadas.
 
-Experimentos sugeridos: detenerse en exactitud y comparar la fila marcada con las demás, porque su edad es válida y aun así es incorrecta; revisar en la tabla de sensores que una misma fila puede fallar en exactitud y en consistencia a la vez.
+Experimentos sugeridos: detenerse en exactitud y comparar la fila marcada con las demás, porque su edad es válida y aun así es incorrecta; observar que la consistencia, la unicidad y la oportunidad se puntúan por filas, así que un solo problema baja el puntaje 0.1. La tabla de sensores, que aparece en las figuras de Propiedades y Errores comunes, muestra una fila que falla en exactitud y en consistencia a la vez.
 
 ## Ejemplo
 

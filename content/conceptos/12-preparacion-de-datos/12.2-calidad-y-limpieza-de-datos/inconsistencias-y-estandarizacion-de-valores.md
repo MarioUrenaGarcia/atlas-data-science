@@ -35,7 +35,7 @@ publicado: true
 
 ## Intuición
 
-Un formulario pide la ciudad de residencia en un campo de texto libre. Las personas escriben "Ciudad de México", "ciudad de mexico", "CDMX", "Cd. de México" y hasta " Ciudad de México " con espacios de más. Una computadora compara cadenas carácter por carácter, así que cuenta seis ciudades distintas donde hay una. Un gráfico de barras de residencia mostraría a la capital repartida en barras pequeñas y otra ciudad aparecería como la más frecuente.
+Un formulario pide la ciudad de residencia en un campo de texto libre. Las personas escriben "Ciudad de México", "ciudad de mexico", "CDMX", "Cd. de México" y hasta " Ciudad de México " con espacios de más. Una computadora compara cadenas carácter por carácter, así que cuenta cinco ciudades distintas donde hay una. Un gráfico de barras de residencia mostraría a la capital repartida en barras pequeñas, del mismo tamaño que las de ciudades mucho menos frecuentes en los datos.
 
 **Estandarizar** es decidir una forma canónica para cada categoría y llevar todas las variantes a esa forma. Una parte del trabajo es mecánica y se aplica a todos los valores por igual: quitar espacios sobrantes, pasar a minúsculas, quitar acentos y signos de puntuación. Otra parte requiere conocimiento del dominio: nadie puede deducir de las letras que "GDL" es Guadalajara o que "bachillerato" y "preparatoria" son el mismo nivel; para eso se usa un diccionario de equivalencias revisado por una persona.
 

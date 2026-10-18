@@ -9,6 +9,7 @@ import {
   listwiseRows,
   modeOf,
   pairwiseRows,
+  rubinInterval,
   rubinPool,
   simulateMissing,
   tukeyFences,
@@ -139,6 +140,13 @@ describe('multiple imputation', () => {
     expect(pooled.total).toBeCloseTo(1 + (4 / 3) * 4);
     expect(pooled.lambda).toBeCloseTo(16 / 3 / (1 + 16 / 3));
     expect(pooled.df).toBeCloseTo(2 / pooled.lambda ** 2);
+  });
+
+  it('Rubin interval uses the t quantile with Rubin degrees of freedom', () => {
+    const pooled = rubinPool([18.2, 18.6, 18.0], [0.25, 0.27, 0.23]);
+    const [lo, hi] = rubinInterval(pooled);
+    expect(lo).toBeCloseTo(16.98, 1);
+    expect(hi).toBeCloseTo(19.55, 1);
   });
 
   it('chained equations recover a regression relation and keep observed values', () => {
