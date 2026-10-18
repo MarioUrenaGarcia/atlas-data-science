@@ -90,8 +90,9 @@ export function ExtremesView({ title, conceptId, config }: ExtremesViewProps) {
         { label: 'P(máx ≤ m) = 0.5^n', value: formatNumber(0.5 ** n, 4) },
       ]}
       legend={[
-        { label: 'Mínimo', color: DATA_COLORS.secondary },
-        { label: 'Máximo', color: DATA_COLORS.highlight },
+        { label: 'Histogramas simulados', color: DATA_COLORS.secondary },
+        { label: 'Densidad exacta del mínimo', color: DATA_COLORS.primary, shape: 'line' },
+        { label: 'Densidad exacta del máximo', color: DATA_COLORS.highlight, shape: 'line' },
         { label: 'Densidad de cada observación', color: DATA_COLORS.muted, shape: 'dashed' },
       ]}
       description={description}
@@ -118,7 +119,7 @@ export function ExtremesView({ title, conceptId, config }: ExtremesViewProps) {
           curves={[
             {
               f: (x) => orderStatisticDensity(1, n, distribution.cdf(x), distribution.pdf(x)),
-              color: DATA_COLORS.secondary,
+              color: DATA_COLORS.primary,
             },
             { f: (x) => distribution.pdf(x), color: DATA_COLORS.muted, dashed: true },
           ]}

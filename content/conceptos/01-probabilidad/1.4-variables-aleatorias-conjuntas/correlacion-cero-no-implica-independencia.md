@@ -79,8 +79,8 @@ simboloY: Y
 - $\operatorname{Cov}(X, Y)$: covarianza.
 - $\rho$: correlación.
 - $|X|$: valor absoluto de $X$.
-- $p(x, y)$: masa conjunta; $p_X$, $p_Y$: marginales.
-- $\mathbb{E}[Y \mid X = x]$: media de $Y$ sabiendo que $X = x$.
+- $P(X = 0,\ Y = 1)$: probabilidad conjunta de un par de valores.
+- $g$, $h$: funciones de $X$ y de $Y$.
 :::
 
 ## Cómo usar la visualización

@@ -152,7 +152,7 @@ nombreY: la segunda moneda
 
 ## Conexiones
 
-Las marginales se obtienen de la [[distribucion-conjunta]] y son el caso de variables aleatorias de la [[ley-de-probabilidad-total]]. Dividiendo la conjunta entre una marginal se obtiene la [[distribucion-condicional]], y la [[independencia-de-variables-aleatorias]] se define comparando la conjunta con el producto de las marginales. Las cópulas describen todo lo que hay en la conjunta además de sus marginales. Una marginal es la [[funcion-de-masa-de-probabilidad]] o la [[funcion-de-densidad-de-probabilidad]] de una sola variable.
+Las marginales se obtienen de la [[distribucion-conjunta]] y son el caso de variables aleatorias de la [[ley-de-probabilidad-total]]. Dividiendo la conjunta entre una marginal se obtiene la [[distribucion-condicional]], y la [[independencia-de-variables-aleatorias]] se define comparando la conjunta con el producto de las marginales. Las [[copulas]] describen todo lo que hay en la conjunta además de sus marginales. Una marginal es la [[funcion-de-masa-de-probabilidad]] o la [[funcion-de-densidad-de-probabilidad]] de una sola variable.
 
 ## Formulario
 
