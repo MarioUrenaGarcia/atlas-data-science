@@ -1,7 +1,76 @@
-import { basename, resolve } from 'node:path';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { basename, join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
-import { CONTENT_ROOT, runPipeline, VISUALIZATIONS_ROOT, writeOutput } from './pipeline.ts';
+import { CONCEPT_FILES_FOLDER } from '../../src/content/files.ts';
+import {
+  CONCEPT_FILES_DIR,
+  CONTENT_ROOT,
+  GENERATED_ROOT,
+  runPipeline,
+  VISUALIZATIONS_ROOT,
+  writeOutput,
+} from './pipeline.ts';
 import { printIssues } from './report.ts';
+
+// Concept id, a 10 character content hash and the extension. Anything else,
+// including path separators or "..", never reaches the file system.
+const CONCEPT_FILE_NAME = /^[a-z0-9]+(?:-[a-z0-9]+)*\.[0-9a-f]{10}\.json$/;
+
+/**
+ * Concept bodies live in src/generated as one JSON file each and are not
+ * imported by any module, so this plugin serves them during development and
+ * copies them into the build under the same public folder.
+ */
+export function conceptFilesPlugin(): Plugin {
+  const source = join(GENERATED_ROOT, CONCEPT_FILES_DIR);
+  return {
+    name: 'atlas-concept-files',
+    configureServer(server) {
+      const prefix = `${server.config.base}${CONCEPT_FILES_FOLDER}/`;
+      server.middlewares.use((request, response, next) => {
+        const path = (request.url ?? '').split('?')[0] ?? '';
+        if (!path.startsWith(prefix)) {
+          next();
+          return;
+        }
+        const name = path.slice(prefix.length);
+        const file = join(source, name);
+        if (!CONCEPT_FILE_NAME.test(name) || !existsSync(file)) {
+          response.statusCode = 404;
+          response.end();
+          return;
+        }
+        response.setHeader('Content-Type', 'application/json; charset=utf-8');
+        response.end(readFileSync(file));
+      });
+    },
+    generateBundle() {
+      // The graph decides what ships: only the files it references are emitted,
+      // and a graph generated in development mode, which includes drafts, stops
+      // the build instead of publishing unfinished concepts.
+      const graphFile = join(GENERATED_ROOT, 'graph.json');
+      if (!existsSync(graphFile)) return;
+      const { nodes } = JSON.parse(readFileSync(graphFile, 'utf8')) as {
+        nodes: { id: string; contenido: string; borrador: boolean }[];
+      };
+      const drafts = nodes.filter((node) => node.borrador).map((node) => node.id);
+      if (drafts.length > 0) {
+        this.error(
+          `src/generated contiene fichas en borrador (${drafts.slice(0, 5).join(', ')}); genere el contenido con build-content --production antes de vite build`,
+        );
+      }
+      const referenced = new Set(nodes.map((node) => node.contenido));
+      for (const name of readdirSync(source)) {
+        if (!CONCEPT_FILE_NAME.test(name) || !referenced.has(name)) continue;
+        this.emitFile({
+          type: 'asset',
+          fileName: `${CONCEPT_FILES_FOLDER}/${name}`,
+          source: readFileSync(join(source, name)),
+        });
+      }
+    },
+  };
+}
 
 /**
  * Regenerates src/generated when the dev server starts and whenever a content

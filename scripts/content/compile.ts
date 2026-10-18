@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import MiniSearch from 'minisearch';
 import type { z } from 'zod';
 import {
@@ -18,12 +19,12 @@ import type {
   ConceptNode,
   GraphData,
   MapLayoutData,
-  ModuleContentFile,
   ModulesData,
   NotationData,
   RoutesData,
   SearchData,
 } from '../../src/content/types.ts';
+import { MAX_CONCEPT_FILE_BYTES, MAX_INDEX_FILE_BYTES } from '../../src/content/files.ts';
 import {
   ancestors,
   buildGraph,
@@ -65,7 +66,8 @@ export interface CompiledContent {
   routes: RoutesData;
   notation: NotationData;
   search: SearchData;
-  moduleContents: ModuleContentFile[];
+  /** One file per concept body, named after the concept and a hash of its JSON. */
+  conceptFiles: ConceptFile[];
   mapLayout: MapLayoutData;
 }
 
@@ -73,6 +75,20 @@ export interface CompileResult {
   issues: Issue[];
   output: CompiledContent | null;
   stats: { concepts: number; published: number; drafts: number };
+}
+
+export interface ConceptFile {
+  id: string;
+  fileName: string;
+  json: string;
+}
+
+function contentHash(json: string): string {
+  return createHash('sha256').update(json, 'utf8').digest('hex').slice(0, 10);
+}
+
+function kilobytes(bytes: number): string {
+  return `${Math.round(bytes / 1024)} KB`;
 }
 
 interface ParsedConcept {
@@ -262,7 +278,8 @@ function parseConcepts(
   const titles: Record<string, string> = {};
   for (const file of raw.concepts) {
     const data = file.data as { id?: unknown; titulo?: unknown } | undefined;
-    if (typeof data?.id === 'string' && typeof data.titulo === 'string') titles[data.id] = data.titulo;
+    if (typeof data?.id === 'string' && typeof data.titulo === 'string')
+      titles[data.id] = data.titulo;
   }
   for (const file of raw.concepts) {
     if (file.parseError) {
@@ -606,6 +623,32 @@ export function compileContent(raw: RawContent, options: CompileOptions): Compil
     included.map((c) => ({ id: c.meta.id, prerequisites: c.meta.prerrequisitos })),
   );
   const depthById = depths(graph);
+
+  const conceptFiles: ConceptFile[] = included.map((concept) => {
+    const content: ConceptContent = {
+      id: concept.meta.id,
+      formulaHtml: concept.formulaHtml,
+      sections: concept.body.sections,
+      figuras: concept.body.figures.map(({ componente, parametros }) => ({
+        componente,
+        parametros,
+      })),
+      visualizacion: concept.meta.visualizacion,
+      referencias: concept.meta.referencias,
+    };
+    const json = JSON.stringify(content);
+    const bytes = Buffer.byteLength(json, 'utf8');
+    if (bytes > MAX_CONCEPT_FILE_BYTES) {
+      issues.push({
+        level: 'error',
+        file: concept.file.path,
+        message: `la ficha generada pesa ${kilobytes(bytes)}, más que el límite de ${kilobytes(MAX_CONCEPT_FILE_BYTES)}; divida el contenido o reduzca las figuras`,
+      });
+    }
+    return { id: concept.meta.id, fileName: `${concept.meta.id}.${contentHash(json)}.json`, json };
+  });
+  const fileById = new Map(conceptFiles.map((file) => [file.id, file.fileName]));
+
   const nodes: ConceptNode[] = included.map(({ meta }) => ({
     id: meta.id,
     titulo: meta.titulo,
@@ -624,6 +667,7 @@ export function compileContent(raw: RawContent, options: CompileOptions): Compil
     ancestros: ancestors(graph, meta.id).size,
     descendientes: descendants(graph, meta.id).size,
     componente: meta.visualizacion.componente,
+    contenido: fileById.get(meta.id) ?? '',
     borrador: !meta.publicado,
   }));
   const includedIds = new Set(nodes.map((node) => node.id));
@@ -664,25 +708,29 @@ export function compileContent(raw: RawContent, options: CompileOptions): Compil
     })),
   };
 
-  const moduleContents = modules.modules.map((module) => {
-    const concepts: Record<string, ConceptContent> = {};
-    for (const concept of included.filter((c) => c.meta.modulo === module.numero)) {
-      concepts[concept.meta.id] = {
-        id: concept.meta.id,
-        formulaHtml: concept.formulaHtml,
-        sections: concept.body.sections,
-        figuras: concept.body.figures.map(({ componente, parametros }) => ({
-          componente,
-          parametros,
-        })),
-        visualizacion: concept.meta.visualizacion,
-        referencias: concept.meta.referencias,
-      };
-    }
-    return { modulo: module.numero, concepts };
-  });
-
   const search = buildSearch(nodes, byId, synonymsResult.data.sinonimos);
+  const mapLayout = computeMapLayout(
+    nodes,
+    modules.modules.map((module) => module.numero),
+  );
+  const indexes: [string, unknown][] = [
+    ['graph.json', { nodes }],
+    ['modules.json', modules],
+    ['routes.json', routes],
+    ['notation.json', notation],
+    ['search-index.json', search],
+    ['map-layout.json', mapLayout],
+  ];
+  for (const [name, value] of indexes) {
+    const bytes = Buffer.byteLength(JSON.stringify(value), 'utf8');
+    if (bytes > MAX_INDEX_FILE_BYTES) {
+      issues.push({
+        level: 'error',
+        file: name,
+        message: `el índice generado pesa ${kilobytes(bytes)}, más que el límite de ${kilobytes(MAX_INDEX_FILE_BYTES)}`,
+      });
+    }
+  }
 
   return {
     issues,
@@ -695,11 +743,8 @@ export function compileContent(raw: RawContent, options: CompileOptions): Compil
           routes,
           notation,
           search,
-          moduleContents,
-          mapLayout: computeMapLayout(
-            nodes,
-            modules.modules.map((module) => module.numero),
-          ),
+          conceptFiles,
+          mapLayout,
         },
   };
 }
