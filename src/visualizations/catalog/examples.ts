@@ -2,6 +2,7 @@ import { DESCRIPTIVE_EXAMPLES } from './examples/descriptive.ts';
 import { DISTRIBUTION_EXAMPLES } from './examples/distributions.ts';
 import { MULTIVARIABLE_EXAMPLES } from './examples/multivariable.ts';
 import { OPTIMIZATION_EXAMPLES } from './examples/optimization.ts';
+import { NUMERICS_EXAMPLES } from './examples/numerics.ts';
 import { LIMIT_EXAMPLES } from './examples/limits.ts';
 import { INFERENCE_EXAMPLES } from './examples/inference.ts';
 
@@ -1156,6 +1157,7 @@ export const CATALOG_EXAMPLES: CatalogExample[] = [
   ...DISTRIBUTION_EXAMPLES,
   ...MULTIVARIABLE_EXAMPLES,
   ...OPTIMIZATION_EXAMPLES,
+  ...NUMERICS_EXAMPLES,
   ...LIMIT_EXAMPLES,
   ...INFERENCE_EXAMPLES,
 ];
