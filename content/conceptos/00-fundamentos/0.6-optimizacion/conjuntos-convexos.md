@@ -102,6 +102,14 @@ semilla: 5
 - **Creer que la unión de convexos es convexa.** Dos rectángulos cruzados son convexos por separado, pero su unión, una cruz, no lo es.
 - **Confundir conjunto convexo con función convexa.** Una función es convexa si el conjunto de puntos sobre su gráfica lo es; el adjetivo se refiere a objetos distintos.
 - **Pensar que el complemento de un convexo es convexo.** El exterior de un disco no lo es.
+
+:::figura[El anillo, lo que queda de un disco al quitarle otro disco: hay segmentos entre dos de sus puntos que pasan por el hueco del centro, así que no es convexo.]{componente="OptimizerRace"}
+```yaml
+modo: convexo
+conjuntos: [anillo]
+semilla: 4
+```
+:::
 - **Concluir convexidad probando unos cuantos segmentos.** Una prueba numérica solo puede refutar; para probar convexidad hace falta un argumento, como en el ejemplo.
 
 :::figura[La cruz es la unión de dos rectángulos convexos y no es convexa: los segmentos entre los extremos de brazos distintos atraviesan las esquinas vacías.]{componente="OptimizerRace"}

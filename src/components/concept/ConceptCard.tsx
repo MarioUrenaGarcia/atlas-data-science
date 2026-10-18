@@ -13,7 +13,9 @@ export function ConceptCard({ concept }: { concept: ConceptNode }) {
       style={{ borderTopColor: moduleColor(concept.modulo) }}
     >
       <span className={styles.title}>{concept.titulo}</span>
-      <span className={styles.summary}><SummaryText text={concept.resumen} /></span>
+      <span className={styles.summary}>
+        <SummaryText text={concept.resumen} />
+      </span>
       <span className={styles.meta}>
         <LevelBadge level={concept.nivel} />
       </span>

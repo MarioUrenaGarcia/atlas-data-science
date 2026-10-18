@@ -99,6 +99,16 @@ inicio: [-2, 1]
 ## Propiedades
 
 - **Invariancia afín:** si se cambian las variables con $\mathbf{x} = \mathbf{A}\mathbf{z}$, los pasos de Newton se transforman igual; el método no depende de la escala ni de la rotación del problema, a diferencia del gradiente.
+
+:::figura[En el valle alargado $\tfrac{1}{2}(x^2 + 10y^2)$ el gradiente zigzaguea, mientras que Newton llega al mínimo $(0, 0)$ en un solo paso: corrige la escala distinta de cada eje con la hessiana.]{componente="OptimizerRace"}
+```yaml
+modo: carrera
+funciones: [cuadratica]
+metodos: [gradiente, newton]
+inicio: [3, 1.5]
+tasa: 0.15
+```
+:::
 - **Convergencia local cuadrática:** cerca del mínimo, el error del paso siguiente es del orden del cuadrado del error actual.
 - **Costo:** cada paso requiere la hessiana y resolver un sistema de $n \times n$, del orden de $n^3$ operaciones.
 - **Puntos críticos de cualquier tipo:** Newton busca puntos con gradiente cero; si la hessiana no es definida positiva, el paso puede no ser de descenso.
