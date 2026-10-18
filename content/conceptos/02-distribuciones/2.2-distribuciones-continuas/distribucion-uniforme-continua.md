@@ -11,7 +11,7 @@ submodulo: '2.2'
 orden: 1
 nivel: basico
 prerrequisitos:
-  - integral-definida-como-area
+  - funcion-de-densidad-de-probabilidad
 relaciones:
   - tipo: contrasta
     id: distribucion-uniforme-discreta

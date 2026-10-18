@@ -10,8 +10,11 @@ modulo: 2
 submodulo: '2.1'
 orden: 2
 nivel: basico
-prerrequisitos: []
+prerrequisitos:
+  - funcion-de-masa-de-probabilidad
 relaciones:
+  - tipo: relacionado
+    id: variables-indicadoras
   - tipo: caso-particular
     id: distribucion-uniforme-discreta
 etiquetas:
