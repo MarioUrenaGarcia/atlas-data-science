@@ -272,6 +272,13 @@
   border-radius: 50%;
 }
 
+/* A hollow circle, for marks drawn as a colored outline around another fill. */
+.legend-ring {
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid var(--legend-color);
+}
+
 .dataTable {
   padding: 0 var(--space-4) var(--space-4);
   font-size: var(--text-sm);

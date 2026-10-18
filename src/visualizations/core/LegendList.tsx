@@ -4,7 +4,7 @@ import styles from './VizFrame.module.css';
 export interface LegendItem {
   label: string;
   color: string;
-  shape?: 'square' | 'line' | 'dashed' | 'circle';
+  shape?: 'square' | 'line' | 'dashed' | 'circle' | 'ring';
 }
 
 export function LegendList({ items }: { items: readonly LegendItem[] }) {

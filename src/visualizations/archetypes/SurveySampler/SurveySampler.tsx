@@ -480,7 +480,7 @@ export default function SurveySampler({ params, conceptId, title }: Visualizatio
     {
       label: `${pop.nombreUnidad} en la muestra`,
       color: DATA_COLORS.highlight,
-      shape: 'circle' as const,
+      shape: 'ring' as const,
     },
     ...(design === 'marco'
       ? [{ label: 'Fuera del marco muestral', color: DATA_COLORS.muted, shape: 'dashed' as const }]

@@ -119,6 +119,16 @@ export function AllocationView({ config, title }: { config: AllocationConfig; ti
     );
     if (rule === 'optima')
       return `n_{${h + 1}} = n\\,\\frac{N_{${h + 1}} S_{${h + 1}}/\\sqrt{c_{${h + 1}}}}{\\sum_k N_k S_k/\\sqrt{c_k}} = ${n} \\cdot \\frac{${formatNumber((s.N * s.S) / Math.sqrt(s.costo ?? 1), 1)}}{${formatNumber(sum, 1)}} \\approx ${allotment[h]}`;
+    // Strata whose Neyman share exceeds their size are taken whole; the rest of
+    // the sample is shared among the other strata with the same rule.
+    const census = strata.map((t, k) => (allotment[k] ?? 0) >= t.N && (n * t.N * t.S) / sum > t.N);
+    if (census[h])
+      return `n_{${h + 1}} = ${n} \\cdot \\frac{${formatNumber(s.N * s.S, 1)}}{${formatNumber(sum, 1)}} = ${formatNumber((n * s.N * s.S) / sum, 1)} > N_{${h + 1}} \\Rightarrow n_{${h + 1}} = N_{${h + 1}} = ${s.N}\\ \\text{(censo)}`;
+    if (census.some(Boolean)) {
+      const taken = strata.reduce((acc, t, k) => acc + (census[k] ? t.N : 0), 0);
+      const rest = strata.reduce((acc, t, k) => acc + (census[k] ? 0 : t.N * t.S), 0);
+      return `n_{${h + 1}} = (n - n_{\\text{censo}})\\,\\frac{N_{${h + 1}} S_{${h + 1}}}{\\sum_{k \\notin \\text{censo}} N_k S_k} = ${n - taken} \\cdot \\frac{${formatNumber(s.N * s.S, 1)}}{${formatNumber(rest, 1)}} = ${formatNumber(((n - taken) * s.N * s.S) / rest, 1)} \\approx ${allotment[h]}`;
+    }
     return `n_{${h + 1}} = n\\,\\frac{N_{${h + 1}} S_{${h + 1}}}{\\sum_k N_k S_k} = ${n} \\cdot \\frac{${formatNumber(s.N * s.S, 1)}}{${formatNumber(sum, 1)}} \\approx ${allotment[h]}`;
   };
   const header = complete

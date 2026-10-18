@@ -95,7 +95,7 @@ La encuesta de salud estima la proporción de hogares con algún integrante con 
 4. Con el diseño real: $0.0141 \cdot \sqrt{1.7} = 0.0184$, y el margen de error al 95 % pasa de 2.8 a 3.6 puntos porcentuales.
 5. Para lograr el margen de 2.8 puntos con el mismo diseño harían falta $800 \cdot 1.7 = 1360$ entrevistas.
 
-:::figura[Efecto de diseño observado en una simulación: 4 manzanas de 24 hogares cada una contra 96 hogares sorteados uno por uno. El histograma de conglomerados es más ancho: el efecto de diseño observado ronda 1.5, menor que en variables continuas porque en una variable de sí o no la similitud dentro de las manzanas se atenúa.]{componente="SurveySampler"}
+:::figura[Efecto de diseño observado en una simulación: 4 manzanas de 24 hogares cada una contra 96 hogares sorteados uno por uno. El histograma de conglomerados es más ancho: el efecto de diseño observado está cerca de 1.5 a 1.6, menor que en variables continuas porque en una variable de sí o no la similitud dentro de las manzanas se atenúa.]{componente="SurveySampler"}
 ```yaml
 diseno: conglomerados
 n: 4
