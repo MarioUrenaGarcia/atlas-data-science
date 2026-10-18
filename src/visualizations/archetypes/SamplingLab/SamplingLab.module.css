@@ -1,0 +1,11 @@
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.chartLabel {
+  fill: var(--color-text-muted);
+  font-size: 12px;
+}

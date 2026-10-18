@@ -160,7 +160,7 @@ n: 50
 
 ## Conexiones
 
-Es un resultado de [[convergencia-en-distribucion]] que complementa a la [[ley-debil-de-los-grandes-numeros]]: la ley dice hacia dónde va la media y el teorema, cómo fluctúa alrededor. La versión estándar es el [[tcl-de-lindeberg-levy]]; el [[tcl-de-lyapunov]] y el [[tcl-de-lindeberg-feller]] permiten sumandos distintos; el [[tcl-multivariado]] trata vectores. El [[teorema-de-berry-esseen]] cuantifica su error y [[cuando-el-tcl-falla]] muestra sus límites. Con el [[metodo-delta]] y el [[teorema-de-slutsky]] se extiende a funciones de medias y a estadísticos estandarizados con la desviación estimada.
+Es un resultado de [[convergencia-en-distribucion]] que complementa a la [[ley-debil-de-los-grandes-numeros]]: la ley dice hacia dónde va la media y el teorema, cómo fluctúa alrededor. La versión estándar es el [[tcl-de-lindeberg-levy]]; el [[tcl-de-lyapunov]] y el [[tcl-de-lindeberg-feller]] permiten sumandos distintos; el [[tcl-multivariado]] trata vectores. El [[teorema-de-berry-esseen]] cuantifica su error y [[cuando-el-tcl-falla]] muestra sus límites. Con el [[metodo-delta]] y el [[teorema-de-slutsky]] se extiende a funciones de medias y a estadísticos estandarizados con la desviación estimada. Su caso más antiguo es la [[aproximacion-normal-a-la-binomial]], que mejora con la [[correccion-por-continuidad]].
 
 ## Formulario
 

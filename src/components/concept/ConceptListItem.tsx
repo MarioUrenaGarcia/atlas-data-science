@@ -27,7 +27,11 @@ export function ConceptListItem({ concept, showSummary = true, prefix }: Concept
           </Link>
           <LevelBadge level={concept.nivel} />
         </div>
-        {showSummary && <p className={styles.summary}><SummaryText text={concept.resumen} /></p>}
+        {showSummary && (
+          <p className={styles.summary}>
+            <SummaryText text={concept.resumen} />
+          </p>
+        )}
       </div>
     </div>
   );

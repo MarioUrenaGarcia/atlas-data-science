@@ -229,4 +229,18 @@ export const DISTRIBUTION_EXAMPLES: CatalogExample[] = [
     title: 'Wishart inversa',
     params: { modo: 'wishart', inversa: true },
   },
+  { component: 'FamilyLab', title: 'Familia exponencial', params: { modo: 'exponencial' } },
+  { component: 'FamilyLab', title: 'Suficiencia de Bernoulli', params: { modo: 'suficiencia' } },
+  {
+    component: 'FamilyLab',
+    title: 'Localización y escala',
+    params: { modo: 'localizacion-escala' },
+  },
+  { component: 'FamilyLab', title: 'Actualización conjugada', params: { modo: 'conjugada' } },
+  { component: 'FamilyLab', title: 'Mezcla de normales', params: { modo: 'mezcla' } },
+  { component: 'FamilyLab', title: 'Poisson compuesta', params: { modo: 'compuesta' } },
+  { component: 'FamilyLab', title: 'Corrección por continuidad', params: { modo: 'continuidad' } },
+  { component: 'FamilyLab', title: 'Colas pesadas', params: { modo: 'colas' } },
+  { component: 'FamilyLab', title: 'Cota subgaussiana', params: { modo: 'subgaussiana' } },
+  { component: 'FamilyLab', title: 'Distribución empírica', params: { modo: 'empirica' } },
 ];
