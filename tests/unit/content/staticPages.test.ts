@@ -103,6 +103,12 @@ describe('withMeta', () => {
     expect(descriptionOf(html)).toBe('x &gt; y');
   });
 
+  it('keeps dollar signs literal instead of expanding replacement patterns', () => {
+    const html = withMeta(INDEX, 'Costo $& y $$', "Valor $' final");
+    expect(titleOf(html)).toBe('Costo $&amp; y $$');
+    expect(descriptionOf(html)).toBe("Valor $' final");
+  });
+
   it('shortens long descriptions', () => {
     const html = withMeta(INDEX, 'T', 'palabra '.repeat(80));
     expect((descriptionOf(html) ?? '').length).toBeLessThanOrEqual(300);
