@@ -76,9 +76,9 @@ $$
 
 ## Cómo usar la visualización
 
-El histograma superior muestra los tiempos originales y el inferior, los transformados con el valor actual de $\lambda$. Al reproducir, $\lambda$ recorre un barrido y la curva de log-verosimilitud marca su máximo; al final queda en el $\lambda$ estimado. Las lecturas comparan la asimetría antes y después.
+El histograma muestra los datos transformados con el valor actual de $\lambda$, junto con la curva normal de la misma media y desviación. Debajo, la curva de log-verosimilitud perfil indica qué tan bien queda la normal para cada $\lambda$, con una línea en su máximo, $\hat{\lambda}$. Al reproducir, $\lambda$ recorre todo el rango; al terminar, vuelve al valor del control, que parte del $\lambda$ estimado. Las lecturas comparan la asimetría original con la transformada.
 
-Experimentos sugeridos: mover $\lambda$ a 1 y ver que el histograma no cambia; moverlo a 0 (logaritmo) y comparar la asimetría con la del $\lambda$ óptimo; probar $\lambda = -1$ y observar que la cola se invierte.
+Experimentos sugeridos: mover $\lambda$ a 1 y ver que el histograma conserva la forma de los datos originales, solo desplazado; moverlo a 0 (logaritmo) y comparar la asimetría con la del $\lambda$ óptimo; probar $\lambda = -1$ y observar que la cola se invierte.
 
 ## Ejemplo
 
@@ -89,7 +89,7 @@ Cinco tiempos de respuesta, en milisegundos: 1, 4, 9, 16 y 100.
 3. $\lambda = 0$: $\log x$ da 0, 1.386, 2.197, 2.773 y 4.605. La cola casi desaparece.
 4. $\lambda = -1$: $(x^{-1} - 1)/(-1) = 1 - 1/x$ da 0, 0.75, 0.889, 0.938 y 0.99. Ahora los valores grandes se amontonan y la asimetría cambia de lado.
 
-El valor más simétrico está entre $\lambda = 0$ y $\lambda = 0.5$; la estimación por verosimilitud lo localiza con precisión.
+La estimación por máxima verosimilitud da $\hat{\lambda} = -0.060$, muy cerca del logaritmo: con estos cinco tiempos, $\lambda = 0$ es prácticamente la transformación óptima.
 
 :::figura[Los cinco tiempos del ejemplo con su curva de log-verosimilitud en función de lambda.]{componente="FeatureTransformViz"}
 ```yaml
@@ -174,8 +174,9 @@ $$
 x^{(\lambda)} = \begin{cases} \dfrac{x^{\lambda} - 1}{\lambda} & \lambda \ne 0 \\[4pt] \log x & \lambda = 0 \end{cases}
 $$
 
-- $x > 0$: valor original.
+- $x > 0$: valor original; $x^{(\lambda)}$: valor transformado.
 - $\lambda$: exponente.
+- $\log$: logaritmo natural.
 :::
 
 :::formula[Estimación de lambda]
@@ -183,7 +184,10 @@ $$
 \hat{\lambda} = \arg\max_{\lambda} \left[ -\frac{n}{2}\log \hat{\sigma}^2(\lambda) + (\lambda - 1)\sum_{i=1}^{n} \log x_i \right]
 $$
 
+- $\hat{\lambda}$: exponente estimado, el que maximiza la expresión entre corchetes.
+- $\arg\max_{\lambda}$: valor de $\lambda$ que hace máxima la expresión.
 - $n$: tamaño de la muestra de entrenamiento.
 - $\hat{\sigma}^2(\lambda)$: varianza de los transformados.
 - $x_i$: valores originales.
+- $\log$: logaritmo natural.
 :::

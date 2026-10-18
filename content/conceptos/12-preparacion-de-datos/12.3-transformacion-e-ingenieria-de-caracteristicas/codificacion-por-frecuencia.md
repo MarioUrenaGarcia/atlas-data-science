@@ -84,7 +84,7 @@ caso: marcas
 - **Es monótona en la popularidad.** Los modelos aprenden efectos del tipo "las categorías raras se comportan distinto".
 - **Asigna el mismo código a categorías con la misma frecuencia.** La pérdida de información es mayor cuanto más categorías comparten conteo.
 
-:::figura[Colonias de una ciudad codificadas por frecuencia: todas tienen conteos distintos, así que cada una recibe un código propio.]{componente="FeatureEngineeringViz"}
+:::figura[Colonias de una ciudad codificadas por frecuencia: las que tienen el mismo número de casas, como las tres colonias de una sola casa, reciben el mismo código y el modelo ya no puede distinguirlas.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: frecuencia
 caso: colonias
@@ -96,6 +96,14 @@ caso: colonias
 - **Calcular las frecuencias con todos los datos.** Aunque no use el objetivo, la proporción debe fijarse con el entrenamiento para que el código de una categoría no cambie según la partición.
 - **Suponer que la frecuencia describe a la categoría.** Dos marcas igual de comunes pueden ser opuestas en todo lo demás; el código solo dice qué tan común es cada una.
 - **Olvidar las categorías nuevas.** En producción aparecen categorías que no estaban en el entrenamiento; se les asigna un código definido de antemano.
+
+:::figura[Error de suponer que la frecuencia describe a la categoría: las marcas D y E tienen 14 anuncios cada una y reciben el mismo código, aunque los precios de reventa típicos de una y otra difieren en unos 80 mil pesos.]{componente="FeatureEngineeringViz"}
+```yaml
+modo: frecuencia
+caso: marcas
+semilla: 3
+```
+:::
 
 ## Conexiones
 

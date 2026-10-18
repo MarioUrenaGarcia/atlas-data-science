@@ -78,7 +78,7 @@ export const parametersSchema = z.discriminatedUnion('modo', [
   z
     .object({
       modo: z.literal('embedding'),
-      pasos: z.number().int().min(20).max(600).optional(),
+      pasos: z.number().int().min(5).max(600).optional(),
       semilla: seed,
     })
     .strict(),

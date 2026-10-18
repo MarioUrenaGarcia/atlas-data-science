@@ -78,10 +78,10 @@ Tres productos tienen vectores café $(1, 0)$, pan dulce $(0.9, 0.4)$ y carbón 
 4. Pérdida: $L = 0.01 + 0.01 + 0.0841 = 0.1041$. El gradiente empujará al pan y al carbón a separarse más.
 5. Coseno entre café y pan: $0.9/(1 \cdot \sqrt{0.81 + 0.16}) = 0.914$.
 
-:::figura[Con solo 40 pasos de descenso de gradiente, los vectores apenas comienzan a separarse en tres direcciones y la pérdida sigue alta.]{componente="FeatureEngineeringViz"}
+:::figura[Con solo 10 pasos de descenso de gradiente, los vectores siguen cerca de su posición inicial: café y pan dulce todavía apuntan en direcciones casi opuestas y la pérdida apenas bajó.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: embedding
-pasos: 40
+pasos: 10
 ```
 :::
 
@@ -105,6 +105,14 @@ semilla: 77
 - **Aprender embeddings con pocas observaciones por categoría.** Una categoría vista dos veces recibe un vector casi aleatorio; conviene agrupar las raras o compartir información con categorías parecidas.
 - **Evaluar con los mismos datos con que se aprendieron.** Los embeddings son parámetros entrenados; si se aprenden con los datos de prueba, la evaluación queda optimista.
 
+:::figura[Error de interpretar las coordenadas: con otra semilla, los tres grupos quedan en direcciones distintas de las de la visualización principal; lo que se conserva son los cosenos entre productos, no el significado de cada eje.]{componente="FeatureEngineeringViz"}
+```yaml
+modo: embedding
+pasos: 300
+semilla: 5
+```
+:::
+
 ## Conexiones
 
 Generaliza la [[codificacion-one-hot]]: el embedding es el producto de la matriz $\mathbf{E}$ por el vector one-hot. Las relaciones entre vectores se miden con el [[producto-punto]] y la [[similitud-coseno]], y la pérdida se minimiza con [[descenso-de-gradiente]]. Aproximar una matriz de similitudes con productos punto de pocas dimensiones es la idea de la [[aproximacion-de-bajo-rango]]. Para muchas categorías sin aprendizaje, la alternativa es el [[truco-de-hashing]].
@@ -125,8 +133,11 @@ $$
 L = \sum_{i < j} \left(s_{ij} - \mathbf{e}_i^\top \mathbf{e}_j\right)^2
 $$
 
-- $s_{ij}$: similitud objetivo.
+- $L$: pérdida total que se minimiza.
+- $s_{ij}$: similitud objetivo entre las categorías $i$ y $j$.
+- $\mathbf{e}_i$, $\mathbf{e}_j$: vectores aprendidos de las categorías $i$ y $j$.
 - $\mathbf{e}_i^\top \mathbf{e}_j$: producto punto de los vectores aprendidos.
+- $i < j$: la suma recorre cada par de categorías una vez.
 :::
 
 :::formula[Paso de descenso de gradiente]
@@ -134,6 +145,8 @@ $$
 \mathbf{e}_i \leftarrow \mathbf{e}_i + 2\eta \sum_{j \ne i} \left(s_{ij} - \mathbf{e}_i^\top \mathbf{e}_j\right)\mathbf{e}_j
 $$
 
+- $\mathbf{e}_i$: vector de la categoría $i$, que se actualiza; $\mathbf{e}_j$: vectores de las demás.
+- $s_{ij}$: similitud objetivo entre las categorías $i$ y $j$.
 - $\eta$: tasa de aprendizaje.
 - La suma recorre todas las demás categorías.
 :::

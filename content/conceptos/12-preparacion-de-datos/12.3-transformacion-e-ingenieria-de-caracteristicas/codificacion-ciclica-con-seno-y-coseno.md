@@ -141,5 +141,8 @@ $$
 d(x, y) = 2\sin\left(\frac{\pi\,|x - y|}{P}\right)
 $$
 
+- $d(x, y)$: distancia en línea recta entre los puntos del círculo que representan a $x$ y a $y$.
+- $x$, $y$: dos valores periódicos, por ejemplo dos horas del día.
 - $|x - y|$: separación entre los valores, con $0 \le |x - y| \le P$.
+- $P$: periodo, por ejemplo 24 horas.
 :::

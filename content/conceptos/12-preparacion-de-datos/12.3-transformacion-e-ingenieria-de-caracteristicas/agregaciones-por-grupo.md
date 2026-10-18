@@ -95,7 +95,7 @@ estadistico: maximo
 ```
 :::
 
-- **La media es la suma entre el conteo.** Con conteo y suma se puede reconstruir la media; agregar los tres no añade información para un modelo lineal, aunque sí para uno no lineal.
+- **La media es la suma entre el conteo.** El cociente $S_c/n_c$ no es una combinación lineal de $S_c$ y $n_c$, así que un modelo lineal que ya tiene la suma y el conteo no puede construir la media: para él, la media es una columna nueva. Un modelo no lineal, como un árbol, sí puede aproximarla a partir de las otras dos.
 
 ## Errores comunes
 

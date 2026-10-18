@@ -54,7 +54,7 @@ $$
 \beta_j \leftarrow S(\rho_j, \lambda) = \operatorname{signo}(\rho_j)\,\max(|\rho_j| - \lambda,\ 0),
 $$
 
-donde $\rho_j$ es la correlación de la variable $j$ con el residuo parcial.
+donde $\rho_j = \frac{1}{n}\sum_{i=1}^{n} x_{ij}\, r_i^{(j)}$ es la covarianza de la variable $j$ con el residuo parcial $r_i^{(j)}$, lo que queda de $y_i$ al restar la predicción de las demás variables. Si además la respuesta está estandarizada y no hay otras variables, $\rho_j$ es la correlación de la variable con la respuesta.
 :::
 
 :::nota[Qué significa cada símbolo]
@@ -65,7 +65,9 @@ donde $\rho_j$ es la correlación de la variable $j$ con el residuo parcial.
 - $\lambda$: intensidad de la penalización.
 - $\hat{\boldsymbol\beta}(\lambda)$: coeficientes estimados para ese $\lambda$.
 - $S(\rho, \lambda)$: umbral suave; vale $0$ si $|\rho| \le \lambda$.
-- $\rho_j$: correlación de la variable $j$ con el residuo que deja el resto del modelo.
+- $\rho_j$: covarianza de la variable $j$ con el residuo parcial.
+- $x_{ij}$: valor estandarizado de la variable $j$ en la observación $i$.
+- $r_i^{(j)}$: residuo parcial de la observación $i$, sin la contribución de la variable $j$.
 :::
 
 ## Cómo usar la visualización
@@ -76,7 +78,7 @@ Experimento sugerido: detenerse cuando hay tres variables activas y comparar con
 
 ## Ejemplo
 
-Con una sola variable estandarizada, el lasso se reduce al umbral suave. Si la correlación de la variable con la respuesta es $\rho = 0.8$:
+Con una sola variable y la respuesta también estandarizada, el lasso se reduce al umbral suave aplicado a la correlación entre ambas. Si esa correlación es $\rho = 0.8$:
 
 1. Con $\lambda = 0.3$: $\hat\beta = 0.8 - 0.3 = 0.5$. La variable entra, con un coeficiente encogido.
 2. Con $\lambda = 0.8$: $\hat\beta = \max(0.8 - 0.8, 0) = 0$. La variable sale.
@@ -111,6 +113,13 @@ semilla: 42
 - **Leer el orden de entrada como importancia causal.** Entre variables correlacionadas, la que entra primero depende de detalles de la muestra.
 - **Elegir lambda con el error de entrenamiento.** El error de entrenamiento siempre baja con lambda; la penalización se elige con datos de validación.
 
+:::figura[Error de leer los coeficientes como efectos causales: con esta muestra, la medición por satélite entra casi al final del recorrido y termina con coeficiente negativo, aunque mide lo mismo que la lluvia, cuyo efecto es positivo.]{componente="FeatureSelectionViz"}
+```yaml
+modo: embebida
+semilla: 5
+```
+:::
+
 ## Conexiones
 
 Usa la norma L1 de las [[normas-vectoriales]], y su solución por [[descenso-por-coordenadas]] aplica el umbral suave de los [[metodos-proximales-y-gradiente-proximal]]. Es la alternativa embebida a la [[seleccion-de-caracteristicas-por-filtro]] y a la [[seleccion-de-caracteristicas-por-envoltura]]. Requiere variables en la misma escala, que se obtienen con la [[estandarizacion]]. La geometría de la penalización, con esquinas en los ejes, explica los ceros exactos: el mínimo de una función cuadrática restringida a un rombo suele caer en un vértice.
@@ -131,7 +140,7 @@ $$
 S(\rho, \lambda) = \operatorname{signo}(\rho)\,\max(|\rho| - \lambda,\ 0)
 $$
 
-- $\rho$: correlación con el residuo parcial.
+- $\rho$: covarianza de la variable estandarizada con el residuo parcial; es la correlación cuando la respuesta también está estandarizada y hay una sola variable.
 - $\lambda$: penalización.
 :::
 

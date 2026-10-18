@@ -36,7 +36,7 @@ publicado: true
 
 ## Intuición
 
-Entre los clientes de una tienda hay una persona que gana 250 mil pesos al mes; los demás ganan entre 15 y 47 mil. Con el escalamiento min-max, ese cliente fija el máximo y todos los demás quedan apretados entre 0 y 0.14. Con la estandarización, su ingreso infla la media y, sobre todo, la desviación estándar, y los ingresos comunes quedan casi indistinguibles entre sí.
+Entre los clientes de una tienda hay una persona que gana 250 mil pesos al mes; los demás ganan entre 15 y 47 mil. Con el escalamiento min-max, ese cliente fija el máximo y todos los demás quedan apretados entre 0 y 0.13. Con la estandarización, su ingreso infla la media y, sobre todo, la desviación estándar, y los ingresos comunes quedan casi indistinguibles entre sí.
 
 El **escalamiento robusto** usa referencias que no se mueven por un solo valor: la mediana como centro y el rango intercuartílico (la anchura del 50 % central de los datos) como unidad. El cliente rico queda muy lejos, a más de 11 unidades, pero los demás conservan una escala útil: un cliente con ingreso 0.5 está medio rango intercuartílico por encima de la mediana. El valor extremo no se elimina ni se modifica; simplemente deja de decidir la escala de los demás.
 
@@ -90,7 +90,7 @@ atipico: true
 - **Punto de ruptura alto.** La mediana y los cuartiles soportan que hasta una cuarta parte de los datos sea arbitrariamente extrema sin cambiar mucho.
 - **No acota el rango.** A diferencia del min-max, los valores escalados no quedan en un intervalo fijo; los extremos conservan su lejanía.
 
-:::figura[Casas con una que tiene 12 recámaras: la mediana de 3 y el rango intercuartílico de 2 no cambian, así que las casas comunes conservan su escala y la de 12 recámaras queda en 4.5.]{componente="FeatureEngineeringViz"}
+:::figura[Casas con una que tiene 12 recámaras: la mediana es 3 y el rango intercuartílico 2; sin esa casa serían 2.5 y 1.75. Cambian poco, así que las casas comunes conservan casi su escala y la de 12 recámaras queda en 4.5.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: escalamiento
 metodo: robusto

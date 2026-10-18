@@ -51,4 +51,13 @@ export const CORPORA: Record<CorpusId, { name: string; documents: readonly strin
       'la comida es mala',
     ],
   },
+  clima: {
+    name: 'Avisos del clima',
+    documents: [
+      'Mañana habrá lluvia fuerte en la costa',
+      'La lluvia seguirá durante el fin de semana',
+      'Poca lluvia y calor en el norte',
+      'Lluvia y viento en la capital',
+    ],
+  },
 };

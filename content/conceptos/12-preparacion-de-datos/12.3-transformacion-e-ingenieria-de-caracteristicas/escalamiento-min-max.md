@@ -91,7 +91,7 @@ caso: clientes
 - **El rango escalado es exactamente $[0, 1]$ en entrenamiento.** Con datos nuevos puede haber valores menores que 0 o mayores que 1 si salen del rango observado.
 - **Es sensible a los extremos.** Un solo valor muy grande fija $\max x$ y comprime el resto de los datos en una franja estrecha.
 
-:::figura[Con una persona que gana 250 mil pesos, el máximo cambia y los demás ingresos escalados quedan entre 0 y 0.14: la variable deja de distinguir entre los clientes comunes.]{componente="FeatureEngineeringViz"}
+:::figura[Con una persona que gana 250 mil pesos, el máximo cambia y los demás ingresos escalados quedan entre 0 y 0.13: la variable deja de distinguir entre los clientes comunes.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: escalamiento
 metodo: minmax
@@ -151,6 +151,7 @@ $$
 d(\mathbf{x}_i, \mathbf{x}_j) = \sqrt{\sum_{k=1}^{p} (x_{ik} - x_{jk})^2}
 $$
 
+- $d(\mathbf{x}_i, \mathbf{x}_j)$: distancia euclidiana entre las dos observaciones.
 - $\mathbf{x}_i$, $\mathbf{x}_j$: vectores de las observaciones $i$ y $j$.
 - $p$: número de variables; $x_{ik}$: variable $k$ de la observación $i$.
 :::

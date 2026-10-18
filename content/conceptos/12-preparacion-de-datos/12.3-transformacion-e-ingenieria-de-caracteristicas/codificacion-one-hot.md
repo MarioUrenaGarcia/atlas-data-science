@@ -88,7 +88,7 @@ eliminarPrimera: true
 - **Las K columnas suman 1.** Junto con un intercepto son linealmente dependientes; por eso se elimina una en modelos lineales.
 - **El número de columnas crece con las categorías.** Una variable con miles de categorías produce una matriz enorme y muy dispersa.
 
-:::figura[Formas de pago: cinco categorías generan cinco columnas, y cada fila tiene un solo 1.]{componente="FeatureEngineeringViz"}
+:::figura[Formas de pago: cuatro categorías generan cuatro columnas, y cada fila tiene un solo 1.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: onehot
 caso: pagos

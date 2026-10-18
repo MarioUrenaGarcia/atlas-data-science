@@ -111,6 +111,13 @@ semilla: 42
 - **Ignorar el costo.** Con cientos de variables y un modelo costoso, la búsqueda ajusta miles de modelos.
 - **Tomar el mínimo exacto de la curva.** Las diferencias pequeñas entre tamaños son ruido; conviene el modelo más simple con error cercano al mínimo.
 
+:::figura[Error de tomar el mínimo exacto: con esta muestra, el error de validación más bajo se alcanza con seis variables, entre ellas la copia de la lluvia y un código sin relación, mientras que el modelo de tres variables queda apenas 1.3 % arriba.]{componente="FeatureSelectionViz"}
+```yaml
+modo: envoltura
+semilla: 11
+```
+:::
+
 ## Conexiones
 
 Complementa a la [[seleccion-de-caracteristicas-por-filtro]], más rápida pero ciega a la redundancia. La [[eliminacion-recursiva-de-caracteristicas]] recorre el camino inverso, quitando variables. La [[seleccion-de-caracteristicas-embebida]] selecciona dentro del ajuste, sin búsqueda externa. El número de subconjuntos posibles, $2^p$, es el tamaño del [[conjunto-potencia]], y la búsqueda codiciosa es una estrategia de [[problema-de-optimizacion|optimización]] combinatoria aproximada.

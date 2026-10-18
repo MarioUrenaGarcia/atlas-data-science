@@ -14,7 +14,7 @@ import { useReducedMotion } from '../../core/useReducedMotion.ts';
 import { useResettableState, useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { CATEGORY_CASES, categoryRows } from './categoryData.ts';
-import styles from './FeatureEngineeringViz.module.css';
+import { CategoryLabel, TILT_ABOVE } from './CategoryLabel.tsx';
 import type { TargetCaseId } from './schema.ts';
 
 const MORPH_STEPS = 20;
@@ -84,6 +84,7 @@ export function TargetView({
   });
   const t = stepIndex / MORPH_STEPS;
   const names = item.categories.map((c) => c.name);
+  const tilt = names.length > TILT_ABOVE;
   const sizes = names.map((n) => data.categories.filter((c) => c === n).length);
   const rawValues = names.map((n) => raw.byCategory.get(n) ?? raw.globalMean);
   const smoothValues = names.map((n) => smooth.byCategory.get(n) ?? smooth.globalMean);
@@ -145,7 +146,7 @@ export function TargetView({
         aspect={0.55}
         minHeight={260}
         maxHeight={380}
-        margins={{ top: 12, right: 16, bottom: 60, left: 56 }}
+        margins={{ top: 12, right: 16, bottom: tilt ? 96 : 60, left: 56 }}
       >
         {(box) => {
           const { left, top, width, height } = box.inner;
@@ -197,22 +198,13 @@ export function TargetView({
                         stroke={DATA_COLORS.muted}
                         strokeWidth={2.5}
                       />
-                      <text
+                      <CategoryLabel
                         x={xx + x.bandwidth() / 2}
                         y={top + height + 14}
-                        textAnchor="middle"
-                        className={styles.chartLabel}
-                      >
-                        {n}
-                      </text>
-                      <text
-                        x={xx + x.bandwidth() / 2}
-                        y={top + height + 28}
-                        textAnchor="middle"
-                        className={styles.chartLabel}
-                      >
-                        n = {sizes[i]}
-                      </text>
+                        tilt={tilt}
+                        text={n}
+                        detail={`n = ${sizes[i] ?? 0}`}
+                      />
                     </g>
                   );
                 })}

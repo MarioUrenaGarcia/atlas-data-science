@@ -34,7 +34,7 @@ publicado: true
 
 ## Intuición
 
-La selección hacia adelante construye el modelo agregando variables; la **eliminación recursiva** hace lo contrario: empieza con todas y las va quitando. En cada ronda ajusta el modelo, mira cuál variable contribuye menos y la elimina; luego vuelve a ajustar con las que quedan, porque al quitar una variable las demás cambian de papel. Una variable redundante puede parecer importante mientras su gemela está en el modelo y volverse prescindible, o al revés, en cuanto la otra se va.
+La selección hacia adelante construye el modelo agregando variables; la **eliminación recursiva** hace lo contrario: empieza con todas y las va quitando. En cada ronda ajusta el modelo, mira cuál variable contribuye menos y la elimina; luego vuelve a ajustar con las que quedan, porque al quitar una variable las demás cambian de papel. Dos variables gemelas se reparten el efecto mientras ambas están en el modelo, y cada una parece poco importante; en cuanto una se va, la otra recoge todo el efecto y se vuelve imprescindible.
 
 En un modelo lineal con variables estandarizadas, una medida natural de contribución es el valor absoluto del coeficiente: cuánto cambia la predicción por una desviación estándar de la variable. El proceso deja un camino de modelos con $p$, $p - 1$, ..., $1$ variables. Comparando su error de validación se elige cuántas conservar. A diferencia de la envoltura hacia adelante, cada ronda requiere un solo ajuste, lo que lo hace práctico con modelos costosos; a cambio, depende de que la medida de importancia del modelo sea confiable.
 
@@ -114,6 +114,13 @@ semilla: 42
 - **Usar coeficientes sin estandarizar.** Un coeficiente pequeño puede deberse solo a que la variable se mide en una unidad grande.
 - **Elegir el tamaño con los datos de prueba.** El camino y la elección del tamaño usan validación; la prueba final se hace con datos que no participaron.
 - **Interpretar el orden de eliminación como un ranking definitivo.** Entre variables correlacionadas, cuál sale primero depende de la muestra.
+
+:::figura[Error de leer el orden de eliminación como un ranking definitivo: con esta muestra, la lluvia por satélite es la primera variable en salir, mientras que con la muestra principal sale en quinto lugar.]{componente="FeatureSelectionViz"}
+```yaml
+modo: rfe
+semilla: 9
+```
+:::
 
 ## Conexiones
 

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CORPORA = ['resenas', 'noticias', 'negacion'] as const;
+export const CORPORA = ['resenas', 'noticias', 'negacion', 'clima'] as const;
 
 export const parametersSchema = z.discriminatedUnion('modo', [
   z

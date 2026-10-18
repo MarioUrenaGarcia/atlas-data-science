@@ -79,7 +79,7 @@ El consumo verdadero es $y = 50 + 0.15(x - 22)^2$, con $x$ la temperatura máxim
 
 1. Desarrollando: $y = 0.15x^2 - 6.6x + 122.6$. Con las columnas $(1, x, x^2)$, el modelo lineal puede representarlo exactamente con $\beta = (122.6,\ -6.6,\ 0.15)$.
 2. A 10 °C: $0.15(100) - 6.6(10) + 122.6 = 71.6$ kWh. A 22 °C: $50$ kWh. A 34 °C: $71.6$ kWh.
-3. Una recta ajustada a esos datos tendría pendiente cercana a cero y erraría por más de 20 kWh en los extremos.
+3. Con temperaturas repartidas de manera uniforme entre 10 y 34 °C, la recta de mínimos cuadrados es horizontal, a la altura del consumo promedio, $50 + 0.15 \times 48 = 57.2$ kWh, donde 48 es el promedio de $(x - 22)^2$ en ese intervalo: subestima en 14.4 kWh los extremos y sobrestima en 7.2 kWh el centro.
 4. Número de columnas: con $p = 5$ variables y $d = 2$ son $\binom{7}{2} = 21$; con $d = 3$, $\binom{8}{3} = 56$; con $p = 20$ y $d = 3$, $\binom{23}{3} = 1771$.
 
 :::figura[Grado 2: la parábola sigue la forma en U del consumo y el error de prueba es bajo.]{componente="FeatureEngineeringViz"}

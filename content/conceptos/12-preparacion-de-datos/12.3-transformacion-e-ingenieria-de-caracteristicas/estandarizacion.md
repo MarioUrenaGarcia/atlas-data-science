@@ -64,7 +64,7 @@ Los valores $z_1, \dots, z_n$ tienen media $0$ y desviación estándar $1$. La m
 
 Los diez atletas se dibujan con la misma escala en ambos ejes, así que la distancia que se ve es la distancia euclidiana. El punto rojo es la atleta de consulta y la línea naranja la une con su vecino más cercano. Al reproducir, los puntos pasan de centímetros y segundos a desviaciones estándar. El encabezado muestra la estandarización del tiempo de la primera atleta y las lecturas, la media y la desviación de cada variable.
 
-Experimentos sugeridos: comparar el vecino antes y después; activar el valor extremo y observar que, a diferencia del min-max, los demás puntos no se aplastan contra un borde, aunque sí se acercan entre sí.
+Experimentos sugeridos: comparar el vecino antes y después; activar el valor extremo y observar que los demás tiempos se juntan: ocupan la misma fracción del rango que con el min-max, porque ambas transformaciones son lineales en cada columna; lo que cambia es su escala frente a la otra variable, y las diferencias de tiempo pesan menos en la distancia.
 
 ## Ejemplo
 
@@ -114,6 +114,19 @@ atipico: true
 - **Confundir estandarizar con normalizar la distribución.** Restar la media y dividir entre la desviación no corrige la asimetría; para eso se usan transformaciones de potencia.
 - **Estandarizar con estadísticos de todos los datos.** La media y la desviación deben calcularse con el entrenamiento para no filtrar información de la prueba.
 - **Estandarizar variables indicadoras sin pensarlo.** Una columna 0/1 estandarizada pierde su interpretación directa; muchos prefieren dejarlas en 0 y 1.
+
+:::figura[Error de confundir estandarizar con normalizar la distribución: una transformación lineal de los tiempos, como Box-Cox con lambda igual a 1, cambia la escala pero deja intacta la forma, y la asimetría transformada es igual a la original.]{componente="FeatureTransformViz"}
+```yaml
+modo: box-cox
+lambda: 1
+muestra:
+  nombre: Tiempos de espera
+  valores: [2, 3, 3, 4, 5, 6, 8, 11, 15, 24, 40]
+eje:
+  variable: Tiempo de espera
+  unidad: min
+```
+:::
 
 ## Conexiones
 

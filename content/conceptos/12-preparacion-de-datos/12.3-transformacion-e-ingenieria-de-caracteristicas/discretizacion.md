@@ -64,7 +64,7 @@ con el último intervalo cerrado en $c_k$. Con **igual anchura**, $c_j = \min x 
 
 Arriba, cada punto es un envío colocado según su tiempo de entrega; las líneas naranjas son los cortes y el color indica el intervalo asignado. Al reproducir, los envíos se asignan uno por uno y las barras de abajo cuentan cuántos cae en cada intervalo. El encabezado muestra cómo se calculan los cortes.
 
-Experimentos sugeridos: con igual anchura y cinco intervalos, observar que el último casi no recibe envíos; cambiar a igual frecuencia y comparar la anchura de los intervalos; subir el número de intervalos y ver que algunos de igual anchura quedan vacíos.
+Experimentos sugeridos: con igual anchura y cinco intervalos, observar que el último casi no recibe envíos; cambiar a igual frecuencia y comparar la anchura de los intervalos; subir el número de intervalos y ver que algunos de igual anchura quedan casi vacíos.
 
 ## Ejemplo
 
@@ -103,7 +103,7 @@ intervalos: 10
 - **Elegir los cortes mirando la relación con la variable objetivo.** Buscar los cortes que más separan el resultado sobreajusta y produce efectos aparentes que no se repiten en datos nuevos.
 - **Calcular los cortes con todos los datos.** Los cuantiles de igual frecuencia se calculan con el entrenamiento, igual que cualquier parámetro de preprocesamiento.
 
-:::figura[Error de simplificar de más: con solo dos intervalos de igual frecuencia, todo envío por debajo de la mediana se trata igual, sea de un día o de casi dos.]{componente="FeatureEngineeringViz"}
+:::figura[Error de simplificar de más: con solo dos intervalos de igual frecuencia, todo envío por debajo de la mediana, que es de unos 3.8 días, se trata igual, sea de un día o de casi cuatro.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: discretizacion
 metodo: frecuencia

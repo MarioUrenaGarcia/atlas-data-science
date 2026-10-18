@@ -108,7 +108,7 @@ cubetas: 64
 
 - **Con signo, las colisiones son insesgadas en promedio.** Si dos categorías comparten columna con signos opuestos, su suma no infla la columna; el producto punto entre vectores se conserva en valor esperado.
 
-:::figura[Navegadores con hashing con signo: cada categoría lleva un signo, de modo que las que comparten columna pueden cancelarse en lugar de sumarse.]{componente="FeatureEngineeringViz"}
+:::figura[Navegadores con hashing con signo en 8 columnas: en dos de las columnas con colisión, las categorías llevan signos opuestos y sus contribuciones se cancelan en lugar de sumarse.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: hashing
 caso: navegadores
@@ -123,6 +123,14 @@ signo: true
 - **Cambiar la función hash o k después de entrenar.** El modelo aprendió coeficientes por columna; con otra función o otro $k$, cada categoría cae en una columna distinta y las predicciones pierden sentido.
 - **Esperar interpretar las columnas.** Una columna no corresponde a una categoría sino a todas las que caen en ella; los coeficientes no se leen como efectos de una categoría.
 
+:::figura[Error de elegir k demasiado pequeño: con 4 columnas, cada una recibe varios municipios y el modelo ya no puede separar sus efectos.]{componente="FeatureEngineeringViz"}
+```yaml
+modo: hashing
+caso: municipios
+cubetas: 4
+```
+:::
+
 ## Conexiones
 
 Es una variante de la [[codificacion-one-hot]] con un número fijo de columnas. Que haya colisiones cuando las categorías superan a las columnas es el [[principio-del-palomar]], y el número esperado de pares en colisión se calcula con el [[coeficiente-binomial]], como en la [[paradoja-del-cumpleanos]]. Se aplica también a las palabras de la [[bolsa-de-palabras]] cuando el vocabulario es enorme. Otras opciones para muchas categorías son la [[codificacion-por-frecuencia]], la [[codificacion-por-objetivo]] y los [[embeddings-de-variables-categoricas]].
@@ -134,7 +142,9 @@ $$
 j(c) = h(c) \bmod k
 $$
 
-- $h(c)$: hash de la categoría.
+- $j(c)$: columna asignada a la categoría $c$, entre $0$ y $k - 1$.
+- $h(c)$: hash de la categoría, un entero.
+- $\bmod$: residuo de la división entera.
 - $k$: número de columnas.
 :::
 
@@ -152,5 +162,6 @@ $$
 x_{j(c)} = s(c) \in \{-1, +1\}
 $$
 
+- $x_{j(c)}$: valor que la categoría $c$ escribe en su columna $j(c)$.
 - $s(c)$: signo dado por una segunda función hash.
 :::

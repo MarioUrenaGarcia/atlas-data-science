@@ -66,15 +66,15 @@ En la versión **fuera de pliegue**, los datos se dividen en $F$ pliegues y cada
 
 ## Cómo usar la visualización
 
-Cada barra es una colonia con su número de casas debajo. La raya gris es la media cruda de la colonia y la barra, el valor codificado; la línea punteada naranja es la media global. Al reproducir, las barras pasan de la media cruda al valor suavizado: las colonias grandes casi no se mueven y las de una o dos casas se acercan mucho a la media global. Las lecturas comparan la correlación entre la variable codificada y el precio dentro de la muestra y fuera de pliegue.
+Cada barra es una colonia con su número de casas debajo. La raya gris es la media cruda de la colonia y la barra, el valor codificado; la línea punteada es la media global. Al reproducir, las barras pasan de la media cruda al valor suavizado: las colonias grandes casi no se mueven y las de una o dos casas se acercan mucho a la media global. Las lecturas comparan la correlación entre la variable codificada y el precio dentro de la muestra y fuera de pliegue.
 
-Experimentos sugeridos: poner $m = 0$ y ver que la correlación dentro de la muestra es alta por las colonias pequeñas; activar el cálculo fuera de pliegue y comparar.
+Experimentos sugeridos: poner $m = 0$ y comparar la correlación dentro de la muestra con la de fuera de pliegue; subir $m$ y observar que la primera baja, aunque sigue por encima de la segunda.
 
 ## Ejemplo
 
 La media global del precio es 38 mil pesos por metro cuadrado y $m = 10$.
 
-1. Centro tiene 60 casas con media 32: $\tilde{x} = (60 \cdot 32 + 10 \cdot 38)/70 = 2300/70 = 32.86$. Casi no cambia: $w = 60/70 = 0.86$.
+1. Centro tiene 30 casas con media 35: $\tilde{x} = (30 \cdot 35 + 10 \cdot 38)/40 = 1430/40 = 35.75$. Cambia poco: $w = 30/40 = 0.75$.
 2. Altavista tiene una casa de 52: $\tilde{x} = (1 \cdot 52 + 10 \cdot 38)/11 = 432/11 = 39.27$. Queda cerca de la media global: $w = 1/11 = 0.09$.
 3. Sin suavizar, Altavista valdría 52, exactamente el precio de su única casa: una fuga perfecta de la respuesta.
 4. Fuera de pliegue, la casa de Altavista no tiene vecinos de su colonia en los otros pliegues, así que recibe la media global de esos pliegues.
@@ -100,9 +100,9 @@ m: 30
 ```
 :::
 
-- **Dentro de la muestra sobreestima la utilidad de la variable.** La correlación con el objetivo es mayor dentro de la muestra que fuera de pliegue, y la diferencia crece cuanto menor es $m$ y más categorías pequeñas hay.
+- **Dentro de la muestra sobreestima la utilidad de la variable.** La correlación con el objetivo es mayor dentro de la muestra que fuera de pliegue, sobre todo cuando hay muchas categorías pequeñas y $m$ es chico. Suavizar reduce la correlación dentro de la muestra, pero no cierra la brecha; solo el cálculo fuera de pliegue mide la utilidad real.
 
-:::figura[Cálculo fuera de pliegue: cada fila se codifica sin su propio precio, y la correlación de la variable con el objetivo baja a un valor realista.]{componente="FeatureEngineeringViz"}
+:::figura[Cálculo fuera de pliegue sin suavizar: cada fila se codifica sin su propio precio y la correlación con el objetivo baja de 0.52 a 0.34; la diferencia venía de que cada colonia pequeña veía el precio de sus propias casas.]{componente="FeatureEngineeringViz"}
 ```yaml
 modo: objetivo
 caso: colonias
@@ -116,6 +116,14 @@ fueraDePliegue: true
 - **Codificar con todos los datos antes de separar entrenamiento y prueba.** La media de cada categoría incluye las respuestas de la prueba y la evaluación queda optimista.
 - **No suavizar.** Las categorías con una sola fila reciben como valor su propia respuesta, y el modelo aprende a copiarla.
 - **Usarla con un objetivo que cambia en el tiempo.** Si los precios suben, una media calculada con años anteriores queda desactualizada para las predicciones nuevas.
+
+:::figura[Error de no suavizar: con m igual a 0, las marcas G y H, de dos autos cada una, quedan codificadas con el promedio de solo dos precios, que el modelo toma como si fuera tan confiable como el de las marcas grandes.]{componente="FeatureEngineeringViz"}
+```yaml
+modo: objetivo
+caso: marcas
+m: 0
+```
+:::
 
 ## Conexiones
 

@@ -212,8 +212,10 @@ export function fnv1a(text: string): number {
 export function hashBucket(text: string, buckets: number): { bucket: number; sign: 1 | -1 } {
   const h = fnv1a(text);
   // A second hash of the same text decides the sign, so collisions tend to cancel.
+  // The top bit is used because the low bit of FNV-1a depends only on the parity
+  // of the characters, which would tie the sign to the bucket when k is even.
   const s = fnv1a(`signo:${text}`);
-  return { bucket: h % buckets, sign: s % 2 === 0 ? 1 : -1 };
+  return { bucket: h % buckets, sign: s >>> 31 === 0 ? 1 : -1 };
 }
 
 /** Number of distinct pairs of categories that share a bucket. */

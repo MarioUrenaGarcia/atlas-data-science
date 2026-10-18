@@ -21,7 +21,7 @@ etiquetas:
 resumen: >
   La normalización por norma divide cada fila (no cada columna) entre su norma L1, L2 o L infinito, para que
   todas las observaciones tengan longitud 1 y se comparen por su dirección, no por su tamaño.
-formula: "\\mathbf{x}' = \\frac{\\mathbf{x}}{\\lVert \\mathbf{x} \\rVert_p}"
+formula: "\\mathbf{x}' = \\frac{\\mathbf{x}}{\\lVert \\mathbf{x} \\rVert_q}"
 visualizacion:
   componente: FeatureEngineeringViz
   parametros:
@@ -43,7 +43,7 @@ La **normalización por norma** divide cada fila entre su tamaño. Tras dividir,
 ## Definición
 
 :::definicion[Normalización por norma]
-Sea $\mathbf{x} = (x_1, \dots, x_p)$ una fila con $p$ variables. Su **normalización** por la norma $L_p$ es
+Sea $\mathbf{x} = (x_1, \dots, x_p)$ una fila con $p$ variables. Su **normalización** por la norma $L_q$, con $q \in \{1, 2, \infty\}$, es
 
 $$
 \mathbf{x}' = \frac{\mathbf{x}}{\lVert \mathbf{x} \rVert_q}, \qquad \lVert \mathbf{x} \rVert_1 = \sum_{k=1}^{p} |x_k|, \quad \lVert \mathbf{x} \rVert_2 = \sqrt{\sum_{k=1}^{p} x_k^2}, \quad \lVert \mathbf{x} \rVert_\infty = \max_k |x_k|.
@@ -110,6 +110,14 @@ p: inf
 - **Confundirla con el escalamiento de columnas.** Normalizar filas no pone a las variables en la misma escala; si una columna se mide en miles y otra en unidades, la primera seguirá dominando la dirección.
 - **Usarla cuando el tamaño importa.** Si el número total de compras de un cliente es información relevante, normalizar por fila la borra.
 - **Normalizar filas de ceros.** Una fila con todos los valores en cero no tiene dirección y su norma es cero; hay que tratarla aparte.
+
+:::figura[Error de usarla cuando el tamaño importa: la nota corta y el informe largo, con conteos (3, 1) y (12, 4), quedan en el mismo punto tras normalizar con la norma infinito, y se pierde que uno es cuatro veces más largo.]{componente="FeatureEngineeringViz"}
+```yaml
+modo: norma
+caso: textos
+p: inf
+```
+:::
 
 ## Conexiones
 

@@ -104,6 +104,13 @@ corpus: negacion
 - **Suponer que peso cero significa irrelevancia.** Una palabra presente en todos los documentos no distingue unos de otros, pero puede importar para otra tarea; en colecciones pequeñas, el idf es muy inestable.
 - **Comparar documentos de longitudes muy distintas sin normalizar.** Aun con tf relativo, conviene normalizar las filas en L2 antes de medir similitudes.
 
+:::figura[Error de tomar el peso cero como irrelevancia: en estos avisos del clima, la palabra lluvia aparece en los cuatro documentos, su idf vale 0 y su peso desaparece, aunque es justamente el tema de la colección.]{componente="TextFeaturesViz"}
+```yaml
+modo: tfidf
+corpus: clima
+```
+:::
+
 ## Conexiones
 
 Se construye sobre la [[bolsa-de-palabras]] y se combina con la [[normalizacion-por-norma]] para comparar documentos con la [[similitud-coseno]]. El idf usa el [[funcion-exponencial-y-logaritmo-natural|logaritmo natural]], y su interpretación como medida de rareza se relaciona con la información de un evento en teoría de la información. Los [[n-gramas]] se ponderan con tf-idf de la misma manera.

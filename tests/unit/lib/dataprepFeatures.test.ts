@@ -11,6 +11,7 @@ import {
   equalFrequencyEdges,
   equalWidthEdges,
   fnv1a,
+  hashBucket,
   frequencyEncode,
   lpNorm,
   minMaxScale,
@@ -110,6 +111,19 @@ describe('binning and encodings', () => {
     const pairs = collisionPairs(many, 64);
     expect(pairs).toBeGreaterThan(200);
     expect(pairs).toBeLessThan(450);
+  });
+  it('signed hashing gives opposite signs inside a shared bucket with an even k', () => {
+    const many = Array.from({ length: 200 }, (_, i) => `categoria-${i}`);
+    const byBucket = new Map<number, number[]>();
+    for (const c of many) {
+      const { bucket, sign } = hashBucket(c, 8);
+      byBucket.set(bucket, [...(byBucket.get(bucket) ?? []), sign]);
+    }
+    const mixed = [...byBucket.values()].filter((s) => s.includes(1) && s.includes(-1));
+    expect(mixed.length).toBe(8);
+    const positives = many.filter((c) => hashBucket(c, 8).sign === 1).length;
+    expect(positives).toBeGreaterThan(70);
+    expect(positives).toBeLessThan(130);
   });
   it('counts polynomial features', () => {
     expect(polynomialFeatureCount(5, 2)).toBe(21);

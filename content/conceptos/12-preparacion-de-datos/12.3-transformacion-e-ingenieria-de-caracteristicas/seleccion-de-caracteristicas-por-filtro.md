@@ -69,21 +69,23 @@ Experimentos sugeridos: con $k = 2$, observar que el filtro elige la lluvia y su
 
 ## Ejemplo
 
-Con 120 parcelas de entrenamiento, las correlaciones absolutas con el rendimiento resultan, aproximadamente:
+Con las 120 parcelas de entrenamiento de la visualización principal, las correlaciones absolutas con el rendimiento son:
 
 | Variable | $\lvert r \rvert$ |
 | --- | --- |
-| Lluvia | 0.72 |
-| Lluvia por satélite | 0.70 |
-| Fertilizante | 0.45 |
-| Horas de sol | 0.17 |
-| Letra del lote | 0.18 |
-| Temperatura | 0.00 |
+| Lluvia | 0.71 |
+| Lluvia por satélite | 0.69 |
+| Fertilizante | 0.42 |
+| Horas de sol | 0.28 |
+| Letra del lote | 0.17 |
+| Número de parcela | 0.15 |
+| Temperatura | 0.12 |
+| Código del vendedor | 0.03 |
 
 1. Con $k = 3$ se conservan lluvia, lluvia por satélite y fertilizante.
 2. La segunda variable es redundante: dice lo mismo que la primera.
-3. Las horas de sol, que sí influyen, empatan con un código sin relación: con 120 parcelas, una correlación de 0.17 está dentro de lo que el azar produce.
-4. La temperatura, con efecto fuerte pero no lineal, queda en último lugar.
+3. Las horas de sol, que sí influyen, quedan apenas por encima de dos códigos sin relación. Con 120 parcelas, una correlación cuyo valor absoluto no pase de $2/\sqrt{120} = 0.18$ es compatible con el azar, y los dos códigos están justo en ese rango.
+4. La temperatura, con efecto fuerte pero no lineal, queda en séptimo lugar, por debajo de los dos códigos.
 
 :::figura[Con k igual a 2, el filtro elige la lluvia y su copia por satélite, y descarta el fertilizante, que sí aporta información nueva.]{componente="FeatureSelectionViz"}
 ```yaml
@@ -111,6 +113,14 @@ semilla: 5
 - **Filtrar con todos los datos antes de validar.** Si las variables se eligen viendo la respuesta de la prueba, la evaluación queda optimista; con muchas variables de ruido, alguna parecerá útil por azar.
 - **Interpretar un puntaje bajo como irrelevancia.** Una correlación cercana a cero solo descarta una relación lineal.
 - **Conservar todas las variables que superan el umbral sin revisar redundancias.** Varias versiones de la misma medición inflan el modelo sin mejorarlo.
+
+:::figura[Error de interpretar un puntaje bajo como irrelevancia: con esta muestra, la temperatura, que tiene un efecto fuerte en forma de U invertida, obtiene una correlación de apenas 0.06 y queda fuera de las tres elegidas.]{componente="FeatureSelectionViz"}
+```yaml
+modo: filtro
+k: 3
+semilla: 5
+```
+:::
 
 ## Conexiones
 

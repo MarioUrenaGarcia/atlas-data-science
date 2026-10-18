@@ -11,6 +11,7 @@ import { useReducedMotion } from '../../core/useReducedMotion.ts';
 import { useResettableState, useSeed } from '../../core/useSeededRandom.ts';
 import { VizFrame } from '../../core/VizFrame.tsx';
 import { CATEGORY_CASES, categoryRows } from './categoryData.ts';
+import { CategoryLabel, TILT_ABOVE } from './CategoryLabel.tsx';
 import styles from './FeatureEngineeringViz.module.css';
 import type { TargetCaseId } from './schema.ts';
 
@@ -47,6 +48,7 @@ export function FrequencyView({
     done: shown >= n,
   });
   const names = item.categories.map((c) => c.name);
+  const tilt = names.length > TILT_ABOVE;
   const counted = data.categories.slice(0, shown);
   const counts = names.map((c) => counted.filter((v) => v === c).length);
   const finalFreq = frequencyEncode(data.categories);
@@ -97,7 +99,7 @@ export function FrequencyView({
         aspect={0.5}
         minHeight={240}
         maxHeight={340}
-        margins={{ top: 12, right: 16, bottom: 46, left: 56 }}
+        margins={{ top: 12, right: 16, bottom: tilt ? 86 : 46, left: 56 }}
       >
         {(box) => {
           const { left, top, width, height } = box.inner;
@@ -133,14 +135,12 @@ export function FrequencyView({
                         fill={tied ? DATA_COLORS.highlight : DATA_COLORS.primary}
                         fillOpacity={i === ci ? 0.95 : 0.6}
                       />
-                      <text
+                      <CategoryLabel
                         x={(x(i) ?? 0) + x.bandwidth() / 2}
                         y={top + height + 14}
-                        textAnchor="middle"
-                        className={styles.chartLabel}
-                      >
-                        {c}
-                      </text>
+                        tilt={tilt}
+                        text={c}
+                      />
                       <text
                         x={(x(i) ?? 0) + x.bandwidth() / 2}
                         y={y(share) - 4}

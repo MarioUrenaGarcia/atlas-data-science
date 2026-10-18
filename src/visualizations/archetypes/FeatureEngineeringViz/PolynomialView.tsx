@@ -19,6 +19,12 @@ const T_MAX = 40;
 const TEST = 60;
 const DEGREES_PER_SECOND = 1.2;
 const CURVE_POINTS = 120;
+/**
+ * Tiny ridge penalty: with fewer points than coefficients the normal equations
+ * are singular, and this keeps the solve defined (close to the minimum norm
+ * interpolant) without visibly changing well-posed fits.
+ */
+const RIDGE = 1e-12;
 
 /** Daily electricity use against temperature: high when it is cold or hot. */
 function consumption(t: number): number {
@@ -98,9 +104,12 @@ export function PolynomialView({
     rate: DEGREES_PER_SECOND,
     done: d >= maxDegree,
   });
+  const penalty = Array.from({ length: d + 1 }, (_, k) =>
+    Array.from({ length: d + 1 }, (_, j) => (j === k ? Math.sqrt(RIDGE) : 0)),
+  );
   const fit = leastSquares(
-    train.map(([t]) => polynomialRow(unit(t), d)),
-    train.map(([, y]) => y),
+    [...train.map(([t]) => polynomialRow(unit(t), d)), ...penalty],
+    [...train.map(([, y]) => y), ...penalty.map(() => 0)],
   );
   const predict = (t: number) =>
     polynomialRow(unit(t), d).reduce((a, v, k) => a + v * (fit?.coefficients[k] ?? 0), 0);

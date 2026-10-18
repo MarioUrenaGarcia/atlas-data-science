@@ -37,7 +37,7 @@ publicado: true
 
 Las tallas de una playera tienen un orden claro: CH, M, G y EG. Escribirlas como 1, 2, 3 y 4 conserva ese orden en una sola columna, mucho más compacta que cuatro columnas de ceros y unos. Un modelo lineal puede entonces aprender que el precio sube un tanto por cada talla, y un árbol puede cortar en "talla mayor que 2" para separar las grandes de las chicas.
 
-La **codificación ordinal** tiene dos condiciones para funcionar bien. La primera es que el orden de los códigos sea el orden real: si se asignan en orden alfabético, EG queda antes que G y CH, y el modelo aprende relaciones absurdas. La segunda es que el modelo, si es lineal, supondrá que los saltos entre categorías consecutivas son iguales: pasar de CH a M "vale" lo mismo que pasar de G a EG. En una escala de satisfacción eso es un supuesto razonable pero no garantizado. Y para categorías sin orden, como colores, cualquier asignación de enteros inventa un orden y unas distancias que no existen.
+La **codificación ordinal** tiene dos condiciones para funcionar bien. La primera es que el orden de los códigos sea el orden real: si se asignan en orden alfabético (CH, EG, G, M), EG queda antes que G y M, y el modelo aprende relaciones absurdas. La segunda es que el modelo, si es lineal, supondrá que los saltos entre categorías consecutivas son iguales: pasar de CH a M "vale" lo mismo que pasar de G a EG. En una escala de satisfacción eso es un supuesto razonable pero no garantizado. Y para categorías sin orden, como colores, cualquier asignación de enteros inventa un orden y unas distancias que no existen.
 
 ## Definición
 

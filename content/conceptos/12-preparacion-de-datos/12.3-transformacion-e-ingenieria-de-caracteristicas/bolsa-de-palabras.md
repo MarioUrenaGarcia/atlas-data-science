@@ -37,7 +37,7 @@ publicado: true
 
 Un restaurante recibe reseñas escritas y quiere clasificarlas como positivas o negativas. Un modelo no lee texto, así que primero hay que convertir cada reseña en números. La forma más directa es contar: hacer la lista de todas las palabras que aparecen en el conjunto de reseñas (el **vocabulario**) y, para cada reseña, anotar cuántas veces aparece cada palabra.
 
-Se llama **bolsa de palabras** porque es como vaciar la reseña en una bolsa: se sabe qué palabras hay y cuántas veces, pero no en qué orden estaban. "La comida estaba rica y el servicio lento" y "el servicio estaba rico y la comida lenta" quedarían casi iguales. A pesar de esa pérdida, la representación funciona sorprendentemente bien para muchas tareas, porque la presencia de palabras como "excelente", "fría" o "lento" ya dice mucho. Su costo es el tamaño: con miles de reseñas el vocabulario tiene miles de palabras, y cada reseña usa solo unas cuantas, así que la matriz es enorme y casi toda de ceros.
+Se llama **bolsa de palabras** porque es como vaciar la reseña en una bolsa: se sabe qué palabras hay y cuántas veces, pero no en qué orden estaban. "La comida estaba rica y el servicio lento" y "el servicio estaba rico y la comida lenta" quedarían casi iguales. A pesar de esa pérdida, la representación funciona bien en muchas tareas, porque la presencia de palabras como "excelente", "fría" o "lento" ya dice mucho. Su costo es el tamaño: con miles de reseñas el vocabulario tiene miles de palabras, y cada reseña usa solo unas cuantas, así que la matriz es enorme y casi toda de ceros.
 
 ## Definición
 
@@ -70,7 +70,7 @@ La semejanza entre documentos suele medirse con la similitud coseno, $\cos(\math
 
 Arriba están las reseñas, cortadas en palabras. Al reproducir, cada palabra se resalta en su turno y suma uno en la celda de su documento y su término; las celdas más oscuras tienen conteos mayores. El interruptor quita palabras vacías (artículos, conjunciones y preposiciones frecuentes), que aparecen tachadas. Las lecturas muestran el tamaño del vocabulario, la proporción de ceros y la similitud coseno entre las dos primeras reseñas.
 
-Experimento sugerido: comparar la similitud coseno de las reseñas 1 y 2 con y sin palabras vacías; artículos como "la" y "el" hacen que se parezcan más de lo que dice su contenido.
+Experimento sugerido: comparar la similitud coseno de las reseñas 1 y 2 con y sin palabras vacías. Sin ellas la similitud sube, porque las dos comparten comida, rica y servicio y solo difieren en rápido y lento: la bolsa de palabras no capta que una elogia el servicio y la otra se queja de él.
 
 ## Ejemplo
 
@@ -82,7 +82,7 @@ Las dos primeras reseñas son "La comida estaba rica y el servicio rápido" y "E
 4. Cada una tiene 8 palabras con conteo 1: $\lVert \mathbf{x}_1 \rVert = \lVert \mathbf{x}_2 \rVert = \sqrt{8}$.
 5. Similitud coseno: $5/8 = 0.625$, aunque una elogia la rapidez y la otra se queja de la lentitud.
 
-:::figura[Las reseñas sin palabras vacías: el vocabulario se reduce a las palabras con contenido y la similitud entre las dos primeras reseñas baja.]{componente="TextFeaturesViz"}
+:::figura[Las reseñas sin palabras vacías: el vocabulario se reduce a las palabras con contenido y la similitud entre las dos primeras reseñas sube de 0.625 a 0.750, porque casi todo lo que queda es compartido.]{componente="TextFeaturesViz"}
 ```yaml
 modo: bolsa
 corpus: resenas
@@ -107,7 +107,7 @@ sinVacias: true
 ## Errores comunes
 
 - **Construir el vocabulario con los datos de prueba.** Las palabras de la prueba no deben definir columnas del modelo; el vocabulario se fija con el entrenamiento.
-- **Tratar las palabras vacías como información.** Artículos y preposiciones dominan los conteos y hacen parecidos a textos distintos; se eliminan o se pesan con tf-idf.
+- **Tratar las palabras vacías como información.** Artículos y preposiciones dominan los conteos y aportan coincidencias que nada dicen del contenido; se eliminan o se pesan con tf-idf. Quitarlas no resuelve todo: en el ejemplo, las dos reseñas se parecen todavía más sin ellas, aunque digan cosas opuestas.
 - **Esperar que distinga negaciones.** "Es bueno" y "no es bueno" difieren en una sola palabra; la bolsa los considera casi iguales.
 
 :::figura[Error de esperar que distinga negaciones: "el servicio es bueno" y "el servicio no es bueno" quedan con vectores casi iguales.]{componente="TextFeaturesViz"}
