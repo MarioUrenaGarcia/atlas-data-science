@@ -1,0 +1,263 @@
+.stage {
+  margin: 0 0 var(--space-3);
+  min-height: 2.6em;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text);
+}
+
+.chartLabel {
+  fill: var(--color-text-muted);
+  font-size: 11px;
+  font-family: var(--font-sans);
+}
+
+.chartText {
+  fill: var(--color-text);
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.tableScroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: var(--text-xs);
+}
+
+.table th,
+.table td {
+  padding: 3px var(--space-2);
+  border: 1px solid var(--color-border);
+  text-align: left;
+  white-space: nowrap;
+  transition: background-color var(--duration-normal) var(--ease-standard);
+}
+
+.table th {
+  background: var(--color-surface-2);
+  font-weight: 600;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.bad {
+  background: color-mix(in srgb, var(--color-danger) 18%, transparent);
+}
+
+.badRow td {
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+}
+
+.active {
+  outline: 2px solid var(--data-5);
+  outline-offset: -2px;
+}
+
+.activeRow td {
+  background: color-mix(in srgb, var(--data-5) 18%, transparent);
+}
+
+.ok {
+  background: color-mix(in srgb, var(--color-success) 14%, transparent);
+}
+
+.dropped td {
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.panelTitle {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 650;
+  text-align: center;
+}
+
+.notes {
+  margin: var(--space-2) 0 0;
+  padding-left: 1.2em;
+  font-size: var(--text-xs);
+  color: var(--color-text);
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-xs);
+}
+
+.chip {
+  padding: 2px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+}
+
+.chipDone {
+  border-color: var(--data-1);
+  color: var(--color-text);
+}
+
+.chipActive {
+  border-color: var(--data-5);
+  background: color-mix(in srgb, var(--data-5) 20%, transparent);
+  color: var(--color-text);
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.missingCell {
+  background: var(--color-text);
+}
+
+.mapGrid {
+  display: grid;
+  gap: 1px;
+  margin: 0 auto;
+  max-width: 420px;
+}
+
+.mapCell {
+  height: 7px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--data-1) 30%, transparent);
+}
+
+.mapCellMissing {
+  background: var(--color-text);
+}
+
+.mapRowDropped {
+  opacity: 0.25;
+}
+
+.mapHeader {
+  font-size: 10.5px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.pre {
+  white-space: pre;
+}
+
+.bit {
+  display: inline-block;
+  min-width: 1.6em;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+.bitOn {
+  background: color-mix(in srgb, var(--data-1) 28%, transparent);
+  font-weight: 700;
+}
+
+.formulaNote {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-xs);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.buckets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--space-2);
+}
+
+.bucket {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 3.2em;
+  padding: 4px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-2);
+  font-size: var(--text-xs);
+}
+
+.bucketCollision {
+  border-color: var(--data-5);
+  background: color-mix(in srgb, var(--data-5) 14%, transparent);
+}
+
+.bucketIndex {
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+}
+
+.bucketItem {
+  overflow-wrap: anywhere;
+}
+
+.bucketItemNew {
+  font-weight: 700;
+}
+
+.doc {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.docLabel {
+  font-weight: 650;
+  margin-right: var(--space-2);
+}
+
+.tokenChip {
+  display: inline-block;
+  margin: 1px 2px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--color-surface-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.tokenNew {
+  background: color-mix(in srgb, var(--data-5) 35%, transparent);
+}
+
+.tokenStop {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.heat {
+  font-family: var(--font-mono);
+  text-align: center !important;
+}
