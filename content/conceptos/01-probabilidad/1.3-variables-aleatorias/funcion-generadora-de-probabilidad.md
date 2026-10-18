@@ -36,9 +36,7 @@ visualizacion:
     orden: 6
 referencias:
   - clave: ross-procesos
-    capitulo: '2.6'
   - clave: karlin-taylor
-    capitulo: '1.1'
 publicado: true
 ---
 

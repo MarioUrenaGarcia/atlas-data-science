@@ -37,9 +37,6 @@ visualizacion:
     t: 0.8
 referencias:
   - clave: blitzstein-hwang
-    capitulo: '6.5'
-  - clave: durrett
-    capitulo: '3.4'
 publicado: true
 ---
 

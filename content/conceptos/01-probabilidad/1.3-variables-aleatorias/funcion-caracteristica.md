@@ -33,8 +33,6 @@ visualizacion:
 referencias:
   - clave: durrett
     capitulo: '3.3'
-  - clave: blitzstein-hwang
-    capitulo: '6.7'
 publicado: true
 ---
 
