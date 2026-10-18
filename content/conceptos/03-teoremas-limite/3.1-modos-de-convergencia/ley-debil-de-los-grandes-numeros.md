@@ -12,6 +12,7 @@ orden: 6
 nivel: intermedio
 prerrequisitos:
   - convergencia-en-probabilidad
+  - desigualdad-de-chebyshev
 relaciones:
   - tipo: relacionado
     id: falacia-del-jugador

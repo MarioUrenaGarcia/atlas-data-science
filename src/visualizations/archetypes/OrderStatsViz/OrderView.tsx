@@ -104,8 +104,8 @@ export function OrderView({ title, conceptId, config }: OrderViewProps) {
           value: count > 0 ? f(samples.last[k - 1] ?? 0) : 'sin datos',
           color: DATA_COLORS.highlight,
         },
-        { label: `E[X(${k})] exacta`, value: f(exactMean), color: DATA_COLORS.secondary },
-        { label: 'Media simulada', value: f(simulatedMean), color: DATA_COLORS.primary },
+        { label: `E[X(${k})] exacta`, value: f(exactMean), color: DATA_COLORS.text },
+        { label: 'Media simulada', value: f(simulatedMean), color: DATA_COLORS.secondary },
       ]}
       legend={[
         {
@@ -113,8 +113,8 @@ export function OrderView({ title, conceptId, config }: OrderViewProps) {
           color: DATA_COLORS.highlight,
           shape: 'circle',
         },
-        { label: 'Histograma simulado', color: DATA_COLORS.primary },
-        { label: 'Densidad exacta del estadístico', color: DATA_COLORS.secondary, shape: 'line' },
+        { label: 'Histograma simulado', color: DATA_COLORS.secondary },
+        { label: 'Densidad exacta del estadístico', color: DATA_COLORS.text, shape: 'line' },
         { label: 'Densidad de cada observación', color: DATA_COLORS.muted, shape: 'dashed' },
       ]}
       description={description}
@@ -132,7 +132,7 @@ export function OrderView({ title, conceptId, config }: OrderViewProps) {
         width={width}
         densities={densityBins(column, domain, BINS)}
         curves={[
-          { f: density, color: DATA_COLORS.secondary },
+          { f: density, color: DATA_COLORS.text },
           { f: (x) => distribution.pdf(x), color: DATA_COLORS.muted, dashed: true },
         ]}
         domain={domain}

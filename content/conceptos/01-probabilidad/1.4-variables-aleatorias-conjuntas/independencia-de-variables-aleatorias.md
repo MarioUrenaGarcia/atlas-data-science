@@ -138,7 +138,7 @@ simboloY: Y
 
 ## Conexiones
 
-La independencia de variables extiende la [[independencia-de-eventos]] a todos los eventos que se forman con ellas, y se verifica comparando la [[distribucion-conjunta]] con el producto de las [[distribuciones-marginales]]. Implica [[covarianza]] cero, pero la [[correlacion-cero-no-implica-independencia]]. Bajo independencia, la suma de variables aleatorias se calcula con la convolución de distribuciones y las varianzas se suman, como en [[propiedades-de-la-varianza]]. Las muestras independientes son la base de la [[ley-debil-de-los-grandes-numeros]] y de la [[ley-0-1-de-kolmogorov]].
+La independencia de variables extiende la [[independencia-de-eventos]] a todos los eventos que se forman con ellas, y se verifica comparando la [[distribucion-conjunta]] con el producto de las [[distribuciones-marginales]]. Implica [[covarianza]] cero, pero la [[correlacion-cero-no-implica-independencia]]. Bajo independencia, la [[suma-de-variables-aleatorias]] se calcula con la [[convolucion-de-distribuciones]] y las varianzas se suman, como en [[propiedades-de-la-varianza]]. Las muestras independientes son la base de la [[ley-debil-de-los-grandes-numeros]] y de la [[ley-0-1-de-kolmogorov]].
 
 ## Formulario
 

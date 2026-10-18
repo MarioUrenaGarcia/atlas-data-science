@@ -167,7 +167,7 @@ y: 0
 
 ## Conexiones
 
-La distribución conjunta generaliza la [[funcion-de-distribucion-acumulada]] a varias variables y usa la [[integral-definida-como-area]] en su versión de [[integrales-dobles-y-triples]]. De ella se obtienen las [[distribuciones-marginales]] y la [[distribucion-condicional]], y en ella se definen la [[independencia-de-variables-aleatorias]] y la [[covarianza]]. Las cópulas la separan en marginales y dependencia, y la suma de variables aleatorias es una de las funciones del par cuya distribución se calcula a partir de ella.
+La distribución conjunta generaliza la [[funcion-de-distribucion-acumulada]] a varias variables y usa la [[integral-definida-como-area]] en su versión de [[integrales-dobles-y-triples]]. De ella se obtienen las [[distribuciones-marginales]] y la [[distribucion-condicional]], y en ella se definen la [[independencia-de-variables-aleatorias]] y la [[covarianza]]. Las [[copulas]] la separan en marginales y dependencia, y la [[suma-de-variables-aleatorias]] es una de las funciones del par cuya distribución se calcula a partir de ella.
 
 ## Formulario
 

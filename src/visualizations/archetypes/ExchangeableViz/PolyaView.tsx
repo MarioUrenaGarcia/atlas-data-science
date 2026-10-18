@@ -166,7 +166,8 @@ export function PolyaView({ title, conceptId, config }: PolyaViewProps) {
       legend={[
         { label: 'Proporción en cada urna', color: DATA_COLORS.primary, shape: 'line' },
         { label: 'Urna 1', color: DATA_COLORS.highlight, shape: 'line' },
-        { label: `Densidad Beta(${a}, ${b})`, color: DATA_COLORS.secondary, shape: 'line' },
+        { label: 'Histograma de proporciones finales', color: DATA_COLORS.secondary },
+        { label: `Densidad Beta(${a}, ${b})`, color: DATA_COLORS.text, shape: 'line' },
       ]}
       description={description}
     >
@@ -219,7 +220,7 @@ export function PolyaView({ title, conceptId, config }: PolyaViewProps) {
           start={0}
           width={width}
           densities={densities}
-          curves={[{ f: betaDensity, color: DATA_COLORS.secondary }]}
+          curves={[{ f: betaDensity, color: DATA_COLORS.text }]}
           domain={[0, 1]}
           label={`Proporciones finales de las urnas. ${description}`}
           axisLabel="proporción final"

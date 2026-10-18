@@ -11,6 +11,9 @@ orden: 1
 nivel: intermedio
 prerrequisitos:
   - variable-aleatoria
+relaciones:
+  - tipo: relacionado
+    id: desigualdad-de-chebyshev
 etiquetas:
   - convergencia
   - variables aleatorias

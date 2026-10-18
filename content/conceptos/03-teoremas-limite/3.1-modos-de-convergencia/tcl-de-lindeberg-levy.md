@@ -12,6 +12,9 @@ nivel: intermedio
 prerrequisitos:
   - teorema-central-del-limite
   - funcion-caracteristica
+relaciones:
+  - tipo: relacionado
+    id: convolucion-de-distribuciones
 etiquetas:
   - teorema central del límite
   - función característica

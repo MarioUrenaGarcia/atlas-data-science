@@ -17,6 +17,8 @@ prerrequisitos:
 relaciones:
   - tipo: relacionado
     id: asimetria
+  - tipo: relacionado
+    id: suma-de-variables-aleatorias
 etiquetas:
   - distribución normal
   - sumas

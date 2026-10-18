@@ -98,7 +98,7 @@ Con los días con lluvia $L$ y la suspensión $S$ (tabla de las fichas anteriore
 3. $\operatorname{Cov}(L, S) = 0.50 - 0.8 \cdot 0.45 = 0.50 - 0.36 = 0.14$.
 4. Es positiva: más lluvia acompaña a más suspensiones.
 
-:::figura[La covarianza del ejemplo: las celdas $(0, 0)$ y $(2, 1)$ aportan positivo, las celdas $(0, 1)$ y $(2, 0)$ negativo, y el balance es 0.14.]{componente="JointDistribution2D"}
+:::figura[La covarianza del ejemplo: las celdas $(0, 0)$ y $(2, 1)$ aportan positivo, las celdas $(0, 1)$ y $(2, 0)$ negativo, la fila $L = 1$ hace aportes pequeños de los dos signos ($-0.018$ y $0.022$), y el balance es 0.14.]{componente="JointDistribution2D"}
 ```yaml
 modo: covarianza
 valoresX: [0, 1, 2]
@@ -147,7 +147,7 @@ parametros:
 
 ## Conexiones
 
-La covarianza generaliza la [[varianza]] a dos variables y se calcula con la [[distribucion-conjunta]]. Normalizada por las desviaciones estándar da la [[correlacion-de-pearson]], y reunida para varias variables forma la [[matriz-de-covarianza]]. Es cero bajo [[independencia-de-variables-aleatorias]], aunque la [[correlacion-cero-no-implica-independencia]]. Aparece en la varianza de la suma de variables aleatorias. Su versión con datos es la [[covarianza-muestral]].
+La covarianza generaliza la [[varianza]] a dos variables y se calcula con la [[distribucion-conjunta]]. Normalizada por las desviaciones estándar da la [[correlacion-de-pearson]], y reunida para varias variables forma la [[matriz-de-covarianza]]. Es cero bajo [[independencia-de-variables-aleatorias]], aunque la [[correlacion-cero-no-implica-independencia]]. Aparece en la varianza de la [[suma-de-variables-aleatorias]]. Su versión con datos es la [[covarianza-muestral]].
 
 ## Formulario
 
