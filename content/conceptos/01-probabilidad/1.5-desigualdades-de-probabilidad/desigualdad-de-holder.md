@@ -158,6 +158,7 @@ $$
 \|X + Y\|_p \le \|X\|_p + \|Y\|_p
 $$
 
+- $\|X\|_p = (\mathbb{E}|X|^p)^{1/p}$: norma $L^p$; $X + Y$: suma de las dos variables.
 - $p \ge 1$: desigualdad triangular de la norma $L^p$, que se deduce de Hölder.
 :::
 

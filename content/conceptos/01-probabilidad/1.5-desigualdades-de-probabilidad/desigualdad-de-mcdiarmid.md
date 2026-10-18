@@ -160,6 +160,6 @@ $$
 \mathbb{E}[f] = m\left(1 - \frac{1}{m}\right)^{m}, \qquad P\big(f - \mathbb{E}[f] \ge t\big) \le e^{-2t^2/m}
 $$
 
-- $m$: número de bolas, lanzadas al azar e independientes, y de cajas; $f$: número de cajas vacías.
+- $m$: número de bolas, lanzadas al azar e independientes, y de cajas; $f$: número de cajas vacías; $t > 0$: exceso sobre la media.
 - $(1 - 1/m)^m$: probabilidad de que una caja dada quede vacía; cada bola cambia $f$ en a lo más 1, así que $c_i = 1$.
 :::

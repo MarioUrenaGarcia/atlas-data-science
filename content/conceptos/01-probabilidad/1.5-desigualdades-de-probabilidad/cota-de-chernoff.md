@@ -183,7 +183,8 @@ $$
 P(\bar{X}_n \le p - t) \le e^{-n\, D(p - t \,\|\, p)}
 $$
 
-- $0 < t < p$; se obtiene aplicando la cota a $-\bar{X}_n$.
+- $\bar{X}_n$: promedio de $n$ ensayos de Bernoulli independientes con probabilidad $p$; $t$: desviación bajo $p$, con $0 < t < p$.
+- $D$: entropía relativa de Bernoulli. Se obtiene aplicando la cota a $-\bar{X}_n$.
 :::
 
 :::formula[Entropía relativa de Bernoulli]

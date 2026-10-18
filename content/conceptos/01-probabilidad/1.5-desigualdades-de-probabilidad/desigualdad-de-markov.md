@@ -96,7 +96,7 @@ El tiempo de respuesta $T$ de un servidor tiene media de 0.2 segundos y no se sa
 
 La garantía es débil pero no supone nada sobre la forma de la distribución.
 
-:::figura[Una distribución compatible con el ejemplo del servidor: si $T$ fuera exponencial con media 0.2, $P(T \ge 1) = e^{-5} \approx 0.0067$, muy por debajo de la garantía 0.2 de Markov, que tiene que valer para cualquier distribución con esa media. La deslizadera permite revisar los umbrales 1 y 4 del ejemplo.]{componente="InequalityBound"}
+:::figura[Una distribución compatible con el ejemplo del servidor: si $T$ fuera exponencial con media 0.2, $P(T \ge 1) = e^{-5} \approx 0.0067$, muy por debajo de la garantía 0.2 de Markov, que tiene que valer para cualquier distribución con esa media. La deslizadera recorre umbrales hasta cerca de 1.4; con $a = 1.2$ la cota vale $0.2/1.2 \approx 0.17$ y la exacta $e^{-6} \approx 0.0025$.]{componente="InequalityBound"}
 ```yaml
 modo: cola
 cota: markov
@@ -114,7 +114,7 @@ nombre: Tiempo de respuesta
 - **Funciones crecientes:** si $g \ge 0$ es creciente, $P(X \ge a) \le \mathbb{E}[g(X)]/g(a)$. Con $g(x) = x^2$ aplicada a $|X - \mu|$ se obtiene la desigualdad de Chebyshev y con $g(x) = e^{tx}$ la cota de Chernoff.
 - **Momentos altos:** $P(|X| \ge a) \le \mathbb{E}|X|^k / a^k$, más fuerte para $a$ grande si el momento de orden $k$ existe.
 - **Sin signo no hay cota:** si $X$ puede ser negativa, la media no controla la cola.
-- **Colas pesadas:** la cota queda más cerca de la probabilidad exacta cuando la cola de la distribución es pesada, porque entonces la distribución se parece más a la del caso de igualdad.
+- **Colas pesadas:** la cota suele quedar más cerca de la probabilidad exacta cuando la cola de la distribución es pesada, porque entonces una parte apreciable de la media proviene de valores grandes, que son justamente los que la cota cuenta.
 
 :::figura[Una cola pesada: con la distribución de Pareto de índice 1.5 y media 3, en $a = 6$ la cota 0.5 es unas 7 veces la probabilidad exacta, 0.068. Con la exponencial de media 1 y el mismo umbral, la cota es unas 67 veces la probabilidad exacta.]{componente="InequalityBound"}
 ```yaml

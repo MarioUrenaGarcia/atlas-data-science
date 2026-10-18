@@ -111,7 +111,7 @@ nombre: Peso estandarizado
 - **Es óptima:** para cada $k \ge 1$ existe una distribución que alcanza la igualdad: vale $\mu \pm k\sigma$ con probabilidad $1/(2k^2)$ cada uno y $\mu$ el resto del tiempo.
 - **Versión de una cola:** la desigualdad de Cantelli mejora la cota para una sola cola a $1/(1 + k^2)$.
 - **Con momentos más altos:** $P(|X - \mu| \ge t) \le \mathbb{E}|X - \mu|^r / t^r$, más fuerte en las colas lejanas si el momento existe.
-- **Colas pesadas:** cuanto más pesadas son las colas, más se acerca la probabilidad exacta a la cota, aunque para distribuciones usuales sigue lejos de ella.
+- **Colas pesadas:** con colas más pesadas la probabilidad exacta suele acercarse más a la cota, aunque para distribuciones usuales sigue lejos de ella.
 
 :::figura[La distribución de Laplace, de colas más pesadas que la normal: a 3 desviaciones estándar queda fuera una probabilidad de 0.014, cinco veces la de la normal y aún muy por debajo de la cota 0.111.]{componente="InequalityBound"}
 ```yaml
